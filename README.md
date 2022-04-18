@@ -1,5 +1,5 @@
 # Description: 
-Qualcomm Snapdragon 660 (SDM660) firmware source (BOOT.XF.1.4-00280-S660LZB-1)
+Qualcomm Snapdragon 660 (SDM660) firmware source.
 
 
 
