@@ -1,13 +1,10 @@
-<br>
+# Description: 
 Qualcomm Snapdragon 660 (SDM660) firmware source (BOOT.XF.1.4-00280-S660LZB-1)
-<br/>
-<br>
-<br/>
 
 
-**Build Components:**
-<br>
-~~LA.UM.8.2.1.R1: "LA.UM.8.2.1.r1-04200-sdm660.0-1"~~ (This is not available in this repo.)
+
+# Build Components:
+LA.UM.8.2.1.R1: "LA.UM.8.2.1.r1-04200-sdm660.0-1" (This is not available in this repo.)
 <br/>
 ADSP.VT.4.1.C1: "ADSP.VT.4.1.c1-00009-SDM660-1"
 <br>
@@ -35,8 +32,5 @@ WLAN.HL.3.3.5: "WLAN.HL.3.3.5-00149-QCAHLSWMTPLZ-1"
 <br/>
 <br>
 <br/>
-This source was initially found at mingwork.com, further inspection reveals that this was meant for an android Smart TV that logitech was planning for China.
-<br/>
-<br>
-Build instructions will be released soon.
+This source was initially found at mingwork.com, Logitech were the ones working on it with another company.
 <br/>
