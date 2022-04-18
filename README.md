@@ -1,5 +1,5 @@
 <br>
-Qualcomm Snapdragon 660 (SDM660) firmware source (BOOT.XF.1.4-00280-S660LZB-1) + OS source (Android 10 Q) A/B.
+Qualcomm Snapdragon 660 (SDM660) firmware source (BOOT.XF.1.4-00280-S660LZB-1)
 <br/>
 <br>
 <br/>
@@ -7,7 +7,7 @@ Qualcomm Snapdragon 660 (SDM660) firmware source (BOOT.XF.1.4-00280-S660LZB-1) +
 
 **Build Components:**
 <br>
-LA.UM.8.2.1.R1: "LA.UM.8.2.1.r1-04200-sdm660.0-1"
+~~LA.UM.8.2.1.R1: "LA.UM.8.2.1.r1-04200-sdm660.0-1"~~ (This is not available in this repo.)
 <br/>
 ADSP.VT.4.1.C1: "ADSP.VT.4.1.c1-00009-SDM660-1"
 <br>
