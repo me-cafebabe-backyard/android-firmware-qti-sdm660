@@ -1,0 +1,71 @@
+#/** @file ClockTargetLib.inf
+#
+#  XBL Loader Clock Driver build file.
+#  
+#  Copyright (c) 2015 Qualcomm Technologies, Inc.  All Rights Reserved.
+#  Qualcomm Technologies Proprietary and Confidential.
+#
+#**/
+
+#=============================================================================
+#                              EDIT HISTORY
+#
+#
+# when      who           what, where, why
+# --------  ------------  ----------------------------------------------------
+# 08/11/15  jcuddihy      Initial SDM660 revision, branched from MSM8996.
+#
+#=============================================================================
+
+## @file
+#  Clock lib
+#
+#  Copyright (c) 2014, Qualcomm Technologies, Inc . All rights reserved.
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ClockTargetLib
+  FILE_GUID                      = 9FAC2E72-4842-F555-2E0B-59807D44C66F
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = ClockTargetLib
+
+[Sources]
+  # Include Header
+  ../../Include/msmhwiobase.h
+  ../../../Include/api/systemdrivers/ClockBoot.h
+  ../../../Include/api/boot/ddr_drivers.h
+  ../../../XBLLoader/boot_util.h
+
+[Sources.common]
+  ClockXBL.c
+  ClockSDI.c
+  ClockBIMC.c
+  ClockBSP.c
+  ClockCPU.c
+  ClockTools.c
+  ClockCommon.c
+ 
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  QcomPkg/QcomPkg.dec  
+  QcomPkg/Sdm660Pkg/Sdm660Pkg.dec
+  #QcomPkg/XBLLoaderApi.dec
+
+[LibraryClasses]
+  BusyWaitLib 
+  IoLib
+  BaseLib  
+  #UefiLib
+  #UefiApplicationEntryPoint
+  #QcomLib
+  #BaseMemoryLib
+  #UefiLib
+
+[FixedPcd]
+  gQcomTokenSpaceGuid.PcdBuildType
+  
+[Protocols]
+  gQcomPmicVregProtocolGuid

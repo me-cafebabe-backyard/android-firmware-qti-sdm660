@@ -1,0 +1,28 @@
+// t32 Thu Jun 18 17:40:28 2015
+
+ B::
+ 
+ TOOLBAR ON
+ STATUSBAR ON
+ FramePOS 2.0 0.0 191. 63.
+ WinPAGE.RESet
+ 
+ WinPAGE.Create P000
+ WinCLEAR
+ 
+ WinPOS 135.0 23.308 61. 52. 5. 0. W003
+ ws.v.f
+ 
+ WinPOS 134.86 0.0 52. 20. 0. 0. W002
+ r /spotlight
+ 
+ WinPOS 0.0 0.0 128. 51. 0. 0. W005
+ WinTABS 10. 10. 25. 62.
+ d.l
+ 
+ WinPOS 0.0 58.769 173. 7. 0. 0. W004
+ ws.area.view UEFI_Logs 
+ 
+ WinPAGE.select P000
+ 
+ ENDDO

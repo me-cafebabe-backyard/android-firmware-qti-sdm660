@@ -1,0 +1,168 @@
+#===============================================================================
+#
+# TZ applib
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header:  $
+#  $DateTime: $
+#  $Author: $
+#  $Change: $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains schedulerents describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+# when         who     what, where, why
+# --------     ---     ---------------------------------------------------------
+# 04/18/16     sn      Added secure camera
+# 03/03/16     as      Add Secure Processor Communication (spcom)
+# 08/10/15     dc      Added eSE Service
+# 06/04/15     el      Added qsee_bulletin_board_shim.c file
+# 02/10/14     cz      Added qsee_cfg_prop_shim.c file
+# 07/16/14     tp      Changed DRM sconscripts to use the prxy_services
+#                      library instead of linking to qsee_services.
+# 01/28/14     sa      Add HDCPSRM_IMAGE
+# 10/17/13     ib      Add SECUREMM
+# 03/11/13     bbs     Add ISDBTMM to TZ common lib
+# 01/15/2013   cz      removed drmprov
+#===============================================================================
+Import('env')
+import copy
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/core/securemsm/trustzone/qsapps/libs/applib"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Compiler, object, and linker definitions
+#-------------------------------------------------------------------------------
+
+# do not generate thumb code for inline assembler code
+#env.Append(ARMCC_OPT = ' -marm')
+
+CBSP_API = [
+   'SECUREMSM',
+   'SERVICES',
+   'DAL',
+   'MINK',
+   'MINK_LK',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+INC_PATH_QSEE_API = ["${INC_ROOT}/core/api/securemsm/trustzone/qsee"]
+env.Append(CPPPATH = INC_PATH_QSEE_API)
+INC_PATH_MINK_API = ["${INC_ROOT}/core/securemsm/trustzone/qsee/mink/app_mgr/inc"]
+env.Append(CPPPATH = INC_PATH_MINK_API)
+INC_PATH_GP_API = ["${INC_ROOT}/core/api/securemsm/trustzone/gp"]
+env.Append(CPPPATH = INC_PATH_GP_API)
+INC_PATH_QSEE_SRC = ["${INC_ROOT}/core/securemsm/trustzone/qsapps/libs/applib/qsee/src"]
+env.Append(CPPPATH = INC_PATH_QSEE_SRC)
+INC_PATH_COMDEF = ["${INC_ROOT}/core/api/services"]
+env.Append(CPPPATH = INC_PATH_COMDEF)
+INC_PATH_SYSCALL = ["${INC_ROOT}/core/securemsm/trustzone/qsee/include"]
+env.Append(CPPPATH = INC_PATH_SYSCALL)
+INC_PATH_CTZLIB = ["${INC_ROOT}/core/securemsm/trustzone/qsapps/libs/applib/common/src",
+                   "${INC_ROOT}/core/securemsm/trustzone/qsapps/libs/services/src",
+                   "${INC_ROOT}/core/api/kernel/libstd/stringl",]
+env.Append(CPPPATH = INC_PATH_CTZLIB)
+INC_PATH_KER = ["${INC_ROOT}/core/api/kernel/libstd"]
+env.Append(CPPPATH = INC_PATH_KER)
+INC_PATH_COMMON_APPLIB = ["${INC_ROOT}/core/securemsm/trustzone/qsapps/libs/applib/common_applib/src"]
+env.Append(CPPPATH = INC_PATH_COMMON_APPLIB)
+INC_PATH_MACC = [
+        "${INC_ROOT}/core/api/securemsm/trustzone/qsee",
+        "${INC_ROOT}/core/securemsm/trustzone/qsapps/libs/services/src",
+        "${INC_ROOT}/core/securemsm/trustzone/qsee/services/keyprov/macchiato/shared/inc",
+]
+env.Append(CPPPATH = INC_PATH_MACC)
+INC_PATH_GP_PO_API = ["${INC_ROOT}/core/securemsm/trustzone/qsapps/libs/applib/common_applib/inc/"]
+env.Append(CPPPATH = INC_PATH_GP_PO_API)
+INC_PATH_GP_SRC = ["${INC_ROOT}/core/securemsm/trustzone/qsapps/libs/applib/gp/src/"]
+env.Append(CPPPATH = INC_PATH_GP_SRC)
+INC_PATH_GP_INC = ["${INC_ROOT}/core/securemsm/trustzone/qsapps/libs/applib/gp/inc/"]
+env.Append(CPPPATH = INC_PATH_GP_INC)
+
+#----------------------------------------------------------------------------
+# TZ Exec Shared Objects
+#----------------------------------------------------------------------------
+LIB_SOURCES = [
+    '${BUILDPATH}/qsee/src/mink_shared_code.c',
+    '${BUILDPATH}/qsee/src/qsee_env.c',
+    '${BUILDPATH}/qsee/src/qsee_core_shim.c',
+    '${BUILDPATH}/qsee/src/qsee_deviceid.c',
+    '${BUILDPATH}/qsee/src/qsee_prng.c',
+    '${BUILDPATH}/qsee/src/qsee_secdisp.c',
+    '${BUILDPATH}/qsee/src/qsee_sec_camera.c',
+    '${BUILDPATH}/qsee/src/qsee_nsmem.c',
+    '${BUILDPATH}/qsee/src/qsee_cmac.c',
+    '${BUILDPATH}/qsee/src/qsee_crypto_shim.c',
+    '${BUILDPATH}/qsee/src/qsee_timer_shim.c',
+    '${BUILDPATH}/qsee/src/qsee_boot_shim.c',
+    '${BUILDPATH}/qsee/src/qsee_int_shim.c',
+    '${BUILDPATH}/qsee/src/qsee_ese_service.c',
+    '${BUILDPATH}/qsee/src/qsee_comstr.c',
+    '${BUILDPATH}/qsee/src/stor.c',
+    '${BUILDPATH}/qsee/src/stor_gpt.c',
+    '${BUILDPATH}/qsee/src/stor_rpmbw.c',
+    '${BUILDPATH}/qsee/src/qsee_counter_shim.c',
+    '${BUILDPATH}/qsee/src/qsee_cfg_prop_shim.c',
+    '${BUILDPATH}/qsee/src/qsee_keyprov.c',
+    '${BUILDPATH}/qsee/src/qsee_cipher.c',
+    '${BUILDPATH}/qsee/src/qsee_hash.c',
+    '${BUILDPATH}/qsee/src/qsee_hmac.c',
+    '${BUILDPATH}/qsee/src/qsee_km_shim.c',
+    '${BUILDPATH}/qsee/src/qsee_i2c.c',
+    '${BUILDPATH}/qsee/src/qsee_spi.c',
+    '${BUILDPATH}/qsee/src/qsee_spcom.c',
+    '${BUILDPATH}/qsee/src/qsee_hw_fuse.c',
+    '${BUILDPATH}/qsee/src/qsee_bulletin_board_shim.c',
+    '${BUILDPATH}/qsee/src/qsee_tlmm.c',
+    '${BUILDPATH}/qsee/src/qsee_hw_fuse.c',
+    '${BUILDPATH}/qsee/src/qsee_bulletin_board_shim.c',
+    '${BUILDPATH}/qsee/src/qsee_sync.c',
+    '${BUILDPATH}/qsee/src/qsee_dcache.c',
+    '${BUILDPATH}/qsee/src/qsee_shared_buffer.c',
+    '${BUILDPATH}/qsee/src/qsee_oem_buffer.c',
+    '${BUILDPATH}/qsee/src/qsee_intmask.c',
+    '${BUILDPATH}/qsee/src/qsee_trans_ns_addr.c',
+    '${BUILDPATH}/qsee/src/qsee_appmessage.c',
+    '${BUILDPATH}/qsee/src/qsee_secure_channel.c',
+    '${BUILDPATH}/qsee/src/sfs_api.c',
+]
+
+SCORPION_SOURCES = [
+    '${BUILDPATH}/qsee/src/kthread_shared.s',
+    '${BUILDPATH}/qsee/src/tzapp_syscall.s',
+]
+
+A53_64_SOURCES = [
+    '${BUILDPATH}/qsee64/src/kthread_shared.s',
+    '${BUILDPATH}/qsee64/src/tzapp_syscall.s',
+]
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+# Add sources as binary objects to applib images
+# APPLIB32/64 directly include the file tzapp_entry.s to link that object directly to qsapps
+# instead of including it in the lib which causes the linker to skip its globals
+SCORPION_SOURCES.extend(LIB_SOURCES)
+A53_64_SOURCES.extend(LIB_SOURCES)
+
+env.AddBinaryObject('APPLIB32_IMAGE', SCORPION_SOURCES)
+env.AddBinaryObject('APPLIB64_IMAGE', A53_64_SOURCES)
+
+#-------------------------------------------------------------------------------
+# Load sub scripts
+#-------------------------------------------------------------------------------
+env.LoadSoftwareUnits()
+env.Deploy(['../src/qsee_env.h'])

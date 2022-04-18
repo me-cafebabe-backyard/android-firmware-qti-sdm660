@@ -1,0 +1,20 @@
+Name of the Module,No. of Load Sections,RW Section Size in KB,"RE,RO Section Size in KB",Total Size in KB
+ApeDecoderModule.so.1,2,4,32,36
+libFastRPC_UTF_Forward_skel.so,2,588,1112,1700
+WmaProDecoderModule.so.1,2,12,308,320
+AudioSphereModule.so.1,2,4,60,64
+mmecns_module.so.1,2,8,492,500
+libbenchmark_skel.so,2,4,40,44
+fluence_voiceplus_module.so.1,2,4,124,128
+HeaacDecoderModule.so.1,2,12,236,248
+FlacDecoderModule.so.1,2,4,28,32
+CeltModule.so.1,2,4,76,80
+libstabilitydomain_skel.so,2,4,20,24
+VorbisDecoderModule.so.1,2,36,40,76
+AlacDecoderModule.so.1,2,4,20,24
+WmaStdDecoderModule.so.1,2,4,108,112
+libsysmondomain_skel.so,2,4,52,56
+libsysmon_skel.so,2,4,40,44
+EtsiAmrWbPlusDecModule.so.1,2,8,152,160
+SAPlusCmnModule.so.1,2,16,92,108
+EtsiEaacPlusEncAndCmnModule.so.1,2,4,160,164

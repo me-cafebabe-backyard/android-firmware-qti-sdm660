@@ -1,0 +1,99 @@
+#=============================================================================
+# CLOCK DRIVER HW(CHIPSET) LIBRARY
+#
+# Target:    Shared library.
+# Processor: All
+#
+#=============================================================================
+# $Header: //components/rel/core.qdsp6/1.0.c2/systemdrivers/clock/hw/msm8998/slpi/build/clock_hw.scons#1 $
+#=============================================================================
+#  Copyright 2012 - 2014 QUALCOMM Technologies Incorporated.
+#  All Rights Reserved.
+#  QUALCOMM Proprietary/GTDR
+#=============================================================================
+
+import os
+
+Import('env')
+env = env.Clone()
+
+
+#------------------------------------------------------------------------------
+# Add API folders
+#------------------------------------------------------------------------------
+
+CLOCK_BUILD_ROOT = os.getcwd();
+
+#-----------------------------------------------------------------------------
+# Define paths
+#-----------------------------------------------------------------------------
+
+SRCPATH = "../"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+
+#-----------------------------------------------------------------------------
+# Define any features or compiler flags
+#-----------------------------------------------------------------------------
+
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+
+CBSP_API = [
+   'DAL',
+   'HAL',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+   'POWER',
+   'KERNEL',
+]
+ 	 
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+#-------------------------------------------------------------------------------
+# Define sources
+#-------------------------------------------------------------------------------
+
+CLOCK_HW_SOURCES = [
+   '${BUILDPATH}/src/ClockLPASS.c',
+   '${BUILDPATH}/src/ClockLPASSDCVS.c',
+   '${BUILDPATH}/src/ClockLPASSLite.c',
+   '${BUILDPATH}/src/ClockLPASSXO.c',
+   '${BUILDPATH}/src/ClockLPASSVDD.c',
+   '${BUILDPATH}/src/ClockHVX.c',
+]
+
+CLOCK_ISLAND_SOURCES = [
+   '${BUILDPATH}/src/uClock.c'
+]
+
+CLOCK_ISLAND_ROOT_SOURCES = [
+   '${BUILDPATH}/src/uClockRoot.c'
+]
+
+#-------------------------------------------------------------------------------
+# Define objects
+#-------------------------------------------------------------------------------
+
+ClockHW_lib         = env.Library('${BUILDPATH}/ClockHW',   CLOCK_HW_SOURCES)
+ClockIsland_lib     = env.Library('${BUILDPATH}/ClockIsland', CLOCK_ISLAND_SOURCES)
+ClockIslandRoot_lib = env.Library('${BUILDPATH}/ClockIslandRoot', CLOCK_ISLAND_ROOT_SOURCES)
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+
+env.AddLibsToImage(['QDSP6_SW_IMAGE', 'CBSP_QDSP6_SW_IMAGE', 'CORE_SLPI_ROOT'], ClockHW_lib)
+
+env.AddLibsToImage(['CORE_SSC_SLPI_USER'], ClockIsland_lib);
+env.AddLibsToImage(['QDSP6_SW_IMAGE', 'CBSP_QDSP6_SW_IMAGE', 'CORE_SLPI_ROOT'], ClockIslandRoot_lib);
+
+if 'USES_ISLAND' in env:
+  env.AddIslandLibrary(['CORE_SSC_SLPI_USER'], ClockIsland_lib);
+  env.AddIslandLibrary(['QDSP6_SW_IMAGE', 'CBSP_QDSP6_SW_IMAGE', 'CORE_SLPI_ROOT'], ClockIslandRoot_lib);
+
+

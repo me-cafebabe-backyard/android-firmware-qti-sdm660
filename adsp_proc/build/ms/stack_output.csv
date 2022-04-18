@@ -1,0 +1,138 @@
+Thread Name,Function Name,Stack Allocated(KB),Maximum Stack Required(KB),Error Info
+0 fastrpc,fastrpc_dsp_dispatch_thread_invoke,4,xxxxx,Function Missing
+281 fastrpc,fastrpc_dsp_dispatch_thread_invoke,4,xxxxx,Function Missing
+284 fastrpc,fastrpc_dsp_dispatch_thread_invoke,4,xxxxx,Function Missing
+287 fastrpc,fastrpc_dsp_dispatch_thread_invoke,4,xxxxx,Function Missing
+352 fastrpc,fastrpc_dsp_dispatch_thread_invoke,4,xxxxx,Function Missing
+371 fastrpc,fastrpc_dsp_dispatch_thread_invoke,4,xxxxx,Function Missing
+384 fastrpc,fastrpc_dsp_dispatch_thread_invoke,4,xxxxx,Function Missing
+AA0D,AudPP_WorkLoop,8,2.773
+AB0C,AudPP_WorkLoop,8,2.773
+AB11,AudioEncSvc_WorkLoop,8,2.539
+ACS,AdspCoreSvc_WorkLoop,4,2.25
+ADec,AudioDecSvc_WorkLoop,4,1.758
+ADM,AdmWorkLoop,8,1.695
+adsppm_asyncmgr,AM_WorkLoopThread,4,1.953
+adsppm_cb,AM_callBackThread,4,1.93
+adsppmThermalQm,adsppm_therm_qmi_service_thread,8,2.117
+AEnc,AudioEncSvc_WorkLoop,4,2.539
+Af0,afe_pseudo_port_work_loop,4,xxxxx,Function Missing
+Af1,afe_pseudo_port_work_loop,4,xxxxx,Function Missing
+Af2,afe_pseudo_port_work_loop,4,xxxxx,Function Missing
+Af3,afe_pseudo_port_work_loop,4,xxxxx,Function Missing
+Af4,afe_pseudo_port_work_loop,4,xxxxx,Function Missing
+Afe0,afe_svc_thread_pool_work_loop,4,xxxxx,Function Missing
+Afe1,afe_svc_thread_pool_work_loop,4,xxxxx,Function Missing
+Afe2,afe_svc_thread_pool_work_loop,4,xxxxx,Function Missing
+AfeANC,afe_svc_aanc_work_loop,4,2.867
+AfeDataMgr,afe_rtppdm_work_loop,4,1.547
+AfeS,afe_svc_work_loop,4,1.773
+AfeSh,afe_svc_hlp_work_loop,4,xxxxx,Function Missing
+AfeV,afe_svc_vfr_work_loop,4,xxxxx,Function Missing
+Alp0,afe_svc_thread_pool_work_loop,4,xxxxx,Function Missing
+ASM,AudioStreamMgr_WorkLoop,8,1.5
+AVT,avtimer_server_workloop,4,1.586
+CC0F,AudPP_WorkLoop,8,2.773
+CD0F,AudPP_WorkLoop,8,2.773
+CD14,AudPP_WorkLoop,8,2.773
+CodecIntHldr,afe_svc_cdc_handler_workloop,4,1.766
+CodecIntHldr,afe_svc_cdc_handler_workloop,4,1.766
+CVP_TASK,cvp_task,8,xxxxx,Function Missing
+CVS_IST,cvs_ist,8,xxxxx,Function Missing
+DAL_WL_0,_WorkLoopExecute,4,0.633
+DAL_WL_1,_WorkLoopExecute,4,0.633
+DAL_WL_2,_WorkLoopExecute,8,0.633
+DAL_WL_3,_WorkLoopExecute,8,0.633
+DAL_WL_4,_WorkLoopExecute,8,0.633
+DAL_WL_5,_WorkLoopExecute,8,0.633
+DAL_WL_6,_WorkLoopExecute,8,0.633
+dbgr_tx_loop,dbgr_platform_wait_for_monitor_events,4,2.328
+DIAG_LSM,diag_qdi_invoke,4,1.789
+diag_task,diag_handle_sigs,4,2.047
+err_ex,reaper_entry,4,1.461
+H264E_DB1,VideoEncSvc_WorkLoop,16,xxxxx,Function Missing
+H264E_DB2,VideoEncSvc_WorkLoop,16,xxxxx,Function Missing
+H264E_DB3,VideoEncSvc_WorkLoop,16,xxxxx,Function Missing
+H264E_MAIN1,VideoEncMainWorkerWorkLoop,4,xxxxx,Function Missing
+H264E_MAIN2,VideoEncMainWorkerWorkLoop,4,xxxxx,Function Missing
+H264E_MAIN3,VideoEncMainWorkerWorkLoop,4,xxxxx,Function Missing
+H264E_MOT1,VideoEncMotEstWorkLoop,4,xxxxx,Function Missing
+H264E_MOT2,VideoEncMotEstWorkLoop,4,xxxxx,Function Missing
+H264E_MOT3,VideoEncMotEstWorkLoop,4,xxxxx,Function Missing
+IPCRDR_RDR,signal_group_invoke,1.9,1.617
+IPCSMDL_W,ipc_router_xal_smdl_worker_thread,3,xxxxx,Function Missing
+IST11,ISTMain,2,0.234
+IST12,ISTMain,2,0.234
+IST14,ISTMain,2,0.234
+IST18,ISTMain,2,0.234
+IST21,ISTMain,2,0.234
+IST23,ISTMain,2,0.234
+IST3,ISTMain,2,0.234
+IST30,ISTMain,2,0.234
+IST33,ISTMain,2,0.234
+IST38,ISTMain,2,0.234
+IST4,ISTMain,2,0.234
+IST46,ISTMain,2,0.234
+IST5,ISTMain,2,0.234
+IST52,ISTMain,2,0.234
+IST6,ISTMain,2,0.234
+IST66,ISTMain,2,0.234
+IST7,ISTMain,2,0.234
+IST8,ISTMain,2,0.234
+IST85,ISTMain,2,0.234
+IST88,ISTMain,2,0.234
+IST9,ISTMain,2,0.234
+IST90,ISTMain,2,0.234
+kernel_root,main,8,2.031
+LSM,lsm_workloop,4,2.75
+MVM_TASK,mvm_task,8,3.219
+MXAR,MtMxWorkLoop,4,2.648
+MXAT,MtMxWorkLoop,4,2.648
+NPA_ASYNC_EVENT,Core_WorkLoopProcess,8,0.227
+NPA_ASYNC_REQUE,_WorkLoopExecute,8,0.633
+npaScheduler,npaScheduler_task,8,xxxxx,Function Missing
+QMI_PING_SVC,qmi_ping_service_thread,2,0.867
+qtimerIST,qurt_timer_IST,2,1.406
+QURT_fatalNotif,qurt_fatal_notification_handler,1,0.016
+qurt_timerCli,qurt_timer_driver_client,4,1.594
+rcinit,RCINIT_NULL,6,xxxxx,Function Missing
+rcinit_worker,_WorkLoopExecute,4,0.633
+reaper,reaper_entry,4,1.461
+riva_ipc_isr,qurt_elite_interrupt_workloop,2,0.43
+RXSR,stream_router_svc_workloop,4,2.172
+sleep,sleep_task,4,xxxxx,Function Missing
+SlimBusQmiSvc,slimbus_qmi_service_thread,4,1.656
+SMSM_QDI,signal_invoke,1.9,0.07
+SNS_DEBUG,sns_debug_task,3,xxxxx,Function Missing
+SNS_EVMGR,em_thread,1,xxxxx,Function Missing
+SNS_PM,sns_pm_main,3,xxxxx,Function Missing
+SNS_SAM,sns_sam_task,6,xxxxx,Function Missing
+SNS_SCM,sns_scm_task,3,xxxxx,Function Missing
+SNS_SMGR,sns_os_sigs_pend,6,xxxxx,Function Missing
+sys_m,sys_m_task,4,xxxxx,Function Missing
+sys_m_smsm,sys_m_smsm_task,4,2.328
+thread_SigVerif,SigVerify_Init,8,1.984
+timer,timer_task,4,1.922
+TXSR,stream_router_svc_workloop,4,2.172
+USM,usm_workloop,4,1.594
+VDC0,vdec_thread,24,xxxxx,Function Missing
+VDP0,vdec_pp_thread,24,xxxxx,Function Missing
+VDP1,VDecParserWorkLoop,16,xxxxx,Function Missing
+VDS1,vds_thread,2,1.5
+VDW0,VDecWorkersWorkLoop,16,xxxxx,Function Missing
+VDW1,VDecWorkersWorkLoop,16,xxxxx,Function Missing
+VDW2,VDecWorkersWorkLoop,16,xxxxx,Function Missing
+VEC0,venc_thread,24,xxxxx,Function Missing
+VfrD,vfr_svc_work_loop,4,1.75
+VIDDS,VideoDecSvc_WorkLoop,2,xxxxx,Function Missing
+VideoEncDynServ,VideoEncSvc_WorkLoop,4,xxxxx,Function Missing
+VISM,VideoStreamMgr_WorkLoop,8,xxxxx,Function Missing
+VISM,VideoStreamMgr_WorkLoop,8,xxxxx,Function Missing
+VMX1,vmx_workloop,4,1.719
+VMX2,vmx_workloop,4,1.719
+VPM,voice_proc_mgr_thread,7,xxxxx,Function Missing
+VPR0,vprx_thread,16,xxxxx,Function Missing
+VPT0,vptx_thread,128,xxxxx,Function Missing
+VSM,vsm_thread,4,xxxxx,Function Missing
+VTM,vtm_thread,2,1.656
+WDT_ist,WDT_task,3,xxxxx,Function Missing

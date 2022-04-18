@@ -1,0 +1,138 @@
+#==============================================================================
+#  FILE:         spm.scons
+#
+#  OVERVIEW:     Main build level file that compiles the SPM module
+#                
+#                Copyright (c) 2009-2016 Qualcomm Technologies, Inc. (QTI).
+#                All Rights Reserved.
+#                Qualcomm Technologies Confidential and Proprietary
+#================================================================================
+# $Header: //components/dev/spss.a1/1.0/cquick.spss.a1.1.0.sp_arm_cmpl/spss_proc/ram/core/power/spm/build/spm.scons#1 $
+# $DateTime: 2015/08/05 08:38:43 $
+#================================================================================
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source paths
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/core/power/spm/src"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0) 
+
+#-------------------------------------------------------------------------------
+# General setup
+#-------------------------------------------------------------------------------
+SPM_MSM = env['MSM_ID'] + '/' + env['IMAGE']
+
+#Turn off optimizations for easier debug
+#env.Append(CCFLAGS = " -O0")
+
+# Suppressing warning for unused parameters. This is required to keep framework
+# common across multiple targets.
+if 'USES_ARM' not in env:
+  env.Append(CFLAGS = '-Wno-unused-parameter')
+
+#-------------------------------------------------------------------------------
+# Island support
+#-------------------------------------------------------------------------------
+# There is no need for island SPM support
+
+#-------------------------------------------------------------------------------
+# Target specific setup
+#-------------------------------------------------------------------------------
+MAIN_TAG = ['QDSP6_SW_IMAGE', 'CBSP_QDSP6_SW_IMAGE']
+
+# Add necessary checks to update these variables based on target and environment
+SAW_VER = '4'
+SPM_ENV = 'q6'
+if 'USES_SLPI_ADSP_IMG' in env:
+  SPM_DEFINES = [
+    'SPM_HWIO_PREFIX=LPASS_QDSP6SS_SAW'+SAW_VER,
+    'SPM_BASE_NAME=LPASS',
+  ]
+else:
+  SPM_DEFINES = [
+    'SPM_HWIO_PREFIX=TURING_QDSP6SS_SAW'+SAW_VER,
+    'SPM_BASE_NAME=TURING',
+  ]  
+
+#Add definition to use the lite version since this target does not require support
+#for multiple SPM's
+SPM_DEFINES += ['SPM_LITE']
+
+#Add support for dynamic SPM sequence registration
+SPM_DEFINES += ['SPM_DYNAMIC_SEQ']
+
+#Maximum SPM instance name length used for comparison
+SPM_DEFINES += ['SPM_INSTANCE_MAX_NAME_LEN=4']
+
+#-------------------------------------------------------------------------------
+# External depends within CoreBSP
+#-------------------------------------------------------------------------------
+env.RequireExternalApi([
+  'CS',
+  'MODEM_PMIC',
+])
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'DAL',
+   'DEBUGTOOLS',
+   'HAL',
+   'POWER',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+
+   # needs to be last also contains wrong comdef.h
+   'KERNEL',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+env.RequireRestrictedApi('POWER_SPM')
+
+env.PublishPrivateApi('POWER_SPM', [
+    '${BUILD_ROOT}/core/power/spm/src/common',
+    '${BUILD_ROOT}/core/power/spm/src/hal/hwio/inc',
+    '${BUILD_ROOT}/core/power/spm/src/hal/hwio/'+SPM_MSM,
+    '${BUILD_ROOT}/core/power/spm/src/hal/v'+SAW_VER+'/inc',
+    '${BUILD_ROOT}/core/power/spm/src/asic/'+SPM_MSM
+  ]
+)
+
+#-------------------------------------------------------------------------------
+# Add target specific defines to build options
+#-------------------------------------------------------------------------------
+env.Append(CPPDEFINES = SPM_DEFINES)
+
+#-------------------------------------------------------------------------------
+# Sources
+#-------------------------------------------------------------------------------
+SPM_SOURCES = [
+  '${BUILDPATH}/common/spm.c',
+  '${BUILDPATH}/common/spm_internal.c',
+  '${BUILDPATH}/env/'+SPM_ENV+'/spm_env.c',
+  '${BUILDPATH}/hal/v'+SAW_VER+'/src/spm_hal.c',
+]
+
+SPM_TARGET_SOURCES = [
+  '${BUILDPATH}/asic/'+SPM_MSM+'/spm_config.c',
+  '${BUILDPATH}/asic/'+SPM_MSM+'/spm_target.c'
+]
+
+#Add target sources to main source list
+SPM_SOURCES.extend(SPM_TARGET_SOURCES);
+
+SPM_CMN_SOURCES = [  
+  '${BUILDPATH}/hal/v'+SAW_VER+'/src/spm_hal_cmn.c',
+  '${BUILDPATH}/common/spm_cmn.c',
+]
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+spm_lib = env.AddLibrary(MAIN_TAG, '${BUILDPATH}/spm', SPM_SOURCES)
+cmn_spm_lib = env.AddLibrary(MAIN_TAG, '${BUILDPATH}/cmn_spm', SPM_CMN_SOURCES)
+

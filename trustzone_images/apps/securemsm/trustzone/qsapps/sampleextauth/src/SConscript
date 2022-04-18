@@ -1,0 +1,61 @@
+#===============================================================================
+#
+# App Core
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/apps.tz/1.0.7.1/securemsm/trustzone/qsapps/sampleextauth/src/SConscript#1 $
+#  $DateTime: 2020/01/14 12:33:12 $
+#  $Author: pwbldsvc $
+#  $Change: 22186812 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains schedulerents describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#===============================================================================
+Import('env')
+
+#-------------------------------------------------------------------------------
+# Compiler, object, and linker definitions
+#-------------------------------------------------------------------------------
+
+includes =[
+  "${BUILD_ROOT}/core/api/services",
+  "${BUILD_ROOT}/core/api/securemsm/trustzone/qsee",
+  "${BUILD_ROOT}/core/securemsm/trustzone/qsee",
+  "${BUILD_ROOT}/core/securemsm/trustzone/qsee/include",
+  "${BUILD_ROOT}/core/securemsm/trustzone/qsapps/libs/services/src",
+  "${BUILD_ROOT}/core/securemsm/trustzone/qsapps/libs/applib/common/src", 
+  "${BUILD_ROOT}/core/api/kernel/libstd/stringl",
+  "${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidocrypto/authentication/include",
+]
+
+#----------------------------------------------------------------------------
+# App core Objects
+#----------------------------------------------------------------------------
+sources = [
+  'app_main.c',
+]
+
+#-------------------------------------------------------------------------------
+# Add metadata to image
+#-------------------------------------------------------------------------------
+md = {
+    'appName':    'sampleextauth',
+    'privileges': ['default'],
+}
+
+app_units = env.SecureAppBuilder(
+  sources = sources,
+  includes = includes,
+  metadata = md,
+  image = 'sampleextauth',
+  stack_size = '0x4000'
+)
+
+op = env.Alias('sampleextauth', app_units)
+Return('app_units')

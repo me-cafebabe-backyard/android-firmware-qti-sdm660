@@ -1,0 +1,114 @@
+#===============================================================================
+#
+# App Core
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/apps.tz/1.0.7.1/securemsm/trustzone/qsapps/fidosui/app/src/SConscript#1 $
+#  $DateTime: 2020/01/14 12:33:12 $
+#  $Author: pwbldsvc $
+#  $Change: 22186812 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains schedulerents describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#===============================================================================
+import os
+Import('env')
+
+# enable logging
+env.Append(CPPDEFINES = ['-DSSE_LOG_GLOBAL'])
+env.Append(CPPDEFINES = ['-DSSE_LOG_FILE'])
+env.Append(CPPDEFINES = ['-DLOG_TAG=fidosui'])
+
+includes = [
+  "${BUILD_ROOT}/core/securemsm/trustzone/qsee",
+  "${BUILD_ROOT}/core/securemsm/trustzone/qsee/mink/include",
+  "${BUILD_ROOT}/core/api/kernel/libstd/stringl",
+  "${BUILD_ROOT}/core/securemsm/sse/log/inc",
+  "${BUILD_ROOT}/core/securemsm/sse/common/include",
+  "${BUILD_ROOT}/core/securemsm/sse/qsee/SecureDisplay/libgd/include",
+  "${BUILD_ROOT}/core/securemsm/sse/qsee/SecureDisplay/libpng/include",
+  "${BUILD_ROOT}/core/securemsm/sse/qsee/SecureDisplay/zlib/include",
+  "${BUILD_ROOT}/core/securemsm/sse/qsee/SecureUI/inc",
+  "${BUILD_ROOT}/core/securemsm/sse/qsee/SecureUILib/include",
+  "${BUILD_ROOT}/core/securemsm/sse/SecureTouch/common/include",
+  "${BUILD_ROOT}/core/securemsm/sse/SecureTouch/layout/include",
+  "${BUILD_ROOT}/core/securemsm/sse/SecureTouch/controller/inc",
+  "${BUILD_ROOT}/core/securemsm/sse/qsee/SecureTouch/drTs/include",
+  "${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidocrypto/authentication/include",
+  "${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidocrypto/app/fido",
+  "${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidosui/ipc/inc/",
+  "${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidosui/ipc/src",
+  "${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidosui/app/src/private",
+  "${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidosui/config/include",
+  "${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidosui/app/include",
+  "${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidosui/locale/include",
+]
+
+env.Append(CPPPATH = includes)
+env.Append(CPPDEFINES = ['-D_AEABI_PORTABILITY_LEVEL=1'])
+env.Append(CPPDEFINES = ['-D_AEABI_LC_CTYPE=C'])
+
+
+#----------------------------------------------------------------------------
+# App core Objects
+#----------------------------------------------------------------------------
+noship_sources = Glob ('../../ipc/src/*.c') + \
+                 Glob ('../../layouts/functions/*.c')
+
+ship_sources = Glob ('../../config/src/*.c') + \
+               Glob ('../../locale/src/*.c')
+
+all_main_sources = Glob('*.c') + Glob('functions/*.c')
+
+main_sources = []
+
+for i in all_main_sources:
+  if i.rstr() != 'functions.c':
+    main_sources.append(i)
+
+sources = []
+sources.extend(noship_sources)
+sources.extend(main_sources)
+sources.extend(ship_sources)
+
+#-------------------------------------------------------------------------------
+# Add metadata to image
+#-------------------------------------------------------------------------------
+md = {
+   'appName':    'fidosui',
+   'privileges': ['default',
+                  'I2C',
+                  'SecureDisplay',
+                 ],
+   'services':   ['FidoSuiToken'],
+}
+
+app_units = env.SecureAppBuilder(
+  sources = sources,
+  includes = includes,
+  metadata = md,
+  image = 'fidosui',
+  stack_size = '0x16000',
+  heap_size = '0x16000'
+)
+
+op = env.Alias('fidosui', app_units)
+
+noship_headers = [
+  'private/fsSecureUI.h',
+  'private/glob.h',
+  '../../ipc/src/CFidoSuiToken_open.h',
+  '../../ipc/inc/FidoSuiToken.h',
+]
+
+buildPath = env.subst('${OUT_DIR}/' + '${SHORT_BUILDPATH}/fidosui/objects/functions.o')
+print 'buildpath evaluates to %s' % buildPath
+env.Clean('fidosui', buildPath)
+env.CleanPack('fidosui', noship_sources + main_sources + noship_headers + ['functions.c'] + [buildPath])
+Return('app_units')

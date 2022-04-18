@@ -1,0 +1,142 @@
+#===============================================================================
+#
+# QUP_AccessControl Sconscript
+#
+# GENERAL DESCRIPTION
+#    Public build script for QUP access control driver. This is a common script for both TZ & Hypervisor.
+#
+# Copyright (c) 2009-2016 by QUALCOMM Technologies, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Confidential & Proprietary
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.tz/1.0.7.1/buses/qup_accesscontrol/honeybadger/build/SConscript#1 $
+#  $DateTime: 2020/01/14 12:35:09 $
+#  $Author: pwbldsvc $
+#  $Change: 22186835 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#  
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 12/16/14   sk		 Initial release
+#
+#===============================================================================
+import os
+Import('env')
+#-------------------------------------------------------------------------------
+# Load sub scripts
+#-------------------------------------------------------------------------------
+env.LoadSoftwareUnits()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+env = env.Clone()
+#print env
+# Additional defines
+env.Append(CPPDEFINES = ["FEATURE_LIBRARY_ONLY"])   
+#env['CCCOMSTR'] = "$CCCOM" #??
+SRCPATH = "../src"
+
+IMAGES = []
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0) 
+CBSP_APIS = []
+AC_CONFIG_XML = []
+
+#-------------------------------------------------------------------------------
+# Publish Private APIs
+#-------------------------------------------------------------------------------
+env.PublishPublicApi('BUSES', [
+   '${INC_ROOT}/core/buses/qup_accesscontrol/honeybadger/inc',
+])
+
+env.PublishPrivateApi('BUSES', [
+   '${INC_ROOT}/core/hwengines/bam',
+])
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_APIS += [
+   'DAL',
+   'HAL',
+   'SYSTEMDRIVERS',
+   'HWENGINES',
+   'KERNEL',   
+   'SERVICES',
+   'SECUREMSM',
+   'MINK',
+   'BUSES',
+]
+
+env.RequirePublicApi(CBSP_APIS)
+env.RequireRestrictedApi(CBSP_APIS)
+
+# for tzbsp_* definitions
+env.RequireRestrictedApi('TZCHIPSET')
+# for tzbsp_int* definitions
+if env['TARGET_FAMILY'] in ['badger']:
+   env.RequireRestrictedApi('TZLIBARMV7')
+else:
+   env.RequireRestrictedApi('TZLIBARMV8')
+
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+QUP_ACCESS_TZ_GLOB_FILES = env.GlobFiles('../src/tzbsp_blsp.c', posix=True)
+QUP_ACCESS_HYP_GLOB_FILES = env.GlobFiles('../src/hyp_blsp.c', posix=True)
+ 
+#GLOB returns the relative path name, it needs to replaced with correct build location
+QUP_AC_TZ_SOURCES = [path.replace(SRCPATH, '${BUILDPATH}') for path in QUP_ACCESS_TZ_GLOB_FILES]
+QUP_AC_HYP_SOURCES = [path.replace(SRCPATH, '${BUILDPATH}') for path in QUP_ACCESS_HYP_GLOB_FILES]
+
+if env.has_key('TZOS_IMAGE'):
+   IMAGES = ['TZOS_IMAGE'] 
+   env.AddBinaryLibrary(IMAGES, '${BUILDPATH}/QUP_Access_Control', QUP_AC_TZ_SOURCES)
+elif env.has_key('HYPERVISOR_IMAGE'):
+   IMAGES = ['HYPERVISOR_IMAGE']
+   env.AddBinaryLibrary(IMAGES, '${BUILDPATH}/QUP_Access_Control', QUP_AC_HYP_SOURCES)
+
+if env.has_key('DAL_DEVCFG_OEM_IMG'): #global for both TZ & HYP
+   if os.path.isfile(env.subst("../config/QUPAC_${MSM_ID}_Access.xml")):
+      env.Replace(QUP_AC_XML = 'QUPAC_${MSM_ID}_Access.xml') # Common XML to both TZ & HYP
+   else:
+      env.Replace(QUP_AC_XML = 'QUPAC_stubs_Access.xml')
+      env.PrintWarning("QUP devcfg not implemented... using stubs.")
+
+if env.has_key('DAL_DEVCFG_HYP_IMG'):
+   if os.path.isfile(env.subst("../config/QUPAC_${MSM_ID}_HypConfig.xml")):
+      env.Replace(QUP_HYP_XML = 'QUPAC_${MSM_ID}_HypConfig.xml') # XML to HYP only
+   else:
+      env.Replace(QUP_HYP_XML = 'QUPAC_stubs_HypConfig.xml')
+      env.PrintWarning("QUP HYP devcfg not implemented... using stubs.")
+
+env.Replace(QUP_PRIV_XML = 'QUPAC_${MSM_ID}_Private.xml') # Common XML to both TZ & HYP	  
+
+#---------------------------------------------------------------------------
+# Device Config
+# Add access xml to both TZ & HYP. Add config xml to just HYP.
+#---------------------------------------------------------------------------
+#import pdb; pdb.set_trace()
+if 'USES_DEVCFG' in env:
+   DEVCFG_IMG = ['DAL_DEVCFG_OEM_QSEE_IMG', 'DAL_DEVCFG_OEM_HYP_IMG']
+   env.AddDevCfgInfo(DEVCFG_IMG, 
+   {
+      'devcfg_xml'    : '${BUILD_ROOT}/core/buses/qup_accesscontrol/honeybadger/config/${QUP_AC_XML}'
+   })
+   DEVCFG_IMG = ['DAL_DEVCFG_HYP_IMG']
+   env.AddDevCfgInfo(DEVCFG_IMG, 
+   {
+      'devcfg_xml'    : '${BUILD_ROOT}/core/buses/qup_accesscontrol/honeybadger/config/${QUP_HYP_XML}'
+   })
+   DEVCFG_IMG = ['DAL_DEVCFG_IMG', 'DAL_DEVCFG_QSEE_IMG', 'DAL_DEVCFG_HYP_IMG']
+   env.AddDevCfgInfo(DEVCFG_IMG, 
+   {
+      'devcfg_xml'    : '${BUILD_ROOT}/core/buses/qup_accesscontrol/honeybadger/config/${QUP_PRIV_XML}'
+   })
+env.Deploy('SConscript')

@@ -1,0 +1,48 @@
+
+#===============================================================================
+#
+# System Drivers INC PATHs
+#
+# GENERAL DESCRIPTION
+#    System Drivers INC PATHs
+#
+# Copyright (c) 2011-2016 by Qualcomm Technologies, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/rpm.bf/1.8/core/pmic/build/pmic.api#1 $
+#  $DateTime: 2016/11/03 00:13:13 $
+#  $Author: pwbldsvc $
+#  $Change: 11690628 $
+#===============================================================================
+
+Import('env')
+
+#-------------------------------------------------------------------------------
+# Publish Public APIs
+# These are accessible internal or external to CoreBSP
+#-------------------------------------------------------------------------------
+
+env.PublishPublicApi('PMIC', [
+    "${INC_ROOT}/core/api",
+    "${INC_ROOT}/core/api/pmic",
+    "${INC_ROOT}/core/api/pmic/pm",
+    "${INC_ROOT}/core/api/pmic/spmi",
+])
+
+#-------------------------------------------------------------------------------
+# Publish set of restricted APIs used just for the dal/config building.
+# These are directories containing headers required when compiling the DAL
+# properties.
+#-------------------------------------------------------------------------------
+
+#env.PublishRestrictedApi('SYSTEMDRIVERS_DALCONFIG',[])
+
+# --------------------------------------------------------------------------- #
+# Search for additional APIs                                                  #
+# --------------------------------------------------------------------------- #
+
+env.LoadAPIUnits()
+

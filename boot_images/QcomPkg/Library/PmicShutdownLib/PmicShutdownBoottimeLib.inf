@@ -1,0 +1,49 @@
+#/** @file PmicBoottimeLib.inf
+# 
+# PMIC boot time Library for Msm8994
+#
+#  Copyright (c) 2013 Qualcomm Technologies, Inc.  All Rights Reserved. 
+#  Qualcomm Technologies Proprietary and Confidential.
+#
+#**/
+
+#==============================================================================
+#                              EDIT HISTORY
+#
+#
+# when        who     what, where, why
+# --------    ---     ----------------------------------------------------------
+# 06/04/14    vk      Remove target specific dec file include
+# 03/26/14    al      Updating name as per convention and making library common
+# 10/25/13    vk      Remove warning as error
+# 09/24/13    al      Adding PmicBoottimeLib.inf
+#
+#==============================================================================
+
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = PmicShutdownLibBoot
+  FILE_GUID         = 71B94679-A3E1-49cf-914E-71DA2804054E
+  MODULE_TYPE       = BASE
+  VERSION_STRING    = 1.0
+  LIBRARY_CLASS     = PmicShutdownLibBoot
+
+[Sources.common]
+  PmicShutdown.c
+
+[BuildOptions]
+  RVCT:*_*_*_CC_FLAGS = -DFEATURE_LIBRARY_ONLY
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  SPMILib
+  TimerLib
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  QcomPkg/QcomPkg.dec
+
+[Depex]
+  TRUE

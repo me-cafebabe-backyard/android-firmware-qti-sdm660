@@ -1,0 +1,88 @@
+ENTRY &ARG0 &ARG1 &ARG2
+
+MAIN:
+
+LOCAL &BUILD_PATH &APP_BASE_PATH &APP_BLD_PATH &APP_ADDR &ELFARGS &CMNLIB &DEBUG_TYPE
+
+&BUILD_PATH="&ARG0"
+&ELF_BASE_PATH="&BUILD_PATH\trustzone_images\core\bsp\"
+&APP_BASE_PATH="&ELF_BASE_PATH"+"trustzone\qsapps\"
+&APP_BLD_PATH="\build\&ARG1\"
+&ELFARGS="/nocode /noclear /strippart "+'"'+"trustzone_images"+'"'+" /sourcepath"
+&DEBUG_TYPE="offline"
+
+IF ("&ARG0"==""||"&ARG1"=="")
+(
+  DIALOG.MESSAGE "USAGE :  load_cmnlib_elfs.cmm <path_to_tz_build> <flavor> [live]"
+  ENDDO
+)
+
+IF (!os.dir("&ARG0"))
+(
+  DIALOG.MESSAGE "load_sec_app_elfs.cmm: Invalid build path: &ARG0"
+  ENDDO
+)
+
+IF (!Y.EXIST(\\qsee)&&!Y.EXIST(\\qsee_with_test))
+(
+  DIALOG.MESSAGE "load_cmnlib_elfs.cmm requires qsee symbols."
+  ENDDO
+)
+
+IF ("&ARG2"=="live")
+(
+  &DEBUG_TYPE="live"
+  print "Loading commonlib symbols on live target"
+)
+
+IF ("&DEBUG_TYPE"=="live"&&(r(ns)!=0||r(m)!=5.))
+(
+  DIALOG.MESSAGE "Cannot load commonlib symbols unless in secure EL1."
+  ENDDO
+)
+
+area.select
+
+&APP_ADDR=v.value(serv_image_segs32[2].vaddr)
+
+IF (&APP_ADDR!=0)
+(
+  WHILE (Y.EXIST(\\cmnlib))
+  (
+    sYmbol.Delete \\cmnlib
+  )
+
+  &CMNLIB="&APP_BASE_PATH"+"commonlib"+"&APP_BLD_PATH"+"cmnlib.elf"
+  data.load.elf &CMNLIB &APP_ADDR &ELFARGS &BUILD_PATH\trustzone_images
+  print "Loading symbols for cmnlib.elf at address &APP_ADDR"
+
+  IF ("&DEBUG_TYPE"=="offline")
+  (
+    d.save.binary ~~~\app.bin v.value(serv_image_segs32[2].addr)++((v.value(serv_image_segs32[4].addr-serv_image_segs32[2].addr))+v.value(serv_image_segs32[4].size))
+    d.load.binary ~~~\app.bin v.value(serv_image_segs32[2].vaddr) /noclear
+    Y.delete \\app
+  )
+)
+
+&APP_ADDR=v.value(serv_image_segs64[2].vaddr)
+
+IF (&APP_ADDR!=0)
+(
+  WHILE (Y.EXIST(\\cmnlib64))
+  (
+    sYmbol.Delete \\cmnlib64
+  )
+
+  &CMNLIB="&APP_BASE_PATH"+"cmnlib64"+"&APP_BLD_PATH"+"cmnlib64.elf"
+  data.load.elf &CMNLIB &APP_ADDR &ELFARGS &BUILD_PATH\trustzone_images
+  print "Loading symbols for cmnlib64.elf at address &APP_ADDR"
+
+  IF ("&DEBUG_TYPE"=="offline")
+  (
+    d.save.binary ~~~\app.bin v.value(serv_image_segs64[2].addr)++((v.value(serv_image_segs64[4].addr-serv_image_segs64[2].addr))+v.value(serv_image_segs64[4].size))
+    d.load.binary ~~~\app.bin v.value(serv_image_segs64[2].vaddr) /noclear
+    Y.delete \\app
+  )
+)
+
+ENDDO

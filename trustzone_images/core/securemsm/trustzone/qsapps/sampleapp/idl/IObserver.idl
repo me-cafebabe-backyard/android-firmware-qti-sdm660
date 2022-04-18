@@ -1,0 +1,19 @@
+// Copyright (c) 2016 Qualcomm Technologies, Inc.  All Rights Reserved.
+// Qualcomm Technologies Proprietary and Confidential.
+
+/**
+ * Spy into the context of an observed object.
+ * Used for TESTING purposes ONLY.
+ */
+
+interface IObserver {
+  /**
+   * @brief Set the object to be observed
+   */
+  method observe(in interface o, in uint32 contextSize);
+
+  /**
+   * @brief Get a dump of the context of the observed object
+   */
+  method dump(out buffer context);
+};

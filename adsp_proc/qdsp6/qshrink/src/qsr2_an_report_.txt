@@ -1,0 +1,7 @@
+Anomalous Structs processed by Elf Shrink:
+
+Entries by Anomalous structs: 
+
+
+REPORT:
+Total Errors (Investigate logs if not 0) :0

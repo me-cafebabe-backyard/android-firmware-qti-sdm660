@@ -1,0 +1,30 @@
+#===============================================================================
+#
+# APR Libs
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2009-2009 by QUALCOMM Technologies, Inc.
+# All Rights Reserved.
+# Confidential and Proprietary - QUALCOMM Technologies, Inc.
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/apr.common/1.0/example/build/apr_example.scons#2 $
+#  $DateTime: 2016/03/18 00:34:03 $
+#  $Author: pwbldsvc $
+#  $Change: 10096736 $
+#
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+#
+#===============================================================================
+Import('env')
+
+env.LoadSoftwareUnits()

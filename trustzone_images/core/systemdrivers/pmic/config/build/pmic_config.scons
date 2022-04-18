@@ -1,0 +1,37 @@
+#=============================================================================
+# CLOCK DRIVER CHIPSET LIBRARY
+#
+# Target:    All
+# Processor: All
+#
+#=============================================================================
+# $Header: //components/rel/core.tz/1.0.7.1/systemdrivers/pmic/config/build/pmic_config.scons#1 $
+#=============================================================================
+#  Copyright 2014- 2015 Qualcomm Technologies Incorporated.
+#  All Rights Reserved.
+#  QUALCOMM Proprietary/GTDR
+#=============================================================================
+
+Import('env')
+
+#-----------------------------------------------------------------------------
+# Invoke chipset config build file
+
+if env['CHIPSET'] in ['sdm660']:
+  env.SConscript('../sdm660_pm660/build/pmic_config_target.scons', exports='env')
+if env['CHIPSET'] in ['msm8996']:
+  env.SConscript('../msm8996_pm8994/build/pmic_config_target.scons', exports='env')
+if env['CHIPSET'] in ['msm8998']:
+  env.SConscript('../msm8998_pm8994/build/pmic_config_target.scons', exports='env')
+if env['CHIPSET'] in ['msm8956']:
+  env.SConscript('../msm8956_pm8950/build/pmic_config_target.scons', exports='env')
+if env['CHIPSET'] in ['msm8952']:
+  env.SConscript('../msm8952_pm8950/build/pmic_config_target.scons', exports='env')
+if env['CHIPSET'] in ['msm8953']:
+  env.SConscript('../msm8953_pm8950/build/pmic_config_target.scons', exports='env')
+if env['CHIPSET'] in ['msm8937', 'msm8917']:
+  env.SConscript('../msm8937_pm8950/build/pmic_config_target.scons', exports='env')
+if env['CHIPSET'] in ['msm8998']:
+  env.SConscript('../msm8998_pm8998/build/pmic_config_target.scons', exports='env') 
+if env['CHIPSET'] in ['mdm9x45']:
+  env.SConscript('../mdm9x45_pm9635/build/pmic_config_target.scons', exports='env') 

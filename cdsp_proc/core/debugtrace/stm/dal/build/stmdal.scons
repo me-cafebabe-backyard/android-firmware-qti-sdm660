@@ -1,0 +1,96 @@
+#===============================================================================
+#
+# GENERAL DESCRIPTION
+#    Build script for DAL QDSS-STM Library.
+#
+# Copyright (c) 2009-2012 Qualcomm Technologies Incorporated.
+# All rights reserved.
+# Qualcomm Confidential and Proprietary
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //source/qcom/qct/core/debugtools/sandbox/users/prasads/qdss/hal/stm/build/stmhal.scons#2 $
+#
+
+Import('env')
+import qdss
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "../src"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+
+#-------------------------------------------------------------------------------
+# Publish Private APIs
+#-------------------------------------------------------------------------------
+
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_APIS = [
+   'DEBUGTRACE',
+   'SERVICES',
+   'HAL',
+   'DAL',
+   'SYSTEMDRIVERS',
+   'POWER',
+   'KERNEL'
+]
+
+
+env.RequirePublicApi(CBSP_APIS)
+env.RequireRestrictedApi(CBSP_APIS)
+env.RequireProtectedApi(['DEBUGTRACE'])
+
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+STM_DAL_SRC = [
+   '${BUILDPATH}/common/DalSTMCfg.c',
+   '${BUILDPATH}/common/DalSTMTrace.c'
+   ]
+
+env.AddLibrary(qdss.BuildTags(['rpm', 'modem', 'adsp', 'cdsp', 'wcn', 'gss', 'apps',
+   'sensor','audio', 'venus', 'sensor2']),
+   '${BUILDPATH}/stm_dal',STM_DAL_SRC)
+
+
+qdss_image='cdsp'
+
+if (env['IMAGE'] in ['adsp_slpi','adsp']):
+	qdss_image='adsp'
+	
+   
+if 'USES_DEVCFG' in env:
+   env.AddDevCfgInfo(['DAL_DEVCFG_IMG'],
+                     {
+         '845_xml' :['${BUILD_ROOT}/core/debugtrace/stm/config/${IMAGE}/${CHIPSET}/dalsstmcfg.xml',
+                     '${BUILD_ROOT}/core/debugtrace/stm/config/${IMAGE}/${CHIPSET}/dalstmtrace.xml'],
+		 '660_xml' :['${BUILD_ROOT}/core/debugtrace/stm/config/${IMAGE}/${CHIPSET}/dalsstmcfg.xml',
+                     '${BUILD_ROOT}/core/debugtrace/stm/config/${IMAGE}/${CHIPSET}/dalstmtrace.xml'],
+					 
+         
+         })
+
+   if 'USES_SENSOR_IMG' in env:
+      env.AddDevCfgInfo(['DEVCFG_CORE_SSC_SLPI_USER', 'DEVCFG_CORE_SLPI_USER', 'DEVCFG_CORE_QDSP6_SENSOR_SW'],
+                        {
+            '845_xml' :['${BUILD_ROOT}/core/debugtrace/stm/config/${IMAGE}/${CHIPSET}/dalsstmcfg.xml',
+                        '${BUILD_ROOT}/core/debugtrace/stm/config/${IMAGE}/${CHIPSET}/sensor/dalstmtrace.xml'],
+			'660_xml' :['${BUILD_ROOT}/core/debugtrace/stm/config/${IMAGE}/${CHIPSET}/dalsstmcfg.xml',
+                        '${BUILD_ROOT}/core/debugtrace/stm/config/${IMAGE}/${CHIPSET}/sensor/dalstmtrace.xml'],			
+            })
+
+   if 'USES_AUDIO_IMG' in env:
+      env.AddDevCfgInfo(['DEVCFG_CORE_QDSP6_AUDIO_SW'],
+                        {
+            '845_xml' :['${BUILD_ROOT}/core/debugtrace/stm/config/${IMAGE}/${CHIPSET}/dalsstmcfg.xml',
+                        '${BUILD_ROOT}/core/debugtrace/stm/config/${IMAGE}/${CHIPSET}/audio/dalstmtrace.xml'],
+			'660_xml' :['${BUILD_ROOT}/core/debugtrace/stm/config/${IMAGE}/${CHIPSET}/dalsstmcfg.xml',
+                        '${BUILD_ROOT}/core/debugtrace/stm/config/${IMAGE}/${CHIPSET}/audio/dalstmtrace.xml'],
+            })
+

@@ -1,0 +1,33 @@
+#=============================================================================
+# PMIC TARGET LIBRARY
+#
+# Target:    All
+# Processor: All
+#
+#=============================================================================
+# $Header: //components/rel/rpm.bf/1.8/core/pmic/pm/target/build/pmic_target.scons#4 $
+#=============================================================================
+#  Copyright 2010-2015 Qualcomm Technologies Incorporated.
+#  All Rights Reserved.
+#  QUALCOMM Proprietary/GTDR
+#=============================================================================
+
+Import('env')
+#default vipertooth support using Starlord target specific files   
+if env['CHIPSET'] in ['qcs405']:
+   env['CHIPSET'] = 'sdm660'
+
+IMAGE_SOURCES   = ['RPM_IMAGE']
+#-----------------------------------------------------------------------------
+# Invoke chipset build file
+#-----------------------------------------------------------------------------
+
+
+if env['CHIPSET'] in ['msm8998']:
+  env.SConscript('../msm8998_pm8998_pmi8998/build/pmic_target_rpm.scons', exports='env')
+
+if env['CHIPSET'] in ['sdm660']:
+  env.SConscript('../sdm660_pm660_pm660i/build/pmic_target_rpm.scons', exports='env')
+
+if env['CHIPSET'] in ['sdm_nicobar']:
+  env.SConscript('../sdm_nicobar_pm660_pm660i/build/pmic_target_rpm.scons', exports='env')

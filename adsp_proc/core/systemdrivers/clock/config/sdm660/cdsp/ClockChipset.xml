@@ -1,0 +1,51 @@
+
+<driver name="Clock">
+  <device id=DALDEVICEID_CLOCK>
+
+    <!-- Clock sources -->
+    <props name="ClockSources" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      SourceConfig
+    </props>
+
+
+    <!-- TURING Clock Configurations -->
+    <props name="q6ss_ahbm_aon_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      AONClockConfig
+    </props>
+    
+    <props name="turing_wrapper_qos_danger_fixed_lat_counter_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      QOSFIXEDLATCOUNTERSRCClockConfig
+    </props>
+	
+     <!-- Clock Log Defaults -->
+    <props name="ClockLogDefaults" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockLogDefaultConfig
+    </props>
+
+    <!-- Clock Init Flags -->
+    <props name="ClockInitFlags" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockFlagInitConfig
+    </props>
+
+    <!-- HWIO -->
+    <props name="ClockTURINGBase" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockTURINGHWIOBases
+    </props>
+
+    <!-- CPU Initialization -->
+    <props name="ClockImageConfig" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockImageBSPConfig
+    </props>
+
+    <!-- Manual initialization of some sources. -->
+    <props name="ClockSourcesToInit" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockSourcesToInit
+    </props>
+
+    <!-- Clock Stub Config -->
+    <props name="ClockStubConfig" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockStubConfig
+    </props>
+  </device>
+</driver>
+

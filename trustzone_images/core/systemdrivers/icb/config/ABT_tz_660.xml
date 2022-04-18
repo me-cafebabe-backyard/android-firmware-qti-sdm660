@@ -1,0 +1,46 @@
+//===========================================================================
+//
+// FILE:         ABT_tz_660.xml
+//
+// DESCRIPTION:  This file contains the DAL XML properties for the AHB
+//               Timeout Driver.
+//
+//===========================================================================
+//
+//                             Edit History
+//
+// $Header: //components/dev/core.tz/1.0/kkamble.core.tz.1.0.icb_common_660/systemdrivers/icb/config/ABT_tz_660.xml#1 $
+// $DateTime: 2016/07/24 23:48:59 $
+// $Author: kkamble $
+// $Change: 10998640 $ 
+//
+// when         who     what, where, why
+// ----------   ---     -------------------------------------------------------
+// 2014/09/03   tb     Created
+//
+//===========================================================================
+//             Copyright (c) 2014 QUALCOMM Incorporated.
+//                    All Rights Reserved.
+//                  QUALCOMM Proprietary/GTDR
+//===========================================================================
+
+<driver name="NULL">
+   <global_def>
+        
+   </global_def>
+   <device id="/dev/ABTimeout">
+     <props name="ABT_Propdata" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        ABT_propdata
+     </props> 
+   </device>   
+   <device id="/dev/NOCError">
+     <props name="NOCError_Propdata" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        NOCERR_propdata
+     </props> 
+   </device> 
+   <device id="/dev/BIMCError">
+     <props name="BIMCError_Propdata" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        BIMC_propdata
+     </props> 
+   </device> 
+</driver>

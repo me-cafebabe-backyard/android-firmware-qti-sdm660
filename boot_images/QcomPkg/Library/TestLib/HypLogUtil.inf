@@ -1,0 +1,46 @@
+#/** @file HypLoggingUtil.inf
+#
+#  PIMEMTargetLib
+#  
+#  Copyright (c) 2014 Qualcomm Technologies, Inc.  All Rights Reserved.
+#  Qualcomm Technologies Proprietary and Confidential.
+#
+#**/
+
+#==============================================================================
+#                              EDIT HISTORY
+#
+#
+# when       who     what, where, why
+# --------   ---     ----------------------------------------------------------
+# 09/09/15   cd     Initial Revision
+#
+#==============================================================================
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = HypLogUtil
+  FILE_GUID                      = 28B7C34B-56F3-4D56-A090-90CAECEB56B3
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = HypLogUtil
+
+[Sources.common]
+  # Include Header
+  #HypLogUtil.h
+  
+  # Source code
+  HypLogUtil.c
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  QcomPkg/QcomPkg.dec
+  QcomPkg/XBLLoaderApi.dec  
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  QcomLib
+  UefiLib

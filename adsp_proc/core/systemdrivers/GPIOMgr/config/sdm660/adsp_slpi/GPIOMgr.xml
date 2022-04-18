@@ -1,0 +1,16 @@
+<driver name="GPIOMgr">
+  <device id="GPIOManager">
+    <props name="GPIOMGR_NUM_GPIOS" type=DALPROP_ATTR_TYPE_UINT32>
+      114
+    </props>
+    <props name="GPIOMGR_DIRCONN_CONFIG_MAP" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      GPIOMgrConfigMap
+    </props>
+    <props name="GPIOMGR_PD_CONFIG_MAP" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      GPIOMgrConfigPD
+    </props>
+    <props name="IsRemotable" type=DALPROP_ATTR_TYPE_UINT32> 
+      0x1 
+    </props> 
+  </device>
+</driver>

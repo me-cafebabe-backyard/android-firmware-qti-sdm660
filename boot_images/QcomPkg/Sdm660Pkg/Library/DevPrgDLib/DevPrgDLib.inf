@@ -1,0 +1,62 @@
+#/** @file DevPrgDLib.inf
+#
+#  DevPrgD Lib.
+#
+#  Copyright (c) 2014, 2015 Qualcomm Technologies, Inc . All rights reserved.
+#
+#**/
+
+#==============================================================================
+#                              EDIT HISTORY
+#
+#
+# when       who     what, where, why
+# --------   ---     ----------------------------------------------------------
+# 05/18/15   wek     Change the BSP file for deviceprogrammer.
+# 03/26/15   wek     Test DDR if fails use Lite buffers to communicate.
+# 01/21/15   kpa     Remove Flag DEVICEPROG_UFS_MISSING
+# 01/08/15   bh      Remove interim compiler flags
+# 12/02/14   wek     Initial revision.
+#
+#==============================================================================
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DevPrgDLib
+  FILE_GUID                      = 511F3DDE-0780-4D4A-BA20-84DDAD6E2E8F
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = DevPrgDLib
+
+[Sources]
+  DevPrgDLib.c
+  ../../../XBLLoader/boot_sbl_if.h
+  ../../../XBLRamDump/boot_sahara.h
+  ../XBLLoaderLib/boot_target.h
+  ../../../Library/DeviceProgrammerCommonLib/bsp/deviceprogrammer_bsp_8996.c
+  ../../../Library/DeviceProgrammerCommonLib/firehose/deviceprogrammer_firehose.c
+  ../../../Library/DeviceProgrammerCommonLib/firehose/deviceprogrammer_initialize.c
+  ../../../Library/DeviceProgrammerCommonLib/firehose/deviceprogrammer_security.c
+  ../../../Library/DeviceProgrammerCommonLib/firehose/deviceprogrammer_sha.c
+  ../../../Library/DeviceProgrammerCommonLib/firehose/deviceprogrammer_storage.c
+  ../../../Library/DeviceProgrammerCommonLib/firehose/deviceprogrammer_storage_hp.c
+  ../../../Library/DeviceProgrammerCommonLib/firehose/deviceprogrammer_storage_store.c
+  ../../../Library/DeviceProgrammerCommonLib/firehose/deviceprogrammer_utils.c
+  ../../../Library/DeviceProgrammerCommonLib/firehose/devprg_storage.c
+  ../../../Library/DeviceProgrammerCommonLib/firehose/devprg_storage_null.c
+  ../../../Library/DeviceProgrammerCommonLib/firehose/devprg_storage_sdcc.c
+  ../../../Library/DeviceProgrammerCommonLib/firehose/devprg_storage_spinor.c
+  ../../../Library/DeviceProgrammerCommonLib/firehose/devprg_storage_ufs.c
+
+[BuildOptions.AARCH64]
+  GCC:*_*_*_CC_FLAGS = -Werror -DBOOT_PBL_H=\"pbl_sbl_shared.h\" -DFEATURE_BOOT_EXTERN_SECBOOT_COMPLETED -DUSE_LOADER_UTILS -DFIREHOSE_LITE_CHANNEL_BUFFER_SIZE=4096 -DFIREHOSE_DDR_CHANNEL_BUFFER_SIZE=1048576 -DFIREHOSE_TX_BUFFER_SIZE=4096 -DDEVICEPROGRAMMER_TARGET_NAME=\"MSM8996\" -DDEVICEPROGRAMMER_USE_DRIVENO=0 -DDEVICEPROGRAMMER_SW_ID=3 -DFEATURE_FIREHOSE_ENABLE_STORAGE_EXTRAS -DFEATURE_FIREHOSE_ENABLE_READ -DFEATURE_FIREHOSE_SKIP_CLOCK -DFEATURE_DEVICEPROGRAMMER_DDR -DFEATURE_DEVPRG_UFS -DFEATURE_DEVPRG_SDCC
+  MSFT:*_*_*_CC_FLAGS = -DBOOT_PBL_H=\"pbl_sbl_shared.h\" -DFEATURE_BOOT_EXTERN_SECBOOT_COMPLETED -DUSE_LOADER_UTILS -DFIREHOSE_LITE_CHANNEL_BUFFER_SIZE=4096 -DFIREHOSE_DDR_CHANNEL_BUFFER_SIZE=1048576 -DFIREHOSE_TX_BUFFER_SIZE=4096 -DDEVICEPROGRAMMER_TARGET_NAME=\"MSM8996\" -DDEVICEPROGRAMMER_USE_DRIVENO=0 -DDEVICEPROGRAMMER_SW_ID=3 -DFEATURE_FIREHOSE_ENABLE_STORAGE_EXTRAS -DFEATURE_FIREHOSE_ENABLE_READ -DFEATURE_FIREHOSE_SKIP_CLOCK -DFEATURE_DEVICEPROGRAMMER_DDR
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  QcomPkg/QcomPkg.dec
+  QcomPkg/XBLLoaderApi.dec
+
+[LibraryClasses]
+  DebugLib
+  UsbWrapperLayerLib
+  UfsLoaderLib

@@ -1,0 +1,41 @@
+ADD 
+MENU 
+( 
+	POPUP "[:CORRELATE]&CoreBSP Scripts" 
+	( 
+	POPUP "[:PSTEP]&Debugtrace" 
+	( 
+	)
+	POPUP "[:PSTEP]&Systemdrivers" 
+	( 
+		MENUITEM "[:FLASH]&PMIC Dashboard" 
+		( 
+			CD &RPM_SCRIPTSDIR
+			cd.do ../pmic/pm/scripts/PMICDashBoard.cmm 
+		)
+		MENUITEM "[:FLASH]&PMIC Dump" 
+		( 
+			CD &RPM_SCRIPTSDIR
+			cd.do ../pmic/pm/scripts/PMICDump.cmm 
+		)
+		MENUITEM "[:FLASH]&PMIC Peek/Poke" 
+		( 
+			CD &RPM_SCRIPTSDIR
+			cd.do ../pmic/pm/scripts/PMICPeek.cmm 
+		)
+		MENUITEM "[:FLASH]&Registers - PMIC" 
+		( 
+			CD &RPM_SCRIPTSDIR
+			cd.do ../pmic/pm/scripts/PMICRegisters.cmm 
+		)
+	)
+	POPUP "[:PSTEP]&Kernel" 
+	( 
+		MENUITEM "[:FLASH]&RPM Core Dump" 
+		( 
+			CD &RPM_SCRIPTSDIR
+			cd.do ../bsp/rpm/scripts/rpm_dump.cmm 
+		)
+	)
+	) 
+)

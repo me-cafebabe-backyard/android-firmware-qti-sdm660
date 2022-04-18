@@ -1,0 +1,37 @@
+#===============================================================================
+#
+# AVS APIs
+#
+# GENERAL DESCRIPTION
+#    Build script
+#
+# Copyright (c) 2009-2009 by Qualcomm Technologies, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/avs.adsp/2.8/elite/build/elite.api#2 $
+#  $DateTime: 2016/06/03 17:22:56 $
+#  $Author: pwbldsvc $
+#  $Change: 10619364 $
+#                      EDIT HISTORY FOR FILE
+#                      
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#  
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+#
+#===============================================================================
+Import('env')
+
+env.PublishRestrictedApi('MODULE_INTERFACES_UTILS',[
+   '${AVS_ROOT}/elite/module_interfaces/utils/inc'
+   ])   
+        
+env.PublishRestrictedApi('CAPI_V2_CMN_LIB',[
+   '${AVS_ROOT}/elite/module_interfaces/capi_v2_cmn_lib/inc'
+   ])
+   
+env.LoadAPIUnits()

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Wakeup timer Resource/Mode definitions
+
+  Copyright (c) 2015-2016 Qualcomm Technologies, Inc. (QTI).
+  All Rights Reserved.
+  Qualcomm Technologies Confidential and Proprietary
+-->
+
+<!--
+Format of Enter/Exit/Backoff latency fields:
+"<Fixed>,<Scaled>"
+Fixed - Unscaled value that is always added to each frequency table entry
+Scaled - Value that will be scaled at 1:1 ratio according to frequency table entries
+         and the initial base profile frequency given via ProfileFreq
+
+Bitwise attribute values (see sleep_mode_attribute enum for full description):
+  0x01 - Unused
+  0x02 - Multiple Entry
+  0x04 - Unused
+  0x08 - No automatic latency tracking
+  0x10 - LPRM is cacheable
+
+Order of LPRMs within the LPR should match any assumptions about order
+     in the node corresponding to the LPR
+-->
+
+<LPRDefinition> 
+  <LPR Name="cpu_wakeup" CoreMask="0xFFFFFFFF" ProfileFreq="245760">
+   <Mode
+      Name="rpm"
+      Dependency="rpm + cpu_vdd + qtmr"
+      PowerSavings="0,0"
+      EnterLat="300"
+      ExitLat="50"
+      EnterFn="cpuWakeupLPR_RPMEnter"
+      Backoff="50"
+      Attributes="0x12"
+      Supported="TRUE"
+      >
+    </Mode>
+
+<!-- Latency for qtimer is higher due to the delay that is added to program AON -->
+    <Mode
+      Name="qtimer"
+      Dependency="!rpm + cpu_vdd + qtmr"
+      PowerSavings="0,0"
+      EnterLat="4300"
+      ExitLat="350"
+      EnterFn="cpuWakeupLPR_standaloneEnter"
+      ExitFn="cpuWakeupLPR_standaloneExit"
+      Backoff="350"
+      Attributes="0x12"
+      Supported="TRUE"
+      >
+    </Mode>
+  </LPR>
+</LPRDefinition>
+

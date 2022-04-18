@@ -1,0 +1,24 @@
+;****************************************************************************
+;** Dumps ETB contents to a binary file.
+;**         
+;** Usage: do detb [<dumpfile>] [<loglevel>]
+;**
+;**  Each invocation dumps data collected in ETB since the last dump
+;**    
+;**  Optional Arguments
+;**      
+;**    dumpfile - If not specified will dump to etb_<date_time>.bin in 
+;**               the temp direcotry. (eg. C:\TEMP\etb_2012_12_7_15_21_26.bin)
+;**
+;**    loglevel - Optional argument to display debug messages             
+;**               To specify the second argument the first argument is necessary
+;** 
+;** Copyright (c) 2011-2012 by Qualcomm Technologies Incorporated.  All Rights Reserved.
+;**
+;****************************************************************************
+global &etb_base
+&etb_base=0x66027000
+
+entry &dump_file &log_level
+do  "~~~~/../common/etb_dump_common.cmm" &dump_file &log_level
+enddo

@@ -1,0 +1,8 @@
+#Framework,Extract_Internal_Packets
+#Version,1.0
+#Key,0x151D
+#PacketType,0x151D
+#PacketNumber,5405
+#Name,LOG-SNS-QMD-CONFIG-C
+#Packet,Version,Timestamp (ms),Sample Rate (Hz),Enable AMD,Enable VMD,Enable RMD,Instance
+5405,2,562949953421312000.000,10.000000,True,False,False,88

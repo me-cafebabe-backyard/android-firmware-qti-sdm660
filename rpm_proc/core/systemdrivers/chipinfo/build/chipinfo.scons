@@ -1,0 +1,60 @@
+#=============================================================================
+# CHIPINFO
+#
+# Targets:    MSM8996, MSM8998
+# Processors: RPM
+#
+#=============================================================================
+#                    Copyright 2015 Qualcomm Technologies Incorporated.
+#                           All Rights Reserved.
+#                         QUALCOMM Proprietary/GTDR
+#=============================================================================
+#  $Header: //components/rel/rpm.bf/1.8/core/systemdrivers/chipinfo/build/chipinfo.scons#5 $
+#  $DateTime: 2018/08/10 07:09:32 $
+#  $Author: pwbldsvc $
+#  $Change: 16855347 $
+#===============================================================================
+
+Import('env')
+env = env.Clone()
+
+supported_targets = ['8996','8998','660','405','nicobar']
+if env['MSM_ID'] not in supported_targets:
+    env.PrintWarning('Bailing from CHIPINFO scripts; no support for build targets other than %s' % supported_targets)
+    Return()
+
+#-----------------------------------------------------------------------------
+# Define paths
+#-----------------------------------------------------------------------------
+
+SRCPATH = "${BUILD_ROOT}/core/systemdrivers/chipinfo/src"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0) 
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+
+CBSP_API = [
+   'HAL',
+   'DAL',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+
+   # Must be last due to comdef.h issues
+   'KERNEL'
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+env.PublishPrivateApi('SYSTEMDRIVERS_CHIPINFO', [
+   '${INC_ROOT}/core/systemdrivers/chipinfo/inc/${CHIPSET}',
+])
+
+CHIPINFO_SOURCES =  [
+  '${BUILDPATH}/Chipinfo.c'
+]
+
+env.AddLibrary(['RPM_IMAGE' ], '${BUILDPATH}/chipinfo', CHIPINFO_SOURCES)
+
+

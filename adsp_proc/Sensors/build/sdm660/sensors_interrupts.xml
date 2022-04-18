@@ -1,0 +1,29 @@
+<!-- Sensors PD Interrupt XML Definitions -->
+<!-- Chip: SDM660  -->
+<!-- Subsystem: ADSP -->
+
+<interrupt>
+    <!-- irq 207 : Accel/Gyro interrupt: ACC_GYRO_DATA_AVA_INT_N -->
+    <irq num ="207" trigger="edge"  polarity="rising"/>
+
+    <!-- irq 208 : Accel/Gyro interrupt: ACC_GYRO_MOT_INT_N -->
+    <irq num ="208" trigger="edge"  polarity="rising"/>
+
+    <!-- irq 209 : Mag Interrupt: MAG_INT_N -->
+    <irq num ="209" trigger="edge" polarity="falling"/>
+
+    <!-- irq 210 : ALSP Interrupt: ALSP_INT_N -->
+    <irq num ="210" trigger="edge" polarity="falling"/>
+
+    <!-- irq 212 : HRM Interrupt -->
+    <irq num ="212" trigger="edge"  polarity="rising"/>
+
+    <!-- irq 213 : Cap Sensor1 & Cap Sensor2 Muxed -->
+    <irq num ="213" trigger="level" polarity="high"/>
+    
+    <!-- irq 214 : Hall Effect Sensor Interrupt -->
+    <irq num ="214" trigger="level" polarity="high"/>
+    
+    <!-- irq 215 : Pressure Sensor Interrupt -->
+    <irq num ="215" trigger="level" polarity="high"/>    
+</interrupt>

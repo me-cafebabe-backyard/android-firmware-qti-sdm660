@@ -1,0 +1,15 @@
+# Do an RPM Clock Dump for 8084 target through SystemDB. Clocks are dumped out through QDSS SW Events.
+# Enable set transport to STM before logging. Check for ulog events 
+
+# File starts here...start with the internal event
+PWRDB_CMD_EVENT, PWRDB_EVT_SRC_PWRDB_INTERNAL, PWRDB_INT_EVT_ID_ENTER_RUNNING, 0,0
+
+# Commands to the Pwrdb
+PWRDB_CMD_RPM_FLUSH_CMDS,0,0
+
+# Execute RPM Clock Dump in Immediate Mode (0x1, first argument below).
+PWRDB_CMD_RPM_CLK_LOG_STATE,0x1,1
+PWRDB_CMD_END_OF_CMDS
+
+
+####End of Main Script#######

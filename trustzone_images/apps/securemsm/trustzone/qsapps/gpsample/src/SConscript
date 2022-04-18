@@ -1,0 +1,69 @@
+#===============================================================================
+#
+# App Core
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/apps.tz/1.0.7.1/securemsm/trustzone/qsapps/gpsample/src/SConscript#1 $
+#  $DateTime: 2020/01/14 12:33:12 $
+#  $Author: pwbldsvc $
+#  $Change: 22186812 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains schedulerents describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#===============================================================================
+Import('env')
+env = env.Clone()
+
+#------------------------------------------------------------------------------
+# We need to specify "neon" to generate SIMD instructions in 32-bit mode
+#------------------------------------------------------------------------------
+if env['PROC'] == 'scorpion':
+  env.Append(CCFLAGS = " -mfpu=neon ")
+
+if env.has_key('USES_NO_CP'):
+  env.Append(CCFLAGS = ' -DUSES_NO_CP ')
+
+includes = [
+  "${BUILD_ROOT}/core/api/services",
+  "${BUILD_ROOT}/core/api/securemsm/trustzone/gp",
+  "${BUILD_ROOT}/core/api/securemsm/trustzone/qsee",
+  "${BUILD_ROOT}/core/securemsm/secrsa/shared/inc",
+  "${BUILD_ROOT}/core/securemsm/secmath/shared/inc"
+]
+
+
+#----------------------------------------------------------------------------
+# App core Objects
+#----------------------------------------------------------------------------
+sources = [
+  'gpsample.c',
+]
+
+#-------------------------------------------------------------------------------
+# Add metadata to image
+#-------------------------------------------------------------------------------
+# privileges: all
+# services:   COEMUnwrapKeys_UID (60)
+md = {
+    'appName':      'gpsample',
+    'UUID':         '5AF8C3E6-D9DF-446E-4ff2-d4d58e8ca49b',
+    'privileges': [ 'default',
+                    'GPServices',
+                  ],
+}
+
+app_units = env.SecureAppBuilder(
+  sources = sources,
+  includes = includes,
+  metadata = md,
+  image = 'gpsample',
+)
+
+op = env.Alias('gpsample', app_units)
+Return('app_units')

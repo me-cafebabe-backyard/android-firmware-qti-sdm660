@@ -1,0 +1,28 @@
+#===============================================================================
+#
+# AVS AU
+#
+# GENERAL DESCRIPTION
+#    Build script
+#
+# Copyright (c) 2010-2017 Qualcomm Technologies, Inc.  All Rights Reserved.
+# Confidential and Proprietary - Qualcomm Technologies, Inc.
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/avs.adsp/2.8/aud/services/static_svcs/utils/build/utils.scons#2 $
+#  $DateTime: 2017/04/13 06:35:13 $
+#  $Author: pwbldsvc $
+#  $Change: 13010786 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+#
+#===============================================================================
+Import('env')
+
+env.LoadSoftwareUnits()

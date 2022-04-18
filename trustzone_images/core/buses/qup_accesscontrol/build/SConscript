@@ -1,0 +1,24 @@
+#===============================================================================
+# SPMI Libs
+#
+# GENERAL DESCRIPTION
+#    SPMI Build Script
+#
+# Copyright (c) 2015-2017 by Qualcomm Technologies Incorporated. All Rights Reserved.
+#-------------------------------------------------------------------------------
+#  $Header: //components/rel/core.tz/1.0.7.1/buses/qup_accesscontrol/build/SConscript#1 $
+#  $DateTime: 2020/01/14 12:35:09 $
+#  $Change: 22186835 $
+#
+#  when       who     what, where, why
+#  --------   ---     ------------------------------------------------------------
+#  11/21/17   dpk     Removed Bear & Hoya folders.
+#===============================================================================
+import os
+Import('env')
+
+if env['TARGET_FAMILY'] in ['honeybadger']:
+   env.LoadSoftwareUnits(dir_patterns='../honeybadger/build')
+   env.Deploy(['../honeybadger/inc/QupACCommonIds.h',
+               '../honeybadger/build/SConscript',
+               '../honeybadger/inc/TzBlspAC.h'])

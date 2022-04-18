@@ -1,0 +1,7 @@
+Private &args
+ENTRY %LINE &args
+
+local &VIRTIO
+&VIRTIO="true"
+
+do spmiCfg.cmm &args

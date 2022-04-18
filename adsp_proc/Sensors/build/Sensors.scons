@@ -1,0 +1,494 @@
+#===============================================================================
+#
+# Sensors AU
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+#
+# Copyright (c) 2009-2017 by Qualcomm Technologies, Inc.
+# All Rights Reserved.
+# Confidential and Proprietary - Qualcomm Technologies, Inc.
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/ssc.slpi/2.2/build/Sensors.scons#1 $
+#  $DateTime: 2017/04/17 22:20:39 $
+#  $Author: pwbldsvc $
+#  $Change: 13043989 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 03-27-2017  sd     Added SLEEP_HEADER_8998 for 8998
+# 01/06/2017  kn     SDM660 bringup changes
+# 08/30/2016  pc     SDM660 virtio bringup changes
+# 06/15/2016  bd     Add LPS22HB
+# 04/22/2016  MW     Add CM3526, TMG490x
+# 04/21/2016  sd     Added LSM6DSM
+# 04/20/2016  ps     Disable pre-silicon bringup flags, disable qfp on 8998
+# 04/11/2016  ag     Add mechanism to remove BMI160 and add LSM6DS3 in uimage
+# 03/21/2016  ag     Add mechanism to not compile FP
+# 03/21/2016  BD     Add HD22 support
+# 03/02/2016  qm     remove playback 
+# 02/12/2016  tc     Added the HDRLL library and headers
+# 01/21/2016 gju     Update MEMMGR path
+# 01/08/2016  PS     8998 virtio bringup changes
+# 09/30/2015  hw     Enable compiler warning error
+# 09/24/2015  AH     Added LSM6DS3
+# 09/16/2015  hw     WHitelist hexagon compiler 7.2.09
+# 09/08/2015  hw     Remove flag of 'slpi_v2' and replace it with 'ISLAND_512'
+# 08/26/2015 gju     Removed use of SNS_QMI_ENABLE flag
+# 07/13/2015  dk     Ported DAF playback accel driver over SLPI
+# 07/01/2015  BD     Added batchbuff support for batching
+# 04/23/2015  PS     8996 V2 Bringup changes
+# 04/03/2015  AH     Added DTS201A
+# 04/01/2015  PS     Updates for 8996 V2 bringup
+# 03/18/2015  HW     Whitelist hexagon compiler 7.2.04
+# 03/12/2015  AH     Added ADPD142
+# 03/10/2015  MW     Added HSVDDD002A
+# 02/18/2015  tc     Added the -Os optimization flag suggestion
+# 02/18/2015  PS     Add support for 8996 slpi_v2, removed bring up flags for slpi_v1
+# 01/14/2015  MW     Added APDS9960, BMP280
+# 11/21/2014  MW     Added AK099xx FIFO
+# 11/12/2014  DC     Add support for 8992 and reduce heap usage for 8992
+# 10/30/2014  MW     Added BMI160
+# 10/08/2014  MW     Added ZPA2326
+# 09/17/2014  ps     Add 8996 specific build flags
+# 09/12/2014  ag     Skip Werror for compiler version 7.x.x
+# 08/14/2014  sc     Added back -Werror flag
+# 07/31/2014  pn     Enabled power control; removed obsolete code
+# 07/22/2014  ps     Fix compiler warnings, added header paths
+# 07/17/2014  ps     Skip Werror flag for 5.1.05 Hexagon compiler
+# 06/25/2014  MW     Added ISL29033
+# 06/11/2014  ps     Remove VIRTIO_BRINGUP and ADSP_STANDALONE for 8994
+# 05/28/2014  MW     Added HSPPAD038A
+# 04/29/2014  pn     Added POWER_INTERFACE
+# 04/23/2014  pn     Publishes Sensors protected incude paths
+# 04/18/2014  sc     Removed target-specific folders
+# 04/11/2014  sc     Removed fno-short-enums flag locally
+# 04/08/2014  MW     Added LPS25H
+# 04/04/2014  MW     Added SENSORS_DD_DEV_FLAG for HD22
+# 03/24/2014  ps     Add fno-short-enums flag
+# 12/18/2013  MW     Added BU52061NVX
+# 10/11/2013  yh     Added AK09911C
+# 11/29/2013  yh     Added MC3410
+# 12/17/2013  ps     Add 8994 specific build flags
+# 12/11/2013  MW     Added MAX44006
+# 11/06/2013  sd     Added BMG160
+# 11/04/2013  MW     Added LSM303D
+# 10/31/2013  hw     Add support for adding and using QDSS SW events in Sensor
+# 10/23/2013  MW     Added AD7146
+# 09/23/2013  yh     Added AL3320B
+# 09/09/2013  yh     Added CM36283
+# 09/05/2013  yh     Added KXTIK
+# 10/09/2013  RS     Added Memsic M34160PJ Mag
+# 10/03/2013  sc     Added path for stringl.h
+# 10/01/2013  ps     Removed 8084 bring up flags
+# 09/26/2013  MW     Commented out CONFIG_SUPPORT_MAX88120 because moved it to dd/vendor
+# 09/12/2013  MW     Added CONFIG_SUPPORT_MAX88120 (moved back to dd/qcom), Added BH1721
+# 09/05/2013  rs     Added and commented out CONFIG_SUPPORT_AKM09912 - it is in dd/vendor
+# 09/04/2013  MW     Added YAS530
+# 09/03/2013  yh     Added ISL29044A
+# 09/02/2013  cj     Added ISL29147
+# 08/09/2013  yh     Added AP3216C
+# 08/09/2013  yh     Added MMA8452
+# 07/25/2013  yh     Added KXCJK
+# 08/29/2013  dc     Add 8962 specific build flags
+# 08/15/2013  MW     Commented out CONFIG_SUPPORT_MAX88120 because moved it to dd/vendor
+# 08/09/2013  ps     Add 8084 specific build flags
+# 08/06/2013  vh     Added compiler warnings being treated as errors flag
+# 08/05/2013  sc     Added AMS TMG399X
+# 07/31/2013  MW     Added APDS9950 and MAX88120
+# 07/12/2013 lka     Added specific HW configuration support
+# 06/25/2013  ps     Remove invalid paths to header files
+# 06/17/2013  pf     Added LTR55x
+# 06/12/2013 agk     Added USE_NATIVE_MEMCPY
+# 06/11/2013  ae     Added QDSP SIM playback support
+# 06/11/2013  ps     Add contents from toplevel Elite
+# 05/01/2013 lka     Added LIS3DSH
+# 03/25/2013  RS     TMD277X enabled by default
+# 03/22/2013  PS     HSCDTD008 enabled by default
+# 03/19/2013  AG     BMA2x2 enabled by default
+#===============================================================================
+Import('env')
+import os
+env = env.Clone()
+SConscript('vendor_cfg.scons', exports='env')
+#if os.environ['HEXAGON_RTOS_RELEASE'] not in ['7.1.01-internal','7.2','7.2.01','7.2.04','7.2.07','7.2.08','7.2.09']:
+if 'SENSORS_DD_DEV_FLAG' not in env:
+  env.Append(CFLAGS = '-Werror')
+#else:
+#    env.Append(CFLAGS = '-Wno-unused-result')
+#    env.Append(CFLAGS = '-Wno-unused-function')
+
+# TODO: Study the effects of this flag on performance
+#env.Append(CCFLAGS = " -Os ")
+
+#-------------------------------------------------------------------------------
+# External depends outside module
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'BOOT',
+   'BUSES',
+   'DAL',
+   'DEBUGTOOLS',
+   'HAL',
+   'MPROC',
+   'SERVICES',
+   'STORAGE',
+   'SYSTEMDRIVERS',
+   'WIREDCONNECTIVITY',
+   'SECUREMSM',
+   'KERNEL',
+]
+
+env.RequirePublicApi(CBSP_API, area='core')
+
+#-------------------------------------------------------------------------------
+# Publish Protected APIs
+# These are for internal Sensors use
+#-------------------------------------------------------------------------------
+env.PublishProtectedApi('SENSORS', [
+   "${BUILD_ROOT}/Sensors/common/inc",
+   "${BUILD_ROOT}/Sensors/debug/inc",
+])
+
+env.PublishProtectedApi('SNS_SMR', [
+   "${INC_ROOT}/Sensors/common/smr/inc",
+])
+
+env.PublishProtectedApi('SNS_QUEUE', [
+   "${BUILD_ROOT}/Sensors/common/util/queue/inc",
+])
+
+env.PublishProtectedApi('SNS_MEMMGR', [
+   "${BUILD_ROOT}/Sensors/memmgr/inc",
+])
+
+env.PublishProtectedApi('SNS_BATCHBUFF', [
+   "${BUILD_ROOT}/Sensors/common/util/batchbuffer/inc",
+])
+
+env.PublishProtectedApi('SNS_UTIL_MISC', [
+   "${BUILD_ROOT}/Sensors/common/util/misc/inc",
+])
+
+env.PublishProtectedApi('SNS_MATHTOOLS', [
+   "${BUILD_ROOT}/Sensors/common/util/mathtools/inc",
+])
+
+env.PublishProtectedApi('SNS_EVMGR', [
+   "${BUILD_ROOT}/Sensors/evmgr/inc",
+])
+
+env.PublishProtectedApi('SNS_COMMON', [
+   "${BUILD_ROOT}/Sensors/common/inc",
+])
+
+env.PublishProtectedApi('SNS_DEBUG_DSPS', [
+   "${BUILD_ROOT}/Sensors/debug/inc",
+])
+
+env.PublishProtectedApi('SNS_INT_SVC', [
+   "${BUILD_ROOT}/Sensors/common/idl/inc",
+])
+
+env.PublishProtectedApi('SNS_DDF', [
+   "${BUILD_ROOT}/Sensors/ddf/inc",
+])
+
+env.PublishProtectedApi('SNS_PM', [
+   "${BUILD_ROOT}/Sensors/pm/inc",
+])
+
+env.PublishProtectedApi('SNS_SMGR', [
+   "${BUILD_ROOT}/Sensors/smgr/inc",
+])
+
+env.PublishProtectedApi('SNS_PROFILING', [
+   "${BUILD_ROOT}/Sensors/profiling/inc",
+])
+
+env.PublishProtectedApi('SNS_HDRLL', [
+   "${BUILD_ROOT}/Sensors/hdrll/inc",
+])
+
+#enable this for Sensor QDSP_SIM build
+#env.Replace(SNS_QDSP_SIM = True)
+
+if env.has_key('SNS_QDSP_SIM'):
+    env.Append(CPPDEFINES = ["MSM8974"])
+    env.Append(CPPDEFINES = ["SNS_DSPS_BUILD"])
+    env.Append(CPPDEFINES = ["QDSP6"])
+    env.Append(CPPDEFINES = ["SNS_QDSP_SIM"])
+    env.Append(CPPDEFINES = ["SNS_EXCLUDE_POWER"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_QDSP_SIM_PLAYBACK"])
+    env.Append(CPPDEFINES = ["USE_NATIVE_MEMCPY"])
+
+else:
+    if env['MSM_ID'] in ['8974']:
+        env.Append(CPPDEFINES = ["MSM8974"])
+        env.Append(CPPDEFINES = ["BRINGUP_8974"])
+        env.Replace(BRINGUP_8974 = True)
+
+    if env['MSM_ID'] in ['8x26']:
+        env.Append(CPPDEFINES = ["BRINGUP_8X26"])
+        env.Replace(BRINGUP_8X26 = True)
+        #env.Append(CPPDEFINES = ["VIRTIO_8X26"])
+        #env.Append(CPPDEFINES = ["ADSP_STANDALONE"])
+        #env.Replace(ADSP_STANDALONE = True)
+        #env.Append(CPPDEFINES = ["SNS_EXCLUDE_POWER"])
+
+    if env['MSM_ID'] in ['8084']:
+        env.Append(CPPDEFINES = ["BRINGUP_8084"])
+        env.Replace(BRINGUP_8084 = True)
+        #env.Append(CPPDEFINES = ["ADSP_STANDALONE"])
+        #env.Replace(ADSP_STANDALONE = True)
+        #env.Append(CPPDEFINES = ["SNS_EXCLUDE_POWER"])
+        #env.Replace(SNS_EXCLUDE_POWER = True)
+        #env.Append(CPPDEFINES = ["VIRTIO_BRINGUP"])
+        #env.Replace(VIRTIO_BRINGUP = True)
+
+    if env['MSM_ID'] in ['8952']:
+         #env.Append(CPPDEFINES = ["ADSP_STANDALONE"])
+         #env.Replace(ADSP_STANDALONE = True)
+         env.Append(CPPDEFINES = ["BRINGUP_8952"])
+         env.Replace(BRINGUP_8952 = True)
+         #env.Append(CPPDEFINES = ["SNS_PM_EXCLUDE_POWER"])
+         #env.Replace(SNS_PM_EXCLUDE_POWER = True)
+         #env.Append(CPPDEFINES = ["VIRTIO_BRINGUP"])
+         #env.Replace(VIRTIO_BRINGUP = True)
+         env.Append(CPPDEFINES = ["SNS_DISABLE_UIMAGE_BY_DEAFULT"])
+         env.Replace(SNS_DISABLE_UIMAGE_BY_DEAFULT = True)
+
+    if env['MSM_ID'] in ['8962']:
+        env.Append(CPPDEFINES = ["ADSP_STANDALONE"])
+        env.Replace(ADSP_STANDALONE = True)
+        env.Append(CPPDEFINES = ["SNS_EXCLUDE_POWER"])
+        env.Replace(SNS_EXCLUDE_POWER = True)
+        env.Append(CPPDEFINES = ["VIRTIO_BRINGUP"])
+        env.Replace(VIRTIO_BRINGUP = True)
+
+    if env['MSM_ID'] in ['8976']:
+        env.Append(CPPDEFINES = ["ADSP_STANDALONE"])
+        env.Replace(ADSP_STANDALONE = True)
+        env.Append(CPPDEFINES = ["SNS_EXCLUDE_POWER"])
+        env.Replace(SNS_EXCLUDE_POWER = True)
+        env.Append(CPPDEFINES = ["VIRTIO_BRINGUP"])
+        env.Replace(VIRTIO_BRINGUP = True)
+
+    if env['MSM_ID'] in ['8992']:
+        env.Append(CPPDEFINES = ["BRINGUP_8992"])
+        env.Replace(BRINGUP_8992 = True)
+        SConscript('msm8992/island_cfg.scons', exports='env')
+        #env.Append(CPPDEFINES = ["ADSP_STANDALONE"])
+        #env.Replace(ADSP_STANDALONE = True)
+        #env.Append(CPPDEFINES = ["SNS_EXCLUDE_POWER"])
+        #env.Replace(SNS_EXCLUDE_POWER = True)
+        #env.Append(CPPDEFINES = ["VIRTIO_BRINGUP"])
+        #env.Replace(VIRTIO_BRINGUP = True)
+
+    if env['MSM_ID'] in ['8994']:
+        env.Append(CPPDEFINES = ["BRINGUP_8994"])
+        env.Replace(BRINGUP_8994 = True)
+        SConscript('msm8994/island_cfg.scons', exports='env')
+        #env.Append(CPPDEFINES = ["ADSP_STANDALONE"])
+        #env.Replace(ADSP_STANDALONE = True)
+        #env.Append(CPPDEFINES = ["SNS_EXCLUDE_POWER"])
+        #env.Replace(SNS_EXCLUDE_POWER = True)
+        #env.Append(CPPDEFINES = ["VIRTIO_BRINGUP"])
+        #env.Replace(VIRTIO_BRINGUP = True)
+
+    if env['MSM_ID'] in ['8996']:
+        env.Append(CFLAGS = '-mllvm -disable-shrink-wrap-common-args')
+        if "ISLAND_512" in env:
+            env.Append(CPPDEFINES = ["BRINGUP_8996_V2"])
+            env.Replace(BRINGUP_8996_V2 = True)
+            #env.Append(CPPDEFINES = ["ADSP_STANDALONE"])
+            #env.Replace(ADSP_STANDALONE = True)
+            #env.Append(CPPDEFINES = ["SNS_PM_EXCLUDE_POWER"])
+            #env.Replace(SNS_PM_EXCLUDE_POWER = True)
+            #env.Append(CPPDEFINES = ["VIRTIO_BRINGUP"])
+            #env.Replace(VIRTIO_BRINGUP = True)
+        SConscript('msm8996/island_cfg.scons', exports='env')
+
+    if env['MSM_ID'] in ['8998']:
+        env.Append(CFLAGS = '-mllvm -disable-shrink-wrap-common-args')
+        env.Append(CPPDEFINES = ["BRINGUP_8998"])
+        env.Replace(BRINGUP_8998 = True)
+        env.Append(CPPDEFINES = ["SLEEP_HEADER_8998"])
+        env.Replace(SLEEP_HEADER_8998 = True)		
+        SConscript('msm8998/island_cfg.scons', exports='env')
+        env.Append(CPPDEFINES = ["SNS_USES_DISABLE_FP"])
+        #env.Append(CPPDEFINES = ["ADSP_STANDALONE"])
+        #env.Replace(ADSP_STANDALONE = True)
+        #env.Append(CPPDEFINES = ["SNS_PM_EXCLUDE_POWER"])
+        #env.Replace(SNS_PM_EXCLUDE_POWER = True)
+        #env.Append(CPPDEFINES = ["VIRTIO_BRINGUP"])
+        #env.Replace(VIRTIO_BRINGUP = True)
+        if env.IsBuildInternal():
+            env.Append(CPPDEFINES = ["SNS_ENABLE_ALWAYS_ON_TEST_ALGO"])
+	
+    if env['MSM_ID'] in ['660']:
+        env.Append(CFLAGS = '-mllvm -disable-shrink-wrap-common-args')
+        env.Append(CFLAGS = '-fno-jump-tables')				
+        env.Append(CPPDEFINES = ["BRINGUP_660"])
+        env.Replace(BRINGUP_660 = True)
+        env.Append(CPPDEFINES = ["SNS_SDM660"])
+        env.Replace(SNS_SDM660 = True)
+        SConscript('sdm660/island_cfg.scons', exports='env')
+        #env.Append(CPPDEFINES = ["ADSP_STANDALONE"])
+        #env.Replace(ADSP_STANDALONE = True)
+        #env.Append(CPPDEFINES = ["SNS_PM_EXCLUDE_POWER"])
+        #env.Replace(SNS_PM_EXCLUDE_POWER = True)
+        #env.Append(CPPDEFINES = ["VIRTIO_BRINGUP"])
+        #env.Replace(VIRTIO_BRINGUP = True)        
+
+    if 'USES_QDSS_SWE' in env:
+        env.Append(CPPDEFINES = ["SNS_QDSS_SWE"])
+        env.RequirePublicApi('DEBUGTRACE', area='core')
+
+    if 'USES_ISLAND' in env:
+        env.Append(CPPDEFINES = ["SNS_USES_ISLAND"])
+        #env.Append(CPPDEFINE = ["SNS_DISABLE_UIMAGE"])
+
+        # SNS_USES_ISLAND enables code to be compiled for island mode operation.
+        # SNS_DISABLE_UIMAGE, when defined, shall suppress the uImage vode for
+        # the sensors image. This suppression is at runtime.
+
+    if 'USES_DISABLE_FP' in env:
+        env.Append(CPPDEFINES = ["SNS_USES_DISABLE_FP"])
+
+    if 'USES_LSM6DS3' in env:
+        env.Append(CPPDEFINES = ["SNS_USES_LSM6DS3"])
+
+    env.Append(CPPDEFINES = ["SNS_DSPS_BUILD"])
+    env.Append(CPPDEFINES = ["QDSP6"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_DAF_PLAYBACK_ACCEL"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_MPU6050"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_MPU6500"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_MPU6515"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_AKM8975"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_AKM8963"])
+    #env.Append(CPPDEFINES = ["CONFIG_SUPPORT_AKM09912"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_M34160PJ"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_BMP085"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_APDS99XX"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_LIS3DH"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_LIS3DSH"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_LIS3MDL"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_ADXL"])
+    #env.Append(CPPDEFINES = ["CONFIG_SUPPORT_BMA250"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_BMG160"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_L3G4200D"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_LSM303DLHC"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_ISL29028"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_ISL29147"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_L3GD20"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_MPU3050"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_YAS530"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_LPS331AP"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_BMA2X2"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_HSCD008"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_TMD277X"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_LTR55X"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_CM36283"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_MAX44009"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_SHTC1"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_APDS9950"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_MAX44006"])
+    #env.Append(CPPDEFINES = ["CONFIG_SUPPORT_MAX88120"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_TMG399X"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_KXCJK"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_KXTIK"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_MMA8452"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_AP3216C"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_ISL29044A"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_BH1721"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_AD7146"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_LSM303D"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_AL3320B"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_MC3410"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_AKM09911"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_BU52061NVX"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_LPS25H"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_LPS22HB"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_HSPPAD038A"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_ISL29033"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_ZPA2326"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_BMI160"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_AKM099xx_FIFO"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_APDS9960"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_BMP280"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_HSVDDD002A"])
+    #env.Append(CPPDEFINES = ["FEATURE_TEST_ALGO_GPIO"])
+    env.Append(CPPDEFINES = ["USE_NATIVE_MEMCPY"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_ADPD142"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_DTS201A"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_LSM6DS3"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_LSM6DSM"])	
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_CM3526"])
+    env.Append(CPPDEFINES = ["CONFIG_SUPPORT_TMG490x"])
+
+    # Specific hardware configurations
+    # env.Append(CPPDEFINES = ["ADSP_HWCONFIG_L"])
+
+
+env.Append(CPPPATH = [
+   "${BUILD_ROOT}",
+   "${BUILD_ROOT}/core/api/kernel/qube",
+   "${BUILD_ROOT}/Sensors/debug/inc",
+   "${BUILD_ROOT}/Sensors/smgr/src",
+   "${BUILD_ROOT}/Sensors/smgr/inc",
+   "${BUILD_ROOT}/Sensors/ddf/inc",
+   "${BUILD_ROOT}/Sensors/common/util/queue/inc",
+   "${BUILD_ROOT}/Sensors/common/util/memmgr/inc",
+   "${BUILD_ROOT}/Sensors/common/util/batchbuffer/inc",
+   "${BUILD_ROOT}/Sensors/common/util/mathtools/inc",
+   "${BUILD_ROOT}/Sensors/common/usam/framework/inc",
+   "${BUILD_ROOT}/Sensors/profiling/inc",
+   "${BUILD_ROOT}/Sensors/api",
+   "${BUILD_ROOT}/avs/elite/qurt_elite/inc",
+   "${BUILD_ROOT}/avs/api/mmutils",
+   "${BUILD_ROOT}/avs/api/avcs/inc",
+   "${BUILD_ROOT}/qdsp6/q6mmpm/inc",
+   "${BUILD_ROOT}/core/api/debugtools",
+   "${BUILD_ROOT}/core/api/dal",
+#Contents from Toplevel Elite
+   "${BUILD_ROOT}/core/kernel/qurt/config/8200",
+   "${BUILD_ROOT}/core/api/kernel/qurt",
+   "${BUILD_ROOT}/core/api/services",
+   "${BUILD_ROOT}/core/api/mproc",
+   "${BUILD_ROOT}/core/buses/api/i2c",
+   "${BUILD_ROOT}/core/buses/api/systemdrivers",
+   "${BUILD_ROOT}/core/api/systemdrivers",
+   "${BUILD_ROOT}/core/api/power",
+   "${BUILD_ROOT}/core/api/kernel/libstd/stringl",
+  ])
+
+qdsp6_public_apis = [
+   'QDSP6'
+   ]
+env.RequirePublicApi(qdsp6_public_apis, area='qdsp6')
+
+if 'SNS_USES_DISABLE_32_BIT_I2C_ADDRESSING' in env:
+   env.Append(CPPDEFINES = ["SNS_USES_DISABLE_32_BIT_I2C_ADDRESSING"])
+
+if 'SENSORS_DD_DEV_FLAG' in env:
+   env.Append(CPPDEFINES = ["SENSORS_DD_DEV_FLAG"])
+   # Sources that should not be shared
+   SENSORS_CLEAN_SOURCES = env.FindFiles(['*.h'], '${BUILD_ROOT}/Sensors/api')
+   SENSORS_CLEAN_SOURCES += env.FindFiles(['*.idl'], '${BUILD_ROOT}/Sensors/api/idl')
+   SENSORS_CLEAN_SOURCES += env.FindFiles(['*.h'], '${BUILD_ROOT}/Sensors/memmgr/inc')
+   # Clean sources
+   env.CleanPack(['CBSP_QDSP6_SW_IMAGE', 'CORE_QDSP6_SENSOR_SW'], SENSORS_CLEAN_SOURCES)
+else:
+   CLEAN_LIST=[]
+   CLEAN_LIST.extend(env.FindFiles(['vendor_cfg.scons'], '../build'))
+   env.CleanPack(['CBSP_QDSP6_SW_IMAGE', 'CORE_QDSP6_SENSOR_SW'], CLEAN_LIST)
+
+env.LoadSoftwareUnits()

@@ -1,0 +1,65 @@
+#===========================================================================
+#  Copyright (c) 2011-2016 QUALCOMM Incorporated.
+#  All Rights Reserved.
+#  Qualcomm Confidential and Proprietary
+#===========================================================================
+#
+# App Core
+#
+# GENERAL DESCRIPTION
+#    build script
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains schedulerents describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 01/13/14    wt     Created
+#===============================================================================
+Import('env')
+
+#-------------------------------------------------------------------------------
+# Compiler, object, and linker definitions
+#-------------------------------------------------------------------------------
+includes = [
+  "${BUILD_ROOT}/core/api/kernel/libstd/stringl",
+  "${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidoconfig/src",
+  "${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidoconfig/inc",
+  "${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidocrypto/app/include",
+  "${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidocrypto/app/fido/",
+  "${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidocrypto/authentication/include"
+]
+#----------------------------------------------------------------------------
+# App core Objects
+#----------------------------------------------------------------------------
+sources = [
+  'app_main.c',
+  'COEMFidoConfig.c',
+  'FidoConfig.c',
+]
+
+
+#-------------------------------------------------------------------------------
+# Add metadata to image
+#-------------------------------------------------------------------------------
+md = {
+   'appName':    'fidoconfig',
+   'privileges': ['default'],
+   'services':   ['OEMFidoConfig'],
+   'acceptBufSize': 12228,
+}
+
+app_units = env.SecureAppBuilder(
+  sources = sources,
+  includes = includes,
+  metadata = md,
+  image = 'fidocfg',
+  stack_size = '0x4000',
+  heap_size = '0x4000'
+)
+
+op = env.Alias('fidocfg', app_units)
+no_ship_files = ['app_main.c', 'COEMFidoConfig.c', 'COEMFidoConfig_open.h']
+env.CleanPack('fidocfg', no_ship_files)
+Return('app_units')

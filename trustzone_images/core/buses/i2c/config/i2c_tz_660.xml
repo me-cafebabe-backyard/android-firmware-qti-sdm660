@@ -1,0 +1,185 @@
+//===========================================================================
+//
+// FILE:         i2c_tz_660.xml
+//
+// DESCRIPTION:  This file contains the DAL XML properties for the QUPI2CPD
+//               Device Access Library.
+//
+//===========================================================================
+//
+//                             Edit History
+//
+// $Header:  $
+//
+// when       who     what, where, why
+// 10/05/16   vg      created
+//
+//===========================================================================
+//             Copyright c 2016 QUALCOMM Incorporated.
+//                    All Rights Reserved.
+//                  QUALCOMM Proprietary
+//===========================================================================
+#include "DALStdDef.h" 
+#include "Tlmm.h"
+#include "I2cPlatSvc.h"
+
+#define I2C_BLSP_NUM_1     1
+#define I2C_BLSP_NUM_2     2
+
+<driver name="I2C">
+    <global_def>    
+       
+       <string name="blsp1_i2c_qup1_appsclk"   type=DALPROP_DATA_TYPE_STRING>   gcc_blsp1_qup1_i2c_apps_clk       </string>      
+       <string name="blsp1_i2c_qup2_appsclk"   type=DALPROP_DATA_TYPE_STRING>   gcc_blsp1_qup2_i2c_apps_clk       </string>           
+       <string name="blsp1_i2c_qup3_appsclk"   type=DALPROP_DATA_TYPE_STRING>   gcc_blsp1_qup3_i2c_apps_clk       </string>            
+       <string name="blsp1_i2c_qup4_appsclk"   type=DALPROP_DATA_TYPE_STRING>   gcc_blsp1_qup4_i2c_apps_clk       </string>           
+
+       <string name="blsp2_i2c_qup1_appsclk"   type=DALPROP_DATA_TYPE_STRING>   gcc_blsp2_qup1_i2c_apps_clk       </string>            
+       <string name="blsp2_i2c_qup2_appsclk"   type=DALPROP_DATA_TYPE_STRING>   gcc_blsp2_qup2_i2c_apps_clk       </string>            
+       <string name="blsp2_i2c_qup3_appsclk"   type=DALPROP_DATA_TYPE_STRING>   gcc_blsp2_qup3_i2c_apps_clk       </string>            
+       <string name="blsp2_i2c_qup4_appsclk"   type=DALPROP_DATA_TYPE_STRING>   gcc_blsp2_qup4_i2c_apps_clk       </string>     
+
+       <string name="blsp1_i2c_qup_ahb_clk"   type=DALPROP_DATA_TYPE_STRING>   gcc_blsp1_ahb_clk                  </string>
+       <string name="blsp2_i2c_qup_ahb_clk"   type=DALPROP_DATA_TYPE_STRING>   gcc_blsp2_ahb_clk                  </string>
+
+       <string name="blsp1_i2c_qup1_gpio_sda"       type=DALPROP_DATA_TYPE_STRING>   blsp_i2c_sda[1]               </string>     
+       <string name="blsp1_i2c_qup1_gpio_scl"       type=DALPROP_DATA_TYPE_STRING>   blsp_i2c_scl[1]               </string>
+       <string name="blsp1_i2c_qup2_gpio_sda"       type=DALPROP_DATA_TYPE_STRING>   blsp_i2c_sda[2]               </string>     
+       <string name="blsp1_i2c_qup2_gpio_scl"       type=DALPROP_DATA_TYPE_STRING>   blsp_i2c_scl[2]               </string>
+       <string name="blsp1_i2c_qup3_gpio_sda"      type=DALPROP_DATA_TYPE_STRING>    blsp_i2c_sda[3]               </string>     
+       <string name="blsp1_i2c_qup3_gpio_scl"       type=DALPROP_DATA_TYPE_STRING>   blsp_i2c_scl[3]               </string>
+       <string name="blsp1_i2c_qup4_gpio_sda"      type=DALPROP_DATA_TYPE_STRING>    blsp_i2c_sda[4]               </string>     
+       <string name="blsp1_i2c_qup4_gpio_scl"       type=DALPROP_DATA_TYPE_STRING>   blsp_i2c_scl[4]               </string>
+
+       <string name="blsp2_i2c_qup1_gpio_sda"       type=DALPROP_DATA_TYPE_STRING>   blsp_i2c_sda[5]               </string>     
+       <string name="blsp2_i2c_qup1_gpio_scl"       type=DALPROP_DATA_TYPE_STRING>   blsp_i2c_scl[5]               </string>
+       <string name="blsp2_i2c_qup2_gpio_sda"       type=DALPROP_DATA_TYPE_STRING>   blsp_i2c_sda[6]               </string>     
+       <string name="blsp2_i2c_qup2_gpio_scl"       type=DALPROP_DATA_TYPE_STRING>   blsp_i2c_scl[6]               </string>
+       <string name="blsp2_i2c_qup3_gpio_sda"       type=DALPROP_DATA_TYPE_STRING>   blsp_i2c_sda[7]               </string>     
+       <string name="blsp2_i2c_qup3_gpio_scl"       type=DALPROP_DATA_TYPE_STRING>   blsp_i2c_scl[7]               </string>
+       <string name="blsp2_i2c_qup4_gpio_sda"       type=DALPROP_DATA_TYPE_STRING>   blsp_i2c_sda[8]               </string>     
+       <string name="blsp2_i2c_qup4_gpio_scl"       type=DALPROP_DATA_TYPE_STRING>   blsp_i2c_scl[8]               </string>
+    </global_def>
+
+    <device id=OEM_DALDEVICEID_I2C_DEVICE_1>
+        <props name="CHIP_BUS_INDEX"                type=DALPROP_ATTR_TYPE_UINT32>        0                                      				</props>
+        <props name="CHIP_IRQ_NUM"                  type=DALPROP_ATTR_TYPE_UINT32>        127                                    				</props>
+        <props name="CHIP_QUP_BASE_ADDR"            type=DALPROP_ATTR_TYPE_UINT32>        0xC175000                              				</props>
+        <props name="CHIP_APPS_CLK_FREQ_KHZ"        type=DALPROP_ATTR_TYPE_UINT32>        19200                                  				</props>
+        <props name="CHIP_BLSP_NUM"                 type=DALPROP_ATTR_TYPE_UINT32>        I2C_BLSP_NUM_1                         				</props>
+        <props name="SW_ENABLE_INTERRUPTS"          type=DALPROP_ATTR_TYPE_UINT32>        0                                      				</props>
+        <props name="I2CQUP_APPS_CLK"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp1_i2c_qup1_appsclk                 				</props>     
+        <props name="I2CQUP_AHB_CLK"                type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp1_i2c_qup_ahb_clk                  				</props>
+        <props name="I2CQUP_GPIO_SDA"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp1_i2c_qup1_gpio_sda                				</props>     
+        <props name="I2CQUP_GPIO_SCL"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp1_i2c_qup1_gpio_scl                				</props>
+		<props name="I2CQUP_GPIO_SDA_CFG"           type="TLMMGpioConfigIdType">          {TLMM_GPIO_OUTPUT, TLMM_GPIO_PULL_UP, TLMM_GPIO_2MA}  </props>
+		<props name="I2CQUP_GPIO_SCL_CFG"           type="TLMMGpioConfigIdType">          {TLMM_GPIO_OUTPUT, TLMM_GPIO_PULL_UP, TLMM_GPIO_2MA}  </props>
+    </device>
+    
+    <device id=OEM_DALDEVICEID_I2C_DEVICE_2>
+        <props name="CHIP_BUS_INDEX"                type=DALPROP_ATTR_TYPE_UINT32>        1                                      				</props>
+        <props name="CHIP_IRQ_NUM"                  type=DALPROP_ATTR_TYPE_UINT32>        128                                    				</props>
+        <props name="CHIP_QUP_BASE_ADDR"            type=DALPROP_ATTR_TYPE_UINT32>        0xC176000                              				</props>
+        <props name="CHIP_APPS_CLK_FREQ_KHZ"        type=DALPROP_ATTR_TYPE_UINT32>        19200                                  				</props>
+        <props name="CHIP_BLSP_NUM"                 type=DALPROP_ATTR_TYPE_UINT32>        I2C_BLSP_NUM_1                         				</props>
+        <props name="SW_ENABLE_INTERRUPTS"          type=DALPROP_ATTR_TYPE_UINT32>        0                                      				</props>
+        <props name="I2CQUP_APPS_CLK"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp1_i2c_qup2_appsclk                 				</props>     
+        <props name="I2CQUP_AHB_CLK"                type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp1_i2c_qup_ahb_clk                  				</props>
+        <props name="I2CQUP_GPIO_SDA"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp1_i2c_qup2_gpio_sda                				</props>     
+        <props name="I2CQUP_GPIO_SCL"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp1_i2c_qup2_gpio_scl                				</props> 
+        <props name="I2CQUP_GPIO_SDA_CFG"           type="TLMMGpioConfigIdType">          {TLMM_GPIO_OUTPUT, TLMM_GPIO_PULL_UP, TLMM_GPIO_2MA}  </props>
+		<props name="I2CQUP_GPIO_SCL_CFG"           type="TLMMGpioConfigIdType">          {TLMM_GPIO_OUTPUT, TLMM_GPIO_PULL_UP, TLMM_GPIO_2MA}  </props>		
+    </device>
+	
+    <device id=OEM_DALDEVICEID_I2C_DEVICE_3>	
+        <props name="CHIP_BUS_INDEX"                type=DALPROP_ATTR_TYPE_UINT32>        2                                      				</props>
+        <props name="CHIP_IRQ_NUM"                  type=DALPROP_ATTR_TYPE_UINT32>        129                                    				</props>
+        <props name="CHIP_QUP_BASE_ADDR"            type=DALPROP_ATTR_TYPE_UINT32>        0xC177000                              				</props>
+        <props name="CHIP_APPS_CLK_FREQ_KHZ"        type=DALPROP_ATTR_TYPE_UINT32>        19200                                  				</props>
+        <props name="CHIP_BLSP_NUM"                 type=DALPROP_ATTR_TYPE_UINT32>        I2C_BLSP_NUM_1                         				</props>
+        <props name="SW_ENABLE_INTERRUPTS"          type=DALPROP_ATTR_TYPE_UINT32>        0                                      				</props>
+        <props name="I2CQUP_APPS_CLK"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp1_i2c_qup3_appsclk                 				</props>     
+        <props name="I2CQUP_AHB_CLK"                type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp1_i2c_qup_ahb_clk                  				</props>
+        <props name="I2CQUP_GPIO_SDA"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp1_i2c_qup3_gpio_sda                				</props>     
+        <props name="I2CQUP_GPIO_SCL"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp1_i2c_qup3_gpio_scl                				</props>
+		<props name="I2CQUP_GPIO_SDA_CFG"           type="TLMMGpioConfigIdType">          {TLMM_GPIO_OUTPUT, TLMM_GPIO_PULL_UP, TLMM_GPIO_2MA}  </props>
+		<props name="I2CQUP_GPIO_SCL_CFG"           type="TLMMGpioConfigIdType">          {TLMM_GPIO_OUTPUT, TLMM_GPIO_PULL_UP, TLMM_GPIO_2MA}  </props>
+    </device>
+	
+    <device id=OEM_DALDEVICEID_I2C_DEVICE_4>
+        <props name="CHIP_BUS_INDEX"                type=DALPROP_ATTR_TYPE_UINT32>        3                                      				</props>
+        <props name="CHIP_IRQ_NUM"                  type=DALPROP_ATTR_TYPE_UINT32>        130                                    				</props>
+        <props name="CHIP_QUP_BASE_ADDR"            type=DALPROP_ATTR_TYPE_UINT32>        0xC178000                              				</props>
+        <props name="CHIP_APPS_CLK_FREQ_KHZ"        type=DALPROP_ATTR_TYPE_UINT32>        19200                                  				</props>
+		<props name="CHIP_BLSP_NUM"                 type=DALPROP_ATTR_TYPE_UINT32>        I2C_BLSP_NUM_1                         				</props>
+        <props name="SW_ENABLE_INTERRUPTS"          type=DALPROP_ATTR_TYPE_UINT32>        0                                      				</props>
+        <props name="I2CQUP_APPS_CLK"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp1_i2c_qup4_appsclk                 				</props>     
+        <props name="I2CQUP_AHB_CLK"                type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp1_i2c_qup_ahb_clk                  				</props>
+        <props name="I2CQUP_GPIO_SDA"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp1_i2c_qup4_gpio_sda                				</props>     
+        <props name="I2CQUP_GPIO_SCL"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp1_i2c_qup4_gpio_scl                				</props>
+        <props name="I2CQUP_GPIO_SDA_CFG"           type="TLMMGpioConfigIdType">          {TLMM_GPIO_OUTPUT, TLMM_GPIO_PULL_UP, TLMM_GPIO_2MA}  </props>
+		<props name="I2CQUP_GPIO_SCL_CFG"           type="TLMMGpioConfigIdType">          {TLMM_GPIO_OUTPUT, TLMM_GPIO_PULL_UP, TLMM_GPIO_2MA}  </props>		
+    </device>
+	
+    <device id=OEM_DALDEVICEID_I2C_DEVICE_5>
+        <props name="CHIP_BUS_INDEX"                type=DALPROP_ATTR_TYPE_UINT32>        4                                      				</props>
+		<props name="CHIP_IRQ_NUM"                  type=DALPROP_ATTR_TYPE_UINT32>        133                                    				</props>
+        <props name="CHIP_QUP_BASE_ADDR"            type=DALPROP_ATTR_TYPE_UINT32>        0xC1B5000                              				</props>
+        <props name="CHIP_APPS_CLK_FREQ_KHZ"        type=DALPROP_ATTR_TYPE_UINT32>        19200                                  				</props>
+		<props name="CHIP_BLSP_NUM"                 type=DALPROP_ATTR_TYPE_UINT32>        I2C_BLSP_NUM_2                         				</props>
+        <props name="SW_ENABLE_INTERRUPTS"          type=DALPROP_ATTR_TYPE_UINT32>        0                                      				</props>
+        <props name="I2CQUP_APPS_CLK"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp2_i2c_qup1_appsclk                 				</props>     
+        <props name="I2CQUP_AHB_CLK"                type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp2_i2c_qup_ahb_clk                  				</props>
+        <props name="I2CQUP_GPIO_SDA"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp2_i2c_qup1_gpio_sda                				</props>     
+        <props name="I2CQUP_GPIO_SCL"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp2_i2c_qup1_gpio_scl                				</props>
+        <props name="I2CQUP_GPIO_SDA_CFG"           type="TLMMGpioConfigIdType">          {TLMM_GPIO_OUTPUT, TLMM_GPIO_PULL_UP, TLMM_GPIO_2MA}  </props>
+		<props name="I2CQUP_GPIO_SCL_CFG"           type="TLMMGpioConfigIdType">          {TLMM_GPIO_OUTPUT, TLMM_GPIO_PULL_UP, TLMM_GPIO_2MA}  </props>		
+    </device>
+	
+    <device id=OEM_DALDEVICEID_I2C_DEVICE_6>
+        <props name="CHIP_BUS_INDEX"                type=DALPROP_ATTR_TYPE_UINT32>        5                                      				</props>
+		<props name="CHIP_IRQ_NUM"                  type=DALPROP_ATTR_TYPE_UINT32>        134                                    				</props>
+        <props name="CHIP_QUP_BASE_ADDR"            type=DALPROP_ATTR_TYPE_UINT32>        0xC1B6000                              				</props>
+        <props name="CHIP_APPS_CLK_FREQ_KHZ"        type=DALPROP_ATTR_TYPE_UINT32>        19200                                  				</props>
+		<props name="CHIP_BLSP_NUM"                 type=DALPROP_ATTR_TYPE_UINT32>        I2C_BLSP_NUM_2                         				</props>
+        <props name="SW_ENABLE_INTERRUPTS"          type=DALPROP_ATTR_TYPE_UINT32>        0                                      				</props>
+        <props name="I2CQUP_APPS_CLK"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp2_i2c_qup2_appsclk                 				</props>     
+        <props name="I2CQUP_AHB_CLK"                type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp2_i2c_qup_ahb_clk                  				</props>
+        <props name="I2CQUP_GPIO_SDA"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp2_i2c_qup2_gpio_sda                				</props>     
+        <props name="I2CQUP_GPIO_SCL"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp2_i2c_qup2_gpio_scl                				</props>	
+        <props name="I2CQUP_GPIO_SDA_CFG"           type="TLMMGpioConfigIdType">          {TLMM_GPIO_OUTPUT, TLMM_GPIO_PULL_UP, TLMM_GPIO_2MA}  </props>
+		<props name="I2CQUP_GPIO_SCL_CFG"           type="TLMMGpioConfigIdType">          {TLMM_GPIO_OUTPUT, TLMM_GPIO_PULL_UP, TLMM_GPIO_2MA}  </props>		
+    </device>
+
+    <device id=OEM_DALDEVICEID_I2C_DEVICE_7>
+        <props name="CHIP_BUS_INDEX"                type=DALPROP_ATTR_TYPE_UINT32>        6                                      				</props>
+		<props name="CHIP_IRQ_NUM"                  type=DALPROP_ATTR_TYPE_UINT32>        135                                    				</props>
+        <props name="CHIP_QUP_BASE_ADDR"            type=DALPROP_ATTR_TYPE_UINT32>        0xC1B7000                              				</props>
+        <props name="CHIP_APPS_CLK_FREQ_KHZ"        type=DALPROP_ATTR_TYPE_UINT32>        19200                                  				</props>
+        <props name="CHIP_BLSP_NUM"                 type=DALPROP_ATTR_TYPE_UINT32>        I2C_BLSP_NUM_2                         				</props>
+        <props name="SW_ENABLE_INTERRUPTS"          type=DALPROP_ATTR_TYPE_UINT32>        0                                      				</props>
+        <props name="I2CQUP_APPS_CLK"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp2_i2c_qup3_appsclk                 				</props>     
+        <props name="I2CQUP_AHB_CLK"                type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp2_i2c_qup_ahb_clk                  				</props>
+        <props name="I2CQUP_GPIO_SDA"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp2_i2c_qup3_gpio_sda                				</props>     
+        <props name="I2CQUP_GPIO_SCL"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp2_i2c_qup3_gpio_scl                				</props>
+		<props name="I2CQUP_GPIO_SDA_CFG"           type="TLMMGpioConfigIdType">          {TLMM_GPIO_OUTPUT, TLMM_GPIO_PULL_UP, TLMM_GPIO_2MA}  </props>
+		<props name="I2CQUP_GPIO_SCL_CFG"           type="TLMMGpioConfigIdType">          {TLMM_GPIO_OUTPUT, TLMM_GPIO_PULL_UP, TLMM_GPIO_2MA}  </props>
+    </device>
+	
+    <device id=OEM_DALDEVICEID_I2C_DEVICE_8>
+        <props name="CHIP_BUS_INDEX"                type=DALPROP_ATTR_TYPE_UINT32>        7                                      				</props>
+		<props name="CHIP_IRQ_NUM"                  type=DALPROP_ATTR_TYPE_UINT32>        136                                    				</props>
+        <props name="CHIP_QUP_BASE_ADDR"            type=DALPROP_ATTR_TYPE_UINT32>        0xC1B8000                              				</props>
+        <props name="CHIP_APPS_CLK_FREQ_KHZ"        type=DALPROP_ATTR_TYPE_UINT32>        19200                                  				</props>
+		<props name="CHIP_BLSP_NUM"                 type=DALPROP_ATTR_TYPE_UINT32>        I2C_BLSP_NUM_2                         				</props>
+        <props name="SW_ENABLE_INTERRUPTS"          type=DALPROP_ATTR_TYPE_UINT32>        0                                      				</props>
+        <props name="I2CQUP_APPS_CLK"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp2_i2c_qup4_appsclk                 				</props>     
+        <props name="I2CQUP_AHB_CLK"                type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp2_i2c_qup_ahb_clk                  				</props>
+        <props name="I2CQUP_GPIO_SDA"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp2_i2c_qup4_gpio_sda                				</props>     
+        <props name="I2CQUP_GPIO_SCL"               type=DALPROP_ATTR_TYPE_STRING_PTR>    blsp2_i2c_qup4_gpio_scl                				</props>
+		<props name="I2CQUP_GPIO_SDA_CFG"           type="TLMMGpioConfigIdType">          {TLMM_GPIO_OUTPUT, TLMM_GPIO_PULL_UP, TLMM_GPIO_2MA}  </props>
+		<props name="I2CQUP_GPIO_SCL_CFG"           type="TLMMGpioConfigIdType">          {TLMM_GPIO_OUTPUT, TLMM_GPIO_PULL_UP, TLMM_GPIO_2MA}  </props>
+    </device>
+
+</driver>
+ 

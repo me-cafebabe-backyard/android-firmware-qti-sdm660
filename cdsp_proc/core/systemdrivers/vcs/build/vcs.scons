@@ -1,0 +1,215 @@
+#===============================================================================
+#
+# VCS DRIVER SHARED LIBRARY
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright 2016 Qualcomm Technologies Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.qdsp6/1.0.c2/systemdrivers/vcs/build/vcs.scons#1 $
+#  $DateTime: 2020/02/10 01:57:30 $
+#  $Author: pwbldsvc $
+#
+#===============================================================================
+
+import os
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Add API folders
+#-------------------------------------------------------------------------------
+
+VCS_BUILD_ROOT = os.getcwd();
+
+env.PublishPrivateApi('SYSTEMDRIVERS_VCS', [
+   VCS_BUILD_ROOT + "/../src",
+   "${BUILD_ROOT}/core/systemdrivers/hal/ldo/inc",
+   "${BUILD_ROOT}/core/systemdrivers/vcs/config/${CHIPSET}/${IMAGE}"
+])
+
+#-------------------------------------------------------------------------------
+# Define paths
+#-------------------------------------------------------------------------------
+
+SRCPATH = "../"
+SRCPATHSCRIPTS = env['BUILD_ROOT'] + '/core/systemdrivers/vcs/scripts/'
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Convert warnings to errors - do not remove this flag!
+#-------------------------------------------------------------------------------
+
+env.Append(CFLAGS = "-Werror ")
+
+#-------------------------------------------------------------------------------
+# Define any features or compiler flags
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+
+CBSP_API = [
+   'DAL',
+   'HAL',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+   'POWER',
+   'KERNEL',
+   'DEBUGTRACE',
+   'DEBUGTOOLS'
+]
+ 	 
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+#-------------------------------------------------------------------------------
+# Define sources
+#-------------------------------------------------------------------------------
+
+VCS_SOURCES = [
+   '${BUILDPATH}/src/VCSDriver.c',
+   '${BUILDPATH}/src/VCSFwk.c',
+   '${BUILDPATH}/src/VCSCPU.c',
+   '${BUILDPATH}/src/VCSNPA.c',
+   '${BUILDPATH}/src/VCSRails.c',
+]
+
+#-------------------------------------------------------------------------------
+# Add libraries to image
+#-------------------------------------------------------------------------------
+
+env.AddLibrary(
+  ['QDSP6_SW_IMAGE', 'CBSP_QDSP6_SW_IMAGE'],
+  '${BUILDPATH}/VCS',
+  VCS_SOURCES)
+
+#-------------------------------------------------------------------------------
+# Pack out files
+#-------------------------------------------------------------------------------
+
+# Remove documentation source files
+DOCSRC_FILES = env.FindFiles(
+  ['*'],
+  '${BUILD_ROOT}/core/api/systemdrivers/docsrc/vcs/')
+env.CleanPack(['QDSP6_SW_IMAGE', 'CBSP_QDSP6_SW_IMAGE'], DOCSRC_FILES)
+
+# Remove target config files
+ALL_CONFIG_FILES = env.FindFiles(
+  ['*'],
+  '../config/')
+MY_CONFIG_FILES = env.FindFiles(
+  ['*'],
+  '../config/${CHIPSET}/${IMAGE}')
+PACK_CONFIG_FILES = list(set(ALL_CONFIG_FILES) - set(MY_CONFIG_FILES))
+env.CleanPack(['QDSP6_SW_IMAGE', 'CBSP_QDSP6_SW_IMAGE'], PACK_CONFIG_FILES)
+
+# Remove target hw files
+ALL_HW_FILES = env.FindFiles(
+  ['*'],
+  '../hw/')
+MY_HW_FILES = env.FindFiles(
+  ['*'],
+  '../hw/${CHIPSET}/${IMAGE}')
+PACK_HW_FILES = list(set(ALL_HW_FILES) - set(MY_HW_FILES))
+env.CleanPack(['QDSP6_SW_IMAGE', 'CBSP_QDSP6_SW_IMAGE'], PACK_HW_FILES)
+
+#-------------------------------------------------------------------------------
+# Register initialization function and dependencies.
+#-------------------------------------------------------------------------------
+
+if 'USES_RCINIT' in env:
+  RCINIT_IMG = ['QDSP6_SW_IMAGE', 'CBSP_QDSP6_SW_IMAGE']
+  env.AddRCInitFunc( 
+    RCINIT_IMG,
+    {
+      'sequence_group' : 'RCINIT_GROUP_0',                     # required
+      'init_name'      : 'vcs',                                # required
+      'init_function'  : 'vcs_init',                           # required
+      'dependencies'   : ['dalsys','npa','pmic']
+    })
+
+  env.AddRCInitFunc(
+    RCINIT_IMG,
+    {
+      'sequence_group' : 'RCINIT_GROUP_1',                     # required
+      'init_name'      : 'vcs_thermal',                        # required
+      'init_function'  : 'vcs_init_thermal',                   # required
+      'dependencies'   : ['thermal']
+    })
+
+#-------------------------------------------------------------------------------
+# Invoke chipset build file
+#-------------------------------------------------------------------------------
+
+env.SConscript('${BUILDPATH}/hw/${CHIPSET}/build/vcs_chipset.scons', exports='env')
+
+#-------------------------------------------------------------------------------
+# Invoke document generation SConscript
+#-------------------------------------------------------------------------------
+
+if os.path.exists(env['BUILD_ROOT'] + '/core/api/systemdrivers/docsrc/vcs/SConscript') :
+  env.SConscript(
+    '${BUILD_ROOT}/core/api/systemdrivers/docsrc/vcs/SConscript',
+    exports='env')
+
+#-------------------------------------------------------------------------------
+# DEVCFG - VCS XML
+#-------------------------------------------------------------------------------
+
+if 'USES_DEVCFG' in env:
+  DEVCFG_IMG = ['DAL_DEVCFG_IMG']
+  env.AddDevCfgInfo(DEVCFG_IMG, 
+  {
+    '8998_xml' : ['${BUILD_ROOT}/core/systemdrivers/vcs/config/msm8998/${IMAGE}/VCSChipset.xml',
+                  '${BUILD_ROOT}/core/systemdrivers/vcs/config/msm8998/${IMAGE}/VCSBSP.c'],
+    '660_xml'  : ['${BUILD_ROOT}/core/systemdrivers/vcs/config/sdm660/${IMAGE}/VCSChipset.xml',
+                  '${BUILD_ROOT}/core/systemdrivers/vcs/config/sdm660/${IMAGE}/VCSBSP.c']
+  })
+
+#-------------------------------------------------------------------------------
+# SWEvent processing
+#-------------------------------------------------------------------------------
+
+if 'USES_QDSS_SWE' in env:
+  env.Append(CPPDEFINES = ["VCS_TRACER_SWEVT"])
+  QDSS_IMG = ['QDSS_EN_IMG']
+  events = [
+    ['VCS_EVENT_INIT_START',                   'VCS initialization start'],
+    ['VCS_EVENT_INIT_COMPLETE',                'VCS initialization complete'],
+    ['VCS_EVENT_RAIL_CORNER_VOTE_RECEIVED',    'VCS vote received for rail = %d, corner = %d, NAS = %d'],
+    ['VCS_EVENT_RAIL_CORNER_VOTE_COMPLETE',    'VCS vote complete for rail = %d, corner = %d, NAS = %d'],
+    ['VCS_EVENT_RAIL_CPU_CORNER_VOTE_RECEIVED','VCS vote received for CPU = %d, corner = %d, rail = %d'],    
+    ['VCS_EVENT_RAIL_VOLTAGE_SET',             'VCS voltage set for rail = %d, corner = %d, voltage = %d, NAS = %d'],
+    ['VCS_EVENT_RAIL_NAS_WAKEUP',              'VCS NAS wakeup for rail = %d, corner = %d'],
+    ['VCS_EVENT_RAIL_NAS_COMPLETE',            'VCS NAS complete for rail = %d, corner = %d'],
+    ['VCS_EVENT_LDO_STATE_SET',                'VCS LDO state set for LDO = %d, state = %d (1 = enable / 0 = disable)'],
+    ['VCS_EVENT_LDO_VOLTAGE_SET',              'VCS LDO voltage set for LDO = %d, corner = %d, voltage = %d'],
+    ['VCS_EVENT_LDO_RESTRICTION',              'VCS LDO restrictions for LDO = %d, num of restrictions = %d'],
+    ['VCS_EVENT_CPR_STATE_REQUEST',            'VCS CPR state request for rail = %d, state = %d (1 = enable / 0 = disable)'],
+    ['VCS_EVENT_RAIL_MODE_CHANGE',             'VCS mode change for rail = %d, mode = %d, data = %d']
+  ]
+  env.AddSWEInfo(QDSS_IMG, events)
+
+if 'QDSS_TRACER_SWE' in env:
+  env.SWEBuilder(['${BUILD_ROOT}/core/systemdrivers/vcs/build/${BUILDPATH}/src/VCSSWEventId.h'], None)
+  env.Append(CPPPATH = ['${BUILD_ROOT}/core/systemdrivers/vcs/build/${BUILDPATH}/src'])
+
+#-------------------------------------------------------------------------------
+# Add CMM scripts to T32 menu
+#-------------------------------------------------------------------------------
+
+try:
+  if env['IMAGE_NAME'] in ['ADSP_PROC']:
+    env.AddCMMScripts ('ADSP', [SRCPATHSCRIPTS], { 'VCS.cmm' : ['VCS'] }, 'SystemDrivers')
+  elif env['IMAGE_NAME'] in ['CDSP_PROC']:
+    env.AddCMMScripts ('CDSP', [SRCPATHSCRIPTS], { 'VCS.cmm' : ['VCS'] }, 'SystemDrivers')
+except:
+  pass

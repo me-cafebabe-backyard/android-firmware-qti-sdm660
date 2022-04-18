@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Format of Enter/Exit/Backoff latency fields:
+  "<Fixed>,<Scaled>"
+  Fixed - Unscaled value that is always added to each frequency table entry
+  Scaled - Value that will be scaled at 1:1 ratio according to frequency table entries
+           and the initial base profile frequency given via ProfileFreq
+  
+Bitwise attribute values (see sleep_mode_attribute enum for full description):
+  0x01 - unused
+  0x02 - Multiple entry
+  0x04 - unused
+  0x08 - No automatic latency tracking
+  0x10 - LPRM is cacheable
+-->
+
+<LPIDefinition>
+  <LPI Name="power_island" InitFn="sensorsLPI_initialize" CoreMask="0xFFFFFFFF">
+    <Mode Name="sensors"
+          PowerSavings="-680000,1"
+          EnterLat="100000"
+          ExitLat="140000"
+          EnterFn="sensorsLPI_enter"
+          ExitFn="sensorsLPI_exit"
+          Attributes="0x10"
+          Supported="TRUE"
+          >
+    </Mode>
+  </LPI>
+</LPIDefinition>

@@ -1,0 +1,166 @@
+//============================================================================
+//  Name:                                                                     
+//    trace_tpdmCMB_pimem.cmm
+//
+//  Description:                                                              
+//    Script to configure PIMEM TPDM Trace - CMB type 
+//    For PIMEM TPDM trace , cti trigger timestamp is selected. and cti trigger is always set such that every trace data packet has timestamp . 
+//    ETB is the trace sink
+//
+//  Usage
+//  do trace_tpdmCMB_pimem.cmm <traceID> <GPR0>
+//  Options:    
+//  <traceID> : 0 to 127.
+//  <GPR0>    : Check PIMEM HDD. 
+//              https://sharepoint.qualcomm.com/qct/DHW/Cores/Security/RB/_layouts/15/WopiFrame.aspx?sourcedoc=/qct/DHW/Cores/Security/RB/Documents/RAMblur%202.0/Design/RAMblur_2.0_HDD.docm&action=default 
+//  e.g. do trace_tpdmCMB_pimem 35. 0xF0F 
+//          This will configure PIMEM TPDM CMB trace with trace ID 35. 
+//
+// Copyright (c) 2016 by Qualcomm Technologies, Incorporated.  All Rights Reserved.        
+//
+//
+//
+//                      EDIT HISTORY FOR FILE
+//  This section contains comments describing changes made to the module.
+//  Notice that changes are listed in reverse chronological order.
+//
+// when         who     	what, where, why
+// --------     ---        --------------------------------------------------------
+// 3/10/2016    HJAYAKUM    added input arguments traceID and GPR0
+// 11/01/2015   HJAYAKUM    Created
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////// trace_tpdmCMB_pimem /////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//###################Arguments passed #####################
+local &traceID &gpr0
+entry &traceID &gpr0
+
+//if user is not passing any parameter, then set default traceID = 65.
+if ("&traceID"=="")
+(
+  &traceID=65.
+)
+//if user is not passing any parameter, then set default GPR0 = 0xFF0
+if ("&gpr0"=="")
+(
+  &gpr0=0xFF0
+)
+
+
+y.create.l IN_FUN0_BASE               0x06041000
+y.create.l IN_FUN1_BASE               0x06042000
+y.create.l MERGE_FUN_BASE             0x06045000
+y.create.l ETFETB_BASE                0x06047000
+y.create.l QATB_FUN_BASE              0x06005000
+y.create.l QDSS_CS_QDSSCSR_LOCKACCESS    0x06001FB0
+
+
+y.create.l QDSS_CS_QDSSCSR_TIMESTAMPCTRL 0x06001038
+y.create.l QDSS_CS_QDSSCSR_TS_HBEAT_VAL0_LO  0x06001084
+y.create.l QDSS_CS_QDSSCSR_TS_HBEAT_VAL0_HI  0x06001088
+y.create.l QDSS_CS_QDSSCSR_TS_HBEAT_MASK0_LO 0x06001094
+y.create.l QDSS_CS_QDSSCSR_TS_HBEAT_MASK0_HI 0x06001098
+y.create.l QDSS_PIMEM_TPDM_GPR0       0x07050000
+y.create.l QDSS_PIMEM_TPDM_CMB_CR      0x07050A00
+y.create.l QDSS_PIMEM_TPDM_CMB_TIER      0x07050A04
+y.create.l QDSS_PIMEM_TPDM_CMB_TPR0    0x07050A08
+y.create.l QDSS_PIMEM_TPDM_CMB_TPMR0   0x07050a10
+y.create.l QDSS_PIMEM_TPDM_CMB_TPMR1   0x07050a14
+y.create.l QDSS_PIMEM_TPDM_DSB_CR      0x07050780
+y.create.l QDSS_PIMEM_TPDM_DSB_TPR0    0x07050788
+y.create.l QDSS_PIMEM_TPDM_DSB_TPR1    0x0705078C
+y.create.l QDSS_PIMEM_TPDM_DSB_TPMR0   0x070507A8
+y.create.l QDSS_PIMEM_TPDM_LAR        0x07050FB0
+y.create.l QDSS_TPDA_TPDA_CR          0x06004000
+y.create.l QDSS_TPDA_TPDA_P9_CR       0x06004028
+y.create.l QDSS_TPDA_TPDA_SYNCR       0x0600408C
+y.create.l QDSS_TPDA_TPDA_LOCKACCESS  0x06004FB0
+y.create.l QDSS_CTI0_CTICONTROL       0x06010000
+y.create.l QDSS_CTI0_CTIINEN0         0x06010020
+y.create.l QDSS_CTI0_CTIOUTEN1        0x060100A4
+y.create.l QDSS_CTI0_LAR              0x06010FB0
+y.create.l QDSS_CTI1_CTICONTROL              0x06011000
+y.create.l QDSS_CTI1_CTIINEN4                0x06011030
+y.create.l QDSS_CTI1_CTIOUTEN4               0x060110B0
+y.create.l QDSS_CTI1_LAR                     0x06011FB0
+y.create.l QDSS_CTI12_CTICONTROL             0x0601C000
+y.create.l QDSS_CTI12_CTIOUTEN0              0x0601C0A0
+y.create.l QDSS_CTI12_CTIAPPSET              0x06012014
+y.create.l QDSS_CTI12_LAR                    0x0601CFB0
+y.create.done
+
+&ac_sp="eaxi"
+
+
+
+;------- QDSS CSR ( for timestamp ) ------------
+d.s &ac_sp:QDSS_CS_QDSSCSR_LOCKACCESS    %LE %LONG 0xC5ACCE55
+d.s &ac_sp:QDSS_CS_QDSSCSR_TIMESTAMPCTRL     %LE %LONG 0x0
+d.s &ac_sp:QDSS_CS_QDSSCSR_TS_HBEAT_VAL0_LO  %LE %LONG 0xF
+d.s &ac_sp:QDSS_CS_QDSSCSR_TS_HBEAT_VAL0_HI  %LE %LONG 0x0
+d.s &ac_sp:QDSS_CS_QDSSCSR_TS_HBEAT_MASK0_LO %LE %LONG 0xF
+d.s &ac_sp:QDSS_CS_QDSSCSR_TS_HBEAT_MASK0_HI %LE %LONG 0x0
+d.s &ac_sp:QDSS_CS_QDSSCSR_TIMESTAMPCTRL     %LE %LONG 0x2
+
+;------- unlock FUNNEL - unlock ------------
+d.s &ac_sp:IN_FUN0_BASE+0xFB0   %LE %LONG 0xC5ACCE55
+d.s &ac_sp:IN_FUN1_BASE+0xFB0   %LE %LONG 0xC5ACCE55
+d.s &ac_sp:MERGE_FUN_BASE+0xFB0 %LE %LONG 0xC5ACCE55
+d.s &ac_sp:QATB_FUN_BASE+0xFB0 %LE %LONG 0xC5ACCE55
+
+;------- Setup FUNNEL - enable ports ------------
+d.s &ac_sp:IN_FUN0_BASE   %LE %LONG 0x00000040   
+d.s &ac_sp:IN_FUN1_BASE   %LE %LONG 0x00000000
+d.s &ac_sp:MERGE_FUN_BASE %LE %LONG 0x00000001
+d.s &ac_sp:QATB_FUN_BASE %LE %LONG 0x00000001
+
+;------- setup ETB ------------
+d.s &ac_sp:ETFETB_BASE+0xFB0 %LE %LONG 0xC5ACCE55
+d.s &ac_sp:ETFETB_BASE+0x020 %LE %LONG 0x0
+d.s &ac_sp:ETFETB_BASE+0x018 %LE %LONG 0x0
+d.s &ac_sp:ETFETB_BASE+0x014 %LE %LONG 0x0
+d.s &ac_sp:ETFETB_BASE+0x028 %LE %LONG 0x0
+d.s &ac_sp:ETFETB_BASE+0x304 %LE %LONG 0x1003
+d.s &ac_sp:ETFETB_BASE+0x020 %LE %LONG 0x1
+
+;------- Configure CTI -------------------------------------
+d.s &ac_sp:QDSS_CTI0_LAR        %LE %LONG 0xC5ACCE55
+d.s &ac_sp:QDSS_CTI0_CTICONTROL %LE %LONG 0x1
+d.s &ac_sp:QDSS_CTI0_CTIINEN0   %LE %LONG 0x4
+d.s &ac_sp:QDSS_CTI0_CTIOUTEN1  %LE %LONG 0x4
+
+;------- CTI configuration for timestamps ------------------
+;d.s &ac_sp:QDSS_CTI1_LAR        %LE %LONG 0xC5ACCE55
+;d.s &ac_sp:QDSS_CTI1_CTICONTROL %LE %LONG 0x1
+;d.s &ac_sp:QDSS_CTI1_CTIINEN4   %LE %LONG 0x8
+;;d.s &ac_sp:QDSS_CTI1_CTIOUTEN4  %LE %LONG 0x8  
+
+;------- pIMEM CTI configuration for timestamps ------------
+d.s &ac_sp:QDSS_CTI12_LAR        %LE %LONG 0xC5ACCE55
+d.s &ac_sp:QDSS_CTI12_CTICONTROL %LE %LONG 0x1
+d.s &ac_sp:QDSS_CTI12_CTIOUTEN0  %LE %LONG 0x8
+d.s &ac_sp:QDSS_CTI12_CTIAPPSET  %LE %LONG 0x8
+
+;------- TPDA ------------
+d.s &ac_sp:QDSS_TPDA_TPDA_LOCKACCESS %LE %LONG 0xC5ACCE55
+d.s &ac_sp:QDSS_TPDA_TPDA_CR         %LE %LONG 0x6;  // FREQTS = 1; FREQREQ = 1
+per.s.f &ac_sp:QDSS_TPDA_TPDA_CR %L 0x1FC0 (&traceID)
+d.s &ac_sp:QDSS_TPDA_TPDA_SYNCR      %LE %LONG 0xFFF
+d.s &ac_sp:QDSS_TPDA_TPDA_P9_CR      %LE %LONG 0x81
+
+;------- TPDM ------------
+d.s &ac_sp:QDSS_PIMEM_TPDM_LAR        %LE %LONG 0xC5ACCE55
+d.s &ac_sp:QDSS_PIMEM_TPDM_GPR0       %LE %LONG &gpr0
+d.s &ac_sp:QDSS_PIMEM_TPDM_CMB_TIER     %LE %LONG   0x2     //0x02;
+d.s &ac_sp:QDSS_PIMEM_TPDM_CMB_CR     %LE %LONG 0x01; E=1 FLOWCTRL=0
+
+d &ac_sp:QDSS_PIMEM_TPDM_LAR /sl
+
+
+// All done 
+print "PIMEM TPDM CMB trace config DONE"
+
+ENDDO
+

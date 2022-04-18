@@ -1,0 +1,5 @@
+Name of the Module,No. of Load Sections,RW Section Size in KB,"RE,RO Section Size in KB",Total Size in KB
+libsysmondomain_skel.so,2,4,52,56
+libsysmon_skel.so,2,4,40,44
+libstabilitydomain_skel.so,2,4,20,24
+libbenchmark_skel.so,2,4,40,44

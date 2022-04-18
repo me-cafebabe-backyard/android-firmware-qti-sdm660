@@ -1,0 +1,164 @@
+#===============================================================================
+#
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2013 by Qualcomm Technologies, Inc.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //source/qcom/qct/core/bsp/config/scmm/main/latest/securemsm/secboot/build/SConscript#1 $
+#  $DateTime: 2009/10/02 00:38:04 $
+#  $Author: cbirch $
+#  $Change: $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 01/03/2014  hw     add secboot_img_util.c
+# 01/17/2013  hw     Initial Version
+#===============================================================================
+import os
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/core/securemsm/secboot"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'SECUREMSM',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+   'BOOT',
+   'BOOT_TOOLS',
+   'SECUREFUSES',
+   'TZCHIPSET',
+   # needs to be last also contains wrong comdef.h
+   'KERNEL',
+   'MINK_OEM',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+if os.path.exists(env.subst("../${TARGET_FAMILY}")): 
+   env.Replace(SECBOOT_FAMILY_ID = '${TARGET_FAMILY}')
+else:   
+   env.Replace(SECBOOT_FAMILY_ID = 'stubs')
+   env.PrintWarning("No SecBoot supported for the target... using stubs.")
+
+
+if env['TARGET_FAMILY'] in ['bear','badger']: 
+	INC_PATH = [
+		"${BUILDPATH}/bear/src",
+]
+else:
+	INC_PATH = [
+		"${BUILDPATH}/${SECBOOT_FAMILY_ID}/src",
+]
+
+env.Append(CPPPATH = INC_PATH)
+
+#-------------------------------------------------------------------------------
+# Compiler, object, and linker definitions
+#-------------------------------------------------------------------------------
+
+env.PublishPrivateApi('SECUREMSM', [
+  "${COREBSP_ROOT}/api/dal/",
+  os.path.join(SRCPATH, 'inc'),
+])
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+
+if env['TARGET_FAMILY'] in ['bear','badger']:
+	SECBOOT_LIB_SOURCES = [
+		'${BUILDPATH}/bear/src/secboot.c',
+		'${BUILDPATH}/bear/src/secboot_asn1.c',
+		'${BUILDPATH}/bear/src/secboot_x509.c',
+		'${BUILDPATH}/bear/oem/secboot_img_util.c',
+	]
+else:
+	SECBOOT_LIB_SOURCES = [
+    '${BUILDPATH}/${SECBOOT_FAMILY_ID}/src/secboot.c',
+    '${BUILDPATH}/${SECBOOT_FAMILY_ID}/src/secboot_asn1.c',
+    '${BUILDPATH}/${SECBOOT_FAMILY_ID}/src/secboot_x509.c',
+    '${BUILDPATH}/${SECBOOT_FAMILY_ID}/oem/secboot_img_util.c',
+]
+
+if env['CHIPSET'] in ['msm8996','msm8998','sdm630','sdm660']:
+   SECBOOT_LIB_SOURCES += [ '${BUILDPATH}/${SECBOOT_FAMILY_ID}/hw/secctrl/src/secboot_hw.c',
+                            '${BUILDPATH}/${SECBOOT_FAMILY_ID}/hw/secctrl/src/secboot_hw_apps.c',
+                            '${BUILDPATH}/${SECBOOT_FAMILY_ID}/src/secboot_pad_app_modem.c',
+							'${BUILDPATH}/src/secboot_rollback_version.c']
+elif env['CHIPSET'] in ['mdm9x45']:
+   SECBOOT_LIB_SOURCES += [ '${BUILDPATH}/bear/hw/secctrl/src/${CHIPSET}/secboot_hw.c',
+                            '${BUILDPATH}/bear/hw/secctrl/src/${CHIPSET}/secboot_hw_apps.c']
+elif env['CHIPSET'] in ['sdm845']:
+   SECBOOT_LIB_SOURCES += [ '${BUILDPATH}/${SECBOOT_FAMILY_ID}/hw/secctrl/src/secboot_hw.c',
+                            '${BUILDPATH}/${SECBOOT_FAMILY_ID}/hw/secctrl/src/secboot_hw_apps.c',
+							'${BUILDPATH}/src/secboot_rollback_version.c']
+else:
+   SECBOOT_LIB_SOURCES += [ '${BUILDPATH}/${SECBOOT_FAMILY_ID}/hw/secctrl/src/${CHIPSET}/secboot_hw.c',
+                            '${BUILDPATH}/${SECBOOT_FAMILY_ID}/hw/secctrl/src/${CHIPSET}/secboot_hw_apps.c']
+
+if env['CHIPSET'] in ['msm8996','msm8998','sdm630','sdm660']:
+  if 'USES_DEVCFG' in env:
+    DEVCFG_IMG = ['DAL_DEVCFG_OEM_QSEE_IMG']
+    env.AddDevCfgInfo(
+      DEVCFG_IMG,
+      {
+        'devcfg_xml' : ['${BUILD_ROOT}/core/securemsm/secboot/${SECBOOT_FAMILY_ID}/oem/secboot_oem.xml',
+                        '${BUILD_ROOT}/core/securemsm/secboot/${SECBOOT_FAMILY_ID}/oem/secboot_oem_secapp.xml']
+      }
+    )
+    env.AddDevCfgInfo(
+      ['DAL_DEVCFG_IMG'],
+      {
+        'devcfg_xml' : env.GlobFiles('${BUILD_ROOT}/core/securemsm/secboot/cfg/${SECBOOT_FAMILY_ID}/secboot_anti_rollback.xml', posix=True)
+      }
+    )
+elif env['CHIPSET'] in ['mdm9x45']:
+  if 'USES_DEVCFG' in env:
+    DEVCFG_IMG = ['DAL_DEVCFG_OEM_QSEE_IMG']
+    env.AddDevCfgInfo(
+      DEVCFG_IMG,
+      {
+        'devcfg_xml' : ['${BUILD_ROOT}/core/securemsm/secboot/bear/oem/secboot_oem.xml',
+                        '${BUILD_ROOT}/core/securemsm/secboot/bear/oem/secboot_oem_secapp.xml']
+      }
+    )
+else:
+  if 'USES_DEVCFG' in env:
+    DEVCFG_IMG = ['DAL_DEVCFG_OEM_QSEE_IMG']
+    env.AddDevCfgInfo(
+      DEVCFG_IMG,
+      {
+        'devcfg_xml' : ['${BUILD_ROOT}/core/securemsm/secboot/${SECBOOT_FAMILY_ID}/oem/secboot_oem.xml',
+                        '${BUILD_ROOT}/core/securemsm/secboot/${SECBOOT_FAMILY_ID}/oem/secboot_oem_secapp.xml']
+      }
+    )
+
+#-------------------------------------------------------------------------------
+# Add Libraries to MBA Image
+#-------------------------------------------------------------------------------
+env.AddBinaryLibrary(['TZOS_IMAGE', 'UEFISECAPP_IMAGE'], '${BUILDPATH}/secboot_auth',  SECBOOT_LIB_SOURCES)
+env.Deploy(['SConscript',
+            '../bear/oem/secboot_oem.h',
+            '../stubs/oem/secboot_oem.h',
+            '../honeybadger/oem/secboot_oem.h',
+           ])

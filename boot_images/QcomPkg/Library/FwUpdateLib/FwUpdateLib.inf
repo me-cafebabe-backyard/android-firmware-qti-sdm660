@@ -1,0 +1,81 @@
+#/** @file FwUpdateLib.inf
+#  
+#  Qualcomm Firmware Update process library.     
+#       
+#  
+#  Copyright (c) 2012-2015 Qualcomm Technologies, Inc.  All Rights Reserved.
+#  Qualcomm Technologies Proprietary and Confidential.
+#
+#**/
+
+#==============================================================================
+#                              EDIT HISTORY
+#
+# when           who         what, where, why
+# --------       ---         --------------------------------------------------
+# 2015/04/16     mic         Added optional optimization level configuration
+# 2013/10/25     vk          Remove warning as error
+# 2013/02/08     rsb         Move to use gQcomPmicSmbbProtocolGuid for Badger family
+# 2012/10/08     mic         Added Data-driven update support
+# 2012/07/17     mic         Added gQcomToolSupportProtocolGuid and removed ToolSupportLib
+# 2012/06/05     rs          Added QcomLib to LibraryClasses for UXCasule support
+# 2012/05/18     mic         Removed QcomPkg/Msm8960Pkg/Msm8960Pkg.dec
+# 2012/05/17     mic         Moved from OSAppPkg to QcomPkg
+#
+#==============================================================================
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = FwUpdateLib
+  FILE_GUID                      = 3A2CC677-BE00-4019-BE44-F9D04B61CB9F
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = FwUpdateLib
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = ARM
+#
+[BuildOptions.AARCH64]
+#  GCC:*_*_*_CC_FLAGS = -O0
+#  MSFT:*_*_*_CC_FLAGS = -O0
+  
+[Sources]
+  FwUpdateLib.c
+  FwCapsule.c
+  FwEsrt.c
+  FwPowerCheck.c
+  FwPayloadEntry.c
+  FwEntryIO_helpers.c
+  FwResourceCheck.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  QcomPkg/QcomPkg.dec
+  EmbeddedPkg/EmbeddedPkg.dec
+  ArmPkg/ArmPkg.dec
+
+[LibraryClasses]
+  QcomLib
+  UefiLib
+  PcdLib
+  HobLib
+  FwCommonLib
+  SecBootSigLib
+  UfsCommonLib 
+
+[Guids]
+
+[Ppis]
+
+[Protocols]
+gBatteryChargerProtocolGuid
+gBatteryChargerExtnProtocolGuid
+gEfiDppProtocolGuid
+gQcomToolSupportProtocolGuid
+gEfiBlockIoProtocolGuid
+gEfiSimpleFileSystemProtocolGuid
+gEfiMemCardInfoProtocolGuid
+[BuildOptions.AARCH64]
+  MSFT: *_VS2015x86_*_PLATFORM_FLAGS == /wd4312 /wd4245 /wd4018 /wd4244 /wd4146 /wd4308 /wd4706 /wd4389 /wd4152 /wd4459 /wd4204 /wd4311 /wd4090 /wd4701 /wd4457 /wd4295 /wd4703 /wd4133 /wd4047 /wd4221 /wd4020 /wd4057 /wd4334 /wd4113 /wd4267

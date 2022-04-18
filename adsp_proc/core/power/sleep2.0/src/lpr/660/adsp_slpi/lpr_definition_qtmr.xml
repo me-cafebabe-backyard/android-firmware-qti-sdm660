@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  L2 Sleep Low Power Resource/Mode definitions
+
+  Copyright (c) 2016 Qualcomm Technologies, Inc. (QTI).
+  All Rights Reserved.
+  Qualcomm Technologies Confidential and Proprietary
+-->
+
+<!--
+Format of Enter/Exit/Backoff latency fields:
+"<Fixed>,<Scaled>"
+Fixed - Unscaled value that is always added to each frequency table entry
+Scaled - Value that will be scaled at 1:1 ratio according to frequency table entries
+         and the initial base profile frequency given via ProfileFreq
+
+Bitwise attribute values (see sleep_mode_attribute enum for full description):
+  0x01 - Unused
+  0x02 - Multiple Entry
+  0x04 - Unused
+  0x08 - No automatic latency tracking
+  0x10 - LPRM is cacheable
+
+  Initial values based upon measurements of Timer APIs.  Values will be replaced 
+  with much smaller values corresponding to measured latency values to read/write
+  to Q6 registers
+  temp enter latency: 13 us = 250 ticks
+  temp exit latency:  22 us = 422 ticks
+-->
+
+<LPRDefinition>
+  <LPR Name="qtmr" CoreMask="0xFFFFFFFF" ProfileFreq="345600">
+    <Mode Name="defer"
+          Dependency="cpu_vdd"
+          PowerSavings="0"
+          EnterLat="250"
+          ExitLat="422"
+          Backoff="422"
+          EnterFn="qtmrLPR_deferEnter"
+          ExitFn="qtmrLPR_deferExit"
+          Attributes="0x10"
+          Supported="TRUE"
+          >
+    </Mode>
+  </LPR>
+</LPRDefinition>

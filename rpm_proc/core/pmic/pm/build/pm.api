@@ -1,0 +1,38 @@
+#===============================================================================
+#
+# Core APIs
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2009-2016 by Qualcomm Technologies, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/rpm.bf/1.8/core/pmic/pm/build/pm.api#1 $
+#  $DateTime: 2016/11/03 00:13:13 $
+#  $Author: pwbldsvc $
+#  $Change: 11690628 $
+#                      EDIT HISTORY FOR FILE
+#                      
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#  
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 06/25/12   hs      Moved to core\systemdrivers.
+# 03/07/12   hs      Created
+#===============================================================================
+Import('env')
+
+env.PublishPublicApi('PMIC_PM',[
+      "${INC_ROOT}/core/api/pmic/pm",              
+      ])
+
+env.PublishRestrictedApi( 'PMIC_PM', [
+      "${INC_ROOT}/core/pmic/pm/inc",
+      ])
+
+env.LoadAPIUnits()

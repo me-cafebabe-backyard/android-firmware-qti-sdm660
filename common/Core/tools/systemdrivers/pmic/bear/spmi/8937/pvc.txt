@@ -1,0 +1,4 @@
+Port  Priority  addr1    addr2    addr3    addr4
+0.    1.        0x94a    0        0        0
+2.    2.        0x12041  0x1206c  0x12045  0x12046
+3.    3.        0x11441  0x1146c  0x11445  0x11446

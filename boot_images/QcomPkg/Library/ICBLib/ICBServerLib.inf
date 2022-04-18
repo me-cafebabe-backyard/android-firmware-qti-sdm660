@@ -1,0 +1,40 @@
+#/** @file ICBServerLib.inf
+#
+#  ICB Lib
+#  
+#  Copyright (c) 2014,2016 Qualcomm Technologies, Inc.  All Rights Reserved.
+#  Qualcomm Technologies Proprietary and Confidential.
+#
+#**/
+
+#==============================================================================
+#                              EDIT HISTORY
+#
+#
+# when       who     what, where, why
+# --------   ---     ----------------------------------------------------------
+# 08/26/14   sds     Initial Revision
+#
+#==============================================================================
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ICBLib
+  FILE_GUID                      = 84603FEE-68A3-4108-8DCE-F03AB0AE1486
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = ICBLib
+
+[Sources]
+  # Include Header
+
+  # Source code
+  icbcfg_server.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  QcomPkg/QcomPkg.dec  
+  QcomPkg/XBLLoaderApi.dec
+
+[LibraryClasses]

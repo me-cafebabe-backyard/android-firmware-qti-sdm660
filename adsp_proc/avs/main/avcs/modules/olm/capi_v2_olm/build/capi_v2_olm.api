@@ -1,0 +1,38 @@
+#===============================================================================
+#
+# CAPI V2 OLM
+#
+# GENERAL DESCRIPTION
+#    Build script
+#
+# Copyright (c) 2009-2009 by Qualcomm Technologies, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/avs.adsp/2.8/avcs/modules/olm/capi_v2_olm/build/capi_v2_olm.api#1 $
+#  $DateTime: 2017/09/20 00:44:54 $
+#  $Author: pwbldsvc $
+#  $Change: 14424423 $
+#                      EDIT HISTORY FOR FILE
+#                      
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#  
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+#
+#===============================================================================
+
+Import('env')
+
+env.PublishRestrictedApi('AVS',[
+   '${AVS_ROOT}/avcs/modules/olm/capi_v2_olm/tst/inc'
+   ])
+
+env.PublishPublicApi('AVS',[
+   '${AVS_ROOT}/avcs/modules/olm/capi_v2_olm/tst/inc'
+   ])
+
+env.LoadAPIUnits()

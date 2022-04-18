@@ -1,0 +1,195 @@
+//
+// Script to dump the SPMI channel configuration corresponding to an exception address
+//
+//     Usage: spmiAnalyzeException.cmm <target> <address>
+//
+//  This script requires that the RAM dump and TZ+HYP symbols already be loaded
+//
+// Copyright (c) 2015 by Qualcomm Technologies Incorporated. All Rights Reserved.
+// 
+// $DateTime: 2017/01/19 09:08:15 $
+// $Header: //components/rel/core.glue/1.2.1/tools/tools/systemdrivers/pmic/honeybadger/spmi/spmiAnalyzeException.cmm#1 $
+// $Change: 12266773 $
+//
+
+entry &target &addr
+local &prefix
+local &prefixbase
+local &baseaddr
+local &numchannels
+local &offset
+local &channel
+local &temp
+local &sid
+local &periph
+local &mode
+local &i
+local &tmp
+
+AREA.Create SPMI 80. 10.
+AREA.Select SPMI
+AREA.View SPMI
+winresize 80. 10.
+
+do &target/hwio.cmm
+
+OPEN #1 &target/meta.txt /Read
+READ #1 &tmp &numchannels
+CLOSE #1
+
+&baseaddr=address.offset(y.begin(HWIO_PMIC_ARB0_CHNL0_CMD_ADDR))
+&offset=address.offset(y.begin(HWIO_PMIC_ARB0_CHNL1_CMD_ADDR))-&baseaddr
+
+if (y.exist(\\hyp\Global\spmiPmicArbInfo))
+(
+  &prefixbase="\\hyp"
+  &prefix="&prefixbase\Global\spmiPmicArbInfo"
+  &mode="prev"
+)
+if (y.exist(\\hyp\Global\spmiDrv))
+(
+  &prefixbase="\\hyp"
+  &prefix="&prefixbase\Global\spmiDrv.pSpmiInfo->devices"
+  &mode="next"
+)
+else if (y.exist(spmiPmicArbInfo))
+(
+  &prefixbase=""
+  &prefix="spmiPmicArbInfo"
+  &mode="prev"
+)
+else if (y.exist(spmiDrv))
+(
+  &prefixbase=""
+  &prefix="spmiDrv.pSpmiInfo->devices"
+  &mode="next"
+)
+else
+(
+  print "SPMI QSEE/HYP symbol information not found!"
+  enddo
+)
+
+;if (!y.exist(&prefix))
+;(
+;  print "Symbol &prefix not found!"
+;  enddo
+;)
+if ((&addr<&baseaddr)||(&addr>=(&baseaddr+(&numchannels*&offset))))
+(
+  print "Exception address &addr is out of range of SPMI!"
+  enddo
+)
+if ("&mode"=="prev")
+(
+  if (v.value(&prefix.reservedChans[0])==0)
+  (
+    print "SPMI data structure has not been initialized!"
+    enddo
+  )
+)
+else
+(
+  if (v.value(&prefix[0].reservedChan)==0)
+  (
+    print "SPMI data structure has not been initialized!"
+    enddo
+  )
+)
+
+&channel=(&addr-&baseaddr)/&offset
+if ("&mode"=="prev")
+(
+  &sid=v.value(&prefix.channelMap[0][&channel].sid)
+  &temp=&channel
+  ;print "temp is &temp"
+  ;&channel=v.value(&prefix.channelMap[0][&temp].prevIdx)
+  ;print "prevIdx is &channel"
+  while (v.value(&prefix.channelMap[0][&temp].prevIdx)>0)
+  (
+    &temp=(v.value(&prefix.channelMap[0][&temp].prevIdx)&0x1ff)
+  ;  print "temp is &temp"
+  ;print (v.value(&prefix.channelMap[0][&temp].prevIdx))
+  ;enddo
+  )
+  ;&periph=(&sid<<16.)|(v.value(&prefix.channelMap[0][&temp].prevIdx)&0x1ff)<<8.
+  &periph=(v.value(&prefix.channelMap[0][&temp].prevIdx)&0x1ff)
+)
+else
+(
+  &sid=v.value(&prefix[0].channelMap[&channel].sid)
+  &temp=&channel
+  ;print "temp is &temp"
+  ;&channel=v.value(&prefix[0].channelMap[&temp].nextIdx)
+  ;print "nextIdx is &channel"
+  while (v.value(&prefix[0].channelMap[&temp].nextIdx)<0x200)
+  (
+    &temp=(v.value(&prefix[0].channelMap[&temp].nextIdx)&0x1ff)
+  ;  print "temp is &temp"
+  ;print (v.value(&prefix[0].channelMap[&temp].nextIdx))
+  ;enddo
+  )
+  ;&periph=(&sid<<16.)|(v.value(&prefix[0].channelMap[&temp].nextIdx)&0x1ff)<<8.
+  &periph=(v.value(&prefix[0].channelMap[&temp].nextIdx)&0x1ff)
+)
+
+if (&sid>=0)
+(
+  print "Address &addr maps to channel &channel, slaveID &sid, periph &periph"
+)
+else
+(
+  print "Address &addr maps to channel &channel, which is not configured"
+)
+;print "Channel is &channel"
+;print "SlaveID is &sid"
+;print "Periph is &periph"
+
+if (y.exist(&prefixbase\pm_hyp_image\pm_init_image\rg_count))
+(
+  &i=0
+  while (&i<v.value(&prefixbase\pm_hyp_image\pm_init_image\rg_count))
+  (
+    local &start
+    local &end
+    local &owner
+    &start=v.value(spmi_rg_cfg[&i].startAddr)
+    &end=&start+v.value(spmi_rg_cfg[&i].size)
+    &owner=v.value(spmi_rg_cfg[&i].owner)
+    if ((&addr>=&start)&&(&addr<&end))
+    (
+      print "The channel belongs to RG &i and is assigned to owner &owner"
+    )
+    
+    &i=&i+1
+  )
+)
+else if (y.exist(pm_spmi_pheriph_cfg))
+(
+  &i=0
+  while (&i<v.value(pm_spmi_cfg_sz))
+  (
+    if ((v.value(pm_spmi_pheriph_cfg[&i].slaveId)==&sid)&&(v.value(pm_spmi_pheriph_cfg[&i].periphId)==&periph))
+    (
+      &owner=v.value(pm_spmi_pheriph_cfg[&i].periphOwner)
+      print "The channel is assigned to owner &owner"
+    )
+    &i=&i+1
+  )
+)
+;else if (y.exist(pm_spmi_periph_cfg_pm8952))
+;(
+;  &i=0
+;  while (&i<v.value(pm_spmi_cfg_sz))
+;  (
+;    if ((v.value(pm_spmi_periph_cfg_pm8952[&i].slaveId)==&sid)&&(v.value(pm_spmi_periph_cfg_pm8952[&i].periphId)==&periph))
+;    (
+;      &owner=v.value(pm_spmi_periph_cfg_pm8952[&i].periphOwner)
+;      print "The channel is assigned to owner &owner"
+;    )
+;    &i=&i+1
+;  )
+;)
+
+enddo
+

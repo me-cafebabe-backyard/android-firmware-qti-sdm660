@@ -1,0 +1,91 @@
+#===============================================================================
+#
+# QSEE Secure UI Lib
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2013-2015 Qualcomm Technologies, Inc.  All Rights Reserved.
+# Qualcomm Technologies Proprietary and Confidential.
+#
+#===============================================================================
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/core/securemsm/sse/qsee/SecureUILib/lib/src"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Publish Private APIs
+#-------------------------------------------------------------------------------
+
+# Logging APIs
+env.PublishPrivateApi('SSE_LOG_API', [
+   '${INC_ROOT}/core/securemsm/sse/log/inc',
+])
+
+# Common includes
+env.PublishPrivateApi('SSE_COMMON_API', [
+   '${INC_ROOT}/core/securemsm/sse/common/include',
+])
+
+# Secure Touch includes
+env.PublishPrivateApi('SSE_SECURE_TOUCH_API', [
+   '${INC_ROOT}/core/securemsm/sse/SecureTouch/common/include',
+   '${INC_ROOT}/core/securemsm/sse/SecureTouch/layout/include',
+])
+env.PublishPrivateApi('SSE_TOUCH_CONTROLLER_API', [
+   '${INC_ROOT}/core/securemsm/sse/SecureTouch/controller/inc',
+])
+env.PublishPrivateApi('SSE_TOUCH_CONTROLLER_QSEE_API', [
+   '${INC_ROOT}/core/securemsm/sse/qsee/SecureTouch/drTs/include',
+])
+env.PublishPrivateApi('SSE_TOUCH_SIDE_CHANNELS_QSEE_API', [
+   '${INC_ROOT}/core/securemsm/sse/qsee/SecureTouch/sidechannels/include',
+   '${INC_ROOT}/core/securemsm/sse/qsee/SecureTouch/sidechannels/modules/include',
+])
+env.PublishPrivateApi('SECURE_INDICATOR_QSEE_API', [
+   '${INC_ROOT}/apps/securemsm/trustzone/qsapps/secureindicator/inc',
+])
+
+# Secure UI Lib API
+env.PublishPrivateApi('SSE_SECURE_TOUCH_API', [
+   '${INC_ROOT}/core/securemsm/sse/qsee/SecureUILib/include',
+   '${INC_ROOT}/core/securemsm/sse/qsee/SecureUILib/lib/include',
+   '${INC_ROOT}/core/securemsm/sse/qsee/SecureUILib/lib/src',
+])
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+
+INC_PATH_API = ["${INC_ROOT}/core/api/kernel/libstd/stringl"]
+env.Append(CPPPATH = INC_PATH_API)
+
+SOURCES = [
+  '${BUILDPATH}/SecureUILib.c',
+  '${BUILDPATH}/functions/01_startTouch.c',
+  '${BUILDPATH}/functions/02_processTouch.c',
+  '${BUILDPATH}/functions/03_stopTouch.c',
+  '${BUILDPATH}/functions/04_prepareRequest.c',
+  '${BUILDPATH}/functions/05_storeIndicator.c',
+]
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+secure_ui_lib_lib = env.AddBinaryLibrary([
+  'SECUREUISAMPLE_IMAGE',
+  'SECUREUISAMPLE64_IMAGE',
+  'FIDOSUI_IMAGE',
+  'SAMPLEAPP_IMAGE',
+  'SAMPLEAPP64_IMAGE',
+   ],
+  '${BUILDPATH}/secure_ui_lib',
+  SOURCES)
+
+if secure_ui_lib_lib:
+  env.Deploy([secure_ui_lib_lib, 'SConscript'])

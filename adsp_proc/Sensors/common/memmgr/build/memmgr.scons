@@ -1,0 +1,129 @@
+#===============================================================================
+#
+# MEMMGR Libs
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2009-2016 by Qualcomm Technologies, Inc.  All Rights Reserved
+# Qualcomm Technologies Proprietary and Confidential
+#
+#-------------------------------------------------------------------------------
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/Sensors/memmgr/src"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+env.Append(CPPDEFINES = ["DAL_NATIVE_PLATFORM"])
+
+#-------------------------------------------------------------------------------
+# External depends within CoreBSP
+#-------------------------------------------------------------------------------
+env.RequireExternalApi([
+   'BREW',
+   'CS',
+   'DSM',
+  ])
+
+#-------------------------------------------------------------------------------
+# External depends outside CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'DAL',
+   'DEBUGTOOLS',
+   'HAL',
+   'HWENGINES',
+   'IODEVICES',
+   'MPROC',
+   'SYSTEMDRIVERS',
+   'HWIO',
+   'HWIO_API',
+   'SERVICES',
+    # needs to be last also contains wrong comdef.h
+   'KERNEL',
+]
+
+#env.RequireExternalApi(CBSP_API)
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+env.RequirePublicApi(CBSP_API, area='core')
+
+env.UsesInc([
+   "${HWIO}",
+   "${HWIO_API}",
+])
+
+#-------------------------------------------------------------------------------
+# Internal depends within Sensors
+#-------------------------------------------------------------------------------
+SENSORS_API = [
+   'SNS_DEBUG_DSPS',
+   'SNS_EVMGR',
+]
+env.RequireRestrictedApi(SENSORS_API)
+
+#-------------------------------------------------------------------------------
+# Headers required by SNS MEMMGR
+#-------------------------------------------------------------------------------
+DAL_UCOS_API = [
+   'DAL',
+]
+env.RequireRestrictedApi(DAL_UCOS_API)
+env.RequirePublicApi(DAL_UCOS_API)
+
+env.Append(CPPPATH = [
+   "${BUILD_ROOT}/Sensors/api",
+   "${BUILD_ROOT}/Sensors/common/inc",
+   "${BUILD_ROOT}/Sensors/memmgr/inc",
+   "${BUILD_ROOT}/Sensors/pm/inc",
+])
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+if 'USE_NATIVE_MEMMGR' in env:
+  MEMMGR_SOURCES = [
+      '${BUILD_ROOT}/Sensors/common/memmgr/src/sns_memmgr_native.c',
+      '${BUILDPATH}/sns_uimg_utils.c',
+  ]
+else:
+  MEMMGR_SOURCES = [
+      '${BUILDPATH}/sns_memmgr.c',
+      '${BUILDPATH}/sns_uimg_utils.c',
+      '${BUILDPATH}/sns_memheap.c',
+      '${BUILDPATH}/sns_memheap_lite.c',
+  ]
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+if 'SENSORS_DD_DEV_FLAG' in env:
+   # Sources that should not be shared
+   MEMMGR_CLEAN_SOURCES = env.FindFiles(['*.c'], '${BUILD_ROOT}/Sensors/memmgr/src')
+   MEMMGR_CLEAN_SOURCES += env.FindFiles(['*.h'], '${BUILD_ROOT}/Sensors/memmgr/inc')
+   MEMMGR_CLEAN_SOURCES = env.FindFiles(['*.c'], '${BUILD_ROOT}/Sensors/common/memmgr/src')
+   MEMMGR_CLEAN_SOURCES += env.FindFiles(['*.h'], '${BUILD_ROOT}/Sensors/common/memmgr/inc')
+
+   # Add binary library
+   memmgr_lib = env.AddBinaryLibrary(
+   ['CBSP_QDSP6_SW_IMAGE', 'CORE_QDSP6_SENSOR_SW'],
+    "${BUILDPATH}/memmgr", MEMMGR_SOURCES)
+
+   # Clean sources
+   env.CleanPack(['CBSP_QDSP6_SW_IMAGE', 'CORE_QDSP6_SENSOR_SW'], MEMMGR_CLEAN_SOURCES)
+else:
+   memmgr_lib = env.AddLibrary(
+    ['CBSP_QDSP6_SW_IMAGE', 'CORE_QDSP6_SENSOR_SW'],
+    '${BUILDPATH}/memmgr', MEMMGR_SOURCES)
+
+# Clause common to regular build and HD22
+if 'USES_ISLAND' in env:
+   memmgr_sections = ['.text.MEMMGR', '.data.MEMMGR']
+   env.AddIslandLibrary(['CORE_QDSP6_SENSOR_SW'], memmgr_lib, memmgr_sections)
+

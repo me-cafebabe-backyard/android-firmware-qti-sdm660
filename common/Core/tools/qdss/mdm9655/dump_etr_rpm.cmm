@@ -1,0 +1,6 @@
+global &etr_base
+&etr_base=0x60828000
+
+entry &dump_file &log_level
+do  "~~~~/../common/etr_dump_common.cmm" &dump_file &log_level
+enddo

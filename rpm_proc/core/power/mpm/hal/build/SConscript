@@ -1,0 +1,195 @@
+#===============================================================================
+#
+# HAL MAO Libs
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2009-2016 by Qualcomm Technologies, Inc.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header$
+#  $DateTime$
+#  $Author$
+#  $Change$
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 04/09/12   mda     MPMv2 for 8974
+# 09/12/12   mda     MPMv2 for 9x25
+#
+#===============================================================================
+Import('env')
+#default vipertooth support using Starlord target specific files   
+if env['MSM_ID'] in ['405']:
+   env['MSM_ID'] = '660'
+  
+if env['HAL_PLATFORM'] in ['405']:
+   env['HAL_PLATFORM'] = '660'
+
+    
+env.Append(CPPDEFINES = [('HAL_MPMINT_TARGET_H', '\\"HALmpmint${MSM_ID}.h\\"')])
+
+env.PublishPrivateApi('POWER_HAL_MPM_USER_API', [
+   "${BUILD_ROOT}/core/power/mpm/hal/include",
+   "${BUILD_ROOT}/core/power/mpm/hal/source/${MSM_ID}",
+])
+
+# Everything else that follows is private to ourselves.
+env = env.Clone()
+
+env['MPM_HW_VERSION'] = 'MPM_V4'
+
+#-------------------------------------------------------------------------------
+# Generate HWIOs
+#-------------------------------------------------------------------------------
+if env.has_key('HWIO_IMAGE'):
+    if env['MSM_ID'] in ['8996', '8998', '660']:
+        if env['MSM_ID'] in ['8998']:
+            env.AddHWIOFile('HWIO', [
+                {
+                    'filename': '${INC_ROOT}/core/power/mpm/hal/include/${MSM_ID}/mpm2_hwio.h',
+                    'modules': ['MPM2_MPM',
+                                'MPM2_G_CTRL_CNTR',
+                                'MPM2_G_RD_CNTR',
+                                'MPM2_TSYNC',
+                                'QDSS_QDSS_QDSSCSR'],
+                    'output-offsets': False,
+                    'header':
+                        '#include "msmhwiobase.h"\n\n'
+                }
+            ])
+        elif env['MSM_ID'] in ['660']:
+            env.AddHWIOFile('HWIO', [
+                {
+                    'filename': '${INC_ROOT}/core/power/mpm/hal/include/${MSM_ID}/mpm2_hwio.h',
+                    'modules': ['MPM2_MPM',
+                                'MPM2_G_CTRL_CNTR',
+                                'MPM2_G_RD_CNTR',
+                                'MPM2_TSYNC',
+                                'QDSS_QDSS_QDSSCSR'],
+                    'output-offsets': False,
+                    'header':
+                        '#include "msmhwiobase.h"\n\n'
+                }
+            ])
+        else:
+            env.AddHWIOFile('HWIO', [
+                {
+                    'filename': '${INC_ROOT}/core/power/mpm/hal/include/${MSM_ID}/mpm2_hwio.h',
+                    'modules': ['MPM2_MPM',
+                                'MPM2_G_CTRL_CNTR',
+                                'MPM2_G_RD_CNTR',
+                                'MPM2_TSYNC',
+                                'QDSS_QDSSCSR'],
+                    'output-offsets': False,
+                    'header':
+                        '#include "msmhwiobase.h"\n\n'
+                }
+            ])
+
+        env.AddHWIOFile('HWIO', [
+            {
+                'filename': '${INC_ROOT}/core/power/mpm/hal/include/${MSM_ID}/qtimer_hwio.h',
+                'modules': ['MPM2_QTIMR_AC',
+                            'MPM2_QTIMR_V1'],
+                'output-offsets': False,
+                'header':
+                    '#include "msmhwiobase.h"\n\n'
+            }
+        ])
+        env.AddHWIOFile('HWIO', [
+            {
+                'filename': '${INC_ROOT}/core/power/mpm/hal/include/${MSM_ID}/tcsr_hwio.h',
+                'modules': ['TCSR_TCSR_REGS'],
+                'output-offsets': False,
+                'header':
+                    '#include "msmhwiobase.h"\n\n'
+            }
+        ])
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/core/power/mpm/hal"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'DAL',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+   'PMIC',
+   'DEBUGTRACE',
+   'POWER'
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+env.PublishPrivateApi('POWER_HAL_MPM', [
+   "${BUILD_ROOT}/core/power/mpm/hal/include",
+   "${BUILD_ROOT}/core/power/mpm/hal/include/${MSM_ID}",
+   "${BUILD_ROOT}/core/power/mpm/hal/bsp/include",
+   "${BUILD_ROOT}/core/power/mpm/hal/source/common",
+   "${BUILD_ROOT}/core/power/mpm/hal/source/${MSM_ID}",
+   "${BUILD_ROOT}/core/power/mpm/hal/source/${MPM_HW_VERSION}",
+])
+
+env.Append(CPPPATH = ['${INC_ROOT}/core/power/gpio/target/${MSM_ID}'])
+
+if env['MSM_ID'] in ['660']:
+    env.Append(CPPDEFINES = 'MPM_SPMI_USE_RO_FOR_SPMI_CLK')
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+
+if env['MSM_ID'] in ['8994', '8996', '8998', '660', 'nicobar']:
+   MPM_COMMON_SOURCES =  [
+      '${BUILDPATH}/source/common/HALmpm.c',
+      '${BUILDPATH}/bsp/source/${HAL_PLATFORM}/BSPmpm.c',
+      '${BUILDPATH}/source/${MPM_HW_VERSION}/HALmpmPlatform.c',  
+      '${BUILDPATH}/source/${MPM_HW_VERSION}/HALmpmint.c',  
+      '${BUILDPATH}/source/${MSM_ID}/HALmpmintRegisters.c',
+      '${BUILDPATH}/source/common/HALmpmVDDCommands.c',
+      '${BUILDPATH}/source/${MSM_ID}/HALmpmintTable.c',
+   ]
+elif env['MSM_ID'] in ['8974'] and env.GetOption('interposer'):
+   env.PrintWarning('8994 INTERPOSER: Use common/HALmpmVDDCommands.c')
+   MPM_COMMON_SOURCES =  [
+      '${BUILDPATH}/source/common/HALmpm.c',
+      '${BUILDPATH}/bsp/source/${HAL_PLATFORM}/BSPmpm.c',
+      '${BUILDPATH}/source/${MPM_HW_VERSION}/HALmpmPlatform.c',  
+      '${BUILDPATH}/source/${MPM_HW_VERSION}/HALmpmint.c',  
+      '${BUILDPATH}/source/${MSM_ID}/HALmpmintRegisters.c',
+      '${BUILDPATH}/source/common/HALmpmVDDCommands.c',
+      '${BUILDPATH}/source/${MSM_ID}/HALmpmintTable.c',
+   ]
+else:
+    MPM_COMMON_SOURCES =  [
+       '${BUILDPATH}/source/common/HALmpm.c',
+       '${BUILDPATH}/bsp/source/${HAL_PLATFORM}/BSPmpm.c',
+       '${BUILDPATH}/source/${MPM_HW_VERSION}/HALmpmPlatform.c',  
+       '${BUILDPATH}/source/${MPM_HW_VERSION}/HALmpmint.c',  
+       '${BUILDPATH}/source/${MSM_ID}/HALmpmintRegisters.c',
+       '${BUILDPATH}/source/${MSM_ID}/HALmpmVDDCommands.c',
+       '${BUILDPATH}/source/${MSM_ID}/HALmpmintTable.c',
+    ]
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+
+env.AddLibrary(['CORE_RPM'], '${BUILDPATH}/source/${MPM_HW_VERSION}', MPM_COMMON_SOURCES)
+

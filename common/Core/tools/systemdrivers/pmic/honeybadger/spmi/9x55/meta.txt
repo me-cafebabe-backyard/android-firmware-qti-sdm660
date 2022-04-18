@@ -1,0 +1,2 @@
+Peripherals 256.
+Ports 5.

@@ -1,0 +1,215 @@
+#=============================================================================
+#
+#                                    SConscript
+#
+# GENERAL DESCRIPTION
+#
+# EXTERNAL FUNCTIONS
+#        None.
+#
+# INITIALIZATION AND SEQUENCING REQUIREMENTS
+#        None.
+#
+#             Copyright (c) 2013  by Qualcomm Technologies, Inc.  All Rights Reserved.
+#=============================================================================
+import os
+
+Import('env')
+
+env = env.Clone()
+
+h2dir = env.subst('$H2_REFERENCE_DIR')
+
+h2_srcs = {}       # Directory, not a list
+h2_incs = []
+h2_objs = []
+
+#
+#  Use the H2 implementation files in this order, from most preferred to least
+#
+
+if 'v6' in env.subst('$TRGT'):
+    h2impl_order = ('v60opt', 'v55opt', 'v5opt', 'v4opt', 'v3opt', 'all', 'ref', 'check')
+    env['ARCHV'] = 60
+else:
+    h2impl_order = ('v55opt', 'v5opt', 'v4opt', 'v3opt', 'all', 'ref', 'check', 'v60opt')
+    env['ARCHV'] = 5
+
+#
+#  Go find all include files under the kernel subtree and the libs/h2/common subtree.
+#
+
+for scandir in ('kernel', 'libs/h2/common'):
+    for root, dirs, files in os.walk(os.path.join(h2dir,scandir)):
+        #
+        #  Don't look at include directory if it exists.  It's where the H2 build
+        #   installs things.
+        #
+        if root == os.path.join(h2dir,scandir):
+            if 'include' in dirs:
+                dirs.remove('include')
+        for fname in files:
+            if fname.endswith('.h'):
+                h2_incs.append(os.path.join(root, fname))
+
+h2_incstring = env.Value('|'.join([os.path.basename(n) for n in h2_incs]).replace('.',r'\.'))
+
+#
+#  A builder that copies its input file to its output file while prepending
+#   the string "h2/" to the beginning of each include file name.  It only
+#   does this for file names which match the regular expression given by
+#   source[1], which should be a Value node with a regular expression string
+#   as its value.
+#
+
+def h2_fix_includes(target, source, env):
+    # target[0] is the output file
+    # source[0] is the input file
+    # source[1] is the regex showing which file names to fix
+    import re
+    fname_regex = source[1].get_contents()
+    output_value = source[0].get_contents()
+    output_value = re.sub(r'(#\s*include\s*<)(%s)(>)' % fname_regex, r'\g<1>h2/\g<2>\g<3>', output_value)
+    output_value = re.sub(r'(#\s*include\s*")(%s)(")' % fname_regex, r'\g<1>h2/\g<2>\g<3>', output_value)
+    output_value = re.sub(r'(#\s*qurt_include\s*<)(%s)(>)' % fname_regex, r'#include <\g<2>\g<3>', output_value)
+    f = open(str(target[0]), 'w')
+    f.write(output_value)
+    f.close()
+    return 0
+def h2_fix_emitter(target, source, env):
+    source.append(h2_incstring)
+    return target, source
+env['BUILDERS']['H2FixIncludes'] = Builder(action = Action(h2_fix_includes, cmdstr='Fixing ${TARGET} ...'),
+                                           emitter = h2_fix_emitter)
+
+#
+#  Go find all source files under the kernel subtree.
+#
+
+for root, dirs, files in os.walk(os.path.join(h2dir,'kernel')):
+    for fname in files:
+        if fname.endswith('.c') or fname.endswith('.s') or fname.endswith('.S'):
+            #
+            #  Only look at those which have exactly two periods in the name,
+            #   such as foo.ref.c
+            #
+            full_name = os.path.join(root, fname)
+            components = fname.split('.')
+            if len(components) == 3:
+                newname = components[0]
+                try:
+                    priority = h2impl_order.index(components[1])
+                except ValueError:
+                    raise Exception('H2 name %s does not match the template' % fname)
+                except:
+                    raise
+                if not newname in h2_srcs:
+                    # Put a fake one that we'll immediately overwrite
+                    h2_srcs[newname] = (priority+1, '')
+                if priority > h2_srcs[newname][0]:
+                    # We're looking at a less preferred file
+                    pass
+                elif priority == h2_srcs[newname][0]:
+                    # We're looking at an equally preferred file.  This is an error
+                    raise Exception('Fix these two conflicting H2 imports:\n %s\n %s' %
+                                    (h2_srcs[newname][1], full_name))
+                else:
+                    # We're looking at a more preferred file
+                    h2_srcs[newname] = (priority, full_name)
+
+#
+#  Okay, we have all of the source files and have found the preferred version of each one
+#
+#  Now do any special fixups, for those cases where the above got it wrong...
+#
+
+# Override h2/context.h with our own
+if False:
+    h2_incs = [x for x in h2_incs if os.path.basename(x) != 'context.h']
+    h2_incs.append('include/context.h')
+
+#
+# Don't import h2/asm_offsets.h -- generate it.
+# The generation step is described below.
+#
+h2_incs = [x for x in h2_incs if os.path.basename(x) != 'asm_offsets.h']
+h2_incs.append('obj/asm_offsets.h')
+
+#
+#  Associate the builder we just defined with each of the include files we
+#   found.
+#
+
+h2_incs = [env.H2FixIncludes(os.path.join('h2',os.path.basename(fname)), fname) for fname in h2_incs]
+
+#
+#  Go tell SCons what to do...
+#
+
+def h2_generator(source, target, env, for_signature):
+    #
+    #  Return the command line string to build an H2 object
+    #
+    cmd_line = (
+        '/pkg/qct/software/hexagon/releases/tools/7.4.02/Tools/bin/hexagon-clang',
+        '-I', os.path.dirname(os.path.dirname(str(source[1]))),
+        '-I', env.subst('$QURT_TOP/kernel/include'),
+        '-I', env.subst('$QURT_TOP/api/qurt'),
+        '-G0',
+        '-O2',
+        env.subst('-m$Q6VERSION'),
+        env.subst('-DARCHV=$ARCHV'),
+        '-DH2K_GIT_COMMIT=0x11000011',
+        '-DH2K_KERNEL_PGSIZE=5',
+        '-DH2K_KERNEL_ADDRBITS=12',
+        '-DH2K_LINK_ADDR=0xFF000000',
+        '-DMAX_HTHREADS=4',
+        '-Wall',
+        '-Werror',
+        '-g',
+        '-ffixed-r28',
+        '-o', str(target[0]),
+        '-c', str(source[0]),
+        )
+    if str(target[0]).endswith('.elf'):
+        #
+        # If building a .elf file, don't include -c on the command line
+        #
+        cmd_line = [x for x in cmd_line if x != '-c']
+    return ' '.join(cmd_line)
+def h2_emitter(target, source, env):
+    #
+    #  Add the first include file to the source list.
+    #  This allows us to get the path to the include directory
+    #   no matter where it might move...
+    #
+    source.append(h2_incs[0])
+    return target, source
+env['BUILDERS']['H2Object'] = Builder(generator = h2_generator, emitter = h2_emitter)
+
+for k,v in h2_srcs.items():
+    full_name = v[1]
+    installed_src = os.path.join('src',k+'.'+full_name.rsplit('.',1)[1])
+    object_name = os.path.join('obj',k+'.o')
+    srcnode = env.H2FixIncludes(installed_src, full_name)
+    if k == 'offsets':
+        #
+        # Don't build this and don't put it in the library
+        # It defines a main() function which we don't want.
+        #
+        continue
+    objnode = env.H2Object(object_name, srcnode)
+    h2_objs.append(objnode)
+
+#
+#  Build asm_offsets.h
+#
+
+h2_incs.append(env.Command('obj/asm_offsets.h', env.H2Object('obj/offsets.elf', 'src/offsets.c'),
+                           ('/pkg/qct/software/hexagon/releases/tools/7.4.02/Tools/bin/hexagon-sim ' +
+                            ' --quiet --pmu_statsfile %s --statsfile %s ' +
+                            '$SOURCE -- $TARGET') % (os.devnull, os.devnull)))
+
+env.Depends(h2_objs, h2_incs)
+
+Return(['h2_objs','h2_incs'])

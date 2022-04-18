@@ -1,0 +1,57 @@
+#=============================================================================
+# PLATFORMINFO LIBRARY
+#
+# Target:    All
+# Processor: All
+#
+#=============================================================================
+# $Header: //components/rel/rpm.bf/1.8/core/systemdrivers/platforminfo/build/platforminfo.scons#3 $
+#=============================================================================
+#                    Copyright 2011 Qualcomm Technologies Incorporated.
+#                           All Rights Reserved.
+#                         QUALCOMM Proprietary/GTDR
+#=============================================================================
+
+import os
+
+Import('env')
+env = env.Clone()
+
+if env['MSM_ID'] in ['405']:
+   Return()
+#-----------------------------------------------------------------------------
+# Define paths
+#-----------------------------------------------------------------------------
+
+SRCPATH = "../"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+
+CBSP_API = [
+   'DAL',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+#-------------------------------------------------------------------------------
+# Define sources
+#-------------------------------------------------------------------------------
+
+PLATFORMINFO_SOURCES = [
+   '${BUILDPATH}/src/PlatformInfo.c'
+]
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+
+env.AddLibrary(
+  ['RPM_IMAGE'], '${BUILDPATH}/platforminfo', PLATFORMINFO_SOURCES)
+

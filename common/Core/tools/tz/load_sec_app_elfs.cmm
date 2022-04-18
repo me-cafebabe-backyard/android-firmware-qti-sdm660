@@ -1,0 +1,182 @@
+ENTRY &ARG0 &ARG1 &ARG2
+
+MAIN:
+
+LOCAL &BUILD_PATH &APP_BASE_PATH &APP_BLD_PATH &APP_PATH &APP_ADDR &APP_NAME &ELFARGS &IS64BIT &DEBUG_TYPE
+
+&BUILD_PATH="&ARG0"
+&CORE_APP_BASE_PATH="&BUILD_PATH\trustzone_images\core\bsp\trustzone\qsapps\"
+&APPS_APP_BASE_PATH="&BUILD_PATH\trustzone_images\apps\bsp\trustzone\qsapps\"
+&APP_BLD_PATH="\build\&ARG1\"
+&ELFARGS="/nocode /noclear /strippart "+'"'+"trustzone_images"+'"'+" /sourcepath"
+&DEBUG_TYPE="offline"
+
+area.select
+
+IF ("&ARG0"==""||"&ARG1"=="")
+(
+  DIALOG.MESSAGE "USAGE :  load_sec_app_elfs.cmm <path_to_tz_build> <flavor> [live]"+CONV.CHAR(10.)+"See script source for details."
+  ENDDO
+)
+
+IF (!os.dir("&ARG0"))
+(
+  DIALOG.MESSAGE "load_sec_app_elfs.cmm: Invalid build path: &ARG0"
+  ENDDO
+)
+
+IF (!os.dir("&ARG0"))
+(
+  DIALOG.MESSAGE "load_sec_app_elfs.cmm: Invalid build path."
+  ENDDO
+)
+
+IF (!Y.EXIST(\\qsee)&&!Y.EXIST(\\qsee_with_test))
+(
+  DIALOG.MESSAGE "load_sec_app_elfs.cmm requires qsee symbols."
+  ENDDO
+)
+
+IF ("&ARG2"=="live")
+(
+  &DEBUG_TYPE="live"
+  print "Loading symbols on live target"
+)
+
+IF ("&DEBUG_TYPE"=="live"&&(r(ns)!=0||r(m)!=5.))
+(
+  DIALOG.MESSAGE "Cannot load secure application symbols unless in secure EL1."
+  ENDDO
+)
+
+var.new struct list_node* \node
+var.new struct thread* \pThread
+var.new KProcess* \pProc
+
+var.set \node=thread_list->next
+var.set \pThread=(thread_t*)((uint64_t)\node-8)
+var.set \pProc=(KProcess*)\pThread->process
+
+var.IF (\pThread->magic!=0xFFFF04)
+(
+  DIALOG.MESSAGE "Thread list corrupted, cannot load secure application symbols."
+  END
+)
+
+var.WHILE (thread_list->next!=\node->next)
+(
+  ; The check is here because the last assignment that sets
+  ;  thread_list->next==\node->next won't have a valid magic
+  ;  and this error is fatal.
+  var.IF (\pThread->magic!=0xFFFF04)
+  (
+    DIALOG.MESSAGE "Thread list corrupted, cannot continue loading secure application symbols."
+    END
+  )
+
+  &APP_NAME=v.string(\pThread->name)
+
+  IF ("&DEBUG_TYPE"=="offline")
+  (
+    d.save.binary ~~~\app.bin var.value(\pThread->segs[2].addr)++((var.value(\pThread->segs[4].addr-\pThread->segs[2].addr))+var.value(\pThread->segs[4].size))
+    d.load.binary ~~~\app.bin var.value(\pThread->segs[2].vaddr) /noclear
+    Y.delete \\app
+  )
+
+  &APP_ADDR=var.value(\pThread->segs[2].vaddr)
+
+  var.IF (\pProc!=0)
+  (
+    &IS64BIT="FALSE"
+
+    var.IF (\pProc->userLib.sizeOfPointer==8)
+    (
+      &IS64BIT="TRUE"
+    )
+  )
+
+  ; Here is where appnames are adjusted for people who did not match
+  ; the app name to the folder the ELF goes into and/or the name of
+  ; the binary output. 
+  ; Warning: Must call get_app_name first!
+  GOSUB get_app_name &APP_NAME
+  ENTRY &APP_NAME
+
+  GOSUB get_app_path &APP_NAME &BUILD_PATH
+  ENTRY &APP_PATH
+
+  GOSUB is_app_name &APP_NAME
+  ENTRY &IS_APP
+
+  IF ("&IS_APP"=="TRUE")
+  (
+    WHILE (Y.EXIST(\\&APP_NAME))
+    (
+      sYmbol.Delete \\&APP_NAME
+    )
+
+    IF (FILE.EXIST("&APP_PATH&APP_NAME.elf"))
+    (
+      data.load.elf "&APP_PATH&APP_NAME.elf" &APP_ADDR &ELFARGS &BUILD_PATH\trustzone_images
+      print "Loading symbols for &APP_NAME at address &APP_ADDR"
+    )
+    ELSE
+    (
+      DIALOG.MESSAGE "Could not find .elf file for &APP_NAME.  Perhaps it is not in"+CONV.CHAR(10.)+"the TZ build or not under the corresponding folder name?  I tried looking here:"+CONV.CHAR(10.)+"&APP_PATH"
+    )
+  )
+
+  var.set \node=\node->next
+  var.set \pThread=(thread_t*)((uint64_t)\node-8)
+  var.set \pProc=(KProcess*)\pThread->process
+)
+
+ENDDO
+
+is_app_name:
+  ENTRY &APP_NAME
+  IF ("&APP_NAME"==""||"&APP_NAME"=="idle")
+    RETURN FALSE
+  IF ("&APP_NAME"=="service0"||"&APP_NAME"=="service1"||"&APP_NAME"=="service2")
+    RETURN FALSE
+  RETURN TRUE
+
+get_app_name:
+  ENTRY &APP_NAME
+  IF ("&APP_NAME"=="SampleApp")
+    &APP_NAME="smplap32"
+  ELSE IF ("&APP_NAME"=="SampleApp64")
+    &APP_NAME="smplap64"
+  ELSE IF ("&APP_NAME"=="qcom.tz.uefisecapp")
+    &APP_NAME="uefisecapp"
+  ELSE IF ("&APP_NAME"=="qcom.tz.winsecapp")
+    &APP_NAME="winsecapp"
+  ELSE IF ("&APP_NAME"=="qcom.tz.hdcp2p2")
+    &APP_NAME="hdcp2p2"
+  RETURN &APP_NAME
+
+get_app_path:
+  ENTRY &APP_NAME &BUILD_PATH
+
+  &CORE_APP_BASE_PATH="&BUILD_PATH\trustzone_images\core\bsp\trustzone\qsapps\"
+  &APPS_APP_BASE_PATH="&BUILD_PATH\trustzone_images\apps\bsp\trustzone\qsapps\"
+
+  IF ("&APP_NAME"=="smplap32")
+    &APP_PATH="&CORE_APP_BASE_PATH"+"sampleapp"+"&APP_BLD_PATH"
+  ELSE IF ("&APP_NAME"=="smplap64"||"&APP_NAME"=="gptest"||"&APP_NAME"=="smplcert"||"&APP_NAME"=="smplserv")
+    &APP_PATH="&CORE_APP_BASE_PATH&APP_NAME&APP_BLD_PATH"
+  ELSE IF ("&APP_NAME"=="playread")
+    &APP_PATH="&APPS_APP_BASE_PATH"+"playready"+"&APP_BLD_PATH"
+  ELSE IF ("&APP_NAME"=="dhsecapp")
+  (
+    &APP_PATH="&APPS_APP_BASE_PATH"+"devicehealth"+"&APP_BLD_PATH"
+  )
+  ELSE IF ("&APP_NAME"=="qmpsecap")
+  (
+    &APP_PATH="&APPS_APP_BASE_PATH"+"qmpsecapp"+"&APP_BLD_PATH"
+  )
+  ELSE
+  (
+    &APP_PATH="&APPS_APP_BASE_PATH&APP_NAME&APP_BLD_PATH"
+  )
+  RETURN &APP_PATH

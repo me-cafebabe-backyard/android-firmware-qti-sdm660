@@ -1,0 +1,763 @@
+<?xml version="1.0" ?>
+<dal>
+  <module name="config_data_table">
+    <driver name="NULL">
+      <device id="cdt_header">
+        <props name="magic-number" type="DALPROP_ATTR_TYPE_BYTE_SEQ">
+          0x43, 0x44, 0x54, 0x00, end
+        </props>
+        <props name="version" type="DALPROP_ATTR_TYPE_BYTE_SEQ">
+          0x01, 0x00, end
+        </props>
+        <props name="reserved1" type="DALPROP_ATTR_TYPE_BYTE_SEQ">
+          0x00, 0x00, 0x00, 0x00, end
+        </props>
+        <props name="reserved2" type="DALPROP_ATTR_TYPE_BYTE_SEQ">
+          0x00, 0x00, 0x00, 0x00, end
+        </props>
+      </device>
+      <device id="cdb0">
+        <props name="platform_id" type="DALPROP_ATTR_TYPE_BYTE_SEQ">
+          0x03, 0x08, 0x01, 0x00, 0x00, 0x00, end
+        </props>
+      </device>
+      <device id="cdb1">
+        <props name="version_number" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          2
+        
+        </props>
+        <props name="magic_number" type="DALPROP_ATTR_TYPE_BYTE_SEQ">
+          
+          0x00, 0x52, 0x44, 0x44, end
+        
+        </props>
+        <props name="checksum" type="DALPROP_ATTR_TYPE_BYTE_SEQ">
+          
+          0xFF, 0xFF, 0x00, 0x00, end
+        
+        </props>
+        <props name="num_of_device" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          2
+        
+        </props>
+        <props name="size_of_param" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          156
+        
+        </props>
+        <props name="interleaved" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          3
+        
+        </props>
+        <props name="OBT_Threshold" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="ODT_Threshold" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="Optional_Features" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="Reserved_0" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="Reserved_1" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="Reserved_2" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="manufacture_name" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="ddr_type" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          7
+        
+        </props>
+        <props name="num_rows_cs0" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          15
+        
+        </props>
+        <props name="num_cols_cs0" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          10
+        
+        </props>
+        <props name="num_banks_cs0" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          8
+        
+        </props>
+        <props name="interface_width_cs0" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          16
+        
+        </props>
+        <props name="num_rows_cs1" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          15
+        
+        </props>
+        <props name="num_cols_cs1" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          10
+        
+        </props>
+        <props name="num_banks_cs1" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          8
+        
+        </props>
+        <props name="interface_width_cs1" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          16
+        
+        </props>
+        <props name="interleave_type" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          3
+        
+        </props>
+        <props name="populated_chipselect" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="RESERVED_1" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="RESERVED_2" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="RESERVED_3" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="manufacture_name" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="ddr_type" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          7
+        
+        </props>
+        <props name="num_rows_cs0" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          15
+        
+        </props>
+        <props name="num_cols_cs0" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          10
+        
+        </props>
+        <props name="num_banks_cs0" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          8
+        
+        </props>
+        <props name="interface_width_cs0" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          16
+        
+        </props>
+        <props name="num_rows_cs1" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          15
+        
+        </props>
+        <props name="num_cols_cs1" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          10
+        
+        </props>
+        <props name="num_banks_cs1" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          8
+        
+        </props>
+        <props name="interface_width_cs1" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          16
+        
+        </props>
+        <props name="interleave_type" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          3
+        
+        </props>
+        <props name="populated_chipselect" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="RESERVED_1" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="RESERVED_2" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="RESERVED_3" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="tRFC" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="tRAS_Min" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          420
+        
+        </props>
+        <props name="tREFI" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          39060
+        
+        </props>
+        <props name="tXSR" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="tXP" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          75
+        
+        </props>
+        <props name="tWTR" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          100
+        
+        </props>
+        <props name="tRP_AB" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          210
+        
+        </props>
+        <props name="tRP_PB" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          180
+        
+        </props>
+        <props name="tRRD" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          100
+        
+        </props>
+        <props name="tWR" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          180
+        
+        </props>
+        <props name="tCKE" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          75
+        
+        </props>
+        <props name="tRCD" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          180
+        
+        </props>
+        <props name="tFAW" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          400
+        
+        </props>
+        <props name="tRTP" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          75
+        
+        </props>
+        <props name="tMRR" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          8
+        
+        </props>
+        <props name="tMRW" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          10
+        
+        </props>
+        <props name="tCKESR" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          150
+        
+        </props>
+        <props name="tODTonmax" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          35
+        
+        </props>
+        <props name="tODTonmin" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          15
+        
+        </props>
+        <props name="tODToffmax" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          35
+        
+        </props>
+        <props name="tODToffmin" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          15
+        
+        </props>
+        <props name="tDQSCK_min" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          15
+        
+        </props>
+        <props name="tDQSCK_max" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          35
+        
+        </props>
+        <props name="tCCDMW" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          32
+        
+        </props>
+        <props name="tCKEHCMD" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          75
+        
+        </props>
+        <props name="tDQS2DQMIN" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          2
+        
+        </props>
+        <props name="tDQS2DQMAX" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          8
+        
+        </props>
+        <props name="tZQCAL" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          10000
+        
+        </props>
+        <props name="tZQLAT" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          300
+        
+        </props>
+        <props name="tFC" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          2500
+        
+        </props>
+        <props name="tVRCG_DISABLE" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          1000
+        
+        </props>
+        <props name="RESERVED_4" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="RESERVED_5" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="RESERVED_6" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="RESERVED_7" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="RESERVED_8" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="RESERVED_9" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="RESERVED_10" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="RESERVED_11" type="DALPROP_ATTR_TYPE_UINT32">
+          
+          0
+        
+        </props>
+        <props name="version" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="hw_self_refresh_enable_0" type="DALPROP_ATTR_TYPE_UINT8"> 1 </props>
+        <props name="hw_self_refresh_enable_1" type="DALPROP_ATTR_TYPE_UINT8"> 1 </props>
+        <props name="MR4_polling_enable" type="DALPROP_ATTR_TYPE_UINT8"> 1 </props>
+        <props name="periodic_training_enable" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="page_close_timer" type="DALPROP_ATTR_TYPE_UINT16"> 256 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dram_soc_odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dram_soc_odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="frequency_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_up_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_down_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="vOH" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_up_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_down_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="vOH" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dqs_odt_enable" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dqs_odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dq_odt_enable" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dq_odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rd_t2_coarse_cdc" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="frequency_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_up_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_down_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="vOH" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_up_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_down_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="vOH" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dqs_odt_enable" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dqs_odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dq_odt_enable" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dq_odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rd_t2_coarse_cdc" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="frequency_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_up_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_down_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="vOH" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_up_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_down_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="vOH" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dqs_odt_enable" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dqs_odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dq_odt_enable" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dq_odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rd_t2_coarse_cdc" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="frequency_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_up_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_down_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="vOH" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_up_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_down_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="vOH" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dqs_odt_enable" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dqs_odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dq_odt_enable" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dq_odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rd_t2_coarse_cdc" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="frequency_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_up_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_down_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="vOH" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_up_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_down_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="vOH" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dqs_odt_enable" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dqs_odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dq_odt_enable" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dq_odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rd_t2_coarse_cdc" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="frequency_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_up_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_down_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="vOH" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_up_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_down_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="vOH" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dqs_odt_enable" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dqs_odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dq_odt_enable" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dq_odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rd_t2_coarse_cdc" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="frequency_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_up_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_down_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="vOH" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_up_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_down_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="vOH" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dqs_odt_enable" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dqs_odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dq_odt_enable" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dq_odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rd_t2_coarse_cdc" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="frequency_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_up_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_down_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="vOH" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_up_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="pull_down_drive_strength" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="vOH" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dqs_odt_enable" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dqs_odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dq_odt_enable" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="dq_odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rd_t2_coarse_cdc" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="WL" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR2" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rl_wl_freq_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="WL" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR2" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rl_wl_freq_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="WL" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR2" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rl_wl_freq_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="WL" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR2" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rl_wl_freq_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="WL" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR2" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rl_wl_freq_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="WL" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR2" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rl_wl_freq_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="WL" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR2" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rl_wl_freq_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="WL" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR2" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rl_wl_freq_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="WL" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR2" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rl_wl_freq_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="WL" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR2" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rl_wl_freq_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="WL" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR2" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rl_wl_freq_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="WL" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR2" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rl_wl_freq_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="WL" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR2" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rl_wl_freq_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="WL" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR2" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rl_wl_freq_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="WL" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR2" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rl_wl_freq_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x16" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_Off_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="RL_DBI_On_x8" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="WL" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR2" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rl_wl_freq_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rd_dbi" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="fsp" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR1" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR3" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR11" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="freq_switch_range_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rd_dbi" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="fsp" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR1" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR3" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR11" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="freq_switch_range_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rd_dbi" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="fsp" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR1" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR3" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR11" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="freq_switch_range_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rd_dbi" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="fsp" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR1" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR3" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR11" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="freq_switch_range_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rd_dbi" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="fsp" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR1" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR3" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR11" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="freq_switch_range_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rd_dbi" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="fsp" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR1" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR3" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR11" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="freq_switch_range_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rd_dbi" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="fsp" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR1" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR3" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR11" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="freq_switch_range_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+        <props name="apply_override" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="rd_dbi" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="odt" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="fsp" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR1" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR3" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="MR11" type="DALPROP_ATTR_TYPE_UINT8"> 0 </props>
+        <props name="freq_switch_range_in_kHz" type="DALPROP_ATTR_TYPE_UINT32"> 0 </props>
+      </device>
+    </driver>
+  </module>
+</dal>

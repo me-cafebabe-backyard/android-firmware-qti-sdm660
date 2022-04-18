@@ -1,0 +1,72 @@
+#===============================================================================
+#
+# QMAG_CAL Libs
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2016 Qualcomm Technologies, Inc.
+# All Rights Reserved.
+# Confidential and Proprietary - Qualcomm Technologies, Inc.
+#
+#-------------------------------------------------------------------------------
+Import('env')
+from glob import glob
+from os.path import join, basename
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/Sensors/common/usam/algo/qmag_cal/src"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# External depends within module
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# External depends outside module
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'KERNEL'
+]
+env.RequirePublicApi(CBSP_API, area='core')
+#-------------------------------------------------------------------------------
+# Internal depends within module
+#-------------------------------------------------------------------------------
+env.Append(CPPPATH = [
+   "${BUILD_ROOT}/Sensors/api",
+   "${BUILD_ROOT}/Sensors/common/inc",
+   "${BUILD_ROOT}/Sensors/common/util/mathtools/inc",
+   "${BUILD_ROOT}/Sensors/common/usam/framework/inc",
+   "${BUILD_ROOT}/Sensors/common/usam/util/inc",
+   "${BUILD_ROOT}/Sensors/common/usam/algo/qmag_cal/inc",
+   "${BUILD_ROOT}/Sensors/common/util/queue/inc",
+   "${BUILD_ROOT}/Sensors/common/smr/inc",
+   "${BUILD_ROOT}/Sensors/common/util/memmgr/inc",
+])
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+QMAG_CAL_SOURCES  = ['${BUILDPATH}/' + basename(fname)
+          for fname in glob(join(env.subst(SRCPATH), '*.c'))]
+
+algo_qmag_cal_lib = env.AddBinaryLibrary(['CBSP_QDSP6_SW_IMAGE', 'CORE_QDSP6_SENSOR_SW'],
+                                    '${BUILDPATH}/sam_algo_qmag_cal', QMAG_CAL_SOURCES)
+
+# Sources  and headers that should not be shared
+QMAG_CAL_CLEAN_SOURCES = env.FindFiles(['*.c'], '${BUILD_ROOT}/Sensors/common/usam/algo/qmag_cal/src')
+QMAG_CAL_CLEAN_SOURCES += env.FindFiles(['*.h'], '${BUILD_ROOT}/Sensors/common/usam/algo/qmag_cal/inc')
+
+# Clean sources
+env.CleanPack(['CBSP_QDSP6_SW_IMAGE', 'CORE_QDSP6_SENSOR_SW'], QMAG_CAL_CLEAN_SOURCES)
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+if 'SNS_ISLAND_INCLUDE_ALGO_QMAG_CAL' in env['CPPDEFINES']:
+   qmag_cal_sections = ['.text.qmag_cal', '.data.qmag_cal']
+   env.AddIslandLibrary(['CBSP_QDSP6_SW_IMAGE', 'CORE_QDSP6_SENSOR_SW'], algo_qmag_cal_lib, qmag_cal_sections)

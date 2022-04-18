@@ -1,0 +1,105 @@
+import os
+
+Import('env')
+env = env.Clone()
+#default vipertooth support using Starlord target specific files   
+if env['MSM_ID'] in ['405']:
+   env['MSM_ID'] = '660'
+
+SRCPATH = "../src"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+env.Append(CFLAGS = '${ARMCC_STDC99_CMD}')
+env.Append(CPPPATH = '../src')
+
+MISC_ROOT = "${BUILD_ROOT}/core/power/misc"
+
+#MODULE_INC_PATH = [MISC_ROOT+'/src/modules/CX', MISC_ROOT+'/src/modules/GFX', MISC_ROOT+'/src/modules/DDR']
+MODULE_INC_PATH = MISC_ROOT+'/src/modules'
+HAL_INC_PATH = MISC_ROOT+'/src/${MSM_ID}'
+
+CBSP_API = [
+   'POWER',
+   'SYSTEMDRIVERS',
+   'DAL',
+   'SERVICES',
+   'DEBUGTRACE',
+   'BOOT',
+   'POWER_UTILS'
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+env.PublishPrivateApi('MISC',[MODULE_INC_PATH, HAL_INC_PATH])
+
+#-------------------------------------------------------------------------------
+# Generate QFPROM PVS HWIO definitions
+#-------------------------------------------------------------------------------
+if env.has_key('HWIO_IMAGE'):
+    env.AddHWIOFile('HWIO', [
+        {
+            'filename': '${INC_ROOT}/core/power/misc/src/${MSM_ID}/qfprom_pte_hwio.h',
+            'modules': ['SECURITY_CONTROL_CORE'],
+            'output-offsets': False,
+            'header':
+                '#include "msmhwiobase.h"\n\n'
+        }
+    ])
+
+MISC_CORE_SOURCES = [
+    '${BUILDPATH}/misc_resource.c',
+    '${BUILDPATH}/${MSM_ID}/misc_config.c',
+]
+
+MISC_CX_PHASE_MODULE = [
+    '${BUILDPATH}/modules/CX/cx_module.c',
+]
+
+MISC_GFX_PHASE_MODULE = [
+    '${BUILDPATH}/modules/GFX/gfx_module.c',
+]
+
+MISC_DDR_MODULE = [
+    '${BUILDPATH}/modules/DDR/ddr_module.c',
+]
+
+MISC_NPA_DUMP_MODULE = [
+    '${BUILDPATH}/modules/NPA_DUMP/npa_dump_module.c',
+]
+
+MISC_CX_LIMITER_MODULE = [
+    '${BUILDPATH}/modules/CX_LIMITER/cx_limiter_module.c',
+]
+
+MISC_STUB_SOURCES = [
+        '${BUILDPATH}/misc_resource_stub.c',
+    ]
+    
+if env['MSM_ID'] in ['8994']:
+    env.PrintWarning('Misc Resource is available for this target.')
+    env.AddLibrary(['CORE_RPM'], '${BUILDPATH}/misc.lib', MISC_CORE_SOURCES)
+    env.AddLibrary(['CORE_RPM'], '${BUILDPATH}/misc_ddr.lib', MISC_DDR_MODULE)
+    env.AddLibrary(['CORE_RPM'], '${BUILDPATH}/misc_npa_dump.lib', MISC_NPA_DUMP_MODULE)
+    env.AddLibrary(['CORE_RPM'], '${BUILDPATH}/misc_cx_limiter.lib', MISC_CX_LIMITER_MODULE)
+elif env['MSM_ID'] in ['8996']:
+    env.PrintWarning('Misc Resource is available for this target.')
+    env.AddLibrary(['CORE_RPM'], '${BUILDPATH}/misc.lib', MISC_CORE_SOURCES)
+    env.AddLibrary(['CORE_RPM'], '${BUILDPATH}/misc_npa_dump.lib', MISC_NPA_DUMP_MODULE)
+else :
+    env.PrintWarning('Misc Resource not available for this target... using stubs.')
+    env.AddLibrary(['CORE_RPM'], '${BUILDPATH}/misc.lib', MISC_STUB_SOURCES)
+
+
+if 'USES_QDSS_SWE' in env:
+   QDSS_IMG = ['QDSS_EN_IMG']
+   events = [['MISC_GFX_PHASE=710','misc_gfx_phase: (phase: %d) (corner: %d) (IDDQ: %d) (temp level: %d)'],
+             ['MISC_CX_SINGLEPHASE','misc_cx_singlephase: (corner: %d) (IDDQ: %d) (VPU: %d) (temp level: %d)'],
+             ['MISC_CX_DUALPHASE','misc_cx_dualphase: (corner: %d) (IDDQ: %d) (VPU: %d) (temp level: %d)'],
+             ['MISC_NPA_DUMP_REQUEST','misc_npa_dump: (trigger_time: 0x%0.8x%0.8x)'],
+             ['MISC_NPA_DUMP_COMPLETE','misc_npa_dump_complete'],
+             ['MISC_CX_LIMIT_CHANGE=728','misc_cx_limiter_change: (old limit: %d) (new limit: %d)'],
+             ['MISC_CX_LIMIT_EXCEED=729','misc_cx_limiter_exceed: (corner: %d) (limit: %d)'],
+             ['MISC_LAST=730','misc_unused'],
+            ]
+   env.AddSWEInfo(QDSS_IMG, events)
+

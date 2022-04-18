@@ -1,0 +1,108 @@
+#===============================================================================
+#
+# ctzl_proxy
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2010-2016 by Qualcomm Technologies, Inc.  All Rights Reserved.
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header:  $
+#  $DateTime: $
+#  $Author:  $
+#  $Change:  $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 07/03/16   dc     Updated Copyright
+# 19/12/15   dc     Added QPAY app
+# 08/19/15   ng     Added secure_ui_sample64
+# 07/16/14   tp     Changed DRM sconscripts to use the prxy_services
+#                   library instead of linking to qsee_services.
+# 10/17/13   ib    Add SECUREMM
+# 05/26/13   sn    Add SECUREUI
+# 10/18/12   ah     initial version
+#===============================================================================
+Import('env')
+env = env.Clone()
+
+
+#-------------------------------------------------------------------------------
+# Set search path for securemsm subsystem files
+#-------------------------------------------------------------------------------
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/trustzone/qsapps/libs/applib/common/src")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/trustzone/qsapps/libs/services/src")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/secmath/shared/inc")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/secrsa/shared/inc")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/secrsa/shared/src")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/unifiedcrypto/shared/ecc/inc")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/unifiedcrypto/core/ecc/inc")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/unifiedcrypto/shared/ecies/inc")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/unifiedcrypto/core/ecies/inc")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/unifiedcrypto/shared/aes/inc")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/unifiedcrypto/core/aes/inc")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/unifiedcrypto/shared/sha/inc")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/unifiedcrypto/core/sha/inc")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/unifiedcrypto/environment/inc")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/unifiedcrypto/shared/des/inc")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/unifiedcrypto/shared/ecc_generic/inc")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/unifiedcrypto/core/ecc_generic/inc")
+# Ensure pgCmnlib is defined for proxy lib -- see cmntzlibs.h
+env.Append(CCFLAGS = " -O3  -D_TZ_PROXY_LIB ")
+
+#-------------------------------------------------------------------------------
+# External depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'SERVICES',
+
+   # needs to be last also contains wrong comdef.h
+   'KERNEL',
+]
+
+env.RequirePublicApi(CBSP_API)
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${COREBSP_ROOT}/securemsm/trustzone/qsapps/libs/applib/proxy/"
+
+#-------------------------------------------------------------------------------
+# Let Scons build the object files in $(BUILDPATH} and don't copy over files
+#-------------------------------------------------------------------------------
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+LIB_SOURCES = [
+  '${BUILDPATH}/src/prxy_secmath.c',
+  '${BUILDPATH}/src/prxy_secrsa.c',
+  '${BUILDPATH}/src/prxy_services.c',
+  '${BUILDPATH}/src/prxy_ecc.c',
+  '${BUILDPATH}/src/prxy_qsee_shim.c',
+  '${BUILDPATH}/src/prxy_ufaes.c',
+  '${BUILDPATH}/src/prxy_ufdes.c',
+  '${BUILDPATH}/src/prxy_ufsha.c',
+]
+
+# This depends on the random number generator provided by TZ
+env.Append(CPPPATH = "${COREBSP_ROOT}/api/dal")
+env.Append(CPPPATH = "${COREBSP_ROOT}/api/securemsm/crypto")
+env.Append(CPPPATH = "${COREBSP_ROOT}/api/securemsm/trustzone/qsee")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/secmath/env/sampleapp/inc")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/secrsa/env/sampleapp/inc")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/trustzone/qsee/include")
+
+# Add sources as binary objects to applib images
+env.AddBinaryObject('APPLIB32_IMAGE', LIB_SOURCES)
+env.AddBinaryObject('APPLIB64_IMAGE', LIB_SOURCES)
+
+env.LoadSoftwareUnits()
+

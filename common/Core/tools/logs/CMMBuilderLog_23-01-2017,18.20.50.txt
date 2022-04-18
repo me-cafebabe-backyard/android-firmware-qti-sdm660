@@ -1,0 +1,22 @@
+###########################################
+##  CMMBuilder - BringupTool Build Log   ##
+###########################################
+
+
+
+Processing for target MSM8996
+Processing for subsystem MSS-Q6
+Processing for MSS-Q6: general_cmm.py
+Processing for MSS-Q6: epm_cmm.py
+Processing for MSS-Q6: tsens_cmm.py
+Processing for MSS-Q6: qdss_cmm.py
+Processing for MSS-Q6: rpm_cmm.py
+Processing for MSS-Q6: dragonlink_cmm.py
+Processing for MSS-Q6: pimemtrace_cmm.py
+Processing for MSS-Q6: clock_cmm.py
+Processing for MSS-Q6: hwio_cmm.py
+Processing for MSS-Q6: icb_cmm.py
+Processing for MSS-Q6: pmic_cmm.py
+Processing for MSS-Q6: vcs_cmm.py
+Processing for MSS-Q6: tz_cmm.py
+Processing for MSS-Q6: wlan_cmm.py

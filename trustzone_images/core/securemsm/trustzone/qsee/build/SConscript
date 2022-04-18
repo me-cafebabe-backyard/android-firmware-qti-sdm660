@@ -1,0 +1,490 @@
+#===============================================================================
+#
+# Trustzone QSEE Libs
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2019 by QUALCOMM, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header:$
+#  $DateTime:$
+#  $Author:$
+#  $Change:$
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 09/08/11           Initial Version
+#===============================================================================
+import os
+import string
+
+Import('env')
+#env = env.Clone()
+vars = Variables()
+
+env.Append(CPPPATH = "${INC_ROOT}/core/api/services")
+
+# set defaults for values if they're not in the .cfg file
+if 'tzbsp_with_pil' not in env:
+  vars.Add(BoolVariable('tzbsp_with_pil',        'pil',           1))
+if 'tzbsp_with_secboot' not in env:
+  vars.Add(BoolVariable('tzbsp_with_secboot',    'secboot',       1))
+if 'tzbsp_with_mmu' not in env:
+  vars.Add(BoolVariable('tzbsp_with_mmu',        'mmu',           1))
+if 'tzbsp_with_ce' not in env:
+  vars.Add(BoolVariable('tzbsp_with_ce',         'crypto',        1))
+if 'tzbsp_with_ssd' not in env:
+  vars.Add(BoolVariable('tzbsp_with_ssd',        'ssd',           1))
+
+if 'tzbsp_no_xpu' not in env:
+  vars.Add(BoolVariable('tzbsp_no_xpu',          'no pil xpus',   0))
+if 'tzbsp_with_pil_timing' not in env:
+  vars.Add(BoolVariable('tzbsp_with_pil_timing', 'pil profiling', 0))
+if 'tzbsp_with_test_svc' not in env:
+  vars.Add(BoolVariable('tzbsp_with_test_svc',   'unit tests',    0))
+if 'tzbsp_no_abt' not in env:
+  vars.Add(BoolVariable('tzbsp_no_abt',          'ABT enable',    0))
+vars.Update(env)
+
+if env['tzbsp_with_secboot'] == 1:
+  env.Append(CCFLAGS = " -DTZBSP_WITH_SECBOOT ")
+  env.Append(CPPDEFINES = "TZBSP_WITH_SECBOOT")
+  env.Append(AFLAGS = " -DTZBSP_WITH_SECBOOT ")
+
+if env['tzbsp_with_mmu'] == 1:
+  env.Append(CCFLAGS = " -DTZBSP_WITH_MMU ")
+  env.Append(CPPDEFINES = "TZBSP_WITH_MMU")
+  env.Append(AFLAGS = " -DTZBSP_WITH_MMU ")
+
+if env['tzbsp_with_ce'] == 1:
+  env.Append(CCFLAGS = " -DTZBSP_WITH_CRYPTO_ENGINE ")
+  env.Append(CPPDEFINES = "TZBSP_WITH_CRYPTO_ENGINE")
+  env.Append(AFLAGS = " -DTZBSP_WITH_CRYPTO_ENGINE ")
+
+if env['tzbsp_with_ssd'] == 1:
+  env.Append(CCFLAGS = " -DTZBSP_WITH_SSD ")
+  env.Append(CPPDEFINES = "TZBSP_WITH_SSD")
+  env.Append(AFLAGS = " -DTZBSP_WITH_SSD ")
+
+if env['tzbsp_no_abt'] == 1:
+  env.Append(CCFLAGS = " -DTZBSP_NO_ABT")
+  env.Append(CPPDEFINES = "TZBSP_NO_ABT")
+  env.Append(AFLAGS = " -DTZBSP_NO_ABT")
+
+
+if env['tzbsp_with_mmu'] == 1:
+   env.Replace(TZBSP_TARG_PATH = "mmu")
+else:
+   env.Replace(TZBSP_TARG_PATH = "no_mmu")
+
+#env.Append(CCFLAGS = " --restrict ") #FIXME: for llvm?
+# SYSINI has FMXR/FMRX instrutions that require VFP/Neon support. Enabling
+# VFP/Neon isn't possible for C code at this point, because TZ is not
+# saving/restoring VFP/Neon registers on a context switch.
+env.Replace(ARM_CPU_SCORPION = 'QSP.no_neon')
+#env.Append(CCFLAGS = " -mcpu=arm1136jf-s ")
+#env.Append(CCFLAGS = " --fpu SoftVFP ") #FIXME llvm?
+#env.Append(ASFLAGS = " --fpu SoftVFP ")
+
+# Test version of TZ compiles with no optimizations.
+if 'tzbsp_with_test_svc' in env:
+  if env['tzbsp_with_test_svc'] == 1:
+      print "With Test is turned on"
+      env.Append(CCFLAGS = " -DTZBSP_WITH_TEST_SVC ")
+
+# PIL timing must be enabled compile time (use with_pil_timing=1).
+if env['tzbsp_with_pil_timing'] == 1:
+    env.Append(CCFLAGS = " -DTZBSP_WITH_PIL_TIMING ")
+
+#----------------------------------------------------------------------------
+# Source PATH
+#----------------------------------------------------------------------------
+QSEE_SRC = "${COREBSP_ROOT}/securemsm/trustzone/qsee"
+
+env.VariantDir('${BUILDPATH}', QSEE_SRC, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# External depends within CoreBSP
+#-------------------------------------------------------------------------------
+env.RequireExternalApi([
+   'BREW',
+   'CS',
+   'DSM',
+   'MODEM_PMIC',
+   'MODEM_RF',
+   'MODEM_SERVICES',
+   'RFA'
+])
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+env.RequirePublicApi('DEBUGTRACE', 'SECUREMSM')
+env.RequireRestrictedApi(['SECBOOT', 'TZCHIPSET', 'SECUREMSM'])
+
+INC_PATH = [
+  "${INC_ROOT}/core/securemsm/secdbg/inc/",
+  "${INC_ROOT}/core/api/securemsm/secdbg/",
+]
+env.Append(CPPPATH = INC_PATH)
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+
+
+
+#-------------------------------------------------------------------------------
+# HWIO
+#-------------------------------------------------------------------------------
+
+if env.has_key('HWIO_IMAGE'):
+  # Modules depend on which CHIPSET is being build
+   modules = []
+   if env['CHIPSET'] == "msm8996":
+      modules = [
+        'BIMC.*',
+        'APCS.*',
+        'APC.*',
+        'TLMM.*',
+        'LPASS_QDSP6SS.*',
+        'LPASS_QDSP6V60SS_PUB',
+        'MMSS_OCMEM.*',
+        'MMSS_HDMI.*',
+        'SECURITY_CONTROL_CORE',
+        'TCSR.*',
+        'GCC_CLK_CTL_REG',
+        'MPM2_WDOG',
+        'QDSS_ETR_ETR_CXTMC_R64W32D',
+        'QDSS_ETFETB_ETFETB_CXTMC_F128W64K',
+        'LPASS_LPASS_CC_REG',
+        'MMSS_CC',
+        'RAMBLUR.*',
+        'CRYPTO.*',
+        'PRNG.*',
+        'MMSS_MDSS_SEC_HDCP_SEC_TZ_ONLY',
+        'MMSS_MDSS_SEC_HDCP_SEC_TZ_HV',
+        'MPM2_PSHOLD',
+        'MSS_QDSP6SS.*',
+        'SSC.*',
+        'PERIPH_SS_SDC1_SDCC_ICE.*',
+        'UFS_ICE.*',
+        'DCC_SEC'
+      ]
+   if env['CHIPSET'] in ['msm8998']:
+      modules = [
+        'BIMC.*',
+        'APCS.*',
+        'APC.*',
+        'TLMM.*',
+        'LPASS_QDSP6SS.*',
+        'LPASS_QDSP6V60SS_PUB',
+        'MMSS_OCMEM.*',
+        'MMSS_HDMI.*',
+        'SECURITY_CONTROL_CORE',
+        'TCSR.*',
+        'GCC_CLK_CTL_REG',
+        'MPM2_WDOG',
+        'QDSS_QDSS_ETR.*',
+        'QDSS_QDSS_ETFETB.*',
+        'LPASS_LPASS_CC_REG',
+        'MMSS_CC',
+        'RAMBLUR.*',
+        'CRYPTO.*',
+        'PRNG.*',
+        'MMSS_MDSS_SEC_HDCP_SEC_TZ_ONLY',
+        'MMSS_MDSS_SEC_HDCP_SEC_TZ_HV',
+        'MPM2_PSHOLD',
+        'MSS_QDSP6V60SS.*',
+        'SSC.*',
+        'PERIPH_SS_SDC1_SDCC_ICE.*',
+        'UFS_ICE.*',
+        'CCI_.*',
+        'MMSS_DP.*',
+        'MMSS_MDSS_SEC_DP_HDCP_SEC_TZ_HV',
+        'MMSS_MDSS_SEC_DP_HDCP_SEC_TZ_HV_HLOS',
+        'MMSS_MDSS_SEC_DP_HDCP_SEC_TZ_ONLY',
+        'DCC_SEC'
+      ]
+   if env['CHIPSET'] in ['sdm660']:
+      modules = [
+        'BIMC.*',
+        'APCS.*',
+        'APC.*',
+        'TLMM.*',
+        'LPASS_QDSP6SS.*',
+        'LPASS_QDSP6V60SS_PUB',
+        'LPASS_SCSR.*',
+        'MMSS_OCMEM.*',
+        'MMSS_HDMI.*',
+        'SECURITY_CONTROL_CORE',
+        'TCSR.*',
+        'GCC_CLK_CTL_REG',
+        'MPM2_WDOG',
+        'QDSS_QDSS_ETR.*',
+        'QDSS_QDSS_ETFETB.*',
+        'LPASS_LPASS_CC_REG',
+        'MMSS_CC',
+        'RAMBLUR.*',
+        'CRYPTO.*',
+        'PRNG.*',
+        'MMSS_MDSS_SEC_HDCP_SEC_TZ_ONLY',
+        'MMSS_MDSS_SEC_HDCP_SEC_TZ_HV',
+        'MPM2_PSHOLD',
+        'MSS_QDSP6V60SS.*',
+        'PERIPH_SS_SDC1_SDCC_ICE.*',
+        'UFS_ICE.*',
+        'CCI_.*',
+        'MMSS_DP.*',
+        'TURING_QDSP6V60SS_PUB',
+        'MMSS_MDSS_SEC_DP_HDCP_SEC_TZ_HV',
+        'MMSS_MDSS_SEC_DP_HDCP_SEC_TZ_HV_HLOS',
+        'MMSS_MDSS_SEC_DP_HDCP_SEC_TZ_ONLY',
+        'DCC_SEC'
+      ]
+   if env['CHIPSET'] == "sdm845":
+      modules = [
+        'APCS.*',
+        'APC.*',
+        'TLMM.*',
+        'LPASS_QDSP6SS.*',
+        'OCMEM.*',
+        'HDMI.*',
+        'SECURITY_CONTROL_CORE',
+        'TCSR.*',
+        'GCC_CLK_CTL_REG',
+        'QDSS_ETR_ETR_CXTMC_R64W32D',
+        'QDSS_ETFETB_ETFETB_CXTMC_F128W64K',
+        'LPASS_LPASS_CC_REG',
+        'MMSS_CC',
+        'RAMBLUR.*',
+        'CRYPTO.*',
+        'PRNG.*',
+        'MSS_QDSP6SS.*',
+        'SSC.*',
+        'PERIPH_SS_SDC1_SDCC_ICE.*',
+        'UFS_MEM_ICE.*',
+        'UFS_MEM_ICE_LUT_KEYS',
+        'UFS_CARD_ICE.*',
+        'CCI_.*',
+        'PSHOLD',
+        'WDOG',
+        'AOSS_CC_AOSS_CC_REG',
+        'MDSS_SEC_DP_HDCP_SEC_TZ_HV_HLOS',
+        'MDSS_SEC_DP_HDCP_SEC_TZ_ONLY',
+        'MDSS_SEC_DP_HDCP_SEC_TZ_HV',
+      ]
+   if env['CHIPSET'] in ['msm8952', 'msm8953', 'msm8937']:
+      modules = [
+        'BIMC.*',
+        'APCS_.*',
+        'APCLUS.*',
+        'LPASS_QDSP6SS.*',
+        'LPASS_LPASS_CC_REG',
+        'CCI_.*',
+        'TLMM_.*',
+        'SECURITY_CONTROL_CORE',
+        'CRYPTO0_CRYPTO',
+        'WCSS_A_PMU.*',
+        'MSS_QDSP6SS.*',
+        'GCC_CLK_CTL_REG',
+        'PRNG_.*',
+        'MPM2_SLP_CNTR',
+        'MPM2_WDOG',
+        'MPM2_PSHOLD',
+        'QDSS_APB_DEC_ETR.*',
+        'QDSS_APB_DEC_ETFETB.*',
+        'TCSR_TCSR_.*',
+        'DEHR_BIMC',
+        'VENUS.*',
+        '.*XPU.*',
+        '.*RPU.*',
+        '.*APU.*',
+        '.*MPU.*',
+        '.*SMMU_APP_APPS.*',
+        'SDC1_SDCC_ICE',
+        'SDC1_SDCC_ICE_LUT_KEYS',
+        'SDC1_SDCC_ICE_REGS',
+      ]
+   if env['CHIPSET'] == "msm8956":
+      modules = [
+        'BIMC.*',
+        'APCS_.*',
+        'APCLUS.*',
+        'LPASS_QDSP6SS.*',
+        'LPASS_LPASS_CC_REG',
+        'CCI_.*',
+        'TLMM_.*',
+        'SECURITY_CONTROL_CORE',
+        'CRYPTO0_CRYPTO',
+        'WCSS_A_PMU.*',
+        'MSS_QDSP6SS.*',
+        'GCC_CLK_CTL_REG',
+        'PRNG_.*',
+        'MPM2_SLP_CNTR',
+        'MPM2_WDOG',
+        'MPM2_PSHOLD',
+        'QDSS_ETR.*',
+        'QDSS_ETFETB.*',
+        'QDSS_APB_DEC_ETR.*',
+        'QDSS_APB_DEC_ETFETB.*',
+        'TCSR_TCSR_.*',
+        'DEHR_BIMC',
+        'VENUS.*',
+        '.*XPU.*',
+        '.*RPU.*',
+        '.*APU.*',
+        '.*MPU.*',
+        '.*SMMU_APP_APPS.*',
+        'SDC1_SDCC_ICE',
+        'SDC1_SDCC_ICE_LUT_KEYS',
+        'SDC1_SDCC_ICE_REGS',
+      ]
+   if env['CHIPSET'] == "mdm9x45":
+      modules = [
+         'BIMC.*',
+         'APCS_.*',
+         'TLMM_.*',
+         'QTMR_AC.*',
+         'SECURITY_CONTROL_CORE',
+         'MSS_QDSP6SS.*',
+         'GCC_CLK_CTL_REG',
+         'PRNG_PRNG',
+         'CRYPTO.*',
+         'MPM2_PSHOLD',
+         'MPM2_WDOG',
+         'QDSS_APB_DEC_ETR.*',
+         'QDSS_APB_DEC_ETFETB.*',
+         'TCSR_TCSR_REGS',
+         'DEHR_BIMC',
+      ]
+   env.AddHWIOFile('HWIO', [
+      {
+         'filename': '${INC_ROOT}/core/securemsm/trustzone/qsee/arch/${CHIPSET}/cfg/common/tzbsp_hwio.h',
+         'output-phys': True,
+         'modules': modules,
+         'header': '#include "msmhwiobase.h"'
+      }
+   ])
+
+CLEAN_SOURCES = [
+    '${BUILDPATH}/include/qsee_interface.h',
+    '${BUILDPATH}/include/tzbsp_sw_fuse.h',
+    '${BUILDPATH}/include/tzbsp_syscall_test.h',
+]
+
+if 'USES_QDSS_SWE' in env:
+   QDSS_IMG = ['QDSS_EN_IMG']
+   events = [
+      ['QDSS_SYSCALL_ERR_SMC_ID','SMC Call failed with  (SMCID: 0x%x) (ret: 0x%x) (ret[0]: %d) (ret[1]: 0x%x) (ret[2]: 0x%x)'],
+      ]
+   env.AddSWEInfo(QDSS_IMG, events)
+
+if 'QDSS_TRACER_SWE' in env:  #if SWE builder is loaded
+   tracer_event_inc="${BUILD_ROOT}/core/securemsm/trustzone/qsee/build/qdss/${BUILDPATH}"
+   gen_tracer_event_ids_h = tracer_event_inc+'/tz_tracer_event_ids.h'
+   gen_tracer_event_tbl_h = tracer_event_inc+'/tz_tracer_event_tbl.h'
+   gen_tracer_event_info_txt = tracer_event_inc+'/tz_tracer_event_info.txt'
+
+   env.SWEBuilder([gen_tracer_event_ids_h,
+                   gen_tracer_event_tbl_h,
+                   gen_tracer_event_info_txt],
+                   None)
+
+   env.Append(CPPPATH = [tracer_event_inc])
+
+
+CLEAN_SOURCES += env.FindFiles("*", "${BUILDPATH}/chipset/${CHIPSET}/")
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+env.LoadSoftwareUnits()
+env.CleanPack('TZOS_IMAGE', CLEAN_SOURCES)
+deploy_headers = [
+  '../include/CApp.h',
+  '../include/CAppMessage.h',
+  '../include/CCertValidate.h',
+  '../include/CCipher.h',
+  '../include/CCrypto.h',
+  '../include/CDataCache.h',
+  '../include/CDeviceID.h',
+  '../include/CGuestVM.h',
+  '../include/CGuestVM_open.h',
+  '../include/CGPApp.h',
+  '../include/CGPServices.h',
+  '../include/CHash.h',
+  '../include/CHavenTokenApp.h',
+  '../include/CHmac.h',
+  '../include/CHwFuse.h',
+  '../include/CHwFuse_open.h',
+  '../include/CI2C.h',
+  '../include/CNSMem.h',
+  '../include/CPrngSource.h',
+  '../include/CListener.h',
+  '../include/CMacchiato.h',
+  '../include/CPVC.h',
+  '../include/CNSMem.h',
+  '../include/CResetTimer.h',
+  '../include/CSecureChannel.h',
+  '../include/CSecureDisplay.h',
+  '../include/CSecureDisplay_open.h',
+  '../include/CSharedBuffer.h',
+  '../include/CSPI.h',
+  '../include/CSync.h',
+  '../include/CTLMM.h',
+  '../include/CHdmiStatus.h',
+  '../include/CUptime.h',
+  '../include/CIntMask.h',
+  '../include/COEMBuf.h',
+  '../include/CTransNSAddr.h',
+  '../include/CDebugPolicySource.h',
+  '../include/CNSSystemReg.h',
+  '../include/ICipher.h',
+  '../include/ICredentials.h',
+  '../include/ICrypto.h',
+  '../include/IDeviceID.h',
+  '../include/IEnv.h',
+  '../include/IEnv_invoke.h',
+  '../include/IGuestVM.h',
+  '../include/IGuestVM_invoke.h',
+  '../include/IHash.h',
+  '../include/IHavenTokenApp.h',
+  '../include/IHmac.h',
+  '../include/IHwFuse.h',
+  '../include/II2C.h',
+  '../include/INSMem.h',
+  '../include/IOpener.h',
+  '../include/IPVC.h',
+  '../include/IResetTimer.h',
+  '../include/ISecureDisplay.h',
+  '../include/ISource.h',
+  '../include/ISPI.h',
+  '../include/IUptime.h',
+  '../include/IValidate.h',
+  '../include/IHdmiStatus.h',
+  '../include/IIntMask.h',
+  '../include/IIO.h',
+  '../include/ITranslateAddr.h',
+  '../include/INSSystemReg.h',
+  '../include/qsee_cppf.h',
+  '../include/tzbsp_fs.h',
+  '../include/CSPCOM.h',
+  '../include/IHdcpEncryption.h',
+  '../include/CHdcpEncryption.h',
+  '../include/qsee_mmss_hdcp2p2.h',
+  '../include/tz_syscall_pub.h',
+  '../include/tzbsp_syscall.h',
+  '../include/tzbsp_syscall_priv.h',
+  '../include/tzbsp_mem.h',
+]
+env.Deploy([deploy_headers, 'SConscript'])

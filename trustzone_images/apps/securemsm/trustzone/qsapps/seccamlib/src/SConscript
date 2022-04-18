@@ -1,0 +1,47 @@
+#===============================================================================
+#
+# Secure Camera Library
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2016-2017 by Qualcomm Technologies, Inc. All Rights Reserved.
+# Qualcomm Technologies Proprietary and Confidential.
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/apps.tz/1.0.7.1/securemsm/trustzone/qsapps/seccamlib/src/SConscript#1 $
+#  $DateTime: 2020/01/14 12:33:12 $
+#  $Author: pwbldsvc $
+#  $Change: 22186812 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains schedulerents describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 01/01/17    dr     Created
+#===============================================================================
+Import('env')
+env = env.Clone()
+
+
+libname = 'seccam_lib'
+
+includes = [
+  "${BUILD_ROOT}/core/api/services",
+  "${BUILD_ROOT}/core/api/securemsm/trustzone/qsee",
+  "${BUILD_ROOT}/core/api/kernel/libstd/stringl",
+  "${BUILD_ROOT}/core/securemsm/accesscontrol/api",
+  "${BUILD_ROOT}/core/kernel/smmu/ACv3.0/common/inc",
+  "${BUILD_ROOT}/core/securemsm/trustzone/qsee/include/",
+  "${BUILD_ROOT}/core/securemsm/trustzone/qsee/mink/include/",
+   "../inc",
+]
+
+sources = ['seccamlib.c',]
+
+lib = env.SecureAppLibBuilder(includes, sources, libname)
+#env.CleanPack(env['APP_NAME'], sources + Glob('../inc/*.h'))
+Return('lib')

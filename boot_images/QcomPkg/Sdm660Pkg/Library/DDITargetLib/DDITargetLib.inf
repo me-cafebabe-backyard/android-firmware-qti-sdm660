@@ -1,0 +1,63 @@
+#/** @file DDRDebugImageLib.inf
+#
+#  DDR Debug Image Lib
+#
+#  Copyright (c) 2015-2016 Qualcomm Technologies, Inc . All rights reserved.
+#
+#**/
+
+#==============================================================================
+#                              EDIT HISTORY
+#
+#
+# when       who     what, where, why
+# --------   ---     ----------------------------------------------------------
+# 12/15/15   zhz     Add/remove the source file.
+# 06/24/15   sng     Initial revision.
+#
+#==============================================================================
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DDITargetLib
+  FILE_GUID                      = 8828C904-32AC-4D9D-9705-1DEC5E88B892
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = DDITargetLib
+
+[Sources]
+  ddi_target.c
+  DDITargetLib.c
+  ddi_sdm660.c
+  ../../../XBLRamDump/boot_sahara.h
+  ../XBLLoaderLib/boot_target.h
+  ../../../Library/DDILib/firehose/ddi_initialize.c
+  ../../../Library/DDILib/firehose/ddi_utils.c
+  ../../../Library/DDILib/firehose/ddi_firehose.c
+  ../../../Library/DDILib/bsp/ddi_bsp.c
+  ../../../Library/DDILib/ddi/ddi_tool.c
+  
+[Sources.common]
+  ../../../Library/PmicLib/target/sdm660_pm660_pm660l/psi/pm_config_target_sbl_sequence.c
+  ../../../Library/PmicLib/target/sdm660_pm660_pm660l/psi/pm_config_target_pbs_ram.c
+  ../../../Library/PmicLib/target/sdm660_pm660_pm660l/psi/pm_psi.c
+  ../../../Library/PmicLib/psi/psi_main.c
+
+[BuildOptions.AARCH64]
+  GCC:*_*_*_CC_FLAGS = -Werror -DBOOT_PBL_H=\"pbl_sbl_shared.h\" -DDDRCC_PLL_EXTENSION_0 -DDDI_BUILD -DFEATURE_BOOT_EXTERN_SECBOOT_COMPLETED -DDDR_GLOBAL_STRUCT_DATARAM_ADDR=0x002A2000 -DUSE_LOADER_UTILS -DFIREHOSE_LITE_CHANNEL_BUFFER_SIZE=4096 -DFIREHOSE_DDR_CHANNEL_BUFFER_SIZE=24576 -DFIREHOSE_TX_BUFFER_SIZE=4096 -DDEVICEPROGRAMMER_TARGET_NAME=\"MSM8998\" -DDEVICEPROGRAMMER_USE_DRIVENO=0  -DFEATURE_FIREHOSE_ENABLE_STORAGE_EXTRAS -DFEATURE_FIREHOSE_ENABLE_READ -DFEATURE_FIREHOSE_SKIP_CLOCK
+  GCC:*_*_*_DLINK_FLAGS = --whole-archive $(WORKSPACE)/Build/$(TARGETMSM)_Loader/$(TARGET)_$(TOOLCHAIN)/$(ARCH)/QcomPkg/$(TARGETMSM)Pkg/Library/PmicLib/PmicConfigDDILib/OUTPUT/PmicConfigDDILib.lib --no-whole-archive 
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  QcomPkg/QcomPkg.dec
+  QcomPkg/XBLLoaderApi.dec
+  QcomPkg/Sdm660Pkg/Library/DDRTargetLib/DDRTargetLibPkg.dec
+  QcomPkg/Sdm660Pkg/Library/DSFTargetLib/DSFTargetLibPkg.dec
+  QcomPkg/Sdm660Pkg/Library/PmicLib/loader/PmicLoaderLib.dec
+  QcomPkg/Sdm660Pkg/Library/PmicLib/PmicLib.dec
+  
+[LibraryClasses]
+  DebugLib
+  UsbWrapperLayerLib
+  UfsLoaderLib
+  MuslLib

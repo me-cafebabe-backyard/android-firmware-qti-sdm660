@@ -1,0 +1,221 @@
+//============================================================================
+//  Name:                                                                     
+//    std_trace.cmm 
+//
+//  Description:                                                              
+//    Top level tracing script
+//                                                                            
+// Copyright (c) 2012 - 2014 by Qualcomm Technologies, Incorporated.  All Rights Reserved.        
+//
+//
+//
+//
+//                      EDIT HISTORY FOR FILE
+//  This section contains comments describing changes made to the module.
+//  Notice that changes are listed in reverse chronological order.
+//
+// when       who             what, where, why
+// --------   ---             ---------------------------------------------------------
+// 08/24/2016 JBILLING        Ported from 8996 to 8998
+//
+//
+// Following arguments are supported. 
+// ARG0 - Processor to debug. 
+// ARG1 - Tracing Type . Currently supports TPIU, ETB
+// ARGn - n > 1 - Any other arguments to be passed to the script 
+
+//####################Declarations#######################
+
+LOCAL &ArgumentLine
+LOCAL &UTILITY &OPTION &IARG0 &IARG1 &IARG2 &IARG3 &IARG4 &IARG5 &IARG6 &IARG7 &IARG8 &IARG9 &IARG10 &IARG11
+LOCAL &TargetProcessor
+
+//###################Arguments passed #####################
+ENTRY %LINE &ArgumentLine
+ENTRY &UTILITY &OPTION &IARG0 &IARG1 &IARG2 &IARG3 &IARG4 &IARG5 &IARG6 &IARG7 &IARG8 &IARG9 &IARG10 &IARG11
+
+//##################Defaults##########################
+
+
+//#####################Select Subroutine###################
+// Name of the utility we are calling
+LOCAL &SUBROUTINE
+// Any subroutine specific options
+// Default exists for each subroutine
+LOCAL &OPTION
+
+// Input Argument 0 is the name of the utility
+&SUBROUTINE="&UTILITY"
+IF ("&SUBROUTINE"!="SETUPGPIOS")
+(
+    //no MAIN in target-specific trace routine
+    //&SUBROUTINE="MAIN"
+    
+    print "Warning - no subroutine found in std_trace_&CHIPSET"
+    GOTO EXIT
+    
+)
+ELSE
+(
+    // This should be created by some top level script. The setupenv for each proc would
+    // set this up
+     AREA.SELECT
+    // Call the required utility
+    GOSUB &SUBROUTINE &OPTION &IARG0 &IARG1 &IARG2 &IARG3 &IARG4 &IARG5 &IARG6 &IARG7 &IARG8 &IARG9 &IARG10 &IARG11
+    ENTRY &PASS &RVAL0 &RVAL1 &RVAL2
+
+    GOTO EXIT
+)
+
+
+
+
+LOCAL &SubSystem &Lpm_Option &CTI_enabled &Qurt_Breakpoints &PDOPTION &ExtraOption &fromfastboot
+LOCAL &Trace_Mode &TraceSource &CycleAccurate_Command &CycleAccurate_Mode &TraceConfiguration &PortSize
+
+//trace specific configurations
+local &Trace_Mode &TraceSource &CycleAccurate_Command &TraceConfiguration &PortSize 
+//extra configurations
+local &Lpm_Option &ExtraOption &fromfastboot
+
+
+////////////////////////////////////////
+//
+//            SETUPGPIOS
+//            
+//          write to target-specific GPIOs  for TPIU sink to make it to TPIU connector on CDP
+
+//          Assumes: attached to RPM, hwio is set up
+//
+/////////////////////////////////////////           
+SETUPGPIOS:
+            LOCAL &ACTION &ARG0 &ARG1 &ARG2 &ARG3 &ARG4 &ARG5 &ARG6 &ARG7 &ARG8 &ARG9 &ARG10 &ARG11
+            
+            ENTRY &ACTION &ARG0 &ARG1 &ARG2 &ARG3 &ARG4 &ARG5 &ARG6 &ARG7 &ARG8 &ARG9 &ARG10 &ARG11
+            LOCAL &Loc_ARG0 &Loc_ARG1 &Loc_ARG2 &Loc_ARG3 &Loc_ARG4 &Loc_ARG5 &Loc_ARG6 &Loc_ARG7 &Loc_ARG8 &Loc_ARG9 &Loc_ARG10 &Loc_ARG11
+            LOCAL &TraceSink 
+            
+            &TraceSink="&ARG0"
+
+            // We always need HWIO    
+            do hwio
+
+
+            //Increase QDSS Clock speed for all cases
+            // F=86MHz
+            //INTERNAL QDSS SPEED
+            //CLK_CTL_QDSS_AT_CFG_RCGR 0x102
+            //DO std_utils HWIO_OUT GCC_QDSS_TRACECLKIN_CFG_RCGR 0x103
+            //DO std_utils HWIO_OUT GCC_QDSS_TRACECLKIN_CMD_RCGR 0x1
+            //CLK_CTL_QDSS_AT_CMD_RCGR 0x1
+            //DO std_utils HWIO_OUT GCC_QDSS_AT_CMD_RCGR 0x1
+            
+            // For ETM tracing over TPIU, we need to configure the TLMM and this needs to happen just once
+            IF (("&TraceSink"=="tpiua")||("&TraceSink"=="tpiub"))
+            (
+
+
+//                DO std_utils HWIO_OUT TLMM_ETM_MODE 0x1
+//                DO std_utils HWIO_OUT TLMM_SDC2_HDRV_PULL_CTL 0x16D
+                
+                if "&TraceSink"=="tpiua"
+                (
+                
+                y.create.l TLMM_GPIO_CFG4   (&TLMM_GPIO_CFGn_BASE+0x1000*4.);D1
+                y.create.l TLMM_GPIO_CFG5   (&TLMM_GPIO_CFGn_BASE+0x1000*5.);D0
+                y.create.l TLMM_GPIO_CFG6   (&TLMM_GPIO_CFGn_BASE+0x1000*6.);CTL
+                y.create.l TLMM_GPIO_CFG7   (&TLMM_GPIO_CFGn_BASE+0x1000*7.);CLK
+                y.create.l TLMM_GPIO_CFG48  (&TLMM_GPIO_CFGn_BASE+0x1000*48.);D4
+                y.create.l TLMM_GPIO_CFG49  (&TLMM_GPIO_CFGn_BASE+0x1000*49.);D3
+                y.create.l TLMM_GPIO_CFG50  (&TLMM_GPIO_CFGn_BASE+0x1000*50.);D2
+                y.create.l TLMM_GPIO_CFG51  (&TLMM_GPIO_CFGn_BASE+0x1000*51.);D12
+                y.create.l TLMM_GPIO_CFG52  (&TLMM_GPIO_CFGn_BASE+0x1000*52.);D13
+                y.create.l TLMM_GPIO_CFG53  (&TLMM_GPIO_CFGn_BASE+0x1000*53.);D8
+                y.create.l TLMM_GPIO_CFG54  (&TLMM_GPIO_CFGn_BASE+0x1000*54.);D9
+                y.create.l TLMM_GPIO_CFG55  (&TLMM_GPIO_CFGn_BASE+0x1000*55.);D5
+                y.create.l TLMM_GPIO_CFG56  (&TLMM_GPIO_CFGn_BASE+0x1000*56.);D6
+                y.create.l TLMM_GPIO_CFG57  (&TLMM_GPIO_CFGn_BASE+0x1000*57.);D7
+                y.create.l TLMM_GPIO_CFG63  (&TLMM_GPIO_CFGn_BASE+0x1000*63.);D14
+                y.create.l TLMM_GPIO_CFG64  (&TLMM_GPIO_CFGn_BASE+0x1000*64.);D15
+                y.create.l TLMM_GPIO_CFG75  (&TLMM_GPIO_CFGn_BASE+0x1000*75.);D10
+                y.create.l TLMM_GPIO_CFG122 (&TLMM_GPIO_CFGn_BASE+0x1000*122.);D11
+                y.create.done
+                ; drv_strength|func_sel|gpio_pull
+                ;TPIU A
+                ;per.s.f TLMM_GPIO_CFG4  %L 0x1FF (0x7<<6)|(0x4<<2)|(0) ;D1
+                ;per.s.f TLMM_GPIO_CFG5  %L 0x1FF (0x7<<6)|(0x4<<2)|(0) ;D0
+                ;per.s.f TLMM_GPIO_CFG6  %L 0x1FF (0x7<<6)|(0x4<<2)|(0) ;CTL
+                ;per.s.f TLMM_GPIO_CFG7  %L 0x1FF (0x7<<6)|(0x4<<2)|(0) ;CLK
+                ;per.s.f TLMM_GPIO_CFG48 %L 0x1FF (0x7<<6)|(0x5<<2)|(0) ;D4
+                ;per.s.f TLMM_GPIO_CFG49 %L 0x1FF (0x7<<6)|(0x4<<2)|(0) ;D3
+                ;per.s.f TLMM_GPIO_CFG50 %L 0x1FF (0x7<<6)|(0x4<<2)|(0) ;D2
+                ;per.s.f TLMM_GPIO_CFG51 %L 0x1FF (0x7<<6)|(0x5<<2)|(0) ;D12
+                ;per.s.f TLMM_GPIO_CFG52 %L 0x1FF (0x7<<6)|(0x5<<2)|(0) ;D13
+                ;per.s.f TLMM_GPIO_CFG53 %L 0x1FF (0x7<<6)|(0x4<<2)|(0) ;D8
+                ;per.s.f TLMM_GPIO_CFG54 %L 0x1FF (0x7<<6)|(0x4<<2)|(0) ;D9
+                ;per.s.f TLMM_GPIO_CFG55 %L 0x1FF (0x7<<6)|(0x4<<2)|(0) ;D5
+                ;per.s.f TLMM_GPIO_CFG56 %L 0x1FF (0x7<<6)|(0x4<<2)|(0) ;D6
+                ;per.s.f TLMM_GPIO_CFG57 %L 0x1FF (0x7<<6)|(0x4<<2)|(0) ;D7
+                ;per.s.f TLMM_GPIO_CFG63 %L 0x1FF (0x7<<6)|(0x4<<2)|(0) ;D14
+                ;per.s.f TLMM_GPIO_CFG64 %L 0x1FF (0x7<<6)|(0x5<<2)|(0) ;D15
+                ;per.s.f TLMM_GPIO_CFG75 %L 0x1FF (0x7<<6)|(0x2<<2)|(0) ;D10
+                ;per.s.f TLMM_GPIO_CFG122 %L 0x1FF (0x7<<6)|(0x1<<2)|(0) ;D11
+
+                )
+                ELSE if "&TraceSink"=="tpiub"
+                (
+                    ;TPIU B
+                    y.create.l TLMM_GPIO_CFG13   (&TLMM_GPIO_CFGn_BASE+0x1000*13.);D0
+                    y.create.l TLMM_GPIO_CFG14   (&TLMM_GPIO_CFGn_BASE+0x1000*14.);D1
+                    y.create.l TLMM_GPIO_CFG15   (&TLMM_GPIO_CFGn_BASE+0x1000*15.);D2
+                    y.create.l TLMM_GPIO_CFG16   (&TLMM_GPIO_CFGn_BASE+0x1000*16.);D2
+                    y.create.l TLMM_GPIO_CFG17   (&TLMM_GPIO_CFGn_BASE+0x1000*17.);D4
+                    y.create.l TLMM_GPIO_CFG18   (&TLMM_GPIO_CFGn_BASE+0x1000*18.);D5
+                    y.create.l TLMM_GPIO_CFG19   (&TLMM_GPIO_CFGn_BASE+0x1000*19.);D6
+                    y.create.l TLMM_GPIO_CFG20   (&TLMM_GPIO_CFGn_BASE+0x1000*20.);D7
+                    y.create.l TLMM_GPIO_CFG21   (&TLMM_GPIO_CFGn_BASE+0x1000*21.);D8
+                    y.create.l TLMM_GPIO_CFG22   (&TLMM_GPIO_CFGn_BASE+0x1000*22.);CLK
+                    y.create.l TLMM_GPIO_CFG23   (&TLMM_GPIO_CFGn_BASE+0x1000*23.);D9
+                    y.create.l TLMM_GPIO_CFG24   (&TLMM_GPIO_CFGn_BASE+0x1000*24.);D10
+                    y.create.l TLMM_GPIO_CFG25   (&TLMM_GPIO_CFGn_BASE+0x1000*25.);D11
+                    y.create.l TLMM_GPIO_CFG26   (&TLMM_GPIO_CFGn_BASE+0x1000*26.);D12
+                    y.create.l TLMM_GPIO_CFG27   (&TLMM_GPIO_CFGn_BASE+0x1000*27.);D13
+                    y.create.l TLMM_GPIO_CFG28   (&TLMM_GPIO_CFGn_BASE+0x1000*28.);D14
+                    y.create.l TLMM_GPIO_CFG29   (&TLMM_GPIO_CFGn_BASE+0x1000*29.);D15
+                    y.create.l TLMM_GPIO_CFG30   (&TLMM_GPIO_CFGn_BASE+0x1000*30.);CTL
+
+                    y.create.done
+                    ;TPIU B
+                    per.s.f eaxi:TLMM_GPIO_CFG13  %L 0x1FF (0x7<<6)|(0x3<<2)|(0) ;D0
+                    per.s.f eaxi:TLMM_GPIO_CFG14  %L 0x1FF (0x7<<6)|(0x3<<2)|(0) ;D1
+                    per.s.f eaxi:TLMM_GPIO_CFG15  %L 0x1FF (0x7<<6)|(0x2<<2)|(0) ;D2
+                    per.s.f eaxi:TLMM_GPIO_CFG16  %L 0x1FF (0x7<<6)|(0x2<<2)|(0) ;D3
+                    per.s.f eaxi:TLMM_GPIO_CFG17  %L 0x1FF (0x7<<6)|(0x2<<2)|(0) ;D4
+                    per.s.f eaxi:TLMM_GPIO_CFG18  %L 0x1FF (0x7<<6)|(0x3<<2)|(0) ;D5
+                    per.s.f eaxi:TLMM_GPIO_CFG19  %L 0x1FF (0x7<<6)|(0x3<<2)|(0) ;D6
+                    per.s.f eaxi:TLMM_GPIO_CFG20  %L 0x1FF (0x7<<6)|(0x2<<2)|(0) ;D7
+                    per.s.f eaxi:TLMM_GPIO_CFG21  %L 0x1FF (0x7<<6)|(0x3<<2)|(0) ;D8
+                    per.s.f eaxi:TLMM_GPIO_CFG22  %L 0x1FF (0x7<<6)|(0x3<<2)|(0) ;CLK
+                    per.s.f eaxi:TLMM_GPIO_CFG23  %L 0x1FF (0x7<<6)|(0x3<<2)|(0) ;D9
+                    per.s.f eaxi:TLMM_GPIO_CFG24  %L 0x1FF (0x7<<6)|(0x5<<2)|(0) ;D10
+                    per.s.f eaxi:TLMM_GPIO_CFG25  %L 0x1FF (0x7<<6)|(0x5<<2)|(0) ;D11
+                    per.s.f eaxi:TLMM_GPIO_CFG26  %L 0x1FF (0x7<<6)|(0x2<<2)|(0) ;D12
+                    per.s.f eaxi:TLMM_GPIO_CFG27  %L 0x1FF (0x7<<6)|(0x2<<2)|(0) ;D13
+                    per.s.f eaxi:TLMM_GPIO_CFG28  %L 0x1FF (0x7<<6)|(0x2<<2)|(0) ;D14
+                    per.s.f eaxi:TLMM_GPIO_CFG29  %L 0x1FF (0x7<<6)|(0x3<<2)|(0) ;D15
+                    per.s.f eaxi:TLMM_GPIO_CFG30  %L 0x1FF (0x7<<6)|(0x3<<2)|(0) ;CTL
+
+
+
+                )
+            )
+
+RETURN
+
+
+    
+EXIT:
+    ENDDO
+
+FATALEXIT:
+    END

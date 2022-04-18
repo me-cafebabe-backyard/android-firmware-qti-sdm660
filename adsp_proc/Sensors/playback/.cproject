@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="com.qualcomm.hexagon.llvm.config.q6.exe.debug.233682460">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.qualcomm.hexagon.llvm.config.q6.exe.debug.233682460" moduleId="org.eclipse.cdt.core.settings" name="LLVM_Debug">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactName="${ProjName}" buildArtefactType="com.qualcomm.hexagon.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=com.qualcomm.hexagon.build.core.buildArtefactType.exe" description="" errorParsers="org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GLDErrorParser" id="com.qualcomm.hexagon.llvm.config.q6.exe.debug.233682460" name="LLVM_Debug" parent="com.qualcomm.hexagon.llvm.config.q6.exe.debug" postannouncebuildStep="" postbuildStep="" preannouncebuildStep="" prebuildStep="">
+					<folderInfo id="com.qualcomm.hexagon.llvm.config.q6.exe.debug.233682460." name="/" resourcePath="">
+						<toolChain errorParsers="" id="com.qualcomm.hexagon.llvm.toolchain.q6.exe.debug.208828846" name="Hexagon LLVM Tool Chain" nonInternalBuilderId="com.qualcomm.hexagon.llvm.target.q6.builder.exe.debug" superClass="com.qualcomm.hexagon.llvm.toolchain.q6.exe.debug">
+							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF" id="com.qualcomm.hexagon.llvm.target.q6.platform.exe.debug.145329702" name="Debug Platform" superClass="com.qualcomm.hexagon.llvm.target.q6.platform.exe.debug"/>
+							<builder arguments="-k" autoBuildTarget="all" buildPath="fast_playback_v60_LLVM}/LLVM_Debug" cleanBuildTarget="clean" errorParsers="" id="org.eclipse.cdt.build.core.internal.builder.276408504" incrementalBuildTarget="all" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="CDT Internal Builder" superClass="org.eclipse.cdt.build.core.internal.builder">
+								<outputEntries>
+									<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="outputPath" name="LLVM_Debug"/>
+									<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="outputPath" name="LLVM_Release"/>
+								</outputEntries>
+							</builder>
+							<tool id="com.qualcomm.hexagon.llvm.tool.q6.archiver.base.394379916" name="Hexagon Archiver" superClass="com.qualcomm.hexagon.llvm.tool.q6.archiver.base"/>
+							<tool command="hexagon-clang++" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" errorParsers="org.eclipse.cdt.core.GCCErrorParser" id="com.qualcomm.hexagon.llvm.tool.q6.cpp.compiler.exe.debug.978871423" name="Hexagon C++ Compiler" superClass="com.qualcomm.hexagon.llvm.tool.q6.cpp.compiler.exe.debug">
+								<option id="com.qualcomm.hexagon.llvm.q6.cpp.compiler.exe.debug.option.optimization.level.959823336" name="Optimization Level" superClass="com.qualcomm.hexagon.llvm.q6.cpp.compiler.exe.debug.option.optimization.level" value="com.qualcomm.hexagon.llvm.q6.cpp.compiler.optimization.level.none" valueType="enumerated"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.cpp.compiler.exe.debug.option.debugging.level.1890034743" name="Debug Level" superClass="com.qualcomm.hexagon.llvm.q6.cpp.compiler.exe.debug.option.debugging.level" value="com.qualcomm.hexagon.llvm.q6.cpp.compiler.debugging.level.max" valueType="enumerated"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.cpp.compiler.arch.179363480" name="Processor Architecture" superClass="com.qualcomm.hexagon.llvm.q6.cpp.compiler.arch" value="com.qualcomm.hexagon.llvm.q6.cpp.compiler.arch.v60" valueType="enumerated"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.cpp.compiler.option.preprocessor.def.1228100912" name="Defined symbols (-D)" superClass="com.qualcomm.hexagon.llvm.q6.cpp.compiler.option.preprocessor.def" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="__FILENAME__=__FILE__"/>
+									<listOptionValue builtIn="false" value="USE_NATIVE_MALLOC"/>
+									<listOptionValue builtIn="false" value="USE_NATIVE_MEMCPY"/>
+									<listOptionValue builtIn="false" value="FAST_PLAYBACK"/>
+								</option>
+								<option id="com.qualcomm.hexagon.llvm.q6.cpp.compiler.option.include.paths.1929659262" name="Include paths (-I)" superClass="com.qualcomm.hexagon.llvm.q6.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/playback/src/fake_smgr&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/../core/api/dal&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/../core/buses/api/i2c&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/ddf/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/smgr/src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/smgr/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/playback/src/fake_smgr&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/idl/src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/playback/src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/playback/src/smr/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/playback/src/smr/src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/api&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/debug/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/pm/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/idl/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/circbuffer/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/mathtools/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/batchbuffer/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/queue/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/dl/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/framework/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/sam/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/smgr/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/util/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/amd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/common/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/fast_amd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/rmd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/cmc/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/fmv/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/game_rv/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/grav/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/orientation/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/quat/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/rotv/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/smd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/tilt/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/dpc/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/gyro_cal/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmag_cal/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/pmd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/ped/v01/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/rtld/src/stubs&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/basic_gestures/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/bring_to_ear/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo-ship/oem1/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo-ship/oem2/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo-ship/threshold/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/db/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/egs/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/facing/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/iod/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/iod_autocal/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/multishake/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/dev_ori/inc&quot;"/>
+									<listOptionValue builtIn="false" value="C:/Qualcomm/Hexagon_SDK/2.0/lib/common/qurt/ADSPv60MP/include"/>
+									<listOptionValue builtIn="false" value="C:/Qualcomm/Hexagon_SDK/2.0/inc/stddef"/>
+									<listOptionValue builtIn="false" value="C:/Qualcomm/Hexagon_SDK/2.0/lib/common/remote/ship/hexagon_Debug"/>
+								</option>
+								<option id="com.qualcomm.hexagon.llvm.q6.cpp.compiler.option.other.other.1038019931" name="Other flags" superClass="com.qualcomm.hexagon.llvm.q6.cpp.compiler.option.other.other" value="-c -fmessage-length=0 " valueType="string"/>
+								<inputType id="com.qualcomm.hexagon.llvm.tool.q6.cpp.compiler.input.1330637585" superClass="com.qualcomm.hexagon.llvm.tool.q6.cpp.compiler.input"/>
+							</tool>
+							<tool command="hexagon-clang" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" errorParsers="org.eclipse.cdt.core.GCCErrorParser" id="com.qualcomm.hexagon.llvm.tool.q6.c.compiler.exe.debug.136786973" name="Hexagon C Compiler" superClass="com.qualcomm.hexagon.llvm.tool.q6.c.compiler.exe.debug">
+								<option defaultValue="com.qualcomm.hexagon.llvm.q6.c.optimization.level.none" id="com.qualcomm.hexagon.llvm.q6.c.compiler.exe.debug.option.optimization.level.1604649144" name="Optimization Level" superClass="com.qualcomm.hexagon.llvm.q6.c.compiler.exe.debug.option.optimization.level" valueType="enumerated"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.c.compiler.exe.debug.option.debugging.level.465343749" name="Debug Level" superClass="com.qualcomm.hexagon.llvm.q6.c.compiler.exe.debug.option.debugging.level" value="com.qualcomm.hexagon.llvm.q6.c.debugging.level.max" valueType="enumerated"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.c.compiler.arch.1223621352" name="Processor Architecture" superClass="com.qualcomm.hexagon.llvm.q6.c.compiler.arch" value="com.qualcomm.hexagon.llvm.q6.c.compiler.arch.v60" valueType="enumerated"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.c.compiler.option.preprocessor.def.symbols.750452910" name="Defined symbols (-D)" superClass="com.qualcomm.hexagon.llvm.q6.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="__FILENAME__=__FILE__"/>
+									<listOptionValue builtIn="false" value="USE_NATIVE_MALLOC"/>
+									<listOptionValue builtIn="false" value="USE_NATIVE_MEMCPY"/>
+									<listOptionValue builtIn="false" value="FAST_PLAYBACK"/>
+								</option>
+								<option id="com.qualcomm.hexagon.llvm.q6.c.compiler.option.include.paths.170679699" name="Include paths (-I)" superClass="com.qualcomm.hexagon.llvm.q6.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/playback/src/fake_smgr&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/dev_ori/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/smgr/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/../core/buses/api/i2c&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/../core/api/dal&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/ddf/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/playback/src/fake_smgr&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/smgr/src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/idl/src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/api&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/playback/src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/playback/src/smr/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/playback/src/smr/src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/debug/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/pm/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/idl/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/circbuffer/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/mathtools/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/batchbuffer/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/queue/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/dl/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/framework/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/smgr/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/loc/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/sam/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/smgri/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/util/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/amd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/common/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/fast_amd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/rmd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/cmc/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/fmv/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/game_rv/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/grav/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/orientation/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/quat/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/rotv/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/smd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/tilt/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/dpc/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/gyro_cal/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmag_cal/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/pmd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/ped/v01/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/rtld/src/stubs&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/basic_gestures/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/bring_to_ear/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo-ship/oem1/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo-ship/oem2/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo-ship/threshold/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/db/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/egs/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/facing/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/iod/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/iod_autocal/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/multishake/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/gyro_cal/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmag_cal/inc&quot;"/>
+									<listOptionValue builtIn="false" value="C:/Qualcomm/Hexagon_SDK/2.0/inc/stddef"/>
+									<listOptionValue builtIn="false" value="C:/Qualcomm/Hexagon_SDK/2.0/lib/common/qurt/ADSPv60MP/include"/>
+									<listOptionValue builtIn="false" value="C:/Qualcomm/Hexagon_SDK/2.0/lib/common/remote/ship/hexagon_Debug"/>
+								</option>
+								<inputType id="com.qualcomm.hexagon.llvm.tool.q6.c.compiler.input.942836595" superClass="com.qualcomm.hexagon.llvm.tool.q6.c.compiler.input"/>
+							</tool>
+							<tool id="com.qualcomm.hexagon.llvm.tool.q6.c.linker.exe.debug.393781201" name="Hexagon C Linker" superClass="com.qualcomm.hexagon.llvm.tool.q6.c.linker.exe.debug">
+								<option id="com.qualcomm.hexagon.llvm.q6.c.link.arch.367017148" name="Processor Architecture" superClass="com.qualcomm.hexagon.llvm.q6.c.link.arch" value="com.qualcomm.hexagon.llvm.q6.c.link.arch.v60" valueType="enumerated"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.c.link.option.ldflags.1239755729" name="Linker Flags" superClass="com.qualcomm.hexagon.llvm.q6.c.link.option.ldflags" value=" -Wl,--section-start -Wl,.start=0x1d000000 -Wl,--start-group ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/init.o ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/crt0.o ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libc.a ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libqcc.a ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libhexagon.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libqurt.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libqurtkernel.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libqurtcfs.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libqube_compat.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libtimer.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libposix.a ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libc.a ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libqcc.a ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libstdc++.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSPv60MP/lib/libqurtdebugger.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/examples/cust_config.o ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/fini.o -Wl,--end-group" valueType="string"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.c.link.option.nostdlibs.102035591" name="No startup or default libs (-nostdlib)" superClass="com.qualcomm.hexagon.llvm.q6.c.link.option.nostdlibs" value="true" valueType="boolean"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.c.link.option.libs.60124744" name="Libraries (-l)" superClass="com.qualcomm.hexagon.llvm.q6.c.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" value="hexagon"/>
+								</option>
+							</tool>
+							<tool command="hexagon-clang++" commandLinePattern="${COMMAND} ${INPUTS} ${FLAGS} ${OUTPUT_FLAG}${OUTPUT_PREFIX}${OUTPUT}" errorParsers="org.eclipse.cdt.core.GLDErrorParser" id="com.qualcomm.hexagon.llvm.tool.q6.cpp.linker.exe.debug.1368271703" name="Hexagon C++ Linker" superClass="com.qualcomm.hexagon.llvm.tool.q6.cpp.linker.exe.debug">
+								<option id="com.qualcomm.hexagon.llvm.q6.cpp.link.arch.819421522" name="Processor Architecture" superClass="com.qualcomm.hexagon.llvm.q6.cpp.link.arch" value="com.qualcomm.hexagon.llvm.q6.cpp.link.arch.v60" valueType="enumerated"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.cpp.link.option.flags.600565391" name="Linker flags" superClass="com.qualcomm.hexagon.llvm.q6.cpp.link.option.flags" value=" -Wl,--section-start -Wl,.start=0x1d000000 -Wl,--start-group ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/init.o ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/crt0.o ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libc.a ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libqcc.a ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libhexagon.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libqurt.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libqurtkernel.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libqurtcfs.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libqube_compat.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libtimer.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libposix.a ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libc.a ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libqcc.a ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libstdc++.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSPv60MP/lib/libqurtdebugger.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/examples/cust_config.o ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/fini.o -Wl,--end-group" valueType="string"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.cpp.link.option.nostdlibs.604012011" name="No startup or default libs (-nostdlib)" superClass="com.qualcomm.hexagon.llvm.q6.cpp.link.option.nostdlibs" value="true" valueType="boolean"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.cpp.link.option.libs.2131630443" name="Libraries (-l)" superClass="com.qualcomm.hexagon.llvm.q6.cpp.link.option.libs"/>
+								<inputType id="com.qualcomm.hexagon.llvm.tool.q6.cpp.linker.input.1635299487" superClass="com.qualcomm.hexagon.llvm.tool.q6.cpp.linker.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+							</tool>
+							<tool command="hexagon-clang++ -c" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" errorParsers="org.eclipse.cdt.core.GASErrorParser" id="com.qualcomm.hexagon.llvm.tool.q6.assembler.exe.debug.1873199244" name="Hexagon Assembler" superClass="com.qualcomm.hexagon.llvm.tool.q6.assembler.exe.debug">
+								<option id="com.qualcomm.hexagon.llvm.q6.assembler.option.debugging.level.1187117960" name="Debug Level" superClass="com.qualcomm.hexagon.llvm.q6.assembler.option.debugging.level" value="com.qualcomm.hexagon.llvm.q6.asm.debugging.level.max" valueType="enumerated"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.asm.arch.1544538374" name="Processor Architecture" superClass="com.qualcomm.hexagon.llvm.q6.asm.arch" value="com.qualcomm.hexagon.llvm.q6.asm.arch.v60" valueType="enumerated"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.both.asm.option.include.paths.1500690925" name="Include paths (-I)" superClass="com.qualcomm.hexagon.llvm.q6.both.asm.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/smgr/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/dev_ori/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/smgr/src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/smgr/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/../core/buses/api/i2c&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/../core/api/dal&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/ddf/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/playback/src/fake_smgr&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/playback/src/smr/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/playback/src/smr/src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/api&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/debug/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/pm/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/idl/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/idl/src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/circbuffer/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/mathtools/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/batchbuffer/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/queue/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/dl/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/framework/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/smgr/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/loc/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/sam/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/smgri/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/util/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/amd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/common/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/fast_amd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/rmd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/cmc/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/fmv/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/game_rv/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/grav/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/orientation/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/quat/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/rotv/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/smd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/tilt/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/dpc/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/gyro_cal/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmag_cal/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/pmd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/ped/v01/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/rtld/src/stubs&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/basic_gestures/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/bring_to_ear/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo-ship/oem1/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo-ship/oem2/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo-ship/threshold/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/db/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/egs/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/facing/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/iod/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/iod_autocal/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/multishake/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/playback/src&quot;"/>
+									<listOptionValue builtIn="false" value="C:/Qualcomm/Hexagon_SDK/2.0/inc/stddef"/>
+									<listOptionValue builtIn="false" value="C:/Qualcomm/Hexagon_SDK/2.0/lib/common/qurt/ADSPv60MP/include"/>
+									<listOptionValue builtIn="false" value="C:/Qualcomm/Hexagon_SDK/2.0/lib/common/remote/ship/hexagon_Debug"/>
+								</option>
+								<inputType id="com.qualcomm.hexagon.llvm.tool.q6.assembler.input.2147390341" superClass="com.qualcomm.hexagon.llvm.tool.q6.assembler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+					<fileInfo id="com.qualcomm.hexagon.llvm.config.q6.exe.debug.233682460.1208394236" name="sns_pm_priv.h" rcbsApplicability="disable" resourcePath="pm/src/sns_pm_priv.h" toolsToInvoke=""/>
+					<sourceEntries>
+						<entry excluding="ddf/src|smgr/build|common/smr|debugtools|pm/src/sns_pm.c|core/mproc/glink|core/debugtrace|core/build|pm/src/sns_pm_smp2p.c|src/common/usam/algo/db|common/util/memmgr/src/oi_debug.c|src/pm|core/mproc/smem|src/fake_smgr/unused|core/powertools|core/memory|core/mproc/ipc_router|core/dal|core/systemdrivers|pm/src/sns_pm_uimg.c|src/common/usam/algo/egs|core/testframework|core/mproc/smd_stubs|common/usam/algo/ped/v02|src/debug|core/mproc/smp2p|src/common/usam/algo/basic_gestures|common/util/memmgr/src/sns_u_memmgr.c|core/bsp|debug/src|core/debugtools|core/securemsm|core/power|common/util/memmgr/src/sns_u_uimg_utils.c|core/mproc/build|core/hwengines|common/util/memmgr/src/oi_utils.c|common/idl/idl|common/util/memmgr/src/sns_uimg_utils.c|src/common/usam/algo/facing|src/common/usam/algo/tilt|core/products|core/kernel|core/storage|core/apttests|common/util/memmgr/src/mem_cfg_frag1.c|core/mproc/qmi/build|common/util/memmgr/src/memprof.c|pm/src/sns_pm_unit_test.c|src/common/usam/algo-ship/threshold|common/util/memmgr/src/oi_memmgr.c|common/util/memmgr/src/sns_memheap_lite.c|common/util/memmgr/src/sns_memmgr.c|common/util/memmgr/src/mem_cfg.c|core/services|src/common|common/util/memmgr/src/sns_memheap.c|src/api|src/common/usam/algo-ship/oem1" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+					</sourceEntries>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+		<cconfiguration id="com.qualcomm.hexagon.llvm.config.q6.exe.release.1705588539">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.qualcomm.hexagon.llvm.config.q6.exe.release.1705588539" moduleId="org.eclipse.cdt.core.settings" name="LLVM_Release">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactName="${ProjName}" buildArtefactType="com.qualcomm.hexagon.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release,org.eclipse.cdt.build.core.buildArtefactType=com.qualcomm.hexagon.build.core.buildArtefactType.exe" description="" id="com.qualcomm.hexagon.llvm.config.q6.exe.release.1705588539" name="LLVM_Release" parent="com.qualcomm.hexagon.llvm.config.q6.exe.release">
+					<folderInfo id="com.qualcomm.hexagon.llvm.config.q6.exe.release.1705588539." name="/" resourcePath="">
+						<toolChain id="com.qualcomm.hexagon.llvm.toolchain.q6.exe.release.1085818283" name="Hexagon LLVM Tool Chain" nonInternalBuilderId="com.qualcomm.hexagon.llvm.target.q6.builder.exe.release" superClass="com.qualcomm.hexagon.llvm.toolchain.q6.exe.release">
+							<targetPlatform id="com.qualcomm.hexagon.llvm.target.q6.platform.exe.release.1048627232" name="Debug Platform" superClass="com.qualcomm.hexagon.llvm.target.q6.platform.exe.release"/>
+							<builder arguments="-k" autoBuildTarget="all" buildPath="fast_playback_v60_LLVM}/LLVM_Release" cleanBuildTarget="clean" id="org.eclipse.cdt.build.core.internal.builder.1712640043" incrementalBuildTarget="all" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="CDT Internal Builder" superClass="org.eclipse.cdt.build.core.internal.builder"/>
+							<tool id="com.qualcomm.hexagon.llvm.tool.q6.archiver.base.1966043878" name="Hexagon Archiver" superClass="com.qualcomm.hexagon.llvm.tool.q6.archiver.base"/>
+							<tool id="com.qualcomm.hexagon.llvm.tool.q6.cpp.compiler.exe.release.1581606597" name="Hexagon C++ Compiler" superClass="com.qualcomm.hexagon.llvm.tool.q6.cpp.compiler.exe.release">
+								<option id="com.qualcomm.hexagon.llvm.q6.cpp.compiler.exe.release.option.optimization.level.1310907621" name="Optimization Level" superClass="com.qualcomm.hexagon.llvm.q6.cpp.compiler.exe.release.option.optimization.level" value="com.qualcomm.hexagon.llvm.q6.cpp.compiler.optimization.level.most" valueType="enumerated"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.cpp.compiler.exe.release.option.debugging.level.735519138" name="Debug Level" superClass="com.qualcomm.hexagon.llvm.q6.cpp.compiler.exe.release.option.debugging.level" value="com.qualcomm.hexagon.llvm.q6.cpp.compiler.debugging.level.none" valueType="enumerated"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.cpp.compiler.arch.1100537568" name="Processor Architecture" superClass="com.qualcomm.hexagon.llvm.q6.cpp.compiler.arch" value="com.qualcomm.hexagon.llvm.q6.cpp.compiler.arch.v60" valueType="enumerated"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.cpp.compiler.option.preprocessor.def.1653773280" name="Defined symbols (-D)" superClass="com.qualcomm.hexagon.llvm.q6.cpp.compiler.option.preprocessor.def" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="__FILENAME__=__FILE__"/>
+									<listOptionValue builtIn="false" value="FAST_PLAYBACK"/>
+								</option>
+								<option id="com.qualcomm.hexagon.llvm.q6.cpp.compiler.option.include.paths.1880381245" name="Include paths (-I)" superClass="com.qualcomm.hexagon.llvm.q6.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/${ProjName}/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/${ProjName}/src/fake_smgr}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/api&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/debug/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/pm/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/idl/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/smr/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/smr/src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/circbuffer/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/mathtools/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/batchbuffer/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/queue/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/dl/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/framework/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/smgr/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/loc/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/sam/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/smgri/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/util/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/amd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/common/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/fast_amd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/rmd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/cmc/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/fmv/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/game_rv/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/grav/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/orientation/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/ped/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/quat/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/rotv/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/smd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/tilt/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/dpc/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${HEXAGON_SDK_ROOT}/inc/stddef&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${HEXAGON_SDK_ROOT}/lib/common/remote/ship/hexagon_Debug&quot;"/>
+								</option>
+								<inputType id="com.qualcomm.hexagon.llvm.tool.q6.cpp.compiler.input.2033832358" superClass="com.qualcomm.hexagon.llvm.tool.q6.cpp.compiler.input"/>
+							</tool>
+							<tool id="com.qualcomm.hexagon.llvm.tool.q6.c.compiler.exe.release.82657369" name="Hexagon C Compiler" superClass="com.qualcomm.hexagon.llvm.tool.q6.c.compiler.exe.release">
+								<option defaultValue="com.qualcomm.hexagon.llvm.q6.c.optimization.level.most" id="com.qualcomm.hexagon.llvm.q6.c.compiler.exe.release.option.optimization.level.496113690" name="Optimization Level" superClass="com.qualcomm.hexagon.llvm.q6.c.compiler.exe.release.option.optimization.level" valueType="enumerated"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.c.compiler.exe.release.option.debugging.level.1218667656" name="Debug Level" superClass="com.qualcomm.hexagon.llvm.q6.c.compiler.exe.release.option.debugging.level" value="com.qualcomm.hexagon.llvm.q6.c.debugging.level.none" valueType="enumerated"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.c.compiler.arch.1575802806" name="Processor Architecture" superClass="com.qualcomm.hexagon.llvm.q6.c.compiler.arch" value="com.qualcomm.hexagon.llvm.q6.c.compiler.arch.v60" valueType="enumerated"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.c.compiler.option.preprocessor.def.symbols.516106155" name="Defined symbols (-D)" superClass="com.qualcomm.hexagon.llvm.q6.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="__FILENAME__=__FILE__"/>
+									<listOptionValue builtIn="false" value="FAST_PLAYBACK"/>
+								</option>
+								<option id="com.qualcomm.hexagon.llvm.q6.c.compiler.option.include.paths.1075377080" name="Include paths (-I)" superClass="com.qualcomm.hexagon.llvm.q6.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjName}/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjName}/src/fake_smgr}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/api&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/debug/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/pm/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/idl/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/smr/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/smr/src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/circbuffer/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/mathtools/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/batchbuffer/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/queue/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/dl/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/framework/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/smgr/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/loc/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/sam/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/smgri/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/util/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/amd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/common/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/fast_amd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/rmd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/cmc/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/fmv/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/game_rv/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/grav/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/orientation/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/ped/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/quat/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/rotv/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/smd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/tilt/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/dpc/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${HEXAGON_SDK_ROOT}/inc/stddef&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${HEXAGON_SDK_ROOT}/lib/common/remote/ship/hexagon_Debug&quot;"/>
+								</option>
+								<inputType id="com.qualcomm.hexagon.llvm.tool.q6.c.compiler.input.1240834236" superClass="com.qualcomm.hexagon.llvm.tool.q6.c.compiler.input"/>
+							</tool>
+							<tool id="com.qualcomm.hexagon.llvm.tool.q6.c.linker.exe.release.2060197719" name="Hexagon C Linker" superClass="com.qualcomm.hexagon.llvm.tool.q6.c.linker.exe.release">
+								<option id="com.qualcomm.hexagon.llvm.q6.c.link.arch.894968871" name="Processor Architecture" superClass="com.qualcomm.hexagon.llvm.q6.c.link.arch" value="com.qualcomm.hexagon.llvm.q6.c.link.arch.v60" valueType="enumerated"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.c.link.option.ldflags.748473475" name="Linker Flags" superClass="com.qualcomm.hexagon.llvm.q6.c.link.option.ldflags" value=" -Wl,--section-start -Wl,.start=0x1d000000 -Wl,--start-group ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/init.o ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/crt0.o ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libc.a ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libqcc.a ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libhexagon.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libqurt.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libqurtkernel.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libqurtcfs.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libqube_compat.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libtimer.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libposix.a ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libc.a ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libqcc.a ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libstdc++.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSPv60MP/lib/libqurtdebugger.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/examples/cust_config.o ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/fini.o -Wl,--end-group" valueType="string"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.c.link.option.nostdlibs.466457187" name="No startup or default libs (-nostdlib)" superClass="com.qualcomm.hexagon.llvm.q6.c.link.option.nostdlibs" value="true" valueType="boolean"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.c.link.option.libs.721701203" name="Libraries (-l)" superClass="com.qualcomm.hexagon.llvm.q6.c.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" value="hexagon"/>
+								</option>
+							</tool>
+							<tool id="com.qualcomm.hexagon.llvm.tool.q6.cpp.linker.exe.release.64769984" name="Hexagon C++ Linker" superClass="com.qualcomm.hexagon.llvm.tool.q6.cpp.linker.exe.release">
+								<option id="com.qualcomm.hexagon.llvm.q6.cpp.link.arch.1470424772" name="Processor Architecture" superClass="com.qualcomm.hexagon.llvm.q6.cpp.link.arch" value="com.qualcomm.hexagon.llvm.q6.cpp.link.arch.v60" valueType="enumerated"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.cpp.link.option.flags.1223899998" name="Linker flags" superClass="com.qualcomm.hexagon.llvm.q6.cpp.link.option.flags" value=" -Wl,--section-start -Wl,.start=0x1d000000 -Wl,--start-group ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/init.o ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/crt0.o ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libc.a ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libqcc.a ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libhexagon.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libqurt.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libqurtkernel.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libqurtcfs.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libqube_compat.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libtimer.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/lib/libposix.a ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libc.a ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libqcc.a ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/libstdc++.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSPv60MP/lib/libqurtdebugger.a ${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/examples/cust_config.o ${HEXAGON_TOOLS_ROOT}/Tools/target/hexagon/lib/${HEXAGON_Q6_VERSION}/G0/fini.o -Wl,--end-group" valueType="string"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.cpp.link.option.nostdlibs.1640035402" name="No startup or default libs (-nostdlib)" superClass="com.qualcomm.hexagon.llvm.q6.cpp.link.option.nostdlibs" value="true" valueType="boolean"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.cpp.link.option.libs.1759641003" name="Libraries (-l)" superClass="com.qualcomm.hexagon.llvm.q6.cpp.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" value="hexagon"/>
+								</option>
+								<inputType id="com.qualcomm.hexagon.llvm.tool.q6.cpp.linker.input.720684731" superClass="com.qualcomm.hexagon.llvm.tool.q6.cpp.linker.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+							</tool>
+							<tool id="com.qualcomm.hexagon.llvm.tool.q6.assembler.exe.release.292123691" name="Hexagon Assembler" superClass="com.qualcomm.hexagon.llvm.tool.q6.assembler.exe.release">
+								<option id="com.qualcomm.hexagon.llvm.q6.assembler.option.debugging.level.1274599616" name="Debug Level" superClass="com.qualcomm.hexagon.llvm.q6.assembler.option.debugging.level" value="com.qualcomm.hexagon.llvm.q6.asm.debugging.level.none" valueType="enumerated"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.asm.arch.449431458" name="Processor Architecture" superClass="com.qualcomm.hexagon.llvm.q6.asm.arch" value="com.qualcomm.hexagon.llvm.q6.asm.arch.v60" valueType="enumerated"/>
+								<option id="com.qualcomm.hexagon.llvm.q6.both.asm.option.include.paths.1236047215" name="Include paths (-I)" superClass="com.qualcomm.hexagon.llvm.q6.both.asm.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${HEXAGON_SDK_ROOT}/lib/common/qurt/ADSP${HEXAGON_Q6_VERSION}MP/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjName}/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjName}/src/fake_smgr}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/api&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/debug/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/pm/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/idl/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/smr/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/smr/src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/circbuffer/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/mathtools/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/batchbuffer/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/util/queue/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/dl/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/framework/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/smgr/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/loc/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/sam/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/prov/smgri/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/util/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/amd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/common/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/fast_amd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/qmd/rmd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/cmc/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/fmv/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/game_rv/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/grav/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/orientation/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/ped/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/quat/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/rotv/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/smd/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/tilt/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${SENSORS_ROOT}/common/usam/algo/dpc/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${HEXAGON_SDK_ROOT}/inc/stddef&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${HEXAGON_SDK_ROOT}/lib/common/remote/ship/hexagon_Debug&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;../LLVM_Debug/${SENSORS_ROOT}/common/usam/algo/pmd/inc&quot;"/>
+								</option>
+								<inputType id="com.qualcomm.hexagon.llvm.tool.q6.assembler.input.879130600" superClass="com.qualcomm.hexagon.llvm.tool.q6.assembler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+					<sourceEntries>
+						<entry excluding="ddf/src|smgr/build|common/smr|debugtools|core/mproc/qmi/build|core/mproc/build|core/mproc/smp2p|core/mproc/smem|core/mproc/smd_stubs|core/mproc/ipc_router|core/mproc/glink|core/testframework|core/systemdrivers|core/storage|core/services|core/securemsm|core/products|core/powertools|core/power|core/memory|core/kernel|core/hwengines|core/debugtrace|core/debugtools|core/dal|core/build|core/bsp|core/apttests|src/fake_smgr/unused|common/usam/algo/ped/v02|common/util/memmgr/src/sns_uimg_utils.c|pm/src/sns_pm_uimg.c|pm/src/sns_pm.c|common/util/memmgr/src/sns_u_uimg_utils.c|common/util/memmgr/src/sns_u_memmgr.c|common/util/memmgr/src/sns_memmgr.c|common/util/memmgr/src/sns_memheap.c|common/util/memmgr/src/sns_memheap_lite.c|common/util/memmgr/src/oi_utils.c|common/util/memmgr/src/oi_memmgr.c|common/util/memmgr/src/oi_debug.c|common/util/memmgr/src/memprof.c|common/util/memmgr/src/mem_cfg.c|common/util/memmgr/src/mem_cfg_frag1.c|pm/src/sns_pm_unit_test.c|pm/src/sns_pm_smp2p.c|debug/src|common/idl/idl|src/pm|src/debug|src/common|src/api|src/common/usam/algo/tilt|src/common/usam/algo/facing|src/common/usam/algo/egs|src/common/usam/algo/db|src/common/usam/algo/basic_gestures|src/common/usam/algo-ship/threshold|src/common/usam/algo-ship/oem1" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+					</sourceEntries>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="fast_playback_v60_LLVM.com.qualcomm.hexagon.llvm.target.q6.exe.1938151489" name="Executable (.exe)" projectType="com.qualcomm.hexagon.llvm.target.q6.exe"/>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="LLVM_Debug">
+			<resource resourceType="PROJECT" workspacePath="/fast_playback_v60_LLVM"/>
+		</configuration>
+		<configuration configurationName="LLVM_Release">
+			<resource resourceType="PROJECT" workspacePath="/fast_playback_v60_LLVM"/>
+		</configuration>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="com.qualcomm.hexagon.llvm.config.q6.exe.debug.233682460;com.qualcomm.hexagon.llvm.config.q6.exe.debug.233682460.;com.qualcomm.hexagon.llvm.tool.q6.cpp.compiler.exe.debug.978871423;com.qualcomm.hexagon.llvm.tool.q6.cpp.compiler.input.1330637585">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.qualcomm.hexagon.discovery.HexagonLLVMManagedMakePerProjectProfileCPP"/>
+			<profile id="com.qualcomm.hexagon.discovery.HexagonLLVMManagedMakePerProjectProfileCPP">
+				<buildOutputProvider>
+					<openAction enabled="false" filePath=""/>
+					<parser enabled="false"/>
+				</buildOutputProvider>
+				<scannerInfoProvider id="specsFile">
+					<runAction arguments="-E -P -v -dD &quot;${plugin_state_location}/specs.cpp&quot;" command="hexagon-clang++" useDefault="true"/>
+					<parser enabled="false"/>
+				</scannerInfoProvider>
+			</profile>
+			<profile id="com.qualcomm.hexagon.discovery.HexagonLLVMManagedMakePerProjectProfile">
+				<buildOutputProvider>
+					<openAction enabled="false" filePath=""/>
+					<parser enabled="false"/>
+				</buildOutputProvider>
+				<scannerInfoProvider id="specsFile">
+					<runAction arguments="-E -P -v -dD &quot;${plugin_state_location}/${specs_file}&quot;" command="hexagon-clang" useDefault="true"/>
+					<parser enabled="false"/>
+				</scannerInfoProvider>
+			</profile>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="com.qualcomm.hexagon.llvm.config.q6.exe.release.1705588539;com.qualcomm.hexagon.llvm.config.q6.exe.release.1705588539.;com.qualcomm.hexagon.llvm.tool.q6.c.compiler.exe.release.82657369;com.qualcomm.hexagon.llvm.tool.q6.c.compiler.input.1240834236">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.qualcomm.hexagon.discovery.HexagonLLVMManagedMakePerProjectProfileC"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="com.qualcomm.hexagon.llvm.config.q6.exe.release.1705588539;com.qualcomm.hexagon.llvm.config.q6.exe.release.1705588539.;com.qualcomm.hexagon.llvm.tool.q6.cpp.compiler.exe.release.1581606597;com.qualcomm.hexagon.llvm.tool.q6.cpp.compiler.input.2033832358">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.qualcomm.hexagon.discovery.HexagonLLVMManagedMakePerProjectProfileCPP"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="com.qualcomm.hexagon.llvm.config.q6.exe.debug.233682460;com.qualcomm.hexagon.llvm.config.q6.exe.debug.233682460.;com.qualcomm.hexagon.llvm.tool.q6.c.compiler.exe.debug.136786973;com.qualcomm.hexagon.llvm.tool.q6.c.compiler.input.942836595">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.qualcomm.hexagon.discovery.HexagonLLVMManagedMakePerProjectProfileC"/>
+			<profile id="com.qualcomm.hexagon.discovery.HexagonLLVMManagedMakePerProjectProfileC">
+				<buildOutputProvider>
+					<openAction enabled="false" filePath=""/>
+					<parser enabled="false"/>
+				</buildOutputProvider>
+				<scannerInfoProvider id="specsFile">
+					<runAction arguments="-E -P -v -dD &quot;${plugin_state_location}/specs.c&quot;" command="hexagon-clang" useDefault="true"/>
+					<parser enabled="false"/>
+				</scannerInfoProvider>
+			</profile>
+			<profile id="com.qualcomm.hexagon.discovery.HexagonLLVMManagedMakePerProjectProfile">
+				<buildOutputProvider>
+					<openAction enabled="false" filePath=""/>
+					<parser enabled="false"/>
+				</buildOutputProvider>
+				<scannerInfoProvider id="specsFile">
+					<runAction arguments="-E -P -v -dD &quot;${plugin_state_location}/${specs_file}&quot;" command="hexagon-clang" useDefault="true"/>
+					<parser enabled="false"/>
+				</scannerInfoProvider>
+			</profile>
+		</scannerConfigBuildInfo>
+	</storageModule>
+</cproject>

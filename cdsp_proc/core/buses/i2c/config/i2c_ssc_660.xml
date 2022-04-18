@@ -1,0 +1,96 @@
+//===========================================================================
+//
+// FILE:         i2c_mpss_660.xml
+//
+//===========================================================================
+//
+//                             Edit History
+//
+// $Header: $
+//
+// when        who    what, where, why
+// --------    ---    -------------------------------------------------------
+// 12/11/17    ska    Added ENABLE_PADDING field
+// 04/07/17    vg     Adding FS_HS divider values configurable 
+// 03/24/2017  vg     backout FS_HS divider fix
+// 03/10/2017  vg     Adding FS_HS divider values configurable
+// 02/10/2017  vg     Set LPASS PLL clock freq to enable the clock in island mode.
+// 10/18/2016  vg     Created
+//===========================================================================
+//      Copyright (c) 2016-2017 Qualcomm Technologies, Incorporated.
+//                    All Rights Reserved.
+//      Qualcomm Technologies, Confidential and Proprietary.
+//===========================================================================
+#include "I2cDriverTypes.h"
+#include "I2cPlatSvc.h"
+#include "I2cDevice.h"
+#include "uClock.h"
+
+#define SCC_PLL_CLK_FREQ 99837542
+
+<driver name="NULL">
+   <global_def>
+      <string name="PERIPH_SS"                type=DALPROP_DATA_TYPE_STRING>   LPASS                             </string>
+    </global_def>
+  
+   /* Below formula used to derive the HS & FS divider values but still to get the desired results we have taken 97% of HS & FS divider
+   values which are below*/
+   /* Pre-condition/Formula:
+	•	Input clock = 19.9 MHz = 50ns
+	•	FS_DIV value = (tlow)/ input clock period – 3 cycles 
+	•	HTD value = (I2C clock Period – tlow ) / input clock period – 3 cycles */
+  
+    
+    <device id="I2C_DIV_GLOBAL_PROP"> 
+      <props name="STMODEFSVAL"              type=DALPROP_ATTR_TYPE_UINT32>     88                                   </props>
+      <props name="STMODEHSVAL"              type=DALPROP_ATTR_TYPE_UINT32>     99                                  </props>
+      <props name="FSMODEFSVAL"              type=DALPROP_ATTR_TYPE_UINT32>     22                                   </props>
+      <props name="FSMODEHSVAL"              type=DALPROP_ATTR_TYPE_UINT32>     20                                   </props>
+      <props name="FSPMODEFSVAL"             type=DALPROP_ATTR_TYPE_UINT32>     6                                    </props>
+      <props name="FSPMODEHSVAL"             type=DALPROP_ATTR_TYPE_UINT32>     6                                    </props>
+    </device> 
+    
+   <device id="I2CDRV_I2C_1">
+	   <!--SSC_8, SSC_9, Fn select 2, QUP 0 -->
+      <props name="CHIP_BUS_INDEX"           type=DALPROP_ATTR_TYPE_UINT32>     0                                    </props>
+      <props name="GPIO_I2C_SDA"             type=DALPROP_ATTR_TYPE_UINT32>     0x1C082                              </props>
+      <props name="GPIO_I2C_SCL"             type=DALPROP_ATTR_TYPE_UINT32>     0x1C092                              </props>
+      <props name="LPASS_PLL_SRC_FREQ"       type=DALPROP_ATTR_TYPE_UINT32>     SCC_PLL_CLK_FREQ                     </props>
+      <props name="CHIP_BLOCK_OFFSET"        type=DALPROP_ATTR_TYPE_UINT32>     0x00435000                           </props>
+      <props name="CHIP_PERIPH_SS_BASE_NAME" type=DALPROP_ATTR_TYPE_STRING_PTR> PERIPH_SS                            </props>
+      <props name="CHIP_HCLK_NAME"           type=DALPROP_ATTR_TYPE_UINT32>     CLOCK_SCC_BLSP_H_CLK                 </props>
+      <props name="CHIP_APP_CLK_NAME"        type=DALPROP_ATTR_TYPE_UINT32>     CLOCK_SCC_QUP_I2C1_CLK               </props>
+      <props name="CHIP_APP_CLK_FREQ_KHZ"    type=DALPROP_ATTR_TYPE_UINT32>     0                                    </props>
+      <props name="ENABLE_PADDING"           type=DALPROP_ATTR_TYPE_UINT32>     0                                    </props>
+   </device>
+  
+   <device id="I2CDRV_I2C_2">
+      <!--SSC_4, SSC_5, Fn select 1, QUP 1 -->
+      <props name="CHIP_BUS_INDEX"           type=DALPROP_ATTR_TYPE_UINT32>     1                                    </props>
+      <props name="GPIO_I2C_SDA"             type=DALPROP_ATTR_TYPE_UINT32>     0x1C041                              </props>
+      <props name="GPIO_I2C_SCL"             type=DALPROP_ATTR_TYPE_UINT32>     0x1C051                              </props>
+      <props name="LPASS_PLL_SRC_FREQ"       type=DALPROP_ATTR_TYPE_UINT32>     SCC_PLL_CLK_FREQ                     </props>
+      <props name="CHIP_BLOCK_OFFSET"        type=DALPROP_ATTR_TYPE_UINT32>     0x00436000                           </props>
+      <props name="CHIP_PERIPH_SS_BASE_NAME" type=DALPROP_ATTR_TYPE_STRING_PTR> PERIPH_SS                            </props>
+      <props name="CHIP_HCLK_NAME"           type=DALPROP_ATTR_TYPE_UINT32>     CLOCK_SCC_BLSP_H_CLK                 </props>
+      <props name="CHIP_APP_CLK_NAME"        type=DALPROP_ATTR_TYPE_UINT32>     CLOCK_SCC_QUP_I2C2_CLK               </props>
+      <props name="CHIP_APP_CLK_FREQ_KHZ"    type=DALPROP_ATTR_TYPE_UINT32>     0                                    </props>
+      <props name="ENABLE_PADDING"           type=DALPROP_ATTR_TYPE_UINT32>     0                                    </props>
+   </device>
+
+   <device id="I2CDRV_I2C_3">
+	  <!--SSC_2, SSC_3, Fn select 1, QUP 2 -->
+      <props name="CHIP_BUS_INDEX"           type=DALPROP_ATTR_TYPE_UINT32>     2                                    </props>
+      <props name="GPIO_I2C_SDA"             type=DALPROP_ATTR_TYPE_UINT32>     0x1C021                              </props>
+      <props name="GPIO_I2C_SCL"             type=DALPROP_ATTR_TYPE_UINT32>     0x1C031                              </props>
+      <props name="LPASS_PLL_SRC_FREQ"       type=DALPROP_ATTR_TYPE_UINT32>     SCC_PLL_CLK_FREQ                     </props>
+      <props name="CHIP_BLOCK_OFFSET"        type=DALPROP_ATTR_TYPE_UINT32>     0x00437000                           </props>
+      <props name="CHIP_PERIPH_SS_BASE_NAME" type=DALPROP_ATTR_TYPE_STRING_PTR> PERIPH_SS                            </props>
+      <props name="CHIP_HCLK_NAME"           type=DALPROP_ATTR_TYPE_UINT32>     CLOCK_SCC_BLSP_H_CLK                 </props>
+      <props name="CHIP_APP_CLK_NAME"        type=DALPROP_ATTR_TYPE_UINT32>     CLOCK_SCC_QUP_I2C3_CLK               </props>
+      <props name="CHIP_APP_CLK_FREQ_KHZ"    type=DALPROP_ATTR_TYPE_UINT32>     0                                    </props>
+      <props name="ENABLE_PADDING"           type=DALPROP_ATTR_TYPE_UINT32>     0                                    </props>
+   </device>
+
+ </driver>
+

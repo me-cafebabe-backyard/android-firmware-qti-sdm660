@@ -1,0 +1,89 @@
+Regname , Type , Address , Bit Offset , W , I , Sign , Enum Offset , Enum Gain , Unit , Description , PMI8994 Alias , CVT , Catapult LSB
+ESR_Current_Threshold,ac_fixed,2,24,8,0,0,0,1,A,"""Minimum Current difference to allow esr extraction between 2 pair of Vbatt/Ibatt reading""",N/A,FALSE,0.00390625
+Monotonic_Slope_Limiter_Config,ac_fixed,3,0,8,-5,0,0,1,%,"""Monotonic SoC change limiter""",N/A,FALSE,0.00012207
+IBATT_Cutoff,ac_fixed,4,0,18,5,1,0,1,A,"""Minimum battery current value used for Cutoff SoC estimate """,Stby_current,FALSE,0.00012207
+VBATT_Cutoff,ac_fixed,5,0,15,3,0,0,1,V,"""Battery voltage set point used to estimate Cutoff SoC""",cutoff_voltage,FALSE,0.000244141
+IBATT_Full,ac_fixed,6,0,18,5,1,0,1,I,"""Battery Current set point used to estimate Full SoC """,System termination current,FALSE,0.00012207
+VBATT_Full,ac_fixed,7,0,15,3,0,0,1,V,"""Battery Voltage set point used to estimate Full SoC: this is the battery float voltage at which we want to see the specific battery termination current""",CC_to_CV,FALSE,0.000244141
+ESR_Update_Tight,ac_fixed,8,0,8,-1,0,0,1,%,"""Maximum increase or decrease ( 1 +- esrUpdTight % ) of esr with tight filtering """,maxrschange,FALSE,0.00195312
+ESR_Update_Broad,ac_fixed,8,8,8,-1,0,0,1,%,"""Maximum increase or decrease ( 1 +- esrUpdBroad % ) of esr with relaxed filtering """,maxrschange_ext,FALSE,0.00195312
+ESR_Update_Tight_Low_Temp,ac_fixed,8,16,8,-1,0,0,1,%,"""Maximum increase or decrease ( 1 +- esrUpdTightLowTemp % ) of esr with tight filtering in low battery temperature condition""",maxrschange_low_temp,FALSE,0.00195312
+ESR_Update_Broad_Low_Temp,ac_fixed,8,24,8,-1,0,0,1,%,"""Maximum increase or decrease ( 1 +- esrUpdBroadLowTemp % ) of esr with relaxed filtering in low battery temperature condition""",maxrschange_low_temp_ext,FALSE,0.00195312
+ESR_Low_Temp_Filter_Threshold,ac_fixed,9,0,8,7,0,0,1,K,"""Low Temperature threshold in battery esr filtering to select the right amount of allowed percentage change""",N/A,FALSE,0.5
+Ki_Discharge_Low_Current,ac_fixed,9,24,8,-4,0,0,1,N/A,"""Ki Integration coefficient for Low Discharge Current level; used inside Battery SoC voltage mode loop""",ki_coeff_lowc for dis-charge,FALSE,0.000244141
+Ki_Discharge_Medium_Current,ac_fixed,10,0,8,-4,0,0,1,N/A,"""Ki Integration coefficient for Medium Discharge Current level """,ki_coeff_medc for dis-charge,FALSE,0.000244141
+Ki_Discharge_High_Current,ac_fixed,10,8,8,-4,0,0,1,A,"""Ki Integration coefficient for High Discharge Current level """,ki_coeff_highc for dis-charge,FALSE,0.000244141
+Ki_Charge_Low_Current,ac_fixed,11,0,8,-4,0,0,1,N/A,"""Ki Integration coefficient for Low Charge Current level; used inside Battery SoC voltage mode loop""",ki_coeff_lowc for charge,FALSE,0.000244141
+Ki_Charge_Medium_Current,ac_fixed,11,8,8,-4,0,0,1,N/A,"""Ki Integration coefficient for Medium High Current level; used inside Battery SoC voltage mode loop""",ki_coeff_medc for charge,FALSE,0.000244141
+Ki_Charge_High_Current,ac_fixed,11,16,8,-4,0,0,1,N/A,"""Ki Integration coefficient for High Charge Current level; used inside Battery SoC voltage mode loop""",ki_coeff_highc for charge,FALSE,0.000244141
+Ki_Cutoff,ac_fixed,12,8,8,-4,0,0,1,N/A,"""Ki Integration coefficient used for Cutoff SoC voltage mode loop""",ki_coeff_pred_empty,FALSE,0.000244141
+Ki_Full,ac_fixed,12,16,8,-4,0,0,1,A,"""Ki Integration coefficient used for  Full SoC voltage mode loop""",ki_coeff_pred_full,FALSE,0.000244141
+BSoC_Delta_IRQ_Threshold,ac_fixed,12,24,8,-3,0,0,1,%,"""Threshold on the Battery system SoC change, used to issue the related interrupt. The Delta in Battery SoC has to exceed DeltaSoC by one LSB""",N/A,FALSE,0.000488281
+MSoC_Delta_IRQ_Threshold,ac_fixed,13,0,8,-3,0,0,1,%,"""Threshold on the monotonic system SoC change, used to issue the related interrupt. The Delta in monotonic SoC has to exceed DeltaSoC by one LSB""",IRQ_DeltaSoC_Threshold,FALSE,0.000488281
+MSoC_Low_IRQ_Threshold,ac_fixed,13,8,8,0,0,0,1,%,"""Low  SoC  Monotonic interrupt threshold.""",IRQ_soc_min,FALSE,0.00390625
+MSoC_High_IRQ_Threshold,ac_fixed,13,16,8,0,0,0,1,%,"""High SoC  Monotonic interrupt threshold.""",IRQ_soc_max,FALSE,0.00390625
+MSoC_Full_Threshold,ac_fixed,13,24,8,0,0,0,1,%,"""Threshold for Monotonic SOC reaching 100% """,N/A,FALSE,0.00390625
+MSoC_Minimum_OTG_Threshold,ac_fixed,14,0,8,0,0,0,1,%,"""Minimum value of monotonic SoC that allows OTG.""",OTG_SoC_minimum,FALSE,0.00390625
+MSoC_Automatic_Recharge_Threshold,ac_fixed,14,8,8,0,0,0,1,%,"""Monotonic SoC threshold for automatic recharge.""",ARECH_LowSoC_Threshold,FALSE,0.00390625
+IBATT_Charge_Termination_Threshold,ac_fixed,15,8,8,0,0,0,-1,A,"""Battery Current has reached charger termination0 threshold. Used to decide when to terminate charging.""",Termcurrent,FALSE,0.00390625
+VBATT_Empty_IRQ_Threshold,ac_fixed,15,24,8,2,0,2,1,V,"""Low battery voltage threshold for the empty interrupt.""",IRQ_volt_empty,FALSE,0.015625
+VBATT_Low_IRQ_Threshold,ac_fixed,16,0,8,2,0,2,1,V,"""Low battery voltage interrupt threshold. """,IRQ_volt_min,FALSE,0.015625
+VBATT_Automatic_Recharge_Threshold,ac_fixed,16,8,8,2,0,2,1,N/A,"""Voltage based automatic recharge threshold """,N/A,FALSE,0.015625
+ESR_Timer_Discharge_Max,ac_fixed,17,0,16,16,0,0,1,N/A,"""esr timer config for dis-charging: maximum value""",N/A,TRUE,1
+ESR_Timer_Charge_Max,ac_fixed,18,0,16,16,0,0,1,N/A,"""esr timer config for charging: maximum value""",N/A,TRUE,1
+MSoC_Empty_Use_SoC,bool,19,4,1,1,0,0,1,N/A,"""Enable SoC 0% as a trigger of Empty Interrupt""",N/A,TRUE,N/A
+MSoC_Empty_Use_Voltage,bool,19,5,1,1,0,0,1,N/A,"""Enable Vbatt less than vBtEmpty as a trigger of Empty Interrupt""",N/A,TRUE,N/A
+Discharge_Rseries_to_Rslow_Coefficient,ac_fixed,34,0,8,2,0,0,1,N/A,"""Discharge esr to Rslow average scaling factor""",N/A,FALSE,0.015625
+Charge_Rseries_to_Rslow_Coefficient,ac_fixed,51,0,8,2,0,0,1,N/A,"""Charge esr to Rslow average scaling factor""",N/A,FALSE,0.015625
+Battery_Capacity_Nominal,ac_fixed,58,0,16,16,0,0,1,mAh,"""Nominal Battery capacity""",N/A,FALSE,1
+Nominal_Float_Voltage,ac_fixed,58,16,15,3,0,0,1,V,"""Battery Nominal Float Voltage""",N/A,FALSE,0.000244141
+SW_Learned_Actual_Capacity,ac_fixed,74,0,16,16,0,0,1,mAh,SW backup of actual capacity learned (LSB=1mAh),N/A,FALSE,1
+SW_Cycle_Counter_Bin1,ac_fixed,75,0,16,16,0,0,1,N/A,"SW Cycle Counter Bin 1, number of cycles in the 0-12.5% SOC bin",N/A,FALSE,1
+SW_Cycle_Counter_Bin2,ac_fixed,75,16,16,16,0,0,1,N/A,"SW Cycle Counter Bin 2, number of cycles in the 12.5-25% SOC bin",N/A,FALSE,1
+SW_Cycle_Counter_Bin3,ac_fixed,76,0,16,16,0,0,1,N/A,"SW Cycle Counter Bin 3, number of cycles in the 25-37.5% SOC bin",N/A,FALSE,1
+SW_Cycle_Counter_Bin4,ac_fixed,76,16,16,16,0,0,1,N/A,"SW Cycle Counter Bin 4, number of cycles in the 37.5-50% SOC bin",N/A,FALSE,1
+SW_Cycle_Counter_Bin5,ac_fixed,77,0,16,16,0,0,1,N/A,"SW Cycle Counter Bin 5, number of cycles in the 50-62.5% SOC bin",N/A,FALSE,1
+SW_Cycle_Counter_Bin6,ac_fixed,77,16,16,16,0,0,1,N/A,"SW Cycle Counter Bin 6, number of cycles in the 62.5-75% SOC bin",N/A,FALSE,1
+SW_Cycle_Counter_Bin7,ac_fixed,78,0,16,16,0,0,1,N/A,"SW Cycle Counter Bin 7, number of cycles in the 75-87.5% SOC bin",N/A,FALSE,1
+SW_Cycle_Counter_Bin8,ac_fixed,78,16,16,16,0,0,1,N/A,"SW Cycle Counter Bin 8, number of cycles in the 87.5-100% SOC bin",N/A,FALSE,1
+SW_Profile_Integrity_Sts,bool,79,24,1,1,0,0,1,N/A,"SW sets to 1 if profile is loaded by SW. If 0, default trim profile is loaded",N/A,FALSE,N/A
+SW_UEFI_Profile_Load_Sts,bool,79,25,1,1,0,0,1,N/A,UEFI sets to 1 if UEFI loaded profile,N/A,FALSE,N/A
+SW_UEFI_FG_Restart_Sts,bool,79,26,1,1,0,0,1,N/A,UEFI sets to 1 if a FG restart was performed,N/A,FALSE,N/A
+SW_HLOS_Profile_Load_Sts,bool,79,27,1,1,0,0,1,N/A,HLOS sets to 1 if HLOS loaded profile,N/A,FALSE,N/A
+Battery_Temperature,ac_fixed,81,0,11,9,0,0,1,K,"""Battery Temperature Reading in Kelvin""",N/A,FALSE,0.25
+IBATT_Old,ac_fixed,85,0,18,5,1,0,1,A,"""Battery Current previous cycle""",N/A,FALSE,0.00012207
+VBATT_Old,ac_fixed,86,0,15,3,0,0,1,V,"""Battery Voltage previous cycle """,N/A,FALSE,0.000244141
+IBATT,ac_fixed,87,0,18,5,1,0,1,A,"""Battery Current """,N/A,FALSE,0.00012207
+VBATT,ac_fixed,88,0,15,3,0,0,1,V,"""Battery Voltage """,N/A,FALSE,0.000244141
+IBATT_Low_Pass,ac_fixed,89,0,24,5,1,0,1,A,"""Low pass Battery Current """,N/A,FALSE,1.91E-06
+VBATT_Low_Pass,ac_fixed,90,0,24,5,1,0,1,V,"""Low pass Battery Voltage""",N/A,FALSE,1.91E-06
+Battery_SoC,ac_fixed,91,0,32,0,0,0,1,%,"""Battery SoC """,N/A,FALSE,2.33E-10
+Voltage_Mode_Correction,ac_fixed,92,0,32,2,1,0,1,%,"""Voltage Mode Correction applied to CC SOC to obtain Battery SoC""",N/A,FALSE,9.31E-10
+Cutoff_SoC,ac_fixed,93,0,16,0,0,0,1,%,"""Cutoff SoC""",N/A,FALSE,1.53E-05
+Full_SoC,ac_fixed,93,16,16,0,0,0,1,%,"""FullSoc""",N/A,FALSE,1.53E-05
+System_SoC,ac_fixed,94,0,16,0,0,0,1,%,"""System SoC""",N/A,FALSE,1.53E-05
+Monotonic_SoC,ac_fixed,94,16,16,0,0,0,1,%,"""Monotonic SoC""",N/A,FALSE,1.53E-05
+CC_SoC,ac_fixed,95,0,32,2,1,0,1,%,"""Coulomb Counting SoC""",N/A,FALSE,9.31E-10
+CC_SoC_SW,ac_fixed,96,0,32,2,1,0,1,%,"""Software dedicated coulomb counting SoC """,N/A,FALSE,9.31E-10
+VBATT_Predicted,ac_fixed,97,0,15,3,0,0,1,V,"""Predicted battery voltage ( related to Battery SoC)""",N/A,FALSE,0.000244141
+OCV,ac_fixed,97,16,15,3,0,0,1,V,"""Estimate  OCV ( related to Battery SoC)""",N/A,FALSE,0.000244141
+ESR,ac_fixed,99,0,14,2,0,0,1,Ohm,"""Battery ESR (related to battery SoC)""",N/A,FALSE,0.000244141
+ESR_Voltage_Drop,ac_fixed,100,0,17,4,1,0,1,V,"""Voltage drop due to battery resistance (related to battery SoC)""",N/A,FALSE,0.00012207
+Rslow,ac_fixed,101,0,14,2,0,0,1,Ohm,"""Battery Rslow (related to battery SoC)""",N/A,FALSE,0.000244141
+Rslow_Voltage_Drop,ac_fixed,102,0,17,4,1,0,1,V,"""Voltage drop due to iBtRslw and vBtSlw (related to battery SoC)""",N/A,FALSE,0.00012207
+IBAT_Rslow,ac_fixed,103,0,24,5,1,0,1,N/A,"""Low pass version of Battery Current for Rslow (related to battery SoC)""",N/A,FALSE,1.91E-06
+Battery_Capacity_Actual,ac_fixed,117,0,16,16,0,0,1,mAh,"""Battery Capacity Actual""",N/A,FALSE,1
+ESR_Timer_Count,ac_fixed,118,0,16,16,0,0,1,N/A,"""Esr Timer""",N/A,FALSE,1
+ESR_Filter_Log_High_Result,ac_int,118,17,4,4,0,0,1,N/A,"""History of last 4 esr extraction hitting upper increase boundary """,N/A,FALSE,1
+ESR_Filter_Log_Low_Result,ac_int,118,21,4,4,0,0,1,N/A,"""History of last 4 esr extraction hitting lower decrease boundary """,N/A,FALSE,1
+ESR_Extracted,bool,118,25,1,1,0,0,1,N/A,"""Esr Extracted """,N/A,FALSE,N/A
+Battery_Charging_Sts_Old,bool,118,28,1,1,0,0,1,N/A,"""Battery Current is Charge current on old reading""",N/A,FALSE,N/A
+Battery_Charging_Sts,bool,118,29,1,1,0,0,1,N/A,"""Battery Current is Charge current on current reading""",N/A,FALSE,N/A
+Battery_SoC_Last_IRQ,ac_fixed,119,0,16,0,0,0,1,%,"""Battery SoC saved when the last Battery SoC interrupt was fired""",N/A,FALSE,1.53E-05
+Monotonic_SoC_Last_IRQ,ac_fixed,119,16,16,0,0,0,1,%,"""Monotonic SoC saved when the last Battery SoC interrupt was fired""",N/A,FALSE,1.53E-05
+MSoC_Minimum_OTG_Sts,bool,120,8,1,1,0,0,1,N/A,"""Monotonic SoC is too low to allow OTG""",N/A,FALSE,N/A
+MSoC_Automatic_Recharge_Sts,bool,120,9,1,1,0,0,1,N/A,"""Monotonic SoC is below auto recharge threshold """,N/A,FALSE,N/A
+IBATT_Charge_Termination_Sts,bool,120,10,1,1,0,0,1,N/A,"""Battery Current is less than target termination current""",N/A,FALSE,N/A
+IBATT_HPM_Sts,bool,120,12,1,1,0,0,1,N/A,"""Battery Current is above Hpm""",N/A,FALSE,N/A
+VBATT_Automatic_Recharge_Sts,bool,120,14,1,1,0,0,1,N/A,"""Battery Voltage is below auto recharge threshold """,N/A,FALSE,N/A
+VBATT_Float_Voltage_Sts,bool,120,15,1,1,0,0,1,N/A,"""Battery Voltage above Float Voltage threshold;""",N/A,FALSE,N/A

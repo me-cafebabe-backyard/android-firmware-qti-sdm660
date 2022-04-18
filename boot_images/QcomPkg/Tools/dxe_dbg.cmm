@@ -1,0 +1,321 @@
+;============================================================================
+;  Name:
+;    dxe_dbg.cmm
+;
+;  Description:
+;     Debug Dxe runtime loading and dispatching
+;
+; Copyright (c) 2010-2016 Qualcomm Technologies Incorporated.
+; All Rights Reserved.
+; Qualcomm Technologies Confidential and Proprietary
+;
+;----------------------------------------------------------------------------
+;============================================================================
+;
+;                        EDIT HISTORY FOR MODULE
+;
+;
+;
+;when         who     what, where, why
+;----------   ---     ----------------------------------------------------------
+;2016-08-12   bh      Add address for RAM-loaded FV
+;2016-08-12   vk      Speed up RAM loading
+;2016-06-23   bh      Add support for ram loading tests FV 
+;2016-06-10   bh      Fix DXE and SEC debugging
+;2015-02-22   vk      Reorder RAM go to not load symbols
+;2016-02-18   bh      Update info block offset
+;2016-02-08   et      Added argument to take uefi path
+;2015-11-17   bh      Fix debugging on DxeCore
+;2015-11-04   bh      Ignore case for args
+;2015-10-28   bh      remove breakpoints before loading dxe core
+;2015-10-27   bh      Change info block attribute name
+;2015-10-16   bh      Do incremental driver loading, update win script dir
+;2015-10-15   bh      Simplify debug scripts to use info block
+;2015-07-31   vk      Fix path seperator
+;2015-07-17   dg      Fix pathing issues
+;2015-07-09   bh      Fix UEFI_Logs area issues
+;2015-06-26   vk      Add CoreLoadPeImageOffset from InitOfffset to support RVCT 
+;2015-06-22   vk      Add target-specific win.cmm
+;2015-03-19   bh      Robust debug script
+;2015-03-10   jb      Add additional valid area for dxe sym workaround
+;2015-02-20   vk      Do not reset sym
+;2015-02-12   bh      Change RD: to A:
+;2015-01-27   bh      Unifying 32/64-bit scripts
+;2014-10-24   vk      Add MdmBasePkg
+;2014-10-08   vk      Call t32_options.cmm
+;2014-08-21   wg      Updated argument order received by dxe_dbg.cmm
+;2014-01-08   wg      Added 50ms wait if 8994, to ensure breaks are hit correct
+;2014-31-07   wg      Updated UEFI Debug setup for 8994
+;2014-14-07   wg      Added UEFI Debug Mode check and clear UefiDebugCookie
+;2014-25-06   aus     Fixed for 8916
+;2014-06-03   vk      Cleanup
+;2014-05-08   vk      Look for uefi.mbn in Bin32
+;2014-04-15   vk      Do not exit if chip revision is not available - for virtio
+;2014-04-09   vk      Remove A,B family changes, cleanup
+;2014-04-04   vk      Load first four bytes for file type identification
+;2014-02-11   vk      Update read macro
+;2013-11-18   vk      Workaround for virtio not returning correct chip id
+;2013-11-15   vk      Add EfiHeaderOffset parameter
+;2013-11-10   vk      Add RVCT6 and GCC path
+;2013-11-01   aus     Added support to generate elf images
+;2013-10-31   aus     Added support to read chipset information from the HW
+;2013-10-10   vk      Add Sec64 support
+;2013-05-01   vk      Virtio / RUMI support
+;2013-04-13   plc     Add support for 8x10
+;2013-03-19   jz      Cleanup CpuArch, fix for 8x26
+;2013-03-13   nk      Swapd input param to fix it for V1.
+;2013-03-13   vk      Swap lines for TZ update fix
+;2013-03-06   vk      Add change for TZ update, and CpuArch param
+;2013-03-03   yg      Fix RAM Debug option
+;2013-01-23   yg      Move to use ARMCT501
+;2013-01-08   yg      Fix debug script to work, add go param
+;2012-12-11   yg      Configure Program bkpts to be only Onchip
+;2012-11-22   vk      Update for 8974 debug_uefi.cmm
+;2012-10-18   nk      Added suport for std_dbg for 8974
+;2012-05-02   vishalo Check RVCT 4.1 first
+;2012-05-01   vishalo Added RVCT 4.1 support
+;2011-11-16   yg      Load sybols from correct location in release build
+;2011-09-26   yg      Added Dxe debug capability
+;2011-08-25   jz      Added support for release build and bp at CEntryPoint for sec
+;2011-05-18   niting  Changed y.spath inclusions
+;2011-05-06   MK      Added image to debug option
+;2011-03-16   niting  Added manual load option
+;2010-12-03   yg      Initial Version
+;============================================================================;
+
+global &ChipsetFamily
+global &ChipsetName
+global &ChipsetID
+global &IgnoreSymPathParts
+global &PathSep
+local &SecSymFile
+local &SecPath
+local &DxeAddr
+local &TargetPkg
+local &UefiElf
+local &Target
+local &RamEntryAddr
+local &SecXtn
+local &DebugDxe
+local &DebugDxeCore
+local &UefiDebugCookieAddr
+local &IncrBkptSym
+local &SymLoadAll
+local &SupportedOptionalArgs
+local &Tools
+local &Tests
+local &FvElfName
+local &FvElfLoc
+local &DebugFvFolder
+
+;
+;  [ImageName] can be one of the following options:
+;  SEC : Debug Sec initialization code
+;  DXE : Debug Dxe initialization code
+;  <str> : Where str is free string that can match to any part of the image name
+;          that we want to debug. eg: timer will let debug RealTimeClock and TimerDxe
+;
+entry &Target &TargetPkg &RamEntryAddr &RamFvAddr &UefiDebugCookieAddr &OptArgs &Modules
+  ; NOTE: when adding support for other arguments, add to this list
+  &SupportedOptionalArgs="RAM,REL,TOOLS,MENU,TESTS"
+  &IncrBkptSym=0x0
+  &SymLoadAll=0x1
+  &Tools=0x0
+  &Tests=0x0
+  
+  &CwDir=os.ppd()
+  &TmpDir=os.ptd()
+
+  PATH + &CwDir
+
+  cd &CwDir/../../
+
+  ; Initialize variables
+  &DebugDxe=0
+  &DebugDxeCore=0
+
+  gosub SanitizeArgs
+
+  ; Break at UEFI Sec entry point
+  ;b.d
+  b.sel program onchip
+
+
+  do InitOffsets.cmm
+  &InfoBlkPtrOffset=0x03FF000
+  &InfoBlkAddr=&RamEntryAddr+&InfoBlkPtrOffset
+
+  if ((string.scan("&OptArgs", "RAM",0)!=-1))
+  (
+    &UefiElf="&CwDir/../&TargetPkg/Bin/&Target/&Variant/&RelFolder/uefi.elf"
+    if (!os.file("&UefiElf"))
+    (
+      print %String %ERROR "Unable to find &UefiElf exiting"
+      area.view UEFI_Logs
+      enter
+      END
+    )
+
+    print "Loading uefi.elf"
+    data.load.elf &UefiElf ezaxi:
+    r.s PC &RamEntryAddr
+  )
+
+  if ((string.scan("&OptArgs", "TOOLS",0)!=-1))
+  (
+    &Tools=1.
+    &DebugFvFolder="QcomTools"
+    &FvElfName="tools.fv"
+    &FvElfLoc="&CwDir/../&DebugFvFolder"+"Pkg/Bin/&DebugFvFolder/&RelFolder"
+  )
+
+  if ((string.scan("&OptArgs", "TESTS",0)!=-1))
+  (
+    &Tests=1.
+    &DebugFvFolder="QcomTest"
+    &FvElfName="tests.fv"
+    &FvElfLoc="&CwDir/../&DebugFvFolder"+"Pkg/Bin/&DebugFvFolder/&RelFolder"
+  )
+
+  if ((string.scan("&OptArgs", "SOCTESTS",0)!=-1))
+  (
+    &Tests=1.
+    &DebugFvFolder="QcomSocPlatTest"
+    &FvElfName="soc_tests.fv"
+    &FvElfLoc="&CwDir/../&DebugFvFolder"+"Pkg/Bin/&DebugFvFolder/&RelFolder"
+  )
+
+  if ((&Tools==1.)||(&Tests==1))
+  ( 
+    &FvElfFile="&FvElfLoc/&FvElfName"
+    if (!os.file("&FvElfFile"))
+    (
+      print %String %ERROR "Unable to find &FvElfName exiting"
+      area.view UEFI_Logs
+      enter
+      END
+    )
+    print "Loading &FvElfName"
+    data.load.binary &FvElfFile ezaxi:&RamFvAddr
+  )
+
+  ; Clear UEFI Debug Cookie
+  D.S A:&UefiDebugCookieAddr %LE %LONG 0x0
+  
+  ; if name says go then we should just execute without loading any symbols
+  if ((string.scan("&Modules", "GO",0)!=-1))
+  (
+    if ((string.scan("&OptArgs", "MENU",0)==-1))
+    (
+      go
+      enddo
+    )
+  )
+
+  ; Get the symbol file path
+  do load_sec_sym.cmm &RamEntryAddr &RamEntryAddr+&SecLoadAddrOffset
+  
+  area.view UEFI_Logs
+  Print "Loaded image, target setup complete."
+  
+  print
+  print "You are stopped in CENTRY() before Main() in UEFI"
+
+  go Main
+  print "go Main ..."
+  wait !run()
+  print "Break at Main, ok ..."
+
+  ; Setup windows
+  if (os.file("&TmpDir/win.cmm"))
+  (    
+    do &TmpDir/win.cmm
+  )
+  else 
+  (
+    do win.cmm
+  )
+
+  if ("&Modules"=="SEC")
+  (
+    ; Stop at SEC entry point to allow user to do some stuff before continuing
+    print
+    print "Press enter in area window to continue debugging Dxe..."
+    print "Execute ""continue"" to get focus in area window"
+    &DebugDxe=1
+    area.select UEFI_Logs
+    enter
+  )
+
+  ; If Dxe is the param make sure it doesnt stop on all drivers having dxe in string
+  if ("&Modules"=="DXE")
+  (
+    &Modules=""
+    &DebugDxe=1
+    &DebugDxeCore=1
+  )
+
+  b.d
+
+  ; Execute until the Dxe core is loaded into memory
+  ; This could change when EDK II sync changes code
+  ; TODO: make sure this is no longer hardcoded
+  go LoadDxeCoreFromFfsFile\51
+  wait !run()
+
+  &DrvrAddr=&InfoBlkAddr+&IBlkDbgStopDrvrStr
+  &BdsHotkeyAddr=&InfoBlkAddr+&IBlkBdsHotkey
+
+  data.set &DrvrAddr "&Modules" 0x0
+
+  if ((string.scan("&OptArgs", "MENU",0)!=-1))
+  (
+    data.set &BdsHotkeyAddr 0x1
+  )
+  else
+  (
+    data.set &BdsHotkeyAddr 0x0
+  )
+
+
+  ; Set Breakpoint at which the Dxe drivers would be loaded into RAM.
+  ; The script will load appropriate image symbols at that location and set
+  ; Break point into the entrypoint so that the driver could be debugged.
+  B.S   BreakPointFunction /P /CMD "do sym.cmm &RamEntryAddr &IncrBkptSym"
+  
+  ; Stop in DXE entry
+  if (&DebugDxeCore==1)
+  (
+    do sym.cmm &RamEntryAddr &SymLoadAll
+    go DxeMain
+    wait !run()
+  )
+
+  ; Execute to start loading the Dxe drivers
+  if (&DebugDxe!=1)
+  (
+    go
+  )
+
+enddo
+
+SanitizeArgs:
+  local &ChopArg
+
+  &Modules=convert.toupper("&Modules")
+  &OptArgs=convert.toupper("&OptArgs")
+
+  if ("&Modules"!="")
+  (
+    return &OptArgs &Modules
+  )
+
+  &ChopArg=string.split("&OptArgs", ",", 0)
+  
+  if ((string.scan("&SupportedOptionalArgs", "&ChopArg", 0))==-1)
+  (
+    &Modules="&OptArgs"
+    &OptArgs=""
+  ) 
+  return &OptArgs &Modules
+

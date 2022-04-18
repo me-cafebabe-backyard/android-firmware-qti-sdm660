@@ -1,0 +1,232 @@
+#===============================================================================
+#
+#
+# GENERAL DESCRIPTION
+#
+# Copyright (c) 2011-2016 Qualcomm Technologies Incorporated. All Rights Reserved
+#
+# Qualcomm Proprietary
+#
+# Export of this technology or software is regulated by the U.S. Government.
+# Diversion contrary to U.S. law prohibited.
+#
+# All ideas, data and information contained in or disclosed by
+# this document are confidential and proprietary information of
+# Qualcomm Technologies Incorporated and all rights therein are expressly reserved.
+# By accepting this material the recipient agrees that this material
+# and the information contained therein are held in confidence and in
+# trust and will not be used, copied, reproduced in whole or in part,
+# nor its contents revealed in any manner to others without the express
+# written permission of Qualcomm Technologies Incorporated.
+#
+#-------------------------------------------------------------------------------
+#
+# $Header: //components/rel/rpm.bf/1.8/core/pmic/pm/build/pm.scons#5 $
+# $DateTime: 2018/08/10 07:09:32 $ 
+#
+#                      EDIT HISTORY FOR FILE
+#                      
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#  
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 22/08/16   as      Updated for SDM660
+# 05/08/13   aks     Clk driver code re-factoring 
+# 04/12/13   hs      Code refactoring.
+# 01/29/13   aks     Adding support for 5v boost as a separate driver
+# 01/23/13   hs      Used new driver code.
+# 01/22/13   dy      Add 8x10 support
+# 01/22/13   dy      Merge target folder into common framework/npa folder
+# 06/25/12   hs      Moved to core\systemdrivers.
+# 03/30/12   hs      Added support for VBATT APP.
+# 03/07/12   hs      Added support for BOOT builds.
+# 03/12/12   hs      Updated.
+# 03/07/12   hs      Added support for MPSS and RPM builds.
+# 01/24/12   hs      Created
+#===============================================================================
+
+Import('env')
+#default vipertooth support using Starlord target specific files   
+if env['MSM_ID'] in ['405']:
+   env['MSM_ID'] = '660'
+
+if env['CHIPSET'] in ['qcs405']:
+   env['CHIPSET'] = 'sdm660'
+   
+supported_targets = ['8998','660', 'nicobar']
+if env['MSM_ID'] not in supported_targets:
+    env.PrintWarning('Bailing from PMIC scripts; no support for build targets other than %s' % supported_targets)
+    Return()
+
+env.Append(CCFLAGS = '${ARMCC_STDC99_CMD}') #needed for designated initializers
+
+if env.has_key('MODEM_PROC'):
+   env.Replace(PMIC_ROOT = [
+      "${INC_ROOT}/core/pmic/pm",
+   ])
+   env.Append(CPPDEFINES = 'PM_IMAGE_MODEM_PROC')
+elif env.has_key('RPM_IMAGE'):
+   env.Replace(PMIC_ROOT = [
+      "${INC_ROOT}/core/pmic/pm",
+   ])
+   env.Append(CPPDEFINES = 'PM_IMAGE_RPM_PROC')
+   env.Append(CPPDEFINES = 'PMIC_LOG_MSG_DEBUG')
+   env.Append(CPPDEFINES = 'PMIC_LOG_MSG_ERROR')
+elif env.has_key('CBSP_QDSP6_SW_IMAGE'):
+   env.Replace(PMIC_ROOT = [
+      "${INC_ROOT}/pmic",
+   ])
+   env.Append(CPPDEFINES = 'PM_IMAGE_LPASS_PROC')
+elif env.has_key('IMAGE_WCN_PROC'):
+   env.Replace(PMIC_ROOT = [
+      "${INC_ROOT}/pmic",
+   ])
+   env.Append(CPPDEFINES = 'PM_IMAGE_WCN_PROC')
+else:
+   env.Replace(PMIC_ROOT = [
+      "${INC_ROOT}/pmic",
+   ])
+   env.Append(CPPDEFINES = 'PM_IMAGE_APPS_PROC')
+
+env.PublishProtectedApi( 'PMIC_APP', [    
+    '${PMIC_ROOT}/app/clk/src',
+    ])
+
+
+env.PublishProtectedApi( 'PMIC_CONFIG', [    
+    '${PMIC_ROOT}/config/common',
+    '${PMIC_ROOT}/config/${CHIPSET}',
+    '${PMIC_ROOT}/config/${CHIPSET}/src',
+    ])
+
+env.PublishProtectedApi( 'PMIC_COMM', [    
+    '${PMIC_ROOT}/comm/src',
+    '${PMIC_ROOT}/comm/spmi_lite/src',
+    
+    ])
+
+env.PublishProtectedApi( 'PMIC_DRIVERS', [    
+    '${PMIC_ROOT}/drivers/pwr/src',
+    '${PMIC_ROOT}/drivers/smps/src',
+    '${PMIC_ROOT}/drivers/boost/src',
+    '${PMIC_ROOT}/drivers/bob/src',
+    '${PMIC_ROOT}/drivers/ldo/src',
+    '${PMIC_ROOT}/drivers/vs/src',
+    '${PMIC_ROOT}/drivers/clk/src',
+    '${PMIC_ROOT}/drivers/pon/src',
+    '${PMIC_ROOT}/drivers/rtc/src',
+    '${PMIC_ROOT}/drivers/pbs/src',
+    '${PMIC_ROOT}/drivers/fg/src',
+   ])
+      
+env.PublishProtectedApi( 'PMIC_DEVICES', [    
+    '${PMIC_ROOT}/pmic_devices/common/src',
+    ])
+
+env.PublishProtectedApi( 'PMIC_FRAMEWORK', [    
+    '${PMIC_ROOT}/framework/inc',
+    '${PMIC_ROOT}/framework/src',
+    ])
+    
+env.PublishProtectedApi( 'PMIC_NPA', [    
+    '${PMIC_ROOT}/npa/inc',
+    '${PMIC_ROOT}/npa/src',
+    '${PMIC_ROOT}/npa/rpm/src',
+    ])
+    
+if env['CHIPSET'] in ['msm8998']:
+    env.PublishProtectedApi( 'PMIC_TARGET', [    
+    '${PMIC_ROOT}/target/msm8998_pm8998_pmi8998/inc',
+    '${PMIC_ROOT}/target/msm8998_pm8998_pmi8998/src',
+    ]) 
+
+if env['CHIPSET'] in ['sdm660']:
+   env.PublishProtectedApi( 'PMIC_TARGET', [ 
+     '${PMIC_ROOT}/target/sdm660_pm660_pm660i/inc',
+	 '${PMIC_ROOT}/target/sdm660_pm660_pm660i/src',
+	])
+if env['CHIPSET'] in ['sdm_nicobar']:
+   env.PublishProtectedApi( 'PMIC_TARGET', [ 
+     '${PMIC_ROOT}/target/sdm_nicobar_pm660_pm660i/inc',
+	 '${PMIC_ROOT}/target/sdm_nicobar_pm660_pm660i/src',
+	])
+	
+env.PublishProtectedApi( 'PMIC_UTILS', [    
+    '${PMIC_ROOT}/utils/src',
+    ])
+       
+       
+env.RequirePublicApi([
+    'POWER',
+    'DEBUGTRACE',
+    'SERVICES',
+    'SYSTEMDRIVERS',
+    'PMIC',
+    ])
+           
+env.RequireRestrictedApi([
+    'POWER'
+    ])
+
+#-------------------------------------------------------------------------------
+# Add QDSS software events
+#-------------------------------------------------------------------------------
+
+if 'USES_QDSS_SWE' in env:
+   QDSS_IMG = ['QDSS_EN_IMG']
+   events = [['PMIC_EVENT_FIRST=512','PMIC first event placeholder'],
+             ['PMIC_DRV_PWR_SW_EN', 'pmic_index = %d periph_type = %d periph_index = %d enable = %d'],
+             ['PMIC_DRV_PWR_PIN_CTRL', 'pmic_index = %d periph_type = %d periph_index = %d pin = %d'],
+             ['PMIC_DRV_PWR_PIN_CTRL_MODE', 'pmic_index = %d periph_type = %d periph_index = %d pin = %d'],
+             ['PMIC_DRV_PWR_VOLT_LVL', 'pmic_index = %d periph_type = %d periph_index = %d volt = %d'],
+             ['PMIC_DRV_PWR_PIN_VOLT_LVL', 'pmic_index = %d periph_type = %d periph_index = %d volt = %d'],
+             ['PMIC_DRV_PWR_MODE', 'pmic_index = %d periph_type = %d periph_index = %d mode = %d'],
+             ['PMIC_DRV_PWR_PULL_DOWN_ERROR', 'pmic_index = %d periph_type = %d periph_index = %d error = %d'],
+             ['PMIC_DRV_PWR_SW_EN_ERROR', 'pmic_index = %d periph_type = %d periph_index = %d error = %d'],
+             ['PMIC_DRV_PWR_PIN_CTRL_ERROR', 'pmic_index = %d periph_type = %d periph_index = %d error = %d'],
+             ['PMIC_DRV_PWR_VOLT_LVL_ERROR', 'pmic_index = %d periph_type = %d periph_index = %d error = %d'],
+             ['PMIC_DRV_PWR_PIN_VOLT_LVL_ERROR', 'pmic_index = %d periph_type = %d periph_index = %d'],
+             ['PMIC_DRV_PWR_MODE_ERROR', 'pmic_index = %d periph_type = %d periph_index = %d error = %d'],
+             ['PMIC_DRV_PWR_IRQ_ERROR', 'pmic_index = %d periph_type = %d periph_index = %d error = %d'],
+             ['PMIC_DRV_SMPS_ILIM_ERROR', 'pmic_index = %d periph_type = %d periph_index = %d error = %d'],
+             ['PMIC_DRV_SMPS_QM_ERROR', 'pmic_index = %d periph_type = %d periph_index = %d error = %d'],
+             ['PMIC_DRV_SMPS_SWITCH_FREQ_ERROR', 'pmic_index = %d periph_type = %d periph_index = %d error = %d'],
+             ['PMIC_DRV_SMPS_PHASE_ERROR', 'pmic_index = %d periph_type = %d periph_index = %d error = %d'],
+             ['PMIC_DRV_SMPS_SS_ERROR', 'pmic_index = %d periph_type = %d periph_index = %d error = %d'],
+             ['PMIC_DRV_SMPS_VSTEP_ERROR', 'pmic_index = %d periph_type = %d periph_index = %d error = %d'],
+             ['PMIC_DRV_CLK_SW_EN', 'pmic_index = %d periph_type = %d periph_index = %d enable = %d'],
+             ['PMIC_DRV_CLK_PIN_CTRL', 'pmic_index = %d periph_type = %d periph_index = %d pin = %d'],
+             ['PMIC_DRV_CLK_SW_EN_ERROR', 'pmic_index = %d periph_type = %d periph_index = %d error = %d'],
+             ['PMIC_DRV_CLK_PIN_CTRL_ERROR', 'pmic_index = %d periph_type = %d periph_index = %d error = %d'],
+             ['PMIC_RPM_VREG_SETTLING_ERROR', 'pmic_index = %d periph_type = %d periph_index = %d'],
+             ['PMIC_RPM_STEPPER_SETTLING_ERROR', 'pmic_index = %d periph_type = %d periph_index = %d'],
+             ['PMIC_DRV_SMPS_OCP_ERROR', 'pmic_index = %d periph_type = %d periph_index = %d error = %d'],
+             ['PMIC_RPM_SETTLING_TIME', 'periph_info = %d estimated = %d actual = %d'],
+             ['PMIC_EVENT_LAST=639','PMIC last event placeholder']
+            ]
+   env.AddSWEInfo(QDSS_IMG, events)
+
+#-------------------------------------------------------------------------------
+# Add CMM Scripts to T32 Menu
+#-------------------------------------------------------------------------------
+
+SRCPATHSCRIPTS = env['BUILD_ROOT'] + '/core/pmic/pm/scripts/'
+try:
+    env.AddCMMScripts('RPM', [SRCPATHSCRIPTS], { 
+            'PMICPeek.cmm' : 'PMIC Peek/Poke',
+            'PMICDump.cmm' : 'PMIC Dump',
+            'swevent_log_dump.cmm' : 'PMIC SW Event Dump',
+            'PMICDashBoard.cmm' : 'PMIC Dashboard',
+            'PMICRegisters.cmm' : 'Registers - PMIC',
+            },
+            'SystemDrivers')
+except:
+    pass
+
+#-------------------------------------------------------------------------------
+# Continue loading sub-units
+#-------------------------------------------------------------------------------
+    
+env.LoadSoftwareUnits( ) 
+

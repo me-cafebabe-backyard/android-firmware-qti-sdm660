@@ -1,0 +1,125 @@
+SARVersion,1,,,,,,,,,,,,,,,,,,,,,,
+CTL grouping Disable (SARFlags),0,,,,,,,,,,,,,,,,,,,,,,
+(Default : CTL grouping Enabled),,,,,,,,,,,,,,,,,,,,,,,
+Per Chain Priority (SARFlags),0,,,,,,,,,,,,,,,,,,,,,,
+(Default : Per modulation priority),,,,,,,,,,,,,,,,,,,,,,,
+Four power values (SARFlags),0,,,,,,,,,,,,,,,,,,,,,,
+(Default : Three power values for SAR),,,,,,,,,,,,,,,,,,,,,,,
+SAR2GChannels (MHz),2412,2555,2555,2555,,,,,,,,,,,,,,,,,,,
+SAR5GChannels (MHz),5180,5250,5350,5725,6075,,,,,,,,,,,,,,,,,,
+SAR5GVHT160Channels (MHz),6075,6075,,,,,,,,,,,,,,,,,,,,,
+SARCtlList,FCC,ETSI,MKK,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+CtlGrp,R0,,,,,,,,,,,,,,,,,,,,,,
+,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new,,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new,,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new,,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new
+SAR SET 0,,,,,,SAR SET 1,,,,,,SAR SET 2,,,,,,SAR SET 3,,,,,
+2G,,,,,,2G,,,,,,2G,,,,,,2G,,,,,
+CCK,ChanGrp0,0 ,0 ,0 ,0,CCK,ChanGrp0,e ,18 ,19 ,0,CCK,ChanGrp0,0 ,0 ,0 ,0,CCK,ChanGrp0,25 ,25 ,25 ,0
+,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0
+,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0
+,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0
+HT20,ChanGrp0,0 ,0 ,0 ,0,HT20,ChanGrp0,e ,18 ,19 ,0,HT20,ChanGrp0,0 ,0 ,0 ,0,HT20,ChanGrp0,22 ,22 ,22 ,0
+,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0
+,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0
+,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0
+HT40,ChanGrp0,0 ,0 ,0 ,0,HT40,ChanGrp0,e ,18 ,19 ,0,HT40,ChanGrp0,0 ,0 ,0 ,0,HT40,ChanGrp0,22 ,22 ,22 ,0
+,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0
+,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0
+,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0
+,,,,,,,,,,,,,,,,,,,,,,,
+,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new,,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new,,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new,,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new
+SAR SET 0,,,,,,SAR SET 1,,,,,,SAR SET 2,,,,,,SAR SET 3,,,,,
+5G,,,,,,5G,,,,,,5G,,,,,,5G,,,,,
+HT20,ChanGrp0,0 ,0 ,0 ,0,HT20,ChanGrp0,f ,c ,e ,0,HT20,ChanGrp0,0 ,0 ,0 ,0,HT20,ChanGrp0,22 ,22 ,22 ,0
+,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,f ,c ,e ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,22 ,22 ,22 ,0
+,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,f ,11 ,d ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,21 ,21 ,21 ,0
+,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,f ,12 ,d ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,20 ,20 ,20 ,0
+,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0
+HT40,ChanGrp0,0 ,0 ,0 ,0,HT40,ChanGrp0,f ,c ,e ,0,HT40,ChanGrp0,0 ,0 ,0 ,0,HT40,ChanGrp0,22 ,22 ,22 ,0
+,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,f ,c ,e ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,22 ,22 ,22 ,0
+,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,f ,11 ,d ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,22 ,22 ,22 ,0
+,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,f ,12 ,d ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,21 ,21 ,21 ,0
+,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0
+HT80,ChanGrp0,0 ,0 ,0 ,0,HT80,ChanGrp0,f ,c ,e ,0,HT80,ChanGrp0,0 ,0 ,0 ,0,HT80,ChanGrp0,16 ,16 ,16 ,0
+,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,f ,c ,e ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,18 ,18 ,18 ,0
+,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,f ,11 ,d ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,22 ,22 ,22 ,0
+,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,f ,12 ,d ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,21 ,21 ,21 ,0
+,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0
+VHT160,ChanGrp0,0 ,0 ,0 ,0,VHT160,ChanGrp0,0 ,0 ,0 ,0,VHT160,ChanGrp0,0 ,0 ,0 ,0,VHT160,ChanGrp0,0 ,0 ,0 ,0
+,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0
+,,,,,,,,,,,,,,,,,,,,,,,
+CtlGrp,R1,,,,,,,,,,,,,,,,,,,,,,
+,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new,,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new,,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new,,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new
+SAR SET 0,,,,,,SAR SET 1,,,,,,SAR SET 2,,,,,,SAR SET 3,,,,,
+2G,,,,,,2G,,,,,,2G,,,,,,2G,,,,,
+CCK,ChanGrp0,0 ,0 ,0 ,0,CCK,ChanGrp0,24 ,24 ,24 ,0,CCK,ChanGrp0,0 ,0 ,0 ,0,CCK,ChanGrp0,24 ,24 ,24 ,0
+,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0
+,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0
+,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0
+HT20,ChanGrp0,0 ,0 ,0 ,0,HT20,ChanGrp0,24 ,24 ,24 ,0,HT20,ChanGrp0,0 ,0 ,0 ,0,HT20,ChanGrp0,24 ,24 ,24 ,0
+,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0
+,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0
+,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0
+HT40,ChanGrp0,0 ,0 ,0 ,0,HT40,ChanGrp0,24 ,24 ,24 ,0,HT40,ChanGrp0,0 ,0 ,0 ,0,HT40,ChanGrp0,24 ,24 ,24 ,0
+,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0
+,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0
+,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0
+,,,,,,,,,,,,,,,,,,,,,,,
+,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new,,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new,,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new,,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new
+SAR SET 0,,,,,,SAR SET 1,,,,,,SAR SET 2,,,,,,SAR SET 3,,,,,
+5G,,,,,,5G,,,,,,5G,,,,,,5G,,,,,
+HT20,ChanGrp0,0 ,0 ,0 ,0,HT20,ChanGrp0,22 ,21 ,22 ,0,HT20,ChanGrp0,0 ,0 ,0 ,0,HT20,ChanGrp0,22 ,21 ,22 ,0
+,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,20 ,1f ,1f ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,20 ,1f ,1f ,0
+,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,19 ,19 ,19 ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,19 ,19 ,19 ,0
+,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0
+,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0
+HT40,ChanGrp0,0 ,0 ,0 ,0,HT40,ChanGrp0,22 ,21 ,22 ,0,HT40,ChanGrp0,0 ,0 ,0 ,0,HT40,ChanGrp0,22 ,21 ,22 ,0
+,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,20 ,1f ,1f ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,20 ,1f ,1f ,0
+,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,19 ,19 ,19 ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,19 ,19 ,19 ,0
+,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0
+,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0
+HT80,ChanGrp0,0 ,0 ,0 ,0,HT80,ChanGrp0,22 ,21 ,22 ,0,HT80,ChanGrp0,0 ,0 ,0 ,0,HT80,ChanGrp0,22 ,21 ,22 ,0
+,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,20 ,1f ,1f ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,20 ,1f ,1f ,0
+,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,19 ,19 ,19 ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,19 ,19 ,19 ,0
+,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0
+,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0
+VHT160,ChanGrp0,0 ,0 ,0 ,0,VHT160,ChanGrp0,0 ,0 ,0 ,0,VHT160,ChanGrp0,0 ,0 ,0 ,0,VHT160,ChanGrp0,0 ,0 ,0 ,0
+,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0
+,,,,,,,,,,,,,,,,,,,,,,,
+CtlGrp,R2,,,,,,,,,,,,,,,,,,,,,,
+,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new,,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new,,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new,,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new
+SAR SET 0,,,,,,SAR SET 1,,,,,,SAR SET 2,,,,,,SAR SET 3,,,,,
+2G,,,,,,2G,,,,,,2G,,,,,,2G,,,,,
+CCK,ChanGrp0,0 ,0 ,0 ,0,CCK,ChanGrp0,1a ,1a ,20 ,0,CCK,ChanGrp0,0 ,0 ,0 ,0,CCK,ChanGrp0,1a ,1a ,20 ,0
+,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0
+,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0
+,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0
+HT20,ChanGrp0,0 ,0 ,0 ,0,HT20,ChanGrp0,1f ,1f ,24 ,0,HT20,ChanGrp0,0 ,0 ,0 ,0,HT20,ChanGrp0,1f ,1f ,24 ,0
+,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0
+,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0
+,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0
+HT40,ChanGrp0,0 ,0 ,0 ,0,HT40,ChanGrp0,1f ,1f ,24 ,0,HT40,ChanGrp0,0 ,0 ,0 ,0,HT40,ChanGrp0,1f ,1f ,24 ,0
+,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0
+,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,0 ,0 ,0 ,0
+,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0
+,,,,,,,,,,,,,,,,,,,,,,,
+,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new,,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new,,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new,,,Chain0,Chain1,Chain0+1/Ch0new,Ch1new
+SAR SET 0,,,,,,SAR SET 1,,,,,,SAR SET 2,,,,,,SAR SET 3,,,,,
+5G,,,,,,5G,,,,,,5G,,,,,,5G,,,,,
+HT20,ChanGrp0,0 ,0 ,0 ,0,HT20,ChanGrp0,21 ,1f ,1f ,0,HT20,ChanGrp0,0 ,0 ,0 ,0,HT20,ChanGrp0,21 ,1f ,1f ,0
+,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,21 ,1f ,1f ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,21 ,1f ,1f ,0
+,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,20 ,1e ,1f ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,20 ,1e ,1f ,0
+,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0
+,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0
+HT40,ChanGrp0,0 ,0 ,0 ,0,HT40,ChanGrp0,21 ,1f ,1f ,0,HT40,ChanGrp0,0 ,0 ,0 ,0,HT40,ChanGrp0,21 ,1f ,1f ,0
+,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,21 ,1f ,1f ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,21 ,1f ,1f ,0
+,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,20 ,1e ,1f ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,20 ,1e ,1f ,0
+,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0
+,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0
+HT80,ChanGrp0,0 ,0 ,0 ,0,HT80,ChanGrp0,21 ,1f ,1f ,0,HT80,ChanGrp0,0 ,0 ,0 ,0,HT80,ChanGrp0,21 ,1f ,1f ,0
+,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,21 ,1f ,1f ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,21 ,1f ,1f ,0
+,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,20 ,1e ,1f ,0,,ChanGrp2,0 ,0 ,0 ,0,,ChanGrp2,20 ,1e ,1f ,0
+,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0,,ChanGrp3,0 ,0 ,0 ,0
+,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0,,ChanGrp4,0 ,0 ,0 ,0
+VHT160,ChanGrp0,0 ,0 ,0 ,0,VHT160,ChanGrp0,0 ,0 ,0 ,0,VHT160,ChanGrp0,0 ,0 ,0 ,0,VHT160,ChanGrp0,0 ,0 ,0 ,0
+,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0,,ChanGrp1,0 ,0 ,0 ,0

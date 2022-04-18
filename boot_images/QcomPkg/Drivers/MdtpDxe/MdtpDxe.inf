@@ -1,0 +1,33 @@
+#/** @file            MdtpDxeRelease.inf
+#
+#    Contains Qualcomm MdtpDxe driver.
+
+#    Copyright (c) 2016-2017 Qualcomm Technologies Inc. All rights reserved.
+#
+#**/
+#=============================================================================
+#                              EDIT HISTORY
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+#
+#
+# when       who      what, where, why
+# --------   ---      --------------------------------------------------------
+# 02/02/17   ysr      Initial version
+#
+#=============================================================================
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = MdtpDxe
+  FILE_GUID                      = 409D636E-8DBB-46DF-AE8F-D8D69F0A5A2F
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = MdtpDxeInitialize
+
+[Binaries.Arm]
+   PE32|Arm/MdtpDxe.efi|RELEASE
+
+[Binaries.AARCH64]
+   PE32|AARCH64/MdtpDxe.efi|RELEASE

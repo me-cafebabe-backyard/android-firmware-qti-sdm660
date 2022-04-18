@@ -1,0 +1,875 @@
+
+Linker Script and memory map
+START GROUP
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_oem_tz.o
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_data_oem_tz.o
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfgSegInfo_oem_tz.o
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsee/mink/oem/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/common/660_devcfg_reset_reason_oem_map.o
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_ABT_OEM_data.o
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_BIMC_error_OEM_data.o
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_NOC_error_OEM_data.o
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_spmi_config.o
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_reg_dump_config.o
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_config.o
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_ac_config.o
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_tz_config.o
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfg_660_oem_hyp.o
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfg_660_data_oem_hyp.o
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfgSegInfo_oem_hyp.o
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/660_xml/src/660_devcfg_pm_hyp_config.o
+END GROUP
+
+Linker scripts used (including INCLUDE command)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/devcfg/build/KAJAANAA/devcfg_KAJAANAAA_40000000.scl
+
+	0x0	0x0
+
+DEVCFG_DATA_TZ	0x1c1e8000	0x79bc
+KEEP ((.rodata* .data* .sdata* ))
+.data	0x1c1e8000	0x60	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfgSegInfo_oem_tz.o	
+	0x1c1e8000		$d.0	
+	0x1c1e8000		.data	
+	0x1c1e8000		devcfg_target_soc_info_oem_tz	
+KEEP ((.rodata* .data* .sdata* ))
+.rodata	0x1c1e8060	0x20	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_data_oem_tz.o	
+	0x1c1e8060		$d.0	
+	0x1c1e8060		.rodata	
+	0x1c1e8060		DALPROP_PropsInfo_660_oem_tz	
+KEEP ((.rodata* .data* .sdata* ))
+.data	0x1c1e8080	0x2548	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_oem_tz.o	
+	0x1c1e8080		$d.0	
+	0x1c1e8080		devcfg_0	
+	0x1c1e8080		.data	
+	0x1c1e808c		devcfg_1	
+	0x1c1e8098		devcfg_2	
+	0x1c1e80a4		devcfg_3	
+	0x1c1e80b0		devcfg_4	
+	0x1c1e80bc		devcfg_5	
+	0x1c1e80c8		devcfg_6	
+	0x1c1e80d4		devcfg_7	
+	0x1c1e80e0		devcfg_8	
+	0x1c1e80ec		devcfg_9	
+	0x1c1e80f8		devcfg_10	
+	0x1c1e8104		devcfg_11	
+	0x1c1e8110		devcfg_12	
+	0x1c1e811c		devcfg_13	
+	0x1c1e8128		devcfg_14	
+	0x1c1e8134		devcfg_15	
+	0x1c1e8140		devcfg_16	
+	0x1c1e814c		devcfg_17	
+	0x1c1e8158		devcfg_18	
+	0x1c1e8164		devcfg_19	
+	0x1c1e8170		devcfg_20	
+	0x1c1e817c		devcfg_21	
+	0x1c1e8188		devcfg_22	
+	0x1c1e8194		devcfg_23	
+	0x1c1e81a0		devcfg_24	
+	0x1c1e81ac		devcfg_25	
+	0x1c1e81b8		devcfg_26	
+	0x1c1e81c4		devcfg_27	
+	0x1c1e81d0		devcfg_28	
+	0x1c1e81dc		devcfg_29	
+	0x1c1e81e8		devcfg_30	
+	0x1c1e81f4		devcfg_31	
+	0x1c1e8200		devcfg_32	
+	0x1c1e820c		devcfg_33	
+	0x1c1e8218		devcfg_34	
+	0x1c1e8224		devcfg_35	
+	0x1c1e8230		devcfg_36	
+	0x1c1e823c		devcfg_37	
+	0x1c1e8248		devcfg_38	
+	0x1c1e8254		devcfg_39	
+	0x1c1e8260		devcfg_40	
+	0x1c1e826c		devcfg_41	
+	0x1c1e8278		devcfg_42	
+	0x1c1e8284		devcfg_43	
+	0x1c1e8290		devcfg_44	
+	0x1c1e829c		devcfg_45	
+	0x1c1e82a8		devcfg_46	
+	0x1c1e82b4		devcfg_47	
+	0x1c1e82c0		devcfg_48	
+	0x1c1e82cc		devcfg_49	
+	0x1c1e82d8		devcfg_50	
+	0x1c1e82e4		devcfg_51	
+	0x1c1e82f0		devcfg_52	
+	0x1c1e82fc		devcfg_53	
+	0x1c1e92fc		devcfg_54	
+	0x1c1e9348		devcfg_56	
+	0x1c1ea348		devcfg_72	
+	0x1c1ea350		devcfg_73	
+	0x1c1ea358		devcfg_74	
+	0x1c1ea360		devcfg_75	
+	0x1c1ea368		devcfg_76	
+	0x1c1ea370		devcfg_77	
+	0x1c1ea378		devcfg_78	
+	0x1c1ea380		devcfg_79	
+	0x1c1ea388		devcfg_80	
+	0x1c1ea390		devcfg_81	
+	0x1c1ea398		devcfg_82	
+	0x1c1ea3a0		devcfg_83	
+	0x1c1ea3a8		devcfg_84	
+	0x1c1ea3b0		devcfg_85	
+	0x1c1ea3b8		devcfg_86	
+	0x1c1ea3c0		devcfg_87	
+	0x1c1ea3c8		devcfg_88	
+	0x1c1ea3d0		devcfg_89	
+	0x1c1ea3d8		devcfg_90	
+	0x1c1ea3e0		devcfg_91	
+	0x1c1ea3e8		devcfg_92	
+	0x1c1ea3f0		devcfg_93	
+	0x1c1ea3f8		devcfg_94	
+	0x1c1ea400		devcfg_95	
+	0x1c1ea408		devcfg_96	
+	0x1c1ea410		devcfg_97	
+	0x1c1ea418		devcfg_98	
+	0x1c1ea420		devcfg_99	
+	0x1c1ea428		devcfg_100	
+	0x1c1ea430		devcfg_101	
+	0x1c1ea438		devcfg_102	
+	0x1c1ea440		devcfg_103	
+	0x1c1ea448		devcfg_104	
+	0x1c1ea450		devcfg_105	
+	0x1c1ea458		devcfg_106	
+	0x1c1ea460		devcfg_107	
+	0x1c1ea468		devcfg_108	
+	0x1c1ea470		devcfg_109	
+	0x1c1ea478		devcfg_110	
+	0x1c1ea480		devcfg_111	
+	0x1c1ea488		devcfg_112	
+	0x1c1ea490		devcfg_113	
+	0x1c1ea498		devcfg_114	
+	0x1c1ea4a0		devcfg_115	
+	0x1c1ea4a8		devcfg_116	
+	0x1c1ea4b0		devcfg_117	
+	0x1c1ea4b8		devcfg_118	
+	0x1c1ea4c0		devcfg_119	
+	0x1c1ea4c8		devcfg_120	
+	0x1c1ea4d0		devcfg_121	
+	0x1c1ea4d8		devcfg_122	
+	0x1c1ea4e0		devcfg_123	
+	0x1c1ea4e8		devcfg_124	
+	0x1c1ea4f0		devcfg_125	
+	0x1c1ea4f8		devcfg_126	
+	0x1c1ea500		devcfg_127	
+	0x1c1ea508		devcfg_128	
+	0x1c1ea510		devcfg_129	
+	0x1c1ea518		devcfg_130	
+	0x1c1ea520		devcfg_131	
+	0x1c1ea528		devcfg_132	
+	0x1c1ea530		devcfg_133	
+	0x1c1ea538		devcfg_134	
+	0x1c1ea540		devcfg_135	
+	0x1c1ea548		devcfg_136	
+	0x1c1ea550		devcfg_137	
+	0x1c1ea558		devcfg_138	
+	0x1c1ea560		devcfg_139	
+	0x1c1ea568		devcfg_140	
+	0x1c1ea570		devcfg_141	
+	0x1c1ea578		devcfg_142	
+	0x1c1ea580		devcfg_143	
+	0x1c1ea588		devcfg_144	
+	0x1c1ea590		devcfg_145	
+	0x1c1ea598		devcfg_146	
+	0x1c1ea5a0		devcfg_147	
+	0x1c1ea5a8		devcfg_148	
+	0x1c1ea5b0		devcfg_149	
+	0x1c1ea5b8		devcfg_150	
+	0x1c1ea5c0		devcfg_151	
+.rodata	0x1c1ea5c8	0x3fb8	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_oem_tz.o	
+	0x1c1ea5c8		$d.1	
+	0x1c1ea5c8		.rodata	
+	0x1c1ea5c8		DALPROP_StructPtrs_660_oem_tz	
+	0x1c1eaf58		DALPROP_PropBin_660_oem_tz	
+	0x1c1edc20		driver_list_660_oem_tz	
+.rodata.str1.1	0x1c1ee580	0x11	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_oem_tz.o	
+	0x1c1ee580		$d.2	
+	0x1c1ee580		.rodata.str1.1	
+KEEP ((.rodata* .data* .sdata* ))
+.data	0x1c1ee9d0	0x200	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsee/mink/oem/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/common/660_devcfg_reset_reason_oem_map.o	
+	0x1c1ee9d0		rst_reason_list	
+	0x1c1ee9d0		.data	
+	0x1c1ee9d8		$d.0	
+	0x1c1eebc0		oem_rst_reason_list_660_oem_tz	
+KEEP ((.rodata* .data* .sdata* ))
+.rodata.str1.1	0x1c1eebd0	0x13	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_ABT_OEM_data.o	
+	0x1c1eebd0		$d.0	
+	0x1c1eebd0		.rodata.str1.1	
+.rodata	0x1c1eecf8	0x188	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_ABT_OEM_data.o	
+	0x1c1eecf8		$d.1	
+	0x1c1eecf8		.rodata	
+	0x1c1eecf8		ABT_cfgdata_oem	
+	0x1c1eee68		ABT_propdata_oem_660_oem_tz	
+KEEP ((.rodata* .data* .sdata* ))
+.rodata.str1.1	0x1c1eee80	0x11	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_BIMC_error_OEM_data.o	
+	0x1c1eee80		$d.0	
+	0x1c1eee80		.rodata.str1.1	
+.rodata	0x1c1eeef8	0x90	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_BIMC_error_OEM_data.o	
+	0x1c1eeef8		$d.1	
+	0x1c1eeef8		.rodata	
+	0x1c1eeef8		BRIC_info_oem	
+	0x1c1eef28		DEFAULT_info_oem	
+	0x1c1eef38		DDR_SCMO_info_oem	
+	0x1c1eef58		BIMC_propdata_oem_660_oem_tz	
+KEEP ((.rodata* .data* .sdata* ))
+.rodata.str1.1	0x1c1eef88	0x5	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_NOC_error_OEM_data.o	
+	0x1c1eef88		$d.0	
+	0x1c1eef88		.rodata.str1.1	
+.rodata	0x1c1eefb0	0x50	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_NOC_error_OEM_data.o	
+	0x1c1eefb0		$d.1	
+	0x1c1eefb0		.rodata	
+	0x1c1eefb0		NOCERR_cfgdata_oem	
+	0x1c1eeff0		NOCERR_propdata_oem_660_oem_tz	
+KEEP ((.rodata* .data* .sdata* ))
+.data	0x1c1ef000	0x474	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_spmi_config.o	
+	0x1c1ef000		$d.0	
+	0x1c1ef000		.data	
+	0x1c1ef000		pm_spmi_pheriph_cfg_660_oem_tz	
+	0x1c1ef470		pm_spmi_pheriph_cfg_sz_660_oem_tz	
+KEEP ((.rodata* .data* .sdata* ))
+.rodata	0x1c1ef474	0x84	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_reg_dump_config.o	
+	0x1c1ef474		$d.0	
+	0x1c1ef474		.rodata	
+	0x1c1ef474		pm_reg_dump_list_660_oem_tz	
+KEEP ((.rodata* .data* .sdata* ))
+.rodata	0x1c1ef4f8	0xd8	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_config.o	
+	0x1c1ef4f8		$d.0	
+	0x1c1ef4f8		.rodata	
+	0x1c1ef4f8		pm_pam_qfprom_rail_660_oem_tz	
+KEEP ((.rodata* .data* .sdata* ))
+.data	0x1c1ef5d0	0x360	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_ac_config.o	
+	0x1c1ef5d0		$d.0	
+	0x1c1ef5d0		.data	
+	0x1c1ef5d0		pm_mpu_rg_cfg_660_oem_tz	
+	0x1c1ef810		pm_spmi_rg_cfg_660_oem_tz	
+.rodata	0x1c1ef930	0x8	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_ac_config.o	
+	0x1c1ef930		$d.1	
+	0x1c1ef930		.rodata	
+	0x1c1ef930		pm_spmi_rg_sz_660_oem_tz	
+	0x1c1ef934		pm_hal_id_xpu_660_oem_tz	
+KEEP ((.rodata* .data* .sdata* ))
+.data	0x1c1ef938	0x30	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_tz_config.o	
+	0x1c1ef938		$d.0	
+	0x1c1ef938		pm_pvc_apps0_addr	
+	0x1c1ef938		.data	
+	0x1c1ef948		pm_pvc_apps1_addr	
+	0x1c1ef958		pm_pvc_mss_addr	
+.rodata	0x1c1ef968	0x54	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_tz_config.o	
+	0x1c1ef968		$d.1	
+	0x1c1ef968		.rodata	
+	0x1c1ef968		pm_arb_pvc_cfg_660_oem_tz	
+	0x1c1ef9b0		pm_num_pvc_port_660_oem_tz	
+	0x1c1ef9b4		pm_arb_priorities_660_oem_tz	
+	0x1c1ef9b8		pm_num_prio_660_oem_tz	
+	ASSERT(0x1) = ASSERT( SIZEOF(DEVCFG_DATA_TZ = 0x79bc ) <= 40960( 0xa000 ) );
+.data	0x1c1e8000	0x60	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfgSegInfo_oem_tz.o	
+	0x1c1e8000		$d.0	
+	0x1c1e8000		.data	
+	0x1c1e8000		devcfg_target_soc_info_oem_tz	
+.rodata	0x1c1e8060	0x20	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_data_oem_tz.o	
+	0x1c1e8060		$d.0	
+	0x1c1e8060		.rodata	
+	0x1c1e8060		DALPROP_PropsInfo_660_oem_tz	
+.data	0x1c1e8080	0x2548	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_oem_tz.o	
+	0x1c1e8080		$d.0	
+	0x1c1e8080		devcfg_0	
+	0x1c1e8080		.data	
+	0x1c1e808c		devcfg_1	
+	0x1c1e8098		devcfg_2	
+	0x1c1e80a4		devcfg_3	
+	0x1c1e80b0		devcfg_4	
+	0x1c1e80bc		devcfg_5	
+	0x1c1e80c8		devcfg_6	
+	0x1c1e80d4		devcfg_7	
+	0x1c1e80e0		devcfg_8	
+	0x1c1e80ec		devcfg_9	
+	0x1c1e80f8		devcfg_10	
+	0x1c1e8104		devcfg_11	
+	0x1c1e8110		devcfg_12	
+	0x1c1e811c		devcfg_13	
+	0x1c1e8128		devcfg_14	
+	0x1c1e8134		devcfg_15	
+	0x1c1e8140		devcfg_16	
+	0x1c1e814c		devcfg_17	
+	0x1c1e8158		devcfg_18	
+	0x1c1e8164		devcfg_19	
+	0x1c1e8170		devcfg_20	
+	0x1c1e817c		devcfg_21	
+	0x1c1e8188		devcfg_22	
+	0x1c1e8194		devcfg_23	
+	0x1c1e81a0		devcfg_24	
+	0x1c1e81ac		devcfg_25	
+	0x1c1e81b8		devcfg_26	
+	0x1c1e81c4		devcfg_27	
+	0x1c1e81d0		devcfg_28	
+	0x1c1e81dc		devcfg_29	
+	0x1c1e81e8		devcfg_30	
+	0x1c1e81f4		devcfg_31	
+	0x1c1e8200		devcfg_32	
+	0x1c1e820c		devcfg_33	
+	0x1c1e8218		devcfg_34	
+	0x1c1e8224		devcfg_35	
+	0x1c1e8230		devcfg_36	
+	0x1c1e823c		devcfg_37	
+	0x1c1e8248		devcfg_38	
+	0x1c1e8254		devcfg_39	
+	0x1c1e8260		devcfg_40	
+	0x1c1e826c		devcfg_41	
+	0x1c1e8278		devcfg_42	
+	0x1c1e8284		devcfg_43	
+	0x1c1e8290		devcfg_44	
+	0x1c1e829c		devcfg_45	
+	0x1c1e82a8		devcfg_46	
+	0x1c1e82b4		devcfg_47	
+	0x1c1e82c0		devcfg_48	
+	0x1c1e82cc		devcfg_49	
+	0x1c1e82d8		devcfg_50	
+	0x1c1e82e4		devcfg_51	
+	0x1c1e82f0		devcfg_52	
+	0x1c1e82fc		devcfg_53	
+	0x1c1e92fc		devcfg_54	
+	0x1c1e9348		devcfg_56	
+	0x1c1ea348		devcfg_72	
+	0x1c1ea350		devcfg_73	
+	0x1c1ea358		devcfg_74	
+	0x1c1ea360		devcfg_75	
+	0x1c1ea368		devcfg_76	
+	0x1c1ea370		devcfg_77	
+	0x1c1ea378		devcfg_78	
+	0x1c1ea380		devcfg_79	
+	0x1c1ea388		devcfg_80	
+	0x1c1ea390		devcfg_81	
+	0x1c1ea398		devcfg_82	
+	0x1c1ea3a0		devcfg_83	
+	0x1c1ea3a8		devcfg_84	
+	0x1c1ea3b0		devcfg_85	
+	0x1c1ea3b8		devcfg_86	
+	0x1c1ea3c0		devcfg_87	
+	0x1c1ea3c8		devcfg_88	
+	0x1c1ea3d0		devcfg_89	
+	0x1c1ea3d8		devcfg_90	
+	0x1c1ea3e0		devcfg_91	
+	0x1c1ea3e8		devcfg_92	
+	0x1c1ea3f0		devcfg_93	
+	0x1c1ea3f8		devcfg_94	
+	0x1c1ea400		devcfg_95	
+	0x1c1ea408		devcfg_96	
+	0x1c1ea410		devcfg_97	
+	0x1c1ea418		devcfg_98	
+	0x1c1ea420		devcfg_99	
+	0x1c1ea428		devcfg_100	
+	0x1c1ea430		devcfg_101	
+	0x1c1ea438		devcfg_102	
+	0x1c1ea440		devcfg_103	
+	0x1c1ea448		devcfg_104	
+	0x1c1ea450		devcfg_105	
+	0x1c1ea458		devcfg_106	
+	0x1c1ea460		devcfg_107	
+	0x1c1ea468		devcfg_108	
+	0x1c1ea470		devcfg_109	
+	0x1c1ea478		devcfg_110	
+	0x1c1ea480		devcfg_111	
+	0x1c1ea488		devcfg_112	
+	0x1c1ea490		devcfg_113	
+	0x1c1ea498		devcfg_114	
+	0x1c1ea4a0		devcfg_115	
+	0x1c1ea4a8		devcfg_116	
+	0x1c1ea4b0		devcfg_117	
+	0x1c1ea4b8		devcfg_118	
+	0x1c1ea4c0		devcfg_119	
+	0x1c1ea4c8		devcfg_120	
+	0x1c1ea4d0		devcfg_121	
+	0x1c1ea4d8		devcfg_122	
+	0x1c1ea4e0		devcfg_123	
+	0x1c1ea4e8		devcfg_124	
+	0x1c1ea4f0		devcfg_125	
+	0x1c1ea4f8		devcfg_126	
+	0x1c1ea500		devcfg_127	
+	0x1c1ea508		devcfg_128	
+	0x1c1ea510		devcfg_129	
+	0x1c1ea518		devcfg_130	
+	0x1c1ea520		devcfg_131	
+	0x1c1ea528		devcfg_132	
+	0x1c1ea530		devcfg_133	
+	0x1c1ea538		devcfg_134	
+	0x1c1ea540		devcfg_135	
+	0x1c1ea548		devcfg_136	
+	0x1c1ea550		devcfg_137	
+	0x1c1ea558		devcfg_138	
+	0x1c1ea560		devcfg_139	
+	0x1c1ea568		devcfg_140	
+	0x1c1ea570		devcfg_141	
+	0x1c1ea578		devcfg_142	
+	0x1c1ea580		devcfg_143	
+	0x1c1ea588		devcfg_144	
+	0x1c1ea590		devcfg_145	
+	0x1c1ea598		devcfg_146	
+	0x1c1ea5a0		devcfg_147	
+	0x1c1ea5a8		devcfg_148	
+	0x1c1ea5b0		devcfg_149	
+	0x1c1ea5b8		devcfg_150	
+	0x1c1ea5c0		devcfg_151	
+.rodata	0x1c1ea5c8	0x3fb8	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_oem_tz.o	
+	0x1c1ea5c8		$d.1	
+	0x1c1ea5c8		.rodata	
+	0x1c1ea5c8		DALPROP_StructPtrs_660_oem_tz	
+	0x1c1eaf58		DALPROP_PropBin_660_oem_tz	
+	0x1c1edc20		driver_list_660_oem_tz	
+.rodata.str1.1	0x1c1ee580	0x11	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_oem_tz.o	
+	0x1c1ee580		$d.2	
+	0x1c1ee580		.rodata.str1.1	
+.data	0x1c1ee9d0	0x200	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsee/mink/oem/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/common/660_devcfg_reset_reason_oem_map.o	
+	0x1c1ee9d0		rst_reason_list	
+	0x1c1ee9d0		.data	
+	0x1c1ee9d8		$d.0	
+	0x1c1eebc0		oem_rst_reason_list_660_oem_tz	
+.rodata.str1.1	0x1c1eebd0	0x13	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_ABT_OEM_data.o	
+	0x1c1eebd0		$d.0	
+	0x1c1eebd0		.rodata.str1.1	
+.rodata	0x1c1eecf8	0x188	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_ABT_OEM_data.o	
+	0x1c1eecf8		$d.1	
+	0x1c1eecf8		.rodata	
+	0x1c1eecf8		ABT_cfgdata_oem	
+	0x1c1eee68		ABT_propdata_oem_660_oem_tz	
+.rodata.str1.1	0x1c1eee80	0x11	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_BIMC_error_OEM_data.o	
+	0x1c1eee80		$d.0	
+	0x1c1eee80		.rodata.str1.1	
+.rodata	0x1c1eeef8	0x90	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_BIMC_error_OEM_data.o	
+	0x1c1eeef8		$d.1	
+	0x1c1eeef8		.rodata	
+	0x1c1eeef8		BRIC_info_oem	
+	0x1c1eef28		DEFAULT_info_oem	
+	0x1c1eef38		DDR_SCMO_info_oem	
+	0x1c1eef58		BIMC_propdata_oem_660_oem_tz	
+.rodata.str1.1	0x1c1eef88	0x5	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_NOC_error_OEM_data.o	
+	0x1c1eef88		$d.0	
+	0x1c1eef88		.rodata.str1.1	
+.rodata	0x1c1eefb0	0x50	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_NOC_error_OEM_data.o	
+	0x1c1eefb0		$d.1	
+	0x1c1eefb0		.rodata	
+	0x1c1eefb0		NOCERR_cfgdata_oem	
+	0x1c1eeff0		NOCERR_propdata_oem_660_oem_tz	
+.data	0x1c1ef000	0x474	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_spmi_config.o	
+	0x1c1ef000		$d.0	
+	0x1c1ef000		.data	
+	0x1c1ef000		pm_spmi_pheriph_cfg_660_oem_tz	
+	0x1c1ef470		pm_spmi_pheriph_cfg_sz_660_oem_tz	
+.rodata	0x1c1ef474	0x84	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_reg_dump_config.o	
+	0x1c1ef474		$d.0	
+	0x1c1ef474		.rodata	
+	0x1c1ef474		pm_reg_dump_list_660_oem_tz	
+.rodata	0x1c1ef4f8	0xd8	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_config.o	
+	0x1c1ef4f8		$d.0	
+	0x1c1ef4f8		.rodata	
+	0x1c1ef4f8		pm_pam_qfprom_rail_660_oem_tz	
+.data	0x1c1ef5d0	0x360	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_ac_config.o	
+	0x1c1ef5d0		$d.0	
+	0x1c1ef5d0		.data	
+	0x1c1ef5d0		pm_mpu_rg_cfg_660_oem_tz	
+	0x1c1ef810		pm_spmi_rg_cfg_660_oem_tz	
+.rodata	0x1c1ef930	0x8	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_ac_config.o	
+	0x1c1ef930		$d.1	
+	0x1c1ef930		.rodata	
+	0x1c1ef930		pm_spmi_rg_sz_660_oem_tz	
+	0x1c1ef934		pm_hal_id_xpu_660_oem_tz	
+.data	0x1c1ef938	0x30	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_tz_config.o	
+	0x1c1ef938		$d.0	
+	0x1c1ef938		pm_pvc_apps0_addr	
+	0x1c1ef938		.data	
+	0x1c1ef948		pm_pvc_apps1_addr	
+	0x1c1ef958		pm_pvc_mss_addr	
+.rodata	0x1c1ef968	0x54	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_tz_config.o	
+	0x1c1ef968		$d.1	
+	0x1c1ef968		.rodata	
+	0x1c1ef968		pm_arb_pvc_cfg_660_oem_tz	
+	0x1c1ef9b0		pm_num_pvc_port_660_oem_tz	
+	0x1c1ef9b4		pm_arb_priorities_660_oem_tz	
+	0x1c1ef9b8		pm_num_prio_660_oem_tz	
+
+DEVCFG_DATA_HYP	0x85dfd000	0xfac
+KEEP ((.rodata* .data* .sdata* ))
+.data	0x85dfd000	0x60	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfgSegInfo_oem_hyp.o	
+	0x85dfd000		$d.0	
+	0x85dfd000		.data	
+	0x85dfd000		devcfg_target_soc_info_oem_hyp	
+KEEP ((.rodata* .data* .sdata* ))
+KEEP ((.rodata* .data* .sdata* ))
+.rodata	0x85dfd060	0x20	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfg_660_data_oem_hyp.o	
+	0x85dfd060		$d.0	
+	0x85dfd060		.rodata	
+	0x85dfd060		DALPROP_PropsInfo_660_oem_hyp	
+KEEP ((.rodata* .data* .sdata* ))
+.rodata	0x85dfd080	0x8a8	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfg_660_oem_hyp.o	
+	0x85dfd080		$d.0	
+	0x85dfd080		.rodata	
+	0x85dfd080		DALPROP_StructPtrs_660_oem_hyp	
+	0x85dfd0b0		DALPROP_PropBin_660_oem_hyp	
+	0x85dfd5e0		driver_list_660_oem_hyp	
+.rodata.str1.1	0x85dfd928	0x19	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfg_660_oem_hyp.o	
+	0x85dfd928		$d.1	
+	0x85dfd928		.rodata.str1.1	
+KEEP ((.rodata* .data* .sdata* ))
+.data	0x85dfdb38	0x46e	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/660_xml/src/660_devcfg_pm_hyp_config.o	
+	0x85dfdb38		$d.0	
+	0x85dfdb38		.data	
+	0x85dfdb38		pm_hyp_spmi_cfg_660_oem_hyp	
+.rodata	0x85dfdfa8	0x4	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/660_xml/src/660_devcfg_pm_hyp_config.o	
+	0x85dfdfa8		$d.1	
+	0x85dfdfa8		.rodata	
+	0x85dfdfa8		pm_hyp_spmi_cfg_sz_660_oem_hyp	
+	ASSERT(0x1) = ASSERT( SIZEOF(DEVCFG_DATA_HYP = 0xfac ) <= 12288( 0x3000 ) );
+.data	0x85dfd000	0x60	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfgSegInfo_oem_hyp.o	
+	0x85dfd000		$d.0	
+	0x85dfd000		.data	
+	0x85dfd000		devcfg_target_soc_info_oem_hyp	
+.rodata	0x85dfd060	0x20	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfg_660_data_oem_hyp.o	
+	0x85dfd060		$d.0	
+	0x85dfd060		.rodata	
+	0x85dfd060		DALPROP_PropsInfo_660_oem_hyp	
+.rodata	0x85dfd080	0x8a8	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfg_660_oem_hyp.o	
+	0x85dfd080		$d.0	
+	0x85dfd080		.rodata	
+	0x85dfd080		DALPROP_StructPtrs_660_oem_hyp	
+	0x85dfd0b0		DALPROP_PropBin_660_oem_hyp	
+	0x85dfd5e0		driver_list_660_oem_hyp	
+.rodata.str1.1	0x85dfd928	0x19	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfg_660_oem_hyp.o	
+	0x85dfd928		$d.1	
+	0x85dfd928		.rodata.str1.1	
+.data	0x85dfdb38	0x46e	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/660_xml/src/660_devcfg_pm_hyp_config.o	
+	0x85dfdb38		$d.0	
+	0x85dfdb38		.data	
+	0x85dfdb38		pm_hyp_spmi_cfg_660_oem_hyp	
+.rodata	0x85dfdfa8	0x4	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/660_xml/src/660_devcfg_pm_hyp_config.o	
+	0x85dfdfa8		$d.1	
+	0x85dfdfa8		.rodata	
+	0x85dfdfa8		pm_hyp_spmi_cfg_sz_660_oem_hyp	
+
+.got	0x85dfdfac	0x0
+(.got )
+
+.got.plt	0x85dfdfac	0x0
+(.got.plt )
+
+.debug	0x0	0x0
+(.debug )
+
+.line	0x0	0x0
+(.line )
+
+.debug_srcinfo	0x0	0x0
+(.debug_srcinfo )
+
+.debug_sfnames	0x0	0x0
+(.debug_sfnames )
+
+.debug_aranges	0x0	0x0
+(.debug_aranges )
+
+.debug_pubnames	0x9fac	0xcfc
+(.debug_pubnames )
+.debug_pubnames	0x9fac	0x808	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_oem_tz.o	
+	0x0		$d.6	
+	0x0		.debug_pubnames	
+.debug_pubnames	0xa7b4	0x33	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_data_oem_tz.o	
+	0x808		$d.4	
+	0x808		.debug_pubnames	
+.debug_pubnames	0xa7e7	0x34	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfgSegInfo_oem_tz.o	
+	0x83b		$d.4	
+	0x83b		.debug_pubnames	
+.debug_pubnames	0xa81b	0x49	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsee/mink/oem/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/common/660_devcfg_reset_reason_oem_map.o	
+	0x86f		$d.4	
+	0x86f		.debug_pubnames	
+.debug_pubnames	0xa864	0x46	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_ABT_OEM_data.o	
+	0x8b8		$d.5	
+	0x8b8		.debug_pubnames	
+.debug_pubnames	0xa8aa	0x70	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_BIMC_error_OEM_data.o	
+	0x8fe		$d.5	
+	0x8fe		.debug_pubnames	
+.debug_pubnames	0xa91a	0x4c	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_NOC_error_OEM_data.o	
+	0x96e		$d.5	
+	0x96e		.debug_pubnames	
+.debug_pubnames	0xa966	0x5b	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_spmi_config.o	
+	0x9ba		$d.4	
+	0x9ba		.debug_pubnames	
+.debug_pubnames	0xa9c1	0x32	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_reg_dump_config.o	
+	0xa15		$d.4	
+	0xa15		.debug_pubnames	
+.debug_pubnames	0xa9f3	0x34	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_config.o	
+	0xa47		$d.4	
+	0xa47		.debug_pubnames	
+.debug_pubnames	0xaa27	0x87	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_ac_config.o	
+	0xa7b		$d.5	
+	0xa7b		.debug_pubnames	
+.debug_pubnames	0xaaae	0xcb	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_tz_config.o	
+	0xb02		$d.5	
+	0xb02		.debug_pubnames	
+.debug_pubnames	0xab79	0x71	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfg_660_oem_hyp.o	
+	0xbcd		$d.5	
+	0xbcd		.debug_pubnames	
+.debug_pubnames	0xabea	0x34	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfg_660_data_oem_hyp.o	
+	0xc3e		$d.4	
+	0xc3e		.debug_pubnames	
+.debug_pubnames	0xac1e	0x35	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfgSegInfo_oem_hyp.o	
+	0xc72		$d.4	
+	0xc72		.debug_pubnames	
+.debug_pubnames	0xac53	0x55	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/660_xml/src/660_devcfg_pm_hyp_config.o	
+	0xca7		$d.5	
+	0xca7		.debug_pubnames	
+
+.debug_info	0xaca8	0x370e
+(.debug_info .gnu.linkonce.wi.* )
+.debug_info	0xaca8	0x1051	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_oem_tz.o	
+	0x0		$d.4	
+	0x0		.debug_info	
+.debug_info	0xbcf9	0x3d0	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_data_oem_tz.o	
+	0x1051		$d.2	
+	0x1051		.debug_info	
+.debug_info	0xc0c9	0x523	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfgSegInfo_oem_tz.o	
+	0x1421		$d.2	
+	0x1421		.debug_info	
+.debug_info	0xc5ec	0xd8	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsee/mink/oem/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/common/660_devcfg_reset_reason_oem_map.o	
+	0x1944		$d.2	
+	0x1944		.debug_info	
+.debug_info	0xc6c4	0x108	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_ABT_OEM_data.o	
+	0x1a1c		$d.3	
+	0x1a1c		.debug_info	
+.debug_info	0xc7cc	0x1f9	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_BIMC_error_OEM_data.o	
+	0x1b24		$d.3	
+	0x1b24		.debug_info	
+.debug_info	0xc9c5	0x119	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_NOC_error_OEM_data.o	
+	0x1d1d		$d.3	
+	0x1d1d		.debug_info	
+.debug_info	0xcade	0x10b	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_spmi_config.o	
+	0x1e36		$d.2	
+	0x1e36		.debug_info	
+.debug_info	0xcbe9	0xcb	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_reg_dump_config.o	
+	0x1f41		$d.2	
+	0x1f41		.debug_info	
+.debug_info	0xccb4	0x1be	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_config.o	
+	0x200c		$d.2	
+	0x200c		.debug_info	
+.debug_info	0xce72	0x59b	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_ac_config.o	
+	0x21ca		$d.3	
+	0x21ca		.debug_info	
+.debug_info	0xd40d	0x1eb	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_tz_config.o	
+	0x2765		$d.3	
+	0x2765		.debug_info	
+.debug_info	0xd5f8	0x3bb	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfg_660_oem_hyp.o	
+	0x2950		$d.3	
+	0x2950		.debug_info	
+.debug_info	0xd9b3	0x3d0	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfg_660_data_oem_hyp.o	
+	0x2d0b		$d.2	
+	0x2d0b		.debug_info	
+.debug_info	0xdd83	0x523	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfgSegInfo_oem_hyp.o	
+	0x30db		$d.2	
+	0x30db		.debug_info	
+.debug_info	0xe2a6	0x110	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/660_xml/src/660_devcfg_pm_hyp_config.o	
+	0x35fe		$d.3	
+	0x35fe		.debug_info	
+
+.debug_abbrev	0xe3b6	0xa05
+(.debug_abbrev )
+.debug_abbrev	0xe3b6	0x113	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_oem_tz.o	
+	0x0		$d.5	
+	0x0		.debug_abbrev	
+.debug_abbrev	0xe4c9	0x9b	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_data_oem_tz.o	
+	0x113		$d.3	
+	0x113		.debug_abbrev	
+.debug_abbrev	0xe564	0xba	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfgSegInfo_oem_tz.o	
+	0x1ae		$d.3	
+	0x1ae		.debug_abbrev	
+.debug_abbrev	0xe61e	0x94	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsee/mink/oem/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/common/660_devcfg_reset_reason_oem_map.o	
+	0x268		$d.3	
+	0x268		.debug_abbrev	
+.debug_abbrev	0xe6b2	0x7f	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_ABT_OEM_data.o	
+	0x2fc		$d.4	
+	0x2fc		.debug_abbrev	
+.debug_abbrev	0xe731	0x8c	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_BIMC_error_OEM_data.o	
+	0x37b		$d.4	
+	0x37b		.debug_abbrev	
+.debug_abbrev	0xe7bd	0x7f	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_NOC_error_OEM_data.o	
+	0x407		$d.4	
+	0x407		.debug_abbrev	
+.debug_abbrev	0xe83c	0x82	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_spmi_config.o	
+	0x486		$d.3	
+	0x486		.debug_abbrev	
+.debug_abbrev	0xe8be	0x8c	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_reg_dump_config.o	
+	0x508		$d.3	
+	0x508		.debug_abbrev	
+.debug_abbrev	0xe94a	0x87	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_config.o	
+	0x594		$d.3	
+	0x594		.debug_abbrev	
+.debug_abbrev	0xe9d1	0xb5	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_ac_config.o	
+	0x61b		$d.4	
+	0x61b		.debug_abbrev	
+.debug_abbrev	0xea86	0xb3	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_tz_config.o	
+	0x6d0		$d.4	
+	0x6d0		.debug_abbrev	
+.debug_abbrev	0xeb39	0xa4	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfg_660_oem_hyp.o	
+	0x783		$d.4	
+	0x783		.debug_abbrev	
+.debug_abbrev	0xebdd	0x9b	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfg_660_data_oem_hyp.o	
+	0x827		$d.3	
+	0x827		.debug_abbrev	
+.debug_abbrev	0xec78	0xba	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfgSegInfo_oem_hyp.o	
+	0x8c2		$d.3	
+	0x8c2		.debug_abbrev	
+.debug_abbrev	0xed32	0x89	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/660_xml/src/660_devcfg_pm_hyp_config.o	
+	0x97c		$d.4	
+	0x97c		.debug_abbrev	
+
+.debug_line	0xedbb	0x1b9b
+(.debug_line )
+.debug_line	0xedbb	0x343	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_oem_tz.o	
+	0x0		$d.9	
+	0x0		.debug_line	
+.debug_line	0xf0fe	0x221	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_data_oem_tz.o	
+	0x343		$d.7	
+	0x343		.debug_line	
+.debug_line	0xf31f	0x348	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfgSegInfo_oem_tz.o	
+	0x564		$d.7	
+	0x564		.debug_line	
+.debug_line	0xf667	0x118	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsee/mink/oem/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/common/660_devcfg_reset_reason_oem_map.o	
+	0x8ac		$d.7	
+	0x8ac		.debug_line	
+.debug_line	0xf77f	0xfd	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_ABT_OEM_data.o	
+	0x9c4		$d.8	
+	0x9c4		.debug_line	
+.debug_line	0xf87c	0x104	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_BIMC_error_OEM_data.o	
+	0xac1		$d.8	
+	0xac1		.debug_line	
+.debug_line	0xf980	0x103	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_NOC_error_OEM_data.o	
+	0xbc5		$d.8	
+	0xbc5		.debug_line	
+.debug_line	0xfa83	0x114	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_spmi_config.o	
+	0xcc8		$d.7	
+	0xcc8		.debug_line	
+.debug_line	0xfb97	0x118	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_reg_dump_config.o	
+	0xddc		$d.7	
+	0xddc		.debug_line	
+.debug_line	0xfcaf	0x10f	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_config.o	
+	0xef4		$d.7	
+	0xef4		.debug_line	
+.debug_line	0xfdbe	0x112	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_ac_config.o	
+	0x1003		$d.8	
+	0x1003		.debug_line	
+.debug_line	0xfed0	0x112	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_tz_config.o	
+	0x1115		$d.8	
+	0x1115		.debug_line	
+.debug_line	0xffe2	0x2f9	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfg_660_oem_hyp.o	
+	0x1227		$d.8	
+	0x1227		.debug_line	
+.debug_line	0x102db	0x221	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfg_660_data_oem_hyp.o	
+	0x1520		$d.7	
+	0x1520		.debug_line	
+.debug_line	0x104fc	0x348	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfgSegInfo_oem_hyp.o	
+	0x1741		$d.7	
+	0x1741		.debug_line	
+.debug_line	0x10844	0x112	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/660_xml/src/660_devcfg_pm_hyp_config.o	
+	0x1a89		$d.8	
+	0x1a89		.debug_line	
+
+.debug_frame	0x10956	0x0
+(.debug_frame )
+
+.debug_str	0x10956	0x31de
+(.debug_str )
+.debug_str	0x10956	0x23	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_oem_tz.o	
+	0x0		$d.3	
+	0x0		.debug_str	
+
+.debug_loc	0x13b34	0x0
+(.debug_loc )
+
+.debug_macinfo	0x13b34	0x0
+(.debug_macinfo )
+
+.debug_weaknames	0x13b34	0x0
+(.debug_weaknames )
+
+.debug_funcnames	0x13b34	0x0
+(.debug_funcnames )
+
+.debug_typenames	0x13b34	0x0
+(.debug_typenames )
+
+.debug_varnames	0x13b34	0x0
+(.debug_varnames )
+
+.debug_pubtypes	0x13b34	0xee9
+(.debug_pubtypes )
+.debug_pubtypes	0x13b34	0x1a2	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_oem_tz.o	
+	0x0		$d.7	
+	0x0		.debug_pubtypes	
+.debug_pubtypes	0x13cd6	0x13e	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_data_oem_tz.o	
+	0x1a2		$d.5	
+	0x1a2		.debug_pubtypes	
+.debug_pubtypes	0x13e14	0x192	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfgSegInfo_oem_tz.o	
+	0x2e0		$d.5	
+	0x2e0		.debug_pubtypes	
+.debug_pubtypes	0x13fa6	0x7a	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsee/mink/oem/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/common/660_devcfg_reset_reason_oem_map.o	
+	0x472		$d.5	
+	0x472		.debug_pubtypes	
+.debug_pubtypes	0x14020	0x79	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_ABT_OEM_data.o	
+	0x4ec		$d.6	
+	0x4ec		.debug_pubtypes	
+.debug_pubtypes	0x14099	0xb9	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_BIMC_error_OEM_data.o	
+	0x565		$d.6	
+	0x565		.debug_pubtypes	
+.debug_pubtypes	0x14152	0xa2	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/icb/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/660/660_devcfg_NOC_error_OEM_data.o	
+	0x61e		$d.6	
+	0x61e		.debug_pubtypes	
+.debug_pubtypes	0x141f4	0xbf	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_spmi_config.o	
+	0x6c0		$d.5	
+	0x6c0		.debug_pubtypes	
+.debug_pubtypes	0x142b3	0x68	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_reg_dump_config.o	
+	0x77f		$d.5	
+	0x77f		.debug_pubtypes	
+.debug_pubtypes	0x1431b	0x37	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_config.o	
+	0x7e7		$d.5	
+	0x7e7		.debug_pubtypes	
+.debug_pubtypes	0x14352	0x11d	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_ac_config.o	
+	0x81e		$d.6	
+	0x81e		.debug_pubtypes	
+.debug_pubtypes	0x1446f	0xfc	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/660_xml/src/660_devcfg_pm_tz_config.o	
+	0x93b		$d.6	
+	0x93b		.debug_pubtypes	
+.debug_pubtypes	0x1456b	0x123	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfg_660_oem_hyp.o	
+	0xa37		$d.6	
+	0xa37		.debug_pubtypes	
+.debug_pubtypes	0x1468e	0x13e	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfg_660_data_oem_hyp.o	
+	0xb5a		$d.5	
+	0xb5a		.debug_pubtypes	
+.debug_pubtypes	0x147cc	0x192	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/DevCfgSegInfo_oem_hyp.o	
+	0xc98		$d.5	
+	0xc98		.debug_pubtypes	
+.debug_pubtypes	0x1495e	0xbf	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/systemdrivers/pmic/config/sdm660_pm660/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_HYP_IMG/660_xml/src/660_devcfg_pm_hyp_config.o	
+	0xe2a		$d.6	
+	0xe2a		.debug_pubtypes	
+
+.debug_ranges	0x14a1d	0x0
+(.debug_ranges )
+
+.gnu.attributes	0x14a1d	0x0
+KEEP ((.gnu.attributes ))
+
+.note.gnu.arm.ident	0x14a1d	0x0
+KEEP ((.note.gnu.arm.ident ))
+
+/DISCARD/	0x14a1d	0x0
+(.ARM.exidx* )
+(.note.GNU-stack )
+(.gnu_debuglink )
+(.gnu.lto_* )
+(.init )
+(.fini )
+
+.comment	0x14a1d	0x24
+.comment	0x14a1d	0x1	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/kernel/devcfg/build/devcfg/A53_64/KAJAANAA/DAL_DEVCFG_OEM_QSEE_IMG/DevCfg_660_oem_tz.o	
+	0x0		$d.8	
+	0x0		.comment	
+
+.shstrtab	0x14a41	0x94
+
+.symtab	0x14ad8	0x1fe0
+
+.strtab	0x16ab8	0x19fe

@@ -1,0 +1,146 @@
+#===============================================================================
+#
+# Sleep build script
+#
+# GENERAL DESCRIPTION
+#    Builds the sleep libraries for all target.
+#
+# Copyright (c) 2012 by QUALCOMM, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary and Confidential
+#
+#===============================================================================
+import os
+import fnmatch
+import itertools
+import subprocess
+import stat
+import re
+
+def find_sleep_target_config(str):
+    return re.search('.*sleep_target_config\.c.*', str)
+
+Import('env')
+env = env.Clone()
+#default vipertooth support using Starlord target specific files   
+if env['MSM_ID'] in ['405']:
+   env['MSM_ID'] = '660'
+   
+supported_targets = ['8996', '8998', '660', 'nicobar']
+if env['MSM_ID'] not in supported_targets:
+    env.PrintWarning('Bailing from SLEEP scripts; no support for build targets other than %s' % supported_targets)
+    Return()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = os.path.join("..","src")
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'DAL',
+   'DEBUGTRACE',
+   'MPROC',
+   'POWER',
+   'SERVICES',
+   'PMIC',
+   'SYSTEMDRIVERS',
+   'BOOT',
+   'KERNEL',
+]
+
+   #'KERNEL', #needs to be last also contains wrong comdef.h
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+env.RequireProtectedApi(['POWER_UTILS'])
+
+
+env.PublishPrivateApi('SLEEP', [
+   '${BUILD_ROOT}/core/power/sleep/inc',   
+   '${BUILD_ROOT}/core/power/sleep/src',
+   '${BUILD_ROOT}/core/power/sleep/src/${MSM_ID}',
+   ]
+)
+
+if 'USES_QDSS_SWE' in env:
+   QDSS_IMG = ['QDSS_EN_IMG']
+   events = [['SLEEP_DEEP_SLEEP_ENTER=320','deep sleep enter. (sleep mode: %d) (count: %d)'],
+             ['SLEEP_DEEP_SLEEP_EXIT','deep sleep exit (sleep mode: %d)'],
+             ['SLEEP_NO_DEEP_SLEEP','bail early from deep sleep. (sleep mode: %d) (reason: %d)'],
+             ['SLEEP_RPM_HALT_ENTER','rpm halt enter'],
+             ['SLEEP_RPM_HALT_EXIT','rpm halt exit'],
+             ['SLEEP_MPM_INTS','pending mpm interrupts at wakeup: (interrupt_status_1 %d), (interrupt_status_2 %d), (timestamp: 0x%0.8x%0.8x)'],
+             ['SLEEP_DEEP_SLEEP_ENTER_COMPLETE','deep sleep enter complete (sleep mode: %d), (duration: 0x%0.8x)'],
+             ['SLEEP_DEEP_SLEEP_EXIT_COMPLETE','deep sleep exit complete (sleep mode: %d)'],
+             ['SLEEP_MPM_WAKEUP_TIME','mpm programmed wake up time (wakeup time: 0x%0.8x%0.8x)'],
+             ['SLEEP_MPM_WAKEUP_TIME_ACTUAL','mpm actual wake up time (wakeup time: 0x%0.8x%0.8x)'],
+             ['SLEEP_CPR_SVS2_PROCESS','cpr_svs2_process'],
+             ['SLEEP_MPM_VOLTAGE','mpm_voltages: (mx_off: %d) (mx_on: %d) (cx_off: %d) (cx_on: %d)'],
+             ['SLEEP_MPM_RO_DIV','mpm_ro_divider: (mx: %d) (ro_div: 0x%x)'],
+             ['SLEEP_WLAN_FREEZE_IO_WORKAROUND','wlan mpm config: (old_reg: 0x%0.8x) (new_reg: 0x%0.8x)'],
+             ['SLEEP_EVENT_LAST=383','sleep last event placeholder'],
+            ]
+   env.AddSWEInfo(QDSS_IMG, events)
+
+# Map sleep's diag message to the sleep category.
+#env.Append(CPPDEFINES=['MSG_BT_SSID_DFLT=MSG_SSID_SLEEP'])
+
+if env['MSM_ID'] in ['8996']:
+    #CR735970
+    env.Append(CPPDEFINES = 'SLEEP_B_CLAMP')
+
+#enable mock vdd min
+env.Append(CPPDEFINES = 'ENABLE_MOCK_VDD_MIN')
+
+# Add a define for this in case we want it enabled/disabled based on target at some point
+env.Append(CPPDEFINES = 'ADSP_L2_PC')
+
+#-------------------------------------------------------------------------------
+# Generate QFPROM PVS HWIO definitions
+#-------------------------------------------------------------------------------
+if env.has_key('HWIO_IMAGE'):
+    env.AddHWIOFile('HWIO', [
+        {
+            'filename': '${INC_ROOT}/core/power/sleep/src/${MSM_ID}/qfprom_pte_lpass_hwio.h',
+            'modules': ['SECURITY_CONTROL_CORE', 'LPASS_QDSP6SS_CSR'],
+            'output-offsets': False,
+            'header':
+                '#include "msmhwiobase.h"\n\n'
+        }
+    ])
+
+#-------------------------------------------------------------------------------
+# Sources
+#-------------------------------------------------------------------------------
+
+source_patterns = ['*.c']
+sources = []
+
+for root, dirnames, filenames in os.walk(SRCPATH):
+    matches = itertools.chain(*[fnmatch.filter(filenames, pattern) for pattern in source_patterns])
+    matches = [os.path.join(root, filename) for filename in matches]
+    matches = [matched_path.replace(SRCPATH,'${BUILDPATH}',1) for matched_path in matches]
+    sources.extend(matches) 
+
+sleep_target_configs = filter( find_sleep_target_config, sources )
+for sleep_target_config in sleep_target_configs:
+    sources.remove(sleep_target_config)
+sources.append('${BUILDPATH}/${MSM_ID}/sleep_target_config.c')
+
+#-------------------------------------------------------------------------------
+# Libraries
+#-------------------------------------------------------------------------------
+#sleep_obj = env.Object(sources)
+#sleep_lib = env.Library(os.path.join('${BUILDPATH}','sleep'), sleep_obj)
+env.AddLibrary(['CORE_RPM'], '${BUILDPATH}/sleep', sources )
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+#env.AddLibsToImage(['CORE_RPM'],
+#                   [sleep_lib])

@@ -1,0 +1,103 @@
+;============================================================================
+;  Name:
+;    pre_sil.cmm
+;
+;  Description:
+;     Add presil changes to this file.
+;
+; Copyright (c) 2014-2015 Qualcomm Technologies Incorporated.
+; All Rights Reserved.
+; Qualcomm Technologies Confidential and Proprietary
+;
+;----------------------------------------------------------------------------
+;============================================================================
+;
+;                        EDIT HISTORY FOR MODULE
+;
+;  when         who     what, where, why
+; ----------    ---     ------------------------------------------------------
+; 2016-03-25    bh      Set cookies in default path
+; 2016-03-23    bh      Call new script to set cookies
+; 2016-02-12    al      Add SPMI configuration
+; 2015-09-25    vk      Add noclear
+; 2015-09-23    vk      Clear A bit
+; 2015-09-17    vk      Add correct smem dump
+; 2015-08-15    vk      Sdm660 support
+; 2014-05-07    na      Add comment
+; 2014-04-15    vk      Update smem binary load addr.
+; 2014-04-10    na      Initial Version
+;============================================================================;
+
+
+ENTRY
+  &PriorAttach=system.mode()
+  ; Below is only needed i1 not already attached
+  if ("&PriorAttach"=="0x0")
+  (
+    system.cpu CortexA53
+    sys.config core 1
+    sys.m.a
+
+    if run()
+    (
+     wait 100.ms
+     break
+    )
+    wait !run()
+  )
+
+  print "T32 attached ..."
+
+  if run()
+  (
+   wait 100.ms
+   break
+  )
+  wait !run()
+
+  ;SET  CPSR and SPSR
+  ;R.S CPSR 0x800000c5
+  ;R.S SPSR 0x0
+
+  ;Clear A and E bit
+  R.S A 0
+  R.S E 0
+  
+  ; Load smem needed for 64-bit UEFI
+  &SmemBinaryFile="smem_init_Sdm660_1_5_GB.bin"
+  if (os.file(&SmemBinaryFile))
+  (
+    ;data.load.binary &SmemBinaryFile 0x86000000 /noclear
+  )
+  
+  ; Run the below only on the first attach
+  if ("&PriorAttach"=="0x0")
+  (
+    ;do interrupt_setup.cmm
+  )
+  
+  ;Set Timer Freq
+  ;PER.Set C15:0x0E %Long 19200000
+
+  ;Start timer
+  ;PER.Set C15:0x1E %Long 0x303
+  
+  
+  if ("&PriorAttach"=="0x0")
+  (
+    cd.do &CwDir/../../Tools/cmm/spmi/spmiCfg.cmm Sdm660 true
+  )
+
+  if run()
+  (
+   wait 100.ms
+   break
+  )
+  wait !run()
+ 
+  ; Set the Freq of the QTMR0 to 19.2
+  ;d.set A:0xf9020000 %long 0x0124F800
+
+enddo
+
+

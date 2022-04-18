@@ -1,0 +1,1234 @@
+LOCAL &log_output
+LOCAL &offset_into_string
+LOCAL &is_secure
+LOCAL &is_global
+LOCAL &smmu_instance
+LOCAL &global_Far_lock
+LOCAL &global_cb_lock
+LOCAL &cb_number
+LOCAL &vmid
+; ----- global vars ---;
+LOCAL &NSGFSR
+LOCAL &NSGFAR
+LOCAL &NSGFSYNR0
+LOCAL &NSGFSYNR1
+LOCAL &NSGFSYNR2
+;----- CB vars -----;
+LOCAL &FSR
+LOCAL &FAR
+LOCAL &IPAFAR
+LOCAL &FSYNR0
+LOCAL &FSYNR1
+LOCAL &CBFRSYNRA
+LOCAL &CBAR
+LOCAL &TTBR0
+LOCAL &generic_print
+&global_Far_lock=0x0
+&global_cb_lock=0x0
+&is_secure=0x1
+WINPOS 0. 0. 50% 80%
+AREA.Create SMMU_DEBUG 300. 30.
+AREA.Select SMMU_DEBUG
+AREA.view SMMU_DEBUG
+;
+;	Add support for Secure SMMU Faults (just add another parser or modify NS one )
+;   Add support for transparent read of TZ diag buffer
+;
+print "**************************************************************************************************"
+print "*                                                                                                *"
+print "*                          SMMU FAULT DEBUG SCRIPT                                               *"
+print "*                                                                                                *"
+print "**************************************************************************************************"
+print ""
+print ""
+;print "Register Context:"
+ENTRY &path
+
+
+GOSUB is_it_secure
+GOSUB is_it_global_fault
+
+if (&is_global==0x1)
+(
+    
+	if (&is_secure==0x1)
+	(
+		GOSUB Parse_Secure_Global_Context
+		print ""
+		GOSUB Handle_Secure_Global_Fault_Type
+	)
+	else
+	(
+		GOSUB Parse_Global_Context
+		print ""
+		GOSUB Handle_Global_Fault_Type
+	)
+
+)
+else
+(
+	GOSUB Parse_CB_Context
+	print ""
+	GOSUB Handle_CB_Fault_Type
+)
+
+enddo
+
+;----------------------- Find out if  global or CB fault -----------;
+
+is_it_global_fault:
+
+ENTRY
+
+OPEN #1 &path /Read
+
+&offset_into_string=-1.
+&is_global=0
+
+While (&offset_into_string==-1.)
+(
+READ #1 %line &log_output
+&log_output=STRing.TRIM("&log_output")
+&offset_into_string=STRing.SCAN("&log_output","Global",0)
+if (&offset_into_string>-1.)
+(
+	&is_global=0x1
+)
+IF EOF()
+GOTO endloop
+)
+
+endloop:
+CLOSE #1
+
+return
+;----------------------- Find out if this is a secure fault -----------;
+
+is_it_secure:
+
+ENTRY
+
+OPEN #1 &path /Read
+
+&offset_into_string=-1.
+&is_global=0
+
+While (&offset_into_string==-1.)
+(
+READ #1 %line &log_output
+&log_output=STRing.TRIM("&log_output")
+&offset_into_string=STRing.SCAN("&log_output","NonSec",0)
+if (&offset_into_string>-1.)
+(
+	&is_secure=0x0
+)
+IF EOF()
+GOTO endloop_sec
+)
+
+endloop_sec:
+CLOSE #1
+
+return
+
+;----------------------- Retrieve Secure CB Input Params -----------;
+Parse_Secure_CB_Context:
+
+ENTRY
+
+OPEN #1 &path /Read
+
+&offset_into_string=-1.
+
+While (&offset_into_string==-1.)
+(
+READ #1 %line &log_output
+&log_output=STRing.TRIM("&log_output")
+
+&offset_into_string=STRing.SCAN("&log_output","CB",0)
+if (&offset_into_string>-1.)
+(
+	if (&global_cb_lock==0x0)
+	(
+		&cb_number=STRing.CUT("&log_output",&offset_into_string)
+		&cb_number=STRing.CUT("&cb_number",2.)
+		&cb_number=STRing.CUT("&cb_number",-7.)
+		&cb_number=STRing.TRIM("&cb_number")
+		&global_cb_lock=0x1
+	)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","SMMU:>>",0)
+if (&offset_into_string>-1.)
+(
+	&smmu_instance=STRing.CUT("&log_output",8.)
+	&smmu_instance=STRing.CUT("&smmu_instance",-10.)
+	&smmu_instance=STRing.TRIM("&smmu_instance")
+)
+
+&offset_into_string=STRing.SCAN("&log_output","FSR",0)
+if (&offset_into_string>-1.)
+(
+	&FSR=STRing.TRIM("&FSR")
+	&FSR=STRing.CUT("&log_output",7.)
+	&FSR=FORMAT.HEX(8.,&FSR)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","FAR",0)
+if (&offset_into_string>-1.)
+(
+	if (&global_Far_lock==0x0)
+	(
+		&FAR=STRing.CUT("&log_output",7.)
+		&FAR=STRing.TRIM("&FAR")
+		&FAR=FORMAT.HEX(16.,&FAR)
+		&global_Far_lock=0x1
+	)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","IPAFAR",0)
+if (&offset_into_string>-1.)
+(
+	&IPAFAR=STRing.CUT("&log_output",9.)
+	&IPAFAR=STRing.TRIM("&IPAFAR")
+	&IPAFAR=FORMAT.HEX(16.,&IPAFAR)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","FSYNR0",0)
+if (&offset_into_string>-1.)
+(
+	&FSYNR0=STRing.CUT("&log_output",9.)
+	&FSYNR0=STRing.TRIM("&FSYNR0")
+	&FSYNR0=FORMAT.HEX(8.,&FSYNR0)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","FSYNR1",0)
+if (&offset_into_string>-1.)
+(
+	&FSYNR1=STRing.CUT("&log_output",9.)
+	&FSYNR1=STRing.TRIM("&FSYNR1")
+	&FSYNR1=FORMAT.HEX(8.,&FSYNR1)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","CBFRSYNRA",0)
+if (&offset_into_string>-1.)
+(
+	if (&cb_number>9)
+	(
+	&CBFRSYNRA=STRing.CUT("&log_output",14.)
+	)
+	else
+	(
+	&CBFRSYNRA=STRing.CUT("&log_output",13.)
+	)
+	&CBFRSYNRA=STRing.TRIM("&CBFRSYNRA")
+	&CBFRSYNRA=FORMAT.HEX(8.,&CBFRSYNRA)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","CBAR",0)
+if (&offset_into_string>-1.)
+(
+	if (&cb_number>9)
+	(
+	&CBAR=STRing.CUT("&log_output",9.)
+	)
+	else
+	(
+	&CBAR=STRing.CUT("&log_output",8.)
+	)
+	&CBAR=STRing.TRIM("&CBAR")
+	&CBAR=FORMAT.HEX(8.,&CBAR)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","TTBR0",0)
+if (&offset_into_string>-1.)
+(
+	&TTBR0=STRing.CUT("&log_output",13.)
+	&TTBR0=STRing.TRIM("&TTBR0")
+	&TTBR0=FORMAT.HEX(16.,&TTBR0)
+)
+
+)
+CLOSE #1
+
+return
+
+;----------------------- Retrieve Secure Global Input Params ---------------------------------------;
+Parse_Secure_Global_Context:
+
+ENTRY
+
+OPEN #1 &path /Read
+
+&offset_into_string=-1.
+
+While (&offset_into_string==-1.)
+(
+READ #1 %line &log_output
+&log_output=STRing.TRIM("&log_output")
+
+&offset_into_string=STRing.SCAN("&log_output","SMMU:>>",0)
+if (&offset_into_string>-1.)
+(
+	&smmu_instance=STRing.CUT("&log_output",8.)
+	&smmu_instance=STRing.CUT("&smmu_instance",-17.)
+	&smmu_instance=STRing.TRIM("&smmu_instance")
+)
+
+&offset_into_string=STRing.SCAN("&log_output","sGFSR",0)
+if (&offset_into_string>-1.)
+(
+	&NSGFSR=STRing.CUT("&log_output",10.)
+	&NSGFSR=STRing.TRIM("&NSGFSR")
+	&NSGFSR=FORMAT.HEX(8.,&NSGFSR)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","sGFAR",0)
+if (&offset_into_string>-1.)
+(
+	&NSGFAR=STRing.CUT("&log_output",10.)
+	&NSGFAR=STRing.TRIM("&NSGFAR")
+	&NSGFAR=FORMAT.HEX(16.,&NSGFAR)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","sGFSYNR0",0)
+if (&offset_into_string>-1.)
+(
+	&NSGFSYNR0=STRing.CUT("&log_output",13.)
+	&NSGFSYNR0=STRing.TRIM("&NSGFSYNR0")
+	&NSGFSYNR0=FORMAT.HEX(8.,&NSGFSYNR0)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","sGFSYNR1",0)
+if (&offset_into_string>-1.)
+(
+	&NSGFSYNR1=STRing.CUT("&log_output",13.)
+	&NSGFSYNR1=STRing.TRIM("&NSGFSYNR1")
+	&NSGFSYNR1=FORMAT.HEX(8.,&NSGFSYNR1)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","sGFSYNR2",0)
+if (&offset_into_string>-1.)
+(
+	&NSGFSYNR2=STRing.CUT("&log_output",13.)
+	&NSGFSYNR2=STRing.TRIM("&NSGFSYNR2")
+	&NSGFSYNR2=FORMAT.HEX(8.,&NSGFSYNR2)
+)
+)
+CLOSE #1
+
+return
+
+;----------------------- Retrieve CB Input Params -----------;
+Parse_CB_Context:
+
+ENTRY
+
+OPEN #1 &path /Read
+
+&offset_into_string=-1.
+
+While (&offset_into_string==-1.)
+(
+READ #1 %line &log_output
+&log_output=STRing.TRIM("&log_output")
+
+&offset_into_string=STRing.SCAN("&log_output","CB",0)
+if (&offset_into_string>-1.)
+(
+	if (&global_cb_lock==0x0)
+	(
+		&cb_number=STRing.CUT("&log_output",&offset_into_string)
+		&cb_number=STRing.CUT("&cb_number",2.)
+		&cb_number=STRing.CUT("&cb_number",-7.)
+		&cb_number=STRing.TRIM("&cb_number")
+		&global_cb_lock=0x1
+	)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","SMMU:>>",0)
+if (&offset_into_string>-1.)
+(
+	&smmu_instance=STRing.CUT("&log_output",8.)
+	&smmu_instance=STRing.CUT("&smmu_instance",-10.)
+	&smmu_instance=STRing.TRIM("&smmu_instance")
+)
+
+&offset_into_string=STRing.SCAN("&log_output","FSR",0)
+if (&offset_into_string>-1.)
+(
+	&FSR=STRing.TRIM("&FSR")
+	&FSR=STRing.CUT("&log_output",6.)
+	&FSR=FORMAT.HEX(8.,&FSR)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","FAR",0)
+if (&offset_into_string>-1.)
+(
+	if (&global_Far_lock==0x0)
+	(
+		&FAR=STRing.CUT("&log_output",6.)
+		&FAR=STRing.TRIM("&FAR")
+		&FAR=FORMAT.HEX(16.,&FAR)
+		&global_Far_lock=0x1
+	)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","IPAFAR",0)
+if (&offset_into_string>-1.)
+(
+	&IPAFAR=STRing.CUT("&log_output",9.)
+	&IPAFAR=STRing.TRIM("&IPAFAR")
+	&IPAFAR=FORMAT.HEX(16.,&IPAFAR)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","FSYNR0",0)
+if (&offset_into_string>-1.)
+(
+	&FSYNR0=STRing.CUT("&log_output",9.)
+	&FSYNR0=STRing.TRIM("&FSYNR0")
+	&FSYNR0=FORMAT.HEX(8.,&FSYNR0)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","FSYNR1",0)
+if (&offset_into_string>-1.)
+(
+	&FSYNR1=STRing.CUT("&log_output",9.)
+	&FSYNR1=STRing.TRIM("&FSYNR1")
+	&FSYNR1=FORMAT.HEX(8.,&FSYNR1)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","CBFRSYNRA",0)
+if (&offset_into_string>-1.)
+(
+	if (&cb_number>9)
+	(
+	&CBFRSYNRA=STRing.CUT("&log_output",14.)
+	)
+	else
+	(
+	&CBFRSYNRA=STRing.CUT("&log_output",13.)
+	)
+	&CBFRSYNRA=STRing.TRIM("&CBFRSYNRA")
+	&CBFRSYNRA=FORMAT.HEX(8.,&CBFRSYNRA)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","CBAR",0)
+if (&offset_into_string>-1.)
+(
+	if (&cb_number>9)
+	(
+	&CBAR=STRing.CUT("&log_output",9.)
+	)
+	else
+	(
+	&CBAR=STRing.CUT("&log_output",8.)
+	)
+	&CBAR=STRing.TRIM("&CBAR")
+	&CBAR=FORMAT.HEX(8.,&CBAR)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","TTBR0",0)
+if (&offset_into_string>-1.)
+(
+	&TTBR0=STRing.CUT("&log_output",13.)
+	&TTBR0=STRing.TRIM("&TTBR0")
+	&TTBR0=FORMAT.HEX(16.,&TTBR0)
+)
+
+)
+CLOSE #1
+
+return
+
+;----------------------- Retrieve Global Input Params ---------------------------------------;
+Parse_Global_Context:
+
+ENTRY
+OPEN #1 &path /Read
+
+&offset_into_string=-1.
+
+While (&offset_into_string==-1.)
+(
+READ #1 %line &log_output
+&log_output=STRing.TRIM("&log_output")
+
+&offset_into_string=STRing.SCAN("&log_output","SMMU:>>",0)
+if (&offset_into_string>-1.)
+(
+	&smmu_instance=STRing.CUT("&log_output",8.)
+	&smmu_instance=STRing.CUT("&smmu_instance",-20.)
+	&smmu_instance=STRing.TRIM("&smmu_instance")
+)
+
+&offset_into_string=STRing.SCAN("&log_output","NSGFSR",0)
+if (&offset_into_string>-1.)
+(
+	&NSGFSR=STRing.CUT("&log_output",9.)
+	&NSGFSR=STRing.TRIM("&NSGFSR")
+	&NSGFSR=FORMAT.HEX(8.,&NSGFSR)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","NSGFAR",0)
+if (&offset_into_string>-1.)
+(
+	&NSGFAR=STRing.CUT("&log_output",9.)
+	&NSGFAR=STRing.TRIM("&NSGFAR")
+	&NSGFAR=FORMAT.HEX(16.,&NSGFAR)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","NSGFSYNR0",0)
+if (&offset_into_string>-1.)
+(
+	&NSGFSYNR0=STRing.CUT("&log_output",12.)
+	&NSGFSYNR0=STRing.TRIM("&NSGFSYNR0")
+	&NSGFSYNR0=FORMAT.HEX(8.,&NSGFSYNR0)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","NSGFSYNR1",0)
+if (&offset_into_string>-1.)
+(
+	&NSGFSYNR1=STRing.CUT("&log_output",12.)
+	&NSGFSYNR1=STRing.TRIM("&NSGFSYNR1")
+	&NSGFSYNR1=FORMAT.HEX(8.,&NSGFSYNR1)
+)
+
+&offset_into_string=STRing.SCAN("&log_output","NSGFSYNR2",0)
+if (&offset_into_string>-1.)
+(
+	&NSGFSYNR2=STRing.CUT("&log_output",12.)
+	&NSGFSYNR2=STRing.TRIM("&NSGFSYNR2")
+	&NSGFSYNR2=FORMAT.HEX(8.,&NSGFSYNR2)
+)
+)
+CLOSE #1
+
+return
+
+;----------------------------------------------------------------------
+
+Handle_CB_Fault_Type:
+
+ENTRY  
+
+&FSR=&FSR&0x000001FF
+
+GOSUB which_vmid &CBAR
+
+LOCAL &4k_offset
+LOCAL &faulting_ipa
+LOCAL &SID_num
+LOCAL &is_write
+
+&SID_num=&CBFRSYNRA
+&SID_num=&SID_num&0x0000FFFF
+
+&4k_offset=&FAR&0x00000FFF
+&faulting_ipa=(&IPAFAR|&4k_offset)
+
+&is_write=&FSYNR0&0x00000010
+
+if (&is_write!=0)
+(
+	&is_write="Write"
+)
+else
+(
+	&is_write="Read"
+)
+	
+if (&FSR==0x2)
+(
+
+	print "**************************************************************************************************"
+	print "******************* SMMU Context Bank - Translation Fault ****************************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  Faulting Address: 0x" &faulting_ipa
+	print "  R/W: " "&is_write"
+	print "  VMID: " "&CBAR"
+	print "  SID: 0x" &SID_num
+	print ""
+	if ("&is_write"=="Write") 
+	(
+		print "  &smmu_instance" " has generated a Translation Fault by writing to the unmapped IPA: " "&faulting_ipa"
+	)
+	else 
+	(
+		print "  &smmu_instance" " has generated a Translation Fault by reading from the unmapped IPA: " "&faulting_ipa"
+	)
+	print ""
+	print "  The Stream ID (SID) that caused this fault is: 0x" &SID_num
+	print ""
+	print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Find the Master causing the fault using the SMMU Instance (col. A) and SID (col. C) "
+	print "      through the excel spreadsheet at go/IstariV2SIDs -> Istari_V2V3_HB_SMMU_config.xlsx"
+    print "  2.) Contact the POC for this Master"
+    print "  3.) If this address is supposed to be mapped contact AccessControlAdmins"
+	print ""
+	print "**************************************************************************************************"
+	
+)
+else if (&FSR==0x4) 
+(
+	print "**************************************************************************************************"
+	print "*********************** SMMU Context Bank - Access Fault ******************************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  Virtual Address: 0x" &FAR
+	print "  R/W: " "&is_write"
+	print "  SID: 0x" &SID_num
+	print ""
+	if ("&is_write"=="Write") 
+	(
+		print "  &smmu_instance" " has generated an Access Fault by writing to VA: 0x" &FAR
+	)
+	else 
+	(
+		print "  &smmu_instance" " has generated an Access Fault by reading from VA: 0x" &FAR
+	)
+	print ""
+	print "  The Stream ID (SID) that caused this fault is: 0x" &SID_num
+	print ""
+	print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Verify what region this address belongs to through go/ipcat "
+	print "  2.) If you believe you should have access to this VA please send and email with this output attached"
+	print "       to AccessControlAdmins to resolve the issue"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+)
+else if (&FSR==0x8) 
+(
+	
+	print "**************************************************************************************************"
+	print "*********************** SMMU Context Bank - Permission Fault **************************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  Virtual Address: 0x" &FAR
+	print "  R/W: " "&is_write"
+	print "  SID: 0x" &SID_num
+	print ""
+	if ("&is_write"=="Write") 
+	(
+		print "  &smmu_instance" " has generated a Permission Fault by writing to VA: 0x" &FAR
+	)
+	else 
+	(
+		print "  &smmu_instance" " has generated a Permission Fault by reading from VA: 0x" &FAR
+	)
+	print ""
+	print "  The Stream ID (SID) that caused this fault is: 0x" &SID_num
+	print ""
+	print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Verify what region this address belongs to through go/ipcat "
+	print "  2.) If you believe you should have access to this VA please send and email with this output attached"
+	print "       to AccessControlAdmins to resolve the issue"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+)
+else if (&FSR==0x10) 
+(
+	print "**************************************************************************************************"
+	print "*********************** SMMU Context Bank - External Fault *****************************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated an External Fault"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Please send and email with the TZ logs attached to hypervisor.team@qti.qualcomm.com to further Debug this issue"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+)
+else if (&FSR==0x20) 
+(
+	print "**************************************************************************************************"
+	print "*********************** SMMU Context Bank - Match Conflict Fault **************************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated a Match Conflict Fault"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Please send and email with the TZ logs attached to hypervisor.team@qti.qualcomm.com to further Debug this issue"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+)
+else if (&FSR==0x40)
+(
+	print "**************************************************************************************************"
+	print "*********************** SMMU Context Bank - TLB Lock Fault ******************************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated a TLB Lock Fault"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Please send and email with the TZ logs attached to hypervisor.team@qti.qualcomm.com to further Debug this issue"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+)
+else if (&FSR==0x80) 
+(
+	print "**************************************************************************************************"
+	print "*********************** SMMU Context Bank - Address Size Fault ****************************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated an Address Size Fault by providing an Address with a width greater than allowed size "
+	print ""
+	print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Please send and email with the TZ logs attached to hypervisor.team@qti.qualcomm.com to further Debug this issue"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+)
+else if (&FSR==0x100)
+(
+	print "**************************************************************************************************"
+	print "******************* SMMU Context Bank - Unsupported Upstream Transaction Fault ******************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated an Unsupported Upstream Transaction"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Please send and email with the TZ logs attached to hypervisor.team@qti.qualcomm.com to further Debug this issue"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+)
+else
+(
+		print ""
+		print "Unrecognised Fault Type: " "&FSR" "... "
+		print "Exiting Script..."
+		enddo
+)
+
+
+return
+;----------------------- Get Global Fault Type function -----------;
+
+Handle_Global_Fault_Type:
+
+ENTRY 
+
+&NSGFSR=&NSGFSR&0x000001FF
+
+LOCAL &SID_num
+&SID_num=&NSGFSYNR1
+&SID_num=&SID_num&0x0000FFFF
+
+if (&NSGFSR==0x1) 
+(
+	print "**************************************************************************************************"
+	print "*********************** SMMU Global - Invalid Context Fault *****************************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated an Invalid Context Fault, This likely means that the CBAR associated "
+	print "  with the transaction was in an invalid state "
+	print ""
+    print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Please send and email with the TZ logs attached to hypervisor.team@qti.qualcomm.com to further Debug this issue"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+
+)
+else if (&NSGFSR==0x2) 
+(
+
+	print "**************************************************************************************************"
+	print "******************* SMMU Global - Unidentified Stream ID Fault ********************************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated an Unidentified Stream ID Fault due to SID: 0x" &SID_num " not being programmed"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Find out whether this is a Stage 2 only SID or Stage 1 Nested using the excel spreadsheet   "
+	print "      with SMMU Instance (col A.) and SID (col C.) at go/IstariV2SIDs -> Istari_V2V3_HB_SMMU_config.xlsx"
+    print "  2.) If Stage 2 only contact Hypervisor team"
+    print "  3.) If Stage 1 nested, contact the Master for this SID along with HLOS SMMU team"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+
+)
+else if (&NSGFSR==0x4) 
+(
+	
+	print "**************************************************************************************************"
+	print "******************** SMMU Global - Stream Match Conflict Fault **************************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated an Stream Match Conflict Fault due to SID: 0x" &SID_num " being programmed more than once"		
+	print ""
+	print "**************************************************************************************************"
+	print ""
+    print "  What to do next: "
+	print "  1.) Find out whether this is a Stage 2 only SID or Stage 1 Nested using the excel spreadsheet  "
+	print "      with SMMU Instance (col A.) and SID (col C.) at go/IstariV2SIDs -> Istari_V2V3_HB_SMMU_config.xlsx"
+    print "  2.) If Stage 2 only contact Hypervisor team"
+    print "  3.) If Stage 1 nested, contact the Master for this SID along with HLOS SMMU team"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+
+)
+else if (&NSGFSR==0x8) 
+(
+	print "**************************************************************************************************"
+	print "*********************** SMMU Global - Unimplemented Context Bank Fault ********************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated an Unimplemented Context Bank Fault due to a Context Bank"  
+	print "  not being programmed"	
+	print ""
+	print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Please send and email with the TZ logs attached to hypervisor.team@qti.qualcomm.com to further Debug this issue"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+)
+else if (&NSGFSR==0x10) 
+(
+	print "**************************************************************************************************"
+	print "****************** SMMU Global - Unimplemented Context Interrupt **********************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated an Unimplemented Context Interrupt Interrupt Fault"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Please send and email with the TZ logs attached to hypervisor.team@qti.qualcomm.com to further Debug this issue"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+
+)
+else if (&NSGFSR==0x20)
+(
+	LOCAL &offset
+	&offset=FORMAT.UDECIMAL(10.,&NSGFAR)
+	
+	print "**************************************************************************************************"
+	print "****************** SMMU Global - Configuration Access Fault **************************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  Offset from Global Space: 0x" &NSGFAR
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated a Configuration Access Fault by accessing the register at offset "
+	print "  0x" &NSGFAR " from the Global SMMU Address Space"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+    print "  What to do next: "
+	print "  1.) Please send and email to hypervisor.team@qti.qualcomm.com to further Debug this issue"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+
+)
+else if (&NSGFSR==0x40) 
+(
+	print "**************************************************************************************************"
+	print "****************** SMMU Global - External Fault **************************************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated an External Fault"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Please send and email with the TZ logs attached to hypervisor.team@qti.qualcomm.com to further Debug this issue"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+)
+else if (&NSGFSR==0x80) 
+(
+	print "**************************************************************************************************"
+	print "****************** SMMU Global - Permission Fault ************************************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated a Permission Fault "
+	print ""
+	print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Please send and email with the TZ logs attached to hypervisor.team@qti.qualcomm.com to further Debug this issue"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+)
+else if (&NSGFSR==0x100) 
+(
+	print "**************************************************************************************************"
+	print "****************** SMMU Global - Unsupported Upstream Transaction ********************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated an Unsupported Upstream Transaction Fault"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Please send and email with the TZ logs attached to hypervisor.team@qti.qualcomm.com to further Debug this issue"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+)
+else
+(
+		print ""
+		print "Unrecognised Fault Type: " "&NSGFSR" "..."
+		print "Exiting Script..."
+		enddo
+)
+
+return
+
+;----------------------- Get Secure Global Fault Type function -----------;
+
+Handle_Secure_Global_Fault_Type:
+
+ENTRY 
+
+&NSGFSR=&NSGFSR&0x000001FF
+
+LOCAL &SID_num
+&SID_num=&NSGFSYNR1
+&SID_num=&SID_num&0x0000FFFF
+
+if (&NSGFSR==0x1) 
+(
+	print "**************************************************************************************************"
+	print "*********************** SMMU Global Secure - Invalid Context Fault **********************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated a Secure Invalid Context Fault, This likely means that the CBAR associated "
+	print "  with the transaction was in an invalid state "
+	print ""
+    print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Please send and email with the TZ logs attached to hypervisor.team@qti.qualcomm.com to further Debug this issue"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+
+)
+else if (&NSGFSR==0x2) 
+(
+
+	print "**************************************************************************************************"
+	print "******************* SMMU Global Secure - Unidentified Stream ID Fault ****************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated a Secure Unidentified Stream ID Fault due to SID: 0x" &SID_num " not being programmed"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Find out whether this is a Stage 2 only SID or Stage 1 Nested using the excel spreadsheet   "
+	print "      with SMMU Instance (col A.) and SID (col C.) at go/IstariV2SIDs -> Istari_V2V3_HB_SMMU_config.xlsx"
+    print "  2.) If Stage 2 only contact Hypervisor team"
+    print "  3.) If Stage 1 nested, contact the Master for this SID along with HLOS SMMU team"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+
+)
+else if (&NSGFSR==0x4) 
+(
+	
+	print "**************************************************************************************************"
+	print "******************** SMMU Global Secure- Stream Match Conflict Fault *******************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated a Secure Stream Match Conflict Fault due to SID: 0x" &SID_num " being programmed more than once"		
+	print ""
+	print "**************************************************************************************************"
+	print ""
+    print "  What to do next: "
+	print "  1.) Find out whether this is a Stage 2 only SID or Stage 1 Nested using the excel spreadsheet  "
+	print "      with SMMU Instance (col A.) and SID (col C.) at go/IstariV2SIDs -> Istari_V2V3_HB_SMMU_config.xlsx"
+    print "  2.) If Stage 2 only contact Hypervisor team"
+    print "  3.) If Stage 1 nested, contact the Master for this SID along with HLOS SMMU team"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+
+)
+else if (&NSGFSR==0x8) 
+(
+	print "**************************************************************************************************"
+	print "*********************** SMMU Global Secure - Unimplemented Context Bank Fault *************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated a Secure Unimplemented Context Bank Fault due to a Context Bank"  
+	print "  not being programmed"	
+	print ""
+	print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Please send and email with the TZ logs attached to hypervisor.team@qti.qualcomm.com to further Debug this issue"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+)
+else if (&NSGFSR==0x10) 
+(
+	print "**************************************************************************************************"
+	print "****************** SMMU Global Secure - Unimplemented Context Interrupt ***************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated a Secure Unimplemented Context Interrupt Fault"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Please send and email with the TZ logs attached to hypervisor.team@qti.qualcomm.com to further Debug this issue"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+
+)
+else if (&NSGFSR==0x20)
+(
+	LOCAL &offset
+	&offset=FORMAT.UDECIMAL(10.,&NSGFAR)
+	
+	print "**************************************************************************************************"
+	print "****************** SMMU Global Secure - Configuration Access Fault *******************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  Offset from Global Space: 0x" &NSGFAR
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated a Secure Configuration Access Fault by accessing the register at offset "
+	print "  0x" &NSGFAR " from the Global SMMU Address Space"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+    print "  What to do next: "
+	print "  1.) Please send and email to hypervisor.team@qti.qualcomm.com to further Debug this issue"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+
+)
+else if (&NSGFSR==0x40) 
+(
+	print "**************************************************************************************************"
+	print "****************** SMMU Global Secure - External Fault *******************************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated a Secure External Fault"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Please send and email with the TZ logs attached to hypervisor.team@qti.qualcomm.com to further Debug this issue"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+)
+else if (&NSGFSR==0x80) 
+(
+	print "**************************************************************************************************"
+	print "****************** SMMU Global Secure - Permission Fault *****************************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated a Secure Permission Fault "
+	print ""
+	print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Please send and email with the TZ logs attached to hypervisor.team@qti.qualcomm.com to further Debug this issue"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+)
+else if (&NSGFSR==0x100) 
+(
+	print "**************************************************************************************************"
+	print "****************** SMMU Global Secure - Unsupported Upstream Transaction *************************"
+	print "**************************************************************************************************"
+	print ""
+	print "  SMMU Instance: " "&smmu_instance"
+	print "  SID: 0x" &SID_num
+	print ""
+	print "  &smmu_instance" " has generated a Secure Unsupported Upstream Transaction Fault"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+	print "  What to do next: "
+	print "  1.) Please send and email with the TZ logs attached to hypervisor.team@qti.qualcomm.com to further Debug this issue"
+	print ""
+	print "**************************************************************************************************"
+	print ""
+)
+else
+(
+		print ""
+		print "Unrecognised Fault Type: " "&NSGFSR" "..."
+		print "Exiting Script..."
+		enddo
+)
+
+return
+;----------------------------------------------------------------------
+
+which_vmid:
+
+ENTRY &CBAR
+
+&CBAR=&CBAR&0x000000FF
+
+if (&CBAR==0x1)
+(
+	&CBAR="TZ"
+)
+else if (&CBAR==0x2)
+(
+	&CBAR="RPM"
+)
+else if (&CBAR==0x3)
+(
+	&CBAR="HLOS"
+)
+else if (&CBAR==0x4)
+(
+	&CBAR="HYP"
+)
+else if (&CBAR==0x5)
+(
+	&CBAR="SSC_Q6_ELF"
+)
+else if (&CBAR==0x6)
+(
+	&CBAR="ADSP_Q6_ELF"
+)
+else if (&CBAR==0x8)
+(
+	&CBAR="CP_TOUCH"
+)
+else if (&CBAR==0x9)
+(
+	&CBAR="CP_BITSTREAM"
+)
+else if (&CBAR==0xA)
+(
+	&CBAR="CP_PIXEL"
+)
+else if (&CBAR==0xB)
+(
+	&CBAR="CP_NON_PIXEL"
+)
+else if (&CBAR==0xC)
+(
+	&CBAR="VIDEO_FW"
+)
+else if (&CBAR==0xD)
+(
+	&CBAR="CP_CAMERA"
+)
+else
+(
+	print "Invalid CBAR..."
+	print "Exiting Script..."
+	enddo
+)
+
+return

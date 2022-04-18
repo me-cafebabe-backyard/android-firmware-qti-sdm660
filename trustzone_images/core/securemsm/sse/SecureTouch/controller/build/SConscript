@@ -1,0 +1,73 @@
+#===============================================================================
+#
+# Mobicore Touch Driver controller module
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2015-16 Qualcomm Technologies, Inc.  All Rights Reserved.
+# Qualcomm Technologies Proprietary and Confidential.
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.tz/1.0.7.1/securemsm/sse/SecureTouch/controller/build/SConscript#1 $
+#  $DateTime: 2020/01/14 12:35:09 $
+#  $Author: pwbldsvc $
+#  $Change: 22186835 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who        what, where, why
+# --------   ---        ---------------------------------------------------------
+#02/08/2016   mosalman  Added support for FocalTech touch controller
+#===============================================================================
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/core/securemsm/sse/SecureTouch/controller/"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Compiler, object, and linker definitions
+#-------------------------------------------------------------------------------
+
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/sse/SecureTouch/controller/inc")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/sse/qsee/SecureTouch/drTs/controller/inc")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/sse/SecureTouch/controller/chipset/${CHIPSET}/inc")
+
+INC_PATH_API = ["${INC_ROOT}/core/api/kernel/libstd/stringl"]
+env.Append(CPPPATH = INC_PATH_API)
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+
+SOURCES = [
+  '${BUILDPATH}/src/atmel_mxt_ts.c',
+  '${BUILDPATH}/src/synaptics_ts.c',
+  '${BUILDPATH}/src/focaltech_ts.c',
+  '${BUILDPATH}/src/loopback_ts.c',
+]
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+
+drts_lib = env.AddLibrary([
+  'SECUREUISAMPLE_IMAGE',
+  'SECUREUISAMPLE64_IMAGE',
+  'FIDOSUI_IMAGE',
+  'SAMPLEAPP_IMAGE',
+  'SAMPLEAPP64_IMAGE',
+  ],
+  '${BUILDPATH}/drts_controller_${CHIPSET}',
+  SOURCES)
+
+if drts_lib:
+  env.Deploy([drts_lib, 'SConscript'])

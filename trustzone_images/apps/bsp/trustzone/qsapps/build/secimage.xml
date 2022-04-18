@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+===============================================================================
+
+  Copyright (c) 2015 Qualcomm Technologies, Inc. All Rights Reserved.
+  Qualcomm Technologies Proprietary and Confidential.
+
+===============================================================================
+-->
+
+<tns:secimage xmlns:tns="http://www.qualcomm.com/secimage"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.qualcomm.com/secimage ../xsd/secimage.xsd">
+
+    <metadata>
+        <chipset>default</chipset>
+        <version>2.0</version>
+    </metadata>
+
+    <!--
+       See documentation on general_properties below.
+    -->
+    <general_properties>
+        <selected_signer>local</selected_signer>
+        <selected_encryptor>unified_encryption_2_0</selected_encryptor>
+        <selected_cert_config>default</selected_cert_config>
+
+        <key_size>2048</key_size>
+        <exponent>3</exponent>
+
+        <mrc_index>0</mrc_index>
+        <num_root_certs>1</num_root_certs>
+
+        <msm_part>0x00000000</msm_part>
+        <oem_id>0x0000</oem_id>
+        <model_id>0x0000</model_id>
+        <debug>0x0000000000000002</debug>
+
+        <max_cert_size>2048</max_cert_size>
+        <num_certs_in_certchain>3</num_certs_in_certchain>
+    </general_properties>
+
+    <!--
+        ***general_properties***
+
+        The default properties for all images. These properties maybe overridden
+        per image in the 'images' section below as needed.
+
+        Supported signer are:
+        local: use local signer with test keys
+
+        Supported encryptor are:
+        ssd_encryption: legacy encryption for OTA, supports MBN and ELF images.
+        unified_encryption_2_0: supports ELF images. Image must be signed to encrypt
+
+        msm_part: jtag_id for signing. (in hex) (not to be added if soc_hw_version is defined)
+        soc_hw_version: MSM identifier used for latest family of chips (in hex) (not to be added if msm_part is defined)
+        mask_soc_hw_version: MASK used to mask out lower 16 bits of soc_hw_version (in hex) (must be present if soc_hw_version is defined)
+        oem_id: oem_id for signing. (in hex)
+        model_id: model_id for signing. (in hex)
+        debug: debug_id for signing. (in hex)
+        exponent: exponent value used in attestation key generation.
+
+        max_cert_size: Maximum size (in bytes) of one certificate.
+        key_size: Size (in bits) of the key used for signing.
+        num_certs_in_certchain: Number of certificates in the certificate chain.
+        num_root_certs: Number of root certificates in the certificate chain.
+    -->
+
+    <parsegen>
+        <image_types_list>
+            <image_type id='elf_wrapped_mbn'>
+                <!-- Type of file format -->
+                <file_type>ewm</file_type>
+
+                <ewm_properties>
+                    <image_entry>0x01200000</image_entry>
+                    <relocatable>false</relocatable>
+                </ewm_properties>
+
+                <elf_properties>
+                    <has_hash_table>false</has_hash_table>
+                    <image_type>0</image_type>
+                </elf_properties>
+
+                <mbn_properties>
+                    <header_size>80</header_size>
+                </mbn_properties>
+
+            </image_type>
+        </image_types_list>
+    </parsegen>
+
+    <!-- Signing configurations used by secimage. -->
+    <signing>
+        <signer_attributes>
+        </signer_attributes>
+    </signing>
+
+    <post_process>
+        <pil_splitter>$(META_BUILD)/common/tools/misc/pil-splitter.py</pil_splitter>
+    </post_process>
+
+    <data_provisioning>
+        <base_path>./../../../../../tools/build/scons/sectools/resources/data_prov_assets/</base_path>
+    </data_provisioning>
+
+    <images_list>
+        <image sign_id="fingerprint" name="fingerprint.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000012345</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="fingerprint64" name="fingerprint64.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000012345</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="voiceprint" name="voiceprint.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000022345</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="iris" name="iris.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000032345</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="isdbtmm" name="isdbtmm.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000000222</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="widevine" name="widevine.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000000333</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="playread" name="playread.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000000444</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="keymaster" name="keymaster.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000000666</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="apttestapp" name="apttestapp.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000000888</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="apttestapp64" name="apttestapp64.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000064888</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="aptcryptotestapp" name="aptcryptotestapp.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000088888</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="aptcryptotestapp64" name="aptcryptotestapp64.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000006488888</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="crikeymgmtapp" name="crikeymgmtapp.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000008888888</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="crikeymgmtapp64" name="crikeymgmtapp64.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000648888888</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="aptlksecapp" name="aptlksecapp.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000888888888</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="aptlksecapp64" name="aptlksecapp64.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000064888888888</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="assurancetest" name="assurancetest.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000000999</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="assurancetest64" name="assurancetest64.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x6400000000000999</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="dxhdcp2" name="dxhdcp2.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000000AAA</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="dxhdcp2dbg" name="dxhdcp2dbg.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000000BBB</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="hdcp1" name="hdcp1.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000000BBD</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="hdcpsrm" name="hdcpsrm.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000000CCC</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="hdcp2p2" name="hdcp2p2.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x000000000000CCCC</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="hdcptest" name="hdcptest.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x00000000000CCCCD</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="seccamdemo64" name="seccamdemo64.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000FD001111</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="securemm" name="securemm.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000000FFF</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="secure_ui_sample" name="secure_ui_sample.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000001110</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="secure_ui_sample64" name="secure_ui_sample64.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000001110</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="securitytest" name="securitytest.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000001221</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="tztestexec_smc_qcom" name="tztestexec_smc_qcom.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000001443</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="tqs" name="tqs.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000001234</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ojtee" name="ojtee.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000001554</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="pkcs11" name="pkcs11.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000001665</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="securepin" name="securepin.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000001776</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="secureindicator" name="secureindicator.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000001AA9</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="sbtest" name="sbtest.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000001CCB</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="retstapp0" name="retstapp0.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000002000</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="retstapp1" name="retstapp1.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000002001</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="retstapp2" name="retstapp2.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000002002</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="gptest" name="gptest.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x6156e979aa6e61bc</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="gptest2" name="gptest2.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x54d1da820f77b4b0</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="gpfuzz" name="gpfuzz.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0xd230cc125e9bd83d</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="gpsample" name="gpsample.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x4ff2d4d58e8ca49b</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttaari1" name="ttaari1.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x41524954484D4554</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttacapi1" name="ttacapi1.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x4C542D54412D4552</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttacapi2" name="ttacapi2.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x54455252544F4F53</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttacapi3" name="ttacapi3.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x4C542D54412D5355</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttacapi4" name="ttacapi4.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x544F53345041524D</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttacapi5" name="ttacapi5.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x4C542D54412D5354</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttacapi6" name="ttacapi6.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x544F53345295824D</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttacapi7" name="ttacapi7.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x4C543F67412D5354</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttacrp1" name="ttacrp1.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x5443525950544F31</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttaseccrp" name="ttaseccrp.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x5443525128544F31</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttads1" name="ttads1.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x5444415441535431</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttasecds" name="ttasecds.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x5446395441535431</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttasecmem" name="ttasecmem.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x5426396441585439</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttatime1" name="ttatime1.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x5F54494D45415049</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttatcf1" name="ttatcf1.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x4C542D54412D3031</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttatcf2" name="ttatcf2.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x5441544346494341</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttatcf3" name="ttatcf3.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x5454434649434132</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttatcf4" name="ttatcf4.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x4D4C54494E535443</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttatcf5" name="ttatcf5.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x53474C494E535443</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttatcf6" name="ttatcf6.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x4D4C55F23E535443</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttatcf7" name="ttatcf7.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x53474C495F235443</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttasectcf" name="ttasectcf.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x53974CFF5F235243</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttasecac" name="ttasecac.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x53974CFF6ADA5243</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttascapi" name="ttascapi.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x53974CFF6AEA5243</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ttatlapi" name="ttatlapi.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x53974CFF6AFA5243</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="macchiato_sample" name="macchiato_sample.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000001887</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="fwlock" name="fwlock.mbn" image_type="elf_has_ht" cert_config="default">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000001555</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="vfptest" name="vfptest.mbn" image_type="elf_has_ht" cert_config="default">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x00000000000019AC</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="fidocrypto" name="fidocrypto.mbn" image_type="elf_has_ht" cert_config="default">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x646669646f637279</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="fidocfg" name="fidocfg.mbn" image_type="elf_has_ht" cert_config="default">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x640EFE81B388D198</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="eseservice" name="eseservice.mbn" image_type="elf_has_ht" cert_config="default">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x640EFE81B388D199</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="fidosui" name="fidosui.mbn" image_type="elf_has_ht" cert_config="default">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x006669646f737569</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="sampleauth" name="sampleauth.mbn" image_type="elf_has_ht" cert_config="default">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x6473616d706c6561</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="sampleextauth" name="sampleextauth.mbn" image_type="elf_has_ht" cert_config="default">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x00000000709a0de4</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="lksecapp" name="lksecapp.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x00000000000001887</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="lksecapp64" name="lksecapp64.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x00000000000641887</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="chamomile" name="chamomile.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000003F44</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="skeleton" name="skeleton.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x64000000000001998</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="secotacl" name="secotacl.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000002015</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="hvntkn32" name="hvntkn32.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000002016</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="hvntkn64" name="hvntkn64.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x6400000000002016</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="mdtpsecapp" name="mdtpsecapp.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000001555</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="dhsecapp" name="dhsecapp.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000060815</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="ssmapp" name="ssmapp.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000001517</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="cppf" name="cppf.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x000000000AAAAAAAA</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="qpay" name="qpay.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000071706179</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="qpay64" name="qpay64.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x6400000071706179</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="gpqese" name="gpqese.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0xC800000071706179</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="pr_3_0" name="pr_3_0.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x0000000000000abc</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="cpsbtest" name="cpsbtest.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x6400000080000999</app_id>
+
+            </general_properties_overrides>
+        </image>
+        <image sign_id="celerity" name="celerity.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x00000000000CABAC</app_id>
+            </general_properties_overrides>
+        </image>
+        <image sign_id="celerity64" name="celerity64.mbn" image_type="elf_has_ht">
+            <general_properties_overrides>
+                <sw_id>0x000000000000000C</sw_id>
+                <app_id>0x64000000000CABAC</app_id>
+            </general_properties_overrides>
+        </image>
+    </images_list>
+
+</tns:secimage>

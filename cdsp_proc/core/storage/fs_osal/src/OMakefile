@@ -1,0 +1,75 @@
+# Build rules for libfs_osal.
+
+.DEFAULT: libfs_osal.a
+
+FS_OSAL_MODULES = \
+        fs_os_common \
+        fs_os_malloc \
+        fs_os_qurt \
+        fs_os_posix \
+        fs_os_string \
+        fs_os_timetick \
+        #end
+
+# Flags for fs_osal:
+CFLAGS += -Werror
+CFLAGS += -std=c99 -pedantic
+
+if $(defined-env CALLGRAPH)
+    CFLAGS += -finstrument-functions
+    CFLAGS += -DENABLE_INSTRUMENT_FUNCTIONS
+    CFLAGS += -D'CALLGRAPH_OUTPUT_FILE="$(EXENAME)"'
+    export
+
+INCLUDES += $(dir $(ROOT)/efs/api)
+INCLUDES += $(dir $(ROOT)/efs/inc)
+INCLUDES += $(dir $(ROOT)/csupport)
+INCLUDES += $(dir $(ROOT)/fs_osal/inc)
+INCLUDES += $(dir $(ROOT)/fs_osal/src)
+
+CFLAGS_BASE = $(CFLAGS)
+
+StaticCLibrary (libfs_osal, $(FS_OSAL_MODULES))
+
+######################################################################
+# Linting.
+
+# Lint needs the GCC specific search dirs.  To start with, just grab the
+# GCC install base.
+GCC_BASE = $(shell $(CC) --print-search-dirs | grep 'install:' | \
+             sed 's/install: //')
+
+LINT = flint
+# Start the LINT_FLAGS with what is specified in the build-config file.
+LINT_FLAGS = $(CFG_LINT_FLAGS)
+
+LINT_DEPS =
+LINT_DEPS += $(file $(ROOT)/etc/lint/co-gnu3.lnt)
+LINT_DEPS += $(file $(ROOT)/efs/src/efs.lnt)
+LINT_DEPS += $(file $(ROOT)/etc/lint/off-target.lnt)
+LINT_DEPS += $(file $(ROOT)/etc/lint/amss_std.lnt)
+
+LINT_FLAGS += $(LINT_DEPS)
+
+LINT_FLAGS += -I$(dir $(ROOT)/efs/api)
+LINT_FLAGS += -I$(dir $(ROOT)/efs/inc)
+LINT_FLAGS += -I$(dir $(ROOT)/csupport)
+LINT_FLAGS += -I$(dir $(ROOT)/fs_osal/inc)
+LINT_FLAGS += -I$(dir $(ROOT)/fs_osal/src)
+LINT_FLAGS += -I$(dir $(GCC_BASE)/include)
+LINT_FLAGS += -I/usr/include
+
+# Needed, until buffer removes the MD5 stuff.
+LINT_FLAGS += -I$(OCAML_BASE)
+
+LINT_FLAGS += -DFS_STANDALONE
+LINT_FLAGS += -DFS_OS_SIMULATOR_BUILD
+
+section
+        CFILES = $(addsuffix .c, $(FS_OSAL_MODULES))
+        fs_osal_lint.stamp: $(CFILES) $(LINT_DEPS)
+                rm -f fs_osal_lint.stamp
+                $(LINT) $(LINT_FLAGS) $(CFILES)
+                touch fs_osal_lint.stamp
+######################################################################
+

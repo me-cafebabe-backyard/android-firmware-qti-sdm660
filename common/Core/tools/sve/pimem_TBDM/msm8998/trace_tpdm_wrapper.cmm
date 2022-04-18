@@ -1,0 +1,49 @@
+//============================================================================
+//  Name:                                                                     
+//    trace_tpdm_wrapper.cmm
+//
+//  Description:                                                              
+//    wraps other PIMEM TPDM scripts. Designed to prompt for and return a traceID
+//
+//  Usage
+//  do trace_tpdm_wrapper
+//
+
+// Copyright (c) 2016 by Qualcomm Technologies, Incorporated.  All Rights Reserved.        
+//
+//
+//
+//                      EDIT HISTORY FOR FILE
+//  This section contains comments describing changes made to the module.
+//  Notice that changes are listed in reverse chronological order.
+//
+// when         who        what, where, why
+// --------     ---        --------------------------------------------------------
+// 3/30/2016    JBILLING   Created
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////// trace_tpdm_wrapper //////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+LOCAL &rvalue
+
+AREA.CREATE TPDM_area
+area.select TPDM_area
+WINPOS 0. 0. 80. 5.
+AREA.view TPDM_area
+
+PRINT "PIMEM TPDM Tracer needs a Trace ID"
+PRINT "For more information on where to get Trace ID, please contact sve team"
+PRINT "Please enter Trace ID: "
+ENTER %LINE &traceid
+
+area.clear TPDM_area
+IF STRING.SCAN("&traceid"," ",0)!=-1
+(
+    do std_fatalexit USER "Error in trace_tpdm_wrapper! Need a valid traceID, which must be a number"
+)
+
+
+
+
+ENDDO &traceid

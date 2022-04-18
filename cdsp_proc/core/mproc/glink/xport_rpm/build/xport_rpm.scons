@@ -1,0 +1,149 @@
+#===============================================================================
+#
+# Xport RPM Libs
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2014-2015 Qualcomm Technologies, Inc.
+# All Rights Reserved.
+# Qualcomm Technologies, Inc. Confidential and Proprietary.
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.qdsp6/1.0.c2/mproc/glink/xport_rpm/build/xport_rpm.scons#1 $
+#  $DateTime: 2020/02/10 01:57:30 $
+#  $Author: pwbldsvc $
+#  $Change: 22511909 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 06/11/15   bc      Select generic config file if new MSM_ID doesn't exist
+# 05/13/15   db      Added RCINIT function for TN APSS image
+# 05/04/15   db      Added compilation support for APSS images
+# 01/15/15   bc      Removed RPM macro
+# 12/29/14   bc      Adding macro for rpm processor
+# 10/20/14   an      Initial version.
+#
+#===============================================================================
+Import('env')
+env = env.Clone()
+
+import os
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+UNITPATH = "${BUILD_ROOT}/core/mproc/glink/xport_rpm"
+SRCPATH  = UNITPATH + "/src"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+#  Publish Private APIs
+#-------------------------------------------------------------------------------
+
+env.PublishPrivateApi('MPROC_GLINK', [
+   "${BUILD_ROOT}/core/mproc/glink/os/inc",
+   "${BUILD_ROOT}/core/mproc/glink/xport_rpm/inc"
+] )
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'BUSES',
+   'DEBUGTOOLS',
+   'HAL',
+   'DAL',
+   'HWENGINES',
+   'MPROC',
+   'MEMORY',
+   'POWER',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+   'WIREDCONNECTIVITY',
+
+   # needs to be last also contains wrong comdef.h
+   'KERNEL',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+env.RequireProtectedApi(['MPROC_GLINK'])
+
+#-------------------------------------------------------------------------------
+# Feature Definition
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+XPORT_RPM_SRC = [
+   '${BUILDPATH}/xport_rpm.c',
+   '${BUILDPATH}/xport_rpm_devcfg.c',
+]
+
+XPORT_RPM_TOC_SRC = [
+   '${BUILDPATH}/xport_rpm_toc.c',
+]
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+APPS_IMAGES = ['CBSP_APPS_IMAGE', 'APPS_IMAGE']
+
+ROOT_IMAGES = ['CORE_QDSP6_SW', 'CORE_MPSS_ROOT', 'CORE_ADSP_ROOT', 'WCN_IMAGE',
+               'CORE_SLPI_ROOT', 'CORE_ADSP_SLPI_ROOT', 'CORE_CDSP_ROOT']
+
+# Add Image-specific Libraries, whose sources should be packed out.
+env.AddBinaryLibrary(['RPM_IMAGE'] + APPS_IMAGES + ROOT_IMAGES,
+                     '${BUILDPATH}/xport_rpm',
+                     [XPORT_RPM_SRC])
+
+env.AddBinaryLibrary(['RPM_IMAGE'],
+                     '${BUILDPATH}/xport_rpm_toc',
+                     [XPORT_RPM_TOC_SRC])
+                     
+#-------------------------------------------------------------------------------
+# CleanPack (Remove) all remaining files for peripheral processors
+#-------------------------------------------------------------------------------
+PACK_OUT = env.FindFiles(['*.h', '*.c', '*.s'], SRCPATH)
+# Don't include RPM in this list, because it already does we want automatically.
+env.CleanPack(ROOT_IMAGES, PACK_OUT)
+
+#-------------------------------------------------------------------------------
+# RCINIT Task and Init Fields and Initialization
+#-------------------------------------------------------------------------------
+RCINIT_INIT_XPORT_RPM_INIT = {
+  'sequence_group'             : 'RCINIT_GROUP_0',          # required
+  'init_name'                  : 'xport_rpm',               # required
+  'init_function'              : 'xport_rpm_init',          # required
+  'dependencies'               : ['glink']
+}
+
+if 'USES_RCINIT' in env:
+  RCINIT_IMG = APPS_IMAGES + ROOT_IMAGES
+  env.AddRCInitFunc( RCINIT_IMG, RCINIT_INIT_XPORT_RPM_INIT )
+
+#-------------------------------------------------------------------------------
+# Device configuration
+#-------------------------------------------------------------------------------
+if env.has_key('USES_DEVCFG'):
+  DEVCFG_IMG = ['DAL_DEVCFG_IMG']
+  DEVCFG_XML = UNITPATH + '/config/xport_rpm_devcfg.xml'
+  DEVCFG_SRC = UNITPATH + '/config/%s/xport_rpm_devcfg_%s.c'
+  
+  devcfg_cfg_dict = {}
+  for xml_tag in env.get('DEVCFG').getFeature('devcfgXMLTagList'):
+    devcfg_cfg_dict[xml_tag] = [DEVCFG_XML, 
+                                DEVCFG_SRC % (xml_tag[:-4], env['MPROC_PROC_NAME'])]
+
+  devcfg_cfg_dict['devcfg_xml'] = [DEVCFG_XML, 
+                                   DEVCFG_SRC % ('${MSM_ID}', env['MPROC_PROC_NAME'])]
+
+  env.AddDevCfgInfo(DEVCFG_IMG, devcfg_cfg_dict)

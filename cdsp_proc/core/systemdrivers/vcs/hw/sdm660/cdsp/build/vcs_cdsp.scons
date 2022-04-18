@@ -1,0 +1,101 @@
+#===============================================================================
+#
+# VCS DRIVER HW (CHIPSET) LIBRARY
+#
+# Processor: CDSP
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright 2016 Qualcomm Technologies Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.qdsp6/1.0.c2/systemdrivers/vcs/hw/sdm660/cdsp/build/vcs_cdsp.scons#1 $
+#  $DateTime: 2020/02/10 01:57:30 $
+#  $Author: pwbldsvc $
+#  $Change: 22511909 $
+#
+#===============================================================================
+
+import os
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Add API folders
+#-------------------------------------------------------------------------------
+
+VCS_BUILD_ROOT = os.getcwd();
+
+#-------------------------------------------------------------------------------
+# Define paths
+#-------------------------------------------------------------------------------
+
+SRCPATH = "../"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Define any features or compiler flags
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+
+CBSP_API = [
+   'DAL',
+   'HAL',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+   'POWER',
+   'KERNEL',
+   'DEBUGTRACE'
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+#-------------------------------------------------------------------------------
+# Define sources
+#-------------------------------------------------------------------------------
+
+VCS_HW_SOURCES = [
+   '${BUILDPATH}/src/VCSTURING.c',
+]
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+
+env.AddLibrary(
+  ['QDSP6_SW_IMAGE', 'CBSP_QDSP6_SW_IMAGE'], 
+   '${BUILDPATH}/VCSHW',VCS_HW_SOURCES)
+
+#-------------------------------------------------------------------------------
+# Register initialization function and dependencies
+#-------------------------------------------------------------------------------
+
+if 'USES_RCINIT' in env:
+  RCINIT_IMG = ['QDSP6_SW_IMAGE', 'CBSP_QDSP6_SW_IMAGE']
+  env.AddRCInitFunc(              # Code Fragment in TMC: NO
+    RCINIT_IMG,                   # 
+    {
+      'sequence_group' : 'RCINIT_GROUP_1',                       # required
+      'init_name'      : 'vcs_efs',                              # required
+      'init_function'  : 'VCS_LoadNV',                           # required
+      'dependencies'   : ['efs']
+    })
+
+#-------------------------------------------------------------------------------
+# SWEvent processing
+#-------------------------------------------------------------------------------
+
+if 'USES_QDSS_SWE' in env:
+  env.Append(CPPDEFINES = ["VCS_TRACER_SWEVT"])
+
+if 'QDSS_TRACER_SWE' in env:
+  env.Append(CPPPATH = ['${BUILD_ROOT}/core/systemdrivers/vcs/build/${BUILDPATH}/src'])

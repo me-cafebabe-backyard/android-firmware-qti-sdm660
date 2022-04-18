@@ -1,0 +1,77 @@
+#===============================================================================
+#
+# AVS AU
+#
+# GENERAL DESCRIPTION
+#    Build script
+#
+# Copyright (c) 2015 Qualcomm  Technologies, Inc.(QTI) 
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/avs.adsp/2.8/avcs/modules/olm/capi_v2_olm/build/capi_v2_olm.scons#4 $
+#  $DateTime: 2018/03/19 01:57:05 $
+#  $Author: pwbldsvc $
+#  $Change: 15709152 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 4/7/14	rv			Created
+#===============================================================================
+Import('env')
+##env.Replace(HEXAGONCC_OPT = "-O0")
+if 'USES_ENABLE_FUNCTION_SECTIONS' in env:
+   env.Append(CFLAGS = '-ffunction-sections')
+
+core_public_apis = [
+   'DEBUGTOOLS',
+   'SERVICES',
+   'KERNEL',
+   ]
+
+env.RequirePublicApi(core_public_apis, area='core')
+env.RequireRestrictedApi(['AVS',
+						  'MODULE_INTERFACES_API',
+						  'MODULE_INTERFACES_UTILS','AP_SERVER_API'])
+
+env.RequireProtectedApi('AVS')
+
+env.PublishPrivateApi('AVS',[
+   '../inc',
+   '../tst/inc',
+   	'../../inc',
+   ])
+
+env.PublishRestrictedApi('AVS',[
+   '../inc',
+   '../tst/inc',
+      '../../inc',
+   ])
+
+#-------------------------------------------------------------------------------
+# Setup source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = '..'
+LIBNAME = 'OLM_CAPI'
+LIBNAME_STUB = LIBNAME+'_stub'
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+# Generate regular source file list
+avs_reg_sources = env.GlobSourceFiles(['/src/*.cpp', '/src/*.c', '/src/*.S',], SRCPATH, posix=True)
+
+# Generate stub source file list
+avs_stub_sources = env.GlobSourceFiles(['/stub_src/*.cpp', '/stub_src/*.c', '/stub_src/*.S'], SRCPATH, posix=True)
+
+env.AddLibrary(['AVS_ADSP'], '${BUILDPATH}/'+LIBNAME,avs_reg_sources)
+env.AddLibrary(['AVS_ADSP'], '${BUILDPATH}/'+LIBNAME_STUB,avs_stub_sources)
+env.AddLibrary(['AVS_ADSP_USER'], '${BUILDPATH}/'+LIBNAME,avs_reg_sources)
+env.AddLibrary(['AVS_ADSP_USER'], '${BUILDPATH}/'+LIBNAME_STUB,avs_stub_sources)
+
+env.LoadSoftwareUnits()

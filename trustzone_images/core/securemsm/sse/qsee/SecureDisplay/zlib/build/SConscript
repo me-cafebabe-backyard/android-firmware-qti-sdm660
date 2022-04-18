@@ -1,0 +1,87 @@
+#===============================================================================
+#
+# zLib module
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2014 - 2015 Qualcomm Technologies, Inc.  All Rights Reserved.
+# Qualcomm Technologies Proprietary and Confidential.
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.tz/1.0.7.1/securemsm/sse/qsee/SecureDisplay/zlib/build/SConscript#1 $
+#  $DateTime: 2020/01/14 12:35:09 $
+#  $Author: pwbldsvc $
+#  $Change: 22186835 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+#===============================================================================
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/core/securemsm/sse/qsee/SecureDisplay/zlib"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Compiler, object, and linker definitions
+#-------------------------------------------------------------------------------
+
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/sse/qsee/SecureDisplay/include")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/sse/qsee/SecureDisplay/zlib/include")
+env.Append(CPPPATH = "${COREBSP_ROOT}/api/services")
+env.Append(CPPPATH = "${COREBSP_ROOT}/api/securemsm/trustzone/qsee")
+
+env.Append(CCFLAGS = " -DHAVE_CONFIG_H -DZLIB_CONST -DMAX_WBITS=14 -DSECURE_UI_SUPPORTED")
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+INC_PATH_API = ["${INC_ROOT}/core/api/kernel/libstd/stringl"]
+env.Append(CPPPATH = INC_PATH_API)
+
+SOURCES = [
+  '${BUILDPATH}/src/adler32.c',
+  '${BUILDPATH}/src/compress.c',
+  '${BUILDPATH}/src/crc32.c',
+  '${BUILDPATH}/src/deflate.c',
+  '${BUILDPATH}/src/gzclose.c',
+  '${BUILDPATH}/src/gzlib.c',
+  '${BUILDPATH}/src/gzread.c',
+  '${BUILDPATH}/src/gzwrite.c',
+  '${BUILDPATH}/src/infback.c',
+  '${BUILDPATH}/src/inffast.c',
+  '${BUILDPATH}/src/inflate.c',
+  '${BUILDPATH}/src/inftrees.c',
+  '${BUILDPATH}/src/trees.c',
+  '${BUILDPATH}/src/uncompr.c',
+  '${BUILDPATH}/src/zutil.c',
+]
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+env.AddBinaryLibrary([
+  'SECUREUISAMPLE_IMAGE',
+  'SECUREUISAMPLE64_IMAGE',
+  'FIDOSUI_IMAGE',
+  'SECUREINDICATOR_IMAGE',
+  ],
+  '${BUILDPATH}/zlib',
+  SOURCES)
+env.CleanPack([
+  'SECUREUISAMPLE_IMAGE',
+  'SECUREUISAMPLE64_IMAGE',
+  'FIDOSUI_IMAGE',
+  'SECUREINDICATOR_IMAGE',
+  ],
+  SOURCES)

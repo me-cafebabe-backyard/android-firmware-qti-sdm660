@@ -1,0 +1,123 @@
+MAIN:
+
+IF (!Y.EXIST(\\qsee)&&!Y.EXIST(\\qsee_with_test))
+(
+  DIALOG.MESSAGE "This script depends on QSEE symbols being loaded."
+  ENDDO
+)
+
+var.new struct list_node* \node
+var.new struct thread* \pThread
+var.new KProcess* \pProc
+var.new Invoker* \pInvoker
+
+var.set \node=thread_list->next
+var.set \pThread=(thread_t*)((uint64_t)\node-8)
+var.set \pProc=(KProcess*)\pThread->process
+
+area.create threads
+area.clear threads
+area.select threads
+
+LOCAL &tid &lks &pm &pa &va &rw &ivr &sr &lid
+
+var.WHILE (thread_list->next!=\node->next)
+(
+  var.IF (\pThread->magic!=0xFFFF04)
+  (
+    PBREAK
+  )
+
+  &tn=format.string(v.string(\pThread->name), 28., ' ')
+  &tid=format.string(format.decimal(0, v.value(\pThread->app_id)), 5., ' ')
+  &lks=format.string(v.string(\pThread->state), 16., ' ')
+
+  print "-----------------------------------------------------------------------------"
+  &tn=format.string("&tn", 41., ' ')
+  &tn=format.string("&tn", -73., ' ')
+  print "| &tn |"
+
+  var.IF (\pThread->process==0)
+  (
+    var.IF (\pThread->busy_flag==0)
+    (
+       &sr="No"
+    )
+    ELSE
+    (
+       &sr="Yes"
+    )
+    &sr=format.string("&sr", 17., ' ')
+
+    var.IF (\pThread->blocked_on_listner_id!=-1)
+    (
+      &lid=format.hex(0, v.value(\pThread->blocked_on_listner_id))
+    )
+    ELSE
+    (
+      &lid="No Listener Request"
+    )
+    &lid=format.string("&lid", 26., ' ')
+
+
+    print "| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - |"
+    print "| ID    | LK State         | Servicing Request | Waiting for Listener ID    |"
+    print "| &tid | &lks | &sr | &lid |"
+    print "| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - |"
+  )
+  ELSE
+  (
+    var.IF (\pThread->svc_thread!=0)
+    (
+      &pm="EL1 "
+    )
+    ELSE
+    (
+      &pm="EL0 "
+    )
+
+    &pa=format.string(format.hex(0, v.value(\pThread->segs[2].addr)), 8., ' ')
+    &va=format.string(format.hex(0, v.value(\pThread->segs[2].vaddr)), 8., ' ')
+
+    var.IF (\pProc->userLib.sizeOfPointer==8)
+    (
+      &rw="AA64"
+    )
+    ELSE
+    (
+      &rw="AA32"
+    )
+
+    var.set \pInvoker = (Invoker*)\pProc->qlInvokers.n.pNext
+
+    var.IF (\pInvoker->thread.lkThread.magic==0xFFFF04)
+    (
+      &ivr=v.string(\pInvoker->thread.lkThread.name)
+    )
+    ELSE
+    (
+      &ivr="None"
+    )
+    &ivr=format.string("&ivr", 10., ' ')
+
+    print "| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - |"
+    print "| ID    | LK State         | Mode | RW   | Invoked By | VA Entry | PA Entry |"
+    print "| &tid | &lks | &pm | &rw | &ivr | &va | &pa |"
+    print "| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - |"
+  )
+
+  &vt="View Thread Using: v.v (thread_t*)0x"+format.hex(0, v.value(\pThread))
+  &vt=format.string("&vt", 73., ' ')
+
+  print "| &vt |"
+  print "-----------------------------------------------------------------------------"
+  print ""
+
+
+  var.set \node=\node->next
+  var.set \pThread=(thread_t*)((uint64_t)\node-8)
+  var.set \pProc=(KProcess*)\pThread->process
+)
+
+ENDDO
+

@@ -1,0 +1,89 @@
+#===============================================================================
+#
+# LibPNG module
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2014 - 2015 Qualcomm Technologies, Inc.  All Rights Reserved.
+# Qualcomm Technologies Proprietary and Confidential.
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.tz/1.0.7.1/securemsm/sse/qsee/SecureDisplay/libpng/build/SConscript#1 $
+#  $DateTime: 2020/01/14 12:35:09 $
+#  $Author: pwbldsvc $
+#  $Change: 22186835 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+#===============================================================================
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/core/securemsm/sse/qsee/SecureDisplay/libpng"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Compiler, object, and linker definitions
+#-------------------------------------------------------------------------------
+
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/sse/qsee/SecureDisplay/include")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/sse/qsee/SecureDisplay/libpng/include")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/sse/qsee/SecureDisplay/zlib/include")
+env.Append(CPPPATH = "${COREBSP_ROOT}/api/services")
+env.Append(CPPPATH = "${COREBSP_ROOT}/api/securemsm/trustzone/qsee")
+
+env.Append(CCFLAGS = " -DHAVE_CONFIG_H -DPNG_READ_SUPPORTED -DPNG_USER_MEM_SUPPORTED "
+						"-DPNG_SEQUENTIAL_READ_SUPPORTED -DPNG_NO_CONFIG_H -DSECURE_UI_SUPPORTED")
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+
+INC_PATH_API = ["${INC_ROOT}/core/api/kernel/libstd/stringl"]
+env.Append(CPPPATH = INC_PATH_API)
+
+SOURCES = [
+  '${BUILDPATH}/src/png.c',
+  '${BUILDPATH}/src/pngerror.c',
+  '${BUILDPATH}/src/pngget.c',
+  '${BUILDPATH}/src/pngmem.c',
+  '${BUILDPATH}/src/pngpread.c',
+  '${BUILDPATH}/src/pngread.c',
+  '${BUILDPATH}/src/pngrio.c',
+  '${BUILDPATH}/src/pngrtran.c',
+  '${BUILDPATH}/src/pngrutil.c',
+  '${BUILDPATH}/src/pngset.c',
+  '${BUILDPATH}/src/pngwio.c',
+  '${BUILDPATH}/src/pngwrite.c',
+  '${BUILDPATH}/src/pngwtran.c',
+  '${BUILDPATH}/src/pngwutil.c',
+]
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+env.AddBinaryLibrary([
+  'SECUREUISAMPLE_IMAGE',
+  'SECUREUISAMPLE64_IMAGE',
+  'FIDOSUI_IMAGE',
+  'SECUREINDICATOR_IMAGE',
+  ],
+  '${BUILDPATH}/libpng',
+  SOURCES)
+env.CleanPack([
+  'SECUREUISAMPLE_IMAGE',
+  'SECUREUISAMPLE64_IMAGE',
+  'FIDOSUI_IMAGE',
+  'SECUREINDICATOR_IMAGE',
+  ],
+  SOURCES)

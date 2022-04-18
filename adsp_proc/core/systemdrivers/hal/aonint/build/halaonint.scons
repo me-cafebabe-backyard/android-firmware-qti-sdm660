@@ -1,0 +1,79 @@
+#===============================================================================
+# Copyright (c) 2014-2016 Qualcomm Technologies, Inc. 
+# All Rights Reserved.
+# Confidential and Proprietary - Qualcomm Technologies, Inc.
+#===============================================================================
+# HAL AONINT Libs
+#-------------------------------------------------------------------------------
+Import('env')
+env = env.Clone()
+
+if env['IMAGE'] == "cdsp":
+  Return()
+
+env.PublishPrivateApi("SYSTEMDRIVERS_HAL_AONINT_INC", [
+   "${INC_ROOT}/core/systemdrivers/hal/aonint/inc",
+   "${INC_ROOT}/core/systemdrivers/hal/aonint/src/${CHIPSET}",
+   "${INC_ROOT}/core/systemdrivers/hal/aonint/hw/${CHIPSET}",
+  ])
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+
+SRCPATH = "${BUILD_ROOT}/core/systemdrivers/hal/aonint"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0) 
+
+CBSP_API = [
+   'DAL',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+
+   # needs to be last also contains wrong comdef.h
+   'KERNEL',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+env.UsesInc([
+   "${HAL_API}",
+   "${SERVICES_API}",
+   "${SYSTEMDRIVERS}",
+   "${SYSTEMDRIVERS_API}",
+   "${KERNEL_API}",
+])
+
+env.UsesInc([
+   "${HAL_LEGACY}",
+   # needs to be last also contains wrong comdef.h
+   "${KERNEL_LEGACY}",
+])
+
+AON_IMAGES = ['CORE_SLPI_ROOT','CORE_SLPI_USER','CORE_ADSP_USER','CORE_SLPI_ADSP_ROOT']
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+
+AON_SOURCES =  [
+   '${BUILDPATH}/src/${CHIPSET}/HALaonint.c',
+   '${BUILDPATH}/hw/${CHIPSET}/HALaonintPlatform.c'
+  ]
+
+uhal_island_lib = env.AddLibrary(AON_IMAGES,
+    '${BUILDPATH}/hal/aonint/HAL_aonint',AON_SOURCES)
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+
+if 'USES_ISLAND' in env:
+  env.AddIslandLibrary(AON_IMAGES, uhal_island_lib)
+  
+

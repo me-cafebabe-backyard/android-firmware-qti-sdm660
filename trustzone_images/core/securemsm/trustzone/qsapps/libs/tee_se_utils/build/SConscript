@@ -1,0 +1,60 @@
+#===============================================================================
+#
+# QSEE GP TEE SE utilities
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2016 Qualcomm Technologies, Inc.  All Rights Reserved.
+# Qualcomm Technologies Proprietary and Confidential.
+#
+#===============================================================================
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/core/securemsm/trustzone/qsapps/libs/tee_se_utils/src"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Publish Private APIs
+#-------------------------------------------------------------------------------
+env.PublishPublicApi('GP_TEE_SE_UTILS', [
+   '${INC_ROOT}/core/securemsm/trustzone/qsapps/libs/tee_se_utils/inc',
+])
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+INC_PATH = [
+    "${INC_ROOT}/core/api/services",
+    "${INC_ROOT}/core/api/kernel/libstd/stringl",
+    "${INC_ROOT}/core/api/securemsm/trustzone/qsee",
+    '${INC_ROOT}/core/securemsm/trustzone/qsapps/libs/tee_se_utils/inc',
+]
+env.Append(CPPPATH = INC_PATH)
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+
+
+SOURCES = [
+  '${BUILDPATH}/BER.c',
+  '${BUILDPATH}/EseDebug.c',
+  '${BUILDPATH}/EseLrc.c',
+]
+
+lib_name = '${BUILDPATH}/lib_tee_se_utils'
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+env.AddBinaryLibrary(['QPAY_IMAGE'], lib_name, SOURCES)
+env.AddBinaryLibrary(['QPAY64_IMAGE'], lib_name, SOURCES)
+env.AddBinaryLibrary(['GPQESE_IMAGE'], lib_name, SOURCES)
+env.AddBinaryLibrary(['ESESERVICE_IMAGE'], lib_name, SOURCES)
+env.AddBinaryLibrary(['TTASCAPI'], lib_name, SOURCES)
+env.AddBinaryLibrary(['TTATLAPI'], lib_name, SOURCES)

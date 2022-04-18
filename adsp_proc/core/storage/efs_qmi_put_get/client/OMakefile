@@ -1,0 +1,3 @@
+# Build rules for libefs.
+
+.SUBDIRS: src

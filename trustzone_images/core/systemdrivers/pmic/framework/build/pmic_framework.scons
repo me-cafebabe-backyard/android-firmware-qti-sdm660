@@ -1,0 +1,106 @@
+#===============================================================================
+#
+#
+# GENERAL DESCRIPTION
+#
+# Copyright (c) 2015-2016 Qualcomm Technologies Incorporated. All Rights Reserved
+#
+# Qualcomm Proprietary
+#
+# Export of this technology or software is regulated by the U.S. Government.
+# Diversion contrary to U.S. law prohibited.
+#
+# All ideas, data and information contained in or disclosed by
+# this document are confidential and proprietary information of
+# Qualcomm Technologies Incorporated and all rights therein are expressly reserved.
+# By accepting this material the recipient agrees that this material
+# and the information contained therein are held in confidence and in
+# trust and will not be used, copied, reproduced in whole or in part,
+# nor its contents revealed in any manner to others without the express
+# written permission of Qualcomm Technologies Incorporated.
+#
+#-------------------------------------------------------------------------------
+#
+# $Header: //components/rel/core.tz/1.0.7.1/systemdrivers/pmic/framework/build/pmic_framework.scons#1 $
+# $DateTime: 2020/01/14 12:35:09 $
+#
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 01/20/15   vtw     Created from TZ.BF.3.0 for TZ and Hypervisor images support. 
+#===============================================================================
+
+Import('env')
+
+LIB_SRC         = 'src'
+
+from glob import glob
+
+env = env.Clone()
+
+
+#-------------------------------------------------------------------------------
+# Source PATH:
+#-------------------------------------------------------------------------------
+SRCPATH = ".."
+
+#BUILDPATH =  image_name / processor_name, eg modem_libs / arm11 = directory where built objects stored
+env.VariantDir('${BUILDPATH}', SRCPATH , duplicate=0)
+
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'BUSES',
+   'DAL',
+   'DEBUGTOOLS',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+   'KERNEL',
+   'AC',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+env.RequireProtectedApi([
+    'PMIC_COMM',
+    'PMIC_NPA',
+    'PMIC_DEVICES',
+    'PMIC_FRAMEWORK',
+    ])
+
+
+
+#-----------------------------------------------------------------------------
+# Image: TZ
+#-----------------------------------------------------------------------------
+
+COMMON_SOURCES = [
+  '${BUILDPATH}/src/pm_device.c',
+  '${BUILDPATH}/src/pm_utils.c',   
+  '${BUILDPATH}/src/pm_version.c',
+]
+
+LIB_SOURCES = [
+      COMMON_SOURCES,
+      '${BUILDPATH}/src/pm_tz_image.c',
+      ]
+
+HYP_SOURCES = [
+  COMMON_SOURCES,
+  '${BUILDPATH}/src/pm_hyp_image.c',
+]
+
+
+env.AddBinaryLibrary('TZOS_IMAGE', '${BUILDPATH}/pmic_tz', LIB_SOURCES)
+env.AddBinaryLibrary('HYPERVISOR_IMAGE', '${BUILDPATH}/pmic_hyp', HYP_SOURCES)
+env.AddBinaryLibrary('XBL_SEC_IMAGE', '${BUILDPATH}/pmic_sec', LIB_SOURCES)
+
+env.Append(CPPDEFINES = ['FEATURE_LIBRARY_ONLY'])
+

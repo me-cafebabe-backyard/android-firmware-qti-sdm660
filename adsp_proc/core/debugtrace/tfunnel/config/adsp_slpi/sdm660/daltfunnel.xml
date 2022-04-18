@@ -1,0 +1,54 @@
+//===========================================================================
+//
+// FILE:         dalstmcfg.xml
+//
+// DESCRIPTION:  This file contains the DAL XML properties for the STM Config 
+//               Device Access Library.
+//
+//===========================================================================
+//
+//                             Edit History
+//
+// $Header: $
+//
+// when       who     what, where, why
+// --------   ---     -------------------------------------------------------
+//
+//===========================================================================
+// Copyright (c) 2014-2015 Qualcomm Technologies, Inc.
+//         All Rights Reserved.
+// Qualcomm Technologies, Inc. Confidential and Proprietary.
+//===========================================================================
+
+<driver name="TFunnel">
+   <global_def>
+      <var_seq name="tfunnel_phys_addr_arr" type=DALPROP_DATA_TYPE_UINT32_SEQ>
+//funnel physical addresses are grouped together in increasing order of address
+//with 1st address corresponding to funnel 0
+        0x06041000,0x06042000,0x06045000,0x6005000,0x71C3000,0x07064000,end 
+      </var_seq>
+   </global_def>
+	
+  <device id=DALDEVICEID_TFUNNEL_0>
+    <props name="num_tfunnels" type=DALPROP_ATTR_TYPE_UINT32>
+     0x6
+    </props>  
+    <props name="tfunnel_phys_addrs" type=DALPROP_ATTR_TYPE_UINT32_SEQ_PTR>
+     tfunnel_phys_addr_arr
+    </props>  
+    <props name="port_ssc" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      tfunnel_port_ssc
+    </props>
+    <props name="port_stm" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      tfunnel_port_stm
+    </props>
+    <props name="port_ssc_etm" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      tfunnel_port_ssc_etm
+    </props>
+    <props name="port_ssc_stm" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      tfunnel_port_ssc_stm
+    </props>
+  </device>
+</driver>
+
+

@@ -1,0 +1,113 @@
+#===============================================================================
+#
+# App Core
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/apps.tz/1.0.7.1/securemsm/trustzone/qsapps/fidocrypto/app/src/SConscript#1 $
+#  $DateTime: 2020/01/14 12:33:12 $
+#  $Author: pwbldsvc $
+#  $Change: 22186812 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains schedulerents describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#===============================================================================
+Import('env')
+
+includes = [
+  '${BUILD_ROOT}/core/api/kernel/libstd/stringl',
+  '${BUILD_ROOT}/core/securemsm/trustzone/qsapps/libs/applib/qsee/src',
+  '${BUILD_ROOT}/core/securemsm/sse/log/inc',
+  '${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidoconfig/inc',
+  '${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidocrypto/app/include',
+  '${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidocrypto/app/fido',
+  '${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidocrypto/authentication/include',
+  '${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidosui/ipc/inc',
+  '${BUILD_ROOT}/core/securemsm/sse/common/include',
+  '${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidocrypto/extensions/include',
+  '${BUILD_ROOT}/core/securemsm/trustzone/qsapps/libs/biometric/inc',
+  '${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidocrypto/so/include',
+  '${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidocrypto/extensions/handlers/include',
+  '${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/fidocrypto/tlv/include',
+  '${BUILD_ROOT}/core/securemsm/trustzone/qsapps/libs/tloc/inc',
+  'private',
+]
+
+# enable logging
+env.Append(CPPDEFINES = ['SSE_LOG_GLOBAL'])
+env.Append(CPPDEFINES = ['SSE_LOG_FILE'])
+env.Append(CPPDEFINES = ['LOG_TAG=fidocrypto'])
+env.Append(CPPDEFINES = ['-D_AEABI_PORTABILITY_LEVEL=1'])
+env.Append(CPPDEFINES = ['-D_AEABI_LC_CTYPE=C'])
+
+#----------------------------------------------------------------------------
+# App core Objects
+#----------------------------------------------------------------------------
+other_sources = Glob('../../tlv/src/*.c') + \
+                Glob('../../extensions/src/*.c') + \
+                Glob('../../extensions/handlers/src/*.c') + \
+                Glob('../../so/src/*.c')
+
+sources = [
+  'app_main.c',
+  'functions/01_Initialize.c',
+  'functions/02_GetInfo.c',
+  'functions/03_Register.c',
+  'functions/04_Sign.c',
+  'functions/05_SetChallenge.c',
+  'functions/99_Provision.c',
+  'asn1.c',
+  'asn1_fido.c',
+  'fcUtils.c',
+  'fcStorage.c',
+  'tlv_fido.c',
+]
+sources.extend(other_sources)
+
+#-------------------------------------------------------------------------------
+# Add metadata to image
+#-------------------------------------------------------------------------------
+md = {
+   'appName':    'fidocrypto',
+   'privileges': ['default',
+                  'FidoSuiToken',
+                  'OEMFidoConfig',
+                 ],
+}
+
+app_units = env.SecureAppBuilder(
+  sources = sources,
+  includes = includes,
+  metadata = md,
+  image = 'fidocrypto',
+  stack_size = '0x16000',
+  heap_size = '0x16000'
+)
+
+op = env.Alias('fidocrypto', app_units)
+
+no_ship_headers = [
+  '../../extensions/include/ext_handler.h',
+  '../../extensions/include/tloc_handler.h',
+  '../../extensions/handlers/include/fp_ext.h',
+  '../../extensions/handlers/include/passthrough_ext.h',
+  '../../extensions/handlers/include/version_ext.h',
+  '../../so/include/fcQSo.h',
+  '../../tlv/include/tlv.h',
+  'private/asn1.h',
+  'private/asn1_fido.h',
+  'private/fcStorage.h',
+  'private/fcUtils.h',
+  'private/glob.h',
+  'private/tlv_fido.h',
+] 
+buildPath = env.subst('${OUT_DIR}/' + '${SHORT_BUILDPATH}/fidocrypto/objects/functions.o')
+env.Clean('fidocrypto', buildPath)
+env.CleanPack('fidocrypto', sources + no_ship_headers + ['functions.c'] + [buildPath])
+
+Return('app_units')

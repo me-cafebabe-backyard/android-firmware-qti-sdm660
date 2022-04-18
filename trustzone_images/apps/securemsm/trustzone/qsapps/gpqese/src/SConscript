@@ -1,0 +1,77 @@
+#===============================================================================
+#
+# App Core
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/apps.tz/1.0.7.1/securemsm/trustzone/qsapps/gpqese/src/SConscript#1 $
+#  $DateTime: 2020/01/14 12:33:12 $
+#  $Author: pwbldsvc $
+#  $Change: 22186812 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains schedulerents describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#===============================================================================
+
+Import('env')
+
+#------------------------------------------------------------------------------
+# We need to specify "neon" to generate SIMD instructions in 32-bit mode
+#------------------------------------------------------------------------------
+if env['PROC'] == 'scorpion':
+    env.Append(CCFLAGS=" -mfpu=neon ")
+
+if env.has_key('USES_NO_CP'):
+    env.Append(CCFLAGS=' -DUSES_NO_CP ')
+
+# Enable QSEE logging
+env.Append(CPPDEFINES=["GPQESE_QSEE_LOG_SUPPORTED"])
+
+#-------------------------------------------------------------------------------
+# Compiler, object, and linker definitions
+#-------------------------------------------------------------------------------
+includes = [
+    "${BUILD_ROOT}/core/api/services",
+    "${BUILD_ROOT}/core/api/kernel/libstd/stringl",
+    "${BUILD_ROOT}/core/api/securemsm/trustzone/gp",
+    "${BUILD_ROOT}/core/api/securemsm/trustzone/qsee",
+    "${BUILD_ROOT}/core/securemsm/trustzone/qsapps/libs/tee_se_utils/inc",
+    "${BUILD_ROOT}/core/securemsm/trustzone/qsapps/libs/tee_se_api/inc",
+]
+
+#----------------------------------------------------------------------------
+# App core Objects
+#----------------------------------------------------------------------------
+sources = Glob('*.c')
+headers = Glob('*.h')
+
+#-------------------------------------------------------------------------------
+# Add metadata to image
+#-------------------------------------------------------------------------------
+app_name = 'gpqese'
+
+md = {
+    'appName': app_name,
+    'description': 'ESE Trusted Application',
+    'version': '1.0.0',
+    'UUID': '32552B22-89FE-42B4-8A45-A0C4E2DB0326',
+    'privileges': ['default', 'ESEService', 'GPServices'],
+    'acceptBufSize': 139264,  # CAPDU(64K) and RAPDU(64K) plus some overhead
+}
+
+app_units = env.SecureAppBuilder(
+    sources=sources,
+    includes=includes,
+    metadata=md,
+    image=app_name,
+    heap_size='0x21000',  # At least For accepted CAPDU and RAPDU
+    deploy_sources=[sources, headers, 'SConscript'])
+
+op = env.Alias(app_name, app_units)
+Return('app_units')
+#===============================================================================

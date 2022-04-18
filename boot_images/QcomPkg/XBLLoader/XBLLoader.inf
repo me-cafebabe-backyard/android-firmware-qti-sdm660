@@ -1,0 +1,69 @@
+#/** @file XBLLoader.inf
+#
+#  XBL Loader
+#  
+#  Copyright (c) 2014 Qualcomm Technologies, Inc.  All Rights Reserved.
+#  Qualcomm Technologies Proprietary and Confidential.
+#
+#**/
+
+#==============================================================================
+#                              EDIT HISTORY
+#
+#
+# when       who     what, where, why
+# --------   ---     ----------------------------------------------------------
+# 10/24/16   Yps     Clean unused libs
+# 07/01/14   ck      Fixed issue with BuildOptions.AARCH64 linker flags
+# 06/20/14   kedara  Added 64 bit compilation options for llvm.
+# 05/07/14   kedara  Added XBLCommonLib, scatter loader src
+# 04/29/14   kedara  Added XBLLoaderLib and DDRTargetLibs
+# 03/10/14   niting  Initial Revision
+#
+#==============================================================================
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = XBLLoader
+  FILE_GUID                      = BD4CC3FB-4872-DDC9-2CE9-AF999D7B9264
+  MODULE_TYPE                    = SEC
+  VERSION_STRING                 = 1.0
+
+[Sources.common]
+  XBLLoader.c
+
+[Sources.Arm]
+#  ReleaseInfo.asm | RVCT
+  ModuleEntryPoint.asm | RVCT
+
+[Sources.AARCH64]
+#  ReleaseInfo.S | GCC
+  ModuleEntryPoint.S | GCC
+
+#  ReleaseInfo.S | RVCT
+  ModuleEntryPoint.S | RVCT
+
+[BuildOptions.ARM]
+  RVCT:*_*_*_CC_FLAGS = --diag_error=warning
+  RVCT:*_*_*_DLINK_FLAGS = --first=XBLLoader.lib(ModuleEntryPoint) --scatter $(WORKSPACE)/QcomPkg/$(TARGETPKG)/xbl_$(BUILDFLAVOR).scl
+  
+[BuildOptions.AARCH64]
+  GCC:*_*_*_DLINK_FLAGS = --script=$(BUILD_DIR)/$(ARCH)/$(MODULE_NAME).ld
+    
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  EmbeddedPkg/EmbeddedPkg.dec
+  ArmPkg/ArmPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PrintLib
+  XBLLoaderLib
+  XBLCommonLib
+  DevPrgLLib
+  DevPrgDLib
+  
+[Guids]
+
+

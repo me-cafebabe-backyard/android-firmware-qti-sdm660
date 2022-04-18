@@ -1,0 +1,55 @@
+#/** @file PmicRuntimeLib.inf
+# 
+# PMIC Runtime Library for Msm8994
+#
+#  Copyright (c) 2013 Qualcomm Technologies, Inc.  All Rights Reserved. 
+#  Qualcomm Technologies Proprietary and Confidential.
+#
+#**/
+
+#==============================================================================
+#                              EDIT HISTORY
+#
+#
+# when        who     what, where, why
+# --------    ---     ----------------------------------------------------------
+# 05/22/14    nk      Changed source file PmicShutdownRuntimeLib
+# 03/26/14    al      Updating name as per convention and making library common
+# 10/25/13    vk      Remove warning as error
+# 10/02/13    al      Initial Revision
+#
+#==============================================================================
+
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = PmicRuntimeLib
+  FILE_GUID         = 8397EED2-785C-4a37-B1F1-DE61C4340B4D
+  MODULE_TYPE       = DXE_RUNTIME_DRIVER
+  VERSION_STRING    = 1.0
+  LIBRARY_CLASS     = PmicShutdownRuntimeLib
+
+[Sources.common]
+  PmicShutdownRuntimeLib.c
+
+[BuildOptions]
+  RVCT:*_*_*_CC_FLAGS = -DFEATURE_LIBRARY_ONLY
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  UefiLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiRuntimeLib
+  SPMIRuntimeLib
+  SPMILib
+  TimetickRunTimeLib
+  TimerLib
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  QcomPkg/QcomPkg.dec
+
+[Depex]
+  TRUE

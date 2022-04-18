@@ -1,0 +1,86 @@
+#===============================================================================
+#
+# PED Libs
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+#  Copyright (c) 2012-2016 Qualcomm Technologies, Inc.
+#  All Rights Reserved.
+#  Confidential and Proprietary - Qualcomm Technologies, Inc.
+#-------------------------------------------------------------------------------
+Import('env')
+from glob import glob
+from os.path import join, basename
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#
+# Note: including -f SNS_PED_V02 in the build command compiles using a newer
+# pedometer source
+#-------------------------------------------------------------------------------
+INCPATH_V01 = "${BUILD_ROOT}/Sensors/common/usam/algo/ped/v01/inc"
+SRCPATH_V01 = "${BUILD_ROOT}/Sensors/common/usam/algo/ped/v01/src"
+
+INCPATH_V02 = "${BUILD_ROOT}/Sensors/common/usam/algo/ped/v02/inc"
+SRCPATH_V02 = "${BUILD_ROOT}/Sensors/common/usam/algo/ped/v02/src"
+
+if 'SNS_PED_V02' in env:
+  INCPATH = INCPATH_V02
+  SRCPATH = SRCPATH_V02
+else:
+  INCPATH = INCPATH_V01
+  SRCPATH = SRCPATH_V01
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# External depends within module
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# External depends outside module
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# Internal depends within module
+#-------------------------------------------------------------------------------
+env.Append(CPPPATH = [
+   "${BUILD_ROOT}/Sensors/api",
+   "${BUILD_ROOT}/Sensors/common/idl/inc",
+   "${BUILD_ROOT}/Sensors/common/inc",
+   "${BUILD_ROOT}/Sensors/common/util/mathtools/inc",
+   "${BUILD_ROOT}/Sensors/common/usam/framework/inc",
+   "${BUILD_ROOT}/Sensors/common/usam/util/inc",
+   "${BUILD_ROOT}/Sensors/common/util/queue/inc",
+   "${BUILD_ROOT}/Sensors/common/smr/inc",
+   "${BUILD_ROOT}/Sensors/common/util/memmgr/inc",
+])
+
+env.Append(CPPPATH = INCPATH)
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+PED_SOURCES  = ['${BUILDPATH}/' + basename(fname)
+          for fname in glob(join(env.subst(SRCPATH), '*.c'))]
+
+algo_ped_lib = env.AddBinaryLibrary(['CBSP_QDSP6_SW_IMAGE', 'CORE_QDSP6_SENSOR_SW'],
+                                    '${BUILDPATH}/sam_algo_ped', PED_SOURCES)
+
+# Sources and headers that should not be shared
+PED_CLEAN_SOURCES = env.FindFiles(['*.c'], '${BUILD_ROOT}/Sensors/common/usam/algo/ped/v01/src')
+PED_CLEAN_SOURCES += env.FindFiles(['*.h'], '${BUILD_ROOT}/Sensors/common/usam/algo/ped/v01/inc')
+PED_CLEAN_SOURCES += env.FindFiles(['*.c'], '${BUILD_ROOT}/Sensors/common/usam/algo/ped/v02/src')
+PED_CLEAN_SOURCES += env.FindFiles(['*.h'], '${BUILD_ROOT}/Sensors/common/usam/algo/ped/v02/inc')
+
+# Clean sources
+env.CleanPack(['CBSP_QDSP6_SW_IMAGE', 'CORE_QDSP6_SENSOR_SW'], PED_CLEAN_SOURCES)
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+if 'SNS_ISLAND_INCLUDE_ALGO_PED' in env['CPPDEFINES']:
+   ped_sections = ['.text.PED', '.data.PED', '.rodata.PED']
+   env.AddIslandLibrary(['CBSP_QDSP6_SW_IMAGE', 'CORE_QDSP6_SENSOR_SW'], algo_ped_lib, ped_sections)

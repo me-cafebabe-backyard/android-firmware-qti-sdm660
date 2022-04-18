@@ -1,0 +1,45 @@
+## @file
+#  SecCfgLib.inf
+#
+#  Copyright (c) 2014,2016 Qualcomm Technologies, Inc . All rights reserved.
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SecCfghLib
+  FILE_GUID                      = AF69DABF-9602-4CF9-BBD3-7A800CFD88C2
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = SecCfgLib
+
+[Sources.Arm]
+  seccfg_memzi.s
+  
+[Sources]
+  ../../XBLLoader/boot_util.h
+  ../../XBLLoader/boot_hash.h
+  ../../Include/XBLLoader/secboot.h
+  ../../Include/api/securemsm/secdbg/SecDbg.h
+  SecCfg.c
+  
+[BuildOptions.ARM]
+  GCC:*_*_*_CC_FLAGS = -Wno-unused-function -Wno-unused-variable -DUSE_LOADER_UTILS
+  
+[BuildOptions.AARCH64]
+  GCC:*_*_*_CC_FLAGS = -Wno-unused-function -Wno-unused-variable -DUSE_LOADER_UTILS -Wno-int-to-void-pointer-cast
+  MSFT:*_*_*_CC_FLAGS = -DUSE_LOADER_UTILS
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  QcomPkg/QcomPkg.dec
+  QcomPkg/XBLLoaderApi.dec
+
+[LibraryClasses]
+  SdccCommonLib
+  MuslLib
+  EfsUtilsLib
+  DebugLib
+  XBLLoaderLib
+
+  

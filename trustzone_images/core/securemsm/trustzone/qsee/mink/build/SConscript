@@ -1,0 +1,46 @@
+#===============================================================================
+#
+# MINk
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2011 by QUALCOMM, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.tz/1.0.7.1/securemsm/trustzone/qsee/mink/build/SConscript#1 $
+#  $DateTime: 2020/01/14 12:35:09 $
+#  $Author: pwbldsvc $
+#  $Change: 22186835 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 09/08/11           Initial Version
+#===============================================================================
+Import('env')
+
+#all mink needs the platform interface:
+if env['TARGET_FAMILY'] in ['badger']:
+   env.RequireRestrictedApi(['MINK_PLATFORM_API', 'TZLIBARMV7', 'TZCHIPSET'])
+else:
+   env.RequireRestrictedApi(['MINK_PLATFORM_API', 'TZLIBARMV8', 'TZCHIPSET'])
+
+env.RequireRestrictedApi(['MINK'])
+
+env.RequirePublicApi(['MINK_LK'])
+env.Append(CFLAGS = " -Werror ")
+#-------------------------------------------------------------------------------
+# Load sub scripts
+#-------------------------------------------------------------------------------
+env.LoadSoftwareUnits()
+env.LoadAPIUnits()
+env.Deploy(['../include/object.h',
+            '../oem/inc/tzbsp_cfg_prop.h',
+            'SConscript'])

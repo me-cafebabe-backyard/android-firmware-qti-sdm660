@@ -1,0 +1,34 @@
+<!--
+/*===========================================================================
+
+                   IPC ROUTER DEVICE CONFIGURATION
+
+     This file provides the device configuration properties for IPC Router
+
+  ---------------------------------------------------------------------------
+  Copyright (c) 2016 Qualcomm Technologies, Inc.  All Rights Reserved.
+  Qualcomm Technologies Proprietary and Confidential.
+  ---------------------------------------------------------------------------
+===========================================================================*/
+
+/*===========================================================================
+
+                           EDIT HISTORY FOR FILE
+
+$Header:
+
+when       who     what, where, why
+--------   ---     ----------------------------------------------------------
+===========================================================================*/
+-->
+
+<driver name="NULL">
+  <device id="/dev/core/mproc/ipc_router">
+    <props name="proc_info" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ipc_router_devcfg_proc
+    </props>
+    <props name="xals_info" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ipc_router_devcfg_xals
+    </props>
+  </device>
+</driver>

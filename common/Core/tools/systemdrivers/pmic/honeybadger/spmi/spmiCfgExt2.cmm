@@ -1,0 +1,731 @@
+//
+// Bear Family
+//
+// Copyright (c) 2013 by Qualcomm Technologies Incorporated. All Rights Reserved.
+// 
+// $DateTime: 2017/01/19 09:08:15 $
+// $Header: //components/rel/core.glue/1.2.1/tools/tools/systemdrivers/pmic/honeybadger/spmi/spmiCfgExt2.cmm#1 $
+// $Change: 12266773 $
+//
+
+IF !WIN.EXIST(SPMI_CFG)
+(
+    WinPOS 0.0 0.0 68% 100%,,SPMI_CFG
+    AREA.Create SPMI_CFG 120. 500.
+)
+AREA.Clear SPMI_CFG
+AREA.View SPMI_CFG
+AREA.Select SPMI_CFG
+
+LOCAL &numPvcPorts &channelCnt
+//ENTRY &target &loadConfig
+ENTRY &target &operation &arg1 &arg2 &arg3
+
+&ACCESS_CLASS="az"
+//&ACCESS_CLASS="a"
+
+if ("&target"=="") 
+(
+    print %ERROR "Specify target folder (i.e. 8916)"
+    ENDDO
+)
+
+
+if state.run()
+(
+    b
+    wait !state.run()
+)
+
+do &target/hwio.cmm
+
+//*****************************************************************************
+// HW Settings
+//*****************************************************************************
+
+OPEN #1 &target/meta.txt /Read
+READ #1 &tmp &channelCnt
+READ #1 &tmp &numPvcPorts
+CLOSE #1
+
+if (("&operation"=="CheckPeriph")||("&operation"=="CHECKPERIPH")||("&operation"=="checkperiph"))
+(
+    GOSUB CHECK_PERIPH &arg1 &arg2
+)
+else if (("&operation"=="CheckPeripherals")||("&operation"=="CHECKPERIPHERALS")||("&operation"=="checkperipherals"))
+(
+    GOSUB CHECK_PERIPHERALS
+)
+else if (("&operation"=="periph_irq_status")||("&operation"=="PERIPH_IRQ_STATUS"))
+(
+    GOSUB CHECK_PERIPHIRQ &arg1 &arg2 &arg3
+)
+else if (("&operation"=="all_periph_irq_status")||("&operation"=="ALL_PERIPH_IRQ_STATUS"))
+(
+    GOSUB ALL_PERIPHIRQ &arg1
+)
+else if (("&operation"=="LoadConfig")||("&operation"=="LOADCONFIG")||("&operation"=="loadconfig"))
+(
+    GOSUB LOAD_CONFIG
+    GOSUB DISPLAY_CONFIG
+)
+else if (("&operation"=="DumpState")||("&operation"=="DUMPSTATE")||("&operation"=="dumpstate"))
+(
+    GOSUB DUMP_STATE &arg1
+)
+else
+(
+    GOSUB CHECK_GENI_IMG false
+    GOSUB DISPLAY_CONFIG
+)
+
+ENDDO
+
+//*****************************************************************************
+// Helper Funcs
+//*****************************************************************************
+
+LOAD_CONFIG:
+    GOSUB SpmiMasterInit
+    
+    if ("&VIRTIO"!="true")&&("&VIRTIO"!="t")
+        GOSUB PVCInit
+        
+    OPEN #1 &target/channels.txt /Read
+    
+    print ""
+    print "Configuring channels..."
+    
+    LOCAL &i &chan &owner &sid &periph
+    READ #1 %Line &chan
+    
+    REPEAT 
+    (
+        READ #1 &chan &owner &sid &periph
+    
+        if ("&chan"!="")
+        (
+            &tmp=(&sid<<16.)|(&periph<<8.)
+            d.s &ACCESS_CLASS:(HWIO_PMIC_ARB_REG_CHNL0_ADDR+(4.*&chan)) %LONG &tmp
+            
+            &tmp=(((&sid<<8.)|(&periph))<<16.)|&owner
+            d.s &ACCESS_CLASS:(HWIO_SPMI_PERIPH0_2OWNER_TABLE_REG_ADDR+(4.*&chan)) %LONG &tmp    
+        )
+    )
+    WHILE !EOF()
+    
+    print %CONT "done"
+    
+    CLOSE #1
+    
+    RETURN
+
+DISPLAY_CONFIG:
+   GOSUB DISPLAY_CHANNEL_OWNER
+   GOSUB DISPLAY_PVC_SETTINGS
+   GOSUB DISPLAY_STATUS
+
+   RETURN
+
+DISPLAY_CHANNEL_OWNER:
+   &i=0.
+   print ""
+   print "Channel | Owner | SID | Periph          Channel | Owner | SID | Periph"
+   print "------------------------------          ------------------------------"
+   REPEAT (&channelCnt/2.)
+   (
+      &chnl=data.long(&ACCESS_CLASS:(HWIO_PMIC_ARB_REG_CHNL0_ADDR+(4.*&i)))
+      &owner=data.long(&ACCESS_CLASS:(HWIO_SPMI_PERIPH0_2OWNER_TABLE_REG_ADDR+(4.*&i)))&0x7
+    
+       print "  " FORMAT.DECIMAL(0.,&i) 
+    
+      GOSUB PrintPadding &i
+    
+      print %CONT "   |   " FORMAT.DECIMAL(0.,&owner&0x7) "   |  " FORMAT.HEX(1.,(&chnl>>16.)&0xF) "  | 0x" FORMAT.HEX(2.,(&chnl>>8.)&0xFF)
+    
+      // Col 2
+      &chnl=data.long(&ACCESS_CLASS:(HWIO_PMIC_ARB_REG_CHNL0_ADDR+(4.*&i)+((&channelCnt/2.)*4.)))
+      &owner=data.long(&ACCESS_CLASS:(HWIO_SPMI_PERIPH0_2OWNER_TABLE_REG_ADDR+(4.*&i)+((&channelCnt/2.)*4.)))&0x7
+    
+      print %CONT "            "
+      print %CONT "  " FORMAT.DECIMAL(0.,&i+(&channelCnt/2.))
+    
+      GOSUB PrintPadding &i+(&channelCnt/2.)
+    
+      print %CONT "   |   " FORMAT.DECIMAL(0.,&owner&0x7) "   |  " FORMAT.HEX(1.,(&chnl>>16.)&0xF) "  | 0x" FORMAT.HEX(2.,(&chnl>>8.)&0xFF)
+        
+      &i=&i+1
+   )
+
+   RETURN
+
+
+//*****************************************************************************
+// PVC Settings
+//*****************************************************************************
+DISPLAY_PVC_SETTINGS:
+   if ("&VIRTIO"!="true")&&("&VIRTIO"!="t")
+   (
+      &i=0
+      print ""
+      print "PVC Port    Priority    Enabled    Idx0    Idx1    Idx2    Idx3"
+
+      REPEAT &numPvcPorts
+      (
+         print " "
+         GOSUB PrintPadding &i
+         print %CONT FORMAT.DECIMAL(0.,&i)
+        
+         GOSUB GET_PVC_PRI &i
+         Entry &pri
+        
+         print %CONT "            &pri" 
+        
+         &tmp=data.long(&ACCESS_CLASS:(HWIO_PMIC_ARB_PVC_PORT0_CTL_ADDR+(0x4*(&i))))   
+         print %CONT "          " FORMAT.DECIMAL(0.,&tmp&0x1)
+        
+         print %CONT "       " FORMAT.HEX(5.,data.long(&ACCESS_CLASS:(HWIO_PMIC_ARB_PVC0_ADDR0_ADDR+(0x20*(&i)))))
+         print %CONT "   " FORMAT.HEX(5.,data.long(&ACCESS_CLASS:(HWIO_PMIC_ARB_PVC0_ADDR1_ADDR+(0x20*(&i)))))
+         print %CONT "   " FORMAT.HEX(5.,data.long(&ACCESS_CLASS:(HWIO_PMIC_ARB_PVC0_ADDR2_ADDR+(0x20*(&i)))))
+         print %CONT "   " FORMAT.HEX(5.,data.long(&ACCESS_CLASS:(HWIO_PMIC_ARB_PVC0_ADDR3_ADDR+(0x20*(&i)))))
+
+         &i=&i+1
+      )
+   )
+
+   RETURN
+
+//*****************************************************************************
+// Status
+//*****************************************************************************
+DISPLAY_STATUS:
+   print ""
+
+   print "SPMI Master: "
+   &tmp=data.long(&ACCESS_CLASS:HWIO_SPMI_GENI_CTRL_ADDR)
+   if (&tmp==0)
+      print %CONT "Enabled"
+   else
+      print %CONT %ERROR "Disabled"
+
+   print "  PVC ports: "
+   &tmp=data.long(&ACCESS_CLASS:HWIO_PMIC_ARB_PVC_INTF_CTL_ADDR)
+   if (&tmp==1)
+      print %CONT "Enabled"
+   else
+      print %CONT %ERROR "Disabled"
+
+   print "  Geni Core: "
+   &tmp=data.long(&ACCESS_CLASS:HWIO_SPMI_GENI_STATUS_ADDR)&0x1
+   if (&tmp==0)
+      print %CONT "Idle"
+   else
+      print %CONT %ERROR "Active"
+    
+   &irq=data.long(&ACCESS_CLASS:HWIO_SPMI_PROTOCOL_IRQ_STATUS_ADDR)
+   print " IRQ Status: "
+
+   if (&irq==0)    
+   (
+      print %CONT %ERROR &irq
+      if ("&loadConfig"!="")&&("&VIRTIO"!="true")&&("&VIRTIO"!="t")
+         print %CONT %ERROR " <--- Should not be 0"    
+   )
+   else
+      print %CONT &irq
+
+   GOSUB PrintIfSet 11. &irq "             ARBITER_DISCONNECTED"
+   GOSUB PrintIfSet 10. &irq "             ARBITER_CONNECTED"
+   GOSUB PrintIfSet 9.  &irq "             PERIH_IRQ_LOST"
+   GOSUB PrintIfSet 8.  &irq "             UNEXPECTED_SSC"
+   GOSUB PrintIfSet 7.  &irq "             NO_RESPONSE_DATA_FRAME_DETECTED"
+   GOSUB PrintIfSet 6.  &irq "             NO_RESPONSE_CMD_FRAME_DETECTED"
+   GOSUB PrintIfSet 5.  &irq "             FALSE_MASTER_ARBITRATION_WIN"
+   GOSUB PrintIfSet 4.  &irq "             FALSE_BUS_REQUEST"
+   GOSUB PrintIfSet 3.  &irq "             UNSUPPORTED_COMMAND"
+   GOSUB PrintIfSet 2.  &irq "             DATA_ADDR_FRAME_PARITY_ERROR"
+   GOSUB PrintIfSet 1.  &irq "             SLAVE_CMD_FRAME_PARITY_ERROR"
+   GOSUB PrintIfSet 0.  &irq "             MASTER_CMD_FRAME_PARITY_ERROR"
+
+   RETURN
+
+
+
+PrintIfSet:
+    ENTRY &bit &val &msg
+    &val=(&val>>&bit)&0x1
+    if (&val==1)
+        print &msg
+    RETURN
+
+PrintPadding:
+    ENTRY &pad
+    if (&pad<0xA)
+    (
+        print %CONT " "
+    )
+    if (&pad<0x64) 
+    (
+        print %CONT " "
+    )
+    RETURN
+    
+SpmiMasterInit:
+    local &rd_reg
+   
+    // 1. Write SPMI GENI FW image
+    GOSUB CHECK_GENI_IMG true
+
+    // 2. Initiate FORCE-DEFAULT command
+    d.s &ACCESS_CLASS:HWIO_SPMI_GENI_FORCE_DEFAULT_REG_ADDR %long 0x1
+
+    // 3. Switch PROGRAM-RAM clock muxing to serial clock
+    d.s &ACCESS_CLASS:HWIO_SPMI_GENI_CLK_CTRL_ADDR %long 0x1
+
+    // 4. Enable all security features
+    &rd_reg=data.long(&ACCESS_CLASS:HWIO_SPMI_SEC_DISABLE_REG_ADDR)
+    &rd_reg=0
+    d.s &ACCESS_CLASS:HWIO_SPMI_SEC_DISABLE_REG_ADDR %long &rd_reg
+
+    // 5. Disable forced High-Z driven to GENI outputs
+    // SOE0_EN
+    &rd_reg=data.long(&ACCESS_CLASS:HWIO_SPMI_GENI_OUTPUT_CTRL_ADDR)
+    &rd_reg=&rd_reg|0x1
+    d.s &ACCESS_CLASS:HWIO_SPMI_GENI_OUTPUT_CTRL_ADDR %long &rd_reg
+
+    // SOE1_EN
+    &rd_reg=data.long(&ACCESS_CLASS:HWIO_SPMI_GENI_OUTPUT_CTRL_ADDR)
+    &rd_reg=&rd_reg|0x2
+    d.s &ACCESS_CLASS:HWIO_SPMI_GENI_OUTPUT_CTRL_ADDR %long &rd_reg
+
+    // 6. Configure SPMI_MID_REG register
+    d.s &ACCESS_CLASS:HWIO_SPMI_MID_REG_ADDR %long 0x00
+
+    // 7. Set FORCE_MASTER_WRITE_ON_ERROR and enable arbiter
+    // FORCE_MASTER_WRITE_ON_ERROR
+    &rd_reg=data.long(&ACCESS_CLASS:HWIO_SPMI_CFG_REG_ADDR)
+    &rd_reg=&rd_reg|0x8
+    d.s &ACCESS_CLASS:HWIO_SPMI_CFG_REG_ADDR %long &rd_reg
+
+    // 11. Set SPMI_CMPR_EN_REG. CMPR_ENABLE 
+    //&rd_reg=data.long(&ACCESS_CLASS:HWIO_SPMI_CMPR_EN_REG_ADDR)
+    //&rd_reg=&rd_reg|0x1
+    //d.s &ACCESS_CLASS:HWIO_SPMI_CMPR_EN_REG_ADDR %long &rd_reg
+
+    // 13. Enable interrupts globally
+    d.s &ACCESS_CLASS:HWIO_SPMI_MWB_ENABLE_REG_ADDR %long 0x1
+
+    // 14. Change ROM and RAM mux to output RAM Data.
+    &rd_reg=data.long(&ACCESS_CLASS:HWIO_SPMI_GENI_PROG_ROM_CTRL_REG_ADDR)
+    &rd_reg=0
+    d.s &ACCESS_CLASS:HWIO_SPMI_GENI_PROG_ROM_CTRL_REG_ADDR %long &rd_reg
+
+    //15. Enabling HW control CGC
+    &rd_reg=data.long(&ACCESS_CLASS:HWIO_SPMI_GENI_CGC_CTRL_ADDR)
+    &rd_reg=&rd_reg|0xFF
+    d.s &ACCESS_CLASS:HWIO_SPMI_GENI_CGC_CTRL_ADDR %long &rd_reg
+
+    &rd_reg=data.long(&ACCESS_CLASS:HWIO_SPMI_CGC_CTRL_ADDR)
+    &rd_reg=0x7F
+    d.s &ACCESS_CLASS:HWIO_SPMI_CGC_CTRL_ADDR %long &rd_reg
+   
+    // ARBITER_ENABLE
+    &rd_reg=data.long(&ACCESS_CLASS:HWIO_SPMI_CFG_REG_ADDR)
+    &rd_reg=&rd_reg|0x1
+    d.s &ACCESS_CLASS:HWIO_SPMI_CFG_REG_ADDR %long &rd_reg
+
+    // Mapping table
+    OPEN #2 &target/radixTree.txt
+    print
+    print "Programming Mapping table..."
+    
+    &i=0
+    REPEAT
+    (
+       READ #2 &val
+       if ("&val"!="")
+       (
+          d.s &ACCESS_CLASS:(HWIO_SPMI_MAPPING_TABLE_REG0_ADDR+(&i*4)) %LONG &val
+          //print "Mapping Table " &i ": 0x" &val
+          &i=&i+1
+       )
+    )
+    WHILE !EOF()
+    
+    CLOSE #2
+    print %CONT "done"
+
+    RETURN
+ 
+//*****************************************************************************
+// PVC Config
+//*****************************************************************************
+PVCInit: 
+    // Enable global PVC ports
+    data.set  &ACCESS_CLASS:HWIO_PMIC_ARB_PVC_INTF_CTL_ADDR %LONG 0x01 
+
+    &i=0
+    REPEAT &numPvcPorts
+    (
+        data.set &ACCESS_CLASS:(HWIO_PMIC_ARB_PVC_PORT0_CTL_ADDR+(0x4*(&i))) %LONG 0
+        &i=&i+1
+    )
+    
+    OPEN #1 &target/pvc.txt /Read
+    
+    print ""
+    print "Configuring PVC Ports..."
+    
+    LOCAL &pvcEntry
+    READ #1 %Line &pvcEntry
+    
+    REPEAT 
+    (
+        READ #1 %Line &pvcEntry
+        if ("&pvcEntry"!="")
+            GOSUB SET_PVC_TABLE &pvcEntry
+    )
+    WHILE !EOF()
+    
+    print %CONT "done"
+    
+    CLOSE #1
+    
+    RETURN
+    
+SET_PVC_TABLE:
+    ENTRY &port &pri &t1 &t2 &t3 &t4
+    
+    // Set PVC port priority - PMIC_ARB_PRIORITIESn
+    data.set &ACCESS_CLASS:(HWIO_PMIC_ARB_PRIORITIES0_ADDR+(0x4*(&pri))) %LONG &port+1
+
+    // Enable PVC port - PMIC_ARB_PVC_PORTn_CTL
+    data.set &ACCESS_CLASS:(HWIO_PMIC_ARB_PVC_PORT0_CTL_ADDR+(0x4*(&port))) %LONG 0x01
+
+    // Populate address table - PMIC_ARB_PVCn_ADDRm, m=[0..7], n=[0..31]
+    data.set &ACCESS_CLASS:(HWIO_PMIC_ARB_PVC0_ADDR0_ADDR+(0x20*(&port))) %LONG &t1
+    data.set &ACCESS_CLASS:(HWIO_PMIC_ARB_PVC0_ADDR1_ADDR+(0x20*(&port))) %LONG &t2
+    data.set &ACCESS_CLASS:(HWIO_PMIC_ARB_PVC0_ADDR2_ADDR+(0x20*(&port))) %LONG &t3
+    data.set &ACCESS_CLASS:(HWIO_PMIC_ARB_PVC0_ADDR3_ADDR+(0x20*(&port))) %LONG &t4
+    
+    RETURN
+    
+GET_PVC_PRI:
+    Entry &port
+    local &k
+    
+    &k=0
+    REPEAT &numPvcPorts+1
+    (
+        &tmp=data.long(&ACCESS_CLASS:(HWIO_PMIC_ARB_PRIORITIES0_ADDR+(0x4*(&k))))
+        if (&tmp==(&port+1))
+        (
+            &k=FORMAT.DECIMAL(0.,&k)
+            RETURN &k
+        )
+        &k=&k+1
+    )
+    
+    RETURN -
+
+//*****************************************************************************
+// Geni Image
+//*****************************************************************************
+CHECK_GENI_IMG:
+    ENTRY &updateFW
+    OPEN #1 &target/geni.txt /READ
+    LOCAL &i &base &pad &clkVal &geniCGC &spmiCGC
+
+    &clkVal=data.long(&ACCESS_CLASS:HWIO_SPMI_GENI_CLK_CTRL_ADDR)
+    &geniCGC=data.long(&ACCESS_CLASS:HWIO_SPMI_GENI_CGC_CTRL_ADDR)
+    &spmiCGC=data.long(&ACCESS_CLASS:HWIO_SPMI_CGC_CTRL_ADDR)
+    
+    // Switch PROGRAM-RAM clock muxing to AHB clock
+    d.s &ACCESS_CLASS:HWIO_SPMI_GENI_CLK_CTRL_ADDR %long 0
+    
+    // Disable CGC -- set PON reset values
+    d.s &ACCESS_CLASS:HWIO_SPMI_GENI_CGC_CTRL_ADDR %long 0x78
+    d.s &ACCESS_CLASS:HWIO_SPMI_CGC_CTRL_ADDR %long 0
+    
+    REPEAT
+    (
+        READ #1 &val
+        
+        if ("&val"=="")
+        (
+        
+        )
+        else if ("&val"=="REG") 
+        (
+            &i=0.
+            &base="HWIO_SPMI_GENI_CFG_REG"
+            print "REGISTER                        |   CURRENT VALUE   "
+            print "----------------------------------------------------"
+        )
+        else if ("&val"=="RAM") 
+        (
+            &i=0.
+            &base="HWIO_SPMI_GENI_CFG_RAM"
+            print ""
+            print "REGISTER                        |   CURRENT VALUE   "
+            print "----------------------------------------------------"
+        )
+        else
+        (
+            &tmp=data.long(&ACCESS_CLASS:(ADDRESS.OFFSET(sYmbol.begin("&(base)0_ADDR"))+(4.*&i)))
+            
+            print "&base" FORMAT.DECIMAL(0,&i) "_ADDR"
+            
+            GOSUB PrintPadding &i
+            
+            print %CONT "  |     "  FORMAT.HEX(8.,&tmp)
+            
+            if (&val!=&tmp) 
+            (
+                if ("&updateFW"=="true")
+                (
+                    print %CONT %ERROR "    Updated value: " FORMAT.HEX(8.,&val)
+                    d.s &ACCESS_CLASS:(ADDRESS.OFFSET(sYmbol.begin("&(base)0_ADDR"))+(4.*&i)) %LONG &val
+                )
+                else
+                (
+                    print %CONT %ERROR "    Correct value: " FORMAT.HEX(8.,&val)
+                )
+            )
+            else
+            (
+                print %CONT "    OK"
+            )
+            
+            &i=&i+1
+        )
+    )
+    WHILE !EOF()
+
+    CLOSE #1
+    
+    // Restore values
+    d.s &ACCESS_CLASS:HWIO_SPMI_GENI_CLK_CTRL_ADDR %long &clkVal
+    d.s &ACCESS_CLASS:HWIO_SPMI_GENI_CGC_CTRL_ADDR %long &geniCGC
+    d.s &ACCESS_CLASS:HWIO_SPMI_CGC_CTRL_ADDR %long &spmiCGC
+       
+    RETURN
+
+//*****************************************************************************
+// USAGE - This is internal function
+//*****************************************************************************
+USAGE:
+ENTRY &msg
+
+AREA.CLEAR SPMI_BUS
+
+if "&msg"!=""
+(
+    print %ERROR "Error: " &msg
+)
+
+print
+print "Usage:"
+print "   Radix Ppid to Apid(channel): do spmiCfg.cmm target[e.g. 8916] 'RadixPpid2Apid'"
+print "   Load Config                : do spmiCfg.cmm target[e.g. 8916] 'LoadConfig'"
+print "   Display Channels           : do spmiCfg.cmm target[e.g. 8916] 'DisplayConfig'"
+print
+print
+print "Example:"
+print "   do spmiCfg.cmm 8916 LoadConfig
+ENDDO
+
+
+//*****************************************************************************
+// CHECK_PERIPH
+//*****************************************************************************
+CHECK_PERIPH:
+    ENTRY &sid &periph
+    LOCAL &i &ch &oentry &owner &ppid &operiph &osid
+    
+    &i=0
+    &ch=0
+    
+    if (("&sid"=="") || ("&periph"=="") ) 
+    (
+      GOSUB CHECK_PERIPHERALS
+      ENDDO
+    )
+
+    &owner=0
+    &ppid=0
+    
+    GOSUB GET_CHANNEL &sid &periph 
+    ENTRY &ch
+
+    &owner=data.long(&ACCESS_CLASS:(HWIO_SPMI_PERIPH0_2OWNER_TABLE_REG_ADDR+(&ch*4.)))&0x7
+    &ppid=((&sid<<8)|&periph)
+    
+    print "SPMI_PERIPHm_2OWNER_TABLE_REG[&ch]: SlaveId: &sid, Peripheral: &periph Owner: &owner"
+    GOSUB GET_CHANNEL_FROM_PPID_USING_RADIXMAP &ppid
+    ENTRY &channel
+    print "SPMI_MAPPING_TABLE_REGk[] Channel: &channel" 
+    
+    RETURN
+
+//*****************************************************************************
+// CHECK_PERIPH
+//*****************************************************************************
+CHECK_PERIPHERALS:
+   LOCAL &ch &entry &ppid &periph &sid
+
+   &ch=0
+   REPEAT (&channelCnt)
+   (
+      &entry=data.long(&ACCESS_CLASS:(HWIO_PMIC_ARB_REG_CHNL0_ADDR+(4.*&ch)))
+      &sid=(&entry>>16.)&0xF
+      &periph=(&entry>>8.)&0xFF
+      //print "PMIC_ARB_REG_CHNLn[" %Decimal &ch "]: SlaveId: &sid, Peripheral: &periph"
+      
+      &entry=data.long(&ACCESS_CLASS:(HWIO_SPMI_PERIPH0_2OWNER_TABLE_REG_ADDR+(&ch*4.)))
+      //print "SPMI_PERIPHm_2OWNER_TABLE_REG[" %Decimal &ch "]: "
+      
+      //print %CONT "Owner: "  FORMAT.HEX(0.,(&entry&0x7))
+
+      &ppid=((&sid<<8)|&periph)
+      GOSUB GET_CHANNEL_FROM_PPID_USING_RADIXMAP &ppid
+      ENTRY &channel
+      if (&ch!=&channel)
+      (
+         print "PMIC_ARB_REG_CHNLn[" %Decimal &ch "]: SlaveId: &sid, Peripheral: &periph"
+         print "SPMI_PERIPHm_2OWNER_TABLE_REG[" %Decimal &ch "]: "
+         print %CONT "Owner: "  FORMAT.HEX(0.,(&entry&0x7))
+         print %ERROR "SPMI_MAPPING_TABLE_REGk[] Channel: " FORMAT.DECIMAL(0.,&channel)
+      )
+
+      &ch=&ch+1
+    )
+
+   RETURN
+
+//*****************************************************************************
+// GET_CHANNEL_FROM_PPID_USING_RADIXMAP
+//*****************************************************************************
+GET_CHANNEL_FROM_PPID_USING_RADIXMAP:
+    ENTRY &ppid
+    LOCAL &i &bor &bor_flag &steps &bit_index &bit_value &entry
+    &i=0
+    
+    &steps=1
+    REPEAT
+    (
+        &entry=(data.long(&ACCESS_CLASS:(HWIO_SPMI_MAPPING_TABLE_REG0_ADDR+(4.*&i))))
+        &bit_index=(&entry&0x3c0000)>>0x12
+        &bit_value=(&ppid&(1<<&bit_index))>>&bit_index
+        //print "val[" %Decimal &i "]="
+        //print %CONTinue "&entry,"
+        //print %CONTinue " bit=" %Decimal &bit_index ", bit_value = " %Decimal &bit_value
+        if (&bit_value==1)
+        (
+           &bor=(&entry&0xff)
+           &bor_flag=(&entry&0x100)>>0x8
+        )
+        else
+        (
+           &bor=(&entry&0x1fe00)>>0x9
+           &bor_flag=(&entry&0x20000)>>0x11
+        )
+
+        if (&bor_flag==1)
+        (
+           &i=&bor
+        )
+        else
+        (
+          //print "SPMI_MAPPING_TABLE_REGk[" %Decimal &i "]: Channel: &bor"
+          RETURN &bor 
+        )
+        //print "flag=" %Decimal &bor_flag ", value=" %Decimal &bor
+        
+        &steps=&steps+1
+    )
+    WHILE &steps<0xD
+    print %ERROR " Could not find channel for PPID: &ppid"
+    ENDDO
+
+//*****************************************************************************
+// CHECK_PERIPHIRQ
+//*****************************************************************************
+CHECK_PERIPHIRQ:
+   ENTRY &owner &sid &periph
+   LOCAL &acc_reg &acc_idx &acc_offset &ch &mask &enabled
+   
+   GOSUB GET_CHANNEL &sid &periph 
+   ENTRY &ch
+
+   &enabled=data.long(&ACCESS_CLASS:(HWIO_SPMI_PIC_ACC_ENABLE0_ADDR+(&ch*4096.)))&0x1
+   print "Interrupt enable: &enabled"
+   
+   &acc_idx=&ch>>5
+   &acc_offset=&ch&0x1F
+   &acc_reg=data.long(&ACCESS_CLASS:(HWIO_SPMI_PIC_OWNER0_ACC_STATUS0_ADDR+(&acc_idx*4.)+(&owner*4096.)))
+   if ((&acc_reg>>&acc_offset)==0x1)
+   (
+      &mask=data.long(&ACCESS_CLASS:(HWIO_SPMI_PIC_IRQ_STATUS0_ADDR+(&ch*4096.)))&0xFF
+      print "Interrupt asserted on channel:" %Decimal &ch " mask: &mask"
+   )
+   else
+   (
+      print "Interrupt not asserted on channel:" %Decimal &ch
+   )
+   ENDDO
+
+//*****************************************************************************
+// CHECK_PERIPHIRQ
+//*****************************************************************************
+ALL_PERIPHIRQ:
+   ENTRY &owner
+   LOCAL &acc_reg &acc_idx &acc_offset &ch &mask &enabled
+
+   &ch=0
+   REPEAT (&channelCnt)
+   (
+      &enabled=data.long(&ACCESS_CLASS:(HWIO_SPMI_PIC_ACC_ENABLE0_ADDR+(&ch*4096.)))&0x1
+         
+      &acc_idx=&ch>>5
+      &acc_offset=&ch&0x1F
+      &acc_reg=data.long(&ACCESS_CLASS:(HWIO_SPMI_PIC_OWNER0_ACC_STATUS0_ADDR+(&acc_idx*4.)+(&owner*4096.)))
+      if (&enabled==1.)
+      (
+        if ((&acc_reg>>&acc_offset)==0x1)
+        (
+          &mask=data.long(&ACCESS_CLASS:(HWIO_SPMI_PIC_IRQ_STATUS0_ADDR+(&ch*4096.)))&0xFF
+          print "Interrupt asserted on channel:" %Decimal &ch " mask: &mask"
+        )
+      )
+      
+      &ch=&ch+1
+   )
+   print "End of peripheral irq test"
+   ENDDO
+
+//*****************************************************************************
+// GET_CHANNEL
+//*****************************************************************************
+GET_CHANNEL:
+    ENTRY &sid &periph
+    LOCAL &i &d
+    &i=0
+    
+    REPEAT (&channelCnt)
+    (
+        &d=(&sid<<16.)|(&periph<<8.)
+        if (data.long(&ACCESS_CLASS:(HWIO_PMIC_ARB_REG_CHNL0_ADDR+(4.*&i)))==&d)
+        (
+            print "PMIC_ARB_REG_CHNLn[&i]: SlaveId: &sid, Peripheral: &periph -> Channel: &i"
+            RETURN &i
+        )
+        
+        &i=&i+1
+    )
+    
+    print %ERROR "Error: Could not find channel for SlaveId: &sid, Peripheral: &periph"
+    ENDDO
+
+
+

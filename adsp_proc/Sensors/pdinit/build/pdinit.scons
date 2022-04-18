@@ -1,0 +1,105 @@
+#===============================================================================
+#
+# PDInit Libs
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2014-2015 Qualcomm Technologies, Inc.  All Rights Reserved.
+# Qualcomm Technologies Proprietary and Confidential.
+#
+#-------------------------------------------------------------------------------
+#
+#  $Author: pwbldsvc $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 08/30/2016  PC     SDM660 virtio bringup changes
+# 16/03/2015  PS     Updated license
+# 12/10/2014  MW     Added support for HD22
+# 6/17/2014  davlee  Initial development
+#===============================================================================
+
+Import('env')
+import shutil
+import os
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+if env.get('CHIPSET') == "sdm660":
+  print "Compiling SL - disabling sensors PD!"
+  Return()
+
+env.VariantDir('${BUILDPATH}', '../src', duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Dependant APIs
+#-------------------------------------------------------------------------------
+# Core API 
+#  KERNEL     : qurt_elite.h, qurt.h
+#  SERVICES   : msg_diag_service.h
+#  DEBUGTOOLS : pd_mon_qurt.h 
+
+env.RequirePublicApi([
+   'DEBUGTOOLS', # alias to TMS
+   'SERVICES',
+   'KERNEL'      # needs to be last (also contains wrong comdef.h)
+])
+
+env.RequirePublicApi('INIT')
+
+#-------------------------------------------------------------------------------
+# Sources
+#-------------------------------------------------------------------------------
+
+PDINIT =  [
+    '${BUILDPATH}/sensor_pdinit.c',
+    ]
+
+#-------------------------------------------------------------------------------
+# Libraries
+#-------------------------------------------------------------------------------
+
+PDINIT_IMGS = [
+  'CORE_QDSP6_SW',              # Domain (QURTOS + AUDIO)
+]
+
+if 'SENSORS_DD_DEV_FLAG' in env:
+  # Sources that should not be shared
+  PDINIT_CLEAN_SOURCES  = PDINIT
+
+  env.AddBinaryLibrary(
+     PDINIT_IMGS,
+     '${BUILDPATH}/pd_sensor_init', PDINIT )
+	 
+  # Clean sources
+  env.CleanPack(['CORE_QDSP6_SW','CORE_QDSP6_SENSOR_SW'], PDINIT_CLEAN_SOURCES)
+
+else:
+
+  env.AddLibrary(
+     PDINIT_IMGS,
+     '${BUILDPATH}/pd_sensor_init', PDINIT )
+
+# Register initializations with rcinit
+
+if 'USES_RCINIT' in env:
+   env.AddRCInitFunc(  
+    PDINIT_IMGS,            
+    {
+     'sequence_group'             : 'RCINIT_GROUP_7',                   
+     'init_name'                  : 'pd_sensor_init',                   
+     'init_function'              : 'pd_sensor_init'                   
+    })
+
+# define SENSOR_IMG_NAME
+if env.get('SENSOR_IMG_NAME'):
+   env.Append(CPPDEFINES="SENSOR_IMG_NAME=\\\"${SENSOR_IMG_NAME}.pbn\\\"")
+else:
+   env.Append(CPPDEFINES="SENSOR_IMG_NAME=\\\"M${BUILD_ASIC}${BUILD_ID}${BUILD_VER}_SENSOR.pbn\\\"")
+

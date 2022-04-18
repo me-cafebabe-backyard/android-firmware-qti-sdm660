@@ -1,0 +1,93 @@
+#===============================================================================
+#
+# Low Latency Bridge Library
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2016 Qualcomm Technologies, Inc.
+# All Rights Reserved.
+# Confidential and Proprietary - Qualcomm Technologies, Inc.
+#
+#-------------------------------------------------------------------------------
+Import('env')
+import os
+from glob import glob
+from os.path import join, basename
+env = env.Clone()
+
+env.Append(CCFLAGS = " -Werror ")
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/Sensors/low_lat_bridge/src"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+
+#-------------------------------------------------------------------------------
+# External depends outside CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   #'BUSES',
+   'MPROC',
+   'SERVICES',
+   #'POWER',
+   'DAL',
+   #'SYSTEMDRIVERS',
+   #'SYSTEMDRIVERS_PMIC',
+    # needs to be last also contains wrong comdef.h
+   'KERNEL',
+]
+
+
+#-------------------------------------------------------------------------------
+# Internal depends within Sensors
+#-------------------------------------------------------------------------------
+SENSORS_API = [
+   'SENSORS',
+   'SNS_COMMON',
+]
+env.RequireProtectedApi(SENSORS_API)
+
+
+#-------------------------------------------------------------------------------
+# Headers required by SNS Low Latency Bridge
+#-------------------------------------------------------------------------------
+env.Append(CPPPATH = [
+   "${BUILD_ROOT}/Sensors/api",
+   "${BUILD_ROOT}/Sensors/common/inc",
+   "${BUILD_ROOT}/Sensors/common/smr/inc",
+   "${BUILD_ROOT}/Sensors/low_lat_bridge/inc",
+])
+
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+LOW_LAT_SOURCES = ['${BUILDPATH}/' + basename(fname)
+                for fname in glob(join(env.subst(SRCPATH), '*.c'))]
+LOW_LAT_SOURCES = LOW_LAT_SOURCES + ['${BUILDPATH}/' + basename(fname)
+                for fname in glob(join(env.subst(SRCPATH), '*.S'))]
+
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+if 'SENSORS_DD_DEV_FLAG' in env:
+   # Sources that should not be shared
+   # PEND: Eventually the includes may need to be shared with driver developers
+   LOW_LAT_CLEAN_SOURCES = env.FindFiles(['*.*'], '${BUILD_ROOT}/Sensors/low_lat_bridge/src')
+   LOW_LAT_CLEAN_SOURCES += env.FindFiles(['*.h'], '${BUILD_ROOT}/Sensors/low_lat_bridge/inc')
+
+   # Add binary library
+   low_lat_bridge_lib = env.AddBinaryLibrary(
+   ['CBSP_QDSP6_SW_IMAGE', 'CORE_QDSP6_SENSOR_SW'],
+    "${BUILDPATH}/low_lat_bridge", LOW_LAT_SOURCES)
+
+   # Clean sources
+   env.CleanPack(['CBSP_QDSP6_SW_IMAGE', 'CORE_QDSP6_SENSOR_SW'], LOW_LAT_CLEAN_SOURCES)
+else:
+   low_lat_bridge_lib = env.AddLibrary(
+    ['CBSP_QDSP6_SW_IMAGE', 'CORE_QDSP6_SENSOR_SW'],
+    '${BUILDPATH}/low_lat_bridge', LOW_LAT_SOURCES)

@@ -1,0 +1,29 @@
+
+#===============================================================================
+#
+# Busywait INC PATHs
+#
+# GENERAL DESCRIPTION
+#    System Drivers INC PATHs
+#
+# Copyright (c) 2016 by Qualcomm Technologies Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/dev/core.qdsp6/1.0/shantonu.core.qdsp6.1.0.SL_cdsp_sysdrv_init/systemdrivers/busywait/build/busywait.api#1 $
+#  $DateTime: 2011/04/27 17:50:26 $
+#  $Author: shantonu $
+#===============================================================================
+
+Import('env')
+
+#-------------------------------------------------------------------------------
+# Publish Restricted APIs
+# These are accessible just inside CoreBSP
+#-------------------------------------------------------------------------------
+
+env.PublishRestrictedApi('SYSTEMDRIVERS', [
+  "${INC_ROOT}/core/systemdrivers/busywait/inc",
+])

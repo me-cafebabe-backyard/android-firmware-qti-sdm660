@@ -1,0 +1,36 @@
+//===========================================================================
+//
+// FILE:         ABT_lpass_8x26.xml
+//
+// DESCRIPTION:  This file contains the DAL XML properties for the AHB
+//               Timeout Driver.
+//
+//===========================================================================
+//
+//                             Edit History
+//
+// $Header: //components/dev/core.qdsp6/1.0/rpradhan.core.qdsp6.1.0.Systemdrivers_Update/buses/icb/config/ABT_lpass_8962.xml#1 $
+// $DateTime: 2016/06/28 04:50:52 $
+// $Author: rpradhan $
+// $Change: 10804148 $ 
+//
+// when         who     what, where, why
+// ----------   ---     -------------------------------------------------------
+// 2012/05/31   av     Created
+//
+//===========================================================================
+//             Copyright (c) 2016 Qualcomm Technologies Incorporated.
+//                    All Rights Reserved.
+//                  QUALCOMM Proprietary/GTDR
+//===========================================================================
+
+<driver name="NULL">
+   <global_def>
+        
+   </global_def>
+   <device id="/dev/ABTimeout">
+     <props name="ABT_Propdata" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        ABT_propdata
+     </props> 
+   </device>   
+</driver>

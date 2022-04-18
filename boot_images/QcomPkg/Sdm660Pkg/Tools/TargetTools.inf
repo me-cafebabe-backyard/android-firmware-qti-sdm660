@@ -1,0 +1,22 @@
+#/** @file TargetTools.inf
+#  
+#  INF used by packit.py for including target tools files into packed build.
+#  
+#  Copyright (c) 2016, Qualcomm Technologies Inc. All rights reserved.
+#
+#**/
+#
+#==============================================================================
+#                              EDIT HISTORY
+#
+#
+# when       who     what, where, why
+# --------   ---     ----------------------------------------------------------
+# 08/02/16   na      Add tlmm script
+# 08/01/16   bh      Add LogFS binary for flashing
+# 02/24/16   et      Initial revision
+#
+#==============================================================================
+
+[Sources]
+

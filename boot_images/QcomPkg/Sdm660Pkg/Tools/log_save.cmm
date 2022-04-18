@@ -1,0 +1,44 @@
+;============================================================================
+;  Name:
+;    log_save.cmm
+;
+;  Description:
+;     Save UEFI Debug Logs
+;
+; Copyright (c) 2012-2013,2015-2016 Qualcomm Technologies, Inc.  All 
+; Rights Reserved. Qualcomm Technologies Proprietary and 
+; Confidential. 
+;
+;----------------------------------------------------------------------------
+;============================================================================
+;
+;                        EDIT HISTORY FOR MODULE
+;
+;
+;
+;  when         who     what, where, why
+; ----------    ---     ----------------------------------------------------------
+; 2016-08-02    na      Pass the log file name onto next script
+; 2016-02-18    bh      Update UEFI entry address
+; 2015-10-28    bh      Update PATH before executing
+; 2015-09-17    vk      Move FD base
+; 2013-07-22    vk      Rename to log_save.cmm
+; 2012-12-10    yg      Initial Version
+;============================================================================;
+
+
+local &RamEntryAddr
+
+ENTRY &LogFileName
+  PATH 
+  &CwDir=os.ppd()
+
+  PATH + &CwDir
+  PATH + &CwDir/../../Tools
+
+  &RamEntryAddr=0x9FC00000
+
+  do save_dbg_log.cmm  &RamEntryAddr &LogFileName
+
+enddo
+

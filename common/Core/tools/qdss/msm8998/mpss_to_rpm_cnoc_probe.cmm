@@ -1,0 +1,31 @@
+//To trace packets from the Modem Q6 through BIMC to CNOC using probes snoc_eprb0
+//===============================================================================
+
+// 1. Enable event probes for tracing
+SNOC_EPRB0_SPROF_MAINCTL = 0x2
+
+// 2. Use the traceportsel to select paths to CNOC
+SNOC_EPRB0_SPROF_TRACEPORTSEL = 0x1
+
+// 3. Configure Filter 0 to select Modem Q6 via BIMC (Init ID 2 0r 6, BID 2, PID 3)
+do std_utils HWIO_OUT SNOC_EPRB0_SPROF_FILTERS_0_ROUTEIDBASE 0x6003C000
+do std_utils HWIO_OUT SNOC_EPRB0_SPROF_FILTERS_0_ROUTEIDMASK 0xF01FE000
+do std_utils HWIO_OUT SNOC_EPRB0_SPROF_FILTERS_0_WINDOWSIZE 0xFFFFFFFF
+do std_utils HWIO_OUT SNOC_EPRB0_SPROF_FILTERS_0_OPCODE 0xF
+do std_utils HWIO_OUT SNOC_EPRB0_SPROF_FILTERS_0_STATUS 0x3
+do std_utils HWIO_OUT SNOC_EPRB0_SPROF_FILTERS_0_LENGTH 0xF
+
+// 4. Configure the LUT to select all packets which hit Filter 0
+do std_utils HWIO_OUT SNOC_EPRB0_SPROF_FILTERLUT 0x0000AAAA
+
+// 5. Enable event probes to start tracing
+do std_utils HWIO_OUT SNOC_EPRB0_SPROF_CFGCTL 0x1
+
+// 6. Set ATB ID to arbitrary non-zero value
+do std_utils HWIO_OUT SNOC_OBS_DBG_ATBID 0x3E
+
+// 7. Set Sync Period to minimum value
+do std_utils HWIO_OUT SNOC_OBS_DBG_SYNCPERIOD 0x1
+
+// 8. Enable ATB output
+do std_utils HWIO_OUT SNOC_OBS_DBG_ATBEN 0x1

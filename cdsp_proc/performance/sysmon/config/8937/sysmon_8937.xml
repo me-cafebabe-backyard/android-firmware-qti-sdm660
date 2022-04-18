@@ -1,0 +1,108 @@
+
+<driver name="NULL">
+    <device id="/qdsp6/sysmon">
+        <props name="PREFETCH_BW_MULTIPLIER" type=DALPROP_ATTR_TYPE_UINT32>
+            14
+        </props>
+        <props name="DEMAND_BW_MULTIPLIER" type=DALPROP_ATTR_TYPE_UINT32>
+            25
+        </props>
+        <props name="WRITE_BW_MULTIPLIER" type=DALPROP_ATTR_TYPE_UINT32>
+            14
+        </props>
+        <props name="OVERALL_BW_MULTIPLIER" type=DALPROP_ATTR_TYPE_UINT32>
+            15
+        </props>
+        <props name="SNOC_BUS_WIDTH" type=DALPROP_ATTR_TYPE_UINT32>
+            8
+        </props>
+        <props name="NPA_SNOC_CLK_MULTIPLIER" type=DALPROP_ATTR_TYPE_UINT32>
+            1
+        </props>
+        <props name="HFW_WINDOW_SIZE_NON_AUDIO" type=DALPROP_ATTR_TYPE_UINT32>
+            50
+        </props>
+        <props name="HFW_WINDOW_SIZE_AUDIO" type=DALPROP_ATTR_TYPE_UINT32>
+            20
+        </props>
+        <props name="CORE_CLK_SAFE_LEVEL_AUDIO" type=DALPROP_ATTR_TYPE_UINT32>
+            70
+        </props>
+        <props name="CORE_CLK_DANGER_LEVEL_AUDIO" type=DALPROP_ATTR_TYPE_UINT32>
+            90
+        </props>
+        <props name="CORE_CLK_SAFE_LEVEL_NON_AUDIO" type=DALPROP_ATTR_TYPE_UINT32>
+            90
+        </props>
+        <props name="CORE_CLK_DANGER_LEVEL_NON_AUDIO" type=DALPROP_ATTR_TYPE_UINT32>
+            98
+        </props>
+        <props name="CORE_CLK_GO_LOW_LEVEL_AUDIO" type=DALPROP_ATTR_TYPE_UINT32>
+            68
+        </props>
+        <props name="CORE_CLK_GO_LOW_LEVEL_NON_AUDIO" type=DALPROP_ATTR_TYPE_UINT32>
+            88
+        </props>
+        <props name="CORE_CLK_GO_LOW_HYSTERESIS_ADJUST" type=DALPROP_ATTR_TYPE_UINT32>
+            10
+        </props>
+        <props name="CORE_CLK_GO_LOW_HYSTERESIS_MIN" type=DALPROP_ATTR_TYPE_UINT32>
+            68
+        </props>
+        <props name="CORE_CLK_1T_SAFE_LEVEL" type=DALPROP_ATTR_TYPE_UINT32>
+            10
+        </props>
+        <props name="MONITORING_DURATION_FOR_CORE_CLK_GO_DOWN" type=DALPROP_ATTR_TYPE_UINT32>
+            100
+        </props>
+        <props name="HFW_SAMPLES_FOR_CORE_CLK_GO_DOWN" type=DALPROP_ATTR_TYPE_UINT32>
+            0
+        </props>
+        <props name="HYSTERESIS_DURATION_FOR_CORE_CLK_GO_DOWN" type=DALPROP_ATTR_TYPE_UINT32>
+            100
+        </props>
+        <props name="HYSTERESIS_MAX_DURATION_FOR_CORE_CLK_GO_DOWN" type=DALPROP_ATTR_TYPE_UINT32>
+            400
+        </props>
+        <props name="MONITORING_DURATION_FOR_BUS_CLK_GO_DOWN" type=DALPROP_ATTR_TYPE_UINT32>
+            200
+        </props>
+        <props name="HFW_SAMPLES_FOR_BUS_CLK_GO_DOWN" type=DALPROP_ATTR_TYPE_UINT32>
+            50
+        </props>
+        <props name="DCVS_TRANSIENT_STATE_DURATION" type=DALPROP_ATTR_TYPE_UINT32>
+            200
+        </props>
+        <props name="DCVS_TRANSIENT_STATE_DURATION_MAX" type=DALPROP_ATTR_TYPE_UINT32>
+            500
+        </props>
+        <props name="PCPP_DANGER_LEVEL" type=DALPROP_ATTR_TYPE_UINT32>
+            10
+        </props>
+        <props name="PCPP_SAFE_LEVEL" type=DALPROP_ATTR_TYPE_UINT32>
+            5
+        </props>
+        <props name="CORE_STALLS_DANGER_LEVEL" type=DALPROP_ATTR_TYPE_UINT32>
+            35
+        </props>
+        <props name="BUS_PEAKS_TO_BUMPUP" type=DALPROP_ATTR_TYPE_UINT32>
+            5
+        </props>
+        <props name="BUS_PEAKS_OBSERVATION_WINDOW" type=DALPROP_ATTR_TYPE_UINT32>
+            20
+        </props>
+        <props name="BUS_PEAKS_TO_BUMPUP_COMPUTE" type=DALPROP_ATTR_TYPE_UINT32>
+            20
+        </props>
+        <props name="BUS_PEAKS_OBSERVATION_WINDOW_COMPUTE" type=DALPROP_ATTR_TYPE_UINT32>
+            50
+        </props>
+        <props name="SNOC_CLK_TABLE_DESCRIPTOR" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+            bus_clk_descriptor
+        </props>
+        <props name="CORE_CLK_TABLE_DESCRIPTOR" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+            core_clk_descriptor
+        </props>
+    </device>
+</driver>
+

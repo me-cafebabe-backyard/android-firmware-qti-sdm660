@@ -1,0 +1,45 @@
+#===============================================================================
+#
+# CBSP Build system
+#
+# GENERAL DESCRIPTION
+#    Calls the actual Image scripts
+#
+# Copyright 2009, 2011, 2016 by QUALCOMM, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.tz/1.0.7.1/bsp/build/SConscript#1 $
+#  $DateTime: 2020/01/14 12:35:09 $
+#  $Author: pwbldsvc $
+#  $Change: 22186835 $
+#===============================================================================
+
+Import('env')
+
+pyfiles = env.Glob('scripts/*.py')
+ldfiles = env.Glob('scripts/*.ld')
+txtfiles = env.Glob('scripts/*.txt')
+
+env.Deploy(pyfiles + ldfiles + txtfiles)
+env.Deploy(['chipset/sdm845/image_cfg_hyp.xml',
+            'chipset/sdm845/image_cfg_tz.xml',
+            'chipset/msm8952/image_cfg_hyp.xml',
+            'chipset/msm8952/image_cfg_tz.xml',
+            'chipset/mdm9x45/image_cfg_hyp.xml',
+            'chipset/mdm9x45/image_cfg_tz.xml',
+            'chipset/sdm660/image_cfg_hyp.xml',
+            'chipset/sdm660/image_cfg_tz.xml',
+            'chipset/msm8998/image_cfg_hyp.xml',
+            'chipset/msm8998/image_cfg_tz.xml',
+            'chipset/msm8956/image_cfg_hyp.xml',
+            'chipset/msm8956/image_cfg_tz.xml',
+            'chipset/msm8996/image_cfg_hyp.xml',
+            'chipset/msm8996/image_cfg_tz.xml',
+            'chipset/msm8953/image_cfg_hyp.xml',
+            'chipset/msm8953/image_cfg_tz.xml',
+            'chipset/msm8937/image_cfg_hyp.xml',
+            'chipset/msm8937/image_cfg_tz.xml'
+           ])

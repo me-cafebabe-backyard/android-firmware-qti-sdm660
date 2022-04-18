@@ -1,0 +1,240 @@
+;---------------------------------------------------------------------------
+;  File: QRDump.cmm
+;  
+;  Description: Dumps Sleep QR related data structures
+;  
+;               Copyright (c) 2015 Qualcomm Technologies, Inc. (QTI).
+;               All Rights Reserved.
+;               Qualcomm Technologies Confidential and Proprietary
+;---------------------------------------------------------------------------
+
+;Path to the output file.
+ENTRY &op_path
+
+;ULog time stamp
+GLOBAL &ULogTimestamp &output &curr_dir &resourceStr 
+GLOBAL &str
+
+;Local variables
+LOCAL &temp &fTable
+
+&curr_dir=os.pwd()
+
+if "&op_path"==""
+(
+  ;Print a help message for script
+  AREA.Create QRDumpHelp
+  AREA.Select QRDumpHelp
+  AREA QRDumpHelp
+
+  ; no path to output provided.
+  PRINT "Use: QRDump.cmm <output_path>" 
+
+  ENDDO
+)
+
+;---------------------------------------------------------------------------
+; op_path is the path to output the file, 
+; We will see if that directory already exist if not we try to create
+; If it fails, we abort the script
+;---------------------------------------------------------------------------
+if !OS.DIR(&op_path)
+(
+  PRINT "Output path does not exist. Trying to create..."
+  mkdir &op_path
+
+  ; Error while creating output path
+  if !OS.DIR(&op_path)
+  (
+    PRINT "Error: Failed to locate/create &(op_path). Exiting..."
+    ENDDO
+  )
+)
+
+; Opening a file for sleep dump at given output path
+cd &op_path
+&op_path=os.pwd()
+cd &curr_dir
+&ULogTimestamp=0xFFFFFFFFFFFFFFFF
+cd &op_path
+OPEN #1 "QRDump.ulog" /Create
+&output="WRITE #1"
+
+
+&fTable=V.VALUE(g_sleepFLUT)
+if &fTable==0
+(
+  &output "&(ULogTimestamp): No fLUT entries exist yet"  
+)
+else
+(
+ while V.VALUE((sleep_fLUT_node *)&fTable)!=0
+ (
+   &str="&(ULogTimestamp): Frequency:" 
+   
+   &temp=FORMAT.DECIMAL(0, V.VALUE(((sleep_fLUT_node *)&fTable)->frequency))
+   &str="&(str) &(temp)"
+   &output "&(ULogTimestamp): ================="
+   &output "&(str)"
+   &output "&(ULogTimestamp): ================="
+   
+   &output "&(ULogTimestamp):"
+   &output "&(ULogTimestamp):  Synth LPRMs"
+   &output "&(ULogTimestamp):  -----------"
+   GOSUB dumpQRLPR &fTable
+   
+   &output "&(ULogTimestamp):"
+   &output "&(ULogTimestamp):  Component Modes"
+   &output "&(ULogTimestamp):  ---------------"  
+   GOSUB dumpQRLPRM &fTable
+   
+   &output "&(ULogTimestamp):"  
+   &fTable=V.VALUE(((sleep_fLUT_node *)&fTable)->next)  
+ )
+)
+
+CLOSE #1
+
+
+;End Dump
+PRINT "Completed..."
+
+cd &(curr_dir)
+
+ENDDO
+
+
+;=================================================================
+;                          Functions
+;=================================================================
+dumpQRLPR:
+  ENTRY &fTable
+  LOCAL &numLPR &lprCnt &mode &str &nameLPR
+  LOCAL &dynIdx &QRData &synthLPRM
+  LOCAL &temp &temp2
+  
+  &numLPR=Var.SIZEOF(SleepLPR_synth_modes)/Var.SIZEOF(SleepLPR_synth_modes[0])
+  
+  &lprCnt=0
+  while &lprCnt<&numLPR
+  (
+    &mode=V.VALUE(&(SleepLPR_synth_modes[&lprCnt]))
+    &nameLPR=DATA.STRING(D:V.VALUE(((sleep_synth_lprm *)&mode)->name))
+    &output "&(ULogTimestamp):  &(nameLPR):"
+    
+    &dynIdx=V.VALUE(((sleep_synth_lprm *)&mode)->dynamic_num)
+    &synthLPRM=V.VALUE(&(((sleep_fLUT_node *)&fTable)->dynamic_data.synth.LPRM[&dynIdx]))
+    &QRData=V.VALUE(&(((synth_LPRM_dyn_data *)&synthLPRM)->QR_data))    
+    
+    &temp=FORMAT.DECIMAL(0, V.VALUE(((synth_LPRM_dyn_data *)&synthLPRM)->backoff))
+    &str="&(ULogTimestamp):       Backoff -> (Current: &(temp))"
+    &output "&(str)"
+    
+    &temp=FORMAT.DECIMAL(0, V.VALUE(((synth_LPRM_dyn_data *)&synthLPRM)->wakeup_stats.total))
+    &str="&(ULogTimestamp):    Wake Stats -> (Total: &(temp))"
+    
+    &temp=FORMAT.DECIMAL(0, V.VALUE(((synth_LPRM_dyn_data *)&synthLPRM)->wakeup_stats.count))
+    &str="&(str) (Count: &(temp))"
+    
+    IF &(temp)>0
+    (
+      &temp=FORMAT.DECIMAL(0, V.VALUE(((synth_LPRM_dyn_data *)&synthLPRM)->wakeup_stats.min))
+      &temp2=FORMAT.DECIMAL(0, V.VALUE(((synth_LPRM_dyn_data *)&synthLPRM)->wakeup_stats.max))
+    )
+    ELSE
+    (
+      &temp="MIN"
+      &temp2="MAX"
+    )
+    &str="&(str) (Range: &(temp) : &(temp2))"
+        
+    &temp=FORMAT.DECIMAL(0, V.VALUE(((synth_LPRM_dyn_data *)&synthLPRM)->adjust_cnt))
+    &str="&(str) (Adjust count: &(temp))"
+    
+    ;Print synth data
+    &output "&(str)"
+    
+    &temp=FORMAT.DECIMAL(0, V.VALUE(((sleepQR_synthMode *)&QRData)->last_event_cnt))
+    &str="&(ULogTimestamp):      QR Event -> (Count: &(temp))"
+    
+    &temp=FORMAT.DECIMAL(0, V.VALUE(((sleepQR_synthMode *)&QRData)->component_adjusted))
+    &str="&(str) (Components adjusted: &(temp))"
+    
+    &temp=FORMAT.DECIMAL(0, V.VALUE(((sleepQR_synthMode *)&QRData)->last_delta))
+    &str="&(str) (Delta: &(temp))"
+    
+    &temp=FORMAT.DECIMAL(0, V.VALUE(((sleepQR_synthMode *)&QRData)->QR_performed))
+    &str="&(str) (QR Performed: &(temp))"
+    
+    ;Print QR synth data
+    &output "&(str)"
+    &output "&(ULogTimestamp):"
+    &lprCnt=&lprCnt+1
+  )  
+  
+  RETURN
+  
+  
+dumpQRLPRM:
+  ENTRY &fTable
+  LOCAL &numLPR &lprCnt &modeCnt &modeNum
+  LOCAL &mode &nameLPR &nameLPRM
+  LOCAL &dynIdx &QRData
+  LOCAL &temp &temp2
+  LOCAL &str
+
+  &numLPR=Var.SIZEOF(SleepLPR_LookupTable)/Var.SIZEOF(SleepLPR_LookupTable[0])
+    
+  &lprCnt=0
+  while &lprCnt<&numLPR
+  (
+    &modeNum=V.VALUE(SleepLPR_LookupTable[&lprCnt].mode_count) 
+    &nameLPR=DATA.STRING(D:V.VALUE(SleepLPR_LookupTable[&lprCnt].resource_name))
+    &modeCnt=0   
+    &output "&(ULogTimestamp):  &(nameLPR):"
+    
+    while &modeCnt<&modeNum
+    (
+      &mode=V.VALUE(&(SleepLPR_LookupTable[&lprCnt].modes[&modeCnt]))
+      &nameLPRM=DATA.STRING(D:V.VALUE(((sleep_lprm *)&mode)->mode_name))
+      &str="&(ULogTimestamp):    "
+      &str="&(str)"+FORMAT.STRING("&(nameLPRM): ",12, ' ')
+      
+      &dynIdx=V.VALUE(((sleep_lprm *)&mode)->dynamic_num)
+      &QRData=V.VALUE(&(((sleep_fLUT_node *)&fTable)->dynamic_data.sleep_LPRM[&dynIdx].QR_data))
+      
+      &temp=FORMAT.DECIMAL(0, V.VALUE(((sleepQR_componentMode *)&QRData)->current_backoff))
+      &str="&(str) Backoff -> (Current: &(temp))"
+      
+      &temp=FORMAT.DECIMAL(0, V.VALUE(((sleepQR_componentMode *)&QRData)->last_cycle_backoff))
+      &str="&(str) (Last: &(temp))"
+      
+      &temp=FORMAT.DECIMAL(0, V.VALUE(((sleepQR_componentMode *)&QRData)->total_backoff))
+      &str="&(str) (Total: &(temp))"
+      
+      &temp=FORMAT.DECIMAL(0, V.VALUE(((sleepQR_componentMode *)&QRData)->cycle_count))      
+      &str="&(str) (Cycles: &(temp))"
+      &output "&(str)"
+      
+      &str="&(ULogTimestamp): "
+      &str="&(str)"+FORMAT.STRING("QR Event ->",-20,' ')
+      
+      &temp=FORMAT.DECIMAL(0, V.VALUE(((sleepQR_componentMode *)&QRData)->monitor_backoff))
+      &str="&(str) (Monitor: &(temp))"
+      
+      ;&temp=FORMAT.DECIMAL(0, V.VALUE(((sleepQR_componentMode *)&QRData)->last_event_cnt))
+      ;&str="&(str) (Count: &(temp))"
+      
+      &temp=FORMAT.DECIMAL(0, V.VALUE(((sleepQR_componentMode *)&QRData)->min_cycle_backoff))
+      &temp2=FORMAT.DECIMAL(0, V.VALUE(((sleepQR_componentMode *)&QRData)->max_cycle_backoff))
+      &str="&(str) (Range: &(temp) : &(temp2))"
+                 
+      &output "&(str)"
+      &output "&(ULogTimestamp):"
+      &modeCnt=&modeCnt+1
+    )    
+    &lprCnt=&lprCnt+1
+  )
+
+  RETURN
+

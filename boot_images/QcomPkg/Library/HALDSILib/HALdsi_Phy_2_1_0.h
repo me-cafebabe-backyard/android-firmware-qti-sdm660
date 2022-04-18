@@ -1,0 +1,7732 @@
+#ifndef __HALDSI_PHY_2_1_0_H__
+#define __HALDSI_PHY_2_1_0_H__
+/*
+===========================================================================
+*/
+/**
+  @file star
+  @brief Auto-generated HWIO interface include file.
+
+  Reference chip release:
+    SDM660 (Starlord) [starlord_v1.0_p3q3r95_MTO]
+ 
+  This file contains HWIO register definitions for the following modules:
+    MMSS_DSI_0_PHY
+    MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN
+    MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON
+    MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN
+    MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN
+    MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN
+    MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN
+    MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE
+    MMSS_DSI_1_PHY
+    MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN
+    MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON
+    MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN
+    MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN
+    MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN
+    MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN
+    MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE
+
+  'Include' filters applied: 
+  'Exclude' filters applied: 
+*/
+/*
+  ===========================================================================
+
+  Copyright (c) 2016 Qualcomm Technologies Incorporated.
+  All Rights Reserved.
+  Qualcomm Confidential and Proprietary
+
+  Export of this technology or software is regulated by the U.S. Government.
+  Diversion contrary to U.S. law prohibited.
+
+  All ideas, data and information contained in or disclosed by
+  this document are confidential and proprietary information of
+  Qualcomm Technologies Incorporated and all rights therein are expressly reserved.
+  By accepting this material the recipient agrees that this material
+  and the information contained therein are held in confidence and in
+  trust and will not be used, copied, reproduced in whole or in part,
+  nor its contents revealed in any manner to others without the express
+  written permission of Qualcomm Technologies Incorporated.
+
+  ===========================================================================
+
+  $Header: //components/rel/boot.xf/1.4/QcomPkg/Library/HALDSILib/HALdsi_Phy_2_1_0.h#1 $
+  $DateTime: 2016/12/23 01:52:26 $
+  $Author: pwbldsvc $
+
+  ===========================================================================
+*/
+
+/*----------------------------------------------------------------------------
+ * MODULE: MMSS_DSI_0_PHY
+ *--------------------------------------------------------------------------*/
+
+
+/*----------------------------------------------------------------------------
+ * MODULE: MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN
+ *--------------------------------------------------------------------------*/
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG0_ADDR                                                  (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000000)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG0_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG0_DSIPHY_HSTX_PREPARE_DLY_BMSK                                0xc0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG0_DSIPHY_HSTX_PREPARE_DLY_SHFT                                 0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG0_DSIPHY_HSTX_PGM_DLY_5_4_BMSK                                0x30
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG0_DSIPHY_HSTX_PGM_DLY_5_4_SHFT                                 0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG0_DSIPHY_HSTX_PGM_DLY_3_0_BMSK                                 0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG0_DSIPHY_HSTX_PGM_DLY_3_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG1_ADDR                                                  (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000004)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG1_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG1_DSIPHY_HSTX_SLEW_RATE_BMSK                                  0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG1_DSIPHY_HSTX_SLEW_RATE_SHFT                                   0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG1_SPARE_CFG1_BMSK                                              0xe
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG1_SPARE_CFG1_SHFT                                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG1_DSIPHY_HSTX_HALFBYTECLK_EN_BMSK                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG1_DSIPHY_HSTX_HALFBYTECLK_EN_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG2_ADDR                                                  (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000008)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG2_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG2_DSIPHY_PEMPH_STRBOT_BMSK                                    0xe0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG2_DSIPHY_PEMPH_STRBOT_SHFT                                     0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG2_DSIPHY_STR_VALUE_OVERRIDE_BMSK                              0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG2_DSIPHY_STR_VALUE_OVERRIDE_SHFT                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG2_DSIPHY_PEMPH_STRTOP_BMSK                                     0xe
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG2_DSIPHY_PEMPH_STRTOP_SHFT                                     0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG2_DSIPHY_PEMPH_EN_BMSK                                         0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG2_DSIPHY_PEMPH_EN_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_ADDR                                                  (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x0000000c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_IS_CKLANE_BMSK                                              0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_IS_CKLANE_SHFT                                               0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_CLK_PATTERN_HSTX_INV_BMSK                                   0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_CLK_PATTERN_HSTX_INV_SHFT                                    0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_TEST_MODE_LPTX_DATAN_BMSK                                   0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_TEST_MODE_LPTX_DATAN_SHFT                                    0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_TEST_MODE_LPTX_DATAP_BMSK                                   0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_TEST_MODE_LPTX_DATAP_SHFT                                    0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_DSIPHY_LPRX_DLY_BMSK                                         0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_CFG3_DSIPHY_LPRX_DLY_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000010)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_ANE_BYPASS_EN_BMSK                                 0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_ANE_BYPASS_EN_SHFT                                  0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_DMUX_LP_SEL_BMSK                                   0x70
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_DMUX_LP_SEL_SHFT                                    0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_PN_SWAP_BMSK                                        0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_PN_SWAP_SHFT                                        0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_DMUX_HS_SEL_BMSK                                    0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_DMUX_HS_SEL_SHFT                                    0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_TEST_MODE_HSTX_EN_BMSK                              0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_TEST_MODE_HSTX_EN_SHFT                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_FORCE_TEST_MODE_BMSK                                0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_DATAPATH_FORCE_TEST_MODE_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_STR_ADDR                                              (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000014)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_STR_RMSK                                                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_STR_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_STR_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_STR_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_STR_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_STR_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_STR_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_STR_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_STR_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_STR_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_STR_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_STR_DSIPHY_HSTX_STR_HSTOP_BMSK                              0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_STR_DSIPHY_HSTX_STR_HSTOP_SHFT                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_STR_DSIPHY_HSTX_STR_HSBOT_BMSK                               0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TEST_STR_DSIPHY_HSTX_STR_HSBOT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_4_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000018)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_4_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_4_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_4_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_4_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_4_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_4_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_4_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_4_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_4_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_4_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_4_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_4_DSIPHY_T_HS_EXIT_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_4_DSIPHY_T_HS_EXIT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_5_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x0000001c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_5_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_5_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_5_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_5_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_5_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_5_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_5_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_5_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_5_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_5_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_5_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_5_DSIPHY_T_HS_ZERO_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_5_DSIPHY_T_HS_ZERO_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_6_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000020)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_6_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_6_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_6_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_6_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_6_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_6_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_6_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_6_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_6_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_6_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_6_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_6_DSIPHY_T_HS_PREPARE_BMSK                           0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_6_DSIPHY_T_HS_PREPARE_SHFT                            0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_7_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000024)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_7_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_7_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_7_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_7_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_7_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_7_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_7_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_7_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_7_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_7_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_7_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_7_DSIPHY_T_HS_TRAIL_BMSK                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_7_DSIPHY_T_HS_TRAIL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_8_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000028)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_8_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_8_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_8_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_8_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_8_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_8_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_8_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_8_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_8_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_8_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_8_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_8_DSIPHY_T_HS_RQST_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_8_DSIPHY_T_HS_RQST_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_9_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x0000002c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_9_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_9_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_9_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_9_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_9_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_9_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_9_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_9_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_9_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_9_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_9_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_9_SPARE_T_TA_SURE_BMSK                               0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_9_SPARE_T_TA_SURE_SHFT                                0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_9_DSIPHY_T_TA_SURE_BMSK                              0x70
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_9_DSIPHY_T_TA_SURE_SHFT                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_9_SPARE_T_TA_GO_BMSK                                  0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_9_SPARE_T_TA_GO_SHFT                                  0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_9_DSIPHY_T_TA_GO_BMSK                                 0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_9_DSIPHY_T_TA_GO_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_10_ADDR                                        (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000030)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_10_RMSK                                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_10_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_10_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_10_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_10_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_10_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_10_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_10_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_10_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_10_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_10_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_10_SPARE_T_TA_GET_BMSK                               0xf8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_10_SPARE_T_TA_GET_SHFT                                0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_10_DSIPHY_T_TA_GET_BMSK                               0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_10_DSIPHY_T_TA_GET_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_11_ADDR                                        (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000034)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_11_RMSK                                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_11_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_11_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_11_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_11_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_11_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_11_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_11_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_11_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_11_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_11_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_11_DSIPHY_TRIG3_CMD_BMSK                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_TIMING_CTRL_11_DSIPHY_TRIG3_CMD_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000038)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_DSIPHY_STR_LP_N_BMSK                             0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_DSIPHY_STR_LP_N_SHFT                              0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_DSIPHY_STR_LP_P_BMSK                              0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_DSIPHY_STR_LP_P_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x0000003c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_DEBUG_SEL_3_0_BMSK                               0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_DEBUG_SEL_3_0_SHFT                                0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_HS_CONTENTION_DIS_BMSK                            0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_HS_CONTENTION_DIS_SHFT                            0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_DSIPHY_LPRX_EN_BMSK                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_DSIPHY_LPRX_EN_SHFT                               0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_DSIPHY_CDRX_EN_BMSK                               0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_DSIPHY_CDRX_EN_SHFT                               0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_EXT_BYTECLK_SEL_BMSK                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_EXT_BYTECLK_SEL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_POLY_ADDR                                             (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000040)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_POLY_RMSK                                                   0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_POLY_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_POLY_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_POLY_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_POLY_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_POLY_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_POLY_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_POLY_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_POLY_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_POLY_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_POLY_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_POLY_BIST_PRBS_POLY_BMSK                                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_POLY_BIST_PRBS_POLY_SHFT                                     0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED0_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000044)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED0_BIST_PRBS_SEED_7_0_BMSK                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED0_BIST_PRBS_SEED_7_0_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED1_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000048)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED1_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED1_BIST_PRBS_SEED_15_8_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SEED1_BIST_PRBS_SEED_15_8_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_HEAD_ADDR                                             (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x0000004c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_HEAD_RMSK                                                   0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_HEAD_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_HEAD_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_HEAD_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_HEAD_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_HEAD_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_HEAD_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_HEAD_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_HEAD_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_HEAD_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_HEAD_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_HEAD_BIST_PRBS_HEAD_BMSK                                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_HEAD_BIST_PRBS_HEAD_SHFT                                     0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SOT_ADDR                                              (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000050)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SOT_RMSK                                                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SOT_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SOT_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SOT_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SOT_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SOT_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SOT_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SOT_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SOT_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SOT_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SOT_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SOT_BIST_PRBS_SOT_BMSK                                      0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_SOT_BIST_PRBS_SOT_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000054)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_BIST_MODE_BMSK                                        0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_BIST_MODE_SHFT                                         0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTGEN_ERROR_INJECT_BMSK                             0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTGEN_ERROR_INJECT_SHFT                              0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTCHK_CAPTURE_BMSK                                  0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTCHK_CAPTURE_SHFT                                   0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTGEN_ENABLE_BMSK                                   0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTGEN_ENABLE_SHFT                                    0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTCHK_ERROR_CNT_CLR_BMSK                             0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTCHK_ERROR_CNT_CLR_SHFT                             0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTCHK_MODE_BMSK                                      0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTCHK_MODE_SHFT                                      0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTCHK_CROSS8_BMSK                                    0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTCHK_CROSS8_SHFT                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTCHK_ENABLE_BMSK                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTCHK_ENABLE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL1_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000058)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL1_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL1_BIST_WORD_CNT_7_0_BMSK                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL1_BIST_WORD_CNT_7_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL2_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x0000005c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL2_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL2_BIST_WORD_CNT_15_8_BMSK                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL2_BIST_WORD_CNT_15_8_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000060)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_BISTGEN_CROSS8_BMSK                                   0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_BISTGEN_CROSS8_SHFT                                    0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_BISTCHK_WORD_CNT_SEL_BMSK                             0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_BISTCHK_WORD_CNT_SEL_SHFT                              0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_BISTCHK_ERROR_CNT_SEL_BMSK                            0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_BISTCHK_ERROR_CNT_SEL_SHFT                             0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_MISR_READ_SEL_BMSK                                    0x18
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_MISR_READ_SEL_SHFT                                     0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_BISTCHK_DONE_CLR_BMSK                                  0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_BISTCHK_DONE_CLR_SHFT                                  0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_MISR_SIG_CLEAR_BMSK                                    0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_MISR_SIG_CLEAR_SHFT                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_MISR_ENABLE_BMSK                                       0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_CTRL3_MISR_ENABLE_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_VREG_CNTRL_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000064)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_VREG_CNTRL_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_VREG_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_VREG_CNTRL_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_VREG_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_VREG_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_VREG_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_VREG_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_VREG_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_VREG_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_VREG_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_VREG_CNTRL_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_VREG_CNTRL_SPARE_VREG_CTRL_BMSK                                  0xc0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_VREG_CNTRL_SPARE_VREG_CTRL_SHFT                                   0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_VREG_CNTRL_DSIPHY_VREG_CTRL_BMSK                                 0x3f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_VREG_CNTRL_DSIPHY_VREG_CTRL_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000068)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSTOP_STATUS_BMSK                0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSTOP_STATUS_SHFT                 0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSBOT_STATUS_BMSK                 0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSBOT_STATUS_SHFT                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS0_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x0000006c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS0_RMSK                                                0x3f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS0_BISTCHK_SEED_ERROR_BMSK                             0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS0_BISTCHK_SEED_ERROR_SHFT                              0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS0_BISTCHK_PRBS_ERROR_BMSK                             0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS0_BISTCHK_PRBS_ERROR_SHFT                              0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS0_BISTCHK_STATE_BMSK                                   0xe
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS0_BISTCHK_STATE_SHFT                                   0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS0_BISTCHK_DONE_BMSK                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS0_BISTCHK_DONE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS1_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000070)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS1_RMSK                                                 0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS1_BISTGEN_STATUS_BMSK                                  0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS1_BISTGEN_STATUS_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS2_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000074)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS2_RMSK                                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS2_BISTCHK_ERROR_CNT_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS2_BISTCHK_ERROR_CNT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS3_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000078)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS3_RMSK                                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS3_BISTCHK_WORD_CNT_BMSK                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_BIST_STATUS3_BISTCHK_WORD_CNT_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_MISR_STATUS_ADDR                                           (MMSS_DSI_0_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x0000007c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_MISR_STATUS_RMSK                                                 0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_MISR_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_MISR_STATUS_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_MISR_STATUS_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_MISR_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_MISR_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_MISR_STATUS_BISTCHK_MISR_SIG_BMSK                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CKLN_MISR_STATUS_BISTCHK_MISR_SIG_SHFT                                 0x0
+
+/*----------------------------------------------------------------------------
+ * MODULE: MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON
+ *--------------------------------------------------------------------------*/
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID0_ADDR                                      (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000000)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID0_RMSK                                            0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID0_MINOR_3_0_BMSK                                  0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID0_MINOR_3_0_SHFT                                   0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID0_MAJOR_BMSK                                       0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID0_MAJOR_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID1_ADDR                                      (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000004)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID1_RMSK                                            0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID1_MINOR_11_4_BMSK                                 0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID1_MINOR_11_4_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID2_ADDR                                      (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000008)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID2_RMSK                                            0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID2_STEP_7_0_BMSK                                   0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID2_STEP_7_0_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID3_ADDR                                      (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x0000000c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID3_RMSK                                            0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID3_STEP_15_8_BMSK                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REVISION_ID3_STEP_15_8_SHFT                                   0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG0_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000010)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG0_RMSK                                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG0_DIV_CTRL_7_4_BMSK                                   0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG0_DIV_CTRL_7_4_SHFT                                    0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG0_DIV_CTRL_3_0_BMSK                                    0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG0_DIV_CTRL_3_0_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG1_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000014)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG1_RMSK                                                 0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG1_DSICLK_SEL_BMSK                                      0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CLK_CFG1_DSICLK_SEL_SHFT                                      0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_ADDR                                    (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000018)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_RMSK                                          0x7f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_PLL_BIAS_EN_BMSK                              0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_PLL_BIAS_EN_SHFT                               0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_TEST_ESCCLK_SEL_BMSK                          0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_TEST_ESCCLK_SEL_SHFT                           0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_TEST_BYTECLK_SEL_BMSK                         0x18
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_TEST_BYTECLK_SEL_SHFT                          0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_DSIPHY_BITCLK_HS_SEL_BMSK                      0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_DSIPHY_BITCLK_HS_SEL_SHFT                      0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_PLL_CLK_BYPASS_BMSK                            0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_PLL_CLK_BYPASS_SHFT                            0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_CLK_EN_BMSK                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_CLK_EN_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x0000001c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_CMN_PLL_PWRDN_B_BMSK                                  0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_CMN_PLL_PWRDN_B_SHFT                                   0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_DIGTOP_PWRDN_B_BMSK                            0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_DIGTOP_PWRDN_B_SHFT                             0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_CAL_PWRDN_B_BMSK                               0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_CAL_PWRDN_B_SHFT                                0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_DLN3_SHUTDOWNB_BMSK                            0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_DLN3_SHUTDOWNB_SHFT                             0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_DLN2_SHUTDOWNB_BMSK                             0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_DLN2_SHUTDOWNB_SHFT                             0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_CLK_SHUTDOWNB_BMSK                              0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_CLK_SHUTDOWNB_SHFT                              0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_DLN1_SHUTDOWNB_BMSK                             0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_DLN1_SHUTDOWNB_SHFT                             0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_DLN0_SHUTDOWNB_BMSK                             0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_DLN0_SHUTDOWNB_SHFT                             0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000020)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_RMSK                                                  0xbf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_SW_RESET_BMSK                                  0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_SW_RESET_SHFT                                   0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_PLL_SW_RESET_BMSK                              0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_PLL_SW_RESET_SHFT                               0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_DLN3_SW_RESET_BMSK                             0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_DLN3_SW_RESET_SHFT                              0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_DLN2_SW_RESET_BMSK                              0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_DLN2_SW_RESET_SHFT                              0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_CLK_SW_RESET_BMSK                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_CLK_SW_RESET_SHFT                               0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_DLN1_SW_RESET_BMSK                              0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_DLN1_SW_RESET_SHFT                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_DLN0_SW_RESET_BMSK                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_DLN0_SW_RESET_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_ADDR                                    (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000024)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_RMSK                                           0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_TRIGGER_BMSK                                   0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_TRIGGER_SHFT                                   0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG0_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000028)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG0_RMSK                                              0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG0_SW_CAL_TX_BOT_EN_BMSK                             0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG0_SW_CAL_TX_BOT_EN_SHFT                             0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG0_SW_CAL_TX_TOP_EN_BMSK                             0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG0_SW_CAL_TX_TOP_EN_SHFT                             0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG1_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x0000002c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG1_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG1_SW_CAL_TX_BOT_STR_BMSK                           0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG1_SW_CAL_TX_BOT_STR_SHFT                            0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG1_SW_CAL_TX_TOP_STR_BMSK                            0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG1_SW_CAL_TX_TOP_STR_SHFT                            0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG2_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000030)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG2_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG2_CAL_SW_CFG2_RSV_BMSK                             0xfe
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG2_CAL_SW_CFG2_RSV_SHFT                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG2_CALIBRATION_SEL_BMSK                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_SW_CFG2_CALIBRATION_SEL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG0_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000034)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG0_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG0_CAL_HW_CFG0_RSV_BMSK                             0xfe
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG0_CAL_HW_CFG0_RSV_SHFT                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG0_HW_CAL_EN_BMSK                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG0_HW_CAL_EN_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG1_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000038)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG1_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG1_LOWER_THRESHOLD_BMSK                             0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG1_LOWER_THRESHOLD_SHFT                              0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG1_UPPER_THRESHOLD_BMSK                              0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG1_UPPER_THRESHOLD_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG2_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x0000003c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG2_RMSK                                             0x1f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG2_PC_STR_TOO_WEAK_COUNT_BMSK                       0x1f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG2_PC_STR_TOO_WEAK_COUNT_SHFT                        0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG3_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000040)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG3_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG3_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG3_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG3_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG3_COMPARATOR_SETTLE_TIME_7_0_BMSK                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG3_COMPARATOR_SETTLE_TIME_7_0_SHFT                   0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG4_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000044)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG4_RMSK                                              0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG4_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG4_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG4_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG4_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG4_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG4_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG4_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG4_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG4_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG4_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG4_COMPARATOR_SETTLE_TIME_9_8_BMSK                   0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_CAL_HW_CFG4_COMPARATOR_SETTLE_TIME_9_8_SHFT                   0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_PLL_CNTRL_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000048)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_PLL_CNTRL_RMSK                                                0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_PLL_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_PLL_CNTRL_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_PLL_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_PLL_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_PLL_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_PLL_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_PLL_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_PLL_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_PLL_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_PLL_CNTRL_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_PLL_CNTRL_PLL_START_BMSK                                      0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_PLL_CNTRL_PLL_START_SHFT                                      0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_LDO_CNTRL_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x0000004c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_LDO_CNTRL_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_LDO_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_LDO_CNTRL_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_LDO_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_LDO_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_LDO_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_LDO_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_LDO_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_LDO_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_LDO_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_LDO_CNTRL_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_LDO_CNTRL_DSIPHY_VREG_CTRL_RSV_BMSK                          0xc0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_LDO_CNTRL_DSIPHY_VREG_CTRL_RSV_SHFT                           0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_LDO_CNTRL_DSIPHY_VREG_CTRL_BMSK                              0x3f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_LDO_CNTRL_DSIPHY_VREG_CTRL_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_ADDR                             (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000050)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_RMSK                                   0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_DIGTOP_AMUX_SEL_BMSK                   0xc0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_DIGTOP_AMUX_SEL_SHFT                    0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_DIGTOP_DEBUG_SEL_BMSK                  0x3f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_DIGTOP_DEBUG_SEL_SHFT                   0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_ADDR                                (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000054)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_RMSK                                      0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_DIGTOP_SPARE_7_0_BMSK                     0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_DIGTOP_SPARE_7_0_SHFT                      0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_ADDR                                (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000058)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_RMSK                                      0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_DIGTOP_SPARE_15_8_BMSK                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_DIGTOP_SPARE_15_8_SHFT                     0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_ADDR                                (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x0000005c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_RMSK                                      0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_DIGTOP_SPARE_23_16_BMSK                   0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_DIGTOP_SPARE_23_16_SHFT                    0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_ADDR                                (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000060)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_RMSK                                      0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_DIGTOP_SPARE_31_24_BMSK                   0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_DIGTOP_SPARE_31_24_SHFT                    0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_ADDR                             (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000064)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_RMSK                                    0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_HW_CALIBRATOR_BUSY_BMSK                 0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_HW_CALIBRATOR_BUSY_SHFT                 0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_PC_STR_TOO_WEAK_BMSK                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_PC_STR_TOO_WEAK_SHFT                    0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_ADDR                             (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000068)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_RMSK                                   0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_HW_CAL_BOT_STR_BMSK                    0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_HW_CAL_BOT_STR_SHFT                     0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_HW_CAL_TOP_STR_BMSK                     0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_HW_CAL_TOP_STR_SHFT                     0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS0_ADDR                                   (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x0000006c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS0_RMSK                                         0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS0_DEBUG_BUS_7_0_BMSK                           0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS0_DEBUG_BUS_7_0_SHFT                            0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS1_ADDR                                   (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000070)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS1_RMSK                                         0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS1_DEBUG_BUS_15_8_BMSK                          0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS1_DEBUG_BUS_15_8_SHFT                           0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS2_ADDR                                   (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000074)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS2_RMSK                                         0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS2_DEBUG_BUS_23_16_BMSK                         0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS2_DEBUG_BUS_23_16_SHFT                          0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS3_ADDR                                   (MMSS_DSI_0_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000078)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS3_RMSK                                         0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS3_DEBUG_BUS_31_24_BMSK                         0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS3_DEBUG_BUS_31_24_SHFT                          0x0
+
+/*----------------------------------------------------------------------------
+ * MODULE: MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN
+ *--------------------------------------------------------------------------*/
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG0_ADDR                                                  (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000000)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG0_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG0_DSIPHY_HSTX_PREPARE_DLY_BMSK                                0xc0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG0_DSIPHY_HSTX_PREPARE_DLY_SHFT                                 0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG0_DSIPHY_HSTX_PGM_DLY_5_4_BMSK                                0x30
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG0_DSIPHY_HSTX_PGM_DLY_5_4_SHFT                                 0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG0_DSIPHY_HSTX_PGM_DLY_3_0_BMSK                                 0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG0_DSIPHY_HSTX_PGM_DLY_3_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG1_ADDR                                                  (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000004)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG1_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG1_DSIPHY_HSTX_SLEW_RATE_BMSK                                  0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG1_DSIPHY_HSTX_SLEW_RATE_SHFT                                   0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG1_SPARE_CFG1_BMSK                                              0xe
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG1_SPARE_CFG1_SHFT                                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG1_DSIPHY_HSTX_HALFBYTECLK_EN_BMSK                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG1_DSIPHY_HSTX_HALFBYTECLK_EN_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG2_ADDR                                                  (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000008)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG2_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG2_DSIPHY_PEMPH_STRBOT_BMSK                                    0xe0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG2_DSIPHY_PEMPH_STRBOT_SHFT                                     0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG2_DSIPHY_STR_VALUE_OVERRIDE_BMSK                              0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG2_DSIPHY_STR_VALUE_OVERRIDE_SHFT                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG2_DSIPHY_PEMPH_STRTOP_BMSK                                     0xe
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG2_DSIPHY_PEMPH_STRTOP_SHFT                                     0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG2_DSIPHY_PEMPH_EN_BMSK                                         0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG2_DSIPHY_PEMPH_EN_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_ADDR                                                  (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x0000000c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_IS_CKLANE_BMSK                                              0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_IS_CKLANE_SHFT                                               0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_CLK_PATTERN_HSTX_INV_BMSK                                   0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_CLK_PATTERN_HSTX_INV_SHFT                                    0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_TEST_MODE_LPTX_DATAN_BMSK                                   0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_TEST_MODE_LPTX_DATAN_SHFT                                    0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_TEST_MODE_LPTX_DATAP_BMSK                                   0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_TEST_MODE_LPTX_DATAP_SHFT                                    0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_DSIPHY_LPRX_DLY_BMSK                                         0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_CFG3_DSIPHY_LPRX_DLY_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000010)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_ANE_BYPASS_EN_BMSK                                 0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_ANE_BYPASS_EN_SHFT                                  0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_DMUX_LP_SEL_BMSK                                   0x70
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_DMUX_LP_SEL_SHFT                                    0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_PN_SWAP_BMSK                                        0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_PN_SWAP_SHFT                                        0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_DMUX_HS_SEL_BMSK                                    0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_DMUX_HS_SEL_SHFT                                    0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_TEST_MODE_HSTX_EN_BMSK                              0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_TEST_MODE_HSTX_EN_SHFT                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_FORCE_TEST_MODE_BMSK                                0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_DATAPATH_FORCE_TEST_MODE_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_STR_ADDR                                              (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000014)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_STR_RMSK                                                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_STR_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_STR_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_STR_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_STR_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_STR_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_STR_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_STR_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_STR_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_STR_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_STR_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_STR_DSIPHY_HSTX_STR_HSTOP_BMSK                              0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_STR_DSIPHY_HSTX_STR_HSTOP_SHFT                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_STR_DSIPHY_HSTX_STR_HSBOT_BMSK                               0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TEST_STR_DSIPHY_HSTX_STR_HSBOT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_4_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000018)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_4_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_4_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_4_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_4_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_4_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_4_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_4_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_4_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_4_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_4_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_4_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_4_DSIPHY_T_HS_EXIT_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_4_DSIPHY_T_HS_EXIT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_5_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x0000001c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_5_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_5_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_5_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_5_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_5_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_5_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_5_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_5_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_5_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_5_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_5_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_5_DSIPHY_T_HS_ZERO_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_5_DSIPHY_T_HS_ZERO_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_6_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000020)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_6_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_6_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_6_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_6_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_6_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_6_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_6_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_6_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_6_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_6_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_6_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_6_DSIPHY_T_HS_PREPARE_BMSK                           0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_6_DSIPHY_T_HS_PREPARE_SHFT                            0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_7_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000024)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_7_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_7_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_7_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_7_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_7_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_7_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_7_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_7_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_7_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_7_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_7_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_7_DSIPHY_T_HS_TRAIL_BMSK                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_7_DSIPHY_T_HS_TRAIL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_8_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000028)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_8_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_8_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_8_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_8_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_8_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_8_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_8_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_8_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_8_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_8_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_8_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_8_DSIPHY_T_HS_RQST_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_8_DSIPHY_T_HS_RQST_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_9_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x0000002c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_9_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_9_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_9_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_9_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_9_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_9_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_9_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_9_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_9_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_9_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_9_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_9_SPARE_T_TA_SURE_BMSK                               0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_9_SPARE_T_TA_SURE_SHFT                                0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_9_DSIPHY_T_TA_SURE_BMSK                              0x70
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_9_DSIPHY_T_TA_SURE_SHFT                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_9_SPARE_T_TA_GO_BMSK                                  0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_9_SPARE_T_TA_GO_SHFT                                  0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_9_DSIPHY_T_TA_GO_BMSK                                 0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_9_DSIPHY_T_TA_GO_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_10_ADDR                                        (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000030)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_10_RMSK                                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_10_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_10_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_10_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_10_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_10_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_10_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_10_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_10_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_10_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_10_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_10_SPARE_T_TA_GET_BMSK                               0xf8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_10_SPARE_T_TA_GET_SHFT                                0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_10_DSIPHY_T_TA_GET_BMSK                               0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_10_DSIPHY_T_TA_GET_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_11_ADDR                                        (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000034)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_11_RMSK                                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_11_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_11_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_11_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_11_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_11_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_11_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_11_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_11_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_11_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_11_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_11_DSIPHY_TRIG3_CMD_BMSK                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_TIMING_CTRL_11_DSIPHY_TRIG3_CMD_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000038)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_DSIPHY_STR_LP_N_BMSK                             0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_DSIPHY_STR_LP_N_SHFT                              0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_DSIPHY_STR_LP_P_BMSK                              0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_DSIPHY_STR_LP_P_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x0000003c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_DEBUG_SEL_3_0_BMSK                               0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_DEBUG_SEL_3_0_SHFT                                0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_HS_CONTENTION_DIS_BMSK                            0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_HS_CONTENTION_DIS_SHFT                            0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_DSIPHY_LPRX_EN_BMSK                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_DSIPHY_LPRX_EN_SHFT                               0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_DSIPHY_CDRX_EN_BMSK                               0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_DSIPHY_CDRX_EN_SHFT                               0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_EXT_BYTECLK_SEL_BMSK                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_EXT_BYTECLK_SEL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_POLY_ADDR                                             (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000040)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_POLY_RMSK                                                   0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_POLY_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_POLY_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_POLY_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_POLY_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_POLY_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_POLY_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_POLY_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_POLY_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_POLY_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_POLY_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_POLY_BIST_PRBS_POLY_BMSK                                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_POLY_BIST_PRBS_POLY_SHFT                                     0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED0_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000044)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED0_BIST_PRBS_SEED_7_0_BMSK                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED0_BIST_PRBS_SEED_7_0_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED1_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000048)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED1_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED1_BIST_PRBS_SEED_15_8_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SEED1_BIST_PRBS_SEED_15_8_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_HEAD_ADDR                                             (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x0000004c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_HEAD_RMSK                                                   0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_HEAD_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_HEAD_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_HEAD_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_HEAD_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_HEAD_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_HEAD_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_HEAD_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_HEAD_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_HEAD_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_HEAD_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_HEAD_BIST_PRBS_HEAD_BMSK                                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_HEAD_BIST_PRBS_HEAD_SHFT                                     0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SOT_ADDR                                              (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000050)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SOT_RMSK                                                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SOT_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SOT_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SOT_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SOT_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SOT_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SOT_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SOT_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SOT_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SOT_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SOT_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SOT_BIST_PRBS_SOT_BMSK                                      0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_SOT_BIST_PRBS_SOT_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000054)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_BIST_MODE_BMSK                                        0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_BIST_MODE_SHFT                                         0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTGEN_ERROR_INJECT_BMSK                             0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTGEN_ERROR_INJECT_SHFT                              0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTCHK_CAPTURE_BMSK                                  0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTCHK_CAPTURE_SHFT                                   0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTGEN_ENABLE_BMSK                                   0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTGEN_ENABLE_SHFT                                    0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTCHK_ERROR_CNT_CLR_BMSK                             0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTCHK_ERROR_CNT_CLR_SHFT                             0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTCHK_MODE_BMSK                                      0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTCHK_MODE_SHFT                                      0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTCHK_CROSS8_BMSK                                    0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTCHK_CROSS8_SHFT                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTCHK_ENABLE_BMSK                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTCHK_ENABLE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL1_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000058)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL1_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL1_BIST_WORD_CNT_7_0_BMSK                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL1_BIST_WORD_CNT_7_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL2_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x0000005c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL2_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL2_BIST_WORD_CNT_15_8_BMSK                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL2_BIST_WORD_CNT_15_8_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000060)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_BISTGEN_CROSS8_BMSK                                   0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_BISTGEN_CROSS8_SHFT                                    0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_BISTCHK_WORD_CNT_SEL_BMSK                             0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_BISTCHK_WORD_CNT_SEL_SHFT                              0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_BISTCHK_ERROR_CNT_SEL_BMSK                            0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_BISTCHK_ERROR_CNT_SEL_SHFT                             0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_MISR_READ_SEL_BMSK                                    0x18
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_MISR_READ_SEL_SHFT                                     0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_BISTCHK_DONE_CLR_BMSK                                  0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_BISTCHK_DONE_CLR_SHFT                                  0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_MISR_SIG_CLEAR_BMSK                                    0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_MISR_SIG_CLEAR_SHFT                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_MISR_ENABLE_BMSK                                       0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_CTRL3_MISR_ENABLE_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_VREG_CNTRL_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000064)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_VREG_CNTRL_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_VREG_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_VREG_CNTRL_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_VREG_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_VREG_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_VREG_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_VREG_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_VREG_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_VREG_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_VREG_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_VREG_CNTRL_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_VREG_CNTRL_SPARE_VREG_CTRL_BMSK                                  0xc0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_VREG_CNTRL_SPARE_VREG_CTRL_SHFT                                   0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_VREG_CNTRL_DSIPHY_VREG_CTRL_BMSK                                 0x3f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_VREG_CNTRL_DSIPHY_VREG_CTRL_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000068)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSTOP_STATUS_BMSK                0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSTOP_STATUS_SHFT                 0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSBOT_STATUS_BMSK                 0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSBOT_STATUS_SHFT                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS0_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x0000006c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS0_RMSK                                                0x3f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS0_BISTCHK_SEED_ERROR_BMSK                             0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS0_BISTCHK_SEED_ERROR_SHFT                              0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS0_BISTCHK_PRBS_ERROR_BMSK                             0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS0_BISTCHK_PRBS_ERROR_SHFT                              0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS0_BISTCHK_STATE_BMSK                                   0xe
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS0_BISTCHK_STATE_SHFT                                   0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS0_BISTCHK_DONE_BMSK                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS0_BISTCHK_DONE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS1_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000070)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS1_RMSK                                                 0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS1_BISTGEN_STATUS_BMSK                                  0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS1_BISTGEN_STATUS_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS2_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000074)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS2_RMSK                                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS2_BISTCHK_ERROR_CNT_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS2_BISTCHK_ERROR_CNT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS3_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000078)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS3_RMSK                                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS3_BISTCHK_WORD_CNT_BMSK                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_BIST_STATUS3_BISTCHK_WORD_CNT_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_MISR_STATUS_ADDR                                           (MMSS_DSI_0_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x0000007c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_MISR_STATUS_RMSK                                                 0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_MISR_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_MISR_STATUS_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_MISR_STATUS_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_MISR_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_MISR_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_MISR_STATUS_BISTCHK_MISR_SIG_BMSK                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN0_MISR_STATUS_BISTCHK_MISR_SIG_SHFT                                 0x0
+
+/*----------------------------------------------------------------------------
+ * MODULE: MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN
+ *--------------------------------------------------------------------------*/
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG0_ADDR                                                  (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000000)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG0_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG0_DSIPHY_HSTX_PREPARE_DLY_BMSK                                0xc0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG0_DSIPHY_HSTX_PREPARE_DLY_SHFT                                 0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG0_DSIPHY_HSTX_PGM_DLY_5_4_BMSK                                0x30
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG0_DSIPHY_HSTX_PGM_DLY_5_4_SHFT                                 0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG0_DSIPHY_HSTX_PGM_DLY_3_0_BMSK                                 0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG0_DSIPHY_HSTX_PGM_DLY_3_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG1_ADDR                                                  (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000004)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG1_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG1_DSIPHY_HSTX_SLEW_RATE_BMSK                                  0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG1_DSIPHY_HSTX_SLEW_RATE_SHFT                                   0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG1_SPARE_CFG1_BMSK                                              0xe
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG1_SPARE_CFG1_SHFT                                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG1_DSIPHY_HSTX_HALFBYTECLK_EN_BMSK                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG1_DSIPHY_HSTX_HALFBYTECLK_EN_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG2_ADDR                                                  (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000008)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG2_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG2_DSIPHY_PEMPH_STRBOT_BMSK                                    0xe0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG2_DSIPHY_PEMPH_STRBOT_SHFT                                     0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG2_DSIPHY_STR_VALUE_OVERRIDE_BMSK                              0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG2_DSIPHY_STR_VALUE_OVERRIDE_SHFT                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG2_DSIPHY_PEMPH_STRTOP_BMSK                                     0xe
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG2_DSIPHY_PEMPH_STRTOP_SHFT                                     0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG2_DSIPHY_PEMPH_EN_BMSK                                         0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG2_DSIPHY_PEMPH_EN_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_ADDR                                                  (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x0000000c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_IS_CKLANE_BMSK                                              0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_IS_CKLANE_SHFT                                               0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_CLK_PATTERN_HSTX_INV_BMSK                                   0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_CLK_PATTERN_HSTX_INV_SHFT                                    0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_TEST_MODE_LPTX_DATAN_BMSK                                   0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_TEST_MODE_LPTX_DATAN_SHFT                                    0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_TEST_MODE_LPTX_DATAP_BMSK                                   0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_TEST_MODE_LPTX_DATAP_SHFT                                    0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_DSIPHY_LPRX_DLY_BMSK                                         0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_CFG3_DSIPHY_LPRX_DLY_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000010)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_ANE_BYPASS_EN_BMSK                                 0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_ANE_BYPASS_EN_SHFT                                  0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_DMUX_LP_SEL_BMSK                                   0x70
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_DMUX_LP_SEL_SHFT                                    0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_PN_SWAP_BMSK                                        0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_PN_SWAP_SHFT                                        0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_DMUX_HS_SEL_BMSK                                    0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_DMUX_HS_SEL_SHFT                                    0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_TEST_MODE_HSTX_EN_BMSK                              0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_TEST_MODE_HSTX_EN_SHFT                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_FORCE_TEST_MODE_BMSK                                0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_DATAPATH_FORCE_TEST_MODE_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_STR_ADDR                                              (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000014)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_STR_RMSK                                                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_STR_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_STR_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_STR_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_STR_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_STR_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_STR_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_STR_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_STR_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_STR_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_STR_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_STR_DSIPHY_HSTX_STR_HSTOP_BMSK                              0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_STR_DSIPHY_HSTX_STR_HSTOP_SHFT                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_STR_DSIPHY_HSTX_STR_HSBOT_BMSK                               0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TEST_STR_DSIPHY_HSTX_STR_HSBOT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_4_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000018)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_4_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_4_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_4_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_4_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_4_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_4_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_4_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_4_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_4_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_4_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_4_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_4_DSIPHY_T_HS_EXIT_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_4_DSIPHY_T_HS_EXIT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_5_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x0000001c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_5_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_5_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_5_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_5_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_5_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_5_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_5_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_5_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_5_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_5_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_5_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_5_DSIPHY_T_HS_ZERO_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_5_DSIPHY_T_HS_ZERO_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_6_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000020)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_6_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_6_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_6_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_6_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_6_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_6_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_6_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_6_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_6_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_6_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_6_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_6_DSIPHY_T_HS_PREPARE_BMSK                           0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_6_DSIPHY_T_HS_PREPARE_SHFT                            0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_7_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000024)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_7_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_7_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_7_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_7_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_7_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_7_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_7_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_7_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_7_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_7_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_7_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_7_DSIPHY_T_HS_TRAIL_BMSK                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_7_DSIPHY_T_HS_TRAIL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_8_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000028)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_8_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_8_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_8_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_8_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_8_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_8_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_8_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_8_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_8_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_8_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_8_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_8_DSIPHY_T_HS_RQST_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_8_DSIPHY_T_HS_RQST_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_9_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x0000002c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_9_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_9_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_9_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_9_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_9_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_9_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_9_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_9_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_9_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_9_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_9_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_9_SPARE_T_TA_SURE_BMSK                               0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_9_SPARE_T_TA_SURE_SHFT                                0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_9_DSIPHY_T_TA_SURE_BMSK                              0x70
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_9_DSIPHY_T_TA_SURE_SHFT                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_9_SPARE_T_TA_GO_BMSK                                  0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_9_SPARE_T_TA_GO_SHFT                                  0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_9_DSIPHY_T_TA_GO_BMSK                                 0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_9_DSIPHY_T_TA_GO_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_10_ADDR                                        (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000030)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_10_RMSK                                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_10_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_10_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_10_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_10_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_10_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_10_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_10_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_10_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_10_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_10_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_10_SPARE_T_TA_GET_BMSK                               0xf8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_10_SPARE_T_TA_GET_SHFT                                0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_10_DSIPHY_T_TA_GET_BMSK                               0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_10_DSIPHY_T_TA_GET_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_11_ADDR                                        (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000034)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_11_RMSK                                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_11_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_11_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_11_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_11_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_11_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_11_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_11_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_11_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_11_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_11_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_11_DSIPHY_TRIG3_CMD_BMSK                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_TIMING_CTRL_11_DSIPHY_TRIG3_CMD_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000038)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_DSIPHY_STR_LP_N_BMSK                             0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_DSIPHY_STR_LP_N_SHFT                              0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_DSIPHY_STR_LP_P_BMSK                              0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_DSIPHY_STR_LP_P_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x0000003c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_DEBUG_SEL_3_0_BMSK                               0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_DEBUG_SEL_3_0_SHFT                                0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_HS_CONTENTION_DIS_BMSK                            0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_HS_CONTENTION_DIS_SHFT                            0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_DSIPHY_LPRX_EN_BMSK                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_DSIPHY_LPRX_EN_SHFT                               0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_DSIPHY_CDRX_EN_BMSK                               0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_DSIPHY_CDRX_EN_SHFT                               0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_EXT_BYTECLK_SEL_BMSK                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_EXT_BYTECLK_SEL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_POLY_ADDR                                             (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000040)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_POLY_RMSK                                                   0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_POLY_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_POLY_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_POLY_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_POLY_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_POLY_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_POLY_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_POLY_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_POLY_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_POLY_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_POLY_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_POLY_BIST_PRBS_POLY_BMSK                                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_POLY_BIST_PRBS_POLY_SHFT                                     0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED0_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000044)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED0_BIST_PRBS_SEED_7_0_BMSK                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED0_BIST_PRBS_SEED_7_0_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED1_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000048)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED1_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED1_BIST_PRBS_SEED_15_8_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SEED1_BIST_PRBS_SEED_15_8_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_HEAD_ADDR                                             (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x0000004c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_HEAD_RMSK                                                   0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_HEAD_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_HEAD_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_HEAD_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_HEAD_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_HEAD_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_HEAD_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_HEAD_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_HEAD_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_HEAD_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_HEAD_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_HEAD_BIST_PRBS_HEAD_BMSK                                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_HEAD_BIST_PRBS_HEAD_SHFT                                     0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SOT_ADDR                                              (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000050)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SOT_RMSK                                                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SOT_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SOT_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SOT_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SOT_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SOT_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SOT_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SOT_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SOT_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SOT_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SOT_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SOT_BIST_PRBS_SOT_BMSK                                      0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_SOT_BIST_PRBS_SOT_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000054)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_BIST_MODE_BMSK                                        0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_BIST_MODE_SHFT                                         0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTGEN_ERROR_INJECT_BMSK                             0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTGEN_ERROR_INJECT_SHFT                              0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTCHK_CAPTURE_BMSK                                  0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTCHK_CAPTURE_SHFT                                   0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTGEN_ENABLE_BMSK                                   0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTGEN_ENABLE_SHFT                                    0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTCHK_ERROR_CNT_CLR_BMSK                             0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTCHK_ERROR_CNT_CLR_SHFT                             0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTCHK_MODE_BMSK                                      0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTCHK_MODE_SHFT                                      0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTCHK_CROSS8_BMSK                                    0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTCHK_CROSS8_SHFT                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTCHK_ENABLE_BMSK                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTCHK_ENABLE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL1_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000058)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL1_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL1_BIST_WORD_CNT_7_0_BMSK                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL1_BIST_WORD_CNT_7_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL2_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x0000005c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL2_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL2_BIST_WORD_CNT_15_8_BMSK                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL2_BIST_WORD_CNT_15_8_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000060)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_BISTGEN_CROSS8_BMSK                                   0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_BISTGEN_CROSS8_SHFT                                    0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_BISTCHK_WORD_CNT_SEL_BMSK                             0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_BISTCHK_WORD_CNT_SEL_SHFT                              0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_BISTCHK_ERROR_CNT_SEL_BMSK                            0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_BISTCHK_ERROR_CNT_SEL_SHFT                             0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_MISR_READ_SEL_BMSK                                    0x18
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_MISR_READ_SEL_SHFT                                     0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_BISTCHK_DONE_CLR_BMSK                                  0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_BISTCHK_DONE_CLR_SHFT                                  0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_MISR_SIG_CLEAR_BMSK                                    0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_MISR_SIG_CLEAR_SHFT                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_MISR_ENABLE_BMSK                                       0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_CTRL3_MISR_ENABLE_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_VREG_CNTRL_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000064)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_VREG_CNTRL_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_VREG_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_VREG_CNTRL_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_VREG_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_VREG_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_VREG_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_VREG_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_VREG_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_VREG_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_VREG_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_VREG_CNTRL_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_VREG_CNTRL_SPARE_VREG_CTRL_BMSK                                  0xc0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_VREG_CNTRL_SPARE_VREG_CTRL_SHFT                                   0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_VREG_CNTRL_DSIPHY_VREG_CTRL_BMSK                                 0x3f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_VREG_CNTRL_DSIPHY_VREG_CTRL_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000068)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSTOP_STATUS_BMSK                0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSTOP_STATUS_SHFT                 0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSBOT_STATUS_BMSK                 0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSBOT_STATUS_SHFT                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS0_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x0000006c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS0_RMSK                                                0x3f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS0_BISTCHK_SEED_ERROR_BMSK                             0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS0_BISTCHK_SEED_ERROR_SHFT                              0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS0_BISTCHK_PRBS_ERROR_BMSK                             0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS0_BISTCHK_PRBS_ERROR_SHFT                              0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS0_BISTCHK_STATE_BMSK                                   0xe
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS0_BISTCHK_STATE_SHFT                                   0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS0_BISTCHK_DONE_BMSK                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS0_BISTCHK_DONE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS1_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000070)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS1_RMSK                                                 0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS1_BISTGEN_STATUS_BMSK                                  0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS1_BISTGEN_STATUS_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS2_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000074)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS2_RMSK                                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS2_BISTCHK_ERROR_CNT_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS2_BISTCHK_ERROR_CNT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS3_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000078)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS3_RMSK                                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS3_BISTCHK_WORD_CNT_BMSK                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_BIST_STATUS3_BISTCHK_WORD_CNT_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_MISR_STATUS_ADDR                                           (MMSS_DSI_0_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x0000007c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_MISR_STATUS_RMSK                                                 0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_MISR_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_MISR_STATUS_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_MISR_STATUS_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_MISR_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_MISR_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_MISR_STATUS_BISTCHK_MISR_SIG_BMSK                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN1_MISR_STATUS_BISTCHK_MISR_SIG_SHFT                                 0x0
+
+/*----------------------------------------------------------------------------
+ * MODULE: MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN
+ *--------------------------------------------------------------------------*/
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG0_ADDR                                                  (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000000)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG0_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG0_DSIPHY_HSTX_PREPARE_DLY_BMSK                                0xc0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG0_DSIPHY_HSTX_PREPARE_DLY_SHFT                                 0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG0_DSIPHY_HSTX_PGM_DLY_5_4_BMSK                                0x30
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG0_DSIPHY_HSTX_PGM_DLY_5_4_SHFT                                 0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG0_DSIPHY_HSTX_PGM_DLY_3_0_BMSK                                 0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG0_DSIPHY_HSTX_PGM_DLY_3_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG1_ADDR                                                  (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000004)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG1_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG1_DSIPHY_HSTX_SLEW_RATE_BMSK                                  0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG1_DSIPHY_HSTX_SLEW_RATE_SHFT                                   0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG1_SPARE_CFG1_BMSK                                              0xe
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG1_SPARE_CFG1_SHFT                                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG1_DSIPHY_HSTX_HALFBYTECLK_EN_BMSK                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG1_DSIPHY_HSTX_HALFBYTECLK_EN_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG2_ADDR                                                  (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000008)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG2_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG2_DSIPHY_PEMPH_STRBOT_BMSK                                    0xe0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG2_DSIPHY_PEMPH_STRBOT_SHFT                                     0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG2_DSIPHY_STR_VALUE_OVERRIDE_BMSK                              0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG2_DSIPHY_STR_VALUE_OVERRIDE_SHFT                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG2_DSIPHY_PEMPH_STRTOP_BMSK                                     0xe
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG2_DSIPHY_PEMPH_STRTOP_SHFT                                     0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG2_DSIPHY_PEMPH_EN_BMSK                                         0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG2_DSIPHY_PEMPH_EN_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_ADDR                                                  (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x0000000c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_IS_CKLANE_BMSK                                              0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_IS_CKLANE_SHFT                                               0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_CLK_PATTERN_HSTX_INV_BMSK                                   0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_CLK_PATTERN_HSTX_INV_SHFT                                    0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_TEST_MODE_LPTX_DATAN_BMSK                                   0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_TEST_MODE_LPTX_DATAN_SHFT                                    0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_TEST_MODE_LPTX_DATAP_BMSK                                   0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_TEST_MODE_LPTX_DATAP_SHFT                                    0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_DSIPHY_LPRX_DLY_BMSK                                         0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_CFG3_DSIPHY_LPRX_DLY_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000010)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_ANE_BYPASS_EN_BMSK                                 0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_ANE_BYPASS_EN_SHFT                                  0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_DMUX_LP_SEL_BMSK                                   0x70
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_DMUX_LP_SEL_SHFT                                    0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_PN_SWAP_BMSK                                        0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_PN_SWAP_SHFT                                        0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_DMUX_HS_SEL_BMSK                                    0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_DMUX_HS_SEL_SHFT                                    0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_TEST_MODE_HSTX_EN_BMSK                              0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_TEST_MODE_HSTX_EN_SHFT                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_FORCE_TEST_MODE_BMSK                                0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_DATAPATH_FORCE_TEST_MODE_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_STR_ADDR                                              (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000014)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_STR_RMSK                                                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_STR_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_STR_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_STR_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_STR_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_STR_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_STR_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_STR_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_STR_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_STR_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_STR_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_STR_DSIPHY_HSTX_STR_HSTOP_BMSK                              0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_STR_DSIPHY_HSTX_STR_HSTOP_SHFT                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_STR_DSIPHY_HSTX_STR_HSBOT_BMSK                               0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TEST_STR_DSIPHY_HSTX_STR_HSBOT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_4_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000018)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_4_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_4_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_4_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_4_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_4_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_4_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_4_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_4_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_4_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_4_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_4_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_4_DSIPHY_T_HS_EXIT_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_4_DSIPHY_T_HS_EXIT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_5_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x0000001c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_5_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_5_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_5_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_5_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_5_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_5_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_5_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_5_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_5_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_5_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_5_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_5_DSIPHY_T_HS_ZERO_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_5_DSIPHY_T_HS_ZERO_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_6_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000020)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_6_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_6_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_6_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_6_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_6_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_6_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_6_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_6_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_6_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_6_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_6_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_6_DSIPHY_T_HS_PREPARE_BMSK                           0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_6_DSIPHY_T_HS_PREPARE_SHFT                            0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_7_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000024)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_7_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_7_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_7_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_7_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_7_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_7_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_7_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_7_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_7_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_7_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_7_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_7_DSIPHY_T_HS_TRAIL_BMSK                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_7_DSIPHY_T_HS_TRAIL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_8_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000028)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_8_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_8_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_8_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_8_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_8_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_8_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_8_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_8_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_8_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_8_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_8_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_8_DSIPHY_T_HS_RQST_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_8_DSIPHY_T_HS_RQST_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_9_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x0000002c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_9_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_9_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_9_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_9_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_9_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_9_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_9_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_9_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_9_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_9_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_9_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_9_SPARE_T_TA_SURE_BMSK                               0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_9_SPARE_T_TA_SURE_SHFT                                0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_9_DSIPHY_T_TA_SURE_BMSK                              0x70
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_9_DSIPHY_T_TA_SURE_SHFT                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_9_SPARE_T_TA_GO_BMSK                                  0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_9_SPARE_T_TA_GO_SHFT                                  0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_9_DSIPHY_T_TA_GO_BMSK                                 0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_9_DSIPHY_T_TA_GO_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_10_ADDR                                        (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000030)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_10_RMSK                                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_10_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_10_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_10_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_10_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_10_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_10_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_10_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_10_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_10_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_10_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_10_SPARE_T_TA_GET_BMSK                               0xf8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_10_SPARE_T_TA_GET_SHFT                                0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_10_DSIPHY_T_TA_GET_BMSK                               0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_10_DSIPHY_T_TA_GET_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_11_ADDR                                        (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000034)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_11_RMSK                                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_11_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_11_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_11_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_11_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_11_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_11_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_11_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_11_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_11_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_11_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_11_DSIPHY_TRIG3_CMD_BMSK                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_TIMING_CTRL_11_DSIPHY_TRIG3_CMD_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000038)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_DSIPHY_STR_LP_N_BMSK                             0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_DSIPHY_STR_LP_N_SHFT                              0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_DSIPHY_STR_LP_P_BMSK                              0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_DSIPHY_STR_LP_P_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x0000003c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_DEBUG_SEL_3_0_BMSK                               0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_DEBUG_SEL_3_0_SHFT                                0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_HS_CONTENTION_DIS_BMSK                            0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_HS_CONTENTION_DIS_SHFT                            0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_DSIPHY_LPRX_EN_BMSK                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_DSIPHY_LPRX_EN_SHFT                               0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_DSIPHY_CDRX_EN_BMSK                               0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_DSIPHY_CDRX_EN_SHFT                               0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_EXT_BYTECLK_SEL_BMSK                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_EXT_BYTECLK_SEL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_POLY_ADDR                                             (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000040)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_POLY_RMSK                                                   0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_POLY_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_POLY_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_POLY_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_POLY_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_POLY_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_POLY_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_POLY_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_POLY_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_POLY_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_POLY_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_POLY_BIST_PRBS_POLY_BMSK                                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_POLY_BIST_PRBS_POLY_SHFT                                     0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED0_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000044)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED0_BIST_PRBS_SEED_7_0_BMSK                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED0_BIST_PRBS_SEED_7_0_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED1_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000048)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED1_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED1_BIST_PRBS_SEED_15_8_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SEED1_BIST_PRBS_SEED_15_8_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_HEAD_ADDR                                             (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x0000004c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_HEAD_RMSK                                                   0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_HEAD_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_HEAD_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_HEAD_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_HEAD_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_HEAD_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_HEAD_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_HEAD_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_HEAD_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_HEAD_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_HEAD_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_HEAD_BIST_PRBS_HEAD_BMSK                                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_HEAD_BIST_PRBS_HEAD_SHFT                                     0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SOT_ADDR                                              (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000050)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SOT_RMSK                                                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SOT_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SOT_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SOT_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SOT_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SOT_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SOT_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SOT_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SOT_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SOT_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SOT_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SOT_BIST_PRBS_SOT_BMSK                                      0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_SOT_BIST_PRBS_SOT_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000054)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_BIST_MODE_BMSK                                        0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_BIST_MODE_SHFT                                         0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTGEN_ERROR_INJECT_BMSK                             0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTGEN_ERROR_INJECT_SHFT                              0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTCHK_CAPTURE_BMSK                                  0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTCHK_CAPTURE_SHFT                                   0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTGEN_ENABLE_BMSK                                   0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTGEN_ENABLE_SHFT                                    0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTCHK_ERROR_CNT_CLR_BMSK                             0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTCHK_ERROR_CNT_CLR_SHFT                             0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTCHK_MODE_BMSK                                      0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTCHK_MODE_SHFT                                      0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTCHK_CROSS8_BMSK                                    0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTCHK_CROSS8_SHFT                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTCHK_ENABLE_BMSK                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTCHK_ENABLE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL1_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000058)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL1_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL1_BIST_WORD_CNT_7_0_BMSK                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL1_BIST_WORD_CNT_7_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL2_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x0000005c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL2_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL2_BIST_WORD_CNT_15_8_BMSK                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL2_BIST_WORD_CNT_15_8_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000060)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_BISTGEN_CROSS8_BMSK                                   0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_BISTGEN_CROSS8_SHFT                                    0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_BISTCHK_WORD_CNT_SEL_BMSK                             0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_BISTCHK_WORD_CNT_SEL_SHFT                              0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_BISTCHK_ERROR_CNT_SEL_BMSK                            0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_BISTCHK_ERROR_CNT_SEL_SHFT                             0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_MISR_READ_SEL_BMSK                                    0x18
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_MISR_READ_SEL_SHFT                                     0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_BISTCHK_DONE_CLR_BMSK                                  0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_BISTCHK_DONE_CLR_SHFT                                  0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_MISR_SIG_CLEAR_BMSK                                    0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_MISR_SIG_CLEAR_SHFT                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_MISR_ENABLE_BMSK                                       0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_CTRL3_MISR_ENABLE_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_VREG_CNTRL_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000064)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_VREG_CNTRL_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_VREG_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_VREG_CNTRL_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_VREG_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_VREG_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_VREG_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_VREG_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_VREG_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_VREG_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_VREG_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_VREG_CNTRL_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_VREG_CNTRL_SPARE_VREG_CTRL_BMSK                                  0xc0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_VREG_CNTRL_SPARE_VREG_CTRL_SHFT                                   0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_VREG_CNTRL_DSIPHY_VREG_CTRL_BMSK                                 0x3f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_VREG_CNTRL_DSIPHY_VREG_CTRL_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000068)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSTOP_STATUS_BMSK                0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSTOP_STATUS_SHFT                 0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSBOT_STATUS_BMSK                 0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSBOT_STATUS_SHFT                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS0_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x0000006c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS0_RMSK                                                0x3f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS0_BISTCHK_SEED_ERROR_BMSK                             0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS0_BISTCHK_SEED_ERROR_SHFT                              0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS0_BISTCHK_PRBS_ERROR_BMSK                             0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS0_BISTCHK_PRBS_ERROR_SHFT                              0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS0_BISTCHK_STATE_BMSK                                   0xe
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS0_BISTCHK_STATE_SHFT                                   0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS0_BISTCHK_DONE_BMSK                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS0_BISTCHK_DONE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS1_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000070)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS1_RMSK                                                 0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS1_BISTGEN_STATUS_BMSK                                  0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS1_BISTGEN_STATUS_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS2_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000074)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS2_RMSK                                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS2_BISTCHK_ERROR_CNT_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS2_BISTCHK_ERROR_CNT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS3_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000078)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS3_RMSK                                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS3_BISTCHK_WORD_CNT_BMSK                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_BIST_STATUS3_BISTCHK_WORD_CNT_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_MISR_STATUS_ADDR                                           (MMSS_DSI_0_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x0000007c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_MISR_STATUS_RMSK                                                 0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_MISR_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_MISR_STATUS_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_MISR_STATUS_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_MISR_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_MISR_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_MISR_STATUS_BISTCHK_MISR_SIG_BMSK                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN2_MISR_STATUS_BISTCHK_MISR_SIG_SHFT                                 0x0
+
+/*----------------------------------------------------------------------------
+ * MODULE: MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN
+ *--------------------------------------------------------------------------*/
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG0_ADDR                                                  (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000000)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG0_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG0_DSIPHY_HSTX_PREPARE_DLY_BMSK                                0xc0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG0_DSIPHY_HSTX_PREPARE_DLY_SHFT                                 0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG0_DSIPHY_HSTX_PGM_DLY_5_4_BMSK                                0x30
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG0_DSIPHY_HSTX_PGM_DLY_5_4_SHFT                                 0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG0_DSIPHY_HSTX_PGM_DLY_3_0_BMSK                                 0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG0_DSIPHY_HSTX_PGM_DLY_3_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG1_ADDR                                                  (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000004)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG1_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG1_DSIPHY_HSTX_SLEW_RATE_BMSK                                  0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG1_DSIPHY_HSTX_SLEW_RATE_SHFT                                   0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG1_SPARE_CFG1_BMSK                                              0xe
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG1_SPARE_CFG1_SHFT                                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG1_DSIPHY_HSTX_HALFBYTECLK_EN_BMSK                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG1_DSIPHY_HSTX_HALFBYTECLK_EN_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG2_ADDR                                                  (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000008)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG2_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG2_DSIPHY_PEMPH_STRBOT_BMSK                                    0xe0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG2_DSIPHY_PEMPH_STRBOT_SHFT                                     0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG2_DSIPHY_STR_VALUE_OVERRIDE_BMSK                              0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG2_DSIPHY_STR_VALUE_OVERRIDE_SHFT                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG2_DSIPHY_PEMPH_STRTOP_BMSK                                     0xe
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG2_DSIPHY_PEMPH_STRTOP_SHFT                                     0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG2_DSIPHY_PEMPH_EN_BMSK                                         0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG2_DSIPHY_PEMPH_EN_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_ADDR                                                  (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x0000000c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_IS_CKLANE_BMSK                                              0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_IS_CKLANE_SHFT                                               0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_CLK_PATTERN_HSTX_INV_BMSK                                   0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_CLK_PATTERN_HSTX_INV_SHFT                                    0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_TEST_MODE_LPTX_DATAN_BMSK                                   0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_TEST_MODE_LPTX_DATAN_SHFT                                    0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_TEST_MODE_LPTX_DATAP_BMSK                                   0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_TEST_MODE_LPTX_DATAP_SHFT                                    0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_DSIPHY_LPRX_DLY_BMSK                                         0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_CFG3_DSIPHY_LPRX_DLY_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000010)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_ANE_BYPASS_EN_BMSK                                 0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_ANE_BYPASS_EN_SHFT                                  0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_DMUX_LP_SEL_BMSK                                   0x70
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_DMUX_LP_SEL_SHFT                                    0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_PN_SWAP_BMSK                                        0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_PN_SWAP_SHFT                                        0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_DMUX_HS_SEL_BMSK                                    0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_DMUX_HS_SEL_SHFT                                    0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_TEST_MODE_HSTX_EN_BMSK                              0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_TEST_MODE_HSTX_EN_SHFT                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_FORCE_TEST_MODE_BMSK                                0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_DATAPATH_FORCE_TEST_MODE_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_STR_ADDR                                              (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000014)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_STR_RMSK                                                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_STR_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_STR_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_STR_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_STR_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_STR_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_STR_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_STR_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_STR_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_STR_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_STR_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_STR_DSIPHY_HSTX_STR_HSTOP_BMSK                              0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_STR_DSIPHY_HSTX_STR_HSTOP_SHFT                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_STR_DSIPHY_HSTX_STR_HSBOT_BMSK                               0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TEST_STR_DSIPHY_HSTX_STR_HSBOT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_4_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000018)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_4_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_4_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_4_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_4_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_4_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_4_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_4_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_4_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_4_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_4_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_4_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_4_DSIPHY_T_HS_EXIT_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_4_DSIPHY_T_HS_EXIT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_5_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x0000001c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_5_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_5_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_5_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_5_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_5_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_5_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_5_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_5_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_5_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_5_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_5_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_5_DSIPHY_T_HS_ZERO_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_5_DSIPHY_T_HS_ZERO_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_6_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000020)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_6_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_6_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_6_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_6_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_6_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_6_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_6_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_6_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_6_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_6_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_6_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_6_DSIPHY_T_HS_PREPARE_BMSK                           0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_6_DSIPHY_T_HS_PREPARE_SHFT                            0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_7_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000024)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_7_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_7_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_7_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_7_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_7_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_7_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_7_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_7_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_7_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_7_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_7_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_7_DSIPHY_T_HS_TRAIL_BMSK                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_7_DSIPHY_T_HS_TRAIL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_8_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000028)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_8_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_8_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_8_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_8_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_8_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_8_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_8_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_8_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_8_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_8_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_8_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_8_DSIPHY_T_HS_RQST_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_8_DSIPHY_T_HS_RQST_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_9_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x0000002c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_9_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_9_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_9_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_9_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_9_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_9_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_9_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_9_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_9_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_9_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_9_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_9_SPARE_T_TA_SURE_BMSK                               0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_9_SPARE_T_TA_SURE_SHFT                                0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_9_DSIPHY_T_TA_SURE_BMSK                              0x70
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_9_DSIPHY_T_TA_SURE_SHFT                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_9_SPARE_T_TA_GO_BMSK                                  0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_9_SPARE_T_TA_GO_SHFT                                  0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_9_DSIPHY_T_TA_GO_BMSK                                 0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_9_DSIPHY_T_TA_GO_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_10_ADDR                                        (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000030)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_10_RMSK                                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_10_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_10_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_10_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_10_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_10_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_10_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_10_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_10_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_10_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_10_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_10_SPARE_T_TA_GET_BMSK                               0xf8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_10_SPARE_T_TA_GET_SHFT                                0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_10_DSIPHY_T_TA_GET_BMSK                               0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_10_DSIPHY_T_TA_GET_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_11_ADDR                                        (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000034)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_11_RMSK                                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_11_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_11_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_11_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_11_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_11_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_11_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_11_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_11_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_11_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_11_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_11_DSIPHY_TRIG3_CMD_BMSK                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_TIMING_CTRL_11_DSIPHY_TRIG3_CMD_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000038)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_DSIPHY_STR_LP_N_BMSK                             0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_DSIPHY_STR_LP_N_SHFT                              0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_DSIPHY_STR_LP_P_BMSK                              0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_DSIPHY_STR_LP_P_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x0000003c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_DEBUG_SEL_3_0_BMSK                               0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_DEBUG_SEL_3_0_SHFT                                0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_HS_CONTENTION_DIS_BMSK                            0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_HS_CONTENTION_DIS_SHFT                            0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_DSIPHY_LPRX_EN_BMSK                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_DSIPHY_LPRX_EN_SHFT                               0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_DSIPHY_CDRX_EN_BMSK                               0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_DSIPHY_CDRX_EN_SHFT                               0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_EXT_BYTECLK_SEL_BMSK                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_EXT_BYTECLK_SEL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_POLY_ADDR                                             (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000040)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_POLY_RMSK                                                   0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_POLY_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_POLY_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_POLY_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_POLY_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_POLY_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_POLY_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_POLY_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_POLY_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_POLY_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_POLY_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_POLY_BIST_PRBS_POLY_BMSK                                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_POLY_BIST_PRBS_POLY_SHFT                                     0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED0_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000044)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED0_BIST_PRBS_SEED_7_0_BMSK                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED0_BIST_PRBS_SEED_7_0_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED1_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000048)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED1_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED1_BIST_PRBS_SEED_15_8_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SEED1_BIST_PRBS_SEED_15_8_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_HEAD_ADDR                                             (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x0000004c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_HEAD_RMSK                                                   0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_HEAD_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_HEAD_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_HEAD_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_HEAD_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_HEAD_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_HEAD_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_HEAD_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_HEAD_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_HEAD_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_HEAD_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_HEAD_BIST_PRBS_HEAD_BMSK                                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_HEAD_BIST_PRBS_HEAD_SHFT                                     0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SOT_ADDR                                              (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000050)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SOT_RMSK                                                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SOT_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SOT_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SOT_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SOT_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SOT_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SOT_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SOT_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SOT_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SOT_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SOT_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SOT_BIST_PRBS_SOT_BMSK                                      0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_SOT_BIST_PRBS_SOT_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000054)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_BIST_MODE_BMSK                                        0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_BIST_MODE_SHFT                                         0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTGEN_ERROR_INJECT_BMSK                             0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTGEN_ERROR_INJECT_SHFT                              0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTCHK_CAPTURE_BMSK                                  0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTCHK_CAPTURE_SHFT                                   0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTGEN_ENABLE_BMSK                                   0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTGEN_ENABLE_SHFT                                    0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTCHK_ERROR_CNT_CLR_BMSK                             0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTCHK_ERROR_CNT_CLR_SHFT                             0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTCHK_MODE_BMSK                                      0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTCHK_MODE_SHFT                                      0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTCHK_CROSS8_BMSK                                    0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTCHK_CROSS8_SHFT                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTCHK_ENABLE_BMSK                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTCHK_ENABLE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL1_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000058)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL1_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL1_BIST_WORD_CNT_7_0_BMSK                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL1_BIST_WORD_CNT_7_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL2_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x0000005c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL2_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL2_BIST_WORD_CNT_15_8_BMSK                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL2_BIST_WORD_CNT_15_8_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000060)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_BISTGEN_CROSS8_BMSK                                   0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_BISTGEN_CROSS8_SHFT                                    0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_BISTCHK_WORD_CNT_SEL_BMSK                             0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_BISTCHK_WORD_CNT_SEL_SHFT                              0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_BISTCHK_ERROR_CNT_SEL_BMSK                            0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_BISTCHK_ERROR_CNT_SEL_SHFT                             0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_MISR_READ_SEL_BMSK                                    0x18
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_MISR_READ_SEL_SHFT                                     0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_BISTCHK_DONE_CLR_BMSK                                  0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_BISTCHK_DONE_CLR_SHFT                                  0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_MISR_SIG_CLEAR_BMSK                                    0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_MISR_SIG_CLEAR_SHFT                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_MISR_ENABLE_BMSK                                       0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_CTRL3_MISR_ENABLE_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_VREG_CNTRL_ADDR                                            (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000064)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_VREG_CNTRL_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_VREG_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_VREG_CNTRL_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_VREG_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_VREG_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_VREG_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_VREG_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_VREG_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_VREG_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_VREG_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_VREG_CNTRL_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_VREG_CNTRL_SPARE_VREG_CTRL_BMSK                                  0xc0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_VREG_CNTRL_SPARE_VREG_CTRL_SHFT                                   0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_VREG_CNTRL_DSIPHY_VREG_CTRL_BMSK                                 0x3f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_VREG_CNTRL_DSIPHY_VREG_CTRL_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000068)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSTOP_STATUS_BMSK                0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSTOP_STATUS_SHFT                 0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSBOT_STATUS_BMSK                 0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSBOT_STATUS_SHFT                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS0_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x0000006c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS0_RMSK                                                0x3f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS0_BISTCHK_SEED_ERROR_BMSK                             0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS0_BISTCHK_SEED_ERROR_SHFT                              0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS0_BISTCHK_PRBS_ERROR_BMSK                             0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS0_BISTCHK_PRBS_ERROR_SHFT                              0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS0_BISTCHK_STATE_BMSK                                   0xe
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS0_BISTCHK_STATE_SHFT                                   0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS0_BISTCHK_DONE_BMSK                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS0_BISTCHK_DONE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS1_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000070)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS1_RMSK                                                 0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS1_BISTGEN_STATUS_BMSK                                  0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS1_BISTGEN_STATUS_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS2_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000074)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS2_RMSK                                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS2_BISTCHK_ERROR_CNT_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS2_BISTCHK_ERROR_CNT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS3_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000078)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS3_RMSK                                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS3_BISTCHK_WORD_CNT_BMSK                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_BIST_STATUS3_BISTCHK_WORD_CNT_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_MISR_STATUS_ADDR                                           (MMSS_DSI_0_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x0000007c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_MISR_STATUS_RMSK                                                 0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_MISR_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_MISR_STATUS_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_MISR_STATUS_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_MISR_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_MISR_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_MISR_STATUS_BISTCHK_MISR_SIG_BMSK                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_DLN3_MISR_STATUS_BISTCHK_MISR_SIG_SHFT                                 0x0
+
+/*----------------------------------------------------------------------------
+ * MODULE: MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE
+ *--------------------------------------------------------------------------*/
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IE_TRIM_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000000)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IE_TRIM_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IE_TRIM_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IE_TRIM_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IE_TRIM_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IE_TRIM_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IE_TRIM_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IE_TRIM_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IE_TRIM_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IE_TRIM_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IE_TRIM_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IE_TRIM_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IE_TRIM_IETRIM_BMSK                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IE_TRIM_IETRIM_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IP_TRIM_ADDR                                         (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000004)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IP_TRIM_RMSK                                               0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IP_TRIM_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IP_TRIM_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IP_TRIM_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IP_TRIM_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IP_TRIM_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IP_TRIM_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IP_TRIM_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IP_TRIM_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IP_TRIM_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IP_TRIM_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IP_TRIM_IPTRIM_BMSK                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IP_TRIM_IPTRIM_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CNTRL_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000008)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CNTRL_RMSK                                              0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CNTRL_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CNTRL_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CNTRL_PLL_DIV_FFEN_BMSK                                 0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CNTRL_PLL_DIV_FFEN_SHFT                                 0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CNTRL_PLL_DIV_ORD_BMSK                                  0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CNTRL_PLL_DIV_ORD_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_ADDR                               (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000000c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_RMSK                                      0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_PLL_FLIP_DIR_BMSK                         0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_PLL_FLIP_DIR_SHFT                         0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_PLL_PHSEL_EN_BMSK                         0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_PLL_PHSEL_EN_SHFT                         0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IPTAT_TRIM_ADDR                                      (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000010)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IPTAT_TRIM_RMSK                                            0x1f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IPTAT_TRIM_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IPTAT_TRIM_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IPTAT_TRIM_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IPTAT_TRIM_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IPTAT_TRIM_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IPTAT_TRIM_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IPTAT_TRIM_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IPTAT_TRIM_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IPTAT_TRIM_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IPTAT_TRIM_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IPTAT_TRIM_IPTAT_TRIM_BMSK                                 0x1f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_IPTAT_TRIM_IPTAT_TRIM_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_DC_ADDR                                    (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000014)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_DC_RMSK                                          0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_DC_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_DC_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_DC_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_DC_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_DC_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_DC_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_DC_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_DC_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_DC_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_DC_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_DC_PLL_PHSEL_DC_BMSK                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_PHSEL_DC_PLL_PHSEL_DC_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CAL_EN_ADDR                                      (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000018)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CAL_EN_RMSK                                             0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CAL_EN_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CAL_EN_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CAL_EN_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CAL_EN_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CAL_EN_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CAL_EN_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CAL_EN_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CAL_EN_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CAL_EN_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CAL_EN_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CAL_EN_KVCO_CAL_EN_MUX_BMSK                             0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CAL_EN_KVCO_CAL_EN_MUX_SHFT                             0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CAL_EN_KVCO_CAL_EN_BMSK                                 0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CAL_EN_KVCO_CAL_EN_SHFT                                 0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CAL_EN_VCO_CAL_EN_MUX_BMSK                              0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CAL_EN_VCO_CAL_EN_MUX_SHFT                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CAL_EN_VCO_CAL_EN_BMSK                                  0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CAL_EN_VCO_CAL_EN_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CLKBUFLR_EN_ADDR                                     (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000001c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CLKBUFLR_EN_RMSK                                            0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CLKBUFLR_EN_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CLKBUFLR_EN_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CLKBUFLR_EN_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CLKBUFLR_EN_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CLKBUFLR_EN_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CLKBUFLR_EN_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CLKBUFLR_EN_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CLKBUFLR_EN_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CLKBUFLR_EN_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CLKBUFLR_EN_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CLKBUFLR_EN_CLKBUF_L_EN_BMSK                                0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CLKBUFLR_EN_CLKBUF_L_EN_SHFT                                0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CLKBUFLR_EN_CLKBUF_R_EN_BMSK                                0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CLKBUFLR_EN_CLKBUF_R_EN_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL1_ADDR                                        (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000020)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL1_RMSK                                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL1_ATB_SEL_7_0_BMSK                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL1_ATB_SEL_7_0_SHFT                                   0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL2_ADDR                                        (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000024)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL2_RMSK                                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL2_DEBUGBUS_SEL_BMSK                                 0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL2_DEBUGBUS_SEL_SHFT                                  0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL2_ATB_SEL_11_8_BMSK                                  0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_ATB_SEL2_ATB_SEL_11_8_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_ADDR                                 (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000028)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_RMSK                                        0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_SW_RESET_BMSK                               0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_SW_RESET_SHFT                               0x1
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_ADDR                                   (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000002c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_RMSK                                         0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_VCO_TUNE_MODE_BMSK                           0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_VCO_TUNE_MODE_SHFT                            0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_PLLLOCK_BMSK                          0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_PLLLOCK_SHFT                           0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_VCOCAL_ITER2_BMSK                     0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_VCOCAL_ITER2_SHFT                      0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_KVCO_BMSK                             0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_KVCO_SHFT                              0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_VCOCAL_ITER1_BMSK                      0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_VCOCAL_ITER1_SHFT                      0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_PLL_WAKEUP_BMSK                        0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_PLL_WAKEUP_SHFT                        0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_BANDGAP_BMSK                           0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_BANDGAP_SHFT                           0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_FORCE_PLLLOCK_BMSK                            0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL_FORCE_PLLLOCK_SHFT                            0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_ADDR                                  (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000030)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_RMSK                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_PLL_UNLOCK_DET_DISABLE_BMSK                 0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_PLL_UNLOCK_DET_DISABLE_SHFT                  0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_PLL_BYPASS_BMSK                             0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_PLL_BYPASS_SHFT                              0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_BANDGAP_TIMER_BMSK                          0x38
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_BANDGAP_TIMER_SHFT                           0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_START_MUX_BMSK                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_START_MUX_SHFT                               0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_START_BMSK                                   0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_START_SHFT                                   0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_DISABLE_CLKGATING_BMSK                       0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL2_DISABLE_CLKGATING_SHFT                       0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL3_ADDR                                  (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000034)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL3_RMSK                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL3_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL3_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL3_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL3_PLL_VCOTUNE_TIMER_7_0_BMSK                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL3_PLL_VCOTUNE_TIMER_7_0_SHFT                   0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL4_ADDR                                  (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000038)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL4_RMSK                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL4_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL4_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL4_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL4_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL4_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL4_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL4_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL4_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL4_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL4_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL4_PLL_VCOTUNE_TIMER_15_8_BMSK                 0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL4_PLL_VCOTUNE_TIMER_15_8_SHFT                  0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL5_ADDR                                  (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000003c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL5_RMSK                                        0x1f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL5_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL5_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL5_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL5_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL5_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL5_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL5_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL5_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL5_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL5_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL5_PLL_WAKEUP_MUX_BMSK                         0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL5_PLL_WAKEUP_MUX_SHFT                          0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL5_PLL_WAKEUP_BMSK                              0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL5_PLL_WAKEUP_SHFT                              0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL5_PLLWAKEUP_TIMER_BMSK                         0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESETSM_CNTRL5_PLLWAKEUP_TIMER_SHFT                         0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF1_ADDR                                   (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000040)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF1_RMSK                                         0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF1_KVCO_DIV_REF_7_0_BMSK                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF1_KVCO_DIV_REF_7_0_SHFT                         0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF2_ADDR                                   (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000044)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF2_RMSK                                          0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF2_KVCO_DIV_REF_9_8_BMSK                         0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_DIV_REF2_KVCO_DIV_REF_9_8_SHFT                         0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT1_ADDR                                     (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000048)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT1_RMSK                                           0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT1_KVCO_COUNT_7_0_BMSK                            0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT1_KVCO_COUNT_7_0_SHFT                             0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT2_ADDR                                     (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000004c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT2_RMSK                                            0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT2_KVCO_COUNT_9_8_BMSK                             0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_COUNT2_KVCO_COUNT_9_8_SHFT                             0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_ADDR                                  (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000050)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_RMSK                                        0x3f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_KVCO_WAKEUPTIME_BMSK                        0x30
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_KVCO_WAKEUPTIME_SHFT                         0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_KVCO_POS_KVSLP_BMSK                          0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_KVCO_POS_KVSLP_SHFT                          0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_KVCO_WAITTIME_BMSK                           0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_KVCO_WAITTIME_SHFT                           0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_ADDR                                 (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000054)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_RMSK                                        0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_KVCO_CAL_DELTA_BMSK                         0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_KVCO_CAL_DELTA_SHFT                         0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CODE_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000058)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CODE_RMSK                                             0x3f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CODE_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CODE_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CODE_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CODE_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CODE_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CODE_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CODE_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CODE_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CODE_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CODE_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CODE_KVCO_CODE_MUX_BMSK                               0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CODE_KVCO_CODE_MUX_SHFT                                0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CODE_KVCO_CODE_BMSK                                   0x1f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_CODE_KVCO_CODE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG1_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000005c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG1_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG1_VREF_CFG_7_0_BMSK                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG1_VREF_CFG_7_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG2_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000060)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG2_RMSK                                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG2_VREF_CFG_8_8_BMSK                                 0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VREF_CFG2_VREF_CFG_8_8_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESOLUTION_ADDR                                      (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000064)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESOLUTION_RMSK                                            0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESOLUTION_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESOLUTION_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESOLUTION_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESOLUTION_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESOLUTION_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESOLUTION_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESOLUTION_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESOLUTION_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESOLUTION_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESOLUTION_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESOLUTION_VCO_CAL_RESOLUTION_BMSK                         0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESOLUTION_VCO_CAL_RESOLUTION_SHFT                          0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESOLUTION_KVCO_CAL_RESOLUTION_BMSK                         0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESOLUTION_KVCO_CAL_RESOLUTION_SHFT                         0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_ADDR                                   (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000068)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_RMSK                                         0x3f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_VCOCAL_POS_SLOPE_BMSK                        0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_VCOCAL_POS_SLOPE_SHFT                         0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_VCO_WAITTIME_BMSK                            0x1c
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_VCO_WAITTIME_SHFT                             0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_VCO_WAKEUPTIME_BMSK                           0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_VCO_WAKEUPTIME_SHFT                           0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF1_ADDR                                    (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000006c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF1_RMSK                                          0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF1_VCO_DIV_REF_7_0_BMSK                          0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF1_VCO_DIV_REF_7_0_SHFT                           0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF2_ADDR                                    (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000070)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF2_RMSK                                           0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF2_VCO_DIV_REF_9_8_BMSK                           0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_DIV_REF2_VCO_DIV_REF_9_8_SHFT                           0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT1_ADDR                                      (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000074)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT1_RMSK                                            0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT1_VCO_COUNT_7_0_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT1_VCO_COUNT_7_0_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT2_ADDR                                      (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000078)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT2_RMSK                                            0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT2_VCO_COUNT_15_8_BMSK                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_VCO_COUNT2_VCO_COUNT_15_8_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP1_ADDR                                    (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000007c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP1_RMSK                                          0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP1_PLLLOCK_CMP_7_0_BMSK                          0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP1_PLLLOCK_CMP_7_0_SHFT                           0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP2_ADDR                                    (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000080)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP2_RMSK                                          0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP2_PLLLOCK_CMP_15_8_BMSK                         0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP2_PLLLOCK_CMP_15_8_SHFT                          0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP3_ADDR                                    (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000084)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP3_RMSK                                           0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP3_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP3_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP3_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP3_PLLLOCK_CMP_17_16_BMSK                         0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP3_PLLLOCK_CMP_17_16_SHFT                         0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_ADDR                                  (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000088)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_RMSK                                        0xfe
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_PLLLOCK_COUNT_STOP_BMSK                     0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_PLLLOCK_COUNT_STOP_SHFT                      0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_PLLLOCK_EN_MUX_BMSK                         0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_PLLLOCK_EN_MUX_SHFT                          0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_PLLLOCK_EN_BMSK                             0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_PLLLOCK_EN_SHFT                              0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_PLLLOCK_RNG_BMSK                            0x18
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_PLLLOCK_RNG_SHFT                             0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_PLLLOCK_CNT_BMSK                             0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_PLLLOCK_CNT_SHFT                             0x1
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_VCO_TUNE_ADDR                                    (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000008c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_VCO_TUNE_RMSK                                          0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_VCO_TUNE_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_VCO_TUNE_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_VCO_TUNE_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_VCO_TUNE_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_VCO_TUNE_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_VCO_TUNE_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_VCO_TUNE_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_VCO_TUNE_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_VCO_TUNE_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_VCO_TUNE_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_VCO_TUNE_PLL_VCO_TUNE_MUX_BMSK                         0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_VCO_TUNE_PLL_VCO_TUNE_MUX_SHFT                          0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_VCO_TUNE_PLL_VCO_TUNE_BMSK                             0x7f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_VCO_TUNE_PLL_VCO_TUNE_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEC_START_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000090)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEC_START_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEC_START_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEC_START_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEC_START_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEC_START_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEC_START_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEC_START_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEC_START_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEC_START_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEC_START_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEC_START_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEC_START_DEC_START_BMSK                                   0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEC_START_DEC_START_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_EN_CENTER_ADDR                                   (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000094)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_EN_CENTER_RMSK                                          0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_EN_CENTER_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_EN_CENTER_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_EN_CENTER_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_EN_CENTER_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_EN_CENTER_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_EN_CENTER_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_EN_CENTER_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_EN_CENTER_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_EN_CENTER_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_EN_CENTER_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_EN_CENTER_SSC_CENTER_BMSK                               0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_EN_CENTER_SSC_CENTER_SHFT                               0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_EN_CENTER_SSC_EN_BMSK                                   0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_EN_CENTER_SSC_EN_SHFT                                   0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER1_ADDR                                    (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000098)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER1_RMSK                                          0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER1_SSC_ADJPER_7_0_BMSK                           0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER1_SSC_ADJPER_7_0_SHFT                            0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER2_ADDR                                    (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000009c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER2_RMSK                                           0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER2_SSC_ADJPER_9_8_BMSK                            0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_ADJ_PER2_SSC_ADJPER_9_8_SHFT                            0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER1_ADDR                                        (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000a0)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER1_RMSK                                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER1_SSC_PER_7_0_BMSK                                  0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER1_SSC_PER_7_0_SHFT                                   0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER2_ADDR                                        (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000a4)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER2_RMSK                                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER2_SSC_PER_15_8_BMSK                                 0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_PER2_SSC_PER_15_8_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_ADDR                                  (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000a8)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_RMSK                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_SSC_STEPSIZE_7_0_BMSK                       0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_SSC_STEPSIZE_7_0_SHFT                        0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_ADDR                                  (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000ac)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_RMSK                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_SSC_STEPSIZE_15_8_BMSK                      0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_SSC_STEPSIZE_15_8_SHFT                       0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_FORCE_CAL_DONE_ADDR                                  (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000b0)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_FORCE_CAL_DONE_RMSK                                         0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_FORCE_CAL_DONE_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_FORCE_CAL_DONE_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_FORCE_CAL_DONE_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_FORCE_CAL_DONE_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_FORCE_CAL_DONE_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_FORCE_CAL_DONE_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_FORCE_CAL_DONE_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_FORCE_CAL_DONE_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_FORCE_CAL_DONE_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_FORCE_CAL_DONE_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_FORCE_CAL_DONE_FORCE_CORE_READY_BMSK                        0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_FORCE_CAL_DONE_FORCE_CORE_READY_SHFT                        0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_FORCE_CAL_DONE_FORCE_VCO_CAL_DONE_BMSK                      0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_FORCE_CAL_DONE_FORCE_VCO_CAL_DONE_SHFT                      0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_FORCE_CAL_DONE_FORCE_KVCO_CAL_DONE_BMSK                     0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_FORCE_CAL_DONE_FORCE_KVCO_CAL_DONE_SHFT                     0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START1_ADDR                                 (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000b4)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START1_RMSK                                       0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START1_DIV_FRAC_START_7_0_BMSK                    0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START1_DIV_FRAC_START_7_0_SHFT                     0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START2_ADDR                                 (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000b8)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START2_RMSK                                       0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START2_DIV_FRAC_START_15_8_BMSK                   0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START2_DIV_FRAC_START_15_8_SHFT                    0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START3_ADDR                                 (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000bc)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START3_RMSK                                        0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START3_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START3_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START3_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START3_DIV_FRAC_START_19_16_BMSK                   0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DIV_FRAC_START3_DIV_FRAC_START_19_16_SHFT                   0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_TXCLK_EN_ADDR                                    (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000c0)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_TXCLK_EN_RMSK                                           0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_TXCLK_EN_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_TXCLK_EN_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_TXCLK_EN_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_TXCLK_EN_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_TXCLK_EN_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_TXCLK_EN_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_TXCLK_EN_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_TXCLK_EN_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_TXCLK_EN_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_TXCLK_EN_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_TXCLK_EN_REFCLK_DBLER_EN_BMSK                           0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_TXCLK_EN_REFCLK_DBLER_EN_SHFT                           0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_TXCLK_EN_PLL_TXCLK_EN_BMSK                              0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_TXCLK_EN_PLL_TXCLK_EN_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CRCTRL_ADDR                                      (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000c4)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CRCTRL_RMSK                                            0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CRCTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CRCTRL_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CRCTRL_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CRCTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CRCTRL_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CRCTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CRCTRL_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CRCTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CRCTRL_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CRCTRL_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CRCTRL_PLL_RCTRL_BMSK                                  0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CRCTRL_PLL_RCTRL_SHFT                                   0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CRCTRL_PLL_CCTRL_BMSK                                   0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_CRCTRL_PLL_CCTRL_SHFT                                   0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_FREQUPDATE_ADDR                                  (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000c8)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_FREQUPDATE_RMSK                                         0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_FREQUPDATE_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_FREQUPDATE_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_FREQUPDATE_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_FREQUPDATE_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_FREQUPDATE_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_FREQUPDATE_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_FREQUPDATE_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_FREQUPDATE_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_FREQUPDATE_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_FREQUPDATE_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_FREQUPDATE_PLL_FREQUPDATE_BMSK                          0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_FREQUPDATE_PLL_FREQUPDATE_SHFT                          0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_ADDR                           (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000cc)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_RMSK                                 0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_KVCO_CAL_DONE_BMSK                   0x80
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_KVCO_CAL_DONE_SHFT                    0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_VCO_CAL_DONE_BMSK                    0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_VCO_CAL_DONE_SHFT                     0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_PLL_LOCK_DONE_BMSK                   0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_PLL_LOCK_DONE_SHFT                    0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_RESETSM_BMSK                         0x1e
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_RESETSM_SHFT                          0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_CORE_READY_BMSK                       0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_CORE_READY_SHFT                       0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CORE_VCO_TUNE_STATUS_ADDR                            (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000d0)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CORE_VCO_TUNE_STATUS_RMSK                                  0x7f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CORE_VCO_TUNE_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CORE_VCO_TUNE_STATUS_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CORE_VCO_TUNE_STATUS_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CORE_VCO_TUNE_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CORE_VCO_TUNE_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CORE_VCO_TUNE_STATUS_CORE_VCO_TUNE_BMSK                    0x7f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CORE_VCO_TUNE_STATUS_CORE_VCO_TUNE_SHFT                     0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_ADDR                           (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000d4)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_RMSK                                 0x3f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_PLL_RANGE_STATUS_BMSK                0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_PLL_RANGE_STATUS_SHFT                 0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_CORE_KVCO_CODE_BMSK                  0x1f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_CORE_KVCO_CODE_SHFT                   0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS0_ADDR                                      (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000d8)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS0_RMSK                                            0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS0_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS0_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS0_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS0_DEBUG_BUS_7_0_BMSK                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS0_DEBUG_BUS_7_0_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS1_ADDR                                      (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000dc)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS1_RMSK                                            0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS1_DEBUG_BUS_15_8_BMSK                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS1_DEBUG_BUS_15_8_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS2_ADDR                                      (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000e0)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS2_RMSK                                            0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS2_DEBUG_BUS_23_16_BMSK                            0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS2_DEBUG_BUS_23_16_SHFT                             0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS3_ADDR                                      (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000e4)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS3_RMSK                                            0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS3_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS3_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS3_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS3_DEBUG_BUS_31_24_BMSK                            0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_DEBUG_BUS3_DEBUG_BUS_31_24_SHFT                             0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_MISC1_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000e8)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_MISC1_RMSK                                             0x7f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_MISC1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_MISC1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_MISC1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_MISC1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_MISC1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_MISC1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_MISC1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_MISC1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_MISC1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_MISC1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_MISC1_PFD_DLY_BMSK                                     0x60
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_MISC1_PFD_DLY_SHFT                                      0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_MISC1_PLL_LDO_CTRL_BMSK                                0x1e
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_MISC1_PLL_LDO_CTRL_SHFT                                 0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_MISC1_PLL_LDO_BYPASS_BMSK                               0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_MISC1_PLL_LDO_BYPASS_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_BGTRIM_ADDR                                          (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000ec)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_BGTRIM_RMSK                                                0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_BGTRIM_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_BGTRIM_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_BGTRIM_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_BGTRIM_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_BGTRIM_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_BGTRIM_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_BGTRIM_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_BGTRIM_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_BGTRIM_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_BGTRIM_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_BGTRIM_BGTRIM_BMSK                                         0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_BGTRIM_BGTRIM_SHFT                                          0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CP_SET_CUR_ADDR                                      (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000f0)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CP_SET_CUR_RMSK                                            0x3f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CP_SET_CUR_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CP_SET_CUR_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CP_SET_CUR_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CP_SET_CUR_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CP_SET_CUR_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CP_SET_CUR_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CP_SET_CUR_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CP_SET_CUR_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CP_SET_CUR_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CP_SET_CUR_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CP_SET_CUR_PLL_CPMSET_CUR_BMSK                             0x38
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CP_SET_CUR_PLL_CPMSET_CUR_SHFT                              0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CP_SET_CUR_CPCSET_CUR_BMSK                                  0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CP_SET_CUR_CPCSET_CUR_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPMSET_ADDR                                     (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000f4)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPMSET_RMSK                                           0x3f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPMSET_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPMSET_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPMSET_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPMSET_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPMSET_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPMSET_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPMSET_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPMSET_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPMSET_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPMSET_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPMSET_PLL_ICPMSET_P_BMSK                             0x38
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPMSET_PLL_ICPMSET_P_SHFT                              0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPMSET_ICPMSET_M_BMSK                                  0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPMSET_ICPMSET_M_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPCSET_ADDR                                     (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000f8)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPCSET_RMSK                                           0x3f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPCSET_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPCSET_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPCSET_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPCSET_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPCSET_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPCSET_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPCSET_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPCSET_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPCSET_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPCSET_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPCSET_PLL_ICPCSET_P_BMSK                             0x38
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPCSET_PLL_ICPCSET_P_SHFT                              0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPCSET_PLL_ICPCSET_M_BMSK                              0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICPCSET_PLL_ICPCSET_M_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICP_SET_ADDR                                     (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000fc)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICP_SET_RMSK                                           0x3f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICP_SET_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICP_SET_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICP_SET_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICP_SET_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICP_SET_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICP_SET_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICP_SET_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICP_SET_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICP_SET_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICP_SET_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICP_SET_PLL_ICPMSET_BMSK                               0x38
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICP_SET_PLL_ICPMSET_SHFT                                0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICP_SET_PLL_ICPCSET_BMSK                                0x7
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_ICP_SET_PLL_ICPCSET_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF1_ADDR                                        (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000100)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF1_RMSK                                              0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF1_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF1_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF1_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF1_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF1_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF1_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF1_PLL_LPF_CAP2_BMSK                                 0xf0
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF1_PLL_LPF_CAP2_SHFT                                  0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF1_PLL_LPF_CAP1_BMSK                                  0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF1_PLL_LPF_CAP1_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_ADDR                                (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000104)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_RMSK                                      0x3f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_TX_BAND_BMSK                              0x30
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_TX_BAND_SHFT                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_PLL_LPF_RES1_BMSK                          0xf
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_PLL_LPF_RES1_SHFT                          0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_ADDR                                     (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000108)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_RMSK                                           0x7f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_PLL_RESET_MUX_BMSK                             0x40
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_PLL_RESET_MUX_SHFT                              0x6
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_PLL_RESET_BMSK                                 0x20
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_PLL_RESET_SHFT                                  0x5
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_OPEN_LOOP_MUX_BMSK                             0x10
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_OPEN_LOOP_MUX_SHFT                              0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_OPEN_LOOP_BMSK                                  0x8
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_OPEN_LOOP_SHFT                                  0x3
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_BIAS_EN_MUX1_BMSK                               0x4
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_BIAS_EN_MUX1_SHFT                               0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_BIAS_EN_MUX_BMSK                                0x2
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_BIAS_EN_MUX_SHFT                                0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_BIAS_EN_BMSK                                    0x1
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_PLL_BANDGAP_BIAS_EN_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_INIT_CODE_ADDR                                  (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000010c)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_INIT_CODE_RMSK                                        0x1f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_INIT_CODE_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_INIT_CODE_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_INIT_CODE_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_INIT_CODE_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_INIT_CODE_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_INIT_CODE_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_INIT_CODE_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_INIT_CODE_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_INIT_CODE_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_INIT_CODE_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_INIT_CODE_KVCO_INIT_CODE_BMSK                         0x1f
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_KVCO_INIT_CODE_KVCO_INIT_CODE_SHFT                          0x0
+
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CMN_MISC2_ADDR                                       (MMSS_DSI_0_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000110)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CMN_MISC2_RMSK                                             0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CMN_MISC2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CMN_MISC2_ADDR, HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CMN_MISC2_RMSK)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CMN_MISC2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CMN_MISC2_ADDR, m)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CMN_MISC2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CMN_MISC2_ADDR,v)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CMN_MISC2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CMN_MISC2_ADDR,m,v,HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CMN_MISC2_IN)
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CMN_MISC2_RSVD_BMSK                                        0xff
+#define HWIO_MMSS_DSI_0_PHY_DSIPHY_PLL_CMN_MISC2_RSVD_SHFT                                         0x0
+
+/*----------------------------------------------------------------------------
+ * MODULE: MMSS_DSI_1_PHY
+ *--------------------------------------------------------------------------*/
+
+/*----------------------------------------------------------------------------
+ * MODULE: MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN
+ *--------------------------------------------------------------------------*/
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG0_ADDR                                                  (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000000)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG0_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG0_DSIPHY_HSTX_PREPARE_DLY_BMSK                                0xc0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG0_DSIPHY_HSTX_PREPARE_DLY_SHFT                                 0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG0_DSIPHY_HSTX_PGM_DLY_5_4_BMSK                                0x30
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG0_DSIPHY_HSTX_PGM_DLY_5_4_SHFT                                 0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG0_DSIPHY_HSTX_PGM_DLY_3_0_BMSK                                 0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG0_DSIPHY_HSTX_PGM_DLY_3_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG1_ADDR                                                  (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000004)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG1_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG1_DSIPHY_HSTX_SLEW_RATE_BMSK                                  0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG1_DSIPHY_HSTX_SLEW_RATE_SHFT                                   0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG1_SPARE_CFG1_BMSK                                              0xe
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG1_SPARE_CFG1_SHFT                                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG1_DSIPHY_HSTX_HALFBYTECLK_EN_BMSK                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG1_DSIPHY_HSTX_HALFBYTECLK_EN_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG2_ADDR                                                  (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000008)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG2_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG2_DSIPHY_PEMPH_STRBOT_BMSK                                    0xe0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG2_DSIPHY_PEMPH_STRBOT_SHFT                                     0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG2_DSIPHY_STR_VALUE_OVERRIDE_BMSK                              0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG2_DSIPHY_STR_VALUE_OVERRIDE_SHFT                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG2_DSIPHY_PEMPH_STRTOP_BMSK                                     0xe
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG2_DSIPHY_PEMPH_STRTOP_SHFT                                     0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG2_DSIPHY_PEMPH_EN_BMSK                                         0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG2_DSIPHY_PEMPH_EN_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_ADDR                                                  (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x0000000c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_IS_CKLANE_BMSK                                              0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_IS_CKLANE_SHFT                                               0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_CLK_PATTERN_HSTX_INV_BMSK                                   0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_CLK_PATTERN_HSTX_INV_SHFT                                    0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_TEST_MODE_LPTX_DATAN_BMSK                                   0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_TEST_MODE_LPTX_DATAN_SHFT                                    0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_TEST_MODE_LPTX_DATAP_BMSK                                   0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_TEST_MODE_LPTX_DATAP_SHFT                                    0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_DSIPHY_LPRX_DLY_BMSK                                         0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_CFG3_DSIPHY_LPRX_DLY_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000010)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_ANE_BYPASS_EN_BMSK                                 0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_ANE_BYPASS_EN_SHFT                                  0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_DMUX_LP_SEL_BMSK                                   0x70
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_DMUX_LP_SEL_SHFT                                    0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_PN_SWAP_BMSK                                        0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_PN_SWAP_SHFT                                        0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_DMUX_HS_SEL_BMSK                                    0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_DMUX_HS_SEL_SHFT                                    0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_TEST_MODE_HSTX_EN_BMSK                              0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_TEST_MODE_HSTX_EN_SHFT                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_FORCE_TEST_MODE_BMSK                                0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_DATAPATH_FORCE_TEST_MODE_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_STR_ADDR                                              (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000014)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_STR_RMSK                                                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_STR_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_STR_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_STR_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_STR_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_STR_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_STR_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_STR_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_STR_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_STR_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_STR_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_STR_DSIPHY_HSTX_STR_HSTOP_BMSK                              0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_STR_DSIPHY_HSTX_STR_HSTOP_SHFT                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_STR_DSIPHY_HSTX_STR_HSBOT_BMSK                               0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TEST_STR_DSIPHY_HSTX_STR_HSBOT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_4_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000018)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_4_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_4_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_4_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_4_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_4_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_4_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_4_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_4_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_4_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_4_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_4_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_4_DSIPHY_T_HS_EXIT_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_4_DSIPHY_T_HS_EXIT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_5_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x0000001c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_5_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_5_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_5_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_5_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_5_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_5_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_5_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_5_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_5_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_5_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_5_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_5_DSIPHY_T_HS_ZERO_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_5_DSIPHY_T_HS_ZERO_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_6_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000020)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_6_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_6_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_6_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_6_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_6_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_6_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_6_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_6_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_6_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_6_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_6_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_6_DSIPHY_T_HS_PREPARE_BMSK                           0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_6_DSIPHY_T_HS_PREPARE_SHFT                            0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_7_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000024)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_7_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_7_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_7_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_7_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_7_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_7_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_7_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_7_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_7_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_7_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_7_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_7_DSIPHY_T_HS_TRAIL_BMSK                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_7_DSIPHY_T_HS_TRAIL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_8_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000028)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_8_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_8_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_8_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_8_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_8_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_8_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_8_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_8_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_8_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_8_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_8_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_8_DSIPHY_T_HS_RQST_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_8_DSIPHY_T_HS_RQST_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_9_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x0000002c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_9_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_9_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_9_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_9_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_9_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_9_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_9_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_9_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_9_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_9_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_9_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_9_SPARE_T_TA_SURE_BMSK                               0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_9_SPARE_T_TA_SURE_SHFT                                0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_9_DSIPHY_T_TA_SURE_BMSK                              0x70
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_9_DSIPHY_T_TA_SURE_SHFT                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_9_SPARE_T_TA_GO_BMSK                                  0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_9_SPARE_T_TA_GO_SHFT                                  0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_9_DSIPHY_T_TA_GO_BMSK                                 0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_9_DSIPHY_T_TA_GO_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_10_ADDR                                        (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000030)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_10_RMSK                                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_10_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_10_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_10_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_10_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_10_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_10_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_10_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_10_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_10_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_10_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_10_SPARE_T_TA_GET_BMSK                               0xf8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_10_SPARE_T_TA_GET_SHFT                                0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_10_DSIPHY_T_TA_GET_BMSK                               0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_10_DSIPHY_T_TA_GET_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_11_ADDR                                        (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000034)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_11_RMSK                                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_11_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_11_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_11_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_11_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_11_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_11_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_11_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_11_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_11_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_11_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_11_DSIPHY_TRIG3_CMD_BMSK                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_TIMING_CTRL_11_DSIPHY_TRIG3_CMD_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000038)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_DSIPHY_STR_LP_N_BMSK                             0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_DSIPHY_STR_LP_N_SHFT                              0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_DSIPHY_STR_LP_P_BMSK                              0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_0_DSIPHY_STR_LP_P_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x0000003c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_DEBUG_SEL_3_0_BMSK                               0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_DEBUG_SEL_3_0_SHFT                                0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_HS_CONTENTION_DIS_BMSK                            0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_HS_CONTENTION_DIS_SHFT                            0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_DSIPHY_LPRX_EN_BMSK                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_DSIPHY_LPRX_EN_SHFT                               0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_DSIPHY_CDRX_EN_BMSK                               0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_DSIPHY_CDRX_EN_SHFT                               0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_EXT_BYTECLK_SEL_BMSK                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_STRENGTH_CTRL_1_EXT_BYTECLK_SEL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_POLY_ADDR                                             (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000040)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_POLY_RMSK                                                   0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_POLY_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_POLY_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_POLY_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_POLY_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_POLY_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_POLY_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_POLY_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_POLY_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_POLY_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_POLY_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_POLY_BIST_PRBS_POLY_BMSK                                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_POLY_BIST_PRBS_POLY_SHFT                                     0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED0_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000044)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED0_BIST_PRBS_SEED_7_0_BMSK                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED0_BIST_PRBS_SEED_7_0_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED1_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000048)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED1_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED1_BIST_PRBS_SEED_15_8_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SEED1_BIST_PRBS_SEED_15_8_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_HEAD_ADDR                                             (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x0000004c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_HEAD_RMSK                                                   0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_HEAD_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_HEAD_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_HEAD_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_HEAD_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_HEAD_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_HEAD_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_HEAD_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_HEAD_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_HEAD_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_HEAD_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_HEAD_BIST_PRBS_HEAD_BMSK                                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_HEAD_BIST_PRBS_HEAD_SHFT                                     0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SOT_ADDR                                              (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000050)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SOT_RMSK                                                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SOT_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SOT_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SOT_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SOT_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SOT_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SOT_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SOT_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SOT_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SOT_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SOT_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SOT_BIST_PRBS_SOT_BMSK                                      0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_SOT_BIST_PRBS_SOT_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000054)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_BIST_MODE_BMSK                                        0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_BIST_MODE_SHFT                                         0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTGEN_ERROR_INJECT_BMSK                             0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTGEN_ERROR_INJECT_SHFT                              0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTCHK_CAPTURE_BMSK                                  0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTCHK_CAPTURE_SHFT                                   0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTGEN_ENABLE_BMSK                                   0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTGEN_ENABLE_SHFT                                    0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTCHK_ERROR_CNT_CLR_BMSK                             0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTCHK_ERROR_CNT_CLR_SHFT                             0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTCHK_MODE_BMSK                                      0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTCHK_MODE_SHFT                                      0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTCHK_CROSS8_BMSK                                    0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTCHK_CROSS8_SHFT                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTCHK_ENABLE_BMSK                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL0_BISTCHK_ENABLE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL1_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000058)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL1_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL1_BIST_WORD_CNT_7_0_BMSK                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL1_BIST_WORD_CNT_7_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL2_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x0000005c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL2_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL2_BIST_WORD_CNT_15_8_BMSK                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL2_BIST_WORD_CNT_15_8_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000060)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_BISTGEN_CROSS8_BMSK                                   0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_BISTGEN_CROSS8_SHFT                                    0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_BISTCHK_WORD_CNT_SEL_BMSK                             0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_BISTCHK_WORD_CNT_SEL_SHFT                              0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_BISTCHK_ERROR_CNT_SEL_BMSK                            0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_BISTCHK_ERROR_CNT_SEL_SHFT                             0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_MISR_READ_SEL_BMSK                                    0x18
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_MISR_READ_SEL_SHFT                                     0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_BISTCHK_DONE_CLR_BMSK                                  0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_BISTCHK_DONE_CLR_SHFT                                  0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_MISR_SIG_CLEAR_BMSK                                    0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_MISR_SIG_CLEAR_SHFT                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_MISR_ENABLE_BMSK                                       0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_CTRL3_MISR_ENABLE_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_VREG_CNTRL_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000064)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_VREG_CNTRL_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_VREG_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_VREG_CNTRL_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_VREG_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_VREG_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_VREG_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_VREG_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_VREG_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_VREG_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_VREG_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_VREG_CNTRL_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_VREG_CNTRL_SPARE_VREG_CTRL_BMSK                                  0xc0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_VREG_CNTRL_SPARE_VREG_CTRL_SHFT                                   0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_VREG_CNTRL_DSIPHY_VREG_CTRL_BMSK                                 0x3f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_VREG_CNTRL_DSIPHY_VREG_CTRL_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000068)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSTOP_STATUS_BMSK                0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSTOP_STATUS_SHFT                 0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSBOT_STATUS_BMSK                 0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSBOT_STATUS_SHFT                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS0_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x0000006c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS0_RMSK                                                0x3f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS0_BISTCHK_SEED_ERROR_BMSK                             0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS0_BISTCHK_SEED_ERROR_SHFT                              0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS0_BISTCHK_PRBS_ERROR_BMSK                             0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS0_BISTCHK_PRBS_ERROR_SHFT                              0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS0_BISTCHK_STATE_BMSK                                   0xe
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS0_BISTCHK_STATE_SHFT                                   0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS0_BISTCHK_DONE_BMSK                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS0_BISTCHK_DONE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS1_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000070)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS1_RMSK                                                 0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS1_BISTGEN_STATUS_BMSK                                  0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS1_BISTGEN_STATUS_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS2_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000074)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS2_RMSK                                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS2_BISTCHK_ERROR_CNT_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS2_BISTCHK_ERROR_CNT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS3_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x00000078)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS3_RMSK                                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS3_BISTCHK_WORD_CNT_BMSK                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_BIST_STATUS3_BISTCHK_WORD_CNT_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_MISR_STATUS_ADDR                                           (MMSS_DSI_1_PHY_DSIPHY_CKLN_DSIPHY_CKLN_DSI_DATALN_REG_BASE      + 0x0000007c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_MISR_STATUS_RMSK                                                 0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_MISR_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_MISR_STATUS_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_MISR_STATUS_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_MISR_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_MISR_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_MISR_STATUS_BISTCHK_MISR_SIG_BMSK                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CKLN_MISR_STATUS_BISTCHK_MISR_SIG_SHFT                                 0x0
+
+/*----------------------------------------------------------------------------
+ * MODULE: MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON
+ *--------------------------------------------------------------------------*/
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID0_ADDR                                      (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000000)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID0_RMSK                                            0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID0_MINOR_3_0_BMSK                                  0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID0_MINOR_3_0_SHFT                                   0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID0_MAJOR_BMSK                                       0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID0_MAJOR_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID1_ADDR                                      (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000004)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID1_RMSK                                            0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID1_MINOR_11_4_BMSK                                 0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID1_MINOR_11_4_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID2_ADDR                                      (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000008)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID2_RMSK                                            0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID2_STEP_7_0_BMSK                                   0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID2_STEP_7_0_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID3_ADDR                                      (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x0000000c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID3_RMSK                                            0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID3_STEP_15_8_BMSK                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REVISION_ID3_STEP_15_8_SHFT                                   0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG0_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000010)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG0_RMSK                                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG0_DIV_CTRL_7_4_BMSK                                   0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG0_DIV_CTRL_7_4_SHFT                                    0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG0_DIV_CTRL_3_0_BMSK                                    0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG0_DIV_CTRL_3_0_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG1_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000014)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG1_RMSK                                                 0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG1_DSICLK_SEL_BMSK                                      0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CLK_CFG1_DSICLK_SEL_SHFT                                      0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_ADDR                                    (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000018)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_RMSK                                          0x7f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_PLL_BIAS_EN_BMSK                              0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_PLL_BIAS_EN_SHFT                               0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_TEST_ESCCLK_SEL_BMSK                          0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_TEST_ESCCLK_SEL_SHFT                           0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_TEST_BYTECLK_SEL_BMSK                         0x18
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_TEST_BYTECLK_SEL_SHFT                          0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_DSIPHY_BITCLK_HS_SEL_BMSK                      0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_DSIPHY_BITCLK_HS_SEL_SHFT                      0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_PLL_CLK_BYPASS_BMSK                            0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_PLL_CLK_BYPASS_SHFT                            0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_CLK_EN_BMSK                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_TEST_CTRL_CLK_EN_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x0000001c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_CMN_PLL_PWRDN_B_BMSK                                  0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_CMN_PLL_PWRDN_B_SHFT                                   0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_DIGTOP_PWRDN_B_BMSK                            0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_DIGTOP_PWRDN_B_SHFT                             0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_CAL_PWRDN_B_BMSK                               0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_CAL_PWRDN_B_SHFT                                0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_DLN3_SHUTDOWNB_BMSK                            0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_DLN3_SHUTDOWNB_SHFT                             0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_DLN2_SHUTDOWNB_BMSK                             0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_DLN2_SHUTDOWNB_SHFT                             0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_CLK_SHUTDOWNB_BMSK                              0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_CLK_SHUTDOWNB_SHFT                              0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_DLN1_SHUTDOWNB_BMSK                             0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_DLN1_SHUTDOWNB_SHFT                             0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_DLN0_SHUTDOWNB_BMSK                             0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_0_DSIPHY_DLN0_SHUTDOWNB_SHFT                             0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000020)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_RMSK                                                  0xbf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_SW_RESET_BMSK                                  0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_SW_RESET_SHFT                                   0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_PLL_SW_RESET_BMSK                              0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_PLL_SW_RESET_SHFT                               0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_DLN3_SW_RESET_BMSK                             0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_DLN3_SW_RESET_SHFT                              0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_DLN2_SW_RESET_BMSK                              0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_DLN2_SW_RESET_SHFT                              0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_CLK_SW_RESET_BMSK                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_CLK_SW_RESET_SHFT                               0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_DLN1_SW_RESET_BMSK                              0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_DLN1_SW_RESET_SHFT                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_DLN0_SW_RESET_BMSK                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CTRL_1_DSIPHY_DLN0_SW_RESET_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_ADDR                                    (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000024)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_RMSK                                           0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_TRIGGER_BMSK                                   0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_TRIGGER_TRIGGER_SHFT                                   0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG0_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000028)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG0_RMSK                                              0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG0_SW_CAL_TX_BOT_EN_BMSK                             0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG0_SW_CAL_TX_BOT_EN_SHFT                             0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG0_SW_CAL_TX_TOP_EN_BMSK                             0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG0_SW_CAL_TX_TOP_EN_SHFT                             0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG1_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x0000002c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG1_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG1_SW_CAL_TX_BOT_STR_BMSK                           0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG1_SW_CAL_TX_BOT_STR_SHFT                            0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG1_SW_CAL_TX_TOP_STR_BMSK                            0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG1_SW_CAL_TX_TOP_STR_SHFT                            0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG2_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000030)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG2_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG2_CAL_SW_CFG2_RSV_BMSK                             0xfe
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG2_CAL_SW_CFG2_RSV_SHFT                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG2_CALIBRATION_SEL_BMSK                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_SW_CFG2_CALIBRATION_SEL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG0_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000034)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG0_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG0_CAL_HW_CFG0_RSV_BMSK                             0xfe
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG0_CAL_HW_CFG0_RSV_SHFT                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG0_HW_CAL_EN_BMSK                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG0_HW_CAL_EN_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG1_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000038)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG1_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG1_LOWER_THRESHOLD_BMSK                             0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG1_LOWER_THRESHOLD_SHFT                              0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG1_UPPER_THRESHOLD_BMSK                              0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG1_UPPER_THRESHOLD_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG2_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x0000003c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG2_RMSK                                             0x1f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG2_PC_STR_TOO_WEAK_COUNT_BMSK                       0x1f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG2_PC_STR_TOO_WEAK_COUNT_SHFT                        0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG3_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000040)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG3_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG3_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG3_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG3_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG3_COMPARATOR_SETTLE_TIME_7_0_BMSK                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG3_COMPARATOR_SETTLE_TIME_7_0_SHFT                   0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG4_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000044)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG4_RMSK                                              0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG4_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG4_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG4_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG4_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG4_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG4_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG4_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG4_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG4_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG4_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG4_COMPARATOR_SETTLE_TIME_9_8_BMSK                   0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_CAL_HW_CFG4_COMPARATOR_SETTLE_TIME_9_8_SHFT                   0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_PLL_CNTRL_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000048)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_PLL_CNTRL_RMSK                                                0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_PLL_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_PLL_CNTRL_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_PLL_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_PLL_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_PLL_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_PLL_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_PLL_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_PLL_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_PLL_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_PLL_CNTRL_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_PLL_CNTRL_PLL_START_BMSK                                      0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_PLL_CNTRL_PLL_START_SHFT                                      0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_LDO_CNTRL_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x0000004c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_LDO_CNTRL_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_LDO_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_LDO_CNTRL_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_LDO_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_LDO_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_LDO_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_LDO_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_LDO_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_LDO_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_LDO_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_LDO_CNTRL_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_LDO_CNTRL_DSIPHY_VREG_CTRL_RSV_BMSK                          0xc0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_LDO_CNTRL_DSIPHY_VREG_CTRL_RSV_SHFT                           0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_LDO_CNTRL_DSIPHY_VREG_CTRL_BMSK                              0x3f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_LDO_CNTRL_DSIPHY_VREG_CTRL_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_ADDR                             (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000050)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_RMSK                                   0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_DIGTOP_AMUX_SEL_BMSK                   0xc0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_DIGTOP_AMUX_SEL_SHFT                    0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_DIGTOP_DEBUG_SEL_BMSK                  0x3f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_DEBUG_SEL_DIGTOP_DEBUG_SEL_SHFT                   0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_ADDR                                (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000054)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_RMSK                                      0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_DIGTOP_SPARE_7_0_BMSK                     0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE0_DIGTOP_SPARE_7_0_SHFT                      0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_ADDR                                (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000058)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_RMSK                                      0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_DIGTOP_SPARE_15_8_BMSK                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE1_DIGTOP_SPARE_15_8_SHFT                     0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_ADDR                                (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x0000005c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_RMSK                                      0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_DIGTOP_SPARE_23_16_BMSK                   0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE2_DIGTOP_SPARE_23_16_SHFT                    0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_ADDR                                (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000060)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_RMSK                                      0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_DIGTOP_SPARE_31_24_BMSK                   0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DIGTOP_SPARE3_DIGTOP_SPARE_31_24_SHFT                    0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_ADDR                             (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000064)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_RMSK                                    0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_HW_CALIBRATOR_BUSY_BMSK                 0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_HW_CALIBRATOR_BUSY_SHFT                 0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_PC_STR_TOO_WEAK_BMSK                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS0_PC_STR_TOO_WEAK_SHFT                    0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_ADDR                             (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000068)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_RMSK                                   0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_HW_CAL_BOT_STR_BMSK                    0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_HW_CAL_BOT_STR_SHFT                     0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_HW_CAL_TOP_STR_BMSK                     0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_REGULATOR_CAL_STATUS1_HW_CAL_TOP_STR_SHFT                     0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS0_ADDR                                   (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x0000006c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS0_RMSK                                         0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS0_DEBUG_BUS_7_0_BMSK                           0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS0_DEBUG_BUS_7_0_SHFT                            0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS1_ADDR                                   (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000070)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS1_RMSK                                         0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS1_DEBUG_BUS_15_8_BMSK                          0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS1_DEBUG_BUS_15_8_SHFT                           0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS2_ADDR                                   (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000074)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS2_RMSK                                         0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS2_DEBUG_BUS_23_16_BMSK                         0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS2_DEBUG_BUS_23_16_SHFT                          0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS3_ADDR                                   (MMSS_DSI_1_PHY_DSIPHY_CMN_DSIPHY_CMN_DSI_COMMON_REG_BASE      + 0x00000078)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS3_RMSK                                         0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS3_DEBUG_BUS_31_24_BMSK                         0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_CMN_GLBL_DEBUG_BUS3_DEBUG_BUS_31_24_SHFT                          0x0
+
+/*----------------------------------------------------------------------------
+ * MODULE: MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN
+ *--------------------------------------------------------------------------*/
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG0_ADDR                                                  (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000000)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG0_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG0_DSIPHY_HSTX_PREPARE_DLY_BMSK                                0xc0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG0_DSIPHY_HSTX_PREPARE_DLY_SHFT                                 0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG0_DSIPHY_HSTX_PGM_DLY_5_4_BMSK                                0x30
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG0_DSIPHY_HSTX_PGM_DLY_5_4_SHFT                                 0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG0_DSIPHY_HSTX_PGM_DLY_3_0_BMSK                                 0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG0_DSIPHY_HSTX_PGM_DLY_3_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG1_ADDR                                                  (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000004)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG1_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG1_DSIPHY_HSTX_SLEW_RATE_BMSK                                  0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG1_DSIPHY_HSTX_SLEW_RATE_SHFT                                   0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG1_SPARE_CFG1_BMSK                                              0xe
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG1_SPARE_CFG1_SHFT                                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG1_DSIPHY_HSTX_HALFBYTECLK_EN_BMSK                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG1_DSIPHY_HSTX_HALFBYTECLK_EN_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG2_ADDR                                                  (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000008)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG2_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG2_DSIPHY_PEMPH_STRBOT_BMSK                                    0xe0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG2_DSIPHY_PEMPH_STRBOT_SHFT                                     0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG2_DSIPHY_STR_VALUE_OVERRIDE_BMSK                              0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG2_DSIPHY_STR_VALUE_OVERRIDE_SHFT                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG2_DSIPHY_PEMPH_STRTOP_BMSK                                     0xe
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG2_DSIPHY_PEMPH_STRTOP_SHFT                                     0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG2_DSIPHY_PEMPH_EN_BMSK                                         0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG2_DSIPHY_PEMPH_EN_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_ADDR                                                  (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x0000000c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_IS_CKLANE_BMSK                                              0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_IS_CKLANE_SHFT                                               0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_CLK_PATTERN_HSTX_INV_BMSK                                   0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_CLK_PATTERN_HSTX_INV_SHFT                                    0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_TEST_MODE_LPTX_DATAN_BMSK                                   0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_TEST_MODE_LPTX_DATAN_SHFT                                    0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_TEST_MODE_LPTX_DATAP_BMSK                                   0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_TEST_MODE_LPTX_DATAP_SHFT                                    0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_DSIPHY_LPRX_DLY_BMSK                                         0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_CFG3_DSIPHY_LPRX_DLY_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000010)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_ANE_BYPASS_EN_BMSK                                 0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_ANE_BYPASS_EN_SHFT                                  0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_DMUX_LP_SEL_BMSK                                   0x70
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_DMUX_LP_SEL_SHFT                                    0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_PN_SWAP_BMSK                                        0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_PN_SWAP_SHFT                                        0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_DMUX_HS_SEL_BMSK                                    0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_DMUX_HS_SEL_SHFT                                    0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_TEST_MODE_HSTX_EN_BMSK                              0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_TEST_MODE_HSTX_EN_SHFT                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_FORCE_TEST_MODE_BMSK                                0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_DATAPATH_FORCE_TEST_MODE_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_STR_ADDR                                              (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000014)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_STR_RMSK                                                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_STR_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_STR_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_STR_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_STR_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_STR_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_STR_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_STR_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_STR_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_STR_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_STR_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_STR_DSIPHY_HSTX_STR_HSTOP_BMSK                              0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_STR_DSIPHY_HSTX_STR_HSTOP_SHFT                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_STR_DSIPHY_HSTX_STR_HSBOT_BMSK                               0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TEST_STR_DSIPHY_HSTX_STR_HSBOT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_4_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000018)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_4_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_4_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_4_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_4_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_4_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_4_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_4_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_4_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_4_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_4_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_4_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_4_DSIPHY_T_HS_EXIT_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_4_DSIPHY_T_HS_EXIT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_5_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x0000001c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_5_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_5_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_5_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_5_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_5_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_5_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_5_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_5_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_5_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_5_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_5_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_5_DSIPHY_T_HS_ZERO_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_5_DSIPHY_T_HS_ZERO_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_6_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000020)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_6_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_6_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_6_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_6_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_6_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_6_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_6_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_6_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_6_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_6_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_6_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_6_DSIPHY_T_HS_PREPARE_BMSK                           0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_6_DSIPHY_T_HS_PREPARE_SHFT                            0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_7_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000024)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_7_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_7_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_7_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_7_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_7_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_7_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_7_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_7_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_7_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_7_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_7_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_7_DSIPHY_T_HS_TRAIL_BMSK                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_7_DSIPHY_T_HS_TRAIL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_8_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000028)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_8_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_8_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_8_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_8_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_8_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_8_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_8_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_8_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_8_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_8_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_8_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_8_DSIPHY_T_HS_RQST_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_8_DSIPHY_T_HS_RQST_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_9_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x0000002c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_9_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_9_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_9_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_9_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_9_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_9_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_9_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_9_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_9_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_9_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_9_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_9_SPARE_T_TA_SURE_BMSK                               0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_9_SPARE_T_TA_SURE_SHFT                                0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_9_DSIPHY_T_TA_SURE_BMSK                              0x70
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_9_DSIPHY_T_TA_SURE_SHFT                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_9_SPARE_T_TA_GO_BMSK                                  0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_9_SPARE_T_TA_GO_SHFT                                  0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_9_DSIPHY_T_TA_GO_BMSK                                 0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_9_DSIPHY_T_TA_GO_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_10_ADDR                                        (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000030)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_10_RMSK                                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_10_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_10_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_10_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_10_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_10_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_10_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_10_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_10_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_10_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_10_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_10_SPARE_T_TA_GET_BMSK                               0xf8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_10_SPARE_T_TA_GET_SHFT                                0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_10_DSIPHY_T_TA_GET_BMSK                               0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_10_DSIPHY_T_TA_GET_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_11_ADDR                                        (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000034)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_11_RMSK                                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_11_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_11_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_11_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_11_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_11_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_11_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_11_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_11_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_11_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_11_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_11_DSIPHY_TRIG3_CMD_BMSK                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_TIMING_CTRL_11_DSIPHY_TRIG3_CMD_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000038)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_DSIPHY_STR_LP_N_BMSK                             0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_DSIPHY_STR_LP_N_SHFT                              0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_DSIPHY_STR_LP_P_BMSK                              0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_0_DSIPHY_STR_LP_P_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x0000003c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_DEBUG_SEL_3_0_BMSK                               0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_DEBUG_SEL_3_0_SHFT                                0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_HS_CONTENTION_DIS_BMSK                            0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_HS_CONTENTION_DIS_SHFT                            0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_DSIPHY_LPRX_EN_BMSK                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_DSIPHY_LPRX_EN_SHFT                               0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_DSIPHY_CDRX_EN_BMSK                               0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_DSIPHY_CDRX_EN_SHFT                               0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_EXT_BYTECLK_SEL_BMSK                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_STRENGTH_CTRL_1_EXT_BYTECLK_SEL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_POLY_ADDR                                             (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000040)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_POLY_RMSK                                                   0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_POLY_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_POLY_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_POLY_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_POLY_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_POLY_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_POLY_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_POLY_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_POLY_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_POLY_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_POLY_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_POLY_BIST_PRBS_POLY_BMSK                                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_POLY_BIST_PRBS_POLY_SHFT                                     0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED0_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000044)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED0_BIST_PRBS_SEED_7_0_BMSK                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED0_BIST_PRBS_SEED_7_0_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED1_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000048)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED1_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED1_BIST_PRBS_SEED_15_8_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SEED1_BIST_PRBS_SEED_15_8_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_HEAD_ADDR                                             (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x0000004c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_HEAD_RMSK                                                   0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_HEAD_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_HEAD_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_HEAD_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_HEAD_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_HEAD_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_HEAD_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_HEAD_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_HEAD_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_HEAD_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_HEAD_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_HEAD_BIST_PRBS_HEAD_BMSK                                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_HEAD_BIST_PRBS_HEAD_SHFT                                     0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SOT_ADDR                                              (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000050)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SOT_RMSK                                                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SOT_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SOT_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SOT_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SOT_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SOT_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SOT_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SOT_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SOT_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SOT_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SOT_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SOT_BIST_PRBS_SOT_BMSK                                      0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_SOT_BIST_PRBS_SOT_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000054)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_BIST_MODE_BMSK                                        0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_BIST_MODE_SHFT                                         0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTGEN_ERROR_INJECT_BMSK                             0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTGEN_ERROR_INJECT_SHFT                              0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTCHK_CAPTURE_BMSK                                  0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTCHK_CAPTURE_SHFT                                   0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTGEN_ENABLE_BMSK                                   0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTGEN_ENABLE_SHFT                                    0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTCHK_ERROR_CNT_CLR_BMSK                             0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTCHK_ERROR_CNT_CLR_SHFT                             0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTCHK_MODE_BMSK                                      0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTCHK_MODE_SHFT                                      0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTCHK_CROSS8_BMSK                                    0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTCHK_CROSS8_SHFT                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTCHK_ENABLE_BMSK                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL0_BISTCHK_ENABLE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL1_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000058)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL1_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL1_BIST_WORD_CNT_7_0_BMSK                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL1_BIST_WORD_CNT_7_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL2_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x0000005c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL2_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL2_BIST_WORD_CNT_15_8_BMSK                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL2_BIST_WORD_CNT_15_8_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000060)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_BISTGEN_CROSS8_BMSK                                   0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_BISTGEN_CROSS8_SHFT                                    0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_BISTCHK_WORD_CNT_SEL_BMSK                             0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_BISTCHK_WORD_CNT_SEL_SHFT                              0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_BISTCHK_ERROR_CNT_SEL_BMSK                            0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_BISTCHK_ERROR_CNT_SEL_SHFT                             0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_MISR_READ_SEL_BMSK                                    0x18
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_MISR_READ_SEL_SHFT                                     0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_BISTCHK_DONE_CLR_BMSK                                  0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_BISTCHK_DONE_CLR_SHFT                                  0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_MISR_SIG_CLEAR_BMSK                                    0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_MISR_SIG_CLEAR_SHFT                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_MISR_ENABLE_BMSK                                       0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_CTRL3_MISR_ENABLE_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_VREG_CNTRL_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000064)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_VREG_CNTRL_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_VREG_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_VREG_CNTRL_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_VREG_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_VREG_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_VREG_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_VREG_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_VREG_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_VREG_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_VREG_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_VREG_CNTRL_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_VREG_CNTRL_SPARE_VREG_CTRL_BMSK                                  0xc0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_VREG_CNTRL_SPARE_VREG_CTRL_SHFT                                   0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_VREG_CNTRL_DSIPHY_VREG_CTRL_BMSK                                 0x3f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_VREG_CNTRL_DSIPHY_VREG_CTRL_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000068)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSTOP_STATUS_BMSK                0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSTOP_STATUS_SHFT                 0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSBOT_STATUS_BMSK                 0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSBOT_STATUS_SHFT                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS0_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x0000006c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS0_RMSK                                                0x3f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS0_BISTCHK_SEED_ERROR_BMSK                             0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS0_BISTCHK_SEED_ERROR_SHFT                              0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS0_BISTCHK_PRBS_ERROR_BMSK                             0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS0_BISTCHK_PRBS_ERROR_SHFT                              0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS0_BISTCHK_STATE_BMSK                                   0xe
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS0_BISTCHK_STATE_SHFT                                   0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS0_BISTCHK_DONE_BMSK                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS0_BISTCHK_DONE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS1_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000070)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS1_RMSK                                                 0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS1_BISTGEN_STATUS_BMSK                                  0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS1_BISTGEN_STATUS_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS2_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000074)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS2_RMSK                                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS2_BISTCHK_ERROR_CNT_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS2_BISTCHK_ERROR_CNT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS3_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x00000078)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS3_RMSK                                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS3_BISTCHK_WORD_CNT_BMSK                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_BIST_STATUS3_BISTCHK_WORD_CNT_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_MISR_STATUS_ADDR                                           (MMSS_DSI_1_PHY_DSIPHY_DLN0_DSIPHY_DLN0_DSI_DATALN_REG_BASE      + 0x0000007c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_MISR_STATUS_RMSK                                                 0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_MISR_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_MISR_STATUS_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_MISR_STATUS_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_MISR_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_MISR_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_MISR_STATUS_BISTCHK_MISR_SIG_BMSK                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN0_MISR_STATUS_BISTCHK_MISR_SIG_SHFT                                 0x0
+
+/*----------------------------------------------------------------------------
+ * MODULE: MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN
+ *--------------------------------------------------------------------------*/
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG0_ADDR                                                  (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000000)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG0_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG0_DSIPHY_HSTX_PREPARE_DLY_BMSK                                0xc0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG0_DSIPHY_HSTX_PREPARE_DLY_SHFT                                 0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG0_DSIPHY_HSTX_PGM_DLY_5_4_BMSK                                0x30
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG0_DSIPHY_HSTX_PGM_DLY_5_4_SHFT                                 0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG0_DSIPHY_HSTX_PGM_DLY_3_0_BMSK                                 0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG0_DSIPHY_HSTX_PGM_DLY_3_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG1_ADDR                                                  (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000004)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG1_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG1_DSIPHY_HSTX_SLEW_RATE_BMSK                                  0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG1_DSIPHY_HSTX_SLEW_RATE_SHFT                                   0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG1_SPARE_CFG1_BMSK                                              0xe
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG1_SPARE_CFG1_SHFT                                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG1_DSIPHY_HSTX_HALFBYTECLK_EN_BMSK                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG1_DSIPHY_HSTX_HALFBYTECLK_EN_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG2_ADDR                                                  (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000008)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG2_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG2_DSIPHY_PEMPH_STRBOT_BMSK                                    0xe0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG2_DSIPHY_PEMPH_STRBOT_SHFT                                     0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG2_DSIPHY_STR_VALUE_OVERRIDE_BMSK                              0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG2_DSIPHY_STR_VALUE_OVERRIDE_SHFT                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG2_DSIPHY_PEMPH_STRTOP_BMSK                                     0xe
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG2_DSIPHY_PEMPH_STRTOP_SHFT                                     0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG2_DSIPHY_PEMPH_EN_BMSK                                         0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG2_DSIPHY_PEMPH_EN_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_ADDR                                                  (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x0000000c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_IS_CKLANE_BMSK                                              0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_IS_CKLANE_SHFT                                               0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_CLK_PATTERN_HSTX_INV_BMSK                                   0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_CLK_PATTERN_HSTX_INV_SHFT                                    0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_TEST_MODE_LPTX_DATAN_BMSK                                   0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_TEST_MODE_LPTX_DATAN_SHFT                                    0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_TEST_MODE_LPTX_DATAP_BMSK                                   0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_TEST_MODE_LPTX_DATAP_SHFT                                    0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_DSIPHY_LPRX_DLY_BMSK                                         0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_CFG3_DSIPHY_LPRX_DLY_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000010)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_ANE_BYPASS_EN_BMSK                                 0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_ANE_BYPASS_EN_SHFT                                  0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_DMUX_LP_SEL_BMSK                                   0x70
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_DMUX_LP_SEL_SHFT                                    0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_PN_SWAP_BMSK                                        0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_PN_SWAP_SHFT                                        0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_DMUX_HS_SEL_BMSK                                    0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_DMUX_HS_SEL_SHFT                                    0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_TEST_MODE_HSTX_EN_BMSK                              0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_TEST_MODE_HSTX_EN_SHFT                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_FORCE_TEST_MODE_BMSK                                0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_DATAPATH_FORCE_TEST_MODE_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_STR_ADDR                                              (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000014)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_STR_RMSK                                                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_STR_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_STR_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_STR_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_STR_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_STR_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_STR_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_STR_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_STR_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_STR_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_STR_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_STR_DSIPHY_HSTX_STR_HSTOP_BMSK                              0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_STR_DSIPHY_HSTX_STR_HSTOP_SHFT                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_STR_DSIPHY_HSTX_STR_HSBOT_BMSK                               0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TEST_STR_DSIPHY_HSTX_STR_HSBOT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_4_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000018)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_4_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_4_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_4_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_4_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_4_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_4_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_4_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_4_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_4_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_4_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_4_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_4_DSIPHY_T_HS_EXIT_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_4_DSIPHY_T_HS_EXIT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_5_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x0000001c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_5_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_5_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_5_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_5_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_5_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_5_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_5_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_5_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_5_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_5_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_5_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_5_DSIPHY_T_HS_ZERO_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_5_DSIPHY_T_HS_ZERO_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_6_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000020)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_6_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_6_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_6_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_6_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_6_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_6_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_6_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_6_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_6_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_6_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_6_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_6_DSIPHY_T_HS_PREPARE_BMSK                           0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_6_DSIPHY_T_HS_PREPARE_SHFT                            0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_7_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000024)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_7_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_7_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_7_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_7_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_7_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_7_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_7_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_7_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_7_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_7_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_7_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_7_DSIPHY_T_HS_TRAIL_BMSK                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_7_DSIPHY_T_HS_TRAIL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_8_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000028)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_8_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_8_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_8_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_8_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_8_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_8_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_8_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_8_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_8_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_8_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_8_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_8_DSIPHY_T_HS_RQST_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_8_DSIPHY_T_HS_RQST_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_9_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x0000002c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_9_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_9_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_9_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_9_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_9_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_9_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_9_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_9_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_9_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_9_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_9_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_9_SPARE_T_TA_SURE_BMSK                               0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_9_SPARE_T_TA_SURE_SHFT                                0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_9_DSIPHY_T_TA_SURE_BMSK                              0x70
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_9_DSIPHY_T_TA_SURE_SHFT                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_9_SPARE_T_TA_GO_BMSK                                  0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_9_SPARE_T_TA_GO_SHFT                                  0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_9_DSIPHY_T_TA_GO_BMSK                                 0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_9_DSIPHY_T_TA_GO_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_10_ADDR                                        (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000030)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_10_RMSK                                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_10_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_10_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_10_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_10_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_10_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_10_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_10_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_10_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_10_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_10_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_10_SPARE_T_TA_GET_BMSK                               0xf8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_10_SPARE_T_TA_GET_SHFT                                0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_10_DSIPHY_T_TA_GET_BMSK                               0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_10_DSIPHY_T_TA_GET_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_11_ADDR                                        (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000034)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_11_RMSK                                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_11_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_11_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_11_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_11_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_11_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_11_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_11_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_11_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_11_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_11_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_11_DSIPHY_TRIG3_CMD_BMSK                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_TIMING_CTRL_11_DSIPHY_TRIG3_CMD_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000038)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_DSIPHY_STR_LP_N_BMSK                             0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_DSIPHY_STR_LP_N_SHFT                              0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_DSIPHY_STR_LP_P_BMSK                              0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_0_DSIPHY_STR_LP_P_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x0000003c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_DEBUG_SEL_3_0_BMSK                               0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_DEBUG_SEL_3_0_SHFT                                0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_HS_CONTENTION_DIS_BMSK                            0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_HS_CONTENTION_DIS_SHFT                            0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_DSIPHY_LPRX_EN_BMSK                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_DSIPHY_LPRX_EN_SHFT                               0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_DSIPHY_CDRX_EN_BMSK                               0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_DSIPHY_CDRX_EN_SHFT                               0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_EXT_BYTECLK_SEL_BMSK                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_STRENGTH_CTRL_1_EXT_BYTECLK_SEL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_POLY_ADDR                                             (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000040)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_POLY_RMSK                                                   0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_POLY_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_POLY_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_POLY_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_POLY_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_POLY_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_POLY_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_POLY_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_POLY_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_POLY_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_POLY_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_POLY_BIST_PRBS_POLY_BMSK                                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_POLY_BIST_PRBS_POLY_SHFT                                     0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED0_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000044)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED0_BIST_PRBS_SEED_7_0_BMSK                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED0_BIST_PRBS_SEED_7_0_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED1_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000048)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED1_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED1_BIST_PRBS_SEED_15_8_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SEED1_BIST_PRBS_SEED_15_8_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_HEAD_ADDR                                             (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x0000004c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_HEAD_RMSK                                                   0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_HEAD_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_HEAD_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_HEAD_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_HEAD_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_HEAD_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_HEAD_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_HEAD_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_HEAD_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_HEAD_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_HEAD_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_HEAD_BIST_PRBS_HEAD_BMSK                                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_HEAD_BIST_PRBS_HEAD_SHFT                                     0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SOT_ADDR                                              (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000050)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SOT_RMSK                                                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SOT_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SOT_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SOT_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SOT_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SOT_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SOT_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SOT_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SOT_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SOT_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SOT_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SOT_BIST_PRBS_SOT_BMSK                                      0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_SOT_BIST_PRBS_SOT_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000054)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_BIST_MODE_BMSK                                        0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_BIST_MODE_SHFT                                         0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTGEN_ERROR_INJECT_BMSK                             0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTGEN_ERROR_INJECT_SHFT                              0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTCHK_CAPTURE_BMSK                                  0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTCHK_CAPTURE_SHFT                                   0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTGEN_ENABLE_BMSK                                   0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTGEN_ENABLE_SHFT                                    0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTCHK_ERROR_CNT_CLR_BMSK                             0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTCHK_ERROR_CNT_CLR_SHFT                             0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTCHK_MODE_BMSK                                      0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTCHK_MODE_SHFT                                      0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTCHK_CROSS8_BMSK                                    0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTCHK_CROSS8_SHFT                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTCHK_ENABLE_BMSK                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL0_BISTCHK_ENABLE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL1_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000058)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL1_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL1_BIST_WORD_CNT_7_0_BMSK                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL1_BIST_WORD_CNT_7_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL2_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x0000005c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL2_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL2_BIST_WORD_CNT_15_8_BMSK                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL2_BIST_WORD_CNT_15_8_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000060)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_BISTGEN_CROSS8_BMSK                                   0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_BISTGEN_CROSS8_SHFT                                    0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_BISTCHK_WORD_CNT_SEL_BMSK                             0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_BISTCHK_WORD_CNT_SEL_SHFT                              0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_BISTCHK_ERROR_CNT_SEL_BMSK                            0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_BISTCHK_ERROR_CNT_SEL_SHFT                             0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_MISR_READ_SEL_BMSK                                    0x18
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_MISR_READ_SEL_SHFT                                     0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_BISTCHK_DONE_CLR_BMSK                                  0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_BISTCHK_DONE_CLR_SHFT                                  0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_MISR_SIG_CLEAR_BMSK                                    0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_MISR_SIG_CLEAR_SHFT                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_MISR_ENABLE_BMSK                                       0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_CTRL3_MISR_ENABLE_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_VREG_CNTRL_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000064)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_VREG_CNTRL_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_VREG_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_VREG_CNTRL_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_VREG_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_VREG_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_VREG_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_VREG_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_VREG_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_VREG_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_VREG_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_VREG_CNTRL_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_VREG_CNTRL_SPARE_VREG_CTRL_BMSK                                  0xc0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_VREG_CNTRL_SPARE_VREG_CTRL_SHFT                                   0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_VREG_CNTRL_DSIPHY_VREG_CTRL_BMSK                                 0x3f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_VREG_CNTRL_DSIPHY_VREG_CTRL_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000068)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSTOP_STATUS_BMSK                0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSTOP_STATUS_SHFT                 0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSBOT_STATUS_BMSK                 0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSBOT_STATUS_SHFT                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS0_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x0000006c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS0_RMSK                                                0x3f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS0_BISTCHK_SEED_ERROR_BMSK                             0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS0_BISTCHK_SEED_ERROR_SHFT                              0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS0_BISTCHK_PRBS_ERROR_BMSK                             0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS0_BISTCHK_PRBS_ERROR_SHFT                              0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS0_BISTCHK_STATE_BMSK                                   0xe
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS0_BISTCHK_STATE_SHFT                                   0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS0_BISTCHK_DONE_BMSK                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS0_BISTCHK_DONE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS1_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000070)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS1_RMSK                                                 0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS1_BISTGEN_STATUS_BMSK                                  0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS1_BISTGEN_STATUS_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS2_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000074)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS2_RMSK                                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS2_BISTCHK_ERROR_CNT_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS2_BISTCHK_ERROR_CNT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS3_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x00000078)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS3_RMSK                                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS3_BISTCHK_WORD_CNT_BMSK                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_BIST_STATUS3_BISTCHK_WORD_CNT_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_MISR_STATUS_ADDR                                           (MMSS_DSI_1_PHY_DSIPHY_DLN1_DSIPHY_DLN1_DSI_DATALN_REG_BASE      + 0x0000007c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_MISR_STATUS_RMSK                                                 0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_MISR_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_MISR_STATUS_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_MISR_STATUS_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_MISR_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_MISR_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_MISR_STATUS_BISTCHK_MISR_SIG_BMSK                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN1_MISR_STATUS_BISTCHK_MISR_SIG_SHFT                                 0x0
+
+/*----------------------------------------------------------------------------
+ * MODULE: MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN
+ *--------------------------------------------------------------------------*/
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG0_ADDR                                                  (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000000)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG0_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG0_DSIPHY_HSTX_PREPARE_DLY_BMSK                                0xc0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG0_DSIPHY_HSTX_PREPARE_DLY_SHFT                                 0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG0_DSIPHY_HSTX_PGM_DLY_5_4_BMSK                                0x30
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG0_DSIPHY_HSTX_PGM_DLY_5_4_SHFT                                 0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG0_DSIPHY_HSTX_PGM_DLY_3_0_BMSK                                 0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG0_DSIPHY_HSTX_PGM_DLY_3_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG1_ADDR                                                  (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000004)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG1_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG1_DSIPHY_HSTX_SLEW_RATE_BMSK                                  0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG1_DSIPHY_HSTX_SLEW_RATE_SHFT                                   0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG1_SPARE_CFG1_BMSK                                              0xe
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG1_SPARE_CFG1_SHFT                                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG1_DSIPHY_HSTX_HALFBYTECLK_EN_BMSK                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG1_DSIPHY_HSTX_HALFBYTECLK_EN_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG2_ADDR                                                  (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000008)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG2_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG2_DSIPHY_PEMPH_STRBOT_BMSK                                    0xe0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG2_DSIPHY_PEMPH_STRBOT_SHFT                                     0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG2_DSIPHY_STR_VALUE_OVERRIDE_BMSK                              0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG2_DSIPHY_STR_VALUE_OVERRIDE_SHFT                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG2_DSIPHY_PEMPH_STRTOP_BMSK                                     0xe
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG2_DSIPHY_PEMPH_STRTOP_SHFT                                     0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG2_DSIPHY_PEMPH_EN_BMSK                                         0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG2_DSIPHY_PEMPH_EN_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_ADDR                                                  (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x0000000c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_IS_CKLANE_BMSK                                              0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_IS_CKLANE_SHFT                                               0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_CLK_PATTERN_HSTX_INV_BMSK                                   0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_CLK_PATTERN_HSTX_INV_SHFT                                    0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_TEST_MODE_LPTX_DATAN_BMSK                                   0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_TEST_MODE_LPTX_DATAN_SHFT                                    0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_TEST_MODE_LPTX_DATAP_BMSK                                   0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_TEST_MODE_LPTX_DATAP_SHFT                                    0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_DSIPHY_LPRX_DLY_BMSK                                         0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_CFG3_DSIPHY_LPRX_DLY_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000010)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_ANE_BYPASS_EN_BMSK                                 0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_ANE_BYPASS_EN_SHFT                                  0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_DMUX_LP_SEL_BMSK                                   0x70
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_DMUX_LP_SEL_SHFT                                    0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_PN_SWAP_BMSK                                        0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_PN_SWAP_SHFT                                        0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_DMUX_HS_SEL_BMSK                                    0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_DMUX_HS_SEL_SHFT                                    0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_TEST_MODE_HSTX_EN_BMSK                              0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_TEST_MODE_HSTX_EN_SHFT                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_FORCE_TEST_MODE_BMSK                                0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_DATAPATH_FORCE_TEST_MODE_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_STR_ADDR                                              (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000014)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_STR_RMSK                                                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_STR_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_STR_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_STR_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_STR_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_STR_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_STR_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_STR_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_STR_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_STR_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_STR_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_STR_DSIPHY_HSTX_STR_HSTOP_BMSK                              0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_STR_DSIPHY_HSTX_STR_HSTOP_SHFT                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_STR_DSIPHY_HSTX_STR_HSBOT_BMSK                               0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TEST_STR_DSIPHY_HSTX_STR_HSBOT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_4_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000018)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_4_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_4_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_4_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_4_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_4_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_4_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_4_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_4_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_4_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_4_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_4_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_4_DSIPHY_T_HS_EXIT_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_4_DSIPHY_T_HS_EXIT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_5_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x0000001c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_5_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_5_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_5_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_5_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_5_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_5_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_5_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_5_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_5_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_5_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_5_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_5_DSIPHY_T_HS_ZERO_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_5_DSIPHY_T_HS_ZERO_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_6_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000020)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_6_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_6_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_6_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_6_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_6_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_6_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_6_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_6_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_6_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_6_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_6_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_6_DSIPHY_T_HS_PREPARE_BMSK                           0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_6_DSIPHY_T_HS_PREPARE_SHFT                            0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_7_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000024)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_7_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_7_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_7_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_7_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_7_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_7_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_7_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_7_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_7_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_7_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_7_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_7_DSIPHY_T_HS_TRAIL_BMSK                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_7_DSIPHY_T_HS_TRAIL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_8_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000028)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_8_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_8_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_8_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_8_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_8_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_8_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_8_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_8_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_8_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_8_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_8_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_8_DSIPHY_T_HS_RQST_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_8_DSIPHY_T_HS_RQST_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_9_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x0000002c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_9_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_9_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_9_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_9_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_9_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_9_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_9_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_9_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_9_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_9_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_9_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_9_SPARE_T_TA_SURE_BMSK                               0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_9_SPARE_T_TA_SURE_SHFT                                0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_9_DSIPHY_T_TA_SURE_BMSK                              0x70
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_9_DSIPHY_T_TA_SURE_SHFT                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_9_SPARE_T_TA_GO_BMSK                                  0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_9_SPARE_T_TA_GO_SHFT                                  0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_9_DSIPHY_T_TA_GO_BMSK                                 0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_9_DSIPHY_T_TA_GO_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_10_ADDR                                        (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000030)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_10_RMSK                                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_10_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_10_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_10_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_10_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_10_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_10_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_10_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_10_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_10_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_10_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_10_SPARE_T_TA_GET_BMSK                               0xf8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_10_SPARE_T_TA_GET_SHFT                                0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_10_DSIPHY_T_TA_GET_BMSK                               0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_10_DSIPHY_T_TA_GET_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_11_ADDR                                        (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000034)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_11_RMSK                                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_11_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_11_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_11_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_11_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_11_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_11_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_11_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_11_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_11_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_11_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_11_DSIPHY_TRIG3_CMD_BMSK                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_TIMING_CTRL_11_DSIPHY_TRIG3_CMD_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000038)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_DSIPHY_STR_LP_N_BMSK                             0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_DSIPHY_STR_LP_N_SHFT                              0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_DSIPHY_STR_LP_P_BMSK                              0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_0_DSIPHY_STR_LP_P_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x0000003c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_DEBUG_SEL_3_0_BMSK                               0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_DEBUG_SEL_3_0_SHFT                                0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_HS_CONTENTION_DIS_BMSK                            0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_HS_CONTENTION_DIS_SHFT                            0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_DSIPHY_LPRX_EN_BMSK                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_DSIPHY_LPRX_EN_SHFT                               0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_DSIPHY_CDRX_EN_BMSK                               0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_DSIPHY_CDRX_EN_SHFT                               0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_EXT_BYTECLK_SEL_BMSK                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_STRENGTH_CTRL_1_EXT_BYTECLK_SEL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_POLY_ADDR                                             (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000040)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_POLY_RMSK                                                   0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_POLY_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_POLY_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_POLY_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_POLY_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_POLY_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_POLY_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_POLY_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_POLY_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_POLY_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_POLY_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_POLY_BIST_PRBS_POLY_BMSK                                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_POLY_BIST_PRBS_POLY_SHFT                                     0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED0_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000044)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED0_BIST_PRBS_SEED_7_0_BMSK                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED0_BIST_PRBS_SEED_7_0_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED1_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000048)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED1_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED1_BIST_PRBS_SEED_15_8_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SEED1_BIST_PRBS_SEED_15_8_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_HEAD_ADDR                                             (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x0000004c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_HEAD_RMSK                                                   0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_HEAD_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_HEAD_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_HEAD_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_HEAD_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_HEAD_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_HEAD_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_HEAD_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_HEAD_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_HEAD_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_HEAD_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_HEAD_BIST_PRBS_HEAD_BMSK                                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_HEAD_BIST_PRBS_HEAD_SHFT                                     0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SOT_ADDR                                              (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000050)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SOT_RMSK                                                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SOT_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SOT_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SOT_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SOT_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SOT_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SOT_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SOT_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SOT_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SOT_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SOT_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SOT_BIST_PRBS_SOT_BMSK                                      0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_SOT_BIST_PRBS_SOT_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000054)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_BIST_MODE_BMSK                                        0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_BIST_MODE_SHFT                                         0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTGEN_ERROR_INJECT_BMSK                             0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTGEN_ERROR_INJECT_SHFT                              0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTCHK_CAPTURE_BMSK                                  0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTCHK_CAPTURE_SHFT                                   0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTGEN_ENABLE_BMSK                                   0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTGEN_ENABLE_SHFT                                    0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTCHK_ERROR_CNT_CLR_BMSK                             0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTCHK_ERROR_CNT_CLR_SHFT                             0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTCHK_MODE_BMSK                                      0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTCHK_MODE_SHFT                                      0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTCHK_CROSS8_BMSK                                    0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTCHK_CROSS8_SHFT                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTCHK_ENABLE_BMSK                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL0_BISTCHK_ENABLE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL1_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000058)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL1_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL1_BIST_WORD_CNT_7_0_BMSK                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL1_BIST_WORD_CNT_7_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL2_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x0000005c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL2_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL2_BIST_WORD_CNT_15_8_BMSK                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL2_BIST_WORD_CNT_15_8_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000060)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_BISTGEN_CROSS8_BMSK                                   0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_BISTGEN_CROSS8_SHFT                                    0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_BISTCHK_WORD_CNT_SEL_BMSK                             0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_BISTCHK_WORD_CNT_SEL_SHFT                              0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_BISTCHK_ERROR_CNT_SEL_BMSK                            0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_BISTCHK_ERROR_CNT_SEL_SHFT                             0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_MISR_READ_SEL_BMSK                                    0x18
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_MISR_READ_SEL_SHFT                                     0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_BISTCHK_DONE_CLR_BMSK                                  0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_BISTCHK_DONE_CLR_SHFT                                  0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_MISR_SIG_CLEAR_BMSK                                    0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_MISR_SIG_CLEAR_SHFT                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_MISR_ENABLE_BMSK                                       0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_CTRL3_MISR_ENABLE_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_VREG_CNTRL_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000064)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_VREG_CNTRL_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_VREG_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_VREG_CNTRL_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_VREG_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_VREG_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_VREG_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_VREG_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_VREG_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_VREG_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_VREG_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_VREG_CNTRL_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_VREG_CNTRL_SPARE_VREG_CTRL_BMSK                                  0xc0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_VREG_CNTRL_SPARE_VREG_CTRL_SHFT                                   0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_VREG_CNTRL_DSIPHY_VREG_CTRL_BMSK                                 0x3f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_VREG_CNTRL_DSIPHY_VREG_CTRL_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000068)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSTOP_STATUS_BMSK                0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSTOP_STATUS_SHFT                 0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSBOT_STATUS_BMSK                 0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSBOT_STATUS_SHFT                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS0_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x0000006c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS0_RMSK                                                0x3f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS0_BISTCHK_SEED_ERROR_BMSK                             0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS0_BISTCHK_SEED_ERROR_SHFT                              0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS0_BISTCHK_PRBS_ERROR_BMSK                             0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS0_BISTCHK_PRBS_ERROR_SHFT                              0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS0_BISTCHK_STATE_BMSK                                   0xe
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS0_BISTCHK_STATE_SHFT                                   0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS0_BISTCHK_DONE_BMSK                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS0_BISTCHK_DONE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS1_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000070)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS1_RMSK                                                 0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS1_BISTGEN_STATUS_BMSK                                  0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS1_BISTGEN_STATUS_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS2_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000074)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS2_RMSK                                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS2_BISTCHK_ERROR_CNT_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS2_BISTCHK_ERROR_CNT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS3_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x00000078)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS3_RMSK                                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS3_BISTCHK_WORD_CNT_BMSK                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_BIST_STATUS3_BISTCHK_WORD_CNT_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_MISR_STATUS_ADDR                                           (MMSS_DSI_1_PHY_DSIPHY_DLN2_DSIPHY_DLN2_DSI_DATALN_REG_BASE      + 0x0000007c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_MISR_STATUS_RMSK                                                 0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_MISR_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_MISR_STATUS_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_MISR_STATUS_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_MISR_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_MISR_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_MISR_STATUS_BISTCHK_MISR_SIG_BMSK                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN2_MISR_STATUS_BISTCHK_MISR_SIG_SHFT                                 0x0
+
+/*----------------------------------------------------------------------------
+ * MODULE: MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN
+ *--------------------------------------------------------------------------*/
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG0_ADDR                                                  (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000000)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG0_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG0_DSIPHY_HSTX_PREPARE_DLY_BMSK                                0xc0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG0_DSIPHY_HSTX_PREPARE_DLY_SHFT                                 0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG0_DSIPHY_HSTX_PGM_DLY_5_4_BMSK                                0x30
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG0_DSIPHY_HSTX_PGM_DLY_5_4_SHFT                                 0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG0_DSIPHY_HSTX_PGM_DLY_3_0_BMSK                                 0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG0_DSIPHY_HSTX_PGM_DLY_3_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG1_ADDR                                                  (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000004)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG1_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG1_DSIPHY_HSTX_SLEW_RATE_BMSK                                  0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG1_DSIPHY_HSTX_SLEW_RATE_SHFT                                   0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG1_SPARE_CFG1_BMSK                                              0xe
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG1_SPARE_CFG1_SHFT                                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG1_DSIPHY_HSTX_HALFBYTECLK_EN_BMSK                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG1_DSIPHY_HSTX_HALFBYTECLK_EN_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG2_ADDR                                                  (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000008)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG2_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG2_DSIPHY_PEMPH_STRBOT_BMSK                                    0xe0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG2_DSIPHY_PEMPH_STRBOT_SHFT                                     0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG2_DSIPHY_STR_VALUE_OVERRIDE_BMSK                              0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG2_DSIPHY_STR_VALUE_OVERRIDE_SHFT                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG2_DSIPHY_PEMPH_STRTOP_BMSK                                     0xe
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG2_DSIPHY_PEMPH_STRTOP_SHFT                                     0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG2_DSIPHY_PEMPH_EN_BMSK                                         0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG2_DSIPHY_PEMPH_EN_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_ADDR                                                  (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x0000000c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_RMSK                                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_IS_CKLANE_BMSK                                              0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_IS_CKLANE_SHFT                                               0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_CLK_PATTERN_HSTX_INV_BMSK                                   0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_CLK_PATTERN_HSTX_INV_SHFT                                    0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_TEST_MODE_LPTX_DATAN_BMSK                                   0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_TEST_MODE_LPTX_DATAN_SHFT                                    0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_TEST_MODE_LPTX_DATAP_BMSK                                   0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_TEST_MODE_LPTX_DATAP_SHFT                                    0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_DSIPHY_LPRX_DLY_BMSK                                         0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_CFG3_DSIPHY_LPRX_DLY_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000010)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_ANE_BYPASS_EN_BMSK                                 0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_ANE_BYPASS_EN_SHFT                                  0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_DMUX_LP_SEL_BMSK                                   0x70
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_DMUX_LP_SEL_SHFT                                    0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_PN_SWAP_BMSK                                        0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_PN_SWAP_SHFT                                        0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_DMUX_HS_SEL_BMSK                                    0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_DMUX_HS_SEL_SHFT                                    0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_TEST_MODE_HSTX_EN_BMSK                              0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_TEST_MODE_HSTX_EN_SHFT                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_FORCE_TEST_MODE_BMSK                                0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_DATAPATH_FORCE_TEST_MODE_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_STR_ADDR                                              (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000014)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_STR_RMSK                                                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_STR_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_STR_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_STR_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_STR_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_STR_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_STR_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_STR_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_STR_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_STR_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_STR_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_STR_DSIPHY_HSTX_STR_HSTOP_BMSK                              0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_STR_DSIPHY_HSTX_STR_HSTOP_SHFT                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_STR_DSIPHY_HSTX_STR_HSBOT_BMSK                               0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TEST_STR_DSIPHY_HSTX_STR_HSBOT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_4_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000018)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_4_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_4_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_4_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_4_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_4_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_4_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_4_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_4_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_4_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_4_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_4_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_4_DSIPHY_T_HS_EXIT_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_4_DSIPHY_T_HS_EXIT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_5_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x0000001c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_5_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_5_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_5_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_5_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_5_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_5_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_5_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_5_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_5_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_5_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_5_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_5_DSIPHY_T_HS_ZERO_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_5_DSIPHY_T_HS_ZERO_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_6_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000020)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_6_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_6_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_6_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_6_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_6_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_6_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_6_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_6_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_6_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_6_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_6_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_6_DSIPHY_T_HS_PREPARE_BMSK                           0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_6_DSIPHY_T_HS_PREPARE_SHFT                            0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_7_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000024)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_7_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_7_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_7_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_7_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_7_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_7_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_7_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_7_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_7_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_7_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_7_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_7_DSIPHY_T_HS_TRAIL_BMSK                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_7_DSIPHY_T_HS_TRAIL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_8_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000028)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_8_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_8_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_8_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_8_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_8_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_8_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_8_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_8_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_8_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_8_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_8_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_8_DSIPHY_T_HS_RQST_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_8_DSIPHY_T_HS_RQST_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_9_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x0000002c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_9_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_9_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_9_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_9_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_9_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_9_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_9_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_9_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_9_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_9_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_9_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_9_SPARE_T_TA_SURE_BMSK                               0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_9_SPARE_T_TA_SURE_SHFT                                0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_9_DSIPHY_T_TA_SURE_BMSK                              0x70
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_9_DSIPHY_T_TA_SURE_SHFT                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_9_SPARE_T_TA_GO_BMSK                                  0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_9_SPARE_T_TA_GO_SHFT                                  0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_9_DSIPHY_T_TA_GO_BMSK                                 0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_9_DSIPHY_T_TA_GO_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_10_ADDR                                        (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000030)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_10_RMSK                                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_10_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_10_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_10_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_10_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_10_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_10_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_10_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_10_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_10_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_10_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_10_SPARE_T_TA_GET_BMSK                               0xf8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_10_SPARE_T_TA_GET_SHFT                                0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_10_DSIPHY_T_TA_GET_BMSK                               0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_10_DSIPHY_T_TA_GET_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_11_ADDR                                        (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000034)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_11_RMSK                                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_11_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_11_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_11_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_11_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_11_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_11_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_11_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_11_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_11_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_11_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_11_DSIPHY_TRIG3_CMD_BMSK                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_TIMING_CTRL_11_DSIPHY_TRIG3_CMD_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000038)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_DSIPHY_STR_LP_N_BMSK                             0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_DSIPHY_STR_LP_N_SHFT                              0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_DSIPHY_STR_LP_P_BMSK                              0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_0_DSIPHY_STR_LP_P_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x0000003c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_DEBUG_SEL_3_0_BMSK                               0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_DEBUG_SEL_3_0_SHFT                                0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_HS_CONTENTION_DIS_BMSK                            0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_HS_CONTENTION_DIS_SHFT                            0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_DSIPHY_LPRX_EN_BMSK                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_DSIPHY_LPRX_EN_SHFT                               0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_DSIPHY_CDRX_EN_BMSK                               0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_DSIPHY_CDRX_EN_SHFT                               0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_EXT_BYTECLK_SEL_BMSK                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_STRENGTH_CTRL_1_EXT_BYTECLK_SEL_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_POLY_ADDR                                             (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000040)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_POLY_RMSK                                                   0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_POLY_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_POLY_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_POLY_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_POLY_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_POLY_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_POLY_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_POLY_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_POLY_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_POLY_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_POLY_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_POLY_BIST_PRBS_POLY_BMSK                                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_POLY_BIST_PRBS_POLY_SHFT                                     0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED0_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000044)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED0_BIST_PRBS_SEED_7_0_BMSK                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED0_BIST_PRBS_SEED_7_0_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED1_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000048)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED1_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED1_BIST_PRBS_SEED_15_8_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SEED1_BIST_PRBS_SEED_15_8_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_HEAD_ADDR                                             (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x0000004c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_HEAD_RMSK                                                   0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_HEAD_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_HEAD_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_HEAD_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_HEAD_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_HEAD_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_HEAD_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_HEAD_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_HEAD_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_HEAD_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_HEAD_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_HEAD_BIST_PRBS_HEAD_BMSK                                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_HEAD_BIST_PRBS_HEAD_SHFT                                     0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SOT_ADDR                                              (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000050)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SOT_RMSK                                                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SOT_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SOT_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SOT_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SOT_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SOT_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SOT_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SOT_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SOT_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SOT_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SOT_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SOT_BIST_PRBS_SOT_BMSK                                      0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_SOT_BIST_PRBS_SOT_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000054)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_BIST_MODE_BMSK                                        0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_BIST_MODE_SHFT                                         0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTGEN_ERROR_INJECT_BMSK                             0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTGEN_ERROR_INJECT_SHFT                              0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTCHK_CAPTURE_BMSK                                  0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTCHK_CAPTURE_SHFT                                   0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTGEN_ENABLE_BMSK                                   0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTGEN_ENABLE_SHFT                                    0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTCHK_ERROR_CNT_CLR_BMSK                             0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTCHK_ERROR_CNT_CLR_SHFT                             0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTCHK_MODE_BMSK                                      0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTCHK_MODE_SHFT                                      0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTCHK_CROSS8_BMSK                                    0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTCHK_CROSS8_SHFT                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTCHK_ENABLE_BMSK                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL0_BISTCHK_ENABLE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL1_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000058)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL1_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL1_BIST_WORD_CNT_7_0_BMSK                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL1_BIST_WORD_CNT_7_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL2_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x0000005c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL2_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL2_BIST_WORD_CNT_15_8_BMSK                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL2_BIST_WORD_CNT_15_8_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000060)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_BISTGEN_CROSS8_BMSK                                   0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_BISTGEN_CROSS8_SHFT                                    0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_BISTCHK_WORD_CNT_SEL_BMSK                             0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_BISTCHK_WORD_CNT_SEL_SHFT                              0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_BISTCHK_ERROR_CNT_SEL_BMSK                            0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_BISTCHK_ERROR_CNT_SEL_SHFT                             0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_MISR_READ_SEL_BMSK                                    0x18
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_MISR_READ_SEL_SHFT                                     0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_BISTCHK_DONE_CLR_BMSK                                  0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_BISTCHK_DONE_CLR_SHFT                                  0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_MISR_SIG_CLEAR_BMSK                                    0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_MISR_SIG_CLEAR_SHFT                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_MISR_ENABLE_BMSK                                       0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_CTRL3_MISR_ENABLE_SHFT                                       0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_VREG_CNTRL_ADDR                                            (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000064)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_VREG_CNTRL_RMSK                                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_VREG_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_VREG_CNTRL_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_VREG_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_VREG_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_VREG_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_VREG_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_VREG_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_VREG_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_VREG_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_VREG_CNTRL_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_VREG_CNTRL_SPARE_VREG_CTRL_BMSK                                  0xc0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_VREG_CNTRL_SPARE_VREG_CTRL_SHFT                                   0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_VREG_CNTRL_DSIPHY_VREG_CTRL_BMSK                                 0x3f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_VREG_CNTRL_DSIPHY_VREG_CTRL_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000068)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSTOP_STATUS_BMSK                0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSTOP_STATUS_SHFT                 0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSBOT_STATUS_BMSK                 0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_HSTX_STR_STATUS_DSIPHY_HSTX_STR_HSBOT_STATUS_SHFT                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS0_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x0000006c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS0_RMSK                                                0x3f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS0_BISTCHK_SEED_ERROR_BMSK                             0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS0_BISTCHK_SEED_ERROR_SHFT                              0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS0_BISTCHK_PRBS_ERROR_BMSK                             0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS0_BISTCHK_PRBS_ERROR_SHFT                              0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS0_BISTCHK_STATE_BMSK                                   0xe
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS0_BISTCHK_STATE_SHFT                                   0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS0_BISTCHK_DONE_BMSK                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS0_BISTCHK_DONE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS1_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000070)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS1_RMSK                                                 0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS1_BISTGEN_STATUS_BMSK                                  0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS1_BISTGEN_STATUS_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS2_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000074)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS2_RMSK                                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS2_BISTCHK_ERROR_CNT_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS2_BISTCHK_ERROR_CNT_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS3_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x00000078)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS3_RMSK                                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS3_BISTCHK_WORD_CNT_BMSK                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_BIST_STATUS3_BISTCHK_WORD_CNT_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_MISR_STATUS_ADDR                                           (MMSS_DSI_1_PHY_DSIPHY_DLN3_DSIPHY_DLN3_DSI_DATALN_REG_BASE      + 0x0000007c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_MISR_STATUS_RMSK                                                 0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_MISR_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_MISR_STATUS_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_MISR_STATUS_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_MISR_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_MISR_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_MISR_STATUS_BISTCHK_MISR_SIG_BMSK                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_DLN3_MISR_STATUS_BISTCHK_MISR_SIG_SHFT                                 0x0
+
+/*----------------------------------------------------------------------------
+ * MODULE: MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE
+ *--------------------------------------------------------------------------*/
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IE_TRIM_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000000)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IE_TRIM_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IE_TRIM_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IE_TRIM_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IE_TRIM_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IE_TRIM_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IE_TRIM_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IE_TRIM_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IE_TRIM_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IE_TRIM_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IE_TRIM_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IE_TRIM_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IE_TRIM_IETRIM_BMSK                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IE_TRIM_IETRIM_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IP_TRIM_ADDR                                         (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000004)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IP_TRIM_RMSK                                               0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IP_TRIM_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IP_TRIM_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IP_TRIM_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IP_TRIM_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IP_TRIM_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IP_TRIM_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IP_TRIM_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IP_TRIM_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IP_TRIM_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IP_TRIM_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IP_TRIM_IPTRIM_BMSK                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IP_TRIM_IPTRIM_SHFT                                         0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CNTRL_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000008)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CNTRL_RMSK                                              0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CNTRL_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CNTRL_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CNTRL_PLL_DIV_FFEN_BMSK                                 0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CNTRL_PLL_DIV_FFEN_SHFT                                 0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CNTRL_PLL_DIV_ORD_BMSK                                  0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CNTRL_PLL_DIV_ORD_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_ADDR                               (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000000c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_RMSK                                      0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_PLL_FLIP_DIR_BMSK                         0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_PLL_FLIP_DIR_SHFT                         0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_PLL_PHSEL_EN_BMSK                         0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_CONTROL_PLL_PHSEL_EN_SHFT                         0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IPTAT_TRIM_ADDR                                      (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000010)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IPTAT_TRIM_RMSK                                            0x1f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IPTAT_TRIM_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IPTAT_TRIM_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IPTAT_TRIM_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IPTAT_TRIM_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IPTAT_TRIM_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IPTAT_TRIM_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IPTAT_TRIM_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IPTAT_TRIM_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IPTAT_TRIM_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IPTAT_TRIM_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IPTAT_TRIM_IPTAT_TRIM_BMSK                                 0x1f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_IPTAT_TRIM_IPTAT_TRIM_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_DC_ADDR                                    (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000014)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_DC_RMSK                                          0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_DC_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_DC_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_DC_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_DC_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_DC_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_DC_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_DC_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_DC_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_DC_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_DC_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_DC_PLL_PHSEL_DC_BMSK                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_PHSEL_DC_PLL_PHSEL_DC_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CAL_EN_ADDR                                      (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000018)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CAL_EN_RMSK                                             0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CAL_EN_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CAL_EN_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CAL_EN_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CAL_EN_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CAL_EN_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CAL_EN_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CAL_EN_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CAL_EN_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CAL_EN_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CAL_EN_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CAL_EN_KVCO_CAL_EN_MUX_BMSK                             0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CAL_EN_KVCO_CAL_EN_MUX_SHFT                             0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CAL_EN_KVCO_CAL_EN_BMSK                                 0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CAL_EN_KVCO_CAL_EN_SHFT                                 0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CAL_EN_VCO_CAL_EN_MUX_BMSK                              0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CAL_EN_VCO_CAL_EN_MUX_SHFT                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CAL_EN_VCO_CAL_EN_BMSK                                  0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CAL_EN_VCO_CAL_EN_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CLKBUFLR_EN_ADDR                                     (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000001c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CLKBUFLR_EN_RMSK                                            0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CLKBUFLR_EN_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CLKBUFLR_EN_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CLKBUFLR_EN_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CLKBUFLR_EN_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CLKBUFLR_EN_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CLKBUFLR_EN_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CLKBUFLR_EN_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CLKBUFLR_EN_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CLKBUFLR_EN_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CLKBUFLR_EN_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CLKBUFLR_EN_CLKBUF_L_EN_BMSK                                0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CLKBUFLR_EN_CLKBUF_L_EN_SHFT                                0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CLKBUFLR_EN_CLKBUF_R_EN_BMSK                                0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CLKBUFLR_EN_CLKBUF_R_EN_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL1_ADDR                                        (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000020)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL1_RMSK                                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL1_ATB_SEL_7_0_BMSK                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL1_ATB_SEL_7_0_SHFT                                   0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL2_ADDR                                        (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000024)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL2_RMSK                                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL2_DEBUGBUS_SEL_BMSK                                 0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL2_DEBUGBUS_SEL_SHFT                                  0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL2_ATB_SEL_11_8_BMSK                                  0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_ATB_SEL2_ATB_SEL_11_8_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_ADDR                                 (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000028)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_RMSK                                        0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_SW_RESET_BMSK                               0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SYSCLK_EN_RESET_SW_RESET_SHFT                               0x1
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_ADDR                                   (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000002c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_RMSK                                         0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_VCO_TUNE_MODE_BMSK                           0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_VCO_TUNE_MODE_SHFT                            0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_PLLLOCK_BMSK                          0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_PLLLOCK_SHFT                           0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_VCOCAL_ITER2_BMSK                     0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_VCOCAL_ITER2_SHFT                      0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_KVCO_BMSK                             0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_KVCO_SHFT                              0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_VCOCAL_ITER1_BMSK                      0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_VCOCAL_ITER1_SHFT                      0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_PLL_WAKEUP_BMSK                        0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_PLL_WAKEUP_SHFT                        0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_BANDGAP_BMSK                           0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_BYPASS_BANDGAP_SHFT                           0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_FORCE_PLLLOCK_BMSK                            0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL_FORCE_PLLLOCK_SHFT                            0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_ADDR                                  (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000030)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_RMSK                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_PLL_UNLOCK_DET_DISABLE_BMSK                 0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_PLL_UNLOCK_DET_DISABLE_SHFT                  0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_PLL_BYPASS_BMSK                             0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_PLL_BYPASS_SHFT                              0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_BANDGAP_TIMER_BMSK                          0x38
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_BANDGAP_TIMER_SHFT                           0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_START_MUX_BMSK                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_START_MUX_SHFT                               0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_START_BMSK                                   0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_START_SHFT                                   0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_DISABLE_CLKGATING_BMSK                       0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL2_DISABLE_CLKGATING_SHFT                       0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL3_ADDR                                  (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000034)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL3_RMSK                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL3_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL3_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL3_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL3_PLL_VCOTUNE_TIMER_7_0_BMSK                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL3_PLL_VCOTUNE_TIMER_7_0_SHFT                   0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL4_ADDR                                  (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000038)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL4_RMSK                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL4_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL4_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL4_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL4_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL4_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL4_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL4_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL4_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL4_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL4_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL4_PLL_VCOTUNE_TIMER_15_8_BMSK                 0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL4_PLL_VCOTUNE_TIMER_15_8_SHFT                  0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL5_ADDR                                  (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000003c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL5_RMSK                                        0x1f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL5_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL5_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL5_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL5_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL5_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL5_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL5_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL5_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL5_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL5_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL5_PLL_WAKEUP_MUX_BMSK                         0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL5_PLL_WAKEUP_MUX_SHFT                          0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL5_PLL_WAKEUP_BMSK                              0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL5_PLL_WAKEUP_SHFT                              0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL5_PLLWAKEUP_TIMER_BMSK                         0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESETSM_CNTRL5_PLLWAKEUP_TIMER_SHFT                         0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF1_ADDR                                   (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000040)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF1_RMSK                                         0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF1_KVCO_DIV_REF_7_0_BMSK                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF1_KVCO_DIV_REF_7_0_SHFT                         0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF2_ADDR                                   (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000044)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF2_RMSK                                          0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF2_KVCO_DIV_REF_9_8_BMSK                         0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_DIV_REF2_KVCO_DIV_REF_9_8_SHFT                         0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT1_ADDR                                     (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000048)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT1_RMSK                                           0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT1_KVCO_COUNT_7_0_BMSK                            0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT1_KVCO_COUNT_7_0_SHFT                             0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT2_ADDR                                     (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000004c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT2_RMSK                                            0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT2_KVCO_COUNT_9_8_BMSK                             0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_COUNT2_KVCO_COUNT_9_8_SHFT                             0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_ADDR                                  (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000050)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_RMSK                                        0x3f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_KVCO_WAKEUPTIME_BMSK                        0x30
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_KVCO_WAKEUPTIME_SHFT                         0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_KVCO_POS_KVSLP_BMSK                          0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_KVCO_POS_KVSLP_SHFT                          0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_KVCO_WAITTIME_BMSK                           0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL_KVCO_WAITTIME_SHFT                           0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_ADDR                                 (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000054)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_RMSK                                        0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_KVCO_CAL_DELTA_BMSK                         0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CAL_CNTRL2_KVCO_CAL_DELTA_SHFT                         0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CODE_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000058)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CODE_RMSK                                             0x3f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CODE_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CODE_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CODE_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CODE_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CODE_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CODE_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CODE_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CODE_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CODE_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CODE_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CODE_KVCO_CODE_MUX_BMSK                               0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CODE_KVCO_CODE_MUX_SHFT                                0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CODE_KVCO_CODE_BMSK                                   0x1f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_CODE_KVCO_CODE_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG1_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000005c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG1_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG1_VREF_CFG_7_0_BMSK                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG1_VREF_CFG_7_0_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG2_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000060)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG2_RMSK                                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG2_VREF_CFG_8_8_BMSK                                 0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VREF_CFG2_VREF_CFG_8_8_SHFT                                 0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESOLUTION_ADDR                                      (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000064)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESOLUTION_RMSK                                            0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESOLUTION_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESOLUTION_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESOLUTION_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESOLUTION_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESOLUTION_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESOLUTION_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESOLUTION_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESOLUTION_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESOLUTION_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESOLUTION_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESOLUTION_VCO_CAL_RESOLUTION_BMSK                         0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESOLUTION_VCO_CAL_RESOLUTION_SHFT                          0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESOLUTION_KVCO_CAL_RESOLUTION_BMSK                         0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESOLUTION_KVCO_CAL_RESOLUTION_SHFT                         0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_ADDR                                   (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000068)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_RMSK                                         0x3f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_VCOCAL_POS_SLOPE_BMSK                        0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_VCOCAL_POS_SLOPE_SHFT                         0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_VCO_WAITTIME_BMSK                            0x1c
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_VCO_WAITTIME_SHFT                             0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_VCO_WAKEUPTIME_BMSK                           0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_CAL_CNTRL_VCO_WAKEUPTIME_SHFT                           0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF1_ADDR                                    (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000006c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF1_RMSK                                          0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF1_VCO_DIV_REF_7_0_BMSK                          0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF1_VCO_DIV_REF_7_0_SHFT                           0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF2_ADDR                                    (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000070)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF2_RMSK                                           0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF2_VCO_DIV_REF_9_8_BMSK                           0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_DIV_REF2_VCO_DIV_REF_9_8_SHFT                           0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT1_ADDR                                      (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000074)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT1_RMSK                                            0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT1_VCO_COUNT_7_0_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT1_VCO_COUNT_7_0_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT2_ADDR                                      (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000078)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT2_RMSK                                            0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT2_VCO_COUNT_15_8_BMSK                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_VCO_COUNT2_VCO_COUNT_15_8_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP1_ADDR                                    (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000007c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP1_RMSK                                          0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP1_PLLLOCK_CMP_7_0_BMSK                          0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP1_PLLLOCK_CMP_7_0_SHFT                           0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP2_ADDR                                    (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000080)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP2_RMSK                                          0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP2_PLLLOCK_CMP_15_8_BMSK                         0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP2_PLLLOCK_CMP_15_8_SHFT                          0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP3_ADDR                                    (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000084)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP3_RMSK                                           0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP3_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP3_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP3_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP3_PLLLOCK_CMP_17_16_BMSK                         0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP3_PLLLOCK_CMP_17_16_SHFT                         0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_ADDR                                  (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000088)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_RMSK                                        0xfe
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_PLLLOCK_COUNT_STOP_BMSK                     0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_PLLLOCK_COUNT_STOP_SHFT                      0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_PLLLOCK_EN_MUX_BMSK                         0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_PLLLOCK_EN_MUX_SHFT                          0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_PLLLOCK_EN_BMSK                             0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_PLLLOCK_EN_SHFT                              0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_PLLLOCK_RNG_BMSK                            0x18
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_PLLLOCK_RNG_SHFT                             0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_PLLLOCK_CNT_BMSK                             0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLLLOCK_CMP_EN_PLLLOCK_CNT_SHFT                             0x1
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_VCO_TUNE_ADDR                                    (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000008c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_VCO_TUNE_RMSK                                          0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_VCO_TUNE_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_VCO_TUNE_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_VCO_TUNE_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_VCO_TUNE_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_VCO_TUNE_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_VCO_TUNE_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_VCO_TUNE_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_VCO_TUNE_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_VCO_TUNE_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_VCO_TUNE_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_VCO_TUNE_PLL_VCO_TUNE_MUX_BMSK                         0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_VCO_TUNE_PLL_VCO_TUNE_MUX_SHFT                          0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_VCO_TUNE_PLL_VCO_TUNE_BMSK                             0x7f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_VCO_TUNE_PLL_VCO_TUNE_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEC_START_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000090)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEC_START_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEC_START_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEC_START_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEC_START_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEC_START_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEC_START_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEC_START_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEC_START_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEC_START_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEC_START_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEC_START_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEC_START_DEC_START_BMSK                                   0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEC_START_DEC_START_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_EN_CENTER_ADDR                                   (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000094)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_EN_CENTER_RMSK                                          0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_EN_CENTER_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_EN_CENTER_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_EN_CENTER_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_EN_CENTER_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_EN_CENTER_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_EN_CENTER_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_EN_CENTER_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_EN_CENTER_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_EN_CENTER_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_EN_CENTER_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_EN_CENTER_SSC_CENTER_BMSK                               0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_EN_CENTER_SSC_CENTER_SHFT                               0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_EN_CENTER_SSC_EN_BMSK                                   0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_EN_CENTER_SSC_EN_SHFT                                   0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER1_ADDR                                    (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000098)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER1_RMSK                                          0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER1_SSC_ADJPER_7_0_BMSK                           0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER1_SSC_ADJPER_7_0_SHFT                            0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER2_ADDR                                    (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000009c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER2_RMSK                                           0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER2_SSC_ADJPER_9_8_BMSK                            0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_ADJ_PER2_SSC_ADJPER_9_8_SHFT                            0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER1_ADDR                                        (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000a0)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER1_RMSK                                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER1_SSC_PER_7_0_BMSK                                  0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER1_SSC_PER_7_0_SHFT                                   0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER2_ADDR                                        (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000a4)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER2_RMSK                                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER2_SSC_PER_15_8_BMSK                                 0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_PER2_SSC_PER_15_8_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_ADDR                                  (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000a8)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_RMSK                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_SSC_STEPSIZE_7_0_BMSK                       0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE1_SSC_STEPSIZE_7_0_SHFT                        0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_ADDR                                  (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000ac)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_RMSK                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_SSC_STEPSIZE_15_8_BMSK                      0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_SSC_STEP_SIZE2_SSC_STEPSIZE_15_8_SHFT                       0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_FORCE_CAL_DONE_ADDR                                  (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000b0)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_FORCE_CAL_DONE_RMSK                                         0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_FORCE_CAL_DONE_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_FORCE_CAL_DONE_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_FORCE_CAL_DONE_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_FORCE_CAL_DONE_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_FORCE_CAL_DONE_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_FORCE_CAL_DONE_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_FORCE_CAL_DONE_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_FORCE_CAL_DONE_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_FORCE_CAL_DONE_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_FORCE_CAL_DONE_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_FORCE_CAL_DONE_FORCE_CORE_READY_BMSK                        0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_FORCE_CAL_DONE_FORCE_CORE_READY_SHFT                        0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_FORCE_CAL_DONE_FORCE_VCO_CAL_DONE_BMSK                      0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_FORCE_CAL_DONE_FORCE_VCO_CAL_DONE_SHFT                      0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_FORCE_CAL_DONE_FORCE_KVCO_CAL_DONE_BMSK                     0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_FORCE_CAL_DONE_FORCE_KVCO_CAL_DONE_SHFT                     0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START1_ADDR                                 (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000b4)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START1_RMSK                                       0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START1_DIV_FRAC_START_7_0_BMSK                    0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START1_DIV_FRAC_START_7_0_SHFT                     0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START2_ADDR                                 (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000b8)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START2_RMSK                                       0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START2_DIV_FRAC_START_15_8_BMSK                   0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START2_DIV_FRAC_START_15_8_SHFT                    0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START3_ADDR                                 (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000bc)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START3_RMSK                                        0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START3_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START3_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START3_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START3_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START3_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START3_DIV_FRAC_START_19_16_BMSK                   0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DIV_FRAC_START3_DIV_FRAC_START_19_16_SHFT                   0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_TXCLK_EN_ADDR                                    (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000c0)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_TXCLK_EN_RMSK                                           0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_TXCLK_EN_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_TXCLK_EN_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_TXCLK_EN_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_TXCLK_EN_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_TXCLK_EN_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_TXCLK_EN_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_TXCLK_EN_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_TXCLK_EN_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_TXCLK_EN_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_TXCLK_EN_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_TXCLK_EN_REFCLK_DBLER_EN_BMSK                           0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_TXCLK_EN_REFCLK_DBLER_EN_SHFT                           0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_TXCLK_EN_PLL_TXCLK_EN_BMSK                              0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_TXCLK_EN_PLL_TXCLK_EN_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CRCTRL_ADDR                                      (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000c4)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CRCTRL_RMSK                                            0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CRCTRL_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CRCTRL_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CRCTRL_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CRCTRL_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CRCTRL_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CRCTRL_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CRCTRL_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CRCTRL_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CRCTRL_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CRCTRL_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CRCTRL_PLL_RCTRL_BMSK                                  0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CRCTRL_PLL_RCTRL_SHFT                                   0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CRCTRL_PLL_CCTRL_BMSK                                   0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_CRCTRL_PLL_CCTRL_SHFT                                   0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_FREQUPDATE_ADDR                                  (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000c8)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_FREQUPDATE_RMSK                                         0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_FREQUPDATE_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_FREQUPDATE_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_FREQUPDATE_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_FREQUPDATE_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_FREQUPDATE_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_FREQUPDATE_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_FREQUPDATE_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_FREQUPDATE_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_FREQUPDATE_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_FREQUPDATE_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_FREQUPDATE_PLL_FREQUPDATE_BMSK                          0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_FREQUPDATE_PLL_FREQUPDATE_SHFT                          0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_ADDR                           (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000cc)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_RMSK                                 0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_KVCO_CAL_DONE_BMSK                   0x80
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_KVCO_CAL_DONE_SHFT                    0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_VCO_CAL_DONE_BMSK                    0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_VCO_CAL_DONE_SHFT                     0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_PLL_LOCK_DONE_BMSK                   0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_PLL_LOCK_DONE_SHFT                    0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_RESETSM_BMSK                         0x1e
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_RESETSM_SHFT                          0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_CORE_READY_BMSK                       0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_RESET_SM_READY_STATUS_CORE_READY_SHFT                       0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CORE_VCO_TUNE_STATUS_ADDR                            (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000d0)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CORE_VCO_TUNE_STATUS_RMSK                                  0x7f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CORE_VCO_TUNE_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CORE_VCO_TUNE_STATUS_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CORE_VCO_TUNE_STATUS_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CORE_VCO_TUNE_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CORE_VCO_TUNE_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CORE_VCO_TUNE_STATUS_CORE_VCO_TUNE_BMSK                    0x7f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CORE_VCO_TUNE_STATUS_CORE_VCO_TUNE_SHFT                     0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_ADDR                           (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000d4)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_RMSK                                 0x3f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_PLL_RANGE_STATUS_BMSK                0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_PLL_RANGE_STATUS_SHFT                 0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_CORE_KVCO_CODE_BMSK                  0x1f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CORE_KVCO_CODE_STATUS_CORE_KVCO_CODE_SHFT                   0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS0_ADDR                                      (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000d8)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS0_RMSK                                            0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS0_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS0_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS0_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS0_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS0_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS0_DEBUG_BUS_7_0_BMSK                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS0_DEBUG_BUS_7_0_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS1_ADDR                                      (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000dc)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS1_RMSK                                            0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS1_DEBUG_BUS_15_8_BMSK                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS1_DEBUG_BUS_15_8_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS2_ADDR                                      (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000e0)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS2_RMSK                                            0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS2_DEBUG_BUS_23_16_BMSK                            0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS2_DEBUG_BUS_23_16_SHFT                             0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS3_ADDR                                      (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000e4)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS3_RMSK                                            0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS3_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS3_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS3_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS3_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS3_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS3_DEBUG_BUS_31_24_BMSK                            0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_DEBUG_BUS3_DEBUG_BUS_31_24_SHFT                             0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_MISC1_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000e8)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_MISC1_RMSK                                             0x7f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_MISC1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_MISC1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_MISC1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_MISC1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_MISC1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_MISC1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_MISC1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_MISC1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_MISC1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_MISC1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_MISC1_PFD_DLY_BMSK                                     0x60
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_MISC1_PFD_DLY_SHFT                                      0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_MISC1_PLL_LDO_CTRL_BMSK                                0x1e
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_MISC1_PLL_LDO_CTRL_SHFT                                 0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_MISC1_PLL_LDO_BYPASS_BMSK                               0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_MISC1_PLL_LDO_BYPASS_SHFT                               0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_BGTRIM_ADDR                                          (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000ec)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_BGTRIM_RMSK                                                0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_BGTRIM_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_BGTRIM_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_BGTRIM_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_BGTRIM_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_BGTRIM_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_BGTRIM_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_BGTRIM_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_BGTRIM_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_BGTRIM_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_BGTRIM_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_BGTRIM_BGTRIM_BMSK                                         0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_BGTRIM_BGTRIM_SHFT                                          0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CP_SET_CUR_ADDR                                      (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000f0)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CP_SET_CUR_RMSK                                            0x3f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CP_SET_CUR_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CP_SET_CUR_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CP_SET_CUR_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CP_SET_CUR_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CP_SET_CUR_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CP_SET_CUR_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CP_SET_CUR_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CP_SET_CUR_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CP_SET_CUR_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CP_SET_CUR_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CP_SET_CUR_PLL_CPMSET_CUR_BMSK                             0x38
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CP_SET_CUR_PLL_CPMSET_CUR_SHFT                              0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CP_SET_CUR_CPCSET_CUR_BMSK                                  0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CP_SET_CUR_CPCSET_CUR_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPMSET_ADDR                                     (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000f4)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPMSET_RMSK                                           0x3f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPMSET_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPMSET_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPMSET_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPMSET_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPMSET_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPMSET_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPMSET_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPMSET_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPMSET_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPMSET_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPMSET_PLL_ICPMSET_P_BMSK                             0x38
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPMSET_PLL_ICPMSET_P_SHFT                              0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPMSET_ICPMSET_M_BMSK                                  0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPMSET_ICPMSET_M_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPCSET_ADDR                                     (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000f8)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPCSET_RMSK                                           0x3f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPCSET_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPCSET_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPCSET_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPCSET_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPCSET_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPCSET_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPCSET_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPCSET_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPCSET_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPCSET_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPCSET_PLL_ICPCSET_P_BMSK                             0x38
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPCSET_PLL_ICPCSET_P_SHFT                              0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPCSET_PLL_ICPCSET_M_BMSK                              0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICPCSET_PLL_ICPCSET_M_SHFT                              0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICP_SET_ADDR                                     (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x000000fc)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICP_SET_RMSK                                           0x3f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICP_SET_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICP_SET_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICP_SET_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICP_SET_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICP_SET_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICP_SET_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICP_SET_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICP_SET_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICP_SET_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICP_SET_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICP_SET_PLL_ICPMSET_BMSK                               0x38
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICP_SET_PLL_ICPMSET_SHFT                                0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICP_SET_PLL_ICPCSET_BMSK                                0x7
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_ICP_SET_PLL_ICPCSET_SHFT                                0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF1_ADDR                                        (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000100)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF1_RMSK                                              0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF1_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF1_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF1_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF1_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF1_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF1_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF1_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF1_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF1_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF1_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF1_PLL_LPF_CAP2_BMSK                                 0xf0
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF1_PLL_LPF_CAP2_SHFT                                  0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF1_PLL_LPF_CAP1_BMSK                                  0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF1_PLL_LPF_CAP1_SHFT                                  0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_ADDR                                (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000104)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_RMSK                                      0x3f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_TX_BAND_BMSK                              0x30
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_TX_BAND_SHFT                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_PLL_LPF_RES1_BMSK                          0xf
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_LPF2_POSTDIV_PLL_LPF_RES1_SHFT                          0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_ADDR                                     (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000108)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_RMSK                                           0x7f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_PLL_RESET_MUX_BMSK                             0x40
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_PLL_RESET_MUX_SHFT                              0x6
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_PLL_RESET_BMSK                                 0x20
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_PLL_RESET_SHFT                                  0x5
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_OPEN_LOOP_MUX_BMSK                             0x10
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_OPEN_LOOP_MUX_SHFT                              0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_OPEN_LOOP_BMSK                                  0x8
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_OPEN_LOOP_SHFT                                  0x3
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_BIAS_EN_MUX1_BMSK                               0x4
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_BIAS_EN_MUX1_SHFT                               0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_BIAS_EN_MUX_BMSK                                0x2
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_BIAS_EN_MUX_SHFT                                0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_BIAS_EN_BMSK                                    0x1
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_PLL_BANDGAP_BIAS_EN_SHFT                                    0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_INIT_CODE_ADDR                                  (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x0000010c)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_INIT_CODE_RMSK                                        0x1f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_INIT_CODE_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_INIT_CODE_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_INIT_CODE_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_INIT_CODE_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_INIT_CODE_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_INIT_CODE_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_INIT_CODE_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_INIT_CODE_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_INIT_CODE_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_INIT_CODE_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_INIT_CODE_KVCO_INIT_CODE_BMSK                         0x1f
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_KVCO_INIT_CODE_KVCO_INIT_CODE_SHFT                          0x0
+
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CMN_MISC2_ADDR                                       (MMSS_DSI_1_PHY_DSIPHY_PLL_DSIPHY_PLL_DSI_COM_LITE_REG_BASE      + 0x00000110)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CMN_MISC2_RMSK                                             0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CMN_MISC2_IN          \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CMN_MISC2_ADDR, HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CMN_MISC2_RMSK)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CMN_MISC2_INM(m)      \
+        in_dword_masked(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CMN_MISC2_ADDR, m)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CMN_MISC2_OUT(v)      \
+        out_dword(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CMN_MISC2_ADDR,v)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CMN_MISC2_OUTM(m,v) \
+        out_dword_masked_ns(HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CMN_MISC2_ADDR,m,v,HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CMN_MISC2_IN)
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CMN_MISC2_RSVD_BMSK                                        0xff
+#define HWIO_MMSS_DSI_1_PHY_DSIPHY_PLL_CMN_MISC2_RSVD_SHFT                                         0x0
+
+
+#endif /* __HALDSI_PHY_2_1_0_H__ */

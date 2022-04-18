@@ -1,0 +1,378 @@
+// Author: c_jbenis 
+// cpuss_dragonlink_olc.cmm#5
+
+y.create.l TPDM_OLC_BASE                       0x07B90000 //    - base address
+y.create.l TPDM_OLC_CMB_CR                          0xA00 // rw - control reg
+y.create.l TPDM_OLC_CMB_TIER                        0xA04 // rw - timestamp insertion enable register
+y.create.l TPDM_OLC_CMB_TPR0                        0xA08 // rw - subunit timestamp pattern registers
+y.create.l TPDM_OLC_CMB_TPR1                        0xA0C // rw -       ---
+y.create.l TPDM_OLC_CMB_TPMR0                       0xA10 // rw - subunit timestamp pattern mask registers
+y.create.l TPDM_OLC_CMB_TPMR1                       0xA14 // rw -       ---
+y.create.l TPDM_OLC_CMB_XPR0                        0xA18 // rw - subunit trigger pattern registers
+y.create.l TPDM_OLC_CMB_XPR1                        0xA1C // rw -       ---
+y.create.l TPDM_OLC_CMB_XPMR0                       0xA20 // rw - subunit trigger pattern mask registers
+y.create.l TPDM_OLC_CMB_XPMR1                       0xA24 // rw -       ---
+y.create.l TPDM_OLC_CMB_READCTL                     0xA70 // rw - interface state read control register
+y.create.l TPDM_OLC_CMB_READVAL                     0xA74 // ro -       ---
+y.create.l TPDM_OLC_LAR                             0xFB0 // rw - lock access reg
+y.create.l TPDM_OLC_LSR                             0xFB4 // rw - lock status reg
+
+y.create.l TPDA_OLC_BASE                       0x07B92000 //    - base address
+y.create.l TPDA_OLC_CR                              0x000 // rw - control register
+y.create.l TPDA_OLC_P0_CR                           0x004 // rw - port control register
+y.create.l TPDA_OLC_FPID_CR                         0x084 // rw - flag packet ID control register
+y.create.l TPDA_OLC_FREQREQ_VAL                     0x088 // rw - FREQ packet request value register
+y.create.l TPDA_OLC_SYNCR                           0x08C // rw - synchronization control register
+y.create.l TPDA_OLC_FLUSH_CR                        0x090 // rw - port flush control register
+y.create.l TPDA_OLC_FLUSH_SR                        0x094 // ro - port flush status register
+y.create.l TPDA_OLC_FLUSH_ERR                       0x098 // ro - global error syndrome register
+y.create.l TPDA_OLC_SPARE                           0xEFC // rw - timestamp legacy mode
+y.create.l TPDA_OLC_LOCKACCESS                      0xFB0 // wo - lock access reg
+
+y.create.l QDSS_APSS_FUN_ATB_CTRL_REG          0x07B60000 // rw
+y.create.l QDSS_APSS_FUN_ATB_LOCKACCESS        0x07B60FB0 // wo
+y.create.l QDSS_APSS_FUN_CTRL_REG              0x07B70000 // rw
+y.create.l QDSS_APSS_FUN_LOCKACCESS            0x07B70FB0 // wo
+
+y.create.l QDSS_QDSS_MERG_FUN_CTRL_REG         0x06045000 // rw
+y.create.l QDSS_QDSS_MERG_FUN_LOCKACCESS       0x06045FB0 // wo
+y.create.l QDSS_QDSS_IN_FUN1_CTRL_REG          0x06042000 // rw
+y.create.l QDSS_QDSS_IN_FUN1_LOCKACCESS        0x06042FB0 // wo
+
+y.create.l ETFETB_BASE                         0x06047000 //
+y.create.l ETFETB_RWP                               0x018 // rw - write pointer
+y.create.l ETFETB_CTL                               0x020 // rw - ctrl
+y.create.l ETFETB_MODE                              0x028 // rw - mode - circular or fifo
+y.create.l ETFETB_FFCR                              0x304 // rw
+y.create.l ETFETB_LAR                               0xFB0 // wo - lock access reg
+
+y.create.l QDSSCSR_LOCKACCESS                  0x06001FB0 // wo - lock access reg
+y.create.l QDSSCSR_TIMESTAMPCTRL               0x06001038 // rw
+
+y.create.l APPS_CTI8_APPS_BASE                 0x07B80000 // rw -
+
+y.create.l APPS_CTI10_OLC_DL_BASE              0x07B91000 // rw -
+
+y.create.l CTICONTROL                               0x000 // rw -
+y.create.l CTIAPPSET                                0x014 // wo -
+y.create.l CTIAPPCLEAR                              0x018 // wo
+y.create.l CTIINEN0                                 0x020 // rw -
+y.create.l CTIINEN4                                 0x030 // rw
+y.create.l CTIINEN7                                 0x03C // rw
+y.create.l CTIOUTEN0                                0x0A0 // rw -
+y.create.l CTIOUTEN3                                0x0AC // rw -
+y.create.l CTIOUTEN2                                0x0A8 // rw
+y.create.l CTIOUTEN5                                0x0B4 // rw
+y.create.l CTILAR                                   0xFB0 // wo -
+
+y.create.l OSM_DOM0_PERIODIC_TRACE_TIMER_CTRL  0x179C1F3C // time between 2 packets, in OSM clocks
+y.create.l OSM_DOM1_PERIODIC_TRACE_TIMER_CTRL  0x179C3F3C //
+y.create.l OSM_DOM0_TRACE_CTRL                 0x179C1F38
+y.create.l OSM_DOM1_TRACE_CTRL                 0x179C3F38
+
+y.create.l APM_TRACE_PKT                       0x179D0114
+
+y.create.l PWR_CPR_DEBUG                       0x179C8070
+y.create.l PERF_CPR_DEBUG                      0x179C4070
+
+y.create.done
+
+///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+
+local &olc_tpdm_cti_ts &olc_tpdm_continuous &osm_enable &llm_cti_trigger
+local &apm_enable &cprh_enable &enter_to_cont
+
+local &cycles0 &id0 &cluster0_on &periodic0
+local &cycles1 &id1 &cluster1_on &periodic1
+
+area.create cpuss_dragonlink_olc 40 40
+area.select cpuss_dragonlink_olc
+area.view   cpuss_dragonlink_olc
+area.clear  cpuss_dragonlink_olc
+
+print "Configuring OLC DragonLink"
+print "-----------------------------------------------------------"
+
+print "OLC TPDM CTI-based timestamps? (say yes)             {y,n}: "
+enter &olc_tpdm_cti_ts
+
+print "OLC TPDM Continuous or Trace-on-change mode?                "
+print "    (pick Trace-on-change)                           {c,t}: "
+enter &olc_tpdm_continuous
+
+print "LLM CTI-based triggers (for Ruchita)?                {y,n}: "
+enter &llm_cti_trigger
+
+print "Enable APM Trace?                                    {y,n}: "
+enter &apm_enable
+
+print "Enable CPRh Trace?                                   {y,n}: "
+enter &cprh_enable
+
+print "Enable OSM Trace?                                    {y,n}: "
+enter &osm_enable
+
+if "&osm_enable"=="y"
+(
+   print "   OSM cluster 0 trace on?                           {y,n}: "
+   enter &cluster0_on
+   if "&cluster0_on"=="y"
+   (
+      &cluster0_on=1
+      print "   OSM cluster 0 packet id to trace              {0,1,2,3}: "
+      enter &id0
+      print "   OSM cluster 0 trace Periodic or Trace-on-Change   {p,t}: "
+      enter &periodic0
+      if "&periodic0"=="p"
+      (
+         &periodic0=1
+         print "   OSM cluster 0 cycles between generated packets, in hex : "
+         enter &cycles0
+      )
+      else
+      (
+         &periodic0=0
+         &cycles0=0
+      )
+   )
+   else
+   (
+      &cluster0_on=0
+      &id0=0
+      &periodic0=0
+      &cycles0=0
+   )
+
+   print "   OSM cluster 1 trace on?                           {y,n}: "
+   enter &cluster1_on
+   if "&cluster1_on"=="y"
+   (
+      &cluster1_on=1
+      print "   OSM cluster 1 packet id to trace              {0,1,2,3}: "
+      enter &id1
+      print "   OSM cluster 1 trace Periodic or Trace-on-Change   {p,t}: "
+      enter &periodic1
+      if "&periodic1"=="p"
+      (
+         &periodic1=1
+         print "   OSM cluster 1 cycles between generated packets, in hex : "
+         enter &cycles1
+      )
+      else
+      (
+         &periodic1=0
+         &cycles1=0
+      )
+   )
+   else
+   (
+      &cluster1_on=0
+      &id1=0
+      &periodic1=0
+      &cycles1=0
+   )
+)
+
+print " "
+print "This script does not configure LLM Trace"
+print "hit ENTER to continue..."
+enter &enter_to_cont
+
+print "-----------------------------------------------------------"
+
+////////
+// TS //
+////////
+
+print "Enabling QDSS TS"
+
+d.s ezaxi:QDSSCSR_LOCKACCESS    %le %long 0xC5ACCE55
+d.s ezaxi:QDSSCSR_TIMESTAMPCTRL %le %long 0x2
+
+/////////
+// ETB //
+/////////
+
+print "Configuring QDSS ETB"
+
+d.s ezaxi:ETFETB_BASE+ETFETB_LAR  %le %long 0xC5ACCE55 // unlock
+d.s ezaxi:ETFETB_BASE+ETFETB_FFCR %le %long 0x1003     // ffcr default settings with formatter on
+//d.s ezaxi:ETFETB_BASE+ETFETB_FFCR %le %long 0x433
+d.s ezaxi:ETFETB_BASE+ETFETB_MODE %le %long 0x0        // set mode to circular buffer
+d.s ezaxi:ETFETB_BASE+ETFETB_RWP  %le %long 0x0        // set write pointer to 0x0
+d.s ezaxi:ETFETB_BASE+ETFETB_CTL  %le %long 0x1        // enable trace caprure
+
+//////////////////
+// QDSS Funnels //
+//////////////////
+
+print "Configuring QDSS Funnels"
+
+d.s ezaxi:QDSS_QDSS_MERG_FUN_LOCKACCESS %le %long 0xC5ACCE55 // wo
+d.s ezaxi:QDSS_QDSS_MERG_FUN_CTRL_REG   %le %long 0x02       // rw - enable port 1
+d.s ezaxi:QDSS_QDSS_IN_FUN1_LOCKACCESS  %le %long 0xC5ACCE55 // wo
+d.s ezaxi:QDSS_QDSS_IN_FUN1_CTRL_REG    %le %long 0x40       // rw - enable port 6
+
+///////////////////
+// CPUSS Funnels //
+///////////////////
+
+print "Configuring CPUSS Funnels"
+
+d.s ezaxi:QDSS_APSS_FUN_ATB_LOCKACCESS %le %long 0xC5ACCE55 // wo
+d.s ezaxi:QDSS_APSS_FUN_ATB_CTRL_REG   %le %long 0xFF       // rw - enable port ?
+d.s ezaxi:QDSS_APSS_FUN_LOCKACCESS     %le %long 0xC5ACCE55 // wo
+d.s ezaxi:QDSS_APSS_FUN_CTRL_REG       %le %long 0xFF       // rw - enable port ?
+
+//////////////
+// OLC TPDA //
+//////////////
+
+print "Configuring OLC TPDA"
+
+d.s ezaxi:TPDA_OLC_BASE+TPDA_OLC_LOCKACCESS %le %long 0xC5ACCE55 // unlock
+d.s ezaxi:TPDA_OLC_BASE+TPDA_OLC_FPID_CR    %le %long 0x0        // channel and master id - flag packets
+d.s ezaxi:TPDA_OLC_BASE+TPDA_OLC_SYNCR      %le %long 0xFFF      // synchronization control register
+d.s ezaxi:TPDA_OLC_BASE+TPDA_OLC_P0_CR      %le %long 0x81       // port control register
+// d.s ezaxi:TPDA_OLC_BASE+TPDA_OLC_CR      %le %long 0x107E     // control register
+d.s ezaxi:TPDA_OLC_BASE+TPDA_OLC_CR         %le %long 0x1046     //                                                   7E 46 56
+                                                                 //     FLREQ           0 - glob flush req             0  0  0
+                                                                 //     FREQREQ         1 - FREQ packet req            1  1  1
+                                                                 //     FREQTS          2 - FREQ packet TSs?           1  1  1
+                                                                 //     FRIE            3 - FREQ packet interface en   1     0
+                                                                 //     FLRIE           4 - CTI FLAG interface en      1     1
+                                                                 //     SRIE            5 - CTI SYNC SEQ interface en  1     0
+                                                                 //     ATID         12:6 -
+                                                                 //     MID         19:13 -
+                                                                 //     CMBCHANMODE    20 -
+                                                                 //     AVFREQEN       21 -
+                                                                 //     RESERVED    31:22 -
+if "&llm_cti_trigger"=="y"
+(
+   d.s ezaxi:TPDA_OLC_BASE+TPDA_OLC_CR         %le %long 0x1056
+)
+
+/////////////////////
+// CPUSS + OLC CTI //
+/////////////////////
+
+if "&olc_tpdm_cti_ts"=="y"
+(
+   print "Configuring OLC CTI for timestamp"
+
+   d.s ezaxi:APPS_CTI10_OLC_DL_BASE+CTILAR     %le %long 0xC5ACCE55 // unlock
+   d.s ezaxi:APPS_CTI10_OLC_DL_BASE+CTIOUTEN3  %le %long 0x8        // output channel 3 to TPDM_CMB_trigin_ts_req
+   d.s ezaxi:APPS_CTI10_OLC_DL_BASE+CTIAPPSET  %le %long 0x8        // hard set channel 3 - continuous timestamps
+   d.s ezaxi:APPS_CTI10_OLC_DL_BASE+CTICONTROL %le %long 0x1        // enable
+)
+
+if "&llm_cti_trigger"=="y"
+(
+   print "Configuring CPU CTI for LLM CTI trigger"
+
+   d.s ezaxi:APPS_CTI8_APPS_BASE+CTILAR        %le %long 0xC5ACCE55 // unlock
+   d.s ezaxi:APPS_CTI8_APPS_BASE+CTIINEN4      %le %long 0x4        // input pwr_llm_cti_out_assert to channel 3
+   d.s ezaxi:APPS_CTI8_APPS_BASE+CTIINEN7      %le %long 0x4        // input perf_llm_cti_out_assert to channel 3
+   d.s ezaxi:APPS_CTI8_APPS_BASE+CTIOUTEN2     %le %long 0x4        // output channel 3 to pwr_llm_cti_in_assert
+   d.s ezaxi:APPS_CTI8_APPS_BASE+CTIOUTEN5     %le %long 0x4        // output channel 3 to perf_llm_cti_in_assert
+   d.s ezaxi:APPS_CTI8_APPS_BASE+CTICONTROL    %le %long 0x1        // enable
+
+   print "Configuring OLC CTI for LLM CTI trigger"
+
+   d.s ezaxi:APPS_CTI10_OLC_DL_BASE+CTILAR     %le %long 0xC5ACCE55 // unlock
+   d.s ezaxi:APPS_CTI10_OLC_DL_BASE+CTIOUTEN0  %le %long 0x4        // output channel 3 to Tpda_trigin_flagts_req
+   d.s ezaxi:APPS_CTI10_OLC_DL_BASE+CTICONTROL %le %long 0x1        // enable
+)
+
+//////////////
+// OLC TPDM //
+//////////////
+
+print "Configuring OLC TPDM"
+
+d.s ezaxi:TPDM_OLC_BASE+TPDM_OLC_LAR       %le %long 0xC5ACCE55 // rw - lock access reg
+d.s ezaxi:TPDM_OLC_BASE+TPDM_OLC_CMB_TIER  %le %long 0x2        // rw - timestamp insertion enable register - CTI
+//d.s ezaxi:TPDM_OLC_BASE+TPDM_OLC_CMB_TIER  %le %long 0x1      // rw - timestamp insertion enable register - Pattern
+d.s ezaxi:TPDM_OLC_BASE+TPDM_OLC_CMB_TPMR0 %le %long 0xFFFFFFFF // rw - subunit timestamp pattern mask registers
+d.s ezaxi:TPDM_OLC_BASE+TPDM_OLC_CMB_TPMR1 %le %long 0xFFFFFFFF // rw -       ---
+d.s ezaxi:TPDM_OLC_BASE+TPDM_OLC_CMB_TPR0  %le %long 0xFFFFFFFF // rw - subunit timestamp pattern registers
+d.s ezaxi:TPDM_OLC_BASE+TPDM_OLC_CMB_TPR1  %le %long 0xFFFFFFFF // rw -       ---
+
+if "&olc_tpdm_continuous"=="c"
+(
+   print "Setting OLC TPDM to continuous mode"
+   d.s ezaxi:TPDM_OLC_BASE+TPDM_OLC_CMB_CR    %le %long 0x1     // rw - control reg, continuous mode + enable
+)
+else
+(
+   print "Setting OLC TPDM to trace-on-change mode"
+   d.s ezaxi:TPDM_OLC_BASE+TPDM_OLC_CMB_CR    %le %long 0x3     // rw - control reg, trace-on-change mode + enable
+)
+
+///////////////
+// OSM Trace //
+///////////////
+
+if "&osm_enable"=="y"
+(
+   print "Configuring OSM Trace"
+
+   d.s ezaxi:OSM_DOM0_PERIODIC_TRACE_TIMER_CTRL %l 0x&cycles0
+   d.s ezaxi:OSM_DOM1_PERIODIC_TRACE_TIMER_CTRL %l 0x&cycles1
+   d.s ezaxi:OSM_DOM0_TRACE_CTRL %l ((&periodic0<<3)|(&id0<<1)|(&cluster0_on<<0))
+   d.s ezaxi:OSM_DOM1_TRACE_CTRL %l ((&periodic1<<3)|(&id1<<1)|(&cluster1_on<<0))
+)
+else
+(
+   print "Disabling OSM Trace"
+
+   d.s ezaxi:OSM_DOM0_TRACE_CTRL %l (d.long(ezaxi:OSM_DOM0_TRACE_CTRL)&~(0x1))
+   d.s ezaxi:OSM_DOM1_TRACE_CTRL %l (d.long(ezaxi:OSM_DOM1_TRACE_CTRL)&~(0x1))
+)
+
+///////////////
+// APM Trace //
+///////////////
+
+if "&apm_enable"=="y"
+(
+   print "Configuring APM Trace"
+
+   d.s ezaxi:APM_TRACE_PKT %l 0x1
+)
+else
+(
+   print "Disabling APM Trace"
+
+   d.s ezaxi:APM_TRACE_PKT %l 0x0
+)
+
+///////////////
+// CPR Trace //
+///////////////
+
+if "&apm_enable"=="y"
+(
+   print "Configuring CPRh Trace"
+
+   d.s ezaxi:PWR_CPR_DEBUG  %l (d.long(ezaxi:PWR_CPR_DEBUG)|(0x80000000))
+   d.s ezaxi:PERF_CPR_DEBUG %l (d.long(ezaxi:PERF_CPR_DEBUG)|(0x80000000))
+)
+else
+(
+   print "Disabling CPRh Trace"
+
+   d.s ezaxi:PWR_CPR_DEBUG  %l (d.long(ezaxi:PWR_CPR_DEBUG)&~(0x80000000))
+   d.s ezaxi:PERF_CPR_DEBUG %l (d.long(ezaxi:PERF_CPR_DEBUG)&~(0x80000000))
+)
+
+/////////
+// End //
+/////////
+
+print "---------------------------------------------------"
+print "Configuration Complete"
+print " "
+
+enddo

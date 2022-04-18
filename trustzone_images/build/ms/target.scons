@@ -1,0 +1,132 @@
+#===============================================================================
+#
+# TZ Build System
+#
+# GENERAL DESCRIPTION
+#    TZ build script
+#
+# Copyright (c) 2009-2016 by Qualcomm Technologies, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+# $Header: //source/qcom/qct/multimedia2/bsp/build/msm7x30/brew/main/latest/SConstruct#2 $
+#
+#===============================================================================
+import os
+import re
+import glob
+import time
+import random
+from SCons.Script import BUILD_TARGETS
+
+print "------------------------------------------------------------------------------"
+print "   Loading OEM build system"
+print "------------------------------------------------------------------------------"
+
+#------------------------------------------------------------------------------
+# Get system Environment
+#------------------------------------------------------------------------------
+env = DefaultEnvironment(ENV = os.environ, tools = ['mingw'])
+env = env.Clone()
+
+#------------------------------------------------------------------------------
+# Set global variables and defaults
+#------------------------------------------------------------------------------
+#t_start = time.clock()
+BUILD_ROOT = os.path.join('..','..') + os.sep
+TARGET_ROOT = os.path.join('..', '..', '..')
+env.Replace(BUILD_ROOT = BUILD_ROOT)
+env.Replace(TARGET_ROOT = TARGET_ROOT)
+
+#Load the Tools and methods
+env.Tool('deploy_builder', toolpath = ['${BUILD_ROOT}/build/ms'])
+env.Tool('ComSConstruct', toolpath = ['${BUILD_ROOT}/tools/build/scons/build'])
+
+
+#helper function that walks a subtree and Deploys every file in that tree
+def deploy_dir(dir_root):
+  for (path, dname, fname) in os.walk(dir_root):
+    for j in fname:
+      env.Deploy(os.path.join(path, j))
+
+env.Alias('nukedeploytree', env.NukeDeployTreeBuilder())
+if 'deploy' in COMMAND_LINE_TARGETS:
+  d = env.NukeDeployTreeBuilder()
+  #first thing is to nuke the existing deploy tree
+  env.Requires('deploy', d)
+  #we would want to install the tbc_cleanpack in deploy tree
+  #but only after nuke deploy tree has executed
+  env.Alias('tbc_cleanpack', env.Create_TBCPack_In_DeployTree())
+  BUILD_TARGETS.append('tbc_cleanpack')
+  env.Requires('tbc_cleanpack', d)
+  #if we have any previous log files for given CHIPSET, we should delete the 
+  #deploy_${SHORT_BUILDPATH}_(*).log files, since this run will create a new set
+  env.CleanDeployListLogFiles()
+  #If we are deploying, we want to also verify the deploy tree. This is also
+  #an order only dependency
+  #we want to generate a new deploy_stat.txt file every time we deploy
+  BUILD_TARGETS.append('verify_deploy_tree')
+  src_path = os.path.join(os.getcwd(), 'deploy_stat.txt')
+  #always open with 'w' mode so we create a new file
+  with open(src_path, 'w') as f:
+    f.write('Verify deploy begin :{}\n'.format(str(random.random())))
+  dest = 'verify_deploy.txt'
+  vdt = env.VerifyDeployBuild(target = dest, source = src_path)
+  env.Alias('verify_deploy_tree', vdt)
+  env.Requires(vdt, 'deploy')
+
+deploy_files = [
+   'BuildConfigParser.py',
+   'build_all.py',
+   'build_config_deploy.xml',
+   'deploy_builder.py',
+   'target.scons',
+]
+
+cust_header_files = Glob('../cust/*.h')
+apps_files = ['../../apps/bsp/trustzone/build/SConscript',
+              '../../apps/bsp/trustzone/build/apps_config.py'
+             ]
+
+#hard-coding following files. They need to come from corresponding builder
+hcfiles = [
+   'cust{}a.h'.format(env['BUILD_ID'].lower()),
+   'targ{}a.h'.format(env['BUILD_ID'].lower()),
+   'tcfg_{}a.py'.format(env['BUILD_ID'].lower()),
+]
+env.Deploy(deploy_files)
+env.Deploy(cust_header_files)
+env.Deploy(hcfiles)
+env.Deploy(apps_files)
+
+deploy_dir(os.path.join(env['BUILD_ROOT'], 'sectools'))
+deploy_dir(os.path.join(env['BUILD_ROOT'], 'tools'))
+    
+#t_end = time.clock()
+#print "** SConstruct Elapsed time = " + str(round(t_end - t_start, 3))
+#------------------------------------------------------------------------------
+# Generate BuildProducts.txt
+#------------------------------------------------------------------------------
+DIR_ROOT = os.path.join('..', '..', '..') + os.sep
+env.Replace(DIR_ROOT = DIR_ROOT)
+
+with open(env['DIR_ROOT'] + "BuildProducts.txt", "a") as fh:
+  fh.write ("./trustzone_images/build/ms/bin/" + env['BUILD_ID'] + "/tz.mbn\n")
+  #-------------------------------------------------------------------------------
+  # Bear target don't have hyp image.
+  #-------------------------------------------------------------------------------
+  if env['BUILD_ID'] in ['SANAANAA', 'ZALAANAA', 'MAYAANAA', 'NAKAANAA', 'RAGAANAA', 'TAFAANBA']:
+    print "Adding only tz.mbn to  Buildproducts.txt" 
+  else:
+    fh.write ("./trustzone_images/build/ms/bin/" + env['BUILD_ID'] + "/hyp.mbn\n")
+
+#-------------------------------------------------------------------------------
+# PreProcessor file cleanup
+#-------------------------------------------------------------------------------
+PP_CLEAN_SOURCES = env.FindFiles(['*.o.pp'], "${BUILD_ROOT}/core/")
+PP_CLEAN_SOURCES += env.FindFiles(['*.o.i'], "${BUILD_ROOT}/core/")
+PP_CLEAN_SOURCES += env.FindFiles(['*.o.lst'], "${BUILD_ROOT}/core/")
+
+env.CleanPack('TZOS_IMAGE', PP_CLEAN_SOURCES)

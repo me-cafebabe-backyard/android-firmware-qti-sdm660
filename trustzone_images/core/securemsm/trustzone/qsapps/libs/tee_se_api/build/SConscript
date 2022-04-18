@@ -1,0 +1,73 @@
+#===============================================================================
+#
+# QSEE GP TEE SE Lib
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2014-2015 Qualcomm Technologies, Inc.  All Rights Reserved.
+# Qualcomm Technologies Proprietary and Confidential.
+#
+#===============================================================================
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/core/securemsm/trustzone/qsapps/libs/tee_se_api/src"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Publish Private APIs
+#-------------------------------------------------------------------------------
+env.PublishPublicApi('GP_TEE_SE_API', [
+   '${INC_ROOT}/core/securemsm/trustzone/qsapps/libs/tee_se_api/inc',
+])
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+INC_PATH = [
+    "${INC_ROOT}/core/api/services",
+    "${INC_ROOT}/core/api/kernel/libstd/stringl",
+    "${INC_ROOT}/core/api/securemsm/trustzone/gp",
+    "${INC_ROOT}/core/api/securemsm/trustzone/qsee",
+    "${INC_ROOT}/core/securemsm/trustzone/qsapps/libs/applib/qsee/src",
+    "${INC_ROOT}/core/securemsm/trustzone/qsee/kernel/inc",
+    "${INC_ROOT}/core/securemsm/trustzone/qsee/mink/lk/kernel/inc",
+    "${INC_ROOT}/core/securemsm/trustzone/qsee/mink/app_mgr/inc",
+    '${INC_ROOT}/core/securemsm/trustzone/qsapps/libs/tee_se_api/inc',
+    '${INC_ROOT}/core/securemsm/trustzone/qsapps/libs/tee_se_utils/inc',
+]
+env.Append(CPPPATH = INC_PATH)
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+
+
+SOURCES = [
+  '${BUILDPATH}/gp_tee_se_api.c',
+  '${BUILDPATH}/tee_internal_se_api_panic.c',
+  '${BUILDPATH}/tee_internal_se_api_helper.c',
+  '${BUILDPATH}/AES.c',
+  '${BUILDPATH}/ECC.c',
+  '${BUILDPATH}/APDU.c',
+  '${BUILDPATH}/SCPUtils.c',
+  '${BUILDPATH}/SCP.c',
+  '${BUILDPATH}/SCP03.c',
+  '${BUILDPATH}/SCP11.c',
+  '${BUILDPATH}/SCPX.c',
+]
+
+lib_name = '${BUILDPATH}/lib_tee_se_api'
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+env.AddBinaryLibrary(['QPAY_IMAGE'], lib_name, SOURCES)
+env.AddBinaryLibrary(['QPAY64_IMAGE'], lib_name, SOURCES)
+env.AddBinaryLibrary(['GPQESE_IMAGE'], lib_name, SOURCES)
+env.AddBinaryLibrary(['TTASCAPI'], lib_name, SOURCES)
+env.AddBinaryLibrary(['TTATLAPI'], lib_name, SOURCES)

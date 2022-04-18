@@ -1,0 +1,160 @@
+#=============================================================================
+# CLOCK DRIVER SHARED LIBRARY
+#
+# Target:    All
+# Processor: All
+#
+#=============================================================================
+# $Header: //components/rel/rpm.bf/1.8/core/systemdrivers/clock/build/clock.scons#8 $
+#=============================================================================
+#  Copyright 2011-2012 Qualcomm Technologies Incorporated.
+#  All Rights Reserved.
+#  QUALCOMM Proprietary/GTDR
+#=============================================================================
+
+import os
+
+Import('env')
+env = env.Clone()
+
+supported_targets = ['8998','660','405','nicobar']
+if env['MSM_ID'] not in supported_targets:
+    env.PrintWarning('Bailing from clock scripts; no support for build targets other than %s' % supported_targets)
+    Return()
+
+env.Append(CCFLAGS = ' ${ARMCC_STDC99_CMD}')
+
+#------------------------------------------------------------------------------
+# Add API folders
+#------------------------------------------------------------------------------
+
+CLOCK_BUILD_ROOT = os.getcwd();
+
+env.PublishPrivateApi('SYSTEMDRIVERS_CLOCK', [
+   CLOCK_BUILD_ROOT + "/../src",
+   "${BUILD_ROOT}/core/systemdrivers/hal/clk/inc",
+   "${BUILD_ROOT}/core/systemdrivers/hal/avs/inc",
+   "${BUILD_ROOT}/core/systemdrivers/hal/clk/hw/${CHIPSET}/inc/",
+])
+
+#-----------------------------------------------------------------------------
+# Define paths
+#-----------------------------------------------------------------------------
+
+SRCPATH = "../"
+SRCPATHSCRIPTS = env['BUILD_ROOT'] + '/core/systemdrivers/clock/scripts/'
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+
+CBSP_API = [
+   'BOOT',
+   'DAL',
+   'BUSES',
+   'HAL',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+   'PMIC',
+   'POWER',
+   'KERNEL',
+   'DEBUGTRACE',
+   'MPROC'
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+#-------------------------------------------------------------------------------
+# Define sources
+#-------------------------------------------------------------------------------
+
+CLOCK_SOURCES = [
+   '${BUILDPATH}/src/ClockDriver.c',
+   '${BUILDPATH}/src/ClockSources.c',
+   '${BUILDPATH}/src/ClockVoltage.c',
+   '${BUILDPATH}/src/ClockCommon.c'
+]
+
+CLOCK_HW_SOURCES = [
+   '${BUILDPATH}/hw/${CHIPSET}/ClockRPM.c',
+   '${BUILDPATH}/hw/${CHIPSET}/ClockRPMNPA.c',
+   '${BUILDPATH}/hw/${CHIPSET}/ClockRPMBIMC.c'
+]
+
+#-------------------------------------------------------------------------------
+# Add CMM Scripts to T32 Menu
+#-------------------------------------------------------------------------------
+
+CMM_ARGUMENT = env['CHIPSET']
+
+try:
+  env.AddCMMScripts ('RPM', [SRCPATHSCRIPTS], { 'Clock.cmm' : ['Clocks', CMM_ARGUMENT] }, 'SystemDrivers')
+except:
+  pass
+
+#-------------------------------------------------------------------------------
+# Define objects
+#-------------------------------------------------------------------------------
+
+ClockShared_lib   = env.Library('${BUILDPATH}/Clock',       CLOCK_SOURCES)
+ClockHW_lib       = env.Library('${BUILDPATH}/ClockHW',     CLOCK_HW_SOURCES)
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+env.AddLibsToImage(
+  'RPM_IMAGE', [ClockShared_lib, ClockHW_lib])
+
+#-------------------------------------------------------------------------------
+# SWEvent processing
+#-------------------------------------------------------------------------------
+if 'USES_QDSS_SWE' in env:
+   QDSS_IMG = ['QDSS_EN_IMG']
+   events = [['CLOCK_EVENT_FIRST=384',     'Clock first event placeholder'],
+             ['CLOCK_EVENT_INIT',          'Clock Initialize'],
+             ['CLOCK_EVENT_STATUS',        'Clock Name: %plugin[1]<clock>.  Requested state = %d (enable/disable), actual state (reference count) = %d'],
+             ['CLOCK_EVENT_FREQ',          'Clock Name: %plugin[1]<clock>.  Frequency = %d'],
+             ['CLOCK_EVENT_PLL_STATUS',    'Clock PLL %d.\t Status = %d'],
+             ['CLOCK_EVENT_POWER_COLLAPSE','Clock Power Collapse: %plugin[3]<clock>.'],
+             ['CLOCK_EVENT_POWER_RESTORE', 'Clock Power Restore:  %plugin[3]<clock>.'],
+             ['CLOCK_EVENT_BIMC_COLLAPSE', 'Clock BIMC Collapse:  %plugin[2]<clock>.'],
+             ['CLOCK_EVENT_BIMC_RESTORE',  'Clock BIMC Restore:   %plugin[2]<clock>.'],
+             ['CLOCK_EVENT_CX',            'Clock CX voltage = %d'],
+             ['CLOCK_EVENT_GFX',           'Clock GFX voltage = %d'],
+             ['CLOCK_EVENT_EBI',           'Clock VDDA_EBI voltage = %d'],
+             ['CLOCK_EVENT_LAST=511',      'Clock last event placeholder']
+            ]
+   env.AddSWEInfo(QDSS_IMG, events)
+
+
+#---------------------------------------------------------------------------
+# Invoke document generation SConscript
+#---------------------------------------------------------------------------
+
+if os.path.exists(env['BUILD_ROOT'] + '/core/api/systemdrivers/docsrc/clock/SConscript') :
+  env.SConscript(
+    '${BUILD_ROOT}/core/api/systemdrivers/docsrc/clock/SConscript',
+    exports='env')
+  
+  
+#-------------------------------------------------------------------------------
+# DEVCFG - Clock XML/Clock BSP
+# These files will go into a separate binary <target>_devcfg_ClockBSP.o
+# which will be placed in the dev config section of the image.
+# There can be more than one config in a single RPM image - e.g. 8974 and 8974Pro
+# configs are both included in the 8974 RPM image.
+#-------------------------------------------------------------------------------
+
+if 'USES_DEVCFG' in env:
+   DEVCFG_IMG = ['DAL_DEVCFG_IMG']
+   env.AddDevCfgInfo(DEVCFG_IMG,{
+      '8998_xml' :     ['${BUILD_ROOT}/core/systemdrivers/clock/config/msm8998/ClockChipset.xml',      
+                       '${BUILD_ROOT}/core/systemdrivers/clock/config/msm8998/ClockBSP.c'],
+      '660_xml'  :     ['${BUILD_ROOT}/core/systemdrivers/clock/config/sdm660/ClockChipset.xml',
+                       '${BUILD_ROOT}/core/systemdrivers/clock/config/sdm660/ClockBSP.c' ],
+      '405_xml':   ['${BUILD_ROOT}/core/systemdrivers/clock/config/qcs405/ClockChipset.xml',
+                       '${BUILD_ROOT}/core/systemdrivers/clock/config/qcs405/ClockBSP.c' ],
+   })   

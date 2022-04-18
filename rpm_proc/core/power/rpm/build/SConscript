@@ -1,0 +1,233 @@
+import os
+import fnmatch
+import itertools
+
+Import('env')
+env = env.Clone()
+
+
+SRCPATH = ".."
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+CBSP_API = [
+   'POWER',
+   'MPROC',
+   'DAL',
+   'SYSTEMDRIVERS',
+   'PMIC',
+   'DEBUGTRACE',
+   'SERVICES',
+   'KERNEL',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+if env['MSM_ID'] in ['8996']:
+    env.Append(CPPDEFINES = ['MSM8996_RPM_CONFIG'])
+
+if env['MSM_ID'] == '8994':
+    env.Append(CPPDEFINES = 'MSM8994_IMEM_BASE_ADDRESS')
+
+if env['MSM_ID'] in ['8998', '660', '405']:
+    env.Append(CPPDEFINES = 'PM_RPM_LOW_POWER_LED')	
+
+if env['MSM_ID'] in ['405']:
+    env.Append(CPPDEFINES = 'QCS405_IMAGE_LAYOUT')	
+
+env.Append(CPPPATH = ['../inc', '../inc/target/${MSM_ID}'])
+
+def collect_files(patterns):
+    files = []
+    for root, dirnames, filenames in os.walk(SRCPATH):
+        if not os.path.sep.join(['','target','']) in root or env['MSM_ID'] in root:
+            matches = itertools.chain(*[fnmatch.filter(filenames, pattern) for pattern in patterns])
+            matches = ['${BUILDPATH}' + os.path.join(root, filename)[2:] for filename in matches]
+            files.extend(matches)
+    return files
+
+supported_targets = ['8996', '8998', '660', 'nicobar']
+
+# Build C files.
+c_env = env.Clone()
+c_env.Append(CFLAGS = '${ARMCC_STDC99_CMD}')
+c99_sources = collect_files(['*.c'])
+if env['MSM_ID'] not in supported_targets:
+    c99_sources.remove(os.path.sep.join(['${BUILDPATH}','debug','debug.c']))
+c_env.AddLibrary(['CORE_RPM'], '${BUILDPATH}/rpm_c.lib', c99_sources)
+
+# Build C++ files.
+cpp_env = env.Clone()
+cpp_sources = collect_files(['*.cpp'])
+env.AddLibrary(['CORE_RPM'], '${BUILDPATH}/rpm_cpp.lib', cpp_sources)
+
+if env.has_key('HWIO_IMAGE'):
+    if env['MSM_ID'] in ['8996']:
+        env.AddHWIOFile('HWIO', [
+            {
+                'filename': '${INC_ROOT}/core/power/rpm/inc/target/${MSM_ID}/qdss_hwio.h',
+                'modules': ['QDSS_QDSSCSR'],
+                'filter-include': ['QDSSCLKVOTE'],
+                'output-offsets': False,
+                'header':
+                    '#include "msmhwiobase.h"\n\n'
+            }
+        ])
+    elif env['MSM_ID'] in ['8998']:
+        env.AddHWIOFile('HWIO', [
+            {
+                'filename': '${INC_ROOT}/core/power/rpm/inc/target/${MSM_ID}/qdss_hwio.h',
+                'modules': ['QDSS_QDSS_QDSSCSR'],
+                'filter-include': ['QDSSCLKVOTE'],
+                'output-offsets': False,
+                'header':
+                    '#include "msmhwiobase.h"\n\n'
+            }
+        ])
+    elif env['MSM_ID'] in ['660']:
+        env.AddHWIOFile('HWIO', [
+            {
+                'filename': '${INC_ROOT}/core/power/rpm/inc/target/${MSM_ID}/qdss_hwio.h',
+                'modules': ['QDSS_QDSS_QDSSCSR'],
+                'filter-include': ['QDSSCLKVOTE'],
+                'output-offsets': False,
+                'header':
+                    '#include "msmhwiobase.h"\n\n'
+            }
+        ])
+    elif env['MSM_ID'] in ['405']:
+        env.AddHWIOFile('HWIO', [
+            {
+                'filename': '${INC_ROOT}/core/power/rpm/inc/target/${MSM_ID}/qdss_hwio.h',
+                'modules': ['QDSS_QDSS_QDSS_CSR'],
+                'filter-include': ['QDSSCLKVOTE'],
+                'output-offsets': False,
+                'header':
+                    '#include "msmhwiobase.h"\n\n'
+            }
+        ])
+    else:
+        env.AddHWIOFile('HWIO', [
+            {
+                'filename': '${INC_ROOT}/core/power/rpm/inc/target/${MSM_ID}/qdss_hwio.h',
+                'modules': ['QDSS_QDSSCSR'],
+                'filter-include': ['QDSSCLKVOTE'],
+                'output-offsets': False,
+                'header':
+                    '/*\n'
+                    ' * HWIO base definitions\n'
+                    ' */\n'
+                    '#define QDSS_QDSS_BASE  0xfc300000\n\n'
+            }
+        ])
+    env.AddHWIOFile('HWIO', [
+        {
+            'filename': '${INC_ROOT}/core/power/rpm/inc/target/${MSM_ID}/security_hwio.h',
+            'modules': ['security_control_core'],
+            'output-offsets': True,
+            'header':
+                '#include "msmhwiobase.h"\n\n'
+        }
+    ])
+    env.AddHWIOFile('HWIO', [
+        {
+            'filename': '${INC_ROOT}/core/power/rpm/inc/target/${MSM_ID}/rpm_dec_hwio.h',
+            'modules': ['RPM_DEC'],
+            'module-filter-include': {
+                'RPM_DEC': ['PAGE_SELECT'],
+            },
+            'output-offsets': False,
+            'header':
+                '#include "msmhwiobase.h"\n\n'
+        }
+    ])
+    env.AddHWIOFile('HWIO', [
+        {
+            'filename': '${INC_ROOT}/core/power/rpm/inc/target/${MSM_ID}/dog_hwio.h',
+            'modules': ['RPM_DEC'],
+            'module-filter-include': {
+                'RPM_DEC': ['WDOG'],
+            },
+            'output-offsets': False,
+            'header':
+                '#include "msmhwiobase.h"\n\n'
+                '#include "HALhwio.h""\n\n'
+        }
+    ])
+
+if env.GetUsesFlag('USES_QDSS_SWE') is True:
+   gen_tracer_event_ids_h ='${BUILD_ROOT}/core/api/debugtrace/tracer_event_ids.h'
+   #env.SWEIdBuilder([gen_tracer_event_ids_h],None)
+   gen_tracer_event_tbl_h ='${BUILD_ROOT}/core/api/debugtrace/tracer_event_tbl.h'
+   env.SWEBuilder([gen_tracer_event_ids_h,gen_tracer_event_tbl_h],None)
+
+if 'USES_QDSS_SWE' in env:
+   QDSS_IMG = ['QDSS_EN_IMG']
+   events = [['RPM_BOOT_STARTED=192','rpm boot started (free_heap_space: %d)'],
+             ['RPM_BOOT_FINISHED','rpm boot finished (free_heap_space: %d)'],
+             ['RPM_BRINGUP_REQ','rpm_bringup_req: (master: %plugin[1]<RPM>) (core %d) (is_soft_transition %d)'],
+             ['RPM_BRINGUP_ACK','rpm_bringup_ack: (master: %plugin[1]<RPM>) (core %d) (is_soft_transition %d)'],
+             ['RPM_SHUTDOWN_REQ','rpm_shutdown_req: (maste: %plugin[1]<RPM>) (core %d) (is_soft_transition %d)'],
+             ['RPM_SHUTDOWN_ACK','rpm_shutdown_ack: (master: %plugin[1]<RPM>) (core %d) (is_soft_transition %d)'],
+             ['RPM_TRANSITION_QUEUED','rpm_transition_queued: (master: %plugin[1]<RPM>) (status %d) (deadline: 0x%x)'],
+             ['RPM_MASTER_SET_TRANSITION','rpm_master_set_transition: (master: %plugin[1]<RPM>) (fromSet %d) (toSet: %d) (cacheHit: %d)'],
+             ['RPM_MASTER_SET_TRANSITION_COMPLETE','rpm_set_transition_complete: (master: %plugin[1]<RPM>.) (deadline: 0x%x) (exceeded %d)'],
+             ['RPM_HASH_MISMATCH','rpm_hash_mismatch: (next_task %d) (pre_state %d) (next_state %d) (system_hash %d)'],
+             ['RPM_CPU_FAST_EXTERNAL_VOTE', 'rpm_svs (mode: RPM_CPU_FAST) (reason: external vote)'],
+             ['RPM_CPU_FAST_IMMINENT_PROCESSING', 'rpm_svs (mode: RPM_CPU_FAST) (reason: imminent processing)'],
+             ['RPM_CPU_FAST_SCHEDULE_IS_FULL', 'rpm_svs (mode: RPM_CPU_FAST) (reason: schedule is full)'],
+             ['RPM_CPU_SLOW_IDLE', 'rpm_svs (mode: RPM_CPU_SLOW) (reason: idle)'],
+             ['RPM_CPU_FAST_SPEEDUP', 'rpm_svs (mode: RPM_CPU_FAST) (reason: speedup) (old_duration: %x) (new_duration: %x) (switch_time: %x)'],
+             ['RPM_CPU_SLOW_NO_SPEEDUP', 'rpm_svs (mode: RPM_CPU_SLOW) (reason: no speedup) (old_duration: 0x%x) (new_duration: 0x%x) (switch_time: 0x%x)'],
+             ['RPM_MESSAGE_RECEIVED', 'rpm_message_received (master: %plugin[1]<RPM>) (message id: %d) (set: %d)'],
+             ['RPM_PROCESS_REQUEST', 'rpm_process_request (master: %plugin[1]<RPM>) (Resource Name: %plugin[*]<resource>)'],
+             ['RPM_SEND_RESPONSE', 'rpm_send_message_response (master: %plugin[1]<RPM>) (service: 0x%x)'],
+             ['RPM_ERR_FATAL', 'rpm_err_fatal (lr: 0x%0.8x) (ipsr: 0x%0.8x)'],
+             ['RPM_XLATE_REQUEST', 'rpm_xlate_request (Resource Name: %plugin[*]<resource>)'],
+             ['RPM_APPLY_REQUEST', 'rpm_apply_request (Resource Name: %plugin[*]<resource>) (bypassed: %d)'],
+             ['RPM_ESTIMATE_CACHE_HIT', 'rpm_estimate_cache_hit (estimate: %d)'],
+             ['RPM_ESTIMATE_CACHE_MISMATCH', 'rpm_estimate_cache_mismatch (expected_result: %d) (expected_duration: %d) (actual_result: %d) (actual_duration: %d)'],
+             ['RPM_MASTER_SET_TRANSITION_BYPASS', 'rpm_transition_bypass (master: %plugin[1]<RPM>) (wake_time: 0x%0.8x)'],
+             ['RPM_RESOURCE_SETTLING', 'rpm_resource_settling (master: %plugin[1]<RPM>) (resource type: %plugin[1]<resource>) (resource id: %d) (msg id: %d)'],
+             ['RPM_RESOURCE_SETTLING_TIME', 'rpm_resource_settling_time (deadline: 0x%0.8x%0.8x)'],
+             ['RPM_RESOURCE_SETTLING_COMPLETE', 'rpm_resource_settling_complete (master: %plugin[1]<RPM) (resource type: %plugin[1]<resource>) (resource id: %d) (msg id: %d)'],
+             ['RPM_RESOURCE_SETTLING_SPIN', 'rpm_resource_settling_spin'],
+             ['RPM_SETTLING_MESSAGE_REQUEUED', 'rpm_settling_message_reenqueued (master: %plugin[1]<RPM>), (message id: %d)'],
+             ['RPM_SETTLING_TRANSITION_REQUEUED','rpm_transition_settling_requeued: (master %plugin[1]<RPM>) (status %d) (deadline: 0x%0.8x%0.8x)'],
+             ['RPM_TRANSITION_POSTPONED','rpm_transition_postponed: (master %plugin[1]<RPM>)'],
+             ['RPM_CPR_SENSOR_DISABLED','rpm_cpr_sensor_disabled (rail: %d) (disabled: %d)'],
+             ['RPM_OUT_OF_HEAP','rpm_out_of_heap'],
+             ['RPM_COMMAND_RECEIVED', 'rpm_command_received (master: %plugin[1]<RPM>)'],
+             ['RPM_HEAP_CHECK','rpm_heap_check (free_heap_space: %d)'],
+             ['RPM_MASTER_STATES','rpm_master_states (master_state_bmsk: %d)'],
+             ['RPM_NAS_START','rpm_nas_start '],
+             ['RPM_RAM_LOG_DISABLE','rpm_ram_log_disable (num_logs_bef_stop: %d)'],
+             ['RPM_RAM_LOG_DISABLED','rpm_ram_log_disabled'],
+             ['RPM_RAM_LOG_ENABLED','rpm_ram_log_enabled'],
+             ['RPM_TZ_HALT_INT_RECEIVED','rpm_abort_interrupt_received (TZ HALT) ... aborting'],
+             ['RPM_NON_SECURE_WD_BITE_INT_RECEIVED','rpm_abort_interrupt_received (APPS NON SECURE WD BITE) ... aborting'],
+             ['RPM_ENQUEUE_SCHEDULED_TASK','rpm_enqueue_common_task (task_id: %d) '],
+             ['RPM_EXECUTE_SCHEDULED_TASK','rpm_execute_common_task (task_id: %d) '],
+             ['RPM_COMPLETE_SCHEDULED_TASK','rpm_complete_common_task (task_id: %d) '],
+             ['RPM_PREEMPT_SCHEDULED_TASK','rpm_preempt_common_task (task_id: %d)'],
+             ['RPM_CLEAR_APCS_QGICDR_COMPLETE','rpm_clear_acps_qgicdr_complete'],
+             ['RPM_DCC_CRC_ERR_INT_RECEIVED','rpm_dcc_crc_err_int_received'],
+             ['RPM_MASTER_SET_TRANSITION_CACHE_STATUS','rpm_transition_cache_status: (startState: %d)(actionHash: %d)'],
+             ['RPM_ESTIMATE_CACHE_OBSERVE','rpm_estimate_cache_observe: (startState: %d)(actionHash: %d)(resultState: %d)(estimate: %d)'],
+             ['RPM_SOFT_TRIGGER_BRINGUP','rpm_soft_trigger_bringup, (pending: %d)(mpm_index: %d)'],
+             ['GCC_RESET','gcc_reset ... aborting (reset_reason: %d)'],
+             ['RPM_BOOT_INIT_FCN_STARTED','rpm_boot_init_fcn_started (init_fcn_id: %d) (free_heap_space: %d)'],
+             ['RPM_BOOT_INIT_FCN_FINISHED','rpm_boot_init_fcn_finished (init_fcn_id: %d) (free_heap_space: %d)'],
+             ['RPM_APPS_HANG_STATUS','rpm_apps_hang_status (Core: 0x%x) (Gladiator: 0x%x) (GIC: 0x%x) (WDOG: 0x%x)'],
+             ['RPM_RESET_CHIP','rpm_reset_chip'],
+             ['RPM_LOG_REGISTER','rpm_log_register (PhysAddress: 0x%0.8x) (Value: 0x%0.8x)'],
+             ['RPM_RECLAIM_POOL','rpm_reclaim_pool (Base: 0x%0.8x) (Limit: 0x%0.8x) (free_heap_space: %d)'],
+             ['RPM_CCI_SPM_E3_ENTRY_WORKAROUND_STARTED','rpm_cci_spm_e3_entry_workaround_started'],
+             ['RPM_CCI_SPM_E3_EXIT_WORKAROUND_STARTED','rpm_cci_spm_e3_exit_workaround_started'],
+             ['RPM_CCI_SPM_E3_WORKAROUND_FINISHED','rpm_cci_spm_e3_workaround_finished'],
+             ['RPM_GIC_DISABLE','rpm_gic_disable (saved_gicd_ctlr: 0x%x)'],
+             ['RPM_GIC_ENABLE','rpm_gic_enable'],
+             ['RPM_LAST=319','rpm error fatal2'],
+            ]
+   env.AddSWEInfo(QDSS_IMG, events)
+

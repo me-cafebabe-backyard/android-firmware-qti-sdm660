@@ -1,0 +1,6 @@
+global &etb_base
+&etb_base=0x00827000
+
+entry &dump_file &log_level
+do  "~~~~/../common/etb_dump_common.cmm" &dump_file &log_level
+enddo

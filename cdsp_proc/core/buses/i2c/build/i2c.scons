@@ -1,0 +1,173 @@
+#===============================================================================
+#
+# I2C Libs
+#
+# GENERAL DESCRIPTION
+#    Public build script for I2C BUS driver.
+#
+#   Copyright (c) 2009-2016 Qualcomm Technologies, Incorporated.
+#         All Rights Reserved.
+#   Qualcomm Technologies, Confidential and Proprietary.
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.qdsp6/1.0.c2/buses/i2c/build/i2c.scons#1 $
+#  $DateTime: 2020/02/10 01:57:30 $
+#  $Author: pwbldsvc $
+#  $Change: 22511909 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#  
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 10/17/16   vg      AddedBinary Comp changes
+# 04/13/15   np      Added QDSS Logging
+# 09/11/14   sk      Moving to rcinit group 2
+# 05/12/14   lk      Moved init to sensors image.
+# 02/28/14   lk      Added support for 8994.
+# 05/24/13   lk      Added support for 8084, 8962.
+# 02/09/12   lk      Added device inc path.
+# 02/09/12   lk      Added configurable properties file.
+# 02/09/12   ag      Fixed the location where the object files are built.
+# 01/21/12   ag		 Initial release
+#
+#===============================================================================
+import os
+Import('env')
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+env = env.Clone()
+env.Append(CPPDEFINES = ["FEATURE_LIBRARY_ONLY"])   
+#env.Append(CCFLAGS = " -O3 ")
+#print env
+
+SRCPATH = ".."
+
+IMAGES = ['CORE_SSC_SLPI_USER', 'CORE_SLPI_ROOT', 'CORE_SLPI_ADSP_ROOT', 'CORE_SLPI_USER']
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0) 
+CBSP_APIS = []
+I2C_CONFIG_XML = []
+
+#-------------------------------------------------------------------------------
+# Publish Private APIs
+#-------------------------------------------------------------------------------
+if env.has_key('USES_I2C_QDSS_TRACER'):
+   env.Append(LOGPATH = ["${INC_ROOT}/core/buses/i2c/src/logs/qdss/trace"])
+else :
+   env.Append(LOGPATH = ["${INC_ROOT}/core/buses/i2c/src/logs/qdss/notrace"])
+
+env.PublishPrivateApi('BUSES_I2C_DEVICE', [
+   '${INC_ROOT}/core/buses/i2c/src/dev',
+   '${INC_ROOT}/core/buses/i2c/src/drv',
+   '${LOGPATH}',
+])
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_APIS += [
+   'BUSES',
+   'DAL',
+   'HAL',
+   'SYSTEMDRIVERS',
+   'HWENGINES',
+   'KERNEL',   
+   'SERVICES',
+   'POWER',
+   'DEBUGTRACE'
+]
+
+env.RequirePublicApi(CBSP_APIS)
+env.RequireRestrictedApi(CBSP_APIS)
+
+     
+
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+#I2C_DEVICE_GLOB_FILES = env.GlobFiles('../src/*/*.c', posix=True)
+
+I2C_SRC = [
+   '${BUILDPATH}/src/dev/I2cDeviceInit.c'    ,
+   '${BUILDPATH}/src/drv/I2cBsp.c'           ,
+   '${BUILDPATH}/src/drv/I2cDriverInit.c'    ,
+   '${BUILDPATH}/src/drv/I2cPlatSvcInit.c'   ,
+]
+
+
+I2C_ISLAND_SRC = [
+   '${BUILDPATH}/src/dev/I2cDevice.c'        ,
+   '${BUILDPATH}/src/drv/I2cDriver.c'        ,
+   '${BUILDPATH}/src/drv/I2cPlatSvc.c'       ,
+   '${BUILDPATH}/src/drv/I2cSys.c'           ,
+   '${BUILDPATH}/src/drv/I2cPlatConfig.c'    ,
+]
+ 
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+# env.AddLibrary is a new API, only if the IMAGES is valid in the build env
+# the objects will built and added to the image.
+#-------------------------------------------------------------------------------
+
+#TODO: May be no need to add uimg lib to be built in root PD. But need to handle RCINIT correctly then
+if 'USES_ISLAND' in env:
+   U_IMG_LIB = env.AddLibrary( IMAGES, '${BUILDPATH}/I2cDriver_UImg', I2C_ISLAND_SRC)
+   env.AddIslandLibrary(['CORE_SSC_SLPI_USER','CORE_SLPI_USER'], U_IMG_LIB) 
+else:
+   I2C_SRC.append(I2C_ISLAND_SRC)
+
+BIG_IMG_LIB = env.AddLibrary(IMAGES, '${BUILDPATH}/I2cDriver', I2C_SRC)
+
+
+if 'USES_I2C_QDSS_TRACER' in env:
+   if 'USES_QDSS_SWE' in env:
+      env.Append(CPPDEFINES = ["I2C_TRACER_SWEVT"])
+      QDSS_IMG = ['QDSS_EN_IMG']
+      events = [
+         ['I2C_EVENT_DRVAPI_READ',    'I2C DRV READ: Bus Freq = %d'],
+         ['I2C_EVENT_DRVAPI_WRITE',  'I2C DRV WRITE: Bus Freq = %d'],
+         ['I2C_EVENT_DRVAPI_BATCHTRANSFER', 'I2C_EVENT_DRVAPI_BATCHTRANSFER: Bus Freq = %d, In Island mode? (success=0): %d'],
+         ['I2C_SIZE_DATABYTES', 'I2C_SIZE_DATABYTES: IN data bytes size = %d, OUT data bytes size = %d'],
+         ['I2C_AFTER_SEQUENCE_SUBMISSION',  'I2C SEQUENCE SUBMITTTED'],
+         ['I2C_QUPSERVICE_QUP_VALID_INTERRUPT_OR_VALID_POLLSTATUS', 'I2C_QUPSERVICE_QUP_VALID_INTERRUPT: QUP_OPERATIONAL = %d'],
+         ['I2C_QUPSERVICE_BEGIN', 'I2C_QUPSERVICE_BEGIN'],
+         ['I2C_QUPSERVICE_END', 'I2C_QUPSERVICE_END'],
+         ['I2C_STATE_CHANGE_ATTEMPT_RUN',  'I2C STATE CHANGE TO RUN'],
+         ['I2C_STATE_CHANGE_ATTEMPT_RESET',  'I2C STATE CHANGE TO RESET'],
+         ['I2C_STATE_CHANGE_ATTEMPT_PAUSE',  'I2C STATE CHANGE TO PAUSE'],
+         ['I2C_STATE_CHANGE_ATTEMPT_SUCCESSFULL', 'I2C_STATE_CHANGE_ATTEMPT_SUCCESSFULL'],
+         ['I2C_STATE_CHANGE_ATTEMPT_FAILED', 'I2C_STATE_CHANGE_ATTEMPT_FAILED']]
+      env.AddSWEInfo(QDSS_IMG, events)
+
+if 'QDSS_TRACER_SWE' in env:
+   env.SWEBuilder(['${BUILD_ROOT}/core/buses/i2c/build/${BUILDPATH}/src/I2CSWEventId.h'], None)
+   env.Append(CPPPATH = ['${BUILD_ROOT}/core/buses/i2c/build/${BUILDPATH}/src'])
+
+#---------------------------------------------------------------------------
+# RCINIT
+#---------------------------------------------------------------------------
+if 'USES_RCINIT' in env:
+   env.AddRCInitFunc(
+    IMAGES,
+    {
+     'sequence_group'             : 'RCINIT_GROUP_2',                # required
+     'init_name'                  : 'I2cBsp_Init',                   # required
+     'init_function'              : 'I2cBsp_Init',                   # required
+    })
+
+#---------------------------------------------------------------------------
+# Device Config
+#---------------------------------------------------------------------------
+if 'USES_DEVCFG' in env:
+   DEVCFG_IMG = ['DAL_DEVCFG_IMG','DEVCFG_CORE_QDSP6_SENSOR_SW']
+   env.AddDevCfgInfo(DEVCFG_IMG, 
+    {
+      '660_xml'    : ['${BUILD_ROOT}/core/buses/i2c/config/i2c_ssc_660.xml']
+   })
+
+

@@ -1,0 +1,2222 @@
+###########################################
+##  CMMBuilder - BringupTool Build Log   ##
+###########################################
+
+
+
+Processing for target MSM8996
+Processing for subsystem MSS-Q6
+Processing for MSS-Q6: pmic_cmm.py
+Processing for MSS-Q6: hwio_cmm.py
+Processing for MSS-Q6: icb_cmm.py
+Processing for MSS-Q6: vcs_cmm.py
+Processing for MSS-Q6: clock_cmm.py
+Processing for MSS-Q6: general_cmm.py
+Processing for MSS-Q6: wlan_cmm.py
+Processing for MSS-Q6: rpm_cmm.py
+Processing for MSS-Q6: epm_cmm.py
+Processing for MSS-Q6: tsens_cmm.py
+Processing for MSS-Q6: tz_cmm.py
+Processing for MSS-Q6: qdss_cmm.py
+Processing for MSS-Q6: pimemtrace_cmm.py
+Processing for MSS-Q6: dragonlink_cmm.py
+Processing for subsystem APPS-ARMV8-LA
+Processing for APPS-ARMV8-LA: pmic_cmm.py
+Processing for APPS-ARMV8-LA: hwio_cmm.py
+Processing for APPS-ARMV8-LA: icb_cmm.py
+Processing for APPS-ARMV8-LA: vcs_cmm.py
+Processing for APPS-ARMV8-LA: clock_cmm.py
+Processing for APPS-ARMV8-LA: general_cmm.py
+Processing for APPS-ARMV8-LA: wlan_cmm.py
+Processing for APPS-ARMV8-LA: rpm_cmm.py
+Processing for APPS-ARMV8-LA: epm_cmm.py
+Processing for APPS-ARMV8-LA: tsens_cmm.py
+Processing for APPS-ARMV8-LA: tz_cmm.py
+Processing for APPS-ARMV8-LA: qdss_cmm.py
+Processing for APPS-ARMV8-LA: pimemtrace_cmm.py
+Processing for APPS-ARMV8-LA: dragonlink_cmm.py
+Processing for subsystem APPS-ARMV8-WP
+Processing for APPS-ARMV8-WP: pmic_cmm.py
+Processing for APPS-ARMV8-WP: hwio_cmm.py
+Processing for APPS-ARMV8-WP: icb_cmm.py
+Processing for APPS-ARMV8-WP: vcs_cmm.py
+Processing for APPS-ARMV8-WP: clock_cmm.py
+Processing for APPS-ARMV8-WP: general_cmm.py
+Processing for APPS-ARMV8-WP: wlan_cmm.py
+Processing for APPS-ARMV8-WP: rpm_cmm.py
+Processing for APPS-ARMV8-WP: epm_cmm.py
+Processing for APPS-ARMV8-WP: tsens_cmm.py
+Processing for APPS-ARMV8-WP: tz_cmm.py
+Processing for APPS-ARMV8-WP: qdss_cmm.py
+Processing for APPS-ARMV8-WP: pimemtrace_cmm.py
+Processing for APPS-ARMV8-WP: dragonlink_cmm.py
+Processing for subsystem SSC-Q6
+Processing for SSC-Q6: pmic_cmm.py
+Processing for SSC-Q6: hwio_cmm.py
+Processing for SSC-Q6: icb_cmm.py
+Processing for SSC-Q6: vcs_cmm.py
+Processing for SSC-Q6: clock_cmm.py
+Processing for SSC-Q6: general_cmm.py
+Processing for SSC-Q6: wlan_cmm.py
+Processing for SSC-Q6: rpm_cmm.py
+Processing for SSC-Q6: epm_cmm.py
+Processing for SSC-Q6: tsens_cmm.py
+Processing for SSC-Q6: tz_cmm.py
+Processing for SSC-Q6: qdss_cmm.py
+Processing for SSC-Q6: pimemtrace_cmm.py
+Processing for SSC-Q6: dragonlink_cmm.py
+Processing for subsystem RPM-CORTEXM3
+Processing for RPM-CORTEXM3: pmic_cmm.py
+Processing for RPM-CORTEXM3: hwio_cmm.py
+Processing for RPM-CORTEXM3: icb_cmm.py
+Processing for RPM-CORTEXM3: vcs_cmm.py
+Processing for RPM-CORTEXM3: clock_cmm.py
+Processing for RPM-CORTEXM3: general_cmm.py
+Processing for RPM-CORTEXM3: wlan_cmm.py
+Processing for RPM-CORTEXM3: rpm_cmm.py
+Processing for RPM-CORTEXM3: epm_cmm.py
+Processing for RPM-CORTEXM3: tsens_cmm.py
+Processing for RPM-CORTEXM3: tz_cmm.py
+Processing for RPM-CORTEXM3: qdss_cmm.py
+Processing for RPM-CORTEXM3: pimemtrace_cmm.py
+Processing for RPM-CORTEXM3: dragonlink_cmm.py
+Processing for subsystem LPASS-Q6
+Processing for LPASS-Q6: pmic_cmm.py
+Processing for LPASS-Q6: hwio_cmm.py
+Processing for LPASS-Q6: icb_cmm.py
+Processing for LPASS-Q6: vcs_cmm.py
+Processing for LPASS-Q6: clock_cmm.py
+Processing for LPASS-Q6: general_cmm.py
+Processing for LPASS-Q6: wlan_cmm.py
+Processing for LPASS-Q6: rpm_cmm.py
+Processing for LPASS-Q6: epm_cmm.py
+Processing for LPASS-Q6: tsens_cmm.py
+Processing for LPASS-Q6: tz_cmm.py
+Processing for LPASS-Q6: qdss_cmm.py
+Processing for LPASS-Q6: pimemtrace_cmm.py
+Processing for LPASS-Q6: dragonlink_cmm.py
+Processing for subsystem MSS-Q6
+Processing for MSS-Q6: pmic_cmm.py
+Processing for MSS-Q6: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for MSS-Q6: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for MSS-Q6: vcs_cmm.py
+Processing for MSS-Q6: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for MSS-Q6: general_cmm.py
+Processing for MSS-Q6: wlan_cmm.py
+Processing for MSS-Q6: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for MSS-Q6: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for MSS-Q6: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for MSS-Q6: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for MSS-Q6: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for MSS-Q6: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for MSS-Q6: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem APPS-ARMV8-LA
+Processing for APPS-ARMV8-LA: pmic_cmm.py
+Processing for APPS-ARMV8-LA: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for APPS-ARMV8-LA: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for APPS-ARMV8-LA: vcs_cmm.py
+Processing for APPS-ARMV8-LA: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for APPS-ARMV8-LA: general_cmm.py
+Processing for APPS-ARMV8-LA: wlan_cmm.py
+Processing for APPS-ARMV8-LA: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for APPS-ARMV8-LA: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for APPS-ARMV8-LA: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for APPS-ARMV8-LA: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for APPS-ARMV8-LA: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for APPS-ARMV8-LA: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for APPS-ARMV8-LA: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem APPS-ARMV8-WP
+Processing for APPS-ARMV8-WP: pmic_cmm.py
+Processing for APPS-ARMV8-WP: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for APPS-ARMV8-WP: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for APPS-ARMV8-WP: vcs_cmm.py
+Processing for APPS-ARMV8-WP: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for APPS-ARMV8-WP: general_cmm.py
+Processing for APPS-ARMV8-WP: wlan_cmm.py
+Processing for APPS-ARMV8-WP: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for APPS-ARMV8-WP: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for APPS-ARMV8-WP: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for APPS-ARMV8-WP: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for APPS-ARMV8-WP: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for APPS-ARMV8-WP: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for APPS-ARMV8-WP: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem SSC-Q6
+Processing for SSC-Q6: pmic_cmm.py
+Processing for SSC-Q6: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for SSC-Q6: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for SSC-Q6: vcs_cmm.py
+Processing for SSC-Q6: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for SSC-Q6: general_cmm.py
+Processing for SSC-Q6: wlan_cmm.py
+Processing for SSC-Q6: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for SSC-Q6: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for SSC-Q6: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for SSC-Q6: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for SSC-Q6: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for SSC-Q6: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for SSC-Q6: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem RPM-CORTEXM3
+Processing for RPM-CORTEXM3: pmic_cmm.py
+Processing for RPM-CORTEXM3: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for RPM-CORTEXM3: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for RPM-CORTEXM3: vcs_cmm.py
+Processing for RPM-CORTEXM3: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for RPM-CORTEXM3: general_cmm.py
+Processing for RPM-CORTEXM3: wlan_cmm.py
+Processing for RPM-CORTEXM3: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for RPM-CORTEXM3: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for RPM-CORTEXM3: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for RPM-CORTEXM3: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for RPM-CORTEXM3: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for RPM-CORTEXM3: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for RPM-CORTEXM3: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem LPASS-Q6
+Processing for LPASS-Q6: pmic_cmm.py
+Processing for LPASS-Q6: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for LPASS-Q6: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for LPASS-Q6: vcs_cmm.py
+Processing for LPASS-Q6: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for LPASS-Q6: general_cmm.py
+Processing for LPASS-Q6: wlan_cmm.py
+Processing for LPASS-Q6: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for LPASS-Q6: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for LPASS-Q6: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for LPASS-Q6: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for LPASS-Q6: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for LPASS-Q6: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for LPASS-Q6: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for target MSM8998
+Processing for subsystem MSS-Q6
+Processing for MSS-Q6: pmic_cmm.py
+Processing for MSS-Q6: hwio_cmm.py
+Processing for MSS-Q6: icb_cmm.py
+Processing for MSS-Q6: vcs_cmm.py
+Processing for MSS-Q6: clock_cmm.py
+Processing for MSS-Q6: general_cmm.py
+Processing for MSS-Q6: wlan_cmm.py
+Processing for MSS-Q6: rpm_cmm.py
+Processing for MSS-Q6: epm_cmm.py
+Processing for MSS-Q6: tsens_cmm.py
+Processing for MSS-Q6: tz_cmm.py
+Processing for MSS-Q6: qdss_cmm.py
+Processing for MSS-Q6: pimemtrace_cmm.py
+Processing for MSS-Q6: dragonlink_cmm.py
+Processing for subsystem APPS-ARMV8-LA
+Processing for APPS-ARMV8-LA: pmic_cmm.py
+Processing for APPS-ARMV8-LA: hwio_cmm.py
+Processing for APPS-ARMV8-LA: icb_cmm.py
+Processing for APPS-ARMV8-LA: vcs_cmm.py
+Processing for APPS-ARMV8-LA: clock_cmm.py
+Processing for APPS-ARMV8-LA: general_cmm.py
+Processing for APPS-ARMV8-LA: wlan_cmm.py
+Processing for APPS-ARMV8-LA: rpm_cmm.py
+Processing for APPS-ARMV8-LA: epm_cmm.py
+Processing for APPS-ARMV8-LA: tsens_cmm.py
+Processing for APPS-ARMV8-LA: tz_cmm.py
+Processing for APPS-ARMV8-LA: qdss_cmm.py
+Processing for APPS-ARMV8-LA: pimemtrace_cmm.py
+Processing for APPS-ARMV8-LA: dragonlink_cmm.py
+Processing for subsystem APPS-ARMV8-WP
+Processing for APPS-ARMV8-WP: pmic_cmm.py
+Processing for APPS-ARMV8-WP: hwio_cmm.py
+Processing for APPS-ARMV8-WP: icb_cmm.py
+Processing for APPS-ARMV8-WP: vcs_cmm.py
+Processing for APPS-ARMV8-WP: clock_cmm.py
+Processing for APPS-ARMV8-WP: general_cmm.py
+Processing for APPS-ARMV8-WP: wlan_cmm.py
+Processing for APPS-ARMV8-WP: rpm_cmm.py
+Processing for APPS-ARMV8-WP: epm_cmm.py
+Processing for APPS-ARMV8-WP: tsens_cmm.py
+Processing for APPS-ARMV8-WP: tz_cmm.py
+Processing for APPS-ARMV8-WP: qdss_cmm.py
+Processing for APPS-ARMV8-WP: pimemtrace_cmm.py
+Processing for APPS-ARMV8-WP: dragonlink_cmm.py
+Processing for subsystem SSC-Q6
+Processing for SSC-Q6: pmic_cmm.py
+Processing for SSC-Q6: hwio_cmm.py
+Processing for SSC-Q6: icb_cmm.py
+Processing for SSC-Q6: vcs_cmm.py
+Processing for SSC-Q6: clock_cmm.py
+Processing for SSC-Q6: general_cmm.py
+Processing for SSC-Q6: wlan_cmm.py
+Processing for SSC-Q6: rpm_cmm.py
+Processing for SSC-Q6: epm_cmm.py
+Processing for SSC-Q6: tsens_cmm.py
+Processing for SSC-Q6: tz_cmm.py
+Processing for SSC-Q6: qdss_cmm.py
+Processing for SSC-Q6: pimemtrace_cmm.py
+Processing for SSC-Q6: dragonlink_cmm.py
+Processing for subsystem RPM-CORTEXM3
+Processing for RPM-CORTEXM3: pmic_cmm.py
+Processing for RPM-CORTEXM3: hwio_cmm.py
+Processing for RPM-CORTEXM3: icb_cmm.py
+Processing for RPM-CORTEXM3: vcs_cmm.py
+Processing for RPM-CORTEXM3: clock_cmm.py
+Processing for RPM-CORTEXM3: general_cmm.py
+Processing for RPM-CORTEXM3: wlan_cmm.py
+Processing for RPM-CORTEXM3: rpm_cmm.py
+Processing for RPM-CORTEXM3: epm_cmm.py
+Processing for RPM-CORTEXM3: tsens_cmm.py
+Processing for RPM-CORTEXM3: tz_cmm.py
+Processing for RPM-CORTEXM3: qdss_cmm.py
+Processing for RPM-CORTEXM3: pimemtrace_cmm.py
+Processing for RPM-CORTEXM3: dragonlink_cmm.py
+Processing for subsystem LPASS-Q6
+Processing for LPASS-Q6: pmic_cmm.py
+Processing for LPASS-Q6: hwio_cmm.py
+Processing for LPASS-Q6: icb_cmm.py
+Processing for LPASS-Q6: vcs_cmm.py
+Processing for LPASS-Q6: clock_cmm.py
+Processing for LPASS-Q6: general_cmm.py
+Processing for LPASS-Q6: wlan_cmm.py
+Processing for LPASS-Q6: rpm_cmm.py
+Processing for LPASS-Q6: epm_cmm.py
+Processing for LPASS-Q6: tsens_cmm.py
+Processing for LPASS-Q6: tz_cmm.py
+Processing for LPASS-Q6: qdss_cmm.py
+Processing for LPASS-Q6: pimemtrace_cmm.py
+Processing for LPASS-Q6: dragonlink_cmm.py
+Processing for subsystem MSS-Q6
+Processing for MSS-Q6: pmic_cmm.py
+Processing for MSS-Q6: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for MSS-Q6: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for MSS-Q6: vcs_cmm.py
+Processing for MSS-Q6: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for MSS-Q6: general_cmm.py
+Processing for MSS-Q6: wlan_cmm.py
+Processing for MSS-Q6: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for MSS-Q6: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for MSS-Q6: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for MSS-Q6: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for MSS-Q6: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for MSS-Q6: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for MSS-Q6: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem APPS-ARMV8-LA
+Processing for APPS-ARMV8-LA: pmic_cmm.py
+Processing for APPS-ARMV8-LA: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for APPS-ARMV8-LA: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for APPS-ARMV8-LA: vcs_cmm.py
+Processing for APPS-ARMV8-LA: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for APPS-ARMV8-LA: general_cmm.py
+Processing for APPS-ARMV8-LA: wlan_cmm.py
+Processing for APPS-ARMV8-LA: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for APPS-ARMV8-LA: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for APPS-ARMV8-LA: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for APPS-ARMV8-LA: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for APPS-ARMV8-LA: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for APPS-ARMV8-LA: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for APPS-ARMV8-LA: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem APPS-ARMV8-WP
+Processing for APPS-ARMV8-WP: pmic_cmm.py
+Processing for APPS-ARMV8-WP: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for APPS-ARMV8-WP: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for APPS-ARMV8-WP: vcs_cmm.py
+Processing for APPS-ARMV8-WP: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for APPS-ARMV8-WP: general_cmm.py
+Processing for APPS-ARMV8-WP: wlan_cmm.py
+Processing for APPS-ARMV8-WP: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for APPS-ARMV8-WP: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for APPS-ARMV8-WP: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for APPS-ARMV8-WP: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for APPS-ARMV8-WP: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for APPS-ARMV8-WP: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for APPS-ARMV8-WP: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem SSC-Q6
+Processing for SSC-Q6: pmic_cmm.py
+Processing for SSC-Q6: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for SSC-Q6: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for SSC-Q6: vcs_cmm.py
+Processing for SSC-Q6: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for SSC-Q6: general_cmm.py
+Processing for SSC-Q6: wlan_cmm.py
+Processing for SSC-Q6: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for SSC-Q6: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for SSC-Q6: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for SSC-Q6: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for SSC-Q6: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for SSC-Q6: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for SSC-Q6: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem RPM-CORTEXM3
+Processing for RPM-CORTEXM3: pmic_cmm.py
+Processing for RPM-CORTEXM3: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for RPM-CORTEXM3: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for RPM-CORTEXM3: vcs_cmm.py
+Processing for RPM-CORTEXM3: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for RPM-CORTEXM3: general_cmm.py
+Processing for RPM-CORTEXM3: wlan_cmm.py
+Processing for RPM-CORTEXM3: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for RPM-CORTEXM3: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for RPM-CORTEXM3: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for RPM-CORTEXM3: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for RPM-CORTEXM3: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for RPM-CORTEXM3: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for RPM-CORTEXM3: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem LPASS-Q6
+Processing for LPASS-Q6: pmic_cmm.py
+Processing for LPASS-Q6: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for LPASS-Q6: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for LPASS-Q6: vcs_cmm.py
+Processing for LPASS-Q6: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for LPASS-Q6: general_cmm.py
+Processing for LPASS-Q6: wlan_cmm.py
+Processing for LPASS-Q6: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for LPASS-Q6: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for LPASS-Q6: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for LPASS-Q6: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for LPASS-Q6: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for LPASS-Q6: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for LPASS-Q6: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for target MDM9655
+Processing for subsystem APPS-CORTEXA5-LE
+Processing for APPS-CORTEXA5-LE: pmic_cmm.py
+Processing for APPS-CORTEXA5-LE: hwio_cmm.py
+Processing for APPS-CORTEXA5-LE: icb_cmm.py
+Processing for APPS-CORTEXA5-LE: vcs_cmm.py
+Processing for APPS-CORTEXA5-LE: clock_cmm.py
+Processing for APPS-CORTEXA5-LE: general_cmm.py
+Processing for APPS-CORTEXA5-LE: wlan_cmm.py
+Processing for APPS-CORTEXA5-LE: rpm_cmm.py
+Processing for APPS-CORTEXA5-LE: epm_cmm.py
+Processing for APPS-CORTEXA5-LE: tsens_cmm.py
+Processing for APPS-CORTEXA5-LE: tz_cmm.py
+Processing for APPS-CORTEXA5-LE: qdss_cmm.py
+Processing for APPS-CORTEXA5-LE: pimemtrace_cmm.py
+Processing for APPS-CORTEXA5-LE: dragonlink_cmm.py
+Processing for subsystem RPM-CORTEXM3
+Processing for RPM-CORTEXM3: pmic_cmm.py
+Processing for RPM-CORTEXM3: hwio_cmm.py
+Processing for RPM-CORTEXM3: icb_cmm.py
+Processing for RPM-CORTEXM3: vcs_cmm.py
+Processing for RPM-CORTEXM3: clock_cmm.py
+Processing for RPM-CORTEXM3: general_cmm.py
+Processing for RPM-CORTEXM3: wlan_cmm.py
+Processing for RPM-CORTEXM3: rpm_cmm.py
+Processing for RPM-CORTEXM3: epm_cmm.py
+Processing for RPM-CORTEXM3: tsens_cmm.py
+Processing for RPM-CORTEXM3: tz_cmm.py
+Processing for RPM-CORTEXM3: qdss_cmm.py
+Processing for RPM-CORTEXM3: pimemtrace_cmm.py
+Processing for RPM-CORTEXM3: dragonlink_cmm.py
+Processing for subsystem APPS-CORTEXA5-MN
+Processing for APPS-CORTEXA5-MN: pmic_cmm.py
+Processing for APPS-CORTEXA5-MN: hwio_cmm.py
+Processing for APPS-CORTEXA5-MN: icb_cmm.py
+Processing for APPS-CORTEXA5-MN: vcs_cmm.py
+Processing for APPS-CORTEXA5-MN: clock_cmm.py
+Processing for APPS-CORTEXA5-MN: general_cmm.py
+Processing for APPS-CORTEXA5-MN: wlan_cmm.py
+Processing for APPS-CORTEXA5-MN: rpm_cmm.py
+Processing for APPS-CORTEXA5-MN: epm_cmm.py
+Processing for APPS-CORTEXA5-MN: tsens_cmm.py
+Processing for APPS-CORTEXA5-MN: tz_cmm.py
+Processing for APPS-CORTEXA5-MN: qdss_cmm.py
+Processing for APPS-CORTEXA5-MN: pimemtrace_cmm.py
+Processing for APPS-CORTEXA5-MN: dragonlink_cmm.py
+Processing for subsystem MSS-Q6
+Processing for MSS-Q6: pmic_cmm.py
+Processing for MSS-Q6: hwio_cmm.py
+Processing for MSS-Q6: icb_cmm.py
+Processing for MSS-Q6: vcs_cmm.py
+Processing for MSS-Q6: clock_cmm.py
+Processing for MSS-Q6: general_cmm.py
+Processing for MSS-Q6: wlan_cmm.py
+Processing for MSS-Q6: rpm_cmm.py
+Processing for MSS-Q6: epm_cmm.py
+Processing for MSS-Q6: tsens_cmm.py
+Processing for MSS-Q6: tz_cmm.py
+Processing for MSS-Q6: qdss_cmm.py
+Processing for MSS-Q6: pimemtrace_cmm.py
+Processing for MSS-Q6: dragonlink_cmm.py
+Processing for subsystem APPS-CORTEXA5-LE
+Processing for APPS-CORTEXA5-LE: pmic_cmm.py
+Processing for APPS-CORTEXA5-LE: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for APPS-CORTEXA5-LE: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for APPS-CORTEXA5-LE: vcs_cmm.py
+Processing for APPS-CORTEXA5-LE: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for APPS-CORTEXA5-LE: general_cmm.py
+Processing for APPS-CORTEXA5-LE: wlan_cmm.py
+Processing for APPS-CORTEXA5-LE: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for APPS-CORTEXA5-LE: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for APPS-CORTEXA5-LE: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for APPS-CORTEXA5-LE: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for APPS-CORTEXA5-LE: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for APPS-CORTEXA5-LE: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for APPS-CORTEXA5-LE: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem RPM-CORTEXM3
+Processing for RPM-CORTEXM3: pmic_cmm.py
+Processing for RPM-CORTEXM3: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for RPM-CORTEXM3: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for RPM-CORTEXM3: vcs_cmm.py
+Processing for RPM-CORTEXM3: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for RPM-CORTEXM3: general_cmm.py
+Processing for RPM-CORTEXM3: wlan_cmm.py
+Processing for RPM-CORTEXM3: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for RPM-CORTEXM3: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for RPM-CORTEXM3: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for RPM-CORTEXM3: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for RPM-CORTEXM3: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for RPM-CORTEXM3: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for RPM-CORTEXM3: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem APPS-CORTEXA5-MN
+Processing for APPS-CORTEXA5-MN: pmic_cmm.py
+Processing for APPS-CORTEXA5-MN: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for APPS-CORTEXA5-MN: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for APPS-CORTEXA5-MN: vcs_cmm.py
+Processing for APPS-CORTEXA5-MN: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for APPS-CORTEXA5-MN: general_cmm.py
+Processing for APPS-CORTEXA5-MN: wlan_cmm.py
+Processing for APPS-CORTEXA5-MN: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for APPS-CORTEXA5-MN: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for APPS-CORTEXA5-MN: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for APPS-CORTEXA5-MN: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for APPS-CORTEXA5-MN: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for APPS-CORTEXA5-MN: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for APPS-CORTEXA5-MN: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem MSS-Q6
+Processing for MSS-Q6: pmic_cmm.py
+Processing for MSS-Q6: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for MSS-Q6: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for MSS-Q6: vcs_cmm.py
+Processing for MSS-Q6: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for MSS-Q6: general_cmm.py
+Processing for MSS-Q6: wlan_cmm.py
+Processing for MSS-Q6: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for MSS-Q6: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for MSS-Q6: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for MSS-Q6: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for MSS-Q6: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for MSS-Q6: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for MSS-Q6: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for target MDM9645
+Processing for subsystem APPS-CORTEXA5-LE
+Processing for APPS-CORTEXA5-LE: pmic_cmm.py
+Processing for APPS-CORTEXA5-LE: hwio_cmm.py
+Processing for APPS-CORTEXA5-LE: icb_cmm.py
+Processing for APPS-CORTEXA5-LE: vcs_cmm.py
+Processing for APPS-CORTEXA5-LE: clock_cmm.py
+Processing for APPS-CORTEXA5-LE: general_cmm.py
+Processing for APPS-CORTEXA5-LE: wlan_cmm.py
+Processing for APPS-CORTEXA5-LE: rpm_cmm.py
+Processing for APPS-CORTEXA5-LE: epm_cmm.py
+Processing for APPS-CORTEXA5-LE: tsens_cmm.py
+Processing for APPS-CORTEXA5-LE: tz_cmm.py
+Processing for APPS-CORTEXA5-LE: qdss_cmm.py
+Processing for APPS-CORTEXA5-LE: pimemtrace_cmm.py
+Processing for APPS-CORTEXA5-LE: dragonlink_cmm.py
+Processing for subsystem RPM-CORTEXM3
+Processing for RPM-CORTEXM3: pmic_cmm.py
+Processing for RPM-CORTEXM3: hwio_cmm.py
+Processing for RPM-CORTEXM3: icb_cmm.py
+Processing for RPM-CORTEXM3: vcs_cmm.py
+Processing for RPM-CORTEXM3: clock_cmm.py
+Processing for RPM-CORTEXM3: general_cmm.py
+Processing for RPM-CORTEXM3: wlan_cmm.py
+Processing for RPM-CORTEXM3: rpm_cmm.py
+Processing for RPM-CORTEXM3: epm_cmm.py
+Processing for RPM-CORTEXM3: tsens_cmm.py
+Processing for RPM-CORTEXM3: tz_cmm.py
+Processing for RPM-CORTEXM3: qdss_cmm.py
+Processing for RPM-CORTEXM3: pimemtrace_cmm.py
+Processing for RPM-CORTEXM3: dragonlink_cmm.py
+Processing for subsystem APPS-CORTEXA5-MN
+Processing for APPS-CORTEXA5-MN: pmic_cmm.py
+Processing for APPS-CORTEXA5-MN: hwio_cmm.py
+Processing for APPS-CORTEXA5-MN: icb_cmm.py
+Processing for APPS-CORTEXA5-MN: vcs_cmm.py
+Processing for APPS-CORTEXA5-MN: clock_cmm.py
+Processing for APPS-CORTEXA5-MN: general_cmm.py
+Processing for APPS-CORTEXA5-MN: wlan_cmm.py
+Processing for APPS-CORTEXA5-MN: rpm_cmm.py
+Processing for APPS-CORTEXA5-MN: epm_cmm.py
+Processing for APPS-CORTEXA5-MN: tsens_cmm.py
+Processing for APPS-CORTEXA5-MN: tz_cmm.py
+Processing for APPS-CORTEXA5-MN: qdss_cmm.py
+Processing for APPS-CORTEXA5-MN: pimemtrace_cmm.py
+Processing for APPS-CORTEXA5-MN: dragonlink_cmm.py
+Processing for subsystem MSS-Q6
+Processing for MSS-Q6: pmic_cmm.py
+Processing for MSS-Q6: hwio_cmm.py
+Processing for MSS-Q6: icb_cmm.py
+Processing for MSS-Q6: vcs_cmm.py
+Processing for MSS-Q6: clock_cmm.py
+Processing for MSS-Q6: general_cmm.py
+Processing for MSS-Q6: wlan_cmm.py
+Processing for MSS-Q6: rpm_cmm.py
+Processing for MSS-Q6: epm_cmm.py
+Processing for MSS-Q6: tsens_cmm.py
+Processing for MSS-Q6: tz_cmm.py
+Processing for MSS-Q6: qdss_cmm.py
+Processing for MSS-Q6: pimemtrace_cmm.py
+Processing for MSS-Q6: dragonlink_cmm.py
+Processing for subsystem APPS-CORTEXA5-LE
+Processing for APPS-CORTEXA5-LE: pmic_cmm.py
+Processing for APPS-CORTEXA5-LE: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for APPS-CORTEXA5-LE: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for APPS-CORTEXA5-LE: vcs_cmm.py
+Processing for APPS-CORTEXA5-LE: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for APPS-CORTEXA5-LE: general_cmm.py
+Processing for APPS-CORTEXA5-LE: wlan_cmm.py
+Processing for APPS-CORTEXA5-LE: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for APPS-CORTEXA5-LE: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for APPS-CORTEXA5-LE: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for APPS-CORTEXA5-LE: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for APPS-CORTEXA5-LE: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for APPS-CORTEXA5-LE: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for APPS-CORTEXA5-LE: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem RPM-CORTEXM3
+Processing for RPM-CORTEXM3: pmic_cmm.py
+Processing for RPM-CORTEXM3: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for RPM-CORTEXM3: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for RPM-CORTEXM3: vcs_cmm.py
+Processing for RPM-CORTEXM3: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for RPM-CORTEXM3: general_cmm.py
+Processing for RPM-CORTEXM3: wlan_cmm.py
+Processing for RPM-CORTEXM3: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for RPM-CORTEXM3: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for RPM-CORTEXM3: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for RPM-CORTEXM3: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for RPM-CORTEXM3: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for RPM-CORTEXM3: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for RPM-CORTEXM3: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem APPS-CORTEXA5-MN
+Processing for APPS-CORTEXA5-MN: pmic_cmm.py
+Processing for APPS-CORTEXA5-MN: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for APPS-CORTEXA5-MN: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for APPS-CORTEXA5-MN: vcs_cmm.py
+Processing for APPS-CORTEXA5-MN: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for APPS-CORTEXA5-MN: general_cmm.py
+Processing for APPS-CORTEXA5-MN: wlan_cmm.py
+Processing for APPS-CORTEXA5-MN: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for APPS-CORTEXA5-MN: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for APPS-CORTEXA5-MN: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for APPS-CORTEXA5-MN: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for APPS-CORTEXA5-MN: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for APPS-CORTEXA5-MN: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for APPS-CORTEXA5-MN: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem MSS-Q6
+Processing for MSS-Q6: pmic_cmm.py
+Processing for MSS-Q6: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for MSS-Q6: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for MSS-Q6: vcs_cmm.py
+Processing for MSS-Q6: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for MSS-Q6: general_cmm.py
+Processing for MSS-Q6: wlan_cmm.py
+Processing for MSS-Q6: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for MSS-Q6: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for MSS-Q6: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for MSS-Q6: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for MSS-Q6: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for MSS-Q6: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for MSS-Q6: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for target SDM660
+Processing for subsystem MSS-Q6
+Processing for MSS-Q6: pmic_cmm.py
+Processing for MSS-Q6: hwio_cmm.py
+Processing for MSS-Q6: icb_cmm.py
+Processing for MSS-Q6: vcs_cmm.py
+Processing for MSS-Q6: clock_cmm.py
+Processing for MSS-Q6: general_cmm.py
+Processing for MSS-Q6: wlan_cmm.py
+Processing for MSS-Q6: rpm_cmm.py
+Processing for MSS-Q6: epm_cmm.py
+Processing for MSS-Q6: tsens_cmm.py
+Processing for MSS-Q6: tz_cmm.py
+Processing for MSS-Q6: qdss_cmm.py
+Processing for MSS-Q6: pimemtrace_cmm.py
+Processing for MSS-Q6: dragonlink_cmm.py
+Processing for subsystem APPS-ARMV8-LA
+Processing for APPS-ARMV8-LA: pmic_cmm.py
+Processing for APPS-ARMV8-LA: hwio_cmm.py
+Processing for APPS-ARMV8-LA: icb_cmm.py
+Processing for APPS-ARMV8-LA: vcs_cmm.py
+Processing for APPS-ARMV8-LA: clock_cmm.py
+Processing for APPS-ARMV8-LA: general_cmm.py
+Processing for APPS-ARMV8-LA: wlan_cmm.py
+Processing for APPS-ARMV8-LA: rpm_cmm.py
+Processing for APPS-ARMV8-LA: epm_cmm.py
+Processing for APPS-ARMV8-LA: tsens_cmm.py
+Processing for APPS-ARMV8-LA: tz_cmm.py
+Processing for APPS-ARMV8-LA: qdss_cmm.py
+Processing for APPS-ARMV8-LA: pimemtrace_cmm.py
+Processing for APPS-ARMV8-LA: dragonlink_cmm.py
+Processing for subsystem APPS-ARMV8-WP
+Processing for APPS-ARMV8-WP: pmic_cmm.py
+Processing for APPS-ARMV8-WP: hwio_cmm.py
+Processing for APPS-ARMV8-WP: icb_cmm.py
+Processing for APPS-ARMV8-WP: vcs_cmm.py
+Processing for APPS-ARMV8-WP: clock_cmm.py
+Processing for APPS-ARMV8-WP: general_cmm.py
+Processing for APPS-ARMV8-WP: wlan_cmm.py
+Processing for APPS-ARMV8-WP: rpm_cmm.py
+Processing for APPS-ARMV8-WP: epm_cmm.py
+Processing for APPS-ARMV8-WP: tsens_cmm.py
+Processing for APPS-ARMV8-WP: tz_cmm.py
+Processing for APPS-ARMV8-WP: qdss_cmm.py
+Processing for APPS-ARMV8-WP: pimemtrace_cmm.py
+Processing for APPS-ARMV8-WP: dragonlink_cmm.py
+Processing for subsystem SSC-Q6
+Processing for SSC-Q6: pmic_cmm.py
+Processing for SSC-Q6: hwio_cmm.py
+Processing for SSC-Q6: icb_cmm.py
+Processing for SSC-Q6: vcs_cmm.py
+Processing for SSC-Q6: clock_cmm.py
+Processing for SSC-Q6: general_cmm.py
+Processing for SSC-Q6: wlan_cmm.py
+Processing for SSC-Q6: rpm_cmm.py
+Processing for SSC-Q6: epm_cmm.py
+Processing for SSC-Q6: tsens_cmm.py
+Processing for SSC-Q6: tz_cmm.py
+Processing for SSC-Q6: qdss_cmm.py
+Processing for SSC-Q6: pimemtrace_cmm.py
+Processing for SSC-Q6: dragonlink_cmm.py
+Processing for subsystem CDSP-Q6
+Processing for CDSP-Q6: pmic_cmm.py
+Processing for CDSP-Q6: hwio_cmm.py
+Processing for CDSP-Q6: icb_cmm.py
+Processing for CDSP-Q6: vcs_cmm.py
+Processing for CDSP-Q6: clock_cmm.py
+Processing for CDSP-Q6: general_cmm.py
+Processing for CDSP-Q6: wlan_cmm.py
+Processing for CDSP-Q6: rpm_cmm.py
+Processing for CDSP-Q6: epm_cmm.py
+Processing for CDSP-Q6: tsens_cmm.py
+Processing for CDSP-Q6: tz_cmm.py
+Processing for CDSP-Q6: qdss_cmm.py
+Processing for CDSP-Q6: pimemtrace_cmm.py
+Processing for CDSP-Q6: dragonlink_cmm.py
+Processing for subsystem RPM-CORTEXM3
+Processing for RPM-CORTEXM3: pmic_cmm.py
+Processing for RPM-CORTEXM3: hwio_cmm.py
+Processing for RPM-CORTEXM3: icb_cmm.py
+Processing for RPM-CORTEXM3: vcs_cmm.py
+Processing for RPM-CORTEXM3: clock_cmm.py
+Processing for RPM-CORTEXM3: general_cmm.py
+Processing for RPM-CORTEXM3: wlan_cmm.py
+Processing for RPM-CORTEXM3: rpm_cmm.py
+Processing for RPM-CORTEXM3: epm_cmm.py
+Processing for RPM-CORTEXM3: tsens_cmm.py
+Processing for RPM-CORTEXM3: tz_cmm.py
+Processing for RPM-CORTEXM3: qdss_cmm.py
+Processing for RPM-CORTEXM3: pimemtrace_cmm.py
+Processing for RPM-CORTEXM3: dragonlink_cmm.py
+Processing for subsystem LPASS-Q6
+Processing for LPASS-Q6: pmic_cmm.py
+Processing for LPASS-Q6: hwio_cmm.py
+Processing for LPASS-Q6: icb_cmm.py
+Processing for LPASS-Q6: vcs_cmm.py
+Processing for LPASS-Q6: clock_cmm.py
+Processing for LPASS-Q6: general_cmm.py
+Processing for LPASS-Q6: wlan_cmm.py
+Processing for LPASS-Q6: rpm_cmm.py
+Processing for LPASS-Q6: epm_cmm.py
+Processing for LPASS-Q6: tsens_cmm.py
+Processing for LPASS-Q6: tz_cmm.py
+Processing for LPASS-Q6: qdss_cmm.py
+Processing for LPASS-Q6: pimemtrace_cmm.py
+Processing for LPASS-Q6: dragonlink_cmm.py
+Processing for subsystem MSS-Q6
+Processing for MSS-Q6: pmic_cmm.py
+Processing for MSS-Q6: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for MSS-Q6: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for MSS-Q6: vcs_cmm.py
+Processing for MSS-Q6: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for MSS-Q6: general_cmm.py
+Processing for MSS-Q6: wlan_cmm.py
+Processing for MSS-Q6: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for MSS-Q6: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for MSS-Q6: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for MSS-Q6: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for MSS-Q6: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for MSS-Q6: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for MSS-Q6: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem APPS-ARMV8-LA
+Processing for APPS-ARMV8-LA: pmic_cmm.py
+Processing for APPS-ARMV8-LA: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for APPS-ARMV8-LA: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for APPS-ARMV8-LA: vcs_cmm.py
+Processing for APPS-ARMV8-LA: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for APPS-ARMV8-LA: general_cmm.py
+Processing for APPS-ARMV8-LA: wlan_cmm.py
+Processing for APPS-ARMV8-LA: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for APPS-ARMV8-LA: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for APPS-ARMV8-LA: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for APPS-ARMV8-LA: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for APPS-ARMV8-LA: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for APPS-ARMV8-LA: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for APPS-ARMV8-LA: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem APPS-ARMV8-WP
+Processing for APPS-ARMV8-WP: pmic_cmm.py
+Processing for APPS-ARMV8-WP: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for APPS-ARMV8-WP: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for APPS-ARMV8-WP: vcs_cmm.py
+Processing for APPS-ARMV8-WP: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for APPS-ARMV8-WP: general_cmm.py
+Processing for APPS-ARMV8-WP: wlan_cmm.py
+Processing for APPS-ARMV8-WP: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for APPS-ARMV8-WP: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for APPS-ARMV8-WP: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for APPS-ARMV8-WP: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for APPS-ARMV8-WP: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for APPS-ARMV8-WP: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for APPS-ARMV8-WP: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem SSC-Q6
+Processing for SSC-Q6: pmic_cmm.py
+Processing for SSC-Q6: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for SSC-Q6: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for SSC-Q6: vcs_cmm.py
+Processing for SSC-Q6: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for SSC-Q6: general_cmm.py
+Processing for SSC-Q6: wlan_cmm.py
+Processing for SSC-Q6: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for SSC-Q6: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for SSC-Q6: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for SSC-Q6: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for SSC-Q6: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for SSC-Q6: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for SSC-Q6: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem CDSP-Q6
+Processing for CDSP-Q6: pmic_cmm.py
+Processing for CDSP-Q6: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for CDSP-Q6: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for CDSP-Q6: vcs_cmm.py
+Processing for CDSP-Q6: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for CDSP-Q6: general_cmm.py
+Processing for CDSP-Q6: wlan_cmm.py
+Processing for CDSP-Q6: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for CDSP-Q6: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for CDSP-Q6: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for CDSP-Q6: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for CDSP-Q6: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for CDSP-Q6: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for CDSP-Q6: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem RPM-CORTEXM3
+Processing for RPM-CORTEXM3: pmic_cmm.py
+Processing for RPM-CORTEXM3: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for RPM-CORTEXM3: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for RPM-CORTEXM3: vcs_cmm.py
+Processing for RPM-CORTEXM3: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for RPM-CORTEXM3: general_cmm.py
+Processing for RPM-CORTEXM3: wlan_cmm.py
+Processing for RPM-CORTEXM3: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for RPM-CORTEXM3: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for RPM-CORTEXM3: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for RPM-CORTEXM3: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for RPM-CORTEXM3: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for RPM-CORTEXM3: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for RPM-CORTEXM3: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem LPASS-Q6
+Processing for LPASS-Q6: pmic_cmm.py
+Processing for LPASS-Q6: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for LPASS-Q6: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for LPASS-Q6: vcs_cmm.py
+Processing for LPASS-Q6: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for LPASS-Q6: general_cmm.py
+Processing for LPASS-Q6: wlan_cmm.py
+Processing for LPASS-Q6: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for LPASS-Q6: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for LPASS-Q6: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for LPASS-Q6: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for LPASS-Q6: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for LPASS-Q6: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for LPASS-Q6: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for target SDM630
+Processing for subsystem MSS-Q6
+Processing for MSS-Q6: pmic_cmm.py
+Processing for MSS-Q6: hwio_cmm.py
+Processing for MSS-Q6: icb_cmm.py
+Processing for MSS-Q6: vcs_cmm.py
+Processing for MSS-Q6: clock_cmm.py
+Processing for MSS-Q6: general_cmm.py
+Processing for MSS-Q6: wlan_cmm.py
+Processing for MSS-Q6: rpm_cmm.py
+Processing for MSS-Q6: epm_cmm.py
+Processing for MSS-Q6: tsens_cmm.py
+Processing for MSS-Q6: tz_cmm.py
+Processing for MSS-Q6: qdss_cmm.py
+Processing for MSS-Q6: pimemtrace_cmm.py
+Processing for MSS-Q6: dragonlink_cmm.py
+Processing for subsystem APPS-ARMV8-LA
+Processing for APPS-ARMV8-LA: pmic_cmm.py
+Processing for APPS-ARMV8-LA: hwio_cmm.py
+Processing for APPS-ARMV8-LA: icb_cmm.py
+Processing for APPS-ARMV8-LA: vcs_cmm.py
+Processing for APPS-ARMV8-LA: clock_cmm.py
+Processing for APPS-ARMV8-LA: general_cmm.py
+Processing for APPS-ARMV8-LA: wlan_cmm.py
+Processing for APPS-ARMV8-LA: rpm_cmm.py
+Processing for APPS-ARMV8-LA: epm_cmm.py
+Processing for APPS-ARMV8-LA: tsens_cmm.py
+Processing for APPS-ARMV8-LA: tz_cmm.py
+Processing for APPS-ARMV8-LA: qdss_cmm.py
+Processing for APPS-ARMV8-LA: pimemtrace_cmm.py
+Processing for APPS-ARMV8-LA: dragonlink_cmm.py
+Processing for subsystem APPS-ARMV8-WP
+Processing for APPS-ARMV8-WP: pmic_cmm.py
+Processing for APPS-ARMV8-WP: hwio_cmm.py
+Processing for APPS-ARMV8-WP: icb_cmm.py
+Processing for APPS-ARMV8-WP: vcs_cmm.py
+Processing for APPS-ARMV8-WP: clock_cmm.py
+Processing for APPS-ARMV8-WP: general_cmm.py
+Processing for APPS-ARMV8-WP: wlan_cmm.py
+Processing for APPS-ARMV8-WP: rpm_cmm.py
+Processing for APPS-ARMV8-WP: epm_cmm.py
+Processing for APPS-ARMV8-WP: tsens_cmm.py
+Processing for APPS-ARMV8-WP: tz_cmm.py
+Processing for APPS-ARMV8-WP: qdss_cmm.py
+Processing for APPS-ARMV8-WP: pimemtrace_cmm.py
+Processing for APPS-ARMV8-WP: dragonlink_cmm.py
+Processing for subsystem SSC-Q6
+Processing for SSC-Q6: pmic_cmm.py
+Processing for SSC-Q6: hwio_cmm.py
+Processing for SSC-Q6: icb_cmm.py
+Processing for SSC-Q6: vcs_cmm.py
+Processing for SSC-Q6: clock_cmm.py
+Processing for SSC-Q6: general_cmm.py
+Processing for SSC-Q6: wlan_cmm.py
+Processing for SSC-Q6: rpm_cmm.py
+Processing for SSC-Q6: epm_cmm.py
+Processing for SSC-Q6: tsens_cmm.py
+Processing for SSC-Q6: tz_cmm.py
+Processing for SSC-Q6: qdss_cmm.py
+Processing for SSC-Q6: pimemtrace_cmm.py
+Processing for SSC-Q6: dragonlink_cmm.py
+Processing for subsystem CDSP-Q6
+Processing for CDSP-Q6: pmic_cmm.py
+Processing for CDSP-Q6: hwio_cmm.py
+Processing for CDSP-Q6: icb_cmm.py
+Processing for CDSP-Q6: vcs_cmm.py
+Processing for CDSP-Q6: clock_cmm.py
+Processing for CDSP-Q6: general_cmm.py
+Processing for CDSP-Q6: wlan_cmm.py
+Processing for CDSP-Q6: rpm_cmm.py
+Processing for CDSP-Q6: epm_cmm.py
+Processing for CDSP-Q6: tsens_cmm.py
+Processing for CDSP-Q6: tz_cmm.py
+Processing for CDSP-Q6: qdss_cmm.py
+Processing for CDSP-Q6: pimemtrace_cmm.py
+Processing for CDSP-Q6: dragonlink_cmm.py
+Processing for subsystem RPM-CORTEXM3
+Processing for RPM-CORTEXM3: pmic_cmm.py
+Processing for RPM-CORTEXM3: hwio_cmm.py
+Processing for RPM-CORTEXM3: icb_cmm.py
+Processing for RPM-CORTEXM3: vcs_cmm.py
+Processing for RPM-CORTEXM3: clock_cmm.py
+Processing for RPM-CORTEXM3: general_cmm.py
+Processing for RPM-CORTEXM3: wlan_cmm.py
+Processing for RPM-CORTEXM3: rpm_cmm.py
+Processing for RPM-CORTEXM3: epm_cmm.py
+Processing for RPM-CORTEXM3: tsens_cmm.py
+Processing for RPM-CORTEXM3: tz_cmm.py
+Processing for RPM-CORTEXM3: qdss_cmm.py
+Processing for RPM-CORTEXM3: pimemtrace_cmm.py
+Processing for RPM-CORTEXM3: dragonlink_cmm.py
+Processing for subsystem LPASS-Q6
+Processing for LPASS-Q6: pmic_cmm.py
+Processing for LPASS-Q6: hwio_cmm.py
+Processing for LPASS-Q6: icb_cmm.py
+Processing for LPASS-Q6: vcs_cmm.py
+Processing for LPASS-Q6: clock_cmm.py
+Processing for LPASS-Q6: general_cmm.py
+Processing for LPASS-Q6: wlan_cmm.py
+Processing for LPASS-Q6: rpm_cmm.py
+Processing for LPASS-Q6: epm_cmm.py
+Processing for LPASS-Q6: tsens_cmm.py
+Processing for LPASS-Q6: tz_cmm.py
+Processing for LPASS-Q6: qdss_cmm.py
+Processing for LPASS-Q6: pimemtrace_cmm.py
+Processing for LPASS-Q6: dragonlink_cmm.py
+Processing for subsystem MSS-Q6
+Processing for MSS-Q6: pmic_cmm.py
+Processing for MSS-Q6: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for MSS-Q6: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for MSS-Q6: vcs_cmm.py
+Processing for MSS-Q6: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for MSS-Q6: general_cmm.py
+Processing for MSS-Q6: wlan_cmm.py
+Processing for MSS-Q6: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for MSS-Q6: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for MSS-Q6: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for MSS-Q6: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for MSS-Q6: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for MSS-Q6: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for MSS-Q6: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem APPS-ARMV8-LA
+Processing for APPS-ARMV8-LA: pmic_cmm.py
+Processing for APPS-ARMV8-LA: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for APPS-ARMV8-LA: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for APPS-ARMV8-LA: vcs_cmm.py
+Processing for APPS-ARMV8-LA: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for APPS-ARMV8-LA: general_cmm.py
+Processing for APPS-ARMV8-LA: wlan_cmm.py
+Processing for APPS-ARMV8-LA: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for APPS-ARMV8-LA: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for APPS-ARMV8-LA: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for APPS-ARMV8-LA: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for APPS-ARMV8-LA: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for APPS-ARMV8-LA: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for APPS-ARMV8-LA: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem APPS-ARMV8-WP
+Processing for APPS-ARMV8-WP: pmic_cmm.py
+Processing for APPS-ARMV8-WP: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for APPS-ARMV8-WP: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for APPS-ARMV8-WP: vcs_cmm.py
+Processing for APPS-ARMV8-WP: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for APPS-ARMV8-WP: general_cmm.py
+Processing for APPS-ARMV8-WP: wlan_cmm.py
+Processing for APPS-ARMV8-WP: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for APPS-ARMV8-WP: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for APPS-ARMV8-WP: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for APPS-ARMV8-WP: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for APPS-ARMV8-WP: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for APPS-ARMV8-WP: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for APPS-ARMV8-WP: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem SSC-Q6
+Processing for SSC-Q6: pmic_cmm.py
+Processing for SSC-Q6: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for SSC-Q6: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for SSC-Q6: vcs_cmm.py
+Processing for SSC-Q6: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for SSC-Q6: general_cmm.py
+Processing for SSC-Q6: wlan_cmm.py
+Processing for SSC-Q6: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for SSC-Q6: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for SSC-Q6: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for SSC-Q6: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for SSC-Q6: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for SSC-Q6: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for SSC-Q6: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem CDSP-Q6
+Processing for CDSP-Q6: pmic_cmm.py
+Processing for CDSP-Q6: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for CDSP-Q6: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for CDSP-Q6: vcs_cmm.py
+Processing for CDSP-Q6: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for CDSP-Q6: general_cmm.py
+Processing for CDSP-Q6: wlan_cmm.py
+Processing for CDSP-Q6: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for CDSP-Q6: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for CDSP-Q6: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for CDSP-Q6: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for CDSP-Q6: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for CDSP-Q6: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for CDSP-Q6: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem RPM-CORTEXM3
+Processing for RPM-CORTEXM3: pmic_cmm.py
+Processing for RPM-CORTEXM3: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for RPM-CORTEXM3: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for RPM-CORTEXM3: vcs_cmm.py
+Processing for RPM-CORTEXM3: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for RPM-CORTEXM3: general_cmm.py
+Processing for RPM-CORTEXM3: wlan_cmm.py
+Processing for RPM-CORTEXM3: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for RPM-CORTEXM3: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for RPM-CORTEXM3: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for RPM-CORTEXM3: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for RPM-CORTEXM3: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for RPM-CORTEXM3: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for RPM-CORTEXM3: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor
+Processing for subsystem LPASS-Q6
+Processing for LPASS-Q6: pmic_cmm.py
+Processing for LPASS-Q6: hwio_cmm.py
+Removing View HWIO Registers for external release build flavor
+Processing for LPASS-Q6: icb_cmm.py
+Removing Dump Bus Bandwidth Requests for external release build flavor
+Processing for LPASS-Q6: vcs_cmm.py
+Processing for LPASS-Q6: clock_cmm.py
+Removing clockdriver_8998 for external release build flavor
+Removing clockdriver_8996 for external release build flavor
+Removing testpll_8998_mpss for external release build flavor
+Removing testpll_8998 for external release build flavor
+Removing testclock_8998_mpss for external release build flavor
+Removing testclock_8998 for external release build flavor
+Removing testclock_8996_bimc for external release build flavor
+Removing testclock_8996 for external release build flavor
+Processing for LPASS-Q6: general_cmm.py
+Processing for LPASS-Q6: wlan_cmm.py
+Processing for LPASS-Q6: rpm_cmm.py
+Removing RPM Scripts for external release build flavor
+Processing for LPASS-Q6: epm_cmm.py
+Removing ALPACA GUI for external release build flavor
+Processing for LPASS-Q6: tsens_cmm.py
+Removing TSENS Temps for external release build flavor
+Processing for LPASS-Q6: tz_cmm.py
+Removing Load TZ elfs for external release build flavor
+Removing SMMU Fault parser for external release build flavor
+Removing Print TZ Log for external release build flavor
+Removing Stage 2 Pagetable Walker for external release build flavor
+Processing for LPASS-Q6: qdss_cmm.py
+Removing MPSS to SNOC probe for external release build flavor
+Removing GladiatorTrace for external release build flavor
+Removing openallfunnels for external release build flavor
+Processing for LPASS-Q6: pimemtrace_cmm.py
+Removing PIMEM Trace BC - APB for external release build flavor
+Removing PIMEM Trace CMB - postscript for external release build flavor
+Removing PIMEM Trace CMB for external release build flavor
+Removing PIMEM Trace BC - ATB - postscript for external release build flavor
+Removing PIMEM Trace BC - ATB for external release build flavor
+Removing PIMEM Trace BC - APB - postscript for external release build flavor
+Processing for LPASS-Q6: dragonlink_cmm.py
+Removing DragonLink-etbdump for external release build flavor
+Removing DragonLink OLC for external release build flavor
+Removing dragonlink parser for external release build flavor
+Removing DragonLink-actualscript for external release build flavor
+Removing DragonLink-modify-message for external release build flavor
+Removing DragonLink copy and pedit utility for external release build flavor
+Removing dragonlink etb to bin for external release build flavor
+Removing DragonLink get ATID for external release build flavor
+Removing dragonlink delay 15 seconds for external release build flavor

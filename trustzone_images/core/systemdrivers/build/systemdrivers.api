@@ -1,0 +1,40 @@
+
+#===============================================================================
+#
+# System Drivers INC PATHs
+#
+# GENERAL DESCRIPTION
+#    System Drivers INC PATHs
+#
+# Copyright (c) 2011 by Qualcomm Technologies, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.tz/1.0.7.1/systemdrivers/build/systemdrivers.api#1 $
+#  $DateTime: 2020/01/14 12:35:09 $
+#  $Author: pwbldsvc $
+#  $Change: 22186835 $
+#===============================================================================
+
+Import('env')
+
+#-------------------------------------------------------------------------------
+# Publish Public APIs
+# These are accessible internal or external to CoreBSP
+#-------------------------------------------------------------------------------
+
+env.PublishPublicApi('SYSTEMDRIVERS', [
+    "${INC_ROOT}/core/api/systemdrivers",
+    "${INC_ROOT}/core/api/systemdrivers/pmic",
+    "${INC_ROOT}/core/api/systemdrivers/spmi",
+    "${INC_ROOT}/core/api/systemdrivers/icb",
+])
+
+# --------------------------------------------------------------------------- #
+# Search for additional APIs                                                  #
+# --------------------------------------------------------------------------- #
+
+env.LoadAPIUnits()
+env.Deploy('systemdrivers.api')

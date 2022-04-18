@@ -1,0 +1,133 @@
+#===============================================================================
+#
+# DAL Framework Libs
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2009 - 2011 Qualcomm Incorporated.
+# All Rights Reserved.
+# Qualcomm Confidential and Proprietary
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.qdsp6/1.0.c2/dal/framework/build/SConscript#1 $
+#  $DateTime: 2020/02/10 01:57:30 $
+#  $Author: pwbldsvc $
+#  $Change: 22511909 $
+#                      EDIT HISTORY FOR FILE
+#                      
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#  
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+#
+#===============================================================================
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${DAL_ROOT}/framework/src"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0) 
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'DAL',
+   'MPROC',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+   'DEBUGTOOLS',
+   # needs to be last also contains wrong comdef.h      
+   'KERNEL',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+#-------------------------------------------------------------------------------
+# Load dal config builder
+#-------------------------------------------------------------------------------
+env.Tool('dalconfig_builder', toolpath = ['${DEVCFG_SCRIPTS}'])
+
+#-------------------------------------------------------------------------------
+# Pass DALSystem XML file to Devcfg
+#-------------------------------------------------------------------------------
+if env.GetUsesFlag('USES_DEVCFG') is True:
+   DEVCFG_IMG = ['DAL_DEVCFG_IMG']
+   env.AddDevCfgInfo(DEVCFG_IMG,
+   {
+      'soc_xml' : ['${COREBSP_ROOT}/dal/framework/dalsystem/dalsystem_root.xml']
+   })
+   DEVCFG_IMG = ['DEVCFG_CORE_QDSP6_SENSOR_SW']
+   env.AddDevCfgInfo(DEVCFG_IMG,
+   {
+      'soc_xml' : ['${COREBSP_ROOT}/dal/framework/dalsystem/dalsystem_sensors.xml']
+   })     
+
+#-------------------------------------------------------------------------------
+# DalModDir.c file
+#-------------------------------------------------------------------------------
+if env.GetUsesFlag('USES_DEVCFG') is True:
+    #Get devcfg XML tag-list
+    devcfg_xml_tag_list = env.get('DEVCFG').getFeature('devcfgXMLTagList')
+    target_img          = env.get('DEVCFG').getFeature('targetImg')
+    config_str          = env.get('MSM_ID') + '_' + target_img
+    Master_XML          = File(env.subst('${DEVCFG_ROOT}/build/${BUILDPATH}/DevCfg_master_'+config_str+'.xml'))
+    DalModDir           = env.DALModDirSrcBuilder('${BUILDPATH}/DalModDir_'+config_str+'.c', 
+                                                  [Master_XML], 
+                                                   CONFIG=config_str)
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+
+
+#-------------------------------------------------------------------------------
+# GuestOS Source Code
+#-------------------------------------------------------------------------------
+
+DALFW_GUESTOS_SOURCES =  [
+   '${BUILDPATH}/common/dalfwkbase.c',
+   '${BUILDPATH}/common/DALQueue.c',
+   '${BUILDPATH}/common/DALDevice.c',
+   '${BUILDPATH}/qdi/DALQdiQurtOS.c',
+   '${BUILDPATH}/qdi/DALQdiRcvr.S',
+   ]
+DALFW_GUESTOS_SOURCES.append(DalModDir[0].path)
+env.Append(CPPDEFINES = ["FEATURE_DAL_REMOTE"])
+
+#-------------------------------------------------------------------------------
+# User Source Code
+#-------------------------------------------------------------------------------
+
+DALFW_USER_SOURCES =  [
+   '${BUILDPATH}/common/dalfwkbase.c',
+   '${BUILDPATH}/common/DALQueue.c',
+   '${BUILDPATH}/common/DALDevice.c',
+   '${BUILDPATH}/qdi/DALQdiFwdr.S',
+   '${BUILDPATH}/qdi/DALQdiUser.c',
+   ]
+DALFW_USER_SOURCES.append(DalModDir[0].path)                                               
+#-------------------------------------------------------------------------------
+# Add Guest OS Libraries to image
+#-------------------------------------------------------------------------------
+env.AddLibrary(
+   ['SINGLE_IMAGE', 'CBSP_SINGLE_IMAGE', 'MODEM_IMAGE', 'CBSP_MODEM_IMAGE',
+    'APPS_IMAGE', 'CBSP_APPS_IMAGE', 'QDSP6_SW_IMAGE', 'CBSP_QDSP6_SW_IMAGE'],
+    '${BUILDPATH}/DALFwk_guestos', DALFW_GUESTOS_SOURCES)
+
+#-------------------------------------------------------------------------------
+# Add User Libraries to image
+#-------------------------------------------------------------------------------
+if env.GetUsesFlag('USES_SENSOR_IMG') is True:
+   env.Append(CPPDEFINES = ["FEATURE_DAL_REMOTE_CLIENT"])
+   env.AddLibrary(['CORE_QDSP6_SENSOR_SW'], '${BUILDPATH}/DALFwk_user', DALFW_USER_SOURCES)
+
+if env.GetUsesFlag('USES_AUDIO_IMG') is True:
+   env.Append(CPPDEFINES = ["FEATURE_DAL_REMOTE_CLIENT"])
+   env.AddLibrary(['CORE_QDSP6_AUDIO_SW'], '${BUILDPATH}/DALFwk_user', DALFW_USER_SOURCES)

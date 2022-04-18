@@ -1,0 +1,1154 @@
+;----------------------------------------------------------------------------
+;  Name: Debug_Suite.cmm
+;    Configure the Debug hooks
+;
+;  PoC:
+;    aidapala / SWArch
+;
+; Copyright (c) 2006-2015 by Qualcomm Technologies, Incorporated.  All Rights Reserved.
+;---------------------------------------------------------------
+
+LOCAL &status
+ENTRY &level1_in &level2_in
+
+; Access Port
+&access_port="qdss_dap_apb"
+&target="8998_R1"
+
+; Configuration Options
+&cluster0_dir_en=1 								; enable cluster0 cluster directory
+&cluster1_dir_en=1 								; enable cluster1 cluster directory
+&cluster0_snoop_hw_ctrl_en=0 					; make it '1' if HW control mode is required
+&cluster1_snoop_hw_ctrl_en=0 					; make it '1' if HW control mode is required
+&cluster0_dir_hw_ctrl_en=0 						; make it '1' if HW control mode is required
+&cluster1_dir_hw_ctrl_en=0 						; make it '1' if HW control mode is required
+&cluster0_l2_flush_hw_ctrl_en=0 				; make it '1' if HW control mode is required
+&cluster1_l2_flush_hw_ctrl_en=0 				; make it '1' if HW control mode is required
+
+; Base Addresses
+&gladiator_cpu_base_addr=0x17900000
+&gladiator_qdss_dap_apb_base_addr=0x87BA0000  	; QDSS_BASE (0x80000000) + APSS_BASE (0x07800000) + GNOC_BASE (0x3A0000)
+&gladiator_qdss_axi_cfg_base_addr=0x07BA0000  	; APSS_BASE (0x07800000) + GNOC_BASE (0x3A0000)
+&gladiator_apb_port_access_control=0x179D1100 	; APCS_COMMON_CCI_INPUT_CFG bit[3] is the control for PROTNSS2.
+
+; L2 Flush, Dx FSM Controls
+; [0]:L2_FLUSH_REQ, [4]:ACINACTM, [5]:L2_DX_FSM_EN, [6]:L2_DX_FSM_SNPDIR_DIS, [7]:L2_DX_FSM_L2FLUSH_DIS
+&cluster0_l2_flush_ctrl=0x17911218
+&cluster1_l2_flush_ctrl=0x17811218
+
+; Offsets
+&main_offset=0x0
+&power_controller_offset=0x4000
+&ns_sideband_manager_offset=0x4100				; Register Access Security Control
+&mmap_modes_sideband_manager_offset=0x4200		; Memory map Mode Selection ;TODO: In Debug Routing mode, IO coherency should be disabled.
+&observer_err_logger_offset=0x8000 				; Observer Error Logger
+&err_sideband_manager_offset=0x8100				; Handle interrupts from different loggers.
+&nopndg_sideband_manager_offset=0x8200			; Port Status (No Pending) Registers
+&perf_sideband_manager_offset=0x8300			; StatAlarm Control. debug only cases to generate CTI triggers on Stat Dump.
+&pwractive_sideband_manager_offset=0x8400		; Status of pending traffic. complementary to Nopend_sideband manager.
+
+; Transaction probe
+&transaction_profiler_offset=0x9200
+&transaction_profiler_observers_num=0x2				; Number of Observers
+&transaction_profiler_observer_thersholds_num=15.	; Number of bins/thresholds per observer 
+&transaction_profiler_ace0_rd_filter_offset=0x9000	; Transaction profiler ACE0 RD filter config offset
+&transaction_profiler_ace0_wr_filter_offset=0x9080	; Transaction profiler ACE0 WR filter config offset
+&transaction_profiler_ace1_rd_filter_offset=0x9100	; Transaction profiler ACE1 RD filter config offset
+&transaction_profiler_ace1_wr_filter_offset=0x9180	; Transaction profiler ACE1 WR filter config offset
+
+
+; Packet probe
+&pkt_probes_num=0x5
+Var.NEWGLOBAL int[&pkt_probes_num] \pkt_probes_offsets
+&pkt_probe_filter0_offset=0x44								; packet probe filter0 config offset
+&pkt_probe_filter1_offset=0x80								; packet probe filter1 config offset
+
+;Stat Counters base Register address			
+&stat_counters_base_src_offset=0x9538			; first counter SRC config offset
+&stat_counters_base_alarmmode_offset=0x953C		; first counter ALARMMODE config offset
+&stat_counters_base_val_offset=0x9540			; first counter VAL config offset
+&stat_counters_num=22.							; Max possible counter number.
+&stat_events_max=0x120							; Max possible events number
+
+; observer trace components
+&atb_endpoint_offset=0xC400						; Observer ATB config offset
+&stpv2_converter_offset=0xC480					; Observer STPv2 config offset
+
+;************** end of definitions *********************************************
+
+;WINCLEAR
+AREA.RESet
+WINPOS 0. 0. 80% 80%
+AREA.Create Gladiator_Debug 180. 1000.
+AREA.View Gladiator_Debug
+
+print "start.."
+
+if ("&target"=="")
+(
+	print "No PLATFPORM Selected !!"
+	ENDDO
+)
+if ("&access_port"=="")
+(
+	print "No Access Method Selected !!"
+	ENDDO
+)
+
+; Enable register Access
+do ~~~~/gladiator_debug_suite_lib.cmm REGISTER_ACCESS_UNSECURE
+
+; setup platform
+print "PLATFPORM Selected : &target "
+do ~~~~/gladiator_debug_suite_lib.cmm PLATFORM_SETUP &target &status
+ENTRY %line &status
+if (&status!=0)
+(
+	print " PLATFPORM SETUP failed. select a correct target !!"
+	ENDDO
+)
+print "PLATFPORM SETUP done."
+
+; display the library
+gosub debug_suite &level1_in &level2_in
+
+print "done.." 
+
+ENDDO
+
+
+
+;================================================================================
+; Function: debug_suite
+; Description: helps user by displaing various debug tools
+; Usage :
+;      do ~~~~/Gladiator_Debug_Suite.cmm
+; Inputs:
+;     &level1_input  : first level menu input
+;     &level2_input  : second level menu input passed to sub tools
+; Outputs:
+;     none
+;================================================================================
+debug_suite:
+PRIVATE &invalid 
+ENTRY &level1_input &level2_input
+
+	&invalid=1
+	&tool=0
+
+	if ("&level1_input"!="")
+	(
+		&tool=&level1_input
+		goto skip_level1_menu
+	)
+
+	print "Entry debug suite"
+user_input_loop:
+	;display menu
+	print ""
+	print "Tools available:"
+	print "   [1]  Register (per) Menu "
+	print "   [2]  Register Dump"
+	print "   [3]  STAT Profiling Tool"
+	print "   [4]  Packet Traces Tool "
+	print "   [5]  Transaction Profiling Tool "
+	print "   [6]  Hang Debug info Dump"
+	print "   [7]  QDSS Configuration"
+	print "   [10] Core Hang Detection Config"
+	print "   [11] Gladiator Hang Detection Config"
+	print "   [99] Exit"
+	print "   [100] Extended Test Tools"
+
+	print "Select your choice of Tool : "
+	enter &tool
+
+skip_level1_menu:
+	
+	if ("&tool"=="")
+	(
+		goto user_input_loop
+	)
+	
+	if (&tool==1)
+	(
+		; Register view using per file
+		if ("&target"=="8998_R1")
+		(
+			per.view ~~~~/Gladiator_Registers_899x.per
+		)
+		&invalid=0
+	)
+
+	if (&tool==2)
+	(
+		; Register info dump
+		do ~~~~/gladiator_debug_suite_lib.cmm REGISTER_DUMP &target
+		&invalid=0
+	)
+
+	if (&tool==3)
+	( 
+		gosub stats_profiling_tool &level2_input
+		&invalid=0
+	)
+
+	if (&tool==4)
+	( 
+		gosub pkt_traces_configure_tool &level2_input
+		&invalid=0
+	)
+
+	if (&tool==5)
+	( 
+		; Configure Transaction profiling 
+		gosub transaction_profiler_tool &level2_input
+		&invalid=0
+	)
+
+	if (&tool==6)
+	(
+		; dump debug info
+		gosub internal_debug_info_dump_tool &level2_input
+		&invalid=0
+	)
+
+	if (&tool==7)
+	(
+		gosub qdss_config_tool &level2_input
+		&invalid=0
+	)
+ 
+	if (&tool==9)
+	(
+		print " Select one of below :"
+		print "  [1] SnapShot Config Tool "
+		print "  [2] Get S3,S4 SnapShot dump log in loop "
+		enter &snapshot_opt
+		if (&snapshot_opt==1)	
+		(
+			; SnapShot Configuration
+			do ~~~~/CPUSS_CCI_SnapShot_Tool.cmm &snapshot_opt
+			&invalid=0
+		)
+		else if (&snapshot_opt==2)
+		(
+			do ~~~~/CPUSS_CCI_SnapShot_Tool.cmm &snapshot_opt
+			&invalid=0
+		)
+	)
+
+	if (&tool==10)
+	(
+		print "Core hang debug config"
+		gosub core_hang_detect_config
+	)
+
+	if (&tool==11)
+	(
+		print "Gladiator Hang debug config"
+		gosub gladiator_hang_detect_config
+	)
+
+	if (&tool==99)
+	(
+		print "Exit debug suite!!!"
+		RETURN
+	)
+
+	if (&tool==100)
+	(
+		; Extended tests 
+		gosub extended_tests &level2_input
+		&invalid=0
+	)
+
+	if (&invalid==1)
+	(
+		print "Invalid Entry!!! Select available from valid tools in the list.."
+	)
+
+	if ("&level1_input"=="")
+	(
+		goto user_input_loop
+	)
+
+RETURN
+
+
+extended_tests:
+LOCAL &mem_addr
+ENTRY &ext_menu_input
+
+	&ext_tool=0
+	if ("&ext_menu_input"!="")
+	(
+		&ext_tool=&ext_menu_input
+		goto skip_extended_tests_menu
+	)
+
+	print " Precongigured Tests:"
+	print "   [1]  Coherency Config"
+	print "   [2]  Create hang using ACINACTM "
+	print "Select your choice of Extended Tool : "
+	enter &ext_tool
+
+skip_extended_tests_menu:
+
+	if (&ext_tool==1)
+	(
+		print "Want to enable/disable Coherency on port 0 (yes/no/none)? : "
+		enter &choice
+		if ("&choice"=="")
+		(
+			print "No change. retaining current setting!!"
+		)
+		else if ("&choice"=="yes")
+		(
+			do ~~~~/gladiator_debug_suite_lib.cmm TARGET_COHERENCY_ENABLE 0x0
+			print "Cache Coherency enabled on port 0 "
+		)
+		else if ("&choice"=="no")
+		(
+			do ~~~~/gladiator_debug_suite_lib.cmm TARGET_COHERENCY_DISABLE 0x0
+			print "Cache Coherency disabled on port 0 "
+		)
+	
+		print "Want to enable/disable Coherency on port 1 (yes/no/none)? : "
+		enter &choice
+		if ("&choice"=="")
+		(
+			print "No change. retaining current setting!!"
+		)
+		else if ("&choice"=="yes")
+		(
+			do ~~~~/gladiator_debug_suite_lib.cmm TARGET_COHERENCY_ENABLE 0x1
+			print "Cache Coherency enabled on port 1 "
+		)
+		else if ("&choice"=="no")
+		(
+			do ~~~~/gladiator_debug_suite_lib.cmm TARGET_COHERENCY_DISABLE 0x1
+			print "Cache Coherency disabled on port 1 "
+		)
+
+		print "Want to enable/disable IO Coherency (yes/no/none)? : "
+		enter &choice
+		if ("&choice"=="")
+		(
+			print "No change. retaining current setting!!"
+		)
+		else if ("&choice"=="yes")
+		(
+			do ~~~~/gladiator_debug_suite_lib.cmm TARGET_IO_COHERENCY_ENABLE
+			print "IO Coherency enabled. "
+		)
+		else if ("&choice"=="no")
+		(
+			do ~~~~/gladiator_debug_suite_lib.cmm TARGET_IO_COHERENCY_DISABLE
+			print "IO Coherency disabled. "
+		)
+		
+	)
+
+	if (&ext_tool==2)
+	( 
+		; create hang using ACINACTM
+		; APCS_ALIASx_L2_FLUSH_CTL bit4 (ACINACTM)
+
+		&mem_addr=&cluster0_l2_flush_ctrl
+		d.s ezaxi:&mem_addr %LE %LONG (d.long(ezaxi:&mem_addr)|(0x00000010))
+
+		&mem_addr=&cluster1_l2_flush_ctrl 
+		d.s ezaxi:&mem_addr %LE %LONG (d.long(ezaxi:&mem_addr)|(0x00000010))
+	)
+
+RETURN
+
+;================================================================================
+; Function: qdss_config_tool
+; Description: helps in configuring QDSS settings in absence of kernel
+; Usage :
+;      do ~~~~/Gladiator_Debug_Suite.cmm N
+; Inputs:
+;     &ext_menu_input  : secondary lebel menu input
+; Outputs:
+;     none
+;================================================================================
+qdss_config_tool:
+PRIVATE &mem_addr
+ENTRY &ext_menu_input
+
+	print "QDSS Config Tool stated "
+	if ("&ext_menu_input"!="")
+	(
+		goto skip_qdss_config_menu
+	)
+
+	print " Select one of below :"
+	print "  [1] Configure QDSS for traces to ETB"
+	print "  [2] Configure QDSS for traces to ETR-DDR"
+	print "  [3] Dump QDSS traces from ETB"
+	print "  [4] Dump QDSS traces from ETR-DDR"
+	print "  [10] Generate manual Alarm (CTI) trigger to Gladiator"
+	print "  [11] Generate SPDM based Periodic Alarm (CTI) trigger to Gladiator"
+	print "  Select : "
+	enter &ext_menu_input
+
+skip_qdss_config_menu:
+
+	; setup QDSS for trace data
+	if (&ext_menu_input==1)
+	(
+		; setup QDSS for trace data
+		do ~~~~/gladiator_debug_qdss_lib.cmm QDSS_TRACE_CONFIG_SETUP 8998_R1 etb
+	)
+	else if (&ext_menu_input==2)
+	(
+		; setup QDSS for trace data
+		do ~~~~/gladiator_debug_qdss_lib.cmm QDSS_TRACE_CONFIG_SETUP 8998_R1 etr
+	)
+	else if (&ext_menu_input==3)
+	(
+		; Dump QDSS trace data from ETB
+		do ~~~~/gladiator_debug_qdss_lib.cmm QDSS_TRACE_DUMP_ETB
+	)
+	else if (&ext_menu_input==4)
+	(
+		; Dump QDSS trace data from ETR-DDR
+		do ~~~~/gladiator_debug_qdss_lib.cmm QDSS_TRACE_DUMP_ETR
+	)
+	else if (&ext_menu_input==10)
+	(
+		; Ganerate manual Trigger
+		do ~~~~/gladiator_debug_qdss_lib.cmm QDSS_SETUP_CTI_MANUAL_TRIGGER
+	)
+	else if (&ext_menu_input==11)
+	(
+		; Generate SPDM based Periodic Trigger
+		do ~~~~/gladiator_debug_qdss_lib.cmm SETUP_SPDM_PERIODIC_TRIGGERS
+	)
+	else
+	(
+		print "Invalid Option"
+	)
+
+	print "QDSS Config Tool Done "
+
+RETURN
+
+
+;================================================================================
+; Function: stats_profiling_tool
+; Description: helps in configuring statistical probe
+; Usage :
+;      do ~~~~/Gladiator_Debug_Suite.cmm 3
+; Inputs:
+;     &ext_menu_input  : secondary lebel menu input
+; Outputs:
+;     none
+;================================================================================
+stats_profiling_tool:
+PRIVATE &mem_addr
+ENTRY &ext_menu_input
+
+	print "STAT Profiling Tool stated "
+	if ("&ext_menu_input"!="")
+	(
+		goto skip_stat_profile_menu
+	)
+
+	print " [1] : STAT Counters Configuration Tool"
+	print " [2] : STAT Counters Collection Tool"
+	print " [10] : STAT Counters Predefined config : Both Ports  Collect Mode : manual Mode "
+	print " [11] : STAT Counters Predefined config : Both Ports  Collect Mode : StatPeriod Mode "
+	print " [12] : STAT Counters Predefined config : Both Ports  Collect Mode : Trace with Periodic Alarm Mode "
+	print " [13] : STAT Counters Predefined config : Both Ports  Collect Mode : Dump with Manual Alarm Mode "
+	print " [20] : STAT Counters Predefined-Config : Both Ports Snoop data. Collect Mode : manual Mode "
+	print " [21] : STAT Counters Predefined-Config : Both Ports Snoop data. Collect Mode : StatPeriod Mode "
+	print " [22] : STAT Counters Predefined config : Both Ports Snoop data. Collect Mode : Trace with Periodic Alarm Mode "
+	print " [23] : STAT Counters Predefined config : Both Ports Snoop data. Mode : Dump with Manual Alarm Mode "
+	print " [30] : STAT Counters Predefined-Config : IO traffic  Collect Mode : manual Mode "
+	print " [31] : STAT Counters Predefined-Config : IO traffic  Collect Mode : StatPeriod Mode "
+	print " [32] : STAT Counters Predefined config : IO traffic  Collect Mode : Trace with Periodic Alarm Mode "
+	print " [33] : STAT Counters Predefined config : IO traffic  Collect Mode : Dump with Manual Alarm Mode "
+	print "Select your choice Tool : "
+	enter &ext_menu_input
+
+skip_stat_profile_menu:
+
+	if (&ext_menu_input==1)
+	(
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_PRIFILING_CONFIG_TOOL
+		RETURN
+	)
+
+	if (&ext_menu_input==2)
+	(
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_PROFILING_COLLECT_SAMPLES
+		RETURN
+	)
+
+	if ((&ext_menu_input>=10)&&(&ext_menu_input<20))
+	(
+		; reset the stat profiling
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_PROFILING_RESET
+
+		; Config Events
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 0.  0x7A
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 1.  0x7B
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 2.  0x7C
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 3.  0x7D
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 4.  0x7E
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 5.  0x82
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 6.  0x83
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 7.  0x84
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 8.  0x85
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 9.  0x8A
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 10. 0x8B
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 11. 0xCD
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 12. 0xCE
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 13. 0xCF
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 14. 0xD0
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 15. 0xD1
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 16. 0xD5
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 17. 0xD6
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 18. 0xD7
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 19. 0xD8
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 20. 0xDD
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 21. 0xDE
+	)
+
+	if ((&ext_menu_input>=20)&&(&ext_menu_input<30))
+	(
+		; reset the stat profiling
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_PROFILING_RESET
+
+		; Config Events
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 0.  0x54
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 1.  0x55
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 2.  0x56
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 3.  0x57
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 4.  0x58
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 5.  0x59
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 6.  0x5A
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 7.  0x5B
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 8.  0x5C
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 9.  0x5D
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 10. 0x5E
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 11. 0x5F
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 12. 0x60
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 13. 0x61
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 14. 0x62
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 15. 0x63
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 16. 0x64
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 17. 0x7A  ; ACE0 Any Read
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 18. 0x98  ; ACE0 Any Write
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 19. 0xCD  ; ACE1 Any Read
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 20. 0xEB  ; ACE1 Any Write
+	)
+
+	if ((&ext_menu_input>=30)&&(&ext_menu_input<40))
+	(
+		; reset the stat profiling
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_PROFILING_RESET
+
+		; Config Events
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 0.  182.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 1.  183.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 2.  184.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 3.  185.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 4.  186.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 5.  187.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 6.  188.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 7.  189.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 8.  190.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 9.  191.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 10. 122.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 11. 265.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 12. 266.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 13. 267.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 14. 268.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 15. 269.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 16. 270.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 17. 271.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 18. 272.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 19. 273.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 20. 274.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT 21. 205.
+	)
+
+	if ((&ext_menu_input==10)||(&ext_menu_input==20)||(&ext_menu_input==30))
+	(
+		; re-enable stat profiling in manula mode, dump counters in manual mode : DEFAULT
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_PROFILEING_ENABLE 1
+	)
+	else if ((&ext_menu_input==11)||(&ext_menu_input==21)||(&ext_menu_input==31))
+	(
+		; configure QDSS trace Sink. 
+		do ~~~~/gladiator_debug_qdss_lib.cmm QDSS_CTI_CONFIG_SETUP 8998_R1
+
+		; re-enable stat profiling &statperiod , counters dumped to QDSS trace sink.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_PROFILEING_ENABLE 2
+	)
+	else if ((&ext_menu_input==12)||(&ext_menu_input==22)||(&ext_menu_input==32))
+	(
+		; configure QDSS trace Sink. 
+		do ~~~~/gladiator_debug_qdss_lib.cmm QDSS_TRACE_CONFIG_SETUP 8998_R1 etb
+
+		; Configure CTI
+		do ~~~~/gladiator_debug_qdss_lib.cmm QDSS_CTI_CONFIG_SETUP 8998_R1
+
+		; re-enable stat profiling using Alarm mode. dump counter manually.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_PROFILEING_ENABLE 3
+
+		print "  Continue to Use QDSS tool to generate Periodic trigger! "
+	)
+	else if ((&ext_menu_input==13)||(&ext_menu_input==23)||(&ext_menu_input==33))
+	(
+		; Configure CTI
+		do ~~~~/gladiator_debug_qdss_lib.cmm QDSS_CTI_CONFIG_SETUP 8998_R1
+
+		; re-enable stat profiling using Alarm mode. dump counter manually.
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_PROFILEING_ENABLE 3
+
+		print "  Continue to Use QDSS tool to generate manual trigger and dump stats !"
+
+	)
+
+	print "STAT Profiling Tool Done "
+
+RETURN
+
+
+;================================================================================
+; Function: pkt_traces_configure_tool
+; Description: helps in configuring packet traces
+; Usage :
+;      do ~~~~/Gladiator_Debug_Suite.cmm 4
+; Inputs:
+;     &ext_menu_input  : secondary level menu input
+; Outputs:
+;     none
+;================================================================================
+pkt_traces_configure_tool:
+PRIVATE &mem_addr
+ENTRY &ext_menu_input
+
+	print "Paket Traces Config Tool stated "
+	if ("&ext_menu_input"!="")
+	(
+		goto skip_pkt_trace_config_menu
+	)
+
+	print " [1] : Packet Traces Configuration Tool"
+	print " [2] : Packet Traces Enable All"
+	print " [3] : Packet Traces Disable All"
+	print " [10]: Enable All Packet Traces with with trace sink as ETB"
+	print " [11]: Enable All packet Traces with with trace sink as ETR"
+	print " [12]: Disable all Packet traces and Get Packet Traces Dump from ETB"
+	print " [13]: Disable all Packet traces and Get Packet Traces Dump from ETR"
+	print "Select your choice Tool : "
+	enter &ext_menu_input
+
+skip_pkt_trace_config_menu:
+
+	if (&ext_menu_input==1)
+	(
+		do ~~~~/gladiator_debug_suite_lib.cmm PACKET_PROBES_CONFIG_TOOL
+	)
+	else if (&ext_menu_input==2)
+	(
+		; Enable all traces
+		do ~~~~/gladiator_debug_suite_lib.cmm PACKET_PROBES_TRACES_CONFIG 0xFF 0x3A 0x1F
+	)
+	else if (&ext_menu_input==3)
+	(
+		; Disable all probes
+		do ~~~~/gladiator_debug_suite_lib.cmm PACKET_PROBES_TRACES_CONFIG 0x0 0x3A 0x1F 
+	)
+	else if ((&ext_menu_input==10)||(&ext_menu_input==11))
+	(
+		if (&ext_menu_input==10)
+		(
+			; setup QDSS for trace data
+			do ~~~~/gladiator_debug_qdss_lib.cmm QDSS_TRACE_CONFIG_SETUP 8998_R1 etb
+		)
+		else
+		(
+			; setup QDSS for trace data
+			do ~~~~/gladiator_debug_qdss_lib.cmm QDSS_TRACE_CONFIG_SETUP 8998_R1 etr
+		)
+
+		; Enable all traces
+		do ~~~~/gladiator_debug_suite_lib.cmm PACKET_PROBES_TRACES_CONFIG 0xFF 0x3A 0x1F
+	)
+	else if ((&ext_menu_input==12)||(&ext_menu_input==13))
+	(
+		; Disable all probes
+		do ~~~~/gladiator_debug_suite_lib.cmm PACKET_PROBES_TRACES_CONFIG 0x0 0x3A 0x1F
+	
+		if (&ext_menu_input==12)
+		(
+			; Dump ETB Traces
+			do ~~~~/gladiator_debug_qdss_lib.cmm QDSS_TRACE_DUMP_ETB
+		)
+		else
+		(
+			; Dump ETB Traces
+			do ~~~~/gladiator_debug_qdss_lib.cmm QDSS_TRACE_DUMP_ETR
+		)
+	)
+	else
+	(
+		print "Packet Trace menu : Invalid selection "
+	)
+
+	print "Paket Traces Config Tool Done "
+
+RETURN
+
+
+;================================================================================
+; Function: transaction_profiler_tool
+; Description: helps in configuring packet traces
+; Usage :
+;      do ~~~~/Gladiator_Debug_Suite.cmm 5
+; Inputs:
+;     &ext_menu_input  : secondary level menu input
+; Outputs:
+;     none
+;================================================================================
+transaction_profiler_tool:
+PRIVATE &mem_addr &observer &bin_num &bin_threshold &stat_cntr_num &stat_cntr_val &mode &filter_mode &cluster_id &input_filter_offset &all_write
+ENTRY &ext_menu_input
+
+	print "Transaction Profiling Config Tool Started "
+	if ("&ext_menu_input"!="")
+	(
+		goto skip_trans_profile_config_menu
+	)
+
+	print " [1] : Transaction Profiling Configuration Tool"
+
+	; NOTE: CAREFUL to intesert while chaging menu indexes. ALL config derived based on menu index.
+	print " [10] : Transaction profiling pre-defined config : Cluster 0 - Read only latency Profiling "
+	print " [11] : Transaction profiling pre-defined config : Cluster 0 - Write only latency Profiling "
+	print " [12] : Transaction profiling pre-defined config : Cluster 0 - Read,Write latency Profiling "
+	print " [13] : Transaction profiling pre-defined config : Cluster 1 - Read only latency Profiling "
+	print " [14] : Transaction profiling pre-defined config : Cluster 1 - Write only latency Profiling "
+	print " [15] : Transaction profiling pre-defined config : Cluster 1 - Read,Write latency Profiling "
+	print " [16] : Transaction profiling pre-defined config : Cluster 0,1 - All Read latency Profiling "
+	print " [17] : Transaction profiling pre-defined config : Cluster 0,1 - All Write latency Profiling "
+
+	print " [20] : Transaction profiling pre-defined config : Cluster 0 - Read only OT (Pending) Profiling "
+	print " [21] : Transaction profiling pre-defined config : Cluster 0 - Write only OT (Pending) Profiling "
+	print " [22] : Transaction profiling pre-defined config : Cluster 0 - Read,Write OT (Pending) Profiling "
+	print " [23] : Transaction profiling pre-defined config : Cluster 1 - Read only OT (Pending) Profiling "
+	print " [24] : Transaction profiling pre-defined config : Cluster 1 - Write only OT (Pending) Profiling "
+	print " [25] : Transaction profiling pre-defined config : Cluster 1 - Read,Write OT (Pending) Profiling "
+	print " [26] : Transaction profiling pre-defined config : Cluster 0,1 - All Read OT (Pending) Profiling "
+	print " [27] : Transaction profiling pre-defined config : Cluster 0,1 - All Write OT (Pending) Profiling "
+
+	print "Select your choice Tool : "
+	enter &ext_menu_input
+
+skip_trans_profile_config_menu:
+
+
+	&observer=0x0
+	&stat_cntr_num=0x0
+	&mode=0x1
+	&filter_mode=0x1
+	&cluster_id=0x0
+	&all_write=0x0
+	&input_filter_offset=0x0
+
+	if (&ext_menu_input==1)
+	(
+		do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_TOOL
+	)
+	else if ((&ext_menu_input==10)||(&ext_menu_input==20)||(&ext_menu_input==13)||(&ext_menu_input==23))
+	(
+		&input_filter_offset=&transaction_profiler_ace0_rd_filter_offset
+		if ((&ext_menu_input==10)||(&ext_menu_input==13))
+		(
+			&mode=0x0
+		)
+		if ((&ext_menu_input==13)||(&ext_menu_input==23))
+		(
+			&cluster_id=0x1
+			&input_filter_offset=&transaction_profiler_ace1_rd_filter_offset
+		)
+		do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_RESET
+		do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_OBSERVER_INPUT_SEL &observer (&cluster_id*0x2)
+		do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_OBSERVER_MODE &observer &mode
+		do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_OBSERVER_TENURELINES &observer 0x4
+
+		; enable counter[0]:counter[THRESHOLDS_NUM] to bins
+		&bin_num=0
+		while (&bin_num<&transaction_profiler_observer_thersholds_num)
+		(
+			&stat_cntr_num=&bin_num
+			if ((&ext_menu_input==10)||(&ext_menu_input==13))
+			(
+				&bin_threshold=(&bin_num+0x1)*(&bin_num+0x1)
+			)
+			else
+			(
+				&bin_threshold=&bin_num+0x1
+			)
+			&stat_cntr_val=&bin_num+0x20+(&observer*&transaction_profiler_observer_thersholds_num)
+			do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_OBSERVER_BIN_CONFIG &observer &bin_num &bin_threshold
+			do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+			&bin_num=&bin_num+0x1
+		)
+
+		; Use rest of the counters
+		; Read request handshake: Any
+		&stat_cntr_num=&bin_num
+		&stat_cntr_val=0x7A+(&cluster_id*0x53)
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+
+		; Read request stall cycles: Any
+		&stat_cntr_num=&stat_cntr_num+0x1
+		&stat_cntr_val=0x84+(&cluster_id*0x53)
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+
+		; Read data last handshake: Snoop data forwarding (hit) 
+		&stat_cntr_num=&stat_cntr_num+0x1
+		&stat_cntr_val=0x8A+(&cluster_id*0x53)
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+
+		; Read data stall cycle: Any
+		&stat_cntr_num=&stat_cntr_num+0x1
+		&stat_cntr_val=0x8B+(&cluster_id*0x53)
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+	
+		; Start Profiling
+		do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_FILTER_MODE_SET &input_filter_offset &filter_mode
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_PROFILEING_ENABLE 1
+		do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_ENABLE
+		do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_FILTER_BY_OPCODE &input_filter_offset 0x3
+	)
+	else if ((&ext_menu_input==11)||(&ext_menu_input==14)||(&ext_menu_input==21)||(&ext_menu_input==24))
+	(
+		&input_filter_offset=&transaction_profiler_ace0_wr_filter_offset
+
+		if ((&ext_menu_input==11)||(&ext_menu_input==14))
+		(
+			&mode=0x0
+		)
+		if ((&ext_menu_input==14)||(&ext_menu_input==24))
+		(
+			&cluster_id=0x1
+			&input_filter_offset=&transaction_profiler_ace1_wr_filter_offset
+		)
+		do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_RESET
+		do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_OBSERVER_INPUT_SEL &observer ((&cluster_id*0x2)+0x1)
+		do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_OBSERVER_MODE &observer &mode
+		do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_OBSERVER_TENURELINES &observer 0x4
+
+		; enable counter[0]:counter[THRESHOLDS_NUM] to bins
+		&bin_num=0
+		while (&bin_num<&transaction_profiler_observer_thersholds_num)
+		(
+			&stat_cntr_num=&bin_num
+			if ((&ext_menu_input==11)||(&ext_menu_input==14))
+			(
+				&bin_threshold=(&bin_num+0x1)*(&bin_num+0x1)
+			)
+			else
+			(
+				&bin_threshold=&bin_num+0x1
+			)
+			&stat_cntr_val=&bin_num+0x20+(&observer*&transaction_profiler_observer_thersholds_num)
+			do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_OBSERVER_BIN_CONFIG &observer &bin_num &bin_threshold
+			do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+			&bin_num=&bin_num+0x1
+		)
+
+		; Use rest of the counters
+		; Write request handshake: Any
+		&stat_cntr_num=&bin_num
+		&stat_cntr_val=0x98+(&cluster_id*0x53)
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+
+		; Write request stall cycles: Any
+		&stat_cntr_num=&stat_cntr_num+0x1
+		&stat_cntr_val=0xA2+(&cluster_id*0x53)
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+
+		; Start Profiling
+		do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_FILTER_MODE_SET &input_filter_offset &filter_mode
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_PROFILEING_ENABLE 1
+		do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_ENABLE
+		do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_FILTER_BY_OPCODE &input_filter_offset 0x3
+	)
+	else if ((&ext_menu_input==12)||(&ext_menu_input==15)||(&ext_menu_input==22)||(&ext_menu_input==25))
+	(
+		if ((&ext_menu_input==12)||(&ext_menu_input==15))
+		(
+			&mode=0x0
+		)
+
+		if ((&ext_menu_input==15)||(&ext_menu_input==25))
+		(
+			&cluster_id=0x1
+		)
+
+		do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_RESET
+
+		&observer=0
+		while (&observer<&transaction_profiler_observers_num)
+		(
+			; observer0 for Reads, Observer1 for Writes
+			do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_OBSERVER_INPUT_SEL &observer ((&cluster_id*0x2)+&observer)
+			do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_OBSERVER_MODE &observer &mode
+			do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_OBSERVER_TENURELINES &observer 0x2
+
+			&bin_num=0
+			while (&bin_num<(&transaction_profiler_observer_thersholds_num/2))
+			(
+				; calcuate the counter to be used
+				if (&observer==0x0)
+				(
+					&stat_cntr_num=&bin_num
+				)
+				else
+				(
+					&stat_cntr_num=(&stat_counters_num/2)+&bin_num
+				)
+
+				; calucate bin threshold
+				if ((&ext_menu_input==12)||(&ext_menu_input==15))
+				(
+					&bin_threshold=(&bin_num+0x1)*(&bin_num+0x1)
+				)
+				else
+				(
+					&bin_threshold=&bin_num+0x1
+				)
+
+				; program the bin
+				&stat_cntr_val=&bin_num+0x20+(&observer*&transaction_profiler_observer_thersholds_num)
+				do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_OBSERVER_BIN_CONFIG &observer &bin_num &bin_threshold
+				do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+				&bin_num=&bin_num+0x1
+			)
+		
+			; Use rest of the counters
+			if (&observer==0)
+			(
+				; Read request handshake: Any
+				&stat_cntr_val=0x7A+(&cluster_id*0x53)
+				&stat_cntr_num=&stat_cntr_num+0x1
+				do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+
+				; Read request stall cycles: Any
+				&stat_cntr_val=0x84+(&cluster_id*0x53)
+				&stat_cntr_num=&stat_cntr_num+0x1
+				do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+
+				; Read data last handshake: Snoop data forwarding (hit) 
+				&stat_cntr_num=&stat_cntr_num+0x1
+				&stat_cntr_val=0x8A+(&cluster_id*0x53)
+				do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+
+				; Read data stall cycle: Any
+				&stat_cntr_num=&stat_cntr_num+0x1
+				&stat_cntr_val=0x8B+(&cluster_id*0x53)
+				do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+			)
+			else
+			(
+				; Write request handshake: Any
+				&stat_cntr_val=0x98+(&cluster_id*0x53)
+				&stat_cntr_num=&stat_cntr_num+0x1
+				do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+
+				; Write request stall cycles: Any
+				&stat_cntr_val=0xA2+(&cluster_id*0x53)
+				&stat_cntr_num=&stat_cntr_num+0x1
+				do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+			)
+
+			&observer=&observer+0x1
+		)
+
+		&observer=0x0
+		while (&observer<&transaction_profiler_observers_num)
+		(
+			&input_filter_offset=&transaction_profiler_ace0_rd_filter_offset+(0x80*((&cluster_id*0x2)+&observer))
+			do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_FILTER_MODE_SET &input_filter_offset &filter_mode
+			&observer=&observer+0x1
+		)
+
+		; Start Profiling
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_PROFILEING_ENABLE 1
+		do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_ENABLE
+
+		&observer=0x0
+		while (&observer<&transaction_profiler_observers_num)
+		(
+			&input_filter_offset=&transaction_profiler_ace0_rd_filter_offset+(0x80*((&cluster_id*0x2)+&observer))
+			do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_FILTER_BY_OPCODE &input_filter_offset 0x3
+			&observer=&observer+0x1
+		)
+	)
+	else if ((&ext_menu_input==16)||(&ext_menu_input==17)||(&ext_menu_input==26)||(&ext_menu_input==27))
+	(
+		if ((&ext_menu_input==16)||(&ext_menu_input==17))
+		(
+			&mode=0x0
+		)
+		if ((&ext_menu_input==17)||(&ext_menu_input==27))
+		(
+			&all_write=0x1
+		)
+
+		do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_RESET
+
+		&observer=0x0
+		while (&observer<&transaction_profiler_observers_num)
+		(
+			&cluster_id=&observer
+			; observer0 for Reads, Observer1 for Writes
+			do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_OBSERVER_INPUT_SEL &observer ((&observer*0x2)+&all_write)
+			do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_OBSERVER_MODE &observer &mode
+			do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_OBSERVER_TENURELINES &observer 0x2
+
+			&bin_num=0
+			while (&bin_num<(&transaction_profiler_observer_thersholds_num/2))
+			(
+				; calcuate the counter to be used
+				if (&observer==0x0)
+				(
+					&stat_cntr_num=&bin_num
+				)
+				else
+				(
+					&stat_cntr_num=(&stat_counters_num/2)+&bin_num
+				)
+
+				; calucate bin threshold
+				if ((&ext_menu_input==16)||(&ext_menu_input==17))
+				(
+					&bin_threshold=(&bin_num+0x1)*(&bin_num+0x1)
+				)
+				else
+				(
+					&bin_threshold=&bin_num+0x1
+				)
+
+				; program the bin
+				&stat_cntr_val=&bin_num+0x20+(&observer*&transaction_profiler_observer_thersholds_num)
+				do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_OBSERVER_BIN_CONFIG &observer &bin_num &bin_threshold
+				do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+				&bin_num=&bin_num+0x1
+		
+				; Use rest of the counters
+				if (&all_write==0)
+				(
+					; Read request handshake: Any
+					&stat_cntr_val=0x7A+(&cluster_id*0x53)
+					&stat_cntr_num=&stat_cntr_num+0x1
+					do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+
+					; Read request stall cycles: Any
+					&stat_cntr_val=0x84+(&cluster_id*0x53)
+					&stat_cntr_num=&stat_cntr_num+0x1
+					do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+
+					; Read data last handshake: Snoop data forwarding (hit) 
+					&stat_cntr_num=&stat_cntr_num+0x1
+					&stat_cntr_val=0x8A+(&cluster_id*0x53)
+					do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+
+					; Read data stall cycle: Any
+					&stat_cntr_num=&stat_cntr_num+0x1
+					&stat_cntr_val=0x8B+(&cluster_id*0x53)
+					do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+				)
+				else
+				(
+					; Write request handshake: Any
+					&stat_cntr_val=0x98+(&cluster_id*0x53)
+					&stat_cntr_num=&stat_cntr_num+0x1
+					do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+
+					; Write request stall cycles: Any
+					&stat_cntr_val=0xA2+(&cluster_id*0x53)
+					&stat_cntr_num=&stat_cntr_num+0x1
+					do ~~~~/gladiator_debug_suite_lib.cmm STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+				)
+			)
+			&observer=&observer+0x1
+		)
+
+		&observer=0x0
+		while (&observer<&transaction_profiler_observers_num)
+		(
+			&input_filter_offset=&transaction_profiler_ace0_rd_filter_offset+(0x80*((&observer*0x2)+&all_write))
+			do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_FILTER_MODE_SET &input_filter_offset &filter_mode
+			&observer=&observer+0x1
+		)
+
+		; Start Profiling
+		do ~~~~/gladiator_debug_suite_lib.cmm STAT_PROFILEING_ENABLE 1
+		do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_PROFILER_ENABLE
+
+		&observer=0x0
+		while (&observer<&transaction_profiler_observers_num)
+		(
+			&input_filter_offset=&transaction_profiler_ace0_rd_filter_offset+(0x80*((&observer*0x2)+&all_write))
+			do ~~~~/gladiator_debug_suite_lib.cmm TRANSACTION_FILTER_BY_OPCODE &input_filter_offset 0x3
+			&observer=&observer+0x1
+		)
+	)
+	else
+	(
+		print "Transaction Profiling menu : Invalid selection "
+	)
+
+	print "Transaction Profiling Config Tool Done "
+
+RETURN
+
+;================================================================================
+; Function: internal_debug_info_dump_tool
+; Description: helps in retreiving the internal debug info
+; Usage :
+;      do ~~~~/Gladiator_Debug_Suite.cmm 6
+; Inputs:
+;     &ext_menu_input  : secondary lebel menu input
+; Outputs:
+;     none
+;================================================================================
+internal_debug_info_dump_tool:
+PRIVATE &mem_addr
+ENTRY &ext_menu_input
+
+	print "Internal debug Info Dump Tool stated "
+	if ("&ext_menu_input"!="")
+	(
+		goto skip_debug_info_dump_menu
+	)
+
+	print " [1] : Dump All Debug Info "
+	print " [2] : Dump Specific info "
+	print "Select your choice Tool : "
+	enter &ext_menu_input
+
+skip_debug_info_dump_menu:
+
+	if (&ext_menu_input==1)
+	(
+		do ~~~~/gladiator_debug_suite_lib.cmm DEBUG_INFO_DUMP
+	)
+	else
+	(
+		print "Debug Info Dump Tool : Invalid selection "
+	)
+
+RETURN
+
+

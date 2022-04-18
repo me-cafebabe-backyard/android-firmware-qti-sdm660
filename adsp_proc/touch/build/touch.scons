@@ -1,0 +1,405 @@
+#===============================================================================
+#
+# Touch top-level scons
+#
+# GENERAL DESCRIPTION
+#    Build script
+#
+# Copyright 2016 Qualcomm Technologies, Inc.  All Rights Reserved.
+# Qualcomm Technologies Proprietary and Confidential.
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/touch.slpi/1.0/build/touch.scons#8 $
+#  $DateTime: 2017/04/04 03:38:38 $
+#  $Author: pwbldsvc $
+#  $Change: 12902703 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+#
+#===============================================================================
+Import('env')
+
+#-------------------------------------------------------------------------------
+# Setup env Flags
+#------------------------------------------------------------------------------- 
+
+####################################################################################
+#Macros for General Q6 compilation
+####################################################################################
+env.Replace(ASM_DFLAGS = '-D__V_DYNAMIC__')
+env.Replace(CC_DFLAGS = '-D__V_DYNAMIC__')
+#env.Replace(CFLAGS = ' -G0 -mqdsp6-compat -std=gnu99')
+env.Replace(HEXAGONCC_WARN = '-Wall -Werror -Wpointer-arith -Wno-missing-braces -Wno-strict-aliasing -Wstrict-prototypes -Wnested-externs')
+env.Replace(HEXAGON_UNDEF = ' ')
+env.Replace(HEXAGON_LANIND = '-fno-exceptions -fno-strict-aliasing -fno-zero-initialized-in-bss -fdata-sections')
+env.Append(SHLINKFLAGS = ' -G0 -fPIC -Bsymbolic -Bdynamic --wrap=malloc --wrap=calloc --wrap=free --wrap=realloc --wrap=memalign')
+env.Append(SHLINKFLAGS = ' --whole-archive ${HEXAGON_ROOT}/${HEXAGON_RTOS_RELEASE}/Tools/target/hexagon/lib/v55/G0/pic/libstdc++.a ')
+env.Append(SHLINKFLAGS = ' --whole-archive ${HEXAGON_ROOT}/${HEXAGON_RTOS_RELEASE}/Tools/target/hexagon/lib/v55/G0/pic/initS.o ')
+env.Append(SHLINKFLAGS = ' --whole-archive ${HEXAGON_ROOT}/${HEXAGON_RTOS_RELEASE}/Tools/target/hexagon/lib/v55/G0/pic/finiS.o ')
+
+
+#Change this value to -O0 for ASM debugging
+env.Replace(HEXAGONCC_OPT = "-O3")
+
+####################################################################################
+#Platform selection - SLPI or ADSP
+####################################################################################
+#Check if env is SLPI or ADSP
+if env.get('CHIPSET') == "msm8996" or env.get('CHIPSET') == "msm8998":
+    env.Append(CFLAGS = '-DENV_SLPI')
+    BUILD_ENV = "SLPI"
+    print "Compiling Touch for SLPI"
+elif env.get('CHIPSET') == "sdm660":
+    env.Append(CFLAGS = "-DENV_SLPI")
+    env.Append(CFLAGS = "-DSDM660_RESET_DURING_SUSPEND")
+    BUILD_ENV = "ADSP"
+    print "Compiling Touch for ADSP sdm660"
+else:
+    env.Append(CFLAGS = '-DENV_ADSP')
+    BUILD_ENV = "ADSP"
+    print "Compiling Touch for ADSP"
+
+
+####################################################################################
+#Macros
+####################################################################################
+#Define this flag for modules to know compilation happens under LPASS environment
+# Needed for some common include files e.g utf_msg.h
+env.Append(CFLAGS = '-D_DSP')
+
+#Enable QDSS profiling
+# Needed for dtf_prof_utils.h
+env.Append(CFLAGS = '-DDTF_QDSS_PROF')
+
+# SPI GPIO config macro to configure SPI GPIO pins
+# This was used in older ADSP targets (e.g El Capitan/Sahi) and new SLPI targets (e.g. Istari / Nazgul)
+if BUILD_ENV == "SLPI":
+    env.Append(CFLAGS = '-DGPIO_CONFIG_SPI')
+    print "Enabling SPI GPIO configuration"
+
+#getting compilation error without this flag (on updated hexagon tools 8.0.07)
+env.Append(CFLAGS = "-D_PROVIDE_POSIX_TIME_DECLS")
+
+
+
+#env.Append(CFLAGS ="-DCUST_H=CUSTxxxx.H")
+env.Append(CFLAGS ="-DMAX_INPUT_EVENTS=10")
+env.Append(CFLAGS ="-DTF_VER_MAJOR=1 ")
+env.Append(CFLAGS ="-DTF_VER_MINOR  ")
+env.Append(CFLAGS ="-DPALM_REJECTION_B ")
+env.Append(CFLAGS ="-DFINGER_SEPARATION_NONE  ")
+env.Append(CFLAGS ="-DMXM_BUILD_DEV ")
+env.Append(CFLAGS ="-DMXM_ALGO_FILTER_TRANSPOSE ")
+env.Append(CFLAGS ="-DSUPPRESS_PAINTED_BUTTONS ")
+env.Append(CFLAGS ="-DREPORT_RAW_LIFT ")
+env.Append(CFLAGS ="-DREJECT_DEADZONE ")
+env.Append(CFLAGS ="-DBASELINE_BLOCK_RESET_LARGE_RECTANGULAR ")
+env.Append(CFLAGS ="-DORIGIN_MOVEMENT_THRESHOLD ")
+env.Append(CFLAGS ="-DTRACKING_Z_9PIX_3MAX_FEATURE ")
+env.Append(CFLAGS ="-DLARGE_AREA_REJECTION_FROM_SPECIAL_LEVEL ")
+env.Append(CFLAGS ="-DUNIFIED_ALGORITHM")
+env.Append(CFLAGS ="-DUNIFIED_ALGORITHM_ENABLE_SDTT_BACKEND ")
+env.Append(CFLAGS ="-DWATER_REJECTION")
+env.Append(CFLAGS ="-DHOST ")
+env.Append(CFLAGS ="-DHBTP_DEBUG ")
+env.Append(CFLAGS ="-DHBTP_DEBUG_LEVEL_ERROR ")
+env.Append(CFLAGS ="-DZ_FEATURE_BASED_TRACKING ")
+env.Append(CFLAGS ="-DMULTIDRIVE_ARTIFACT ")
+env.Append(CFLAGS ="-DCALC_CENTER_BELOW_FEATURE ")
+env.Append(CFLAGS ="-DNON_RECURSIVE_BLOB_SEARCH ")
+env.Append(CFLAGS ="-D_DSP ")
+env.Append(CFLAGS ="-DSTATIC_AFE ")
+env.Append(CFLAGS ="-DUTF_PM ")
+env.Append(CFLAGS ="-DAFE_SUSPEND_POWER_OFF ")
+env.Append(CFLAGS ="-DENABLE_TOUCH_ANALOG_POWER_RAIL")
+env.Append(CFLAGS ="-DDTF_QDSS_PROF ")
+
+if env.get('CHIPSET') == "sdm660":
+   env.Append(CFLAGS ="-DSHARP_4K_PANEL_QF20")
+   env.Append(CFLAGS ='-DSKEL_INFO=\\"QTC-660\\"')
+
+
+#-----------------------------------------------------------------------------
+#   BELOW ARE QTC DEPENDENT FLAGS ( THIS IS FOR 800S)
+#-----------------------------------------------------------------------------
+
+env.Append(CFLAGS ="-DENABLE_QTC800S ")
+env.Append(CFLAGS ="-DENABLE_QTC800S_SEMI_INCELL ")
+env.Append(CFLAGS ="-DENABLE_QTC800T ")
+env.Append(CFLAGS ="-DENABLE_AFE_WATCHDOG")
+env.Append(CFLAGS ="-DENABLE_GMM_CLASSIFIER ")
+env.Append(CFLAGS ="-DENABLE_2D_DIFF_BASELINE ")
+env.Append(CFLAGS ="-DADAPTATION_BY_SLIDING_MAX_ABS_NOISE_ESTIMATION ")
+env.Append(CFLAGS ="-DBASELINE_SCORE_NO_TOUCH_DETECTION ")
+env.Append(CFLAGS ="-DWAIT_UNTIL_NO_TOUCH_TO_SELECTED_OP_PT ")
+env.Append(CFLAGS ="-DPROBE_DEFAULT_OP_PT_BEFORE_SWITCH")
+env.Append(CFLAGS ="-DALLOW_NOISE_SIGNIFICANT_CHANGE_TRIGGERED_FREQ_SEARCH ")
+env.Append(CFLAGS ="-DSUPPORT_AFE_POWER_AND_NOISE_MODE ")
+env.Append(CFLAGS ="-DREMOVE_MEDIAN_FROM_NOISE_ESTIMATE ")
+
+#-------------------------------------------------------------------------------
+# Get the required Include directories
+#-------------------------------------------------------------------------------
+core_public_apis = [
+   'DAL',
+   'BUSES',
+   'DEBUGTOOLS',
+   'DEBUGTRACE',
+   'KERNEL',
+   'POWER',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+   'MPROC',
+   ]
+
+qdsp6_public_apis = [
+   'QDSP6'
+   ]
+
+platform_public_apis = [
+   'DLW',
+   'HAPSDK',
+   'STDDEF',
+   'PLS',
+   'REMOTE',
+   'UTILS',   
+   'APPS_MEM',
+   'ADSP_MMAP',
+   ]
+
+
+env.RequirePublicApi(qdsp6_public_apis, area='qdsp6')
+env.RequirePublicApi(core_public_apis, area='core')
+env.RequirePublicApi(platform_public_apis, area='platform')
+
+env.PublishPrivateApi('TOUCH',[
+   '../../platform/inc/HAP/',
+   '../utils/mmOSAL/inc',
+   '../utils/common/inc',
+   '../platform/inc',
+   '../fwk/inc',
+   '../fwk/src',
+   '../utils/common/inc',
+   '../utils/mmOSAL/inc',
+   '../utils/configParser/inc',
+   '../TestApp',
+   '../tafe/interface/inc',
+   '../platform/inc',
+   '../aue/main/inc',
+   '../Transport/inc',
+   '../../core/api/dal',
+   '../../core/api/kernel/qurt',
+   '../../core/api/kernel/devcfg',
+   '../../core/api/services/time',
+   '../../core/api/services',
+   '../../core/api/systemdrivers',
+   '../../core/buses/api/spi',
+   '../../core/api/kernel/libstd/stringl',
+   '../../qdsp6/tp/inc',
+   '../../build/cust',
+   '../../build/ms',
+   '../aue/main/src',
+   '../aue/classifiers/stroke/main/inc',
+   '../aue/classifiers/stroke/main/src',
+   '../aue/classifiers/stroke/preproc/inc',
+   '../aue/classifiers/stroke/gestureTek/inc',
+   '../aue/classifiers/handBio/main/inc',
+   '../aue/classifiers/handBio/main/src',
+   '../aue/classifiers/handBio/algo/inc',
+   '../algo/inc',
+   '../tafe/qtc/hal/inc',
+   '../../platform/fastrpc_process/inc',
+   '../../platform/fastrpc_power/inc',   
+   ])
+SRCPATH = ".."
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Source files list
+#-------------------------------------------------------------------------------
+
+touch_sources_shared = [
+'${BUILDPATH}/algo/src/hbtp.c',
+'${BUILDPATH}/algo/src/buttons.c',
+'${BUILDPATH}/algo/src/classifier.c',
+'${BUILDPATH}/algo/src/debouncing.c',
+'${BUILDPATH}/algo/src/filters.c',
+'${BUILDPATH}/algo/src/Finger_Extraction.c',
+'${BUILDPATH}/algo/src/Finger_Track.c',
+'${BUILDPATH}/algo/src/gain.c',
+'${BUILDPATH}/algo/src/grip_rejection.c',
+'${BUILDPATH}/algo/src/hi04_host.c',
+'${BUILDPATH}/algo/src/kalman_tracking.c',
+'${BUILDPATH}/algo/src/lcd_noise.c',
+'${BUILDPATH}/algo/src/matrix_operations.c',
+'${BUILDPATH}/algo/src/NoiseProcess.c',
+'${BUILDPATH}/algo/src/parser.c',
+'${BUILDPATH}/algo/src/process.c',
+'${BUILDPATH}/algo/src/production_test_report.c',
+'${BUILDPATH}/algo/src/report_touch.c',
+'${BUILDPATH}/algo/src/report.c',
+'${BUILDPATH}/algo/src/resample.c',
+'${BUILDPATH}/algo/src/touch_fusion.c',
+'${BUILDPATH}/algo/src/util_polyfit.c',
+'${BUILDPATH}/algo/src/util_statistics.c',
+'${BUILDPATH}/algo/src/utils.c',
+'${BUILDPATH}/algo/src/hbtp_touch_processing.c',
+'${BUILDPATH}/algo/src/hbtp_frame_data_filtering.c',
+'${BUILDPATH}/algo/src/hbtp_charger_noise.c',
+'${BUILDPATH}/algo/src/hbtp_config.c',
+'${BUILDPATH}/algo/src/hbtp_upsampling.c',
+'${BUILDPATH}/algo/src/hbtp_ccomponent_mlev.c',
+'${BUILDPATH}/algo/src/hbtp_BEFilters.c',
+'${BUILDPATH}/algo/src/hbtp_historyReport.c',
+'${BUILDPATH}/algo/src/hbtp_iirfilter3.c',
+'${BUILDPATH}/algo/src/hbtp_iirfilter3_internal.c',
+'${BUILDPATH}/algo/src/hbtp_optThresh.c',
+'${BUILDPATH}/algo/src/hbtp_hysteresis.c',
+'${BUILDPATH}/algo/src/hbtp_dejitter.c',
+'${BUILDPATH}/algo/src/hbtp_touch_map.c',
+'${BUILDPATH}/algo/src/hbtp_touch_debounce.c',
+'${BUILDPATH}/algo/src/hbtp_shapeAnalysis.c',
+'${BUILDPATH}/algo/src/hbtp_EucBipart_Hungarian.c',
+'${BUILDPATH}/algo/src/hbtp_multhype.c',
+'${BUILDPATH}/algo/src/hbtp_connectedComponentsCentroids.c',
+'${BUILDPATH}/algo/src/hbtp_water.c',
+'${BUILDPATH}/algo/src/hbtp_velocity_estimate.c',
+'${BUILDPATH}/algo/src/hbtp_reportRateHandler.c',
+'${BUILDPATH}/algo/src/hbtp_approxEucDist.c',
+'${BUILDPATH}/algo/src/hbtp_visualization.c',
+'${BUILDPATH}/algo/src/hbtp_grip_gsr.c',
+'${BUILDPATH}/algo/src/env_gov.c',
+'${BUILDPATH}/algo/src/hbtp_gmm_classifier.c',
+'${BUILDPATH}/algo/src/hbtp_resample.c',
+'${BUILDPATH}/algo/src/hbtp_resample_constants.c',
+'${BUILDPATH}/algo/src/hbtp_hover_rejection.c',
+'${BUILDPATH}/algo/src/hbtp_edgeSnap.c',
+'${BUILDPATH}/algo/src/hbtp_utils.c',
+'${BUILDPATH}/algo/src/rohm_essential_v1.c',
+'${BUILDPATH}/algo/src/sharp_essential_v1.c',
+'${BUILDPATH}/algo/src/hbtp_feedforward.c',
+'${BUILDPATH}/fwk/src/utf_api.c',
+'${BUILDPATH}/fwk/src/utf_config.c',
+'${BUILDPATH}/fwk/src/utf_debug_api.c',
+'${BUILDPATH}/fwk/src/utf_data_logger.c',
+'${BUILDPATH}/fwk/src/utf_algo_interface.c',
+'${BUILDPATH}/fwk/src/utf_command_api.c',
+'${BUILDPATH}/fwk/src/utf_commands.c',
+'${BUILDPATH}/utils/common/src/meta_config.c',
+'${BUILDPATH}/utils/common/src/list.c',
+'${BUILDPATH}/utils/common/src/priority_queue.c',
+'${BUILDPATH}/utils/common/src/buffer_queue.c',
+'${BUILDPATH}/utils/common/src/utf_timer.c',
+'${BUILDPATH}/utils/common/src/utf_power.c',
+'${BUILDPATH}/utils/configParser/src/AccessFunctions.c',
+'${BUILDPATH}/utils/configParser/src/CfgParser.c',
+'${BUILDPATH}/utils/configParser/src/CoreParser.c',
+'${BUILDPATH}/utils/configParser/src/ParserUtil.c',
+'${BUILDPATH}/utils/mmOSAL/src/Q6/MMQ6CriticalSection.c',
+'${BUILDPATH}/utils/mmOSAL/src/Q6/MMQ6Malloc.c',
+'${BUILDPATH}/utils/mmOSAL/src/Q6/MMQ6Signal.c',
+'${BUILDPATH}/utils/mmOSAL/src/Q6/MMQ6Thread.c',
+'${BUILDPATH}/platform/src/touch_driver_stub.c',
+'${BUILDPATH}/aue/main/src/aueInf.c',
+'${BUILDPATH}/aue/main/src/aueMainThread.c',
+'${BUILDPATH}/aue/main/src/aueUcDM.c',
+'${BUILDPATH}/aue/main/src/aueCfg.c',
+'${BUILDPATH}/aue/classifiers/stroke/main/src/aueStroke.c',
+'${BUILDPATH}/aue/classifiers/stroke/main/src/aueStrokeCollect.c',
+'${BUILDPATH}/aue/classifiers/stroke/preproc/src/aueStrokePreProc.c',
+'${BUILDPATH}/aue/classifiers/handBio/main/src/aueHandBio.c',
+'${BUILDPATH}/aue/classifiers/handBio/algo/src/aueHbClassifier.c',
+'${BUILDPATH}/aue/classifiers/handBio/algo/src/hbCommon.c',
+'${BUILDPATH}/aue/classifiers/handBio/algo/src/hbDetect.c',
+'${BUILDPATH}/aue/classifiers/handBio/algo/src/hbEnroll.c',
+'${BUILDPATH}/aue/classifiers/handBio/algo/src/hbUnlock.c',
+'${BUILDPATH}/aue/classifiers/stroke/gestureTek/src/aueStrokeClassifier.cpp',
+'${BUILDPATH}/aue/classifiers/stroke/gestureTek/src/gesture_detector_trajectory.cpp',
+'${BUILDPATH}/aue/classifiers/stroke/gestureTek/src/heuristics_trj_swipe.cpp',
+'${BUILDPATH}/aue/classifiers/stroke/gestureTek/src/HMM.cpp',
+'${BUILDPATH}/aue/classifiers/stroke/gestureTek/src/HMMTrain.cpp',
+'${BUILDPATH}/aue/classifiers/stroke/gestureTek/src/HMMUtilities.cpp',
+'${BUILDPATH}/aue/classifiers/stroke/gestureTek/src/ARCClassifiers.cpp',
+'${BUILDPATH}/aue/classifiers/stroke/gestureTek/src/CGEWrapper.cpp',
+'${BUILDPATH}/aue/classifiers/stroke/gestureTek/src/manager.cpp',
+'${BUILDPATH}/Transport/src/dspTouch_RPCimp.c',
+'${BUILDPATH}/Transport/src/dspAUE_RPCimp.c',
+]
+
+touch_sources_qtc = [
+'${BUILDPATH}/tafe/qtc/hal/src/qtc_chip.c',
+'${BUILDPATH}/tafe/qtc/hal/src/qtc_driver.c',
+'${BUILDPATH}/tafe/qtc/hal/src/afe_hal.c',
+'${BUILDPATH}/tafe/qtc/hal/src/chip/afe_tables.c',
+'${BUILDPATH}/tafe/qtc/hal/src/chip/qtc800s.c',
+'${BUILDPATH}/tafe/qtc/hal/src/chip/qtc800t.c',
+'${BUILDPATH}/tafe/qtc/hal/src/config/afe_hal_config.c',
+'${BUILDPATH}/tafe/qtc/hal/src/config/afe_preClassifier_config.c',
+'${BUILDPATH}/tafe/qtc/hal/src/config/platform_config.c',
+'${BUILDPATH}/tafe/qtc/hal/src/config/sensor_config.c',
+'${BUILDPATH}/tafe/qtc/hal/src/config/tsc_config.c',
+'${BUILDPATH}/tafe/qtc/hal/src/inspection/noise_scan.c',
+'${BUILDPATH}/tafe/qtc/hal/src/inspection/sensor_tuning.c',
+'${BUILDPATH}/tafe/qtc/hal/src/inspection/sensor_tuning/mutual_corr_phase.c',
+'${BUILDPATH}/tafe/qtc/hal/src/inspection/sensor_tuning/mutual_offset_cap.c',
+'${BUILDPATH}/tafe/qtc/hal/src/inspection/sensor_tuning/mutual_offset_phase.c',
+'${BUILDPATH}/tafe/qtc/hal/src/inspection/sensor_tuning/mutual_tx_phase.c',
+'${BUILDPATH}/tafe/qtc/hal/src/inspection/production_test.c',
+'${BUILDPATH}/tafe/qtc/hal/src/inspection/production_test/drive_test.c',
+'${BUILDPATH}/tafe/qtc/hal/src/inspection/production_test/sense_test.c',
+'${BUILDPATH}/tafe/qtc/hal/src/inspection/production_test/pixel_test.c',
+'${BUILDPATH}/tafe/qtc/hal/src/inspection/production_test/noise_test.c',
+'${BUILDPATH}/tafe/qtc/controller/utf_thread.c',
+'${BUILDPATH}/tafe/qtc/controller/utf_afe_interface.c',
+]
+
+touch_platform_sources = [
+'${BUILDPATH}/platform/src/touch_afe_cfg.c',
+'${BUILDPATH}/platform/src/touch_qdi.c',
+'${BUILDPATH}/utils/mmOSAL/src/Q6/MMQ6Malloc.c',
+'${BUILDPATH}/utils/mmOSAL/src/Q6/MMQ6Signal.c',
+'${BUILDPATH}/utils/mmOSAL/src/Q6/MMQ6CriticalSection.c',
+]
+   
+#-------------------------------------------------------------------------------
+# Static compilation
+#-------------------------------------------------------------------------------
+if not env.CheckAlias(alias_list=['shared_libs']):
+    LIBNAME = 'libadsp_touch_static_partial'
+    if BUILD_ENV == "ADSP":
+        RCINIT_IMG = ['TOUCH_ADSP']
+    else:
+        RCINIT_IMG = ['SSC_SLPI_ROOT']
+
+    env.AddBinaryLibrary(RCINIT_IMG, '${BUILDPATH}/'+LIBNAME, touch_platform_sources)
+#-------------------------------------------------------------------------------
+# RC INIT , added TOUCH_ADSP aswell
+#-------------------------------------------------------------------------------
+    if 'USES_RCINIT' in env:
+       print "Processing touch qdi rcinit"	
+       env.AddRCInitFunc(            # Code Fragment in TMC: NO
+       RCINIT_IMG,                   # define TMC_RCINIT_INIT_PMIC_INIT
+       {
+         'sequence_group' : 'RCINIT_GROUP_7',
+         'init_name'      : 'improveTouch',
+         'init_function'  : 'QDI_Touch_Init',
+       })
+#-------------------------------------------------------------------------------
+# Shared lib compilation
+#-------------------------------------------------------------------------------
+else:
+    prereq = env.HeaderBuilder('../Transport/inc/apps_mem.h', '${INC_ROOT}/platform/apps_mem/apps_mem.idl')
+    LIBNAME = 'libFastRPC_UTF_Forward_skel'    
+    combined_idl = "${INC_ROOT}/touch/Transport/inc/FastRPC_Touch.idl"
+    shared_lib_sources = touch_sources_shared + touch_sources_qtc ;
+    print "Shared libs are %s" %shared_lib_sources
+    print "IDL list is %s" %combined_idl
+    target = env.AddMySharedLibrary(['ADSP_SHARED_LIBS'], '${BUILDPATH}/'+LIBNAME, shared_lib_sources, combined_idl)
+    env.Requires(target, prereq)
+
+

@@ -1,0 +1,65 @@
+
+Z:\SRTRun8660.pl version 1.1.38
+
+parse log fast_playback_output.dlf
+
+0x14F0 SENSOR1 REQUEST                  1
+0x14F1 SENSOR1 RESPONSE                 1
+0x14F2 SENSOR1 INDICATION               5
+0x151D QMD_CONFIG                       1
+0x151E QMD_RESULT                       1475
+0x151F QMD_REPORT                       5
+       SMGR CSV LINES                   0
+       SAM  CSV LINES                   5
+       TOTAL PACKETS _________________  1488
+       PARSE LOG TOOK ________________  61 ms
+
+
+Setup use default validations:
++ using default = @NON_DRI
+Initializing using Z:\\Config\COMMON_hwval.txt
+Initializing using Z:\\Config\MPU6050_hwval.txt
+Initializing using Z:\\Config\AKM8963_hwval.txt
+Initializing using Z:\\Config\AVAGO_hwval.txt
+Initializing using Z:\\Config\BMP085_hwval.txt
+No test specific validation criteria supplied
+
+00:00:22.810 M AMD  ENABLE   REQ  cb_data  8        context  00000000 ext_clnt 0        txn_id   0        rc       0        
+                    +                               Result:  protocol:default rc 0 == 0 :: PASS
+                    +                               Result:  protocol:default AMD  RESP exists :: PASS
+                    +             req_rate 0.00000  seconds 
+
+00:00:22.810 M AMD  ENABLE   RESP cb_data  8        context  00000000 ext_clnt 0        txn_id   0        resp:err 0:0      
+                    +                               Result:  protocol:default  resp:err 0:0  == 0:0 :: PASS
+                    +             instance 1       
+                    +                               Result:  protocol:default expect_ind:amd = yes. IND exists :: PASS
+
+00:00:22.810 M AMD  ENABLE   IND  cb_data  8        context  00000000 ext_clnt 0        txn_id   0        
+                    +             < ====== see also fast_playback_output_csvs\R001_C8_AMD_0Hz.csv
+                    +             instance 1        count    5        on change only
+                    +            
+                    +    log_ts       msg_id   type        dsps ts(ms)  State ()
+                    +    00:00:22.810 ENABLE   REQ 
+                    +    00:00:22.810 ENABLE   RESP
+                    +    00:00:22.810 ENABLE   IND 
+                    +    00:00:22.810          Indication    696814.88  REST      
+                    +    00:00:22.810          Indication    710328.06  MOVE      
+                    +    00:00:22.810          Indication    752469.18  REST      
+                    +    00:00:22.810          Indication    784500.43  MOVE      
+                    +    00:00:22.810          Indication    811726.99  REST      
+                    +                               Result:  amd:timestamp advancing :: PASS
+                    +   
+                    +             md_state 1        REST     occurs   3        times
+                    +             md_state 2        MOVE     occurs   2        times
+                    +   
+                    +                      duration unknown  0        rest 0        move 0        total 0 ms
+
+RESULTS.FILE:    fast_playback_output_ResultDetails.txt
+RESULTS Passed   5
+RESULTS Failed   0
+RESULTS Warn     0
+RESULTS Skipped  0
+RESULTS N/A      0
+RESULTS SUMMARY: PASS
+
+post-process took:  127 ms

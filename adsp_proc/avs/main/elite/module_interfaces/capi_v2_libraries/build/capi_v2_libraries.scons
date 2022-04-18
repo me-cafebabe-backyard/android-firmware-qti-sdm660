@@ -1,0 +1,36 @@
+#===============================================================================
+#
+# AVS AU
+#
+# GENERAL DESCRIPTION
+#    Build script
+#
+# Copyright (c) 2009-2009 by Qualcomm Technologies, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/avs.adsp/2.8/elite/module_interfaces/capi_v2_libraries/build/capi_v2_libraries.scons#2 $
+#  $DateTime: 2017/04/03 04:02:32 $
+#  $Author: pwbldsvc $
+#  $Change: 12890466 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+#
+#===============================================================================
+Import('env')
+
+env.PublishProtectedApi('CAPI_V2_LIBRARIES',[
+   '${AVS_ROOT}/elite/module_interfaces/capi_v2_libraries/capi_v2_library_get_module/inc',
+   '${AVS_ROOT}/elite/module_interfaces/capi_v2_libraries/capi_v2_library_get_imc/inc',
+   '${AVS_ROOT}/elite/module_interfaces/capi_v2_libraries/capi_v2_library_process_thread_utility/inc',
+   '${AVS_ROOT}/elite/module_interfaces/capi_v2_libraries/capi_v2_library_mem_mapper/inc'
+   ])   
+   
+env.LoadSoftwareUnits()

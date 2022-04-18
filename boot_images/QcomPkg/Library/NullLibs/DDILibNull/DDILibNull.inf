@@ -1,0 +1,44 @@
+#/** @file DDRDebugImageLibNull.inf
+#
+#  DDR Debug Image Lib
+#
+#  Copyright (c) 2015 Qualcomm Technologies, Inc . All rights reserved.
+#
+#**/
+
+#==============================================================================
+#                              EDIT HISTORY
+#
+#
+# when       who     what, where, why
+# --------   ---     ----------------------------------------------------------
+# 06/13/16   jh      Updated directory location for 8998
+# 06/24/15   sng     Initial revision.
+#
+#==============================================================================
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DDILibNull
+  FILE_GUID                      = 33FE7980-0D93-49B2-88DE-A0FE7357E4F2
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = DDILibNull
+
+[Sources]
+  DDILibNull.c
+  ../../../XBLLoader/boot_sbl_if.h
+
+
+[BuildOptions.AARCH64]
+  GCC:*_*_*_CC_FLAGS = -Werror -DBOOT_PBL_H=\"pbl_sbl_shared.h\"
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  QcomPkg/QcomPkg.dec
+  QcomPkg/XBLLoaderApi.dec
+  QcomPkg/Sdm660Pkg/Sdm660Pkg.dec
+  QcomPkg/Sdm660Pkg/Library/XBLLoaderLib/XBLLoaderLibPkg.dec
+
+[LibraryClasses]
+  DebugLib

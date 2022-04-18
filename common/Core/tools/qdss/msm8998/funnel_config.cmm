@@ -1,0 +1,11 @@
+//QDSS profiling
+
+//Unlock FUNNELs
+d.s EAXI:0x6041FB0 %LE %LONG 0xC5ACCE55 //unlock
+d.s EAXI:0x6042FB0 %LE %LONG 0xC5ACCE55 //unlock
+d.s EAXI:0x6045FB0 %LE %LONG 0xC5ACCE55 //unlock
+
+//// Setup FUNNEL - enable all ports
+d.s EAXI:0x6041000 %LE %LONG 0x000000FF //infun0 STM selected
+d.s EAXI:0x6042000 %LE %LONG 0x000000FF //infun1 BIMC selected
+d.s EAXI:0x6045000 %LE %LONG 0x00000003 //merge fun CHANGE THIS to select funnels

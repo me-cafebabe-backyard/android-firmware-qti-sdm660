@@ -1,0 +1,160 @@
+#===============================================================================
+#
+# secure_ui_sample  build script
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2013,2017 by Qualcomm technologies Inc.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/apps.tz/1.0.7.1/securemsm/trustzone/qsapps/secure_ui_sample/src/SConscript#1 $
+#  $DateTime: 2020/01/14 12:33:12 $
+#  $Author: pwbldsvc $
+#  $Change: 22186812 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains schedulerents describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#===============================================================================
+import os
+Import('env')
+#Cloning here since it may not be a good idea to trickle down -O0 to other env
+env = env.Clone() 
+
+#-------------------------------------------------------------------------------
+# layout resolution selection helper functions and definitions
+#-------------------------------------------------------------------------------
+
+#mapping the form factor to the layout resolution
+#NOTE: default should specify lowest resolution available
+form_factor_to_resolution_map = {
+    'default'   :'1600x2560_1080x1920',
+    '8952_fluid':'1600x2560_1080x1920',
+    '8976_fluid':'1440x2560',
+    '8996_fluid':'1600x2560_1080x1920',
+    '8953_fluid':'1600x2560_1080x1920',
+    '8998_fluid':'1440x2560',
+	'660_fluid':'1440x2560',
+}
+
+#mapping the CHIPSET command-line parameter to the form factor
+#safest option is to map to lowest resolution available for the CHIPSET
+chipset_to_form_factor_map = {
+    'default':'default',
+    'msm8952':'8952_fluid',
+    'msm8956':'8976_fluid',
+    'msm8996':'8996_fluid',
+    'msm8953':'8953_fluid',
+    'msm8998':'8998_fluid',
+	'sdm660' :'660_fluid',
+    }
+
+#by default we will use resolution based on current CHIPSET.
+#to compile with specific resolution use 'form_factor_layout=...' command-line
+def get_layout_resolution(env):
+
+    #make sure form_factor_layout is registered as a command-line parameter
+    if 'form_factor_layout' not in env:
+        vars = Variables()
+        vars.Add(EnumVariable('form_factor_layout', 'form factor', 'default',
+                               allowed_values=form_factor_to_resolution_map.keys(),
+                               map={}, ignorecase=2))
+        vars.Update(env)
+
+    form_factor = env.subst('$form_factor_layout')
+
+    #if no form_factor_layout given we guess the resolution based on current CHIPSET variable
+    if form_factor == 'default':
+        chipset = env.subst('$CHIPSET')
+        if chipset in chipset_to_form_factor_map:
+            form_factor = chipset_to_form_factor_map[chipset]
+        else:
+            #we don't have any mapping (new target?) - will use default form factor
+            env.PrintWarning("Secure UI sample cannot find layout resolution for this target. (Using default)")
+
+    #return the respective resolution
+    return form_factor_to_resolution_map[form_factor]
+
+#-------------------------------------------------------------------------------
+# Compiler, object, and linker definitions
+#-------------------------------------------------------------------------------
+
+includes = [
+  "${BUILD_ROOT}/core/api/services",
+  "${BUILD_ROOT}/core/kernel/smmu/ACv3.0/common/inc/",
+  "${BUILD_ROOT}/core/securemsm/accesscontrol/api",
+  "${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/secure_ui_sample/libstd",
+  "${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/tzdrm/tzcommon/common/shared/inc",
+  "${BUILD_ROOT}/core/api/securemsm/trustzone/qsee",
+  "${BUILD_ROOT}/core/securemsm/sse/qsee/SecureUI/inc",
+  "${BUILD_ROOT}/core/securemsm/sse/qsee/SecureUILib/include",
+  '${BUILD_ROOT}/core/securemsm/sse/log/inc',
+  '${BUILD_ROOT}/core/securemsm/sse/common/include',
+  '${BUILD_ROOT}/core/securemsm/sse/SecureTouch/common/include',
+  '${BUILD_ROOT}/core/securemsm/sse/SecureTouch/layout/include',
+  '${BUILD_ROOT}/core/securemsm/sse/SecureTouch/controller/inc',
+  '${BUILD_ROOT}/core/securemsm/sse/qsee/SecureTouch/drTs/include',
+  '${BUILD_ROOT}/core/api/kernel/libstd/stringl',
+  '${BUILD_ROOT}/core/securemsm/sse/qsee/SecureDisplay/libgd/include',
+  '${BUILD_ROOT}/core/kernel/smmu/smmu500/inc/'
+]
+
+#----------------------------------------------------------------------------
+# App core Objects
+#----------------------------------------------------------------------------
+
+sources  = [
+  'app_main.c',
+  'secure_ui_apis_sample.c',
+  'tui_dialogs_sample.c',
+]
+
+#----------------------------------------------------------------------------
+# libstd Objects
+#----------------------------------------------------------------------------
+sources += Glob ('../libstd/*.c')
+
+if env['PROC'] != 'scorpion':
+  sources += Glob ('../libstd/aarch64/*.c')
+
+#get the layout resolution and add the layout file to the compilation
+layout_resolution = get_layout_resolution(env)
+sources.append('../layouts/src/layout_' + layout_resolution + '.c')
+
+#Enable secure UI test infrastructure if test support sources are present
+if os.path.exists('../test/test_support.c'):
+  env.PrintInfo("Secure UI sample will be compiled with test support enabled")
+  env.Append(CPPDEFINES=['SUI_TEST_SUPPORT'])
+  sources.append('../test/test_support.c')
+
+if env['PROC'] == 'scorpion':
+  app_name = 'secure_ui_sample'
+  stacksize = '0x12000'
+else:
+  app_name = 'secure_ui_sample64'
+  stacksize = '0x24000'
+#-------------------------------------------------------------------------------
+# Add metadata to image
+#-------------------------------------------------------------------------------
+md = {
+  'appName':    'secure_ui_sample', #both 32 bit and 64 bit use the same name in metadata.c
+  'privileges': ['default',
+                 'I2C',
+                 'SecureDisplay',
+                ],
+}
+
+app_units = env.SecureAppBuilder(
+  sources = sources,
+  includes = includes,
+  metadata = md,
+  image = app_name,
+  stack_size = stacksize,
+  heap_size = '0x100000'
+)
+
+op = env.Alias(app_name, app_units)
+Return('app_units')

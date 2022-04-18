@@ -1,0 +1,10 @@
+<config>
+  <image_tree>
+    <name>WLAN.HL.3.3.5</name>
+    <build_id>WLAN.HL.3.3.5-00149-QCAHLSWMTPLZ-1</build_id>
+    <branch_point_revision/>
+    <revision>00149</revision>
+    <spin>1</spin>
+    <client>QCAHLSWMTPLZ</client>
+  </image_tree>
+</config>

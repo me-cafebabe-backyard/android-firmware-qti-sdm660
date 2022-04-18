@@ -1,0 +1,119 @@
+#===============================================================================
+#                    Copyright 2010 - 2015 QUALCOMM Technologies, Incorporated.
+#                           All Rights Reserved.
+#                         QUALCOMM Proprietary/GTDR
+#===============================================================================
+# STD Libs
+#-------------------------------------------------------------------------------
+Import('env')
+#env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/core/securemsm/trustzone/qsee/mink/libstd"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# External depends within CoreBSP
+#-------------------------------------------------------------------------------
+env.RequireExternalApi([
+])
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'SERVICES',
+   'KERNEL',
+   'MINK_LK',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = '${BUILDPATH}/src/'
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+
+LIBSTD_SOURCES =  [
+   SRCPATH + 'libstd_std_scanul.c',
+   SRCPATH + 'memscpy.c',
+   SRCPATH + 'memsmove.c',
+   SRCPATH + 'strcasecmp.c',
+   SRCPATH + 'strncasecmp.c',
+   SRCPATH + 'strlcat.c',
+   SRCPATH + 'wcslcat.c',
+   SRCPATH + 'wstrlcat.c',
+   SRCPATH + 'strlcpy.c',
+   SRCPATH + 'wcslcpy.c',
+   SRCPATH + 'wstrlcpy.c',
+   SRCPATH + 'wstrlen.c',
+   SRCPATH + 'wstrcmp.c',
+   SRCPATH + 'wstrncmp.c',
+   SRCPATH + 'secure_memset.c',
+   SRCPATH + 'timesafe_memcmp.c',
+   SRCPATH + 'timesafe_strncmp.c',
+   SRCPATH + 'strnlen.c',
+   SRCPATH + 'memset.c',
+   SRCPATH + 'memcmp.c',
+   SRCPATH + 'memcpy.c',
+   SRCPATH + 'memmove.c',
+   SRCPATH + 'memchr.c',
+   SRCPATH + 'memrchr.c',
+   SRCPATH + 'strlen.c',
+   SRCPATH + 'strcmp.c',
+   SRCPATH + 'strncmp.c',
+   SRCPATH + 'strstr.c',
+   SRCPATH + 'strchr.c',
+   SRCPATH + 'strchrnul.c',
+   SRCPATH + 'strrchr.c',
+   SRCPATH + 'qsort.c',
+   SRCPATH + 'printf.c',
+   SRCPATH + 'abort.c',
+   SRCPATH + 'clock.c',
+]
+
+# XBL_SEC compiles required functions only due to memory size constraints
+LIBSTD_XBL_SEC_SOURCES = [
+   SRCPATH + 'memset.c',
+   SRCPATH + 'secure_memset.c',
+   SRCPATH + 'strlen.c',
+   SRCPATH + 'memscpy.c',
+   SRCPATH + 'memcmp.c',
+]
+
+# Uncomment this line to define key LIBSTD_TEST which builds LIBSTD test lib
+# Alternatively, define this at command line when building as a coreimage
+# build using USES_FLAGS=LIBSTD_TEST,....
+#env.Replace(LIBSTD_TEST = "yes")
+LIBSTD_TEST_SOURCES =  [
+    '${BUILDPATH}/test/libstd_test_internal.c',
+    '${BUILDPATH}/test/libstd_test_main.c',
+]
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+
+images = ['TZOS_IMAGE', 'MONITOR_IMAGE', 'HYPERVISOR_IMAGE',
+          'CTZL_IMAGE', 'CTZL64_IMAGE', 'TZTESTEXEC_IMAGE',
+          'TZBSPTEST_IMAGE', 'TEETEST_IMAGE']
+
+env.AddBinaryLibrary(images, '${BUILDPATH}/libstd',  LIBSTD_SOURCES)
+
+env.AddBinaryLibrary('XBL_SEC_IMAGE', '${BUILDPATH}/libstd',  LIBSTD_XBL_SEC_SOURCES)
+
+# Add sources as binary objects to applib images
+env.AddBinaryObject('APPLIB32_IMAGE', LIBSTD_SOURCES)
+env.AddBinaryObject('APPLIB64_IMAGE', LIBSTD_SOURCES)
+if 'LIBSTD_TEST' in env:
+   env.AddBinaryLibrary(images, '${BUILDPATH}/libstd_test', LIBSTD_TEST_SOURCES)
+else:
+  env.CleanPack(images, LIBSTD_TEST_SOURCES)

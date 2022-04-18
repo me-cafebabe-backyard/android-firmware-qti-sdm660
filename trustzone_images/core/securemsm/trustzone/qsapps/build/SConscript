@@ -1,0 +1,46 @@
+#===============================================================================
+#
+# Sample TZ OS App Libs
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2011-2016 by QUALCOMM, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header:$
+#  $DateTime:$
+#  $Author:$
+#  $Change:$
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 02/18/11   chm     Initial Version
+#===============================================================================
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Load sub scripts
+#-------------------------------------------------------------------------------
+
+#dont add sampleapp and smplap64. They are converted to use secure_app_builder
+#and get called from the bsp/*/ SConscript directly. Should try to convert 
+#the ones below as well.
+SConscript('../libs/build/SConscript', exports='env')
+env.Deploy([
+  '../common/crypto_cipher_test_vectors.h',
+  '../common/crypto_cmac_test_vectors.h',
+  '../common/crypto_common_test_vectors.h',
+  '../common/crypto_ecc_test_vectors.h',
+  '../common/crypto_hash_test_vectors.h',
+  '../common/crypto_hmac_test_vectors.h',
+  '../common/crypto_rsa_test_vectors.h',
+])

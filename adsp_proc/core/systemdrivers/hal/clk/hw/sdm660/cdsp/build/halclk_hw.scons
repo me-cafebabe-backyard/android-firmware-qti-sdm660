@@ -1,0 +1,101 @@
+#===============================================================================
+#
+# HAL CLK HARDWARE LIBRARY
+#
+# Target:    MSM Binary Compatible Targets
+# Processor: All
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2014 by QUALCOMM Technologies, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.qdsp6/1.0.c2/systemdrivers/hal/clk/hw/sdm660/cdsp/build/halclk_hw.scons#1 $
+#  $DateTime: 2020/02/10 01:57:30 $
+#  $Author: pwbldsvc $
+#  $Change: 22511909 $
+#
+#===============================================================================
+
+import os
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+
+SRCPATH = "../"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0) 
+
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+
+CBSP_API = [
+   'HAL',
+   'DAL',
+   'DEBUGTOOLS',
+   'MPROC',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+
+   # needs to be last also contains wrong comdef.h
+   'KERNEL',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+HAL_CLK_HW_BUILD_ROOT = os.getcwd();
+
+env.PublishPrivateApi("SYSTEMDRIVERS_HAL_CLK_HW", [
+  HAL_CLK_HW_BUILD_ROOT + "/../inc",
+])
+
+
+#-----------------------------------------------------------------------------
+# Sources: HALClock HW Sources
+#-----------------------------------------------------------------------------
+HALCLK_CHIPSET_SOURCES = [
+  '${BUILDPATH}/src/gcc/HALclkCONFIGNOC.c',
+  '${BUILDPATH}/src/gcc/HALclkGCC.c',
+  '${BUILDPATH}/src/gcc/HALclkGCCMain.c',
+  '${BUILDPATH}/src/gcc/HALclkTURINGBIMC.c',
+  '${BUILDPATH}/src/gcc/HALclkSYSTEMNOC.c',
+  '${BUILDPATH}/src/HALclkMain.c',
+  '${BUILDPATH}/src/HALclkTest.c',
+  '${BUILDPATH}/src/turing/HALclkAONBUS.c',
+  '${BUILDPATH}/src/turing/HALclkAXI.c',
+  '${BUILDPATH}/src/turing/HALclkCAMSSSTREAMING0.c',
+  '${BUILDPATH}/src/turing/HALclkCAMSSSTREAMING1.c',
+  '${BUILDPATH}/src/turing/HALclkCNOC.c',
+  '${BUILDPATH}/src/turing/HALclkCXO.c',
+  '${BUILDPATH}/src/turing/HALclkQ6SMMU.c',
+  '${BUILDPATH}/src/turing/HALclkQ6.c',
+  '${BUILDPATH}/src/turing/HALclkQOSFIXEDMONITOR.c',
+  '${BUILDPATH}/src/turing/HALclkSLEEP.c',
+  '${BUILDPATH}/src/turing/HALclkSNOC.c',
+  '${BUILDPATH}/src/turing/HALclkTURINGMain.c',
+]
+
+HALClockHW_lib = env.Library('${BUILDPATH}/HALclk_hw', HALCLK_CHIPSET_SOURCES)
+
+HAL_CLOCK_ASM_OBJS = [ '${BUILDPATH}/src/HALclkInitASM.S' ]
+
+#-------------------------------------------------------------------------------
+# Sources: HALClockHW Library Creation
+#-------------------------------------------------------------------------------
+
+env.AddLibsToImage(
+   ['QDSP6_SW_IMAGE', 'CBSP_QDSP6_SW_IMAGE', 'CORE_SLPI_ROOT'],
+   HALClockHW_lib)
+
+env.AddObject(['QDSP6_SW_IMAGE', 'CBSP_QDSP6_SW_IMAGE','CORE_SLPI_ROOT'], HAL_CLOCK_ASM_OBJS)
+
+

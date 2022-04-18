@@ -1,0 +1,299 @@
+;============================================================================
+;  Name:
+;    spmiBus.cmm
+;
+;  Description:
+;    Bear family tool to R/W a byte on SPMI Bus
+;
+;  Copyright (c) 2014 Qualcomm Technologies Incorporated. 
+;  All Rights Reserved.
+;  Qualcomm Confidential and Proprietary
+;----------------------------------------------------------------------------
+
+IF !WIN.EXIST(SPMI_BUS)
+(
+    WinPOS 0 50% ,10,,, SPMI_BUS
+    AREA.Create SPMI_BUS 110. 250.
+    AREA.View SPMI_BUS
+)
+
+AREA.Select SPMI_BUS
+ENTRY &target &operation &owner &slave &register &dataByte
+LOCAL &MAX_OWNER &MAX_REGISTER_ADDRESS &ACCESS_CLASS &tmp &numBytes &channelCnt
+
+if ("&target"=="8996") 
+(
+    &ACCESS_CLASS="anc"
+)
+else
+(
+    &ACCESS_CLASS="ezaxi"
+)
+
+&MAX_SLAVE=0x0F
+&MAX_OWNER=5
+&MAX_REGISTER_ADDRESS=0xFFFF
+&FINISH_RUNNING="false"
+&numBytes=1
+
+print
+
+if "&target"==""
+(
+    GOSUB USAGE "Specify target folder (i.e. 8916)"
+)
+else if "&operation"=="" 
+(
+    GOSUB USAGE "Operation not specified!"
+)
+
+do &target/hwio.cmm
+
+OPEN #1 &target/meta.txt /Read
+READ #1 &tmp &channelCnt
+CLOSE #1
+
+if ("&operation"=="Read")||("&operation"=="READ")||("&operation"=="read")||("&operation"=="r")
+(
+    GOSUB READ &owner &slave &register
+)
+else if ("&operation"=="Write")||("&operation"=="WRITE")||("&operation"=="write")||("&operation"=="w")
+(
+    GOSUB WRITE &owner &slave &register &dataByte
+)
+else
+(
+    GOSUB USAGE "Invalid operation.  Only read or write supported."
+)
+
+if "&FINISH_RUNNING"=="true"
+(
+    g
+)
+
+ENDDO
+
+//*****************************************************************************
+// USAGE - This is internal function
+//*****************************************************************************
+USAGE:
+ENTRY &msg
+
+AREA.CLEAR SPMI_BUS
+
+if "&msg"!=""
+(
+    print %ERROR "Error: " &msg
+)
+
+print
+print "Usage:"
+print "   Read: do spmiBus.cmm target[e.g. 8916] 'Read'  owner[0-&MAX_OWNER]  slave[0-&MAX_SLAVE] register[0-&MAX_REGISTER_ADDRESS]"
+print "  Write: do spmiBus.cmm target[e.g. 8916] 'Write' owner[0-&MAX_OWNER]  slave[0-&MAX_SLAVE] register[0-&MAX_REGISTER_ADDRESS] dataValue"
+print
+print "Owners - 0 APPS, 1 TZ, 2 MSS, 3 LPASS, 4 RPM, 5 WCNSS"
+print
+print "Example:"
+print "   do spmiBus.cmm 8916 read 0 0 0x104"
+ENDDO
+
+//*****************************************************************************
+// PARAMETER_CHECK - This is internal function
+//*****************************************************************************
+PARAMETER_CHECK: 
+    ENTRY &owner &slave &registerOffset
+    
+    if ("&owner"=="")
+    (
+        GOSUB USAGE "Owner not specified"
+    )
+    if (&owner>&MAX_OWNER)||(&owner<0)
+    (
+        GOSUB USAGE "Invalid owner"
+    )
+    if ("&slave"=="")
+    (
+        GOSUB USAGE "Slave id not specified"
+    )
+    if (&slave>&MAX_SLAVE)||(&slave<0)
+    (
+        GOSUB USAGE "Slave id invalid"
+    )
+    if ("&registerOffset"=="") 
+    (
+        GOSUB USAGE "Register address not specified"
+    )
+    if (&registerOffset>&MAX_REGISTER_ADDRESS)||(&registerOffset<0)
+    (
+        GOSUB USAGE "Invalid register address"
+    )
+
+    if state.run()&&!String.find("e","&ACCESS_CLASS")
+    (
+        b
+        &FINISH_RUNNING="true"
+        wait !state.run()
+    )
+
+    RETURN
+
+//*****************************************************************************
+// GET_CHANNEL
+//*****************************************************************************
+GET_CHANNEL:
+    ENTRY &sid &periph
+    LOCAL &i &d
+    &i=0
+    
+    REPEAT (&channelCnt)
+    (
+        &d=(&sid<<16.)|(&periph<<8.)
+        if (data.long(&ACCESS_CLASS:(HWIO_PMIC_ARB_REG_CHNL0_ADDR+(4.*&i)))==&d)
+        (
+            //print "SlaveId: &sid, Peripheral: &periph -> Channel: &i"
+            RETURN &i
+        )
+        
+        &i=&i+1
+    )
+    
+    print %ERROR "Error: Could not find channel for SlaveId: &sid, Peripheral: &periph"
+    ENDDO
+
+//*****************************************************************************
+// READ
+//*****************************************************************************
+READ:
+   ENTRY &owner &slave &register
+   LOCAL &tmp &status &registerOffset &readValue
+
+   GOSUB PARAMETER_CHECK &owner &slave &register
+   
+   &registerOffset=(&register)&0xFF
+   &tmp=&register>>8.
+   
+   GOSUB GET_CHANNEL &slave &tmp
+   ENTRY &channel
+   
+   //&tmp=HWIO_PMIC_ARB0_CHNL0_CMD_ADDR+(0x1000*&owner)+(0x8000*&channel)
+   //print "ADDR = &tmp"
+   
+   &tmp=(0x1<<0x1B)|(&registerOffset<<0x4)|(&numBytes-1)
+   //print "Command = &tmp"
+   
+   print "Reading SlaveId: &slave, Register: &register [channel &channel, Offset &registerOffset]"
+   
+   data.set &ACCESS_CLASS:(HWIO_PMIC_ARB0_CHNL0_CMD_ADDR+(0x1000*&owner)+(0x8000*&channel)) %LONG &tmp
+    
+   &status=data.long(&ACCESS_CLASS:(HWIO_PMIC_ARB0_CHNL0_STATUS_ADDR+(0x1000*&owner)+(0x8000*&channel)))
+   
+   while (&status==0)
+   (
+        if (("&VIRTIO"=="true")||("&VIRTIO"=="t"))&&!state.run()
+        (
+            g
+            wait state.run()
+            b
+            wait !state.run()
+        )
+      
+        wait 1.ms
+      
+        &status=data.long(&ACCESS_CLASS:(HWIO_PMIC_ARB0_CHNL0_STATUS_ADDR+(0x1000*&owner)+(0x8000*&channel)))
+   )
+   
+   if (&status==1)
+   (
+        &readValue=data.long(&ACCESS_CLASS:(HWIO_PMIC_ARB0_CHNL0_RDATA0_ADDR+(0x1000*&owner)+(0x8000*&channel)))&0xFF
+        print "Success: 0x", FORMAT.HEX(5.,&slave<<16.|&register), " = 0x", FORMAT.HEX(2.,&readValue)
+   )
+   else 
+   (
+        if ((&status&0x2)>0)
+        (
+            print %ERROR "Read Failed"
+        )
+        else if ((&status&0x4)>0) 
+        (
+            print %ERROR "Read Denied"
+        )
+        else if ((&status&0x8)>0) 
+        (
+            print %ERROR "Read Dropped"
+        )
+   )
+
+    RETURN &status &readValue
+
+//*****************************************************************************
+// WRITE
+//*****************************************************************************
+WRITE:
+    ENTRY &owner &slave &register &writeByte
+    LOCAL &tmp &status &registerOffset
+
+    GOSUB PARAMETER_CHECK &owner &slave &register
+
+    if ("&writeByte"=="")
+    (
+        GOSUB USAGE "Data byte not specified"
+    )
+
+    if (&writeByte>0xFF)||(&writeByte<0)
+    (
+        GOSUB USAGE "Data byte invalid"
+    )
+   
+    &registerOffset=(&register)&0xFF
+    &tmp=&register>>8.
+
+    GOSUB GET_CHANNEL &slave &tmp
+    ENTRY &channel
+
+    print "Writing SlaveId: &slave, Register: &register [channel &channel, Offset &registerOffset]"
+
+    data.set &ACCESS_CLASS:(HWIO_PMIC_ARB0_CHNL0_WDATA0_ADDR+(0x1000*&owner)+(0x8000*&channel)) %LONG (&writeByte&0xFF)
+
+    &tmp=(0x0<<0x1B)|(&registerOffset<<0x4)|(&numBytes-1)
+    //print "Command = &tmp"
+
+    data.set &ACCESS_CLASS:(HWIO_PMIC_ARB0_CHNL0_CMD_ADDR+(0x1000*&owner)+(0x8000*&channel)) %LONG &tmp
+
+    &status=data.long(&ACCESS_CLASS:(HWIO_PMIC_ARB0_CHNL0_STATUS_ADDR+(0x1000*&owner)+(0x8000*&channel)))
+    
+    while (&status==0)
+    (
+        if (("&VIRTIO"=="true")||("&VIRTIO"=="t"))&&!state.run()
+        (
+            g
+            wait state.run()
+            b
+            wait !state.run()
+        )
+
+        wait 1.ms
+
+        &status=data.long(&ACCESS_CLASS:(HWIO_PMIC_ARB0_CHNL0_STATUS_ADDR+(0x1000*&owner)+(0x8000*&channel)))
+    )
+    
+    if (&status==1)
+    (
+        print "Write Successful"
+    )
+    else
+    (
+        if ((&status&0x2)>0)
+        (
+            print %ERROR "Write Failed"
+        )
+        else if ((&status&0x4)>0)
+        (
+            print %ERROR "Write Denied"
+        )
+        else if ((&status&0x8)>0)
+        (
+            print %ERROR "Write Dropped"
+        )
+    )
+
+   RETURN &status

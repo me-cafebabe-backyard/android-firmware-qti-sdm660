@@ -1,0 +1,167 @@
+#===============================================================================
+#
+# cryptoLibs
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2009-2014,2018 by Qualcomm Technologies, Inc.
+
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header:  $
+#  $DateTime: $
+#  $Author:  $
+#  $Change:  $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 1/12/17    ss      removing support for enabling CE BAM for xbl_sec
+# 10/20/16   jp      Added support for enabling CE BAM for xbl_sec
+# 03/02/14   nk      Added support for 8916 and 8936
+# 02/23/11   jl	     Removed debug/nodebug from build path.
+#
+#===============================================================================
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/core/securemsm/cryptodrivers/ce/shared"
+
+if env.has_key('USES_NO_DEBUG'):
+   env.Replace(DBUG_MODE = "NoDebug")
+else:
+   env.Replace(DBUG_MODE = "Debug")
+
+if env.has_key('IMAGE_NAME'):
+   SECUREMSMLIBPATH = '${IMAGE_NAME}/${PROC}/${ARMTOOLS}'
+#   SECUREMSMLIBPATH = '${IMAGE_NAME}/${PROC}/${ARMTOOLS}/${DBUG_MODE}'
+else:
+   SECUREMSMLIBPATH = 'unknown/${PROC}/${ARMTOOLS}'
+#   SECUREMSMLIBPATH = 'unknown/${PROC}/${ARMTOOLS}/${DBUG_MODE}'
+
+#env.Replace(SECUREMSMLIBPATH = SECUREMSMLIBPATH)
+#env.VariantDir('${SECUREMSMLIBPATH}', SRCPATH, duplicate=0)
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+if env.has_key('USES_NO_CP'):
+	env.Append(CCFLAGS = ' -DUSES_NO_CP ')
+
+#-------------------------------------------------------------------------------
+# External depends outside CoreBSP
+#-------------------------------------------------------------------------------
+env.RequireExternalApi([
+   'BREW',
+   'CS',
+   'DSM',
+])
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'DAL',
+   'DEBUGTOOLS',
+   'HAL',
+   'MPROC',
+   'SECUREMSM',
+   'SERVICES',
+   'STORAGE',
+   'SYSTEMDRIVERS',
+   'WIREDCONNECTIVITY',
+   'BOOT',
+   'HWENGINES',
+   'POWER',
+   'QSEE',
+   'MINK',
+   'TZCHIPSET',
+   'CECL',
+   # needs to be last also contains wrong comdef.h
+   'KERNEL',
+]
+
+if env['TARGET_FAMILY'] in ['badger']:
+   CBSP_API.extend(['TZLIBARMV7'])
+else:
+   CBSP_API.extend(['TZLIBARMV8'])
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+SME_PROTECTED_API = [
+                      'SME_SMECOM',
+]
+env.RequireProtectedApi(SME_PROTECTED_API)
+
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/trustzone/qsee/mink/oem/inc")
+
+#-------------------------------------------------------------------------------
+# Publish Private APIs
+#-------------------------------------------------------------------------------
+env.PublishPrivateApi('CEML', [
+   '${INC_ROOT}/core/securemsm/cryptodrivers/ce/shared/inc',
+])
+
+#-------------------------------------------------------------------------------
+# Compiler, object, and linker definitions
+#-------------------------------------------------------------------------------
+
+env.Append(ARMCC_CODE = " ${ARM_SPLIT_SECTIONS}")
+env.Replace(ARMLD_NOREMOVE_CMD = "")
+
+env.Append(CPPDEFINES = ['_ARM_', '__arm', 'ARM', 'ARM_BREW_BUILD'])
+env.Append(ARMCC_OPT = ' -Wno-int-conversion ')
+if env.has_key('BUILD_BOOT_CHAIN'):
+   env.Append(CPPDEFINES = ['FEATURE_LIBRARY_ONLY'])
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+
+CEML_LIB_SOURCES = [
+        '${BUILDPATH}/src/CeML.c',
+        '${BUILDPATH}/src/CeML_kdf.c',
+]
+
+#-------------------------------
+# This is only used for bringup
+#-------------------------------
+
+#env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/unifiedcrypto/shared/aes/inc")
+#env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/unifiedcrypto/core/aes/inc")
+#env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/unifiedcrypto/shared/sha/inc")
+#env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/unifiedcrypto/core/sha/inc")
+
+CEML_LIB_SOURCES_SW = [
+        '${BUILDPATH}/src/CeML_sw.c',
+        '${BUILDPATH}/src/CeML_kdf.c',
+]
+ 
+CEML_LIB_SOURCES_XBL_SEC = [
+       '${BUILDPATH}/src/xbl_sec/CeML.c',
+]
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+# uncomment to enabling CE BAM for xbl_sec
+env.AddBinaryLibrary(['XBL_SEC_IMAGE'], '${BUILDPATH}/CeML', CEML_LIB_SOURCES_XBL_SEC)
+
+if env['CHIPSET'] in ['msmXXXX']:
+  env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/unifiedcrypto/shared/aes/inc")
+  env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/unifiedcrypto/core/aes/inc")
+  env.AddBinaryLibrary(['TZOS_IMAGE'], '${BUILDPATH}/CeML', CEML_LIB_SOURCES_SW)
+else:
+  env.AddBinaryLibrary(['TZOS_IMAGE'], '${BUILDPATH}/CeML', CEML_LIB_SOURCES)
+env.Deploy(['SConscript',
+            '../inc/CeML.h'
+           ])

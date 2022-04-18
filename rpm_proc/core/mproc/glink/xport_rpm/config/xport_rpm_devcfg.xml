@@ -1,0 +1,43 @@
+<!--
+/*===========================================================================
+
+                GLINK RPM XPORT DEVICE CONFIGURATION
+
+  This file provides the device configuration properties for Glink RPM xport
+
+  ---------------------------------------------------------------------------
+  Copyright (c) 2016 Qualcomm Technologies, Inc.  All Rights Reserved.
+  Qualcomm Technologies Proprietary and Confidential.
+  ---------------------------------------------------------------------------
+===========================================================================*/
+
+/*===========================================================================
+
+                           EDIT HISTORY FOR FILE
+
+$Header:
+
+when       who     what, where, why
+--------   ---     ----------------------------------------------------------
+===========================================================================*/
+-->
+
+<driver name="NULL">
+  <device id="/dev/core/mproc/glink/xport_rpm">
+
+    <props name="proc_info" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      xport_rpm_devcfg_proc_info
+    </props>
+
+    <props name="remote_procs" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      xport_rpm_devcfg_remote_procs
+    </props>
+
+#ifdef MPROC_RPM_PROC
+    <props name="toc" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      xport_rpm_devcfg_toc
+    </props>
+#endif /* MPROC_RPM_PROC */
+
+  </device>
+</driver>

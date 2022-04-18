@@ -1,0 +1,117 @@
+ENTRY &arg0 &arg1
+
+MAIN:
+
+IF (!Y.EXIST(\\qsee)&&!Y.EXIST(\\qsee_w_test))
+(
+  DIALOG.MESSAGE "This script depends on QSEE symbols being loaded."
+)
+
+var.new struct list_node* \node
+var.new struct thread* \pThread
+var.new uint64_t[33] \regs
+var.new KProcess* \pProc
+
+var.set \node=thread_list->next
+var.set \pThread=(thread_t*)((uint64_t)\node-8)
+
+LOCAL &an
+
+&an="&arg0"
+&um="&arg1"
+
+r.s E 0
+
+var.WHILE (thread_list->next!=\node->next)
+(
+  var.IF (\pThread->magic!=0xFFFF04)
+  (
+    PBREAK
+  )
+
+  IF ("&an"==v.string(\pThread->name))
+  (
+    var.new int \ii
+    var.set \ii=0.
+    &maxreg=0.
+    &regoff=0.
+    &regoff2=0.
+
+    IF ("&um"!="user")
+    (
+      &maxreg=26.
+      &regoff=5.
+      &regoff2=1.
+
+      var.WHILE \ii<28.
+      (
+        var.set \regs[\ii]=*(((uint64_t*)\pThread->arch.sp_el1)+\ii++)
+      )
+
+      r.s x0 0
+      r.s x1 0
+      r.s x2 0
+      r.s x3 0
+      r.s x4 0
+
+      r.s PC arm_context_switch
+
+      r.s m 0x5
+    )
+    ELSE
+    (
+      var.set \pProc=(KProcess*)\pThread->process
+      var.IF (\pProc==0)
+      (
+        DIALOG.MESSAGE "Cannot load user mode context for thread without process structure."
+        ENDDO
+      )
+
+      var.WHILE \ii<33.
+      (
+        var.set \regs[\ii]=\pThread->arch.regs[\ii++]
+      )
+      &maxreg=31.
+      &regoff=0.
+      &regoff2=0.
+
+      r.s PC 0x0
+      r.s m 0
+    )
+
+    r.s t 0
+
+    var.set \ii=0
+    var.WHILE (\ii<&maxreg)
+    (
+      &rnum=var.string(\ii+&regoff)
+      &rn="x&rnum"
+      r.s &rn var.value(\regs[\ii+&regoff2])
+      var.set \ii=\ii+1
+    )
+    r.s SP var.value(\regs[\ii+&regoff2])
+    r.s PC var.value(\regs[\ii-1+&regoff2])
+
+    IF ("&um"=="user")
+    (
+      var.IF (\pProc->userLib.sizeOfPointer==4)
+      (
+        r.s m 0x10
+
+        IF ((r(pc)&1)==1)
+        (
+          r.s t 1
+        )
+      )
+    )
+
+    ENDDO
+  )
+
+  var.set \node=\node->next
+  var.set \pThread=(thread_t*)((uint64_t)\node-8)
+)
+
+DIALOG.MESSAGE "No thread with name "+'"'+"&an"+'"'+" found."
+
+ENDDO

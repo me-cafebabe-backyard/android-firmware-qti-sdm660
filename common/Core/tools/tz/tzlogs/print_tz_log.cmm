@@ -1,0 +1,198 @@
+; This script reads TZ log buffer and prints the translated logs from the dictionary
+; Input parameters are : tz build path
+; Please make sure machine has python 2.7 or higher.
+
+ENTRY &tz_path &target_family
+
+
+&HELP_MSG=("&tz_path"=="--help"||"&tz_path"=="-h"||"&tz_path"=="/h"||"&tz_path"=="")
+
+if &HELP_MSG
+(
+  GOSUB helpMsg
+  ENDDO
+)
+
+
+;Global for error message
+&errorMessage=''
+&errorMessageLine1=''
+
+&simem_offset=''
+
+&pwd=os.pwd()
+;Location of temp directory to copy log file.
+&temp_dir= OS.ENV(TEMP)
+
+
+if ("&target_family"=="bear")
+(
+&simem_offset=0x8600720
+)
+else
+(
+&simem_offset=0x066BF720
+)
+
+&log_size=0x2000
+&tzbsp_diag=FORMAT.HEX(0x8, data.long(AZNC:&simem_offset))
+&tzbsp_diag=0x&tzbsp_diag
+
+
+
+;The location of translated log file.
+&str_diag="&temp_dir"+"\TZ_LOG_STR.txt"
+
+;The location of raw log file.
+&txt_diag="&temp_dir"+"\TZ_LOG.txt"
+
+;Input parameter validation check, location of dictionary
+
+&dict_path="&tz_path"+"\trustzone_images\core\bsp\qsee\errorCodesDict.txt"
+if  OS.FILE(&dict_path)==FALSE()
+ (
+  &errorMessage= "Please check if the dictionary is present at the following " 
+  &errorMessageLine1="path:"+"&dict_path"
+  goto Error
+ )
+
+   
+&magic_number=FORMAT.HEX(0x8, data.long(AZNC:&tzbsp_diag))
+
+if &magic_number==0x747A6461
+(
+;  AREA.RESet
+  WINPOS 0. 0. 40% 80%
+  AREA.Create TZLOG 128. 1000.
+  AREA.view TZLOG
+
+  if  OS.FILE(&txt_diag)==TRUE()
+  (
+   RM &txt_diag 
+  )
+   if  OS.FILE(&str_diag)==TRUE()
+  (
+   RM &str_diag
+  )
+  PRINT "Please make sure python 2.7 is installed."
+  OPEN #1 &txt_diag /Create
+  &tz_log_buf_start=&tzbsp_diag+0x82C
+  &tz_log_buf_walk=&tz_log_buf_start
+  &tz_log_buf_end=&tzbsp_diag+&log_size
+  &prev_hex_chr=""
+  &debug_str=0
+  
+  while &tz_log_buf_walk!=&tz_log_buf_end
+  (
+    &hex_chr=FORMAT.HEX(0x1, data.byte(AZNC:&tz_log_buf_walk))
+    if ("&hex_chr"=="A")&&("&prev_hex_chr"=="D")
+    (
+      &tz_log_buf_walk=&tz_log_buf_walk-1
+      data.set AZNC:&tz_log_buf_walk %BYTE 0
+      &debug_str=data.string(AZNC:&tz_log_buf_start)
+	  WRITE #1 (data.string(AZNC:&tz_log_buf_start))
+      print "&debug_str"
+      data.set AZNC:&tz_log_buf_walk %BYTE 0xD
+      &tz_log_buf_walk=&tz_log_buf_walk+1
+      &tz_log_buf_start=&tz_log_buf_walk+1
+    )
+    &tz_log_buf_walk=&tz_log_buf_walk+1
+    &prev_hex_chr="&hex_chr"
+  )
+  CLOSE #1 
+ 
+ ;Location of python script not moving this to to with input validations so that non translated log is printed.
+  &script_file_loc="&pwd"+"\print_tz_log.py"
+ ;check if python script exists 
+  if  OS.FILE(&script_file_loc)==TRUE()
+  (		
+	   ;Error if the text log file is not generated in by the cmm script
+	   if  OS.FILE(&txt_diag)==FALSE()
+		(
+			&errorMessage= "Error while formatting error codes from dictionary."
+			&errorMessageLine1="If you see a log with non translated error codes, try <path>\print_tz_log.py -h "
+			goto Error
+		)
+	  else
+		;call the python script
+		os.hidden &script_file_loc --tz &tz_path --log &txt_diag
+	  
+  )
+  ;error if python script does not exist
+  else if  OS.FILE(&script_file_loc)==FALSE()
+  (
+   &errorMessage= "Error cannot find python script please check if python script is present at"
+   &errorMessageLine1="path:"+"&script_file_loc"
+   goto Error
+  )
+  
+  &env=OS.ENV(PATH)
+  &res=String.scan("&env", "Python27",0)
+  Var.IF &res<0
+  (
+   &errorMessage="Please make sure python 2.7 is installed, and the path variable is set correctly"
+   goto Error
+  )  
+  
+ ;check if python script ran and generated the string text file
+  if OS.FILE(&str_diag)==FALSE()	
+  (
+   &errorMessage= "Error while formatting error codes from dictionary. Please check if you have python 2.7 installed."
+   &errorMessageLine1="Trouble Shooting tips: Run the python script file details : python  <path>\print_tz_log.py -h"
+   goto Error
+  )
+  
+; open a window and dump output there.
+  LOCAL &offset &data &headerline
+  AREA.Create TZLOG_STR 200. 1000.
+  AREA.view TZLOG_STR
+  OPEN #2 &str_diag /Read
+  READ #2 %line &headerline
+  PRINT "&headerline"
+  RePeaT 500.
+  (
+  IF EOF()
+  GOTO endloop
+  READ #2 %line &headerline
+  PRINT %String "&headerline"
+  )
+endloop: CLOSE #2
+)
+else
+(
+   &errorMessage= "Invalid magic number (s/b 0x747A6461): " &magic_number
+   goto Error
+)
+
+;End of script
+enddo
+
+Error: 
+(
+	WinClear TZLOG_STRWIN
+	AREA.RESet
+	AREA.Create ErrorMessage 200. 20.
+	AREA.view ErrorMessage
+	AREA.Select ErrorMessage
+	PRINT %String %ERROR %HOME "&errorMessage"
+	PRINT %String %ERROR "&errorMessageLine1"
+	enddo
+)
+
+helpMsg:      AREA.RESet 
+			  AREA.Create HELP 200. 20.
+			  AREA.view HELP
+			  AREA.Select HELP
+			  PRINT "Usage:   cd.do print_tz_log.cmm <location of TZ> <optional:target family> "
+              PRINT "target family : by default 8996, accepts bear"
+              PRINT
+              PRINT "Example: cd.do print_tz_log.cmm \\snowcone\builds673\INTEGRATION\TZ.BF.4.0.1-00008-M8996AAAAANAAT-1"
+              PRINT "OR"
+			  PRINT "Example: cd.do print_tz_log.cmm \\snowcone\builds673\INTEGRATION\TZ.BF.4.0.1-00008-M8996AAAAANAAT-1 bear"
+			  PRINT
+			  PRINT "Please make sure python 2.7 is installed."
+			  PRINT "Also make sure print_tz_log.py is present at same location as print_tz_log.cmm "
+			  PRINT
+			  
+
+

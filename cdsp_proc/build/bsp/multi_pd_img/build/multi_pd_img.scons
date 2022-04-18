@@ -1,0 +1,256 @@
+#===============================================================================
+#
+# Target-Level Build Script for Modem Processor
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2009-2009 by Qualcomm Technologies, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/dspbuild.adsp/3.0/bsp/multi_pd_img/build/multi_pd_img.scons#27 $
+#  $DateTime: 2017/03/06 06:27:23 $
+#  $Change: 12594144 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+#
+#===============================================================================
+import sys
+import os
+Import('env')
+
+env = env.Clone()
+
+
+#------------------------------------------------------------------------------
+# Check if we need to load this script or just bail-out
+#------------------------------------------------------------------------------
+# alias first alias is always the target then the other possibles
+
+aliases = ['multi_pd_img', 'adsp_mpd_images', 'adsp_mpd_core_images', 'cdsp_mpd_core_images', 
+           'msm8998_ADSP', 'msm8998_CDSP',
+           'sdm845_ADSP', 'sdm845_CDSP', 'sdm660_ADSP', 'sdm830_ADSP', 'sdm660_CDSP'
+          ] #multi_pd_img is just for debugging the final stage of multi pd
+
+# init environment variables
+boot_img_name="bootimage_relocflag"
+boot_img_name_non_reloc="bootimage_nonrelocflag"
+
+# Define the builders required for this image.
+build_tools = [
+   '${BUILD_ROOT}/sectools/sectools_builder.py',
+   '${BUILD_ROOT}/core/bsp/build/scripts/mbn_builder.py',
+   '${BUILD_ROOT}/build/qurt_mpd_image_builder.py',
+]
+if env['CHIPSET'] in ['sdm845']:
+   build_tools += [
+         '${BUILD_ROOT}/core/bsp/build/scripts/rumi_builder.py',
+   ]
+
+if env['CHIPSET'] in ['msm8994','msm8992']:
+   build_tools += [
+      '${BUILD_ROOT}/core/bsp/build/scripts/island_builder.py',
+   ]
+
+image = os.environ.get('IMAGE', 'adsp')
+env.InitImageVars(
+   alias_list=aliases,
+   proc='qdsp6',
+   config=image,
+   plat='qurt',
+   target=boot_img_name,
+   tools = build_tools
+   )
+if image != 'adsp':
+    # Append a 'Q' to the Build ID accordingly.
+    env.Replace(BUILD_ID=env.subst('${BUILD_ID}Q'))
+    env.Replace(CUST_H=env.subst('CUST${BUILD_ID}.H').lower())
+
+if not env.CheckAlias(alias_list=aliases):
+   Return()
+
+#---------------------------------------------------------------------------
+# Load in CBSP uses and path variables
+#---------------------------------------------------------------------------
+env.LoadToolScript('build_utils', toolpath = ['${BUILD_ROOT}/build/scripts'])
+env.InitTargetVariation()
+env.InitBuildConfig()
+
+#---------------------------------------------------------------------------
+# Load in the tools scripts
+#---------------------------------------------------------------------------
+#this is the path for kernel to be used in multi PD build
+
+#Add ADSP Image specific linker inputs here
+env.LoadToolScript('hexagon_adsp', toolpath = ['${BUILD_ROOT}/build'])
+
+if 'AddDummySegBuilder' not in env.get('BUILDERS'):
+    env.LoadToolScript('kernel_builders', toolpath=['${COREBSP_ROOT}/bsp/build/scripts'])
+
+env.Replace(QDSP6_QURT_TOOLDIR = "${COREBSP_ROOT}/kernel/qurt/scripts")
+soc_other_vers = None
+soc_hw_version_value = "0x30020000"
+if env.get('CHIPSET') == "msm8998":
+   env.Replace(QDSP6_MPD_PHYS_ADDR = "0x91900000")
+elif env.get('CHIPSET') == "sdm845":
+   soc_hw_version_value = "0x60000100"
+   if env.get('IMAGE') == 'cdsp':
+      soc_other_vers = "0x6001"
+      env.Replace(QDSP6_MPD_PHYS_ADDR = "0x92800000")
+   elif env.get('IMAGE') == 'adsp':
+      env.Replace(QDSP6_MPD_PHYS_ADDR = "0x93000000")
+   else:
+      print "Image not found: ", env.get('IMAGE')
+elif env.get('CHIPSET') == "sdm660":
+   soc_other_vers = "0x3007"
+   soc_hw_version_value = "0x30061000"
+   if env.get('IMAGE') == 'cdsp':
+      env.Replace(QDSP6_MPD_PHYS_ADDR = "0x94800000")
+   elif env.get('IMAGE') == 'adsp':
+      env.Replace(QDSP6_MPD_PHYS_ADDR = "0x92A00000")
+   else:
+      print "Image not found: ", env.get('IMAGE')
+elif env.get('CHIPSET') == "sdm830":
+   soc_hw_version_value = "0x60010000"
+   if env.get('IMAGE') == 'adsp':
+      env.Replace(QDSP6_MPD_PHYS_ADDR = "0x92A00000")
+   else:
+      print "Image not found: ", env.get('IMAGE')
+else:
+   env.Replace(QDSP6_MPD_PHYS_ADDR = "0X0DC00000")
+
+#pass this flag thru build\ms\build.cmd USES_FLAGS=USES_GENSECIMAGE
+#instead of hardcodeding in the scripts
+#env.AddUsesFlags(['USES_GENSECIMAGE'])
+#---------------------------------------------------------------------------
+# Load in the tools scripts
+#---------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------------------------------------------------
+# !! Note regarding Audio in User PD 
+#Currently Audio is not in user pd. if at all it needs to be in User pd, enable the target scons for audio pd under build\bsp 
+#and also add an env variable AUDIO_IN_USERPD, this will immediately enable adding audio user pd 
+#env.Replace(AUDIO_IN_USERPD = 'no')
+#-----------------------------------------------------------------------------------------------------------------------
+
+target_images = []
+build_ms_targets = []
+
+#output of multipd weaver
+boot_img=env.RealPath('${SHORT_BUILDPATH}/bootimage.pbn')
+
+output_boot_img_name=env.RealPath('${BUILD_MS_ROOT}/'+boot_img_name+'.pbn')
+target_images.extend([boot_img])
+
+
+guest_img='${BUILD_MS_ROOT}/${ROOT_IMG_NAME}.elf'
+sensor_img='${BUILD_MS_ROOT}/${SENSOR_IMG_NAME}.elf'
+audio_img='${BUILD_MS_ROOT}/${AUDIO_IMG_NAME}.elf'
+build_products_fn = env['TARGET_ROOT'] + "/BuildProducts.txt"
+fh = open(build_products_fn, "a")
+fh.write (env.subst("./%s_proc/obj/qdsp6v5_ReleaseG/${SHORT_BUILDPATH}/%s.mbn"%(image, image))+"\n")
+fh.close()
+
+# If this is an internal uImage build, we will place an assert into the environment.
+if 'USES_ISLAND' in env and env.IsBuildInternal():
+   # For size-limited targets, set the default uImage footprint that will be reserved for customers.
+   if env['CHIPSET'] in ['msm8992','msm8994']:
+      env['MICROIMAGE_OEM_RESERVE'] = '6K'
+   # For non-defined uImage targets, set to 0 KB, which essentially disables the assert.
+   else:
+      env['MICROIMAGE_OEM_RESERVE'] = '0K'
+   # If this is an HCBSP build or if the developer wishes to override, remove the assert.
+   if 'HCBSP' in env or 'UIMAGE_OVERRIDE_ASSERT' in env:
+      env['MICROIMAGE_OEM_RESERVE'] = '0K'
+   # Print out the current uImage footprint.
+   env.PrintInfo("Required uImage OEM Footprint: " + env['MICROIMAGE_OEM_RESERVE'])
+# If this is not a uImage build, default the assert to 0 KB. 
+else:
+   env['MICROIMAGE_OEM_RESERVE'] = '0K'
+
+
+pd_images_list = [guest_img, sensor_img]
+
+if 'AUDIO_IN_USERPD' in env:
+  pd_images_list.append(audio_img)
+  env.PrintInfo("AUDIO_IN_USERPD flag in env, pd_images_list content: ${pd_images_list}")
+else:
+  env.PrintInfo("AUDIO_IN_USERPD flag not in env, pd_images_list content: ${pd_images_list}")
+
+if ('USES_DISABLE_SENSORS' in env ):
+  pd_images_list.remove(sensor_img)      
+
+#call multi pd weaver to generate relocated elf and final pbn
+output_boot_img=env.ImageBuild(target_images,[pd_images_list,env.subst("${QDSP6_QURT_TOOLDIR}/qurt-image-build.py")], PHYS_ADDR='${QDSP6_MPD_PHYS_ADDR}')
+
+
+#call ModifyRelocatableFlag after qurt image builder for both Relocatable & Non-Relocatable
+build_ms_targets = env.ModifyRelocatableFlagsBuilder(output_boot_img_name, output_boot_img[0])
+
+#-------------------------------------------------------------------------
+# Add a dummy segment for dynamic footprints
+#-------------------------------------------------------------------------
+if env.get('CHIPSET') == "mdm9x25" or env.get('CHIPSET') == "mdm9x35":
+    build_ms_targets_stage2 = build_ms_targets
+else:
+    build_ms_targets_stage2 = env.AddDummySegBuilder("${BUILD_MS_ROOT}/bootimage_relocflag_withdummyseg.pbn", [build_ms_targets, "${BUILD_ROOT}/build/chipset/${CHIPSET}/${IMAGE}/qdsp6.xml"])     
+    env.PrintInfo("the chipset directory where the XML file called from is: ${CHIPSET} for AddDummySegBuilder")
+
+
+
+#generate mbn out of the pbn for both Relocatable & Non-Relocatable
+multipd_mbn = env.MbnBuilder(env.get('IMAGE'), build_ms_targets_stage2, IMAGE_TYPE="qdsp6sw", ENABLE_RELOCATABLE=True, FLASH_TYPE=env['TARGET_FLASH_TYPE'])
+
+if env.get('CHIPSET') == "sdm845":
+	bin_install_root = env.subst('${BUILD_MS_ROOT}')
+	image_name = env.get('IMAGE')
+	bin_image_name =  image_name + '.bin'
+	mbn_image_name = image_name + '.mbn'
+	multipd_bin = env.PreSilConvertMbnToBin(os.path.join(bin_install_root, bin_image_name), os.path.join(env.subst('${BUILD_ROOT}/obj/qdsp6v5_ReleaseG/${SHORT_BUILDPATH}'), mbn_image_name))
+	env.Depends(multipd_bin, multipd_mbn)
+
+#----------------------------------------------------------------------------
+# Sectools signing
+#----------------------------------------------------------------------------
+sectools_signed_mbn = env.SectoolBuilder(
+        target_base_dir = '${SHORT_BUILDPATH}', 
+        source=multipd_mbn, 
+        sign_id=image,
+        soc_hw_version = soc_hw_version_value,
+        config = '${BUILD_ROOT}/sectools/config/integration/secimagev2.xml',
+		soc_vers=soc_other_vers,
+        sectools_install_base_dir = '${BUILD_ROOT}/obj/qdsp6v5_ReleaseG/${SHORT_BUILDPATH}/',  
+        install_file_name = "${IMAGE}.mbn")   
+
+  
+#install target elf
+install_unsigned_root = env.SectoolGetUnsignedInstallPath(install_base_dir = '${BUILD_ROOT}/obj/qdsp6v5_ReleaseG/${SHORT_BUILDPATH}/')
+obj_mbn = env.InstallAs(os.path.join(install_unsigned_root, '${IMAGE}.mbn'), multipd_mbn)
+
+target_elf = env.InstallAs('${BUILD_ROOT}/dsp_${BUILD_ID}.elf', multipd_mbn)
+
+
+
+target_images.append(build_ms_targets)
+target_images.append(multipd_mbn)
+target_images.append(target_elf)
+target_images.append(obj_mbn)
+if env.get('CHIPSET') == "sdm845":
+	target_images.append(multipd_bin)
+
+target_images.append(sectools_signed_mbn)
+   
+print FindFile('build.cmd', '${BUILD_MS_ROOT}')
+for alias in aliases:
+   env.Alias(alias, target_images)
+
+
+

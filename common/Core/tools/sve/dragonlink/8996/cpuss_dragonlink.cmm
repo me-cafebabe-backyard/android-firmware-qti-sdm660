@@ -1,0 +1,903 @@
+// Author: c_jbenis 
+// cpuss_dragonlink.cmm#4 
+
+y.create.l TPDM_BASE                     0x07BC0000 //    - base address
+y.create.l TPDM_DSB_CR                        0x780 // rw - global control reg
+y.create.l TPDM_DSB_TIER                      0x784 // rw - timestamp insertion enable register
+y.create.l TPDM_DSB_TPR0                      0x788 // rw - subunit timestamp pattern registers
+y.create.l TPDM_DSB_TPR1                      0x78C // rw -       ---
+y.create.l TPDM_DSB_TPMR0                     0x7A8 // rw - subunit timestamp pattern mask registers
+y.create.l TPDM_DSB_TPMR1                     0x7AC // rw -       ---
+y.create.l TPDM_DSB_XPR0                      0x7C8 // rw - subunit trigger pattern registers
+y.create.l TPDM_DSB_XPR1                      0x7CC // rw -       ---
+y.create.l TPDM_DSB_XPMR0                     0x7E8 // rw - subunit trigger pattern mask registers
+y.create.l TPDM_DSB_XPMR1                     0x7EC // rw -       ---
+y.create.l TPDM_DSB_EDCR0                     0x808 // rw - subunit edge detection control registers
+y.create.l TPDM_DSB_EDCR1                     0x80C // rw -        |
+y.create.l TPDM_DSB_EDCR2                     0x810 // rw -        |
+y.create.l TPDM_DSB_EDCR3                     0x814 // rw -       ---
+y.create.l TPDM_DSB_EDCMR0                    0x848 // rw - subunit edge detection mask registers
+y.create.l TPDM_DSB_EDCMR1                    0x84C // rw -       ---
+y.create.l TPDM_DSB_READCTL                   0x970 // rw - interface state read control register
+y.create.l TPDM_DSB_READVAL                   0x974 // ro -       ---
+y.create.l TPDM_DSB_MSR0                      0x980 // rw - subunit mux select registers
+y.create.l TPDM_DSB_MSR1                      0x984 // rw -        |
+y.create.l TPDM_DSB_MSR2                      0x988 // rw -        |
+y.create.l TPDM_DSB_MSR3                      0x98C // rw -        |
+y.create.l TPDM_DSB_MSR4                      0x990 // rw -        |
+y.create.l TPDM_DSB_MSR5                      0x994 // rw -        |
+y.create.l TPDM_DSB_MSR6                      0x998 // rw -        |
+y.create.l TPDM_DSB_MSR7                      0x99C // rw -       ---
+y.create.l TPDM_LAR                           0xFB0 // rw - lock access reg
+y.create.l TPDM_LSR                           0xFB4 // ro - lock status reg
+
+y.create.l TPDA_BASE                     0x07BC2000 //    - base address
+y.create.l TPDA_CR                            0x000 // rw - control register
+y.create.l TPDA_P0_CR                         0x004 // rw - port control register
+y.create.l TPDA_FPID_CR                       0x084 // rw - flag packet ID control register
+y.create.l TPDA_FREQREQ_VAL                   0x088 // rw - FREQ packet request value register
+y.create.l TPDA_SYNCR                         0x08C // rw - synchronization control register
+y.create.l TPDA_FLUSH_CR                      0x090 // rw - port flush control register
+y.create.l TPDA_FLUSH_SR                      0x094 // ro - port flush status register
+y.create.l TPDA_FLUSH_ERR                     0x098 // ro - global error syndrome register
+y.create.l TPDA_SPARE                         0xEFC // rw - timestamp legacy mode
+y.create.l TPDA_LOCKACCESS                    0xFB0 // wo - lock access reg
+
+y.create.l QDSS_APSS_FUN_ATB_CTRL_REG    0x07B60000 // rw
+y.create.l QDSS_APSS_FUN_ATB_LOCKACCESS  0x07B60FB0 // wo
+y.create.l QDSS_APSS_FUN_CTRL_REG        0x07B70000 // rw
+y.create.l QDSS_APSS_FUN_LOCKACCESS      0x07B70FB0 // wo
+y.create.l QDSS_QDSS_MERG_FUN_CTRL_REG   0x06045000 // rw - enable port 1
+y.create.l QDSS_QDSS_MERG_FUN_LOCKACCESS 0x06045FB0 // wo
+y.create.l QDSS_QDSS_IN_FUN1_CTRL_REG    0x06042000 // rw - enable port 6
+y.create.l QDSS_QDSS_IN_FUN1_LOCKACCESS  0x06042FB0 // wo
+
+y.create.l ETFETB_BASE                   0x06047000 //
+y.create.l ETFETB_RWP                         0x018 // rw - write pointer
+y.create.l ETFETB_CTL                         0x020 // rw - ctrl
+y.create.l ETFETB_MODE                        0x028 // rw - mode - circular or fifo
+y.create.l ETFETB_FFCR                        0x304 // rw
+y.create.l ETFETB_LAR                         0xFB0 // wo - lock access reg
+
+y.create.l QDSSCSR_LOCKACCESS            0x06001FB0 // wo - lock access reg
+y.create.l QDSSCSR_TIMESTAMPCTRL         0x06001038 // rw
+
+y.create.done
+
+///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+
+local &i &selmsk &selmsk0 &selmsk1
+
+&selmsk0=0x00000000
+&selmsk1=0x00000000
+
+local    &selmux
+local    &selmux0 &selmux1 &selmux2 &selmux3
+local    &selmux4 &selmux5 &selmux6 &selmux7
+
+&selmux0=0x00000000
+&selmux1=0x00000000
+&selmux2=0x00000000
+&selmux3=0x00000000
+&selmux4=0x00000000
+&selmux5=0x00000000
+&selmux6=0x00000000
+&selmux7=0x00000000
+
+////////////////////////////////
+//// Enter Selections Below ////
+////////////////////////////////
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_core0_on             - cluster0 cpu0 is active
+            //   1   cci_clk_on                    - clock gating state of cci
+            //   2   core0_wait_req                - core0 system wait request
+            //   3   cpu0_qch_intf_req             - cpu0 qch interface handshake signals
+            //   4   clus0_l2q_active              - cluster 0 l2 q channel interface
+            //   5   cci_slv2_pmu_event[4]         - read request handshake: cache maintenance operation
+            //   6   o_debug_bus[0]                - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<0.)
+&selmux0=&selmux0|(&selmux<<0.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_core0_wfi            - cluster0 cpu0 is in clock gating mode
+            //   1   cci_clk_off                   - clock gating state of cci
+            //   2   core0_wait_ack                - core0 system wait ack
+            //   3   cpu0_qch_intf_deny            - cpu0 qch interface handshake signals
+            //   4   clus0_l2q_req                 - cluster 0 l2 q channel interface
+            //   5   cci_slv2_pmu_event[9]         - read request stall cycle because the transaction tracker is full. increa
+            //   6   o_debug_bus[1]                - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<1.)
+&selmux0=&selmux0|(&selmux<<4.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_core0_power_collapse - cluster0 cpu0 is in power collapse mode
+            //   1   cci_bringupreq                - spm-rpm handshake signal
+            //   2   core0_spm_sleep_state         - core0 spm sleep status
+            //   3   cpu0_qch_intf_accept          - cpu0 qch interface handshake signals
+            //   4   clus0_l2q_deny                - cluster 0 l2 q channel interface
+            //   5   cci_slv2_pmu_event[11]        - read data stall cycle: rvalids is high rreadys is low
+            //   6   o_debug_bus[2]                - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<2.)
+&selmux0=&selmux0|(&selmux<<8.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_core1_on             - cluster0 cpu1 is active
+            //   1   cci_bringupack                - spm-rpm handshake signal
+            //   2   core0_saw_wakeup              - core0 saw wakeup
+            //   3   cpu0_qch_intf_active          - cpu0 qch interface handshake signals
+            //   4   clus0_l2q_accept              - cluster 0 l2 q channel interface
+            //   5   cci_slv2_pmu_event[19]        - write request stall cycle because the transaction tracker is full. incre
+            //   6   o_debug_bus[3]                - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<3.)
+&selmux0=&selmux0|(&selmux<<12.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_core1_wfi            - cluster0 cpu1 is in clock gating mode
+            //   1   cci_shutdownreq               - spm-rpm handshake signal
+            //   2   core1_wait_req                - core1 system wait request
+            //   3   cpu1_qch_intf_req             - cpu1 qch interface handshake signals
+            //   4   clus1_l2q_active              - cluster 1 l2 q channel interface
+            //   5   cci_slv2_pmu_event[20]        - read request stall cycle because of a slave interface id hazard
+            //   6   o_debug_bus[4]                - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<4.)
+&selmux0=&selmux0|(&selmux<<16.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_core1_power_collapse - cluster0 cpu1 is in power collapse mode
+            //   1   cci_shutdownack               - spm-rpm handshake signal
+            //   2   core1_wait_ack                - core1 system wait ack
+            //   3   cpu1_qch_intf_deny            - cpu1 qch interface handshake signals
+            //   4   clus1_l2q_req                 - cluster 1 l2 q channel interface
+            //   5   cci_slv3_pmu_event[4]         - read request handshake: cache maintenance operation
+            //   6   o_debug_bus[5]                - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<5.)
+&selmux0=&selmux0|(&selmux<<20.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_core2_on             - cluster0 cpu2 is active
+            //   1   apss_cl1_core0_bhs_on         - cluster1 cpu0 bhs is on
+            //   2   core1_spm_sleep_state         - core1 spm sleep status
+            //   3   cpu1_qch_intf_accept          - cpu1 qch interface handshake signals
+            //   4   clus1_l2q_deny                - cluster 1 l2 q channel interface
+            //   5   cci_slv3_pmu_event[9]         - read request stall cycle because the transaction tracker is full. increa
+            //   6   o_debug_bus[6]                - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<6.)
+&selmux0=&selmux0|(&selmux<<24.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_core2_wfi            - cluster0 cpu2 is in clock gating mode
+            //   1   apss_cl1_core1_bhs_on         - cluster1 cpu1 bhs is on
+            //   2   core1_saw_wakeup              - core1 saw wakeup
+            //   3   cpu1_qch_intf_active          - cpu1 qch interface handshake signals
+            //   4   clus1_l2q_accept              - cluster 1 l2 q channel interface
+            //   5   cci_slv3_pmu_event[11]        - read data stall cycle: rvalids is high rreadys is low
+            //   6   o_debug_bus[7]                - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<7.)
+&selmux0=&selmux0|(&selmux<<28.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_core2_power_collapse - cluster0 cpu2 is in power collapse mode
+            //   1   apss_cl1_core2_bhs_on         - cluster1 cpu2 bhs is on
+            //   2   core2_wait_req                - core2 system wait request
+            //   3   cpu2_qch_intf_req             - cpu2 qch interface handshake signals
+            //   4   ace0_async_mactive            - required to wake-up gnoc from clock gating. indicates pending transactio
+            //   5   cci_slv3_pmu_event[19]        - write request stall cycle because the transaction tracker is full. incre
+            //   6   o_debug_bus[8]                - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<8.)
+&selmux1=&selmux1|(&selmux<<0.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_core3_on             - cluster0 cpu3 is active
+            //   1   apss_cl1_core3_bhs_on         - cluster1 cpu3 bhs is on
+            //   2   core2_wait_ack                - core2 system wait ack
+            //   3   cpu2_qch_intf_deny            - cpu2 qch interface handshake signals
+            //   4   ace0_async_snpactive          - required to wake-up cpu from clock gating. indicates pending transaction
+            //   5   cci_slv3_pmu_event[20]        - read request stall cycle because of a slave interface id hazard
+            //   6   o_debug_bus[9]                - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<9.)
+&selmux1=&selmux1|(&selmux<<4.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_core3_wfi            - cluster0 cpu3 is in clock gating mode
+            //   1   cpr_apss_pmic_req             - cpr-pmic arbiter interface signals
+            //   2   core2_spm_sleep_state         - core2 spm sleep status
+            //   3   cpu2_qch_intf_accept          - cpu2 qch interface handshake signals
+            //   4   ace0_swsnpidlereq             - status hw copy of the register idlereq in the power programmable control
+            //   5   cci_slv4_pmu_event[4]         - read request handshake: cache maintenance operation
+            //   6   o_debug_bus[10]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<10.)
+&selmux1=&selmux1|(&selmux<<8.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_core3_power_collapse - cluster0 cpu3 is in power collapse mode
+            //   1   pmic_cpr_apss_pmic_done       - cpr-pmic arbiter interface signals
+            //   2   core2_saw_wakeup              - core2 saw wakeup
+            //   3   cpu2_qch_intf_active          - cpu2 qch interface handshake signals
+            //   4   ace0_swsnpidleack             - status hw copy of the register idleack in the power programmable control
+            //   5   cci_slv4_pmu_event[9]         - read request stall cycle because the transaction tracker is full. increa
+            //   6   o_debug_bus[11]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<11.)
+&selmux1=&selmux1|(&selmux<<12.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_l2_on                - cluster0 l2 is active
+            //   1   ccisaw_apss_pmic_req          - spm-pmic arbiter interface signals
+            //   2   core3_wait_req                - core3 system wait request
+            //   3   cpu3_qch_intf_req             - cpu3 qch interface handshake signals
+            //   4   ace0_direnreq                 - idlereq for disabling directory on ace0
+            //   5   cci_slv4_pmu_event[11]        - read data stall cycle: rvalids is high rreadys is low
+            //   6   o_debug_bus[12]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<12.)
+&selmux1=&selmux1|(&selmux<<16.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_l2_idle              - cluster0 l2 is in clock gating mode
+            //   1   pmic_ccisaw_apss_pmic_done    - spm-pmic arbiter interface signals
+            //   2   core3_wait_ack                - core3 system wait ack
+            //   3   cpu3_qch_intf_deny            - cpu3 qch interface handshake signals
+            //   4   ace0_direnack                 - idleack acknowledge
+            //   5   cci_slv4_pmu_event[19]        - write request stall cycle because the transaction tracker is full. incre
+            //   6   o_debug_bus[13]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<13.)
+&selmux1=&selmux1|(&selmux<<20.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_l2_dormant           - cluster0 l2 is in dormant mode i.e. l2cc is power collapsed and l2 rams
+            //   1   cluster1_l2pmic_req           - cluter1 l2 pmic interface signals
+            //   2   core3_spm_sleep_state         - core3 spm sleep status
+            //   3   cpu3_qch_intf_accept          - cpu3 qch interface handshake signals
+            //   4   ace0_swdirenreq               - status hw copy of the register idlereq in the power programmable control
+            //   5   cci_slv4_pmu_event[20]        - read request stall cycle because of a slave interface id hazard
+            //   6   o_debug_bus[14]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<14.)
+&selmux1=&selmux1|(&selmux<<24.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_l2_gdhs              - cluster0 l2cc is power collapsed
+            //   1   cluster1_l2_pmic_done         - cluter1 l2 pmic interface signals
+            //   2   core3_saw_wakeup              - core3 saw wakeup
+            //   3   cpu3_qch_intf_active          - cpu3 qch interface handshake signals
+            //   4   ace0_swdirenack               - status hw copy of the register idleack in the power programmable control
+            //   5   cci_mstr1_pmu_event[1]        - stall cycle because of an address hazard.
+            //   6   o_debug_bus[15]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<15.)
+&selmux1=&selmux1|(&selmux<<28.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_l2_off               - cluster0 l2 is power collapsed (both l2cc and l2 rams are powered off)
+            //   1   ainacts_cl0                   - acp bus inactive signal
+            //   2   core4_wait_req                - core4 system wait request
+            //   3   cpu4_qch_intf_req             - cpu4 qch interface handshake signals
+            //   4   ace1_async_mactive            - required to wake-up gnoc from clock gating. indicates pending transactio
+            //   5   cci_mstr1_pmu_event[2]        - read request stall cycle because of a master interface id hazard
+            //   6   o_debug_bus[16]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<16.)
+&selmux2=&selmux2|(&selmux<<0.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_l2_retention         - cluster0 l2 is in dynamic retention mode i.e. l2cc is clock gated and l2
+            //   1   ainacts_cl0_bar               - acp bus active signal
+            //   2   core4_wait_ack                - core4 system wait ack
+            //   3   cpu4_qch_intf_deny            - cpu4 qch interface handshake signals
+            //   4   ace1_async_snpactive          - required to wake-up cpu from clock gating. indicates pending transaction
+            //   5   cci_mstr1_pmu_event[3]        - a read request with a qos value in the high priority group is stalled fo
+            //   6   o_debug_bus[17]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<17.)
+&selmux2=&selmux2|(&selmux<<4.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_l2_bringupreq        - spm-rpm handshake signal
+            //   1   acinactm_cl0                  - ace bus inactive signal for cluster0
+            //   2   core4_spm_sleep_state         - core4 spm sleep status
+            //   3   cpu4_qch_intf_accept          - cpu4 qch interface handshake signals
+            //   4   ace1_swsnpidlereq             - status hw copy of the register idlereq in the power programmable control
+            //   5   cci_mstr1_pmu_event[4]        - read request stall cycle because of a barrier hazard
+            //   6   o_debug_bus[18]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<18.)
+&selmux2=&selmux2|(&selmux<<8.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_l2_bringupack        - spm-rpm handshake signal
+            //   1   acinactm_cl0_bar              - ace bus active signal for cluster0
+            //   2   core4_saw_wakeup              - core4 saw wakeup
+            //   3   cpu4_qch_intf_active          - cpu4 qch interface handshake signals
+            //   4   ace1_swsnpidleack             - status hw copy of the register idleack in the power programmable control
+            //   5   cci_mstr1_pmu_event[5]        - write request stall cycle because of a barrier hazard
+            //   6   o_debug_bus[19]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<19.)
+&selmux2=&selmux2|(&selmux<<12.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_l2_shutdownreq       - spm-rpm handshake signal
+            //   1   ainacts_cl1                   - acp bus inactive signal
+            //   2   core5_wait_req                - core5 system wait request
+            //   3   cpu5_qch_intf_req             - cpu5 qch interface handshake signals
+            //   4   ace1_direnreq                 - idlereq for disabling directory on ace1
+            //   5   cci_mstr1_pmu_event[6]        - a write request is stalled for a cycle because the write transaction tra
+            //   6   o_debug_bus[20]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<20.)
+&selmux2=&selmux2|(&selmux<<16.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_l2_shutdownack       - spm-rpm handshake signal
+            //   1   ainacts_cl1_bar               - acp bus active signal
+            //   2   core5_wait_ack                - core5 system wait ack
+            //   3   cpu5_qch_intf_deny            - cpu5 qch interface handshake signals
+            //   4   ace1_direnack                 - idleack acknowledge
+            //   5   cci_mstr1_pmu_event[7]        - a read request with a qos value in the low priority group is stalled for
+            //   6   o_debug_bus[21]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<21.)
+&selmux2=&selmux2|(&selmux<<20.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_l2_slp_ret           - l2ram sleep with retention (l2 dormant mode)
+            //   1   acinactm_cl1                  - ace bus inactive signal for cluster1
+            //   2   core5_spm_sleep_state         - core5 spm sleep status
+            //   3   cpu5_qch_intf_accept          - cpu5 qch interface handshake signals
+            //   4   ace1_swdirenreq               - status hw copy of the register idlereq in the power programmable control
+            //   5   cci_mstr1_pmu_event[8]        - a read request with a qos value in the medium priority group is stalled
+            //   6   o_debug_bus[22]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<22.)
+&selmux2=&selmux2|(&selmux<<24.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl0_l2_slp_nret          - l2ram sleep without retention (l2 off mode)
+            //   1   acinactm_cl1_bar              - ace bus active signal for cluster1
+            //   2   core5_saw_wakeup              - core5 saw wakeup
+            //   3   cpu5_qch_intf_active          - cpu5 qch interface handshake signals
+            //   4   ace1_swdirenack               - status hw copy of the register idleack in the power programmable control
+            //   5   cci_mstr1_pmu_event[17]       - a writeunique or writelineunique request is stalled for a cycle because
+            //   6   o_debug_bus[23]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<23.)
+&selmux2=&selmux2|(&selmux<<28.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_core0_on             - cluster1 cpu0 is active
+            //   1   cactive                       -
+            //   2   core6_wait_req                - core6 system wait request
+            //   3   cpu6_qch_intf_req             - cpu6 qch interface handshake signals
+            //   4   apss_cl0_pll_unlock_stat_on   - pwr cluster sr pll unlock status on. equation: (not pll_lock_det) and pl
+            //   5   cci_mstr2_pmu_event[1]        - stall cycle because of an address hazard.
+            //   6   o_debug_bus[24]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<24.)
+&selmux3=&selmux3|(&selmux<<0.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_core0_wfi            - cluster1 cpu0 is in clock gating mode
+            //   1   cactive_n                     -
+            //   2   core6_wait_ack                - core6 system wait ack
+            //   3   cpu6_qch_intf_deny            - cpu6 qch interface handshake signals
+            //   4   apss_cl0_pll_unlock_stat_off  - pwr cluster sr pll unlock status off. equation: not pll_unlock _stat_on
+            //   5   cci_mstr2_pmu_event[2]        - read request stall cycle because of a master interface id hazard
+            //   6   o_debug_bus[25]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<25.)
+&selmux3=&selmux3|(&selmux<<4.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_core0_power_collapse - cluster1 cpu0 is in power collapse mode
+            //   1   cci_activem1_low              -
+            //   2   core6_spm_sleep_state         - core6 spm sleep status
+            //   3   cpu6_qch_intf_accept          - cpu6 qch interface handshake signals
+            //   4   apss_cl1_pll_unlock_stat_on   - perf cluster sr pll unlock status on. equation: (not pll_lock_det) and p
+            //   5   cci_mstr2_pmu_event[3]        - a read request with a qos value in the high priority group is stalled fo
+            //   6   o_debug_bus[26]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<26.)
+&selmux3=&selmux3|(&selmux<<8.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_core1_on             - cluster1 cpu1 is active
+            //   1   cci_activem1_high             -
+            //   2   core6_saw_wakeup              - core6 saw wakeup
+            //   3   cpu6_qch_intf_active          - cpu6 qch interface handshake signals
+            //   4   apss_cl1_pll_unlock_stat_off  - perf cluster sr pll unlock status off. equation: not pll_unlock _stat _o
+            //   5   cci_mstr2_pmu_event[4]        - read request stall cycle because of a barrier hazard
+            //   6   o_debug_bus[27]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<27.)
+&selmux3=&selmux3|(&selmux<<12.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_core1_wfi            - cluster1 cpu1 is in clock gating mode
+            //   1   cci_activem2_low              -
+            //   2   core7_wait_req                - core7 system wait request
+            //   3   cpu7_qch_intf_req             - cpu7 qch interface handshake signals
+            //   4   apss_cci_pll_unlock_stat_on   - cci sr pll unlock status on. equation: (not pll_lock_det) and pll_out_ct
+            //   5   cci_mstr2_pmu_event[5]        - write request stall cycle because of a barrier hazard
+            //   6   o_debug_bus[28]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<28.)
+&selmux3=&selmux3|(&selmux<<16.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_core1_power_collapse - cluster1 cpu1 is in power collapse mode
+            //   1   cci_activem2_high             -
+            //   2   core7_wait_ack                - core7 system wait ack
+            //   3   cpu7_qch_intf_deny            - cpu7 qch interface handshake signals
+            //   4   apss_cci_pll_unlock_stat_off  - cci sr pll unlock status off. equation: not pll_unlock _stat _on
+            //   5   cci_mstr2_pmu_event[6]        - a write request is stalled for a cycle because the write transaction tra
+            //   6   o_debug_bus[29]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<29.)
+&selmux3=&selmux3|(&selmux<<20.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_core2_on             - cluster1 cpu2 is active
+            //   1   cci_clamp                     -
+            //   2   core7_spm_sleep_state         - core7 spm sleep status
+            //   3   cpu7_qch_intf_accept          - cpu7 qch interface handshake signals
+            //   4   core_hang_counter_sts[0]      - core hang counter status
+            //   5   cci_mstr2_pmu_event[7]        - a read request with a qos value in the low priority group is stalled for
+            //   6   o_debug_bus[30]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<30.)
+&selmux3=&selmux3|(&selmux<<24.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_core2_wfi            - cluster1 cpu2 is in clock gating mode
+            //   1   apss_cl0_cpu0_bringupreq      - spm-rpm handshake signal for cpu0 in cluster0
+            //   2   core7_saw_wakeup              - core7 saw wakeup
+            //   3   cpu7_qch_intf_active          - cpu7 qch interface handshake signals
+            //   4   core_hang_counter_sts[1]      - core hang counter status
+            //   5   cci_mstr2_pmu_event[8]        - a read request with a qos value in the medium priority group is stalled
+            //   6   o_debug_bus[31]               - olc hwevents
+&selmsk0=&selmsk0|(&selmsk<<31.)
+&selmux3=&selmux3|(&selmux<<28.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_core2_power_collapse - cluster1 cpu2 is in power collapse mode
+            //   1   apss_cl0_cpu1_bringupreq      - spm-rpm handshake signal for cpu1 in cluster0
+            //   2   clus0_wait_req                - cluster0 system wait request
+            //   3   qchannel_fsm_hw_event[32]     - perf cluster core0  fsm current mode in c1
+            //   4   core_hang_counter_sts[2]      - core hang counter status
+            //   5   cci_mstr2_pmu_event[17]       - a writeunique or writelineunique request is stalled for a cycle because
+            //   6   qchannel_c1_fsm_hw_events[0]  - pwr cluster core0  fsm current mode in c1
+&selmsk1=&selmsk1|(&selmsk<<0.)
+&selmux4=&selmux4|(&selmux<<0.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_core3_on             - cluster1 cpu3 is active
+            //   1   apss_cl0_cpu2_bringupreq      - spm-rpm handshake signal for cpu2 in cluster0
+            //   2   clus0_wait_ack                - cluster0 system wait ack
+            //   3   qchannel_fsm_hw_event[33]     - perf cluster core0 fsm is granted c1
+            //   4   core_hang_counter_sts[3]      - core hang counter status
+            //   5   pwr_rc_hwevent[0]             - ram controller events
+            //   6   qchannel_c1_fsm_hw_events[1]  - pwr cluster core0 fsm is granted c1
+&selmsk1=&selmsk1|(&selmsk<<1.)
+&selmux4=&selmux4|(&selmux<<4.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_core3_wfi            - cluster1 cpu3 is in clock gating mode
+            //   1   apss_cl0_cpu3_bringupreq      - spm-rpm handshake signal for cpu3 in cluster0
+            //   2   clus0_spm_sleep_state         - cluster0 spm sleep status
+            //   3   qchannel_fsm_hw_event[34]     - perf cluster core0 qactive
+            //   4   core_hang_counter_sts[4]      - core hang counter status
+            //   5   pwr_rc_hwevent[1]             - ram controller events
+            //   6   qchannel_c1_fsm_hw_events[2]  - pwr cluster core0  qactive
+&selmsk1=&selmsk1|(&selmsk<<2.)
+&selmux4=&selmux4|(&selmux<<8.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_core3_power_collapse - cluster1 cpu3 is in power collapse mode
+            //   1   apss_cl1_cpu0_bringupreq      - spm-rpm handshake signal for cpu0 in cluster1
+            //   2   clus0_saw_wakeup              - cluster0 saw wakeup
+            //   3   qchannel_fsm_hw_event[35]     - perf cluster core0 qaccept
+            //   4   core_hang_counter_sts[5]      - core hang counter status
+            //   5   pwr_rc_hwevent[2]             - ram controller events
+            //   6   qchannel_c1_fsm_hw_events[3]  - pwr cluster core0  qaccept
+&selmsk1=&selmsk1|(&selmsk<<3.)
+&selmux4=&selmux4|(&selmux<<12.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_l2_on                - cluster1 l2 is active
+            //   1   apss_cl1_cpu1_bringupreq      - spm-rpm handshake signal for cpu1 in cluster1
+            //   2   clus1_wait_req                - cluster1 system wait request
+            //   3   qchannel_fsm_hw_event[36]     - perf cluster core0  qdeny
+            //   4   core_hang_counter_sts[6]      - core hang counter status
+            //   5   pwr_rc_hwevent[3]             - ram controller events
+            //   6   qchannel_c1_fsm_hw_events[4]  - pwr cluster core0 qdeny
+&selmsk1=&selmsk1|(&selmsk<<4.)
+&selmux4=&selmux4|(&selmux<<16.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_l2_idle              - cluster1 l2 is in clock gating mode
+            //   1   apss_cl1_cpu2_bringupreq      - spm-rpm handshake signal for cpu2 in cluster1
+            //   2   clus1_wait_ack                - cluster1 system wait ack
+            //   3   qchannel_fsm_hw_event[37]     - perf cluster core0  qreq
+            //   4   core_hang_counter_sts[7]      - core hang counter status
+            //   5   pwr_rc_hwevent[4]             - ram controller events
+            //   6   qchannel_c1_fsm_hw_events[5]  - pwr cluster core0  qreq
+&selmsk1=&selmsk1|(&selmsk<<5.)
+&selmux4=&selmux4|(&selmux<<20.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_l2_dormant           - cluster1 l2 is in dormant mode i.e. l2cc is power collapsed and l2 rams
+            //   1   apss_cl1_cpu3_bringupreq      - spm-rpm handshake signal for cpu3 in cluster1
+            //   2   clus1_spm_sleep_state         - cluster1 spm sleep status
+            //   3   qchannel_fsm_hw_event[38]     - reserved
+            //   4   apss_bite                     - apss wdog timer bite
+            //   5   pwr_rc_hwevent[5]             - ram controller events
+            //   6   qchannel_c1_fsm_hw_events[6]  - reserved
+&selmsk1=&selmsk1|(&selmsk<<6.)
+&selmux4=&selmux4|(&selmux<<24.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_l2_gdhs              - cluster1 l2cc is power collapsed
+            //   1   apss_cl0_cpu0_shutdownreq     - spm-rpm handshake signal for cpu0 in cluster0
+            //   2   clus1_saw_wakeup              - cluster1 saw wakeup
+            //   3   qchannel_fsm_hw_event[39]     - reserved
+            //   4   apss_bark                     - apss wdog timer bark
+            //   5   pwr_rc_hwevent[6]             - ram controller events
+            //   6   qchannel_c1_fsm_hw_events[7]  - reserved
+&selmsk1=&selmsk1|(&selmsk<<7.)
+&selmux4=&selmux4|(&selmux<<28.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_l2_off               - cluster1 l2 is power collapsed (both l2cc and l2 rams are powered off)
+            //   1   apss_cl0_cpu1_shutdownreq     - spm-rpm handshake signal for cpu1 in cluster0
+            //   2   cci_wait_req                  - cci system wait request
+            //   3   qchannel_fsm_hw_event[40]     - perf cluster core1 fsm current mode in c1
+            //   4   a53_irq_hwevent               - muxed output of ppis of all the cores and lower spis. muxed with the 8 b
+            //   5   pwr_rc_hwevent[7]             - ram controller events
+            //   6   qchannel_c1_fsm_hw_events[8]  - pwr cluster core1  fsm current mode in c1
+&selmsk1=&selmsk1|(&selmsk<<8.)
+&selmux5=&selmux5|(&selmux<<0.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_l2_retention         - cluster1 l2 is in dynamic retention mode i.e. l2cc is clock gated and l2
+            //   1   apss_cl0_cpu2_shutdownreq     - spm-rpm handshake signal for cpu2 in cluster0
+            //   2   cci_wait_ack                  - cci system wait ack
+            //   3   qchannel_fsm_hw_event[41]     - perf cluster core1 fsm is granted c1
+            //   4   warmrstreq_cl0[0]             - cluster0 core0 warm reset request
+            //   5   perf_rc_hwevent[0]            - ram controller events
+            //   6   qchannel_c1_fsm_hw_events[9]  - pwr cluster core1 fsm is granted c1
+&selmsk1=&selmsk1|(&selmsk<<9.)
+&selmux5=&selmux5|(&selmux<<4.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_l2_bringupreq        - spm-rpm handshake signal
+            //   1   apss_cl0_cpu3_shutdownreq     - spm-rpm handshake signal for cpu3 in cluster0
+            //   2   cci_spm_sleep_state           - cci spm sleep status
+            //   3   qchannel_fsm_hw_event[42]     - perf cluster core1  qactive
+            //   4   warmrstreq_cl0[1]             - cluster 0 core1 warm reset request
+            //   5   perf_rc_hwevent[1]            - ram controller events
+            //   6   qchannel_c1_fsm_hw_events[10] - pwr cluster core1  qactive
+&selmsk1=&selmsk1|(&selmsk<<10.)
+&selmux5=&selmux5|(&selmux<<8.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_l2_bringupack        - spm-rpm handshake signal
+            //   1   apss_cl1_cpu0_shutdownreq     - spm-rpm handshake signal for cpu0 in cluster1
+            //   2   cci_saw_wakeup                - cci saw wakeup
+            //   3   qchannel_fsm_hw_event[43]     - perf cluster core1  qaccept
+            //   4   warmrstreq_cl0[2]             - cluster0 core2 warm reset request
+            //   5   perf_rc_hwevent[2]            - ram controller events
+            //   6   qchannel_c1_fsm_hw_events[11] - pwr cluster core1  qaccept
+&selmsk1=&selmsk1|(&selmsk<<11.)
+&selmux5=&selmux5|(&selmux<<12.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_l2_shutdownreq       - spm-rpm handshake signal
+            //   1   apss_cl1_cpu1_shutdownreq     - spm-rpm handshake signal for cpu1 in cluster1
+            //   2   core4_mem_core_on             - core4 memory array powered
+            //   3   qchannel_fsm_hw_event[44]     - perf cluster core1  qdeny
+            //   4   warmrstreq_cl0[3]             - cluster0 core3 warm reset request
+            //   5   perf_rc_hwevent[3]            - ram controller events
+            //   6   qchannel_c1_fsm_hw_events[12] - pwr cluster core1  qdeny
+&selmsk1=&selmsk1|(&selmsk<<12.)
+&selmux5=&selmux5|(&selmux<<16.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_l2_shutdownack       - spm-rpm handshake signal
+            //   1   apss_cl1_cpu2_shutdownreq     - spm-rpm handshake signal for cpu2 in cluster1
+            //   2   core4_mem_core_off            - core4 memory array not powered
+            //   3   qchannel_fsm_hw_event[45]     - perf cluster core1 qreq
+            //   4   warmrstreq_cl1[0]             - cluster1 core0 warm reset request
+            //   5   perf_rc_hwevent[4]            - ram controller events
+            //   6   qchannel_c1_fsm_hw_events[13] - pwr cluster core1 qreq
+&selmsk1=&selmsk1|(&selmsk<<13.)
+&selmux5=&selmux5|(&selmux<<20.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_l2_slp_ret           - l2ram sleep with retention (l2 dormant mode)
+            //   1   apss_cl1_cpu3_shutdownreq     - spm-rpm handshake signal for cpu3 in cluster1
+            //   2   core4_mem_periph_on           - core4 memory periphery powered
+            //   3   qchannel_fsm_hw_event[46]     - reserved
+            //   4   warmrstreq_cl1[1]             - cluster1 core1 warm reset request
+            //   5   perf_rc_hwevent[5]            - ram controller events
+            //   6   qchannel_c1_fsm_hw_events[14] - reserved
+&selmsk1=&selmsk1|(&selmsk<<14.)
+&selmux5=&selmux5|(&selmux<<24.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   apss_cl1_l2_slp_nret          - l2ram sleep without retention (l2 off mode)
+            //   1   apss_cl0_cpux_bringupack      - spm-rpm bringup handshake signal for cluster0
+            //   2   core4_mem_periph_off          - core4 memory periphery not powered
+            //   3   qchannel_fsm_hw_event[47]     - reserved
+            //   4   warmrstreq_cl1[2]             - cluster1 core2 warm reset request
+            //   5   perf_rc_hwevent[6]            - ram controller events
+            //   6   qchannel_c1_fsm_hw_events[15] - reserved
+&selmsk1=&selmsk1|(&selmsk<<15.)
+&selmux5=&selmux5|(&selmux<<28.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   cci_on                        - cci is active
+            //   1   apss_cl0_cpux_shutdownack     - spm-rpm shutdown handshake signal for cluster0
+            //   2   core5_mem_core_on             - core5 memory array powered
+            //   3   qchannel_fsm_hw_event[48]     - perf cluster core2 fsm current mode in c1
+            //   4   warmrstreq_cl1[3]             - cluster1 core3 warm reset request
+            //   5   perf_rc_hwevent[7]            - ram controller events
+            //   6   qchannel_c1_fsm_hw_events[16] - pwr cluster core2 fsm current mode in c1
+&selmsk1=&selmsk1|(&selmsk<<16.)
+&selmux6=&selmux6|(&selmux<<0.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   cci_idle                      - cci is clock gated
+            //   1   apss_cl1_cpux_bringupack      - spm-rpm bringup handshake signal for cluster1
+            //   2   core5_mem_core_off            - core5 memory array not powered
+            //   3   qchannel_fsm_hw_event[49]     - perf cluster core2 fsm is granted c1
+            //   4   apss_apc0_vs_alarm_max        - apc0 voltage sensor alarm max
+            //   5   evntbus[104]                  - directory event
+            //   6   qchannel_c1_fsm_hw_events[17] - pwr cluster core2 fsm is granted c1
+&selmsk1=&selmsk1|(&selmsk<<17.)
+&selmux6=&selmux6|(&selmux<<4.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   cci off                       - cci is power collapsed
+            //   1   apss_cl1_cpux_shutdownack     - spm-rpm shutdown handshake signal for cluster1
+            //   2   core5_mem_periph_on           - core5 memory periphery powered
+            //   3   qchannel_fsm_hw_event[50]     - perf cluster core2 qactive
+            //   4   apss_apc1_vs_alarm_max        - apc1 voltage sensor alarm max
+            //   5   evntbus[105]                  - directory event
+            //   6   qchannel_c1_fsm_hw_events[18] - pwr cluster core2 qactive
+&selmsk1=&selmsk1|(&selmsk<<18.)
+&selmux6=&selmux6|(&selmux<<8.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   all_cpus_cl0_on               - all cpu's in cluster 0 is active
+            //   1   cpuspm_mux_sel[0]             - select used to demux bringupack
+            //   2   core5_mem_periph_off          - core5 memory periphery not powered
+            //   3   qchannel_fsm_hw_event[51]     - perf cluster core2 qaccept
+            //   4   lmh interrupt                 - interrupt from lmh block
+            //   5   evntbus[106]                  - directory event
+            //   6   qchannel_c1_fsm_hw_events[19] - pwr cluster core2 qaccept
+&selmsk1=&selmsk1|(&selmsk<<19.)
+&selmux6=&selmux6|(&selmux<<12.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   all_cpus_cl0_idle             - all cpu's in cluster 0 is clock gated
+            //   1   cpuspm_mux_sel[1]             - select used to demux bringupack
+            //   2   core6_mem_core_on             - core6 memory array powered
+            //   3   qchannel_fsm_hw_event[52]     - perf cluster core2 qdeny
+            //   4   nevntcntoverflow              - overflow flags for the pmu clock and counters
+            //   5   evntbus[107]                  - directory event
+            //   6   qchannel_c1_fsm_hw_events[20] - pwr cluster core2 qdeny
+&selmsk1=&selmsk1|(&selmsk<<20.)
+&selmux6=&selmux6|(&selmux<<16.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   all_cpus_cl0_off              - all cpu's in cluster 0 is power collapsed
+            //   1   cpuspm_mux_sel[2]             - select used to demux shutdownack
+            //   2   core6_mem_core_off            - core6 memory array not powered
+            //   3   qchannel_fsm_hw_event[53]     - perf cluster core2 qreq
+            //   4   nerrorirq                     - indicates that an error response decerr or slverr
+            //   5   evntbus[108]                  - directory event
+            //   6   qchannel_c1_fsm_hw_events[21] - pwr cluster core2 qreq
+&selmsk1=&selmsk1|(&selmsk<<21.)
+&selmux6=&selmux6|(&selmux<<20.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   all_cpus_cl1_on               - all cpu's in cluster 1 is active
+            //   1   cpuspm_mux_sel[3]             - select used to demux shutdownack
+            //   2   core6_mem_periph_on           - core6 memory periphery powered
+            //   3   qchannel_fsm_hw_event[54]     - reserved
+            //   4   gladiator_hang_sts[0]         - gladiator hang status for ace channels
+            //   5   snoop_target0_idlereq         - used to control snoop channel enable and disable
+            //   6   qchannel_c1_fsm_hw_events[22] - reserved
+&selmsk1=&selmsk1|(&selmsk<<22.)
+&selmux6=&selmux6|(&selmux<<24.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   all_cpus_cl1_idle             - all cpu's in cluster 1 is clock gated
+            //   1   reserved                      - reserved
+            //   2   core6_mem_periph_off          - core6 memory periphery not powered
+            //   3   qchannel_fsm_hw_event[55]     - reserved
+            //   4   gladiator_hang_sts[1]         - reserved
+            //   5   snoop_target0_idleack         - used to control snoop channel enable and disable
+            //   6   qchannel_c1_fsm_hw_events[23] - reserved
+&selmsk1=&selmsk1|(&selmsk<<23.)
+&selmux6=&selmux6|(&selmux<<28.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   all_cpus_cl1_off              - all cpu's in cluster 1 is power collapsed
+            //   1   reserved                      - reserved
+            //   2   core7_mem_core_on             - core7 memory array powered
+            //   3   qchannel_fsm_hw_event[56]     - perf cluster core3  fsm current mode in c1
+            //   4   gladiator_hang_sts[2]         - gladiator hang status for i/o channel
+            //   5   snoop_target1_idlereq         - used to control snoop channel enable and disable
+            //   6   qchannel_c1_fsm_hw_events[24] - pwr cluster core3 fsm current mode in c1
+&selmsk1=&selmsk1|(&selmsk<<24.)
+&selmux7=&selmux7|(&selmux<<0.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   reserved                      - reserved
+            //   1   reserved                      - reserved
+            //   2   core7_mem_core_off            - core7 memory array not powered
+            //   3   qchannel_fsm_hw_event[57]     - perf cluster core3 fsm is granted c1
+            //   4   gladiator_hang_sts[3]         - gladiator hang status for m1 channel
+            //   5   snoop_target1_idleack         - used to control snoop channel enable and disable
+            //   6   qchannel_c1_fsm_hw_events[25] - pwr cluster core3 fsm is granted c1
+&selmsk1=&selmsk1|(&selmsk<<25.)
+&selmux7=&selmux7|(&selmux<<4.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   reserved                      - reserved
+            //   1   reserved                      - reserved
+            //   2   core7_mem_periph_on           - core7 memory periphery powered
+            //   3   qchannel_fsm_hw_event[58]     - perf cluster core3 qactive
+            //   4   gladiator_hang_sts[4]         - gladiator hang status for m2 channel
+            //   5   reserved                      - reserved
+            //   6   qchannel_c1_fsm_hw_events[26] - pwr cluster core3 qactive
+&selmsk1=&selmsk1|(&selmsk<<26.)
+&selmux7=&selmux7|(&selmux<<8.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   reserved                      - reserved
+            //   1   reserved                      - reserved
+            //   2   core7_mem_periph_off          - core7 memory periphery not powered
+            //   3   qchannel_fsm_hw_event[59]     - perf cluster core3 qaccept
+            //   4   gladiator_hang_sts[5]         - gladiator hang status for pcio channel
+            //   5   reserved                      - reserved
+            //   6   qchannel_c1_fsm_hw_events[27] - pwr cluster core3 qaccept
+&selmsk1=&selmsk1|(&selmsk<<27.)
+&selmux7=&selmux7|(&selmux<<12.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   reserved                      - reserved
+            //   1   reserved                      - reserved
+            //   2   reserved                      - reserved
+            //   3   qchannel_fsm_hw_event[60]     - perf cluster core3 qdeny
+            //   4   droop_det                     - droop detect
+            //   5   reserved                      - reserved
+            //   6   qchannel_c1_fsm_hw_events[28] - pwr cluster core3 qdeny
+&selmsk1=&selmsk1|(&selmsk<<28.)
+&selmux7=&selmux7|(&selmux<<16.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   reserved                      - reserved
+            //   1   reserved                      - reserved
+            //   2   reserved                      - reserved
+            //   3   qchannel_fsm_hw_event[61]     - perf cluster core3 qreq
+            //   4   reserved                      - reserved
+            //   5   reserved                      - reserved
+            //   6   qchannel_c1_fsm_hw_events[29] - pwr cluster core3 qreq
+&selmsk1=&selmsk1|(&selmsk<<29.)
+&selmux7=&selmux7|(&selmux<<20.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   reserved                      - reserved
+            //   1   reserved                      - reserved
+            //   2   reserved                      - reserved
+            //   3   qchannel_fsm_hw_event[62]     - reserved
+            //   4   reserved                      - reserved
+            //   5   reserved                      - reserved
+            //   6   qchannel_c1_fsm_hw_events[30] - reserved
+&selmsk1=&selmsk1|(&selmsk<<30.)
+&selmux7=&selmux7|(&selmux<<24.)
+
+&selmsk=0x0 //   change to 0x1, then pick your event below:
+&selmux=0x0 //   0   reserved                      - reserved
+            //   1   reserved                      - reserved
+            //   2   reserved                      - reserved
+            //   3   qchannel_fsm_hw_event[63]     - reserved
+            //   4   reserved                      - reserved
+            //   5   reserved                      - reserved
+            //   6   qchannel_c1_fsm_hw_events[31] - reserved
+&selmsk1=&selmsk1|(&selmsk<<31.)
+&selmux7=&selmux7|(&selmux<<28.)
+
+/////////////////////
+// print some info //
+/////////////////////
+
+area.create cpuss_dragonlink 25 40
+area.select cpuss_dragonlink
+area.view   cpuss_dragonlink
+area.clear  cpuss_dragonlink
+
+print "Configuring CPUSS DragonLink"
+print "----------------------------"
+
+////////
+// TS //
+////////
+
+print "Enabling TS"
+
+d.s ezaxi:QDSSCSR_LOCKACCESS    %le %long 0xC5ACCE55
+d.s ezaxi:QDSSCSR_TIMESTAMPCTRL %le %long 0x2
+
+/////////
+// ETB //
+/////////
+
+print "Configuring QDSS ETB"
+
+d.s ezaxi:ETFETB_BASE+ETFETB_LAR  %le %long 0xC5ACCE55 // unlock
+d.s ezaxi:ETFETB_BASE+ETFETB_FFCR %le %long 0x433      // ffcr default settings with formatter on
+d.s ezaxi:ETFETB_BASE+ETFETB_MODE %le %long 0x0        // set mode to circular buffer
+d.s ezaxi:ETFETB_BASE+ETFETB_RWP  %le %long 0x0        // set write pointer to 0x0
+d.s ezaxi:ETFETB_BASE+ETFETB_CTL  %le %long 0x1        // enable trace caprure
+
+//////////////////
+// QDSS Funnels //
+//////////////////
+
+print "Configuring QDSS Funnels"
+
+d.s ezaxi:QDSS_QDSS_MERG_FUN_LOCKACCESS %le %long 0xC5ACCE55 // wo
+d.s ezaxi:QDSS_QDSS_MERG_FUN_CTRL_REG   %le %long 0x02       // rw - enable port 1
+d.s ezaxi:QDSS_QDSS_IN_FUN1_LOCKACCESS  %le %long 0xC5ACCE55 // wo
+d.s ezaxi:QDSS_QDSS_IN_FUN1_CTRL_REG    %le %long 0x40       // rw - enable port 6
+
+///////////////////
+// CPUSS Funnels //
+///////////////////
+
+print "Configuring CPUSS Funnels"
+
+d.s ezaxi:QDSS_APSS_FUN_ATB_LOCKACCESS %le %long 0xC5ACCE55 // wo
+d.s ezaxi:QDSS_APSS_FUN_ATB_CTRL_REG   %le %long 0xFF       // rw - enable port ?
+d.s ezaxi:QDSS_APSS_FUN_LOCKACCESS     %le %long 0xC5ACCE55 // wo
+d.s ezaxi:QDSS_APSS_FUN_CTRL_REG       %le %long 0xFF       // rw - enable port ?
+
+////////////////
+// CPUSS TPDA //
+////////////////
+
+print "Configuring CPUSS TPDA"
+
+d.s ezaxi:TPDA_BASE+TPDA_LOCKACCESS %le %long 0xC5ACCE55 // unlock
+d.s ezaxi:TPDA_BASE+TPDA_FPID_CR    %le %long 0x0        // channel and master id - flag packets
+d.s ezaxi:TPDA_BASE+TPDA_SYNCR      %le %long 0xFFF      // synchronization control register
+d.s ezaxi:TPDA_BASE+TPDA_P0_CR      %le %long 0x1        // port control register
+d.s ezaxi:TPDA_BASE+TPDA_CR         %le %long 0x1046     // control register
+
+////////////////
+// CPUSS TPDM //
+////////////////
+
+print "Configuring CPUSS TPDM"
+print "   selmsk0: 0x" format.hex(8.,&selmsk0)
+print "   selmsk1: 0x" format.hex(8.,&selmsk1)
+print "   selmux0: 0x" format.hex(8.,&selmux0)
+print "   selmux1: 0x" format.hex(8.,&selmux1)
+print "   selmux2: 0x" format.hex(8.,&selmux2)
+print "   selmux3: 0x" format.hex(8.,&selmux3)
+print "   selmux4: 0x" format.hex(8.,&selmux4)
+print "   selmux5: 0x" format.hex(8.,&selmux5)
+print "   selmux6: 0x" format.hex(8.,&selmux6)
+print "   selmux7: 0x" format.hex(8.,&selmux7)
+
+d.s ezaxi:TPDM_BASE+TPDM_LAR        %le %long 0xC5ACCE55 // unlock
+d.s ezaxi:TPDM_BASE+TPDM_DSB_MSR0   %le %long &selmux0   // rw - subunit mux select registers
+d.s ezaxi:TPDM_BASE+TPDM_DSB_MSR1   %le %long &selmux1   // rw -        |
+d.s ezaxi:TPDM_BASE+TPDM_DSB_MSR2   %le %long &selmux2   // rw -        |
+d.s ezaxi:TPDM_BASE+TPDM_DSB_MSR3   %le %long &selmux3   // rw -        |
+d.s ezaxi:TPDM_BASE+TPDM_DSB_MSR4   %le %long &selmux4   // rw -        |
+d.s ezaxi:TPDM_BASE+TPDM_DSB_MSR5   %le %long &selmux5   // rw -        |
+d.s ezaxi:TPDM_BASE+TPDM_DSB_MSR6   %le %long &selmux6   // rw -        |
+d.s ezaxi:TPDM_BASE+TPDM_DSB_MSR7   %le %long &selmux7   // rw -       ---
+d.s ezaxi:TPDM_BASE+TPDM_DSB_EDCMR0 %le %long &selmsk0   // rw - subunit edge detection mask registers
+d.s ezaxi:TPDM_BASE+TPDM_DSB_EDCMR1 %le %long &selmsk1   // rw -       ---
+d.s ezaxi:TPDM_BASE+TPDM_DSB_TIER   %le %long 0x5        // rw - timestamp insertion enable register
+d.s ezaxi:TPDM_BASE+TPDM_DSB_TPMR0  %le %long 0xFFFFFFFF // rw - subunit timestamp pattern mask registers
+d.s ezaxi:TPDM_BASE+TPDM_DSB_TPMR1  %le %long 0xFFFFFFFF // rw -       ---
+d.s ezaxi:TPDM_BASE+TPDM_DSB_CR     %le %long 0x1        // rw - global control reg
+
+/////////
+// End //
+/////////
+
+print "----------------------------"
+print "Configuration Complete"
+print " "
+
+enddo

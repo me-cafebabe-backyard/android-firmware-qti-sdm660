@@ -1,0 +1,70 @@
+#===============================================================================
+#
+# CBSP Build system
+#
+# GENERAL DESCRIPTION
+#    Calls the actual Image scripts
+#
+# Copyright 2009, 2011, 2016 by QUALCOMM, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //source/qcom/qct/core/pkg/bootloaders/rel/1.0/boot_images/core/bsp/bootloaders/build/SConscript#12 $
+#  $DateTime: 2011/08/15 17:32:19 $
+#  $Author: coresvc $
+#  $Change: 1883679 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 03/22/11   aus     Branched to shared folder
+#===============================================================================
+import os
+from apps_config import app_params_dict, callInit
+from SCons.Script import BUILD_TARGETS
+Import('env')
+
+env_parent = env.Clone()
+if env.has_key('PRINT_BUILD_BANNER'):
+   print "\n"
+   print "------------------------------------------------------------------------------"
+   print "   Loading APPS build system"
+   print "------------------------------------------------------------------------------"
+
+print '!#!# Command line targets = %s' % (COMMAND_LINE_TARGETS)
+
+def invokeSCons(alias, target):
+  env = env_parent.Clone()
+  callInit(env, app_params_dict[alias])
+  env.Replace(OUT_DIR = '${BUILD_ROOT}/apps/bsp/trustzone/qsapps/' + alias  + '/build')
+  env.Replace(LIB_OUT_DIR = '${BUILD_ROOT}/apps/bsp/trustzone/qsapps/${LIBNAME}/' + alias + '/build/'+ app_params_dict[alias]['arch'] + '/${SHORT_BUILDPATH}')
+  sconspath = env.subst(app_params_dict[alias]['sconspath'])
+  env.Replace(ARM_OPT_STACK_GUARD = " -fstack-protector-strong")
+  d = SConscript( sconspath,
+                  exports='env',
+                )
+  env.Alias(target,d)
+
+supported_targets = app_params_dict.keys()
+
+for target in COMMAND_LINE_TARGETS:
+  if target in supported_targets:
+    for alias in app_params_dict[target]['aliases']:
+      if alias not in BUILD_TARGETS:
+        BUILD_TARGETS.append(alias)
+      invokeSCons(alias, target)
+  elif target == 'allapps':
+    for i in supported_targets:
+      if not i == 'hdcpsrm': #this app has compilation errors!
+        invokeSCons(i, target)
+  elif target == 'deploy':
+    apps_to_deploy = ['playready', 'pr_3_0', 'hdcp2p2', 'apttestapp', 'aptcryptotestapp', 'macchiato_sample', 'gpqese']
+    if env['CHIPSET'] in ['msm8996', 'msm8998']:
+      apps_to_deploy.append('hdcp1')
+    for i in apps_to_deploy:
+      invokeSCons(i, target)

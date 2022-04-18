@@ -1,0 +1,318 @@
+//===========================================================================
+//
+// FILE:         spi_props_tz_660.xml
+//
+// DESCRIPTION:  This file contains the DAL XML properties for SPI
+<!--
+//1.if we want to use the multi CS feature we need to enable the mulilti_cs
+//flag like below
+// <props name="is_multi_cs" type=DALPROP_ATTR_TYPE_UINT32> 1   </props>
+//If we want do not want to use any of the CS line you can comment them 
+//even though you are using the multi_cs.
+// //<props name="gpio_spi_cs_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi6_cs_str</props>
+
+//2. If the slave have a requirement to have a delay between the CS assertion
+//and clock generation for each transfer we can define the below parameter
+//to achieve the same.
+// <props name="CS_Pre_CLK_Delay_us" type=DALPROP_ATTR_TYPE_UINT32> <delay> </props>
+===================================================================================== -->
+//===========================================================================
+//
+//                             Edit History
+//
+// $Header:  $
+//
+// when       who     what, where, why
+// 10/21/16   dpk     Created for SDM660
+//
+//===========================================================================
+//             Copyright (c) 2016 QUALCOMM Technologies, Incorporated.
+//                           All Rights Reserved.
+//            Qualcomm Technologies, Confidential and Proprietary
+//===========================================================================
+#include "DALStdDef.h"
+#include "Tlmm.h"
+
+
+<driver name="NULL">
+   <global_def>
+     <string name="gpio_spi1_clk_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_clk[1]</string>
+	 <string name="gpio_spi1_cs_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_cs_n[1]</string>
+	 <string name="gpio_spi1_cs1_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_cs1_n[1]</string>
+	 <string name="gpio_spi1_mosi_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_mosi[1]</string>
+	 <string name="gpio_spi1_miso_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_miso[1]</string>
+
+	 <string name="gpio_spi2_clk_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_clk[2]</string>
+	 <string name="gpio_spi2_cs_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_cs_n[2]</string>
+ 	 <string name="gpio_spi2_mosi_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_mosi[2]</string>
+	 <string name="gpio_spi2_miso_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_miso[2]</string>
+
+	 <string name="gpio_spi3_clk_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_clk[3]</string>
+	 <string name="gpio_spi3_cs_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_cs_n[3]</string>
+	 <string name="gpio_spi3_cs1_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_cs1_n[3]</string>
+	 <string name="gpio_spi3_cs2_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_cs2_n[3]</string>
+	 <string name="gpio_spi3_mosi_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_mosi[3]</string>
+	 <string name="gpio_spi3_miso_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_miso[3]</string>
+
+	 <string name="gpio_spi4_clk_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_clk[4]</string>
+	 <string name="gpio_spi4_cs_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_cs_n[4]</string>
+	 <string name="gpio_spi4_mosi_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_mosi[4]</string>
+	 <string name="gpio_spi4_miso_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_miso[4]</string>
+
+	 <string name="gpio_spi5_clk_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_clk[5]</string>
+	 <string name="gpio_spi5_cs_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_cs_n[5]</string>
+	 <string name="gpio_spi5_mosi_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_mosi[5]</string>
+	 <string name="gpio_spi5_miso_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_miso[5]</string>
+
+	 <string name="gpio_spi6_clk_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_clk[6]</string>
+	 <string name="gpio_spi6_cs_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_cs_n[6]</string>
+	 <string name="gpio_spi6_mosi_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_mosi[6]</string>
+	 <string name="gpio_spi6_miso_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_miso[6]</string>
+
+	 <string name="gpio_spi7_clk_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_clk[7]</string>
+	 <string name="gpio_spi7_cs_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_cs_n[7]</string>
+	 <string name="gpio_spi7_mosi_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_mosi[7]</string>
+	 <string name="gpio_spi7_miso_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_miso[7]</string>
+
+	 <string name="gpio_spi8_clk_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_clk8_mira</string>
+	 //<string name="gpio_spi8_clk_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_clk8_mirb</string>
+	 <string name="gpio_spi8_cs_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_cs_n8_mira</string>
+	 //<string name="gpio_spi8_cs_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_cs_n8_mirb</string>
+	 <string name="gpio_spi8_cs1_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_cs1_n[8]</string>
+	 <string name="gpio_spi8_cs2_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_cs2_n[8]</string>	 
+	 <string name="gpio_spi8_mosi_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_mosi8_mira</string>
+	 //<string name="gpio_spi8_mosi_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_mosi8_mirb</string>
+	 <string name="gpio_spi8_miso_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_miso8_mira</string>
+	 //<string name="gpio_spi8_miso_str" type=DALPROP_DATA_TYPE_STRING>blsp_spi_miso8_mirb</string>
+
+
+     <var_seq name="spiqup1_appclk_name"   type=DALPROP_DATA_TYPE_STRING>   gcc_blsp1_qup1_spi_apps_clk   </var_seq>
+	 <var_seq name="spiqup2_appclk_name"   type=DALPROP_DATA_TYPE_STRING>   gcc_blsp1_qup2_spi_apps_clk   </var_seq>
+	 <var_seq name="spiqup3_appclk_name"   type=DALPROP_DATA_TYPE_STRING>   gcc_blsp1_qup3_spi_apps_clk   </var_seq>
+	 <var_seq name="spiqup4_appclk_name"   type=DALPROP_DATA_TYPE_STRING>   gcc_blsp1_qup4_spi_apps_clk   </var_seq>
+
+	 <var_seq name="spiqup5_appclk_name"   type=DALPROP_DATA_TYPE_STRING>   gcc_blsp2_qup1_spi_apps_clk   </var_seq>
+	 <var_seq name="spiqup6_appclk_name"   type=DALPROP_DATA_TYPE_STRING>   gcc_blsp2_qup2_spi_apps_clk   </var_seq>
+     <var_seq name="spiqup7_appclk_name"   type=DALPROP_DATA_TYPE_STRING>   gcc_blsp2_qup3_spi_apps_clk   </var_seq>
+	 <var_seq name="spiqup8_appclk_name"   type=DALPROP_DATA_TYPE_STRING>   gcc_blsp2_qup4_spi_apps_clk   </var_seq>
+
+	 <var_seq name="spi_blsp1_hclk_name"   type=DALPROP_DATA_TYPE_STRING>   gcc_blsp1_ahb_clk             </var_seq>
+     <var_seq name="spi_blsp2_hclk_name"   type=DALPROP_DATA_TYPE_STRING>   gcc_blsp2_ahb_clk            </var_seq>
+
+    </global_def>
+
+    <device id="/dev/buses/spi_1">
+        <props name="QUP_CORE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 1 </props>
+        <props name="QUP_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0xC175000 </props>
+        <props name="SW_ENABLE_BAM" type=DALPROP_ATTR_TYPE_UINT32> 1 </props>
+        <props name="BAM_BLSP_ID" type=DALPROP_ATTR_TYPE_UINT32>   1 </props>
+        <props name="BAM_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0xC144000 </props>
+        <props name="BAM_INTERRUPT_ID" type=DALPROP_ATTR_TYPE_UINT32> 270 </props>    
+        <props name="BAM_TX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 4 </props>
+        <props name="BAM_RX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 5 </props>
+        <props name="is_multi_cs"         type=DALPROP_ATTR_TYPE_UINT32>       0          </props>
+        <props name="gpio_spi_clk_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi1_clk_str</props>
+        <props name="gpio_spi_cs_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi1_cs_str</props>
+        <props name="gpio_spi_cs1_str"    type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi1_cs1_str</props>
+        <props name="gpio_spi_mosi_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi1_mosi_str</props>
+        <props name="gpio_spi_miso_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi1_miso_str</props>
+        <props name="GpioClkConfig"  type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioCsConfig"   type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioCs1Config"  type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioMosiConfig" type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioMisoConfig" type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="CHIP_APP_CLK_NAME"   type=DALPROP_ATTR_TYPE_STRING_PTR>   spiqup1_appclk_name   </props>
+        <props name="CHIP_HCLK_NAME"      type=DALPROP_ATTR_TYPE_STRING_PTR>   spi_blsp1_hclk_name   </props>
+    </device>
+
+    <device id="/dev/buses/spi_2">
+        <props name="QUP_CORE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 2 </props>
+        <props name="QUP_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0xC176000 </props>
+        <props name="SW_ENABLE_BAM" type=DALPROP_ATTR_TYPE_UINT32> 1 </props>
+        <props name="BAM_BLSP_ID" type=DALPROP_ATTR_TYPE_UINT32>   1 </props>
+        <props name="BAM_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0xC144000 </props>
+        <props name="BAM_INTERRUPT_ID" type=DALPROP_ATTR_TYPE_UINT32> 270 </props> 
+        <props name="BAM_TX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 6 </props>
+        <props name="BAM_RX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 7 </props>
+        <props name="gpio_spi_clk_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi2_clk_str</props>
+        <props name="gpio_spi_cs_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi2_cs_str</props>
+        <props name="gpio_spi_mosi_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi2_mosi_str</props>
+        <props name="gpio_spi_miso_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi2_miso_str</props>
+        <props name="GpioClkConfig"  type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioCsConfig"   type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioMosiConfig" type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioMisoConfig" type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="CHIP_APP_CLK_NAME"   type=DALPROP_ATTR_TYPE_STRING_PTR>   spiqup2_appclk_name   </props>
+        <props name="CHIP_HCLK_NAME"      type=DALPROP_ATTR_TYPE_STRING_PTR>   spi_blsp1_hclk_name   </props>
+    </device>
+
+    <device id="/dev/buses/spi_3">
+        <props name="QUP_CORE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 3 </props>
+        <props name="QUP_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0xC177000 </props>
+        <props name="SW_ENABLE_BAM" type=DALPROP_ATTR_TYPE_UINT32> 1 </props>
+        <props name="BAM_BLSP_ID" type=DALPROP_ATTR_TYPE_UINT32>   1 </props>
+        <props name="BAM_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0xC144000 </props>
+        <props name="BAM_INTERRUPT_ID" type=DALPROP_ATTR_TYPE_UINT32> 270 </props>
+        <props name="BAM_TX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 8 </props>
+        <props name="BAM_RX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 9 </props>
+        <props name="is_multi_cs"         type=DALPROP_ATTR_TYPE_UINT32>       0          </props>
+        <props name="gpio_spi_clk_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi3_clk_str</props>
+        <props name="gpio_spi_cs_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi3_cs_str</props>
+        <props name="gpio_spi_cs1_str"    type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi3_cs1_str</props>
+        <props name="gpio_spi_cs2_str"    type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi3_cs2_str</props>
+        <props name="gpio_spi_mosi_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi3_mosi_str</props>
+        <props name="gpio_spi_miso_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi3_miso_str</props>
+        <props name="GpioClkConfig"  type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioCsConfig"   type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioCs1Config"  type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioCs2Config"  type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioMosiConfig" type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioMisoConfig" type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="CHIP_APP_CLK_NAME"   type=DALPROP_ATTR_TYPE_STRING_PTR>   spiqup3_appclk_name   </props>
+        <props name="CHIP_HCLK_NAME"      type=DALPROP_ATTR_TYPE_STRING_PTR>   spi_blsp1_hclk_name   </props>
+    </device>
+
+    <device id="/dev/buses/spi_4">
+        <props name="QUP_CORE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 4 </props>
+        <props name="QUP_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0xC178000 </props>
+        <props name="SW_ENABLE_BAM" type=DALPROP_ATTR_TYPE_UINT32> 1 </props>
+        <props name="BAM_BLSP_ID" type=DALPROP_ATTR_TYPE_UINT32>   1 </props>
+        <props name="BAM_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0xC144000 </props>
+        <props name="BAM_INTERRUPT_ID" type=DALPROP_ATTR_TYPE_UINT32> 270 </props>
+        <props name="BAM_TX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 10 </props>
+        <props name="BAM_RX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 11 </props>
+        <props name="gpio_spi_clk_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi4_clk_str</props>
+        <props name="gpio_spi_cs_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi4_cs_str</props>
+        <props name="gpio_spi_mosi_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi4_mosi_str</props>
+        <props name="gpio_spi_miso_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi4_miso_str</props>
+        <props name="GpioClkConfig"  type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioCsConfig"   type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioMosiConfig" type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioMisoConfig" type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="CHIP_APP_CLK_NAME"   type=DALPROP_ATTR_TYPE_STRING_PTR>   spiqup4_appclk_name   </props>
+        <props name="CHIP_HCLK_NAME"      type=DALPROP_ATTR_TYPE_STRING_PTR>   spi_blsp1_hclk_name   </props>
+    </device>
+
+    <device id="/dev/buses/spi_5">
+        <props name="QUP_CORE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 5 </props>
+        <props name="QUP_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0xC1B5000 </props>
+        <props name="SW_ENABLE_BAM" type=DALPROP_ATTR_TYPE_UINT32> 1 </props>
+        <props name="BAM_BLSP_ID" type=DALPROP_ATTR_TYPE_UINT32> 2 </props>
+        <props name="BAM_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0xC184000 </props>
+        <props name="BAM_INTERRUPT_ID" type=DALPROP_ATTR_TYPE_UINT32> 271 </props>
+        <props name="BAM_TX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 4 </props>
+        <props name="BAM_RX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 5 </props>
+        <props name="gpio_spi_clk_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi5_clk_str</props>
+        <props name="gpio_spi_cs_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi5_cs_str</props>
+        <props name="gpio_spi_mosi_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi5_mosi_str</props>
+        <props name="gpio_spi_miso_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi5_miso_str</props>
+        <props name="GpioClkConfig"  type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioCsConfig"   type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioMosiConfig" type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioMisoConfig" type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="CHIP_APP_CLK_NAME"   type=DALPROP_ATTR_TYPE_STRING_PTR>   spiqup5_appclk_name   </props>
+        <props name="CHIP_HCLK_NAME"      type=DALPROP_ATTR_TYPE_STRING_PTR>   spi_blsp2_hclk_name   </props>
+    </device>
+
+    <device id="/dev/buses/spi_6">
+        <props name="QUP_CORE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 6 </props>
+        <props name="QUP_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0xC1B6000 </props>
+        <props name="SW_ENABLE_BAM" type=DALPROP_ATTR_TYPE_UINT32> 1 </props>
+        <props name="BAM_BLSP_ID" type=DALPROP_ATTR_TYPE_UINT32> 2 </props>
+        <props name="BAM_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0xC184000 </props>
+        <props name="BAM_INTERRUPT_ID" type=DALPROP_ATTR_TYPE_UINT32> 271 </props>
+        <props name="BAM_TX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 6 </props>
+        <props name="BAM_RX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 7 </props>
+        <props name="gpio_spi_clk_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi6_clk_str</props>
+        <props name="gpio_spi_cs_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi6_cs_str</props>
+        <props name="gpio_spi_mosi_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi6_mosi_str</props>
+        <props name="gpio_spi_miso_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi6_miso_str</props>
+        <props name="GpioClkConfig"  type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioCsConfig"   type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioMosiConfig" type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioMisoConfig" type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="CHIP_APP_CLK_NAME"   type=DALPROP_ATTR_TYPE_STRING_PTR>   spiqup6_appclk_name   </props>
+        <props name="CHIP_HCLK_NAME"      type=DALPROP_ATTR_TYPE_STRING_PTR>   spi_blsp2_hclk_name   </props>
+    </device>
+
+    <device id="/dev/buses/spi_7">
+        <props name="QUP_CORE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 7 </props>
+        <props name="QUP_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0xC1B7000 </props>
+        <props name="SW_ENABLE_BAM" type=DALPROP_ATTR_TYPE_UINT32> 1 </props>
+        <props name="BAM_BLSP_ID" type=DALPROP_ATTR_TYPE_UINT32> 2 </props>
+        <props name="BAM_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0xC184000 </props>
+        <props name="BAM_INTERRUPT_ID" type=DALPROP_ATTR_TYPE_UINT32> 271 </props>
+        <props name="BAM_TX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 8 </props>
+        <props name="BAM_RX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 9 </props>
+        <props name="gpio_spi_clk_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi7_clk_str</props>
+        <props name="gpio_spi_cs_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi7_cs_str</props>
+        <props name="gpio_spi_mosi_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi7_mosi_str</props>
+        <props name="gpio_spi_miso_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi7_miso_str</props>
+        <props name="GpioClkConfig"  type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioCsConfig"   type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioMosiConfig" type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioMisoConfig" type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="CHIP_APP_CLK_NAME"   type=DALPROP_ATTR_TYPE_STRING_PTR>   spiqup7_appclk_name   </props>
+        <props name="CHIP_HCLK_NAME"      type=DALPROP_ATTR_TYPE_STRING_PTR>   spi_blsp2_hclk_name   </props>
+    </device>
+
+    <device id="/dev/buses/spi_8">
+        <props name="QUP_CORE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 8 </props>
+        <props name="QUP_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0xC1B8000 </props>
+        <props name="SW_ENABLE_BAM" type=DALPROP_ATTR_TYPE_UINT32> 1 </props>
+        <props name="BAM_BLSP_ID" type=DALPROP_ATTR_TYPE_UINT32> 2 </props>
+        <props name="BAM_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0xC184000 </props>
+        <props name="BAM_INTERRUPT_ID" type=DALPROP_ATTR_TYPE_UINT32> 271 </props>
+        <props name="BAM_TX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 10 </props>
+        <props name="BAM_RX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 11 </props>
+        <props name="is_multi_cs"         type=DALPROP_ATTR_TYPE_UINT32>       0          </props>
+        <props name="gpio_spi_clk_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi8_clk_str</props>
+        <props name="gpio_spi_cs_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi8_cs_str</props>
+        <props name="gpio_spi_cs1_str"    type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi8_cs1_str</props>
+        <props name="gpio_spi_cs2_str"    type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi8_cs2_str</props>
+        <props name="gpio_spi_mosi_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi8_mosi_str</props>
+        <props name="gpio_spi_miso_str" type=DALPROP_ATTR_TYPE_STRING_PTR>gpio_spi8_miso_str</props>
+        <props name="GpioClkConfig"  type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioCsConfig"   type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioCs1Config"  type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioCs2Config"  type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioMosiConfig" type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="GpioMisoConfig" type="TLMMGpioConfigIdType">  {TLMM_GPIO_INPUT, TLMM_GPIO_PULL_DOWN, TLMM_GPIO_8MA}  </props>
+        <props name="CHIP_APP_CLK_NAME"   type=DALPROP_ATTR_TYPE_STRING_PTR>   spiqup8_appclk_name  </props>
+        <props name="CHIP_HCLK_NAME"      type=DALPROP_ATTR_TYPE_STRING_PTR>   spi_blsp2_hclk_name   </props>
+    </device>
+
+  // sensor SPI device
+    <device id="/dev/buses/spi_sensor_1">
+        <props name="QUP_CORE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 1 </props>
+        <props name="QUP_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0x15435000 </props>
+        <props name="SW_ENABLE_BAM" type=DALPROP_ATTR_TYPE_UINT32> 1 </props>
+        <props name="BAM_BLSP_ID" type=DALPROP_ATTR_TYPE_UINT32>   1 </props> //dont care
+        <props name="BAM_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0x15404000 </props>
+        <props name="BAM_INTERRUPT_ID" type=DALPROP_ATTR_TYPE_UINT32> 182 </props>    //dont care, poll for BAM interrupt
+        <props name="BAM_TX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 8 </props>
+        <props name="BAM_RX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 9 </props>
+    </device>
+    <device id="/dev/buses/spi_sensor_2">
+        <props name="QUP_CORE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 2 </props>
+        <props name="QUP_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0x15436000 </props>
+        <props name="SW_ENABLE_BAM" type=DALPROP_ATTR_TYPE_UINT32> 1 </props>
+        <props name="BAM_BLSP_ID" type=DALPROP_ATTR_TYPE_UINT32>   1 </props> //dont care
+        <props name="BAM_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0x15404000 </props>
+        <props name="BAM_INTERRUPT_ID" type=DALPROP_ATTR_TYPE_UINT32> 182 </props>    //dont care, poll for BAM interrupt
+        <props name="BAM_TX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 10 </props>
+        <props name="BAM_RX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 11 </props>
+    </device>
+    <device id="/dev/buses/spi_sensor_3">
+        <props name="QUP_CORE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 3 </props>
+        <props name="QUP_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0x15437000 </props>
+        <props name="SW_ENABLE_BAM" type=DALPROP_ATTR_TYPE_UINT32> 1 </props>
+        <props name="BAM_BLSP_ID" type=DALPROP_ATTR_TYPE_UINT32>   1 </props> //dont care
+        <props name="BAM_BASE_ADDR" type=DALPROP_ATTR_TYPE_UINT32> 0x15404000 </props>
+        <props name="BAM_INTERRUPT_ID" type=DALPROP_ATTR_TYPE_UINT32> 182 </props>    //dont care, poll for BAM interrupt
+        <props name="BAM_TX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 12 </props>
+        <props name="BAM_RX_PIPE_NUM" type=DALPROP_ATTR_TYPE_UINT32> 13 </props>
+    </device>
+
+</driver>
+ 

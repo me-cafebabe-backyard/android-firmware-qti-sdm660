@@ -1,0 +1,24 @@
+;****************************************************************************
+;** Dumps ETR contents to a binary file.
+;**         
+;** Usage: do detr [<dumpfile>] [<loglevel>]
+;**
+;**  Each invocation dumps data collected in ETR since the last dump
+;**    
+;**  Optional Arguments
+;**      
+;**    dumpfile - If not specified will dump to etr_<date_time>.bin in 
+;**               the temp direcotry. (eg. C:\TEMP\etr_2012_12_7_15_21_26.bin)
+;**
+;**    loglevel - Optional argument to display debug messages             
+;**               To specify the second argument the first argument is necessary
+;** 
+;** Copyright (c) 2012 by Qualcomm Technologies Incorporated.  All Rights Reserved.
+;**
+;****************************************************************************
+global &etr_base
+&etr_base=0x06048000
+
+entry &dump_file &log_level
+do  "~~~~/../common/etr_dump_common.cmm" &dump_file &log_level
+enddo

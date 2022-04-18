@@ -1,0 +1,75 @@
+#/** @file PmicLibLa.inf
+# 
+# PMIC Library for Sdm660
+#
+# Copyright (c) 2014-2016 Qualcomm Technologies, Inc.  All Rights Reserved.
+#  Qualcomm Technologies Proprietary and Confidential.
+#
+#**/
+
+#==============================================================================
+#                              EDIT HISTORY
+#
+#
+# when        who     what, where, why
+# --------    ---     ----------------------------------------------------------
+# 06/01/16    sm      Removed EFI_QCOM_CHARGER_EX_PROTOCOL related changes
+# 05/10/16    al      Adding PON protocol
+# 05/06/16    sm      Added gQcomPmicChargerProtocolGuid under Protocol section
+# 03/24/16    al      Add keypress support
+# 03/02/16    va      moving this file under core folder for La
+#=============================================================================
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = PmicCoreLib
+  FILE_GUID         = 9AEAC0C9-504F-435E-971F-AEF17DC53B60
+  MODULE_TYPE       = BASE
+  VERSION_STRING    = 1.0
+  LIBRARY_CLASS     = PmicCoreLib
+
+ 
+[Sources.common]
+  pm_core.c
+  ../../../../../Library/PmicLib/framework/src/pm_core_init.c
+  ../../../../../Library/PmicLib/framework/src/pm_core_wrap.c
+  ../../../../../Library/PmicLib/utils/src/pm_utils_core.c
+  ../../../../Settings/PMIC/core/pm_config_appsbl_npa_node_rsrcs.c
+  ../../../../Settings/PMIC/core/pm_config_appsbl_npa_pam.c
+  ../../../../../Library/PmicLib/npa/src/pm_npa.c
+  ../../../../../Library/PmicLib/npa/src/pm_npa_device_clk_buff.c
+  ../../../../../Library/PmicLib/npa/src/pm_npa_device_ldo.c
+  ../../../../../Library/PmicLib/npa/src/pm_npa_device_smps.c
+  ../../../../../Library/PmicLib/npa/src/pm_npa_device_vs.c
+  ../../../../../Library/PmicLib/npa/src/uefi/pm_appsbl_proc_npa.c
+  ../../../../../Library/PmicLib/npa/src/uefi/pm_appsbl_proc_npa_device.c
+  ../../../../../Library/PmicLib/npa/test/pm_npa_offtarget_test.c
+  ../../../../../Library/PmicLib/npa/test/pm_npa_test.c
+  ../../../../../Library/PmicLib/app/rgb/src/pm_app_rgb.c
+  ../../../../../Library/PmicLib/app/pon/src/pm_app_key_press.c
+
+ 
+ [BuildOptions.ARM]
+  RVCT:*_*_*_CC_FLAGS = -J Library/MuslLib/musl/include
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  QcomPkg/QcomPkg.dec  
+  QcomPkg/Sdm660Pkg/Library/PmicLib/core/PmicCoreLib.dec
+  QcomPkg/Sdm660Pkg/Library/PmicLib/PmicLib.dec
+  EmbeddedPkg/EmbeddedPkg.dec
+  ArmPkg/ArmPkg.dec
+
+
+[LibraryClasses]
+  
+
+
+[Protocols]
+ gQcomPmicPonProtocolGuid
+
+[Depex]
+  TRUE
+

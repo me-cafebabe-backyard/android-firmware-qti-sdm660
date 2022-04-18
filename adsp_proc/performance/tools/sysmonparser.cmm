@@ -1,0 +1,28 @@
+ENTRY &loc_Path
+&size=var.sizeof(sysmon_log_t)
+&count=v.value(sysmon_pMe.op_buf_params.op_buf_write_index)
+if v.value(sysmon_pMe.op_buf_params.sysmon_op_buf_start[sysmon_pMe.op_buf_params.op_buf_write_index].header)!=0x0
+(	
+    while ((v.value(sysmon_pMe.op_buf_params.sysmon_op_buf_start[&count].header)&0xFFFF0000)==0xBEEF0000)||((v.value(sysmon_pMe.op_buf_params.sysmon_op_buf_start[&count].header)&0xFFFF0000)==0xDEAD0000)
+    (
+     &count=&count+1
+    )
+    &count=&count-1
+	&buf_size1=((&count-v.value(sysmon_pMe.op_buf_params.op_buf_write_index)+0x1)*&size)-0x1 
+	d.save.binary &loc_Path\sysmon_dump1.bin v.value(&sysmon_pMe.op_buf_params.sysmon_op_buf_start[sysmon_pMe.op_buf_params.op_buf_write_index])++&buf_size1
+		
+	&buf_size2=(v.value(sysmon_pMe.op_buf_params.op_buf_write_index)*&size)-0x1
+	d.save.binary &loc_Path\sysmon_dump2.bin v.value(sysmon_pMe.op_buf_params.sysmon_op_buf_start)++&buf_size2
+)
+else
+(
+	&buf_size=(v.value(sysmon_pMe.op_buf_params.op_buf_write_index)*&size)-0x1
+	d.save.binary &loc_Path\sysmon_dump1.bin v.value(sysmon_pMe.op_buf_params.sysmon_op_buf_start)++&buf_size
+	printer.open &loc_Path\sysmon_dump2.bin
+    printer.close
+)
+printer.open &loc_Path\clock_values.txt
+wp.v.v sysmon_data.npa_dsp_core_vote
+wp.v.v sysmon_data.npa_snoc_vote
+wp.v.v sysmon_data.npa_bimc_vote
+printer.close

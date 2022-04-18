@@ -1,0 +1,30 @@
+#===============================================================================
+#
+# AVCS AU
+#
+# GENERAL DESCRIPTION
+#    Build script
+#
+# Copyright (c) 2015 Qualcomm  Technologies, Inc.(QTI) 
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/avs.adsp/2.8/avcs/modules/build/avcs_modules.scons#1 $
+#  $DateTime: 2017/09/20 00:44:54 $
+#  $Author: pwbldsvc $
+#  $Change: 14424423 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+#
+#===============================================================================
+Import('env')
+
+
+env.LoadSoftwareUnits()

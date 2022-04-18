@@ -1,0 +1,5 @@
+future
+openpyxl
+numpy
+matplotlib
+pythonnet

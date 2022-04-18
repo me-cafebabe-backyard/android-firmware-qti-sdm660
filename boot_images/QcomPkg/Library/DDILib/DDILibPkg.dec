@@ -1,0 +1,51 @@
+#/** @file DDILibPkg.dec
+# DDILib package.
+#
+# Copyright (c) 2014-2015 year(s) Qualcomm Technologies, Inc. 
+# All rights reserved.
+#
+#**/
+#
+#==============================================================================
+#                              EDIT HISTORY
+#
+#
+# when       who     what, where, why
+# --------   ---     ----------------------------------------------------------
+# 12/15/16   zhz     Add DDI patch
+# 07/27/16   qbz     Add path included in ddi_tool.c
+# 08/20/15   sng     Initial Revision
+#
+#==============================================================================
+
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = DDILibPkg
+  PACKAGE_GUID                   = 8B78448F-F2BB-4926-8C56-229EA89A293E
+  PACKAGE_VERSION                = 0.1
+
+################################################################################
+#
+# Include Section - list of Include Paths that are provided by this package.
+#                   Comments are used for Keywords and Module Types.
+#
+# Supported Module Types:
+#  BASE SEC PEI_CORE PEIM DXE_CORE DXE_DRIVER DXE_RUNTIME_DRIVER DXE_SMM_DRIVER DXE_SAL_DRIVER UEFI_DRIVER UEFI_APPLICATION
+#
+################################################################################
+[Includes.common]
+  ../../../Include/Library
+  ../../../Include/api/boot
+  ../../../Include/api/systemdrivers
+  ../../../Include/api/systemdrivers/pmic
+  ../../Sdm660Pkg/Library/DSFTargetLib/rpm/sns_api
+  ../../Sdm660Pkg/Library/DSFTargetLib/boot/ddrss/header
+  ../../Sdm660Pkg/Library/DSFTargetLib/boot/ddrss/bimc/mc230/header
+  ../../Sdm660Pkg/Library/XBLLoaderLib
+  ../../Sdm660Pkg/Library/DDITargetLib
+  ../DDRLib/common
+  ../XBLLoader
+  
+  ./ddi
+  ./firehose
+  ./bsp

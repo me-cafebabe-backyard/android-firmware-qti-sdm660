@@ -1,0 +1,29 @@
+#===============================================================================
+#
+# AVS AU
+#
+# GENERAL DESCRIPTION
+#    Build script
+#
+# Copyright (c) 2015 by QUALCOMM Technologies, Inc. (QTI)
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/avs.adsp/2.8/afe/algos/limiter/build/limiter.scons#1 $
+#  $DateTime: 2016/02/18 02:06:49 $
+#  $Author: pwbldsvc $
+#  $Change: 9917217 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+#
+#===============================================================================
+Import('env')
+
+env.LoadSoftwareUnits()

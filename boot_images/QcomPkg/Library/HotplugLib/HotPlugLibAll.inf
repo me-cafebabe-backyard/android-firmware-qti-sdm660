@@ -1,0 +1,91 @@
+## @file
+#  HotPlugLibAll.inf
+#
+#  Copyright (c) 2014, 2015 Qualcomm Technologies, Inc . All rights reserved.
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = HotPlugLibAll
+  FILE_GUID                      = bf01b928-fd6e-409c-ad82-68ea5c64983a
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = HotPlugLibAll
+
+[Sources]
+  inc/fs_hotplug_config_i.h
+  inc/fs_hotplug_counters.h
+  inc/fs_hotplug_priv_api.h
+  src/fs_blockdev.c
+  src/fs_blockdev.h
+  src/fs_blockdev_devnull.c
+  src/fs_blockdev_devnull_driver.c
+  src/fs_blockdev_devnull_driver.h
+  src/fs_blockdev_driver.c
+  src/fs_blockdev_driver.h
+  src/fs_blockdev_ftl.c
+  src/fs_blockdev_ftl_driver.c
+  src/fs_blockdev_ftl_driver.h
+  src/fs_blockdev_i.h
+  src/fs_blockdev_sd.c
+  src/fs_blockdev_sd_cprm.c
+  src/fs_blockdev_sd_cprm_driver.c
+  src/fs_blockdev_sd_cprm_driver.h
+  src/fs_blockdev_sd_driver.c
+  src/fs_blockdev_sd_driver.h
+  src/fs_blockdev_ufs.c
+  src/fs_blockdev_ufs_driver.c
+  src/fs_blockdev_ufs_driver.h
+  src/fs_blockdev_spi_nor.c
+  src/fs_blockdev_spi_nor_driver.c
+  src/fs_blockdev_spi_nor_driver.h
+  src/fs_blockdev_usb.c
+  src/fs_blockdev_usb_driver.c
+  src/fs_blockdev_usb_driver.h
+  src/fs_hotplug.c
+  src/fs_hotplug_api.c
+  src/fs_hotplug_counters.c
+  src/fs_hotplug_dev.c
+  src/fs_hotplug_dev_state.c
+  src/fs_hotplug_discover.c
+  src/fs_hotplug_events.c
+  src/fs_hotplug_i.h
+  src/fs_hotplug_idle.c
+  src/fs_hotplug_iter.c
+  src/fs_hotplug_legacy_hdev.c
+  src/fs_hotplug_legacy_names.c
+  src/fs_hotplug_mount.c
+  src/fs_hotplug_parser.c
+  src/fs_hotplug_parser.h
+  src/fs_hotplug_partition.c
+  src/fs_hotplug_poll.c
+  src/fs_hotplug_stub.c
+  src/fs_hotplug_task.c
+  src/fs_hotplug_usbhost.c
+  src/fs_hotplug_usbhost.h
+  ../EfsLib/inc/fs_babylon.h
+  ../EfsLib/inc/fs_err.h
+  ../EfsLib/inc/fs_osal.h
+  ../EfsLib/inc/fs_hfat_api.h
+  ../EfsLib/inc/fs_util.h
+  ../../XBLLoader/boot_api.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  QcomPkg/QcomPkg.dec
+  QcomPkg/XBLLoaderApi.dec
+
+[BuildOptions.ARM]
+  RVCT:*_*_*_CC_FLAGS = -DUSE_LOADER_UTILS -DFEATURE_FS_HOTPLUG -DFEATURE_EFS_BOOT_ENV -DFEATURE_EFS_COMPILE_WITHOUT_MD5 -DFEATURE_EFS_COMPILE_WITHOUT_REX -DFEATURE_EFS_COMPILE_WITHOUT_DIAG -DFEATURE_EFS_DISABLE_PROFILE -DFEATURE_EFS_DISABLE_TIMETICK -DFEATURE_FS_HOTPLUG_DISABLE_TASK -DHOTPLUG_HAVE_PARTITION_SUPPORT -DFS_HOTPLUG_NOTIFY_MAX_CLIENTS=1 -DFS_HOTPLUG_MAX_ITERATORS=1 -DFS_HOTPLUG_MAX_HDEVS=10 -DFS_HOTPLUG_MAX_SOFT_PARTITIONS=64 -DEFS_MAX_FILE_DESCRIPTORS=32 -DFS_MAX_ITERATORS=2 -DFS_MAX_EXTFS_MOUNTS=2 -DFEATURE_EFS2 -DFS_PATH_MAX=300 -DFS_NAME_MAX=136 -DFS_VNODE_POOL_SIZE=16 -DFEATURE_HOTPLUG_COMPILE_WITHOUT_EFS -DFEATURE_FS_HOTPLUG_SD
+
+[BuildOptions.AARCH64]
+  GCC:*_*_*_CC_FLAGS = -DUSE_LOADER_UTILS -DFEATURE_FS_HOTPLUG -DFEATURE_EFS_BOOT_ENV -DFEATURE_EFS_COMPILE_WITHOUT_MD5 -DFEATURE_EFS_COMPILE_WITHOUT_REX -DFEATURE_EFS_COMPILE_WITHOUT_DIAG -DFEATURE_EFS_DISABLE_PROFILE -DFEATURE_EFS_DISABLE_TIMETICK -DFEATURE_FS_HOTPLUG_DISABLE_TASK -DHOTPLUG_HAVE_PARTITION_SUPPORT -DFS_HOTPLUG_NOTIFY_MAX_CLIENTS=1 -DFS_HOTPLUG_MAX_ITERATORS=1 -DFS_HOTPLUG_MAX_HDEVS=10 -DFS_HOTPLUG_MAX_SOFT_PARTITIONS=64 -DEFS_MAX_FILE_DESCRIPTORS=32 -DFS_MAX_ITERATORS=2 -DFS_MAX_EXTFS_MOUNTS=2 -DFEATURE_EFS2 -DFS_PATH_MAX=300 -DFS_NAME_MAX=136 -DFS_VNODE_POOL_SIZE=16 -DFEATURE_HOTPLUG_COMPILE_WITHOUT_EFS -DFEATURE_FS_HOTPLUG_SD -DFEATURE_FS_HOTPLUG_UFS -DFEATURE_FS_HOTPLUG_SPI_NOR
+  MSFT:*_*_*_CC_FLAGS = -DUSE_LOADER_UTILS -DFEATURE_FS_HOTPLUG -DFEATURE_EFS_BOOT_ENV -DFEATURE_EFS_COMPILE_WITHOUT_MD5 -DFEATURE_EFS_COMPILE_WITHOUT_REX -DFEATURE_EFS_COMPILE_WITHOUT_DIAG -DFEATURE_EFS_DISABLE_PROFILE -DFEATURE_EFS_DISABLE_TIMETICK -DFEATURE_FS_HOTPLUG_DISABLE_TASK -DHOTPLUG_HAVE_PARTITION_SUPPORT -DFS_HOTPLUG_NOTIFY_MAX_CLIENTS=1 -DFS_HOTPLUG_MAX_ITERATORS=1 -DFS_HOTPLUG_MAX_HDEVS=10 -DFS_HOTPLUG_MAX_SOFT_PARTITIONS=64 -DEFS_MAX_FILE_DESCRIPTORS=32 -DFS_MAX_ITERATORS=2 -DFS_MAX_EXTFS_MOUNTS=2 -DFEATURE_EFS2 -DFS_PATH_MAX=300 -DFS_NAME_MAX=136 -DFS_VNODE_POOL_SIZE=16 -DFEATURE_HOTPLUG_COMPILE_WITHOUT_EFS -DFEATURE_FS_HOTPLUG_SD -DFEATURE_FS_HOTPLUG_UFS -DFEATURE_FS_HOTPLUG_SPI_NOR
+
+[LibraryClasses]
+  SdccCommonLib
+  MuslLib
+  EfsUtilsLib  
+  UfsLoaderLib
+  SpiNorCommonLib

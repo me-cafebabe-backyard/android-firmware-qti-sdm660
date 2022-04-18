@@ -1,0 +1,20 @@
+<!--
+  This XML file contains target specific information for MPM
+  driver for targets using device config feature.
+
+  Copyright (c) 2016 QUALCOMM Technologies Incorporated.
+  All Rights Reserved.
+  Qualcomm Confidential and Proprietary   
+-->
+
+#include "DDIInterruptController.h"
+
+<driver name="NULL">
+  <device id="/dev/core/power/mpm">
+
+    <props name="vmpm_pinNumMappingTable" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      devcfg_MpmInterruptPinNum_Mapping
+    </props>
+
+  </device>
+</driver>

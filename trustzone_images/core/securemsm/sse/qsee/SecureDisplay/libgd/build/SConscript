@@ -1,0 +1,106 @@
+#===============================================================================
+#
+# LibGD module
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2013, 2015 Qualcomm Technologies, Inc.  All Rights Reserved.
+# Qualcomm Technologies Proprietary and Confidential.
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.tz/1.0.7.1/securemsm/sse/qsee/SecureDisplay/libgd/build/SConscript#1 $
+#  $DateTime: 2020/01/14 12:35:09 $
+#  $Author: pwbldsvc $
+#  $Change: 22186835 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+#===============================================================================
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/core/securemsm/sse/qsee/SecureDisplay/libgd"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Compiler, object, and linker definitions
+#-------------------------------------------------------------------------------
+
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/sse/qsee/SecureDisplay/libgd/include")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/sse/qsee/SecureDisplay/libpng/include")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/sse/qsee/SecureDisplay/zlib/include")
+env.Append(CPPPATH = "${COREBSP_ROOT}/api/services")
+env.Append(CPPPATH = "${COREBSP_ROOT}/api/securemsm/trustzone/qsee")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/trustzone/qsapps/libs/services/src")
+
+env.Append(CCFLAGS = " -DSECURE_UI_SUPPORTED -D__ARMCC -DHAVE_STDINT_H=1 -DHAVE_LIBPNG_EXT "
+						"-DPNG_SEQUENTIAL_READ_SUPPORTED -DPNG_tRNS_SUPPORTED -DPNG_READ_SUPPORTED")
+
+INC_PATH_API = ["${INC_ROOT}/core/api/kernel/libstd/stringl"]
+env.Append(CPPPATH = INC_PATH_API)
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+
+SOURCES = [
+  '${BUILDPATH}/src/gd.c',
+  '${BUILDPATH}/src/gd_color.c',
+  '${BUILDPATH}/src/gd_color_map.c',
+  '${BUILDPATH}/src/gd_filter.c',
+  '${BUILDPATH}/src/gd_gd.c',
+  '${BUILDPATH}/src/gd_gd2.c',
+  '${BUILDPATH}/src/gd_gif_in.c',
+  '${BUILDPATH}/src/gd_gif_out.c',
+  '${BUILDPATH}/src/gd_io.c',
+  '${BUILDPATH}/src/gd_io_dp.c',
+  '${BUILDPATH}/src/gd_io_file.c',
+  '${BUILDPATH}/src/gd_io_ss.c',
+  '${BUILDPATH}/src/gd_jpeg.c',
+  '${BUILDPATH}/src/gd_png.c',
+  '${BUILDPATH}/src/gd_png_secure.c',
+  '${BUILDPATH}/src/gd_security.c',
+  '${BUILDPATH}/src/gd_ss.c',
+  '${BUILDPATH}/src/gd_topal.c',
+  '${BUILDPATH}/src/gd_transform.c',
+  '${BUILDPATH}/src/gdcache.c',
+  '${BUILDPATH}/src/gdfontgiantext.c',
+  '${BUILDPATH}/src/gdfontlargeext.c',
+  '${BUILDPATH}/src/gdfontmediumext.c',
+  '${BUILDPATH}/src/gdfontsmallext.c',
+  '${BUILDPATH}/src/gdfonttinyext.c',
+  '${BUILDPATH}/src/gdfx.c',
+  '${BUILDPATH}/src/gdhelpers.c',
+  '${BUILDPATH}/src/gdtables.c',
+  '${BUILDPATH}/src/gdfontqcomreg100propext.c',
+  '${BUILDPATH}/src/gdfontqcomreg100monoext.c',
+  '${BUILDPATH}/src/gdfontqcomreg42propext.c',
+  '${BUILDPATH}/src/gdfontqcomreg30propext.c',
+  '${BUILDPATH}/src/gdfontqcomreg48propext.c',
+]
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+env.AddBinaryLibrary([
+  'SECUREUISAMPLE_IMAGE',
+  'SECUREUISAMPLE64_IMAGE',
+  'FIDOSUI_IMAGE',
+  ],
+  '${BUILDPATH}/libgd',
+  SOURCES)
+env.CleanPack([
+  'SECUREUISAMPLE_IMAGE',
+  'SECUREUISAMPLE64_IMAGE',
+  'FIDOSUI_IMAGE',
+  ],
+  SOURCES)

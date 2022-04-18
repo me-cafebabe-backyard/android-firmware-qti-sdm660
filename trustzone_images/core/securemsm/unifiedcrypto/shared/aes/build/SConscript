@@ -1,0 +1,132 @@
+#===============================================================================
+#
+# cryptoLibs
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2012 by QUALCOMM, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.tz/1.0.7.1/securemsm/unifiedcrypto/shared/aes/build/SConscript#1 $
+#  $DateTime: 2020/01/14 12:35:09 $
+#  $Author: pwbldsvc $
+#  $Change: 22186835 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 10/28/16   shl     Removed armv8 crypto support for tz kernel use case
+# 10/06/16   shl     Added armv8 crypto support code
+# 09/12/16   shl     Cleaned up 
+# 10/23/12   yk	     Initial release
+#
+#===============================================================================
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/core/securemsm/unifiedcrypto/shared/aes"
+
+# when build with this flag set, arm v8 vrypto code will be compiled out and 
+# the code should behave like original sw crypto code
+if env.has_key('NO_ARMV8_CRYPTO'):
+   env.Append(CCFLAGS = ' -DNO_ARMV8_CRYPTO ')
+
+if env.has_key('TZOS_IMAGE'):
+   env.Append(CCFLAGS = ' -DNO_ARMV8_CRYPTO ')
+
+if env['PROC'] == 'scorpion':
+   env.Append(CCFLAGS = ' -DNO_ARMV8_CRYPTO ')
+
+if env['CHIPSET'] not in ['msm8998']:
+   env.Append(CCFLAGS = ' -DNO_ARMV8_CRYPTO ')
+
+if env.has_key('USES_NO_DEBUG'):
+   env.Replace(DBUG_MODE = "NoDebug")
+else:
+   env.Replace(DBUG_MODE = "Debug")
+
+if env.has_key('IMAGE_NAME'):
+   SECUREMSMLIBPATH = '${IMAGE_NAME}/${PROC}/${ARMTOOLS}'
+#   SECUREMSMLIBPATH = '${IMAGE_NAME}/${PROC}/${ARMTOOLS}/${DBUG_MODE}'
+else:
+   SECUREMSMLIBPATH = 'unknown/${PROC}/${ARMTOOLS}'
+#   SECUREMSMLIBPATH = 'unknown/${PROC}/${ARMTOOLS}/${DBUG_MODE}'
+
+#env.Replace(SECUREMSMLIBPATH = SECUREMSMLIBPATH)
+#env.VariantDir('${SECUREMSMLIBPATH}', SRCPATH, duplicate=0)
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'SECUREMSM',
+   'SERVICES',
+   'KERNEL',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+SME_PROTECTED_API = [
+                      'SME_SMECOM',
+]
+env.RequireProtectedApi(SME_PROTECTED_API)
+
+#-------------------------------------------------------------------------------
+# Publish Private APIs
+#-------------------------------------------------------------------------------
+env.PublishPrivateApi('SECUREMSM', [
+   "${BUILD_ROOT}/core/securemsm/unifiedcrypto/shared/aes/src",
+])
+
+if env.has_key('TZOS_IMAGE') or env.has_key('TZTESTEXEC_IMAGE'):
+    env.PublishPrivateApi('AESSHARED', [
+       "${INC_ROOT}/core/securemsm/unifiedcrypto/shared/aes/inc",
+       "${INC_ROOT}/core/securemsm/unifiedcrypto/shared/armv8crypto/shared/inc",
+       "${INC_ROOT}/core/securemsm/unifiedcrypto/core/aes/inc",
+       "${INC_ROOT}/core/securemsm/unifiedcrypto/environment/inc",
+       "${INC_ROOT}/core/api/kernel/libstd/stringl",
+       ])
+else:
+  env.PublishPrivateApi('AESSHARED', [
+   "${INC_ROOT}/core/securemsm/unifiedcrypto/shared/aes/inc",
+   "${INC_ROOT}/core/securemsm/unifiedcrypto/shared/armv8crypto/shared/inc",
+   "${INC_ROOT}/core/securemsm/unifiedcrypto/core/aes/inc",
+   "${INC_ROOT}/core/securemsm/unifiedcrypto/environment/inc",
+   "${INC_ROOT}/core/securemsm/trustzone/qsapps/libs/applib/common/src",
+   "${INC_ROOT}/core/api/kernel/libstd/stringl",
+   "${INC_ROOT}/core/api/securemsm/trustzone/qsee",
+   ])
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+
+if env['PROC'] == 'scorpion' or env['CHIPSET'] not in ['msm8998']:
+   AESSHARED_LIB_SOURCES = [
+        '${BUILDPATH}/src/aes_shared.c',
+  ]
+else:
+   AESSHARED_LIB_SOURCES = [
+        '${BUILDPATH}/src/aes-armv8-64.s',
+        '${BUILDPATH}/src/cipher.c',
+        '${BUILDPATH}/src/aes_shared.c',
+  ]
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+
+#env.AddBinaryLibrary(['TZOS_IMAGE','TZTESTEXEC_IMAGE','CTZL_IMAGE'], '${BUILDPATH}/AESSHARED', AESSHARED_LIB_SOURCES)
+env.AddBinaryLibrary(['TZOS_IMAGE', 'TZTESTEXEC_IMAGE', 'CTZL_IMAGE', 'CTZL64_IMAGE', 'HDCP2P2_IMAGE'], '${BUILDPATH}/AESSHARED', AESSHARED_LIB_SOURCES)

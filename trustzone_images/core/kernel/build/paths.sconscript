@@ -1,0 +1,131 @@
+#===============================================================================
+#
+# Kernel INC PATHs
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2009-2013 by QUALCOMM, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //source/qcom/qct/core/pkg/riva/rel/1.0/core/kernel/build/paths.sconscript#1 $
+#  $DateTime: 2010/11/04 21:49:20 $
+#  $Author: coresvc $
+#  $Change: 1506170 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 02/18/11   sho     Kernel paths for boot loader images
+#
+#===============================================================================
+import os
+Import('env')
+
+if env['TARGET_FAMILY'] in ['bear', 'badger']:
+   SMMU_PATH = 'smmu500'
+   SMMU_CHIPSET_PATH = SMMU_PATH
+else:
+   SMMU_PATH = 'ACv3.0'
+   SMMU_CHIPSET_PATH = 'ACv3.0/chipset'
+
+if env['MSM_ID'] in ['8996', '8998','660','630','845'] :
+	smmu_type = 'QSMMU'
+else:
+	smmu_type = 'mmu500'
+	
+if env['MSM_ID'] == '8998':
+   XPU_PATH = 'xpu3'
+elif env['MSM_ID'] == '630':
+   XPU_PATH = 'xpu3'
+elif env['MSM_ID'] == '660':
+   XPU_PATH = 'xpu3'
+elif env['MSM_ID'] == '845':
+   XPU_PATH = 'xpu3'
+else:
+   XPU_PATH = 'xpu2'
+
+if os.path.exists(env.subst("../vmidmt/hal/inc/${MSM_ID}")) and os.path.exists(env.subst("../vmidmt/hal/config/${MSM_ID}")):
+   env.Replace(VMIDMT_MSM_ID = env['MSM_ID'])
+else:
+   env.Replace(VMIDMT_MSM_ID = 'stubs')
+   env.PrintWarning("VMIDMT not implemented... using stubs.")
+   
+
+if env['MSM_ID'] == ['8998','630','660','845']:
+   if os.path.exists(env.subst("../xpu3/hal/inc/${MSM_ID}")) and os.path.exists(env.subst("../xpu3/hal/config/${MSM_ID}")):
+      env.Replace(XPU_MSM_ID = env['MSM_ID'])
+      env.Replace(XPU2_MSM_ID = 'stubs')
+   else:
+      env.Replace(XPU2_MSM_ID = 'stubs')
+      env.PrintWarning("XPU not implemented... using stubs.")
+else:
+   if os.path.exists(env.subst("../xpu2/hal/inc/${MSM_ID}")) and os.path.exists(env.subst("../xpu2/hal/config/${MSM_ID}")):
+      env.Replace(XPU2_MSM_ID = env['MSM_ID'])
+   else:
+      env.Replace(XPU2_MSM_ID = 'stubs')
+      env.PrintWarning("XPU not implemented... using stubs.")
+
+   
+if os.path.exists(env.subst("../hypervisor/inc/${MSM_ID}")):
+   env.Replace(HYP_MSM_ID = env['MSM_ID'])
+else:
+   env.Replace(HYP_MSM_ID = 'stubs')
+   env.PrintWarning("HYP target not implemented... using stubs.")
+
+if os.path.exists(env.subst("../smmu/"+SMMU_CHIPSET_PATH+"/${MSM_ID}")):
+   env.Replace(SMMU_MSM_ID = env['MSM_ID'])
+else:
+   env.Replace(SMMU_MSM_ID = 'stubs')
+   env.PrintWarning("SMMU not implemented... using stubs.")
+   
+#-------------------------------------------------------------------------------
+# Publish Public APIs
+# these are accecible internal or external to CoreBSP
+#-------------------------------------------------------------------------------
+env.PublishPublicApi('KERNEL', [
+   "${INC_ROOT}/core/kernel/lk/tzos",
+   "${INC_ROOT}/core/api/kernel",
+   "${INC_ROOT}/core/api/kernel/libstd",
+   "${INC_ROOT}/core/api/kernel/libstd/stringl",
+   "${INC_ROOT}/core/kernel/xpu3/hal/inc",
+   "${INC_ROOT}/core/api/kernel/devcfg",
+])
+
+##-------------------------------------------------------------------------------
+# Publish Restricted APIs
+# these are accecible only within CoreBSP
+#-------------------------------------------------------------------------------
+env.PublishRestrictedApi('KERNEL', [
+   "${INC_ROOT}/core/kernel/lk/tzos",
+   "${INC_ROOT}/core/kernel/lk/kernel/inc",
+   "${INC_ROOT}/core/kernel/lk/arch/inc",
+   "${INC_ROOT}/core/kernel/lk/platform/inc",
+   "${INC_ROOT}/core/kernel/vmidmt/hal/inc",
+   "${INC_ROOT}/core/kernel/vmidmt/hal/inc/${VMIDMT_MSM_ID}",
+   "${INC_ROOT}/core/kernel/xpu3/hal/inc",
+   "${INC_ROOT}/core/kernel/xpu3/hal/inc/8998",
+   "${INC_ROOT}/core/kernel/xpu3/hal/inc/630",
+   "${INC_ROOT}/core/kernel/xpu3/hal/inc/660",
+   "${INC_ROOT}/core/kernel/xpu3/hal/inc/845",
+   "${INC_ROOT}/core/kernel/xpu2/hal/inc",
+   "${INC_ROOT}/core/kernel/xpu2/hal/inc/${XPU2_MSM_ID}",
+   "${INC_ROOT}/core/kernel/hypervisor/inc",
+   "${INC_ROOT}/core/kernel/hypervisor/inc/${HYP_MSM_ID}",
+   '${INC_ROOT}/core/kernel/mmu/inc',
+   '${INC_ROOT}/core/securemsm/accesscontrol/src',
+   '${INC_ROOT}/core/kernel/smmu/'+SMMU_PATH+'/common/inc',
+   '${INC_ROOT}/core/kernel/smmu/'+SMMU_PATH+'/chipset/${SMMU_MSM_ID}/inc',
+   '${INC_ROOT}/core/kernel/smmu/'+SMMU_PATH+'/impl/'+smmu_type+'/${SMMU_MSM_ID}/inc',   
+   '${INC_ROOT}/core/kernel/smmu/'+SMMU_PATH+'/inc',
+   '${INC_ROOT}/core/kernel/smmu/'+SMMU_PATH+'/inc/${SMMU_MSM_ID}',
+])
+
+
+

@@ -1,0 +1,150 @@
+Logging to /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/build/bsp/multi_pd_img/build/660.adsp.prod/sign/SecImage_log.txt
+
+
+    SecImage launched as: "/local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/sectools/sectools.py secimage -i /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/build/ms/bin/660.adsp.prod/dsp2.mbn -g adsp -c /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/sectools/config/integration/secimagev2.xml --cfg_soc_hw_version 0x30061000 --cfg_in_use_soc_hw_version 1 --cfg_soc_vers 0x3007 -sa -o /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/build/bsp/multi_pd_img/build/660.adsp.prod/sign"
+
+Config path is set to: /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/sectools/config/integration/secimagev2.xml
+WARNING: OEM ID is set to 0 for sign_id "adsp"
+Output dir is set to: /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/build/bsp/multi_pd_img/build/660.adsp.prod/sign
+Openssl v1.0.1 or greater is available at: "/usr/bin/openssl"
+------------------------------------------------------
+Processing 1/1: /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/build/ms/bin/660.adsp.prod/dsp2.mbn
+
+l1_file_name = /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/sectools/resources/data_prov_assets/Encryption/Unified/default/l1_key.bin
+l2_file_name = /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/sectools/resources/data_prov_assets/Encryption/Unified/default/l2_key.bin
+l3_file_name = /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/sectools/resources/data_prov_assets/Encryption/Unified/default/l3_key.bin
+Clear L1 key, clear L2 key, and clear L3 keys were provided locally.
+Performing OEM sign on image: /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/build/ms/bin/660.adsp.prod/dsp2.mbn
+attestation_certificate_extensions = /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/sectools/resources/data_prov_assets/General_Assets/Signing/openssl/v3_attest.ext
+ca_certificate_extensions = /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/sectools/resources/data_prov_assets/General_Assets/Signing/openssl/v3.ext
+openssl_configfile = /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/sectools/resources/data_prov_assets/General_Assets/Signing/openssl/opensslroot.cfg
+Using SHA (sha256) for hash segment
+Using PSS RSA padding
+Initialization with dataprov. These fields might not be used in final output if overridden
+Using a predefined Root private key from: /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/sectools/resources/data_prov_assets/Signing/Local/qti_presigned_certs-key2048_exp65537_paddingPSS/qpsa_rootca.key
+Using a predefined Root certificate from: /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/sectools/resources/data_prov_assets/Signing/Local/qti_presigned_certs-key2048_exp65537_paddingPSS/qpsa_rootca.cer
+Initialization with dataprov. These fields might not be used in final output if overridden
+Using a predefined CA private key from: /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/sectools/resources/data_prov_assets/Signing/Local/qti_presigned_certs-key2048_exp65537_paddingPSS/qpsa_attestca.key
+Using a predefined CA certificate from: /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/sectools/resources/data_prov_assets/Signing/Local/qti_presigned_certs-key2048_exp65537_paddingPSS/qpsa_attestca.cer
+Initialization with dataprov. These fields might not be used in final output if overridden
+Generating new certificate Attest
+Generating new Attestation certificate and a random key
+Generating new private/public key pair for Attest
+Creating certificate request for Attest
+Signing certificate request for Attest
+Creating signature
+
+Attestation Certificate Properties:
+| SW_ID                  | 0x0000000000000004  |
+| HW_ID                  | 0x3006000000000000  |
+| IN_USE_SOC_HW_VERSION  | 0x0001              |
+| SOC_VERS               | 0x3007              |
+| DEBUG                  | 0x0000000000000002  |
+| OEM_ID                 | 0x0000              |
+| SW_SIZE                | 776                 |
+| MODEL_ID               | 0x0000              |
+| SHA_ALGO               | SHA256              |
+| APP_ID                 | None                |
+| CRASH_DUMP             | None                |
+| ROT_EN                 | None                |
+| Exponent               | 65537               |
+| TCG_MIN                | None                |
+| TCG_MAX                | None                |
+
+Signed image is stored at /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/build/bsp/multi_pd_img/build/660.adsp.prod/sign/default/adsp/dsp2.mbn
+Clear L1 key, clear L2 key, and clear L3 keys were provided locally.
+OEM signed image with RSAPSS
+Image /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/build/bsp/multi_pd_img/build/660.adsp.prod/sign/default/adsp/dsp2.mbn signature is valid
+Image /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/build/bsp/multi_pd_img/build/660.adsp.prod/sign/default/adsp/dsp2.mbn is not encrypted
+
+Base Properties: 
+| Integrity Check                 | True  |
+| Signed                          | True  |
+| Encrypted                       | False |
+| Size of signature               | 256   |
+| Size of one cert                | 2048  |
+| Num of certs in cert chain      | 3     |
+| Number of root certs            | 1     |
+| Maximum number of root certs    | 1     |
+| Hash Page Segments as segments  | False |
+| Cert chain size                 | 6144  |
+
+ELF Properties: 
+Elf Header: 
+| Magic                      | ELF                           |
+| Class                      | ELF32                          |
+| Data                       | 2's complement, little endian  |
+| Version                    | 1 (Current)                    |
+| OS/ABI                     | No extensions or unspecified   |
+| ABI Version                | 0                              |
+| Type                       | EXEC (Executable file)         |
+| Machine                    | 164                            |
+| Version                    | 0x1                            |
+| Entry address              | 0x92a00000                     |
+| Program headers offset     | 0x00000034                     |
+| Section headers offset     | 0x00000000                     |
+| Flags                      | 0x00000062                     |
+| ELF header size            | 52                             |
+| Program headers size       | 32                             |
+| Number of program headers  | 21                             |
+| Section headers size       | 40                             |
+| Number of section headers  | 0                              |
+| String table section index | 0                              |
+
+Elf Program Headers: 
+| S.No | Type | Offset | VirtAddr | PhysAddr | FileSize | MemSize |   Flags   |   Align   |
+|------|------|--------|----------|----------|----------|---------|-----------|-----------|
+|  1   | LOAD |0x003000|0xf0100000|0x92a00000| 0x002468 | 0x003000| 0x8000005 | 0x100000  |
+|  2   | LOAD |0x006000|0xf0103000|0x92a03000| 0x01c100 | 0x01d000| 0x8000007 | 0x1000    |
+|  3   | LOAD |0x023000|0xf0120000|0x92a20000| 0x18f4ac | 0x190000| 0x8000005 | 0x1000    |
+|  4   | LOAD |0x1b3000|0xf02b0000|0x92bb0000| 0x1171e8 | 0x3a8000| 0x8000006 | 0x1000    |
+|  5   | LOAD |0x2cb000|0xf0658000|0x92f58000| 0x000868 | 0x001000| 0x8000006 | 0x1000    |
+|  6   | LOAD |0x2cc000|0xf0659000|0x92f59000| 0x0112cb | 0x012000| 0x8000004 | 0x1000    |
+|  7   | LOAD |0x2de000|0xf0000000|0x92f6b000| 0x017c18 | 0x018000| 0x8000007 | 0x1000    |
+|  8   | LOAD |0x2f6000|0xf0018000|0x92f83000| 0x00a624 | 0x00b000| 0x8000005 | 0x1000    |
+|  9   | LOAD |0x301000|0xe074e000|0x92f8e000| 0x049fb0 | 0x049fb0| 0x8000004 | 0x1000    |
+|  10  | LOAD |0x34b000|0xe0740000|0x92fd8000| 0x000054 | 0x000054| 0x8000004 | 0x1000    |
+|  11  | LOAD |0x34c000|0xb2100000|0x93000000| 0x1061e4 | 0x107000| 0x8000005 | 0x1000    |
+|  12  | LOAD |0x453000|0xb2207000|0x93107000| 0x008004 | 0x24d000| 0x8000006 | 0x1000    |
+|  13  | LOAD |0x45c000|0xb2454000|0x93354000| 0x00d5a8 | 0x00e000| 0x8000004 | 0x1000    |
+|  14  | LOAD |0x46a000|0xb2000000|0x93362000| 0x0059e8 | 0x005a00| 0x8000006 | 0x1000    |
+|  15  | LOAD |0x46fa00|0xb2005a00|0x93367a00| 0x025da0 | 0x025da0| 0x8000006 | 0x1000    |
+|  16  | LOAD |0x4957a0|0xb202b7a0|0x9338d7a0| 0x031070 | 0x031860| 0x8000005 | 0x1000    |
+|  17  | LOAD |0x4c7000|0xb0000000|0x93400000| 0x5eb3e8 | 0x5ec000| 0x8000005 | 0x1000    |
+|  18  | LOAD |0xab3000|0xb05ec000|0x939ec000| 0x04a708 | 0x9fc000| 0x8000006 | 0x1000    |
+|  19  | LOAD |0xafe000|0xb0fe8000|0x943e8000| 0x0006d0 | 0x001000| 0x8000006 | 0x1000    |
+|  20  | LOAD |0xaff000|0xb0fe9000|0x943e9000| 0x029ea0 | 0x02a000| 0x8000004 | 0x1000    |
+|  21  | LOAD |0xb29000|0xb1014000|0x94414000| 0x000000 | 0x3ec000| 0x8000004 | 0x1000    |
+
+Hash Segment Properties: 
+| Header Size     | 40B     |
+| Hash Algorithm  | sha256  |
+
+Header: 
+| cert_chain_ptr       | 0xffffffff  |
+| cert_chain_size      | 0x00001800  |
+| cert_chain_size_qti  | 0x00000000  |
+| code_size            | 0x000002e0  |
+| image_id             | 0x0000000c  |
+| image_size           | 0x00001be0  |
+| sig_ptr              | 0xffffffff  |
+| sig_size             | 0x00000100  |
+| sig_size_qti         | 0x00000000  |
+| version              | 0x00000005  |
+
+SecElf Properties: 
+| image_type        | 0     |
+| max_elf_segments  | 100   |
+| testsig_serialnum | None  |
+
+------------------------------------------------------
+
+SUMMARY:
+Following actions were performed: "sign, validate"
+Output is saved at: /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/build/bsp/multi_pd_img/build/660.adsp.prod/sign
+
+| Idx | SignId | Parse | Integrity | Sign | Encrypt |              Validate              |
+|     |        |       |           |      |         | Parse | Integrity | Sign | Encrypt |
+|-----|--------|-------|-----------|------|---------|-------|-----------|------|---------|
+|  1. |  adsp  |   T   |     NA    |  T   |    NA   |   T   |     T     |  T   |    F    |
+

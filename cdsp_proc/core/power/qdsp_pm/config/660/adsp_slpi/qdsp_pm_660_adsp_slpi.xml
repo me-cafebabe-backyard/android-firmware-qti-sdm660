@@ -1,0 +1,77 @@
+#include "adsppm_utils.h"
+
+
+<driver name="NULL">
+   <device id="/core/power/adsppm">
+     <props name="DEBUG_LEVEL" type=DALPROP_ATTR_TYPE_UINT32>
+           ADSPPM_LOG_LEVEL_INFO
+     </props>
+     <props name="THREAD_NUMBER" type=DALPROP_ATTR_TYPE_UINT32>
+           2
+     </props>
+     <props name="OVERHANG_VOTE_TIMEOUT_MS" type=DALPROP_ATTR_TYPE_UINT32>
+           5
+     </props>
+     <props name="LPASS_REG_RANGE" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+           lpassRegRange_660
+     </props>
+     <props name="L2_CONFIG_REG_RANGE" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+           l2ConfigRegRange_660
+     </props>
+     <props name="CORE_DESCRIPTORS" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+           cores_660
+     </props>
+     <props name="MEMORY_DESCRIPTORS" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+           memories_660
+     </props>
+     <props name="CLOCK_DESCRIPTORS" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+           clocks_660
+     </props>
+     <props name="BUS_PORT_DESCRIPTORS" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+           busPorts_660
+     </props>
+     <props name="EXTERNAL_BUS_ROUTES" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+           extBusRoutes_660
+     </props>
+     <props name="MIPS_BUS_ROUTES" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+           mipsBwRoutes_660
+     </props>
+     <props name="REGISTER_PROGRAMMING_SPEEDS" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+           regProgSpeeds_660
+     </props>
+     <props name="POWER_DOMAIN_DESCRIPTORS" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+           pwrDomains_660
+     </props>
+     <props name="FEATURE_DESCRIPTORS" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+           features_660
+     </props>
+     <props name="COMPENSATED_DDR_BW_TABLE" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+          compensatedDdrBwTable_660
+     </props>
+     <props name="COMPENSATED_AHB_BW_TABLE" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+          compensatedAhbBwTable_660
+     </props>
+     <props name="CACHE_PARTITION_CONFIG_TABLE" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+          cachePartitionConfigTable_660
+     </props>
+     <props name="BW_CONCURRENCY_SETTINGS" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+            bwConcurrencySettings_660
+     </props>
+     <props name="THREAD_LOADING_DATA" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+            threadLoadingData_660
+     </props>
+     <props name="CPP_FACTORS" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+            audioVoiceCppFactors_660
+     </props>
+     <props name="ADSP_TO_AHBE_FREQ_TABLE" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+            adspToAhbeFreqTable_660
+     </props>
+     <props name="ADSP_CACHE_SIZE_MPPS_THRESHOLD_TABLE" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+             adspCacheSizeMPPSThreshold_660
+     </props> 	 
+     <props name="ADSP_CACHE_SIZE_BW_SCALING_TABLE" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+            adspcachesizebwscaling_660
+     </props>
+   </device>
+</driver>
+

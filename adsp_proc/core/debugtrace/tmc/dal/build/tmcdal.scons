@@ -1,0 +1,61 @@
+#===============================================================================
+#
+# GENERAL DESCRIPTION
+#    Build script for HAL QDSS-TMC Library.
+#
+# Copyright (c) 2011-2012 Qualcomm Technologies Incorporated.
+# All rights reserved.
+# Qualcomm Confidential and Proprietary
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header:  $
+#
+
+Import('env')
+import qdss
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "../src"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+
+env.RequirePublicApi(['HAL','DAL','DEBUGTRACE','SERVICES','SYSTEMDRIVERS','KERNEL'])
+env.RequireRestrictedApi(['DEBUGTRACE'])
+env.RequireProtectedApi(['DEBUGTRACE'])
+
+config='8998'                     #default config
+if env['MSM_ID'] in ['8996','8998','660']:     #placeholder - add to this list when we add a config for new targets
+    config=env['MSM_ID']
+
+
+env.PublishPrivateApi('DEBUGTRACE_TARGET_API', [
+   "${INC_ROOT}/core/debugtrace/tmc/config/" + config,
+])
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+
+TMC_DAL_SRC = [
+   '${BUILDPATH}/DalTMC.c',
+]
+
+if env['IMAGE'] in ['slpi']:
+   env.Append(CCFLAGS = " -DQDSS_SLPI_WA")
+
+env.AddLibrary(
+   qdss.BuildTags(['rpm', 'wcn', 'gss', 'modem', 'adsp','cdsp', 'apps', 'venus', 'sensor']),
+   '${BUILDPATH}/tmc_dal',TMC_DAL_SRC)
+
+
+if 'USES_DEVCFG' in env:
+   DEVCFG_IMG = ['DAL_DEVCFG_IMG']
+   env.AddDevCfgInfo(DEVCFG_IMG,
+   {
+      '8996_xml' : ['${BUILD_ROOT}/core/debugtrace/tmc/config/8996/daltmc.xml'],
+      '8998_xml' : ['${BUILD_ROOT}/core/debugtrace/tmc/config/8998/daltmc.xml'],
+      '660_xml'  : ['${BUILD_ROOT}/core/debugtrace/tmc/config/660/daltmc.xml']
+})

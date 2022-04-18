@@ -1,0 +1,80 @@
+//===========================================================================
+//
+// FILE:         spi_slpi_660.xml
+//
+// DESCRIPTION:  This file contains the DAL XML properties for the QUPI2CPD
+//               Device Access Library.
+//
+//===========================================================================
+//
+//                             Edit History
+//
+// $Header: //components/dev/core.mpss/3.4/vink.CORE.MPSS.3.4.your_cspec/buses/spi/config/spi_props_mpss_9625.xml#1 $
+//
+// when       who     what, where, why
+// --------   ---     -------------------------------------------------------
+// 11/01/16   ska     Created for SDM 660
+//
+//===========================================================================
+//             Copyright (c) 2016 QUALCOMM Incorporated.
+//                    All Rights Reserved.
+//                  QUALCOMM Confidential & Proprietary
+//===========================================================================
+
+#define SSC_BASE_PHYS_ADDR 0x15000000
+#define SPI_SRC_CLK_FREQ 99837542  
+#define CLK_DIVIDER_VALUE 511
+
+<driver name="NULL">
+
+   <device id="DALDEVICEID_SPI_DEVICE_1">
+     <props name="num_devices"          type=DALPROP_ATTR_TYPE_UINT32>                  3</props>
+     <props name="SSC_BASE_PHYS_ADDR"   type=DALPROP_ATTR_TYPE_UINT32> SSC_BASE_PHYS_ADDR</props>
+     <props name="CHIP_BUS_INDEX"       type=DALPROP_ATTR_TYPE_UINT32>                  0</props>
+     <props name="CHIP_BLOCK_OFFSET"    type=DALPROP_ATTR_TYPE_UINT32>           0x435000</props>
+	 <props name="SPI_SRC_CLK_FREQ"     type=DALPROP_ATTR_TYPE_UINT32>   SPI_SRC_CLK_FREQ</props>
+	 <props name="CLK_DIVIDER_VALUE"    type=DALPROP_ATTR_TYPE_UINT32>  CLK_DIVIDER_VALUE</props>
+     <props name="gpio_spi_clk_str"     type=DALPROP_ATTR_TYPE_UINT32>         0x0006C091</props>
+     <props name="gpio_spi_cs_str"      type=DALPROP_ATTR_TYPE_UINT32>         0x0006C081</props>
+	 <props name="gpio_spi_alt_cs1_str" type=DALPROP_ATTR_TYPE_UINT32>         0x0006C001</props>
+	 <props name="gpio_spi_alt_cs2_str" type=DALPROP_ATTR_TYPE_UINT32>                  0</props>
+	 <props name="gpio_spi_alt_cs3_str" type=DALPROP_ATTR_TYPE_UINT32>                  0</props>
+     <props name="gpio_spi_mosi_str"    type=DALPROP_ATTR_TYPE_UINT32>         0x0006C0A1</props>
+     <props name="gpio_spi_miso_str"    type=DALPROP_ATTR_TYPE_UINT32>         0x0006C0B1</props>
+
+   </device>
+   
+   <device id="DALDEVICEID_SPI_DEVICE_2">
+     <props name="num_devices"          type=DALPROP_ATTR_TYPE_UINT32>                  3</props>
+     <props name="SSC_BASE_PHYS_ADDR"   type=DALPROP_ATTR_TYPE_UINT32> SSC_BASE_PHYS_ADDR</props>
+     <props name="CHIP_BUS_INDEX"       type=DALPROP_ATTR_TYPE_UINT32>                  1</props>
+     <props name="CHIP_BLOCK_OFFSET"    type=DALPROP_ATTR_TYPE_UINT32>           0x436000</props>
+	 <props name="SPI_SRC_CLK_FREQ"     type=DALPROP_ATTR_TYPE_UINT32>   SPI_SRC_CLK_FREQ</props>
+	 <props name="CLK_DIVIDER_VALUE"    type=DALPROP_ATTR_TYPE_UINT32>  CLK_DIVIDER_VALUE</props>
+     <props name="gpio_spi_clk_str"     type=DALPROP_ATTR_TYPE_UINT32>         0x0006C052</props>
+     <props name="gpio_spi_cs_str"      type=DALPROP_ATTR_TYPE_UINT32>         0x0006C042</props>
+	 <props name="gpio_spi_alt_cs1_str" type=DALPROP_ATTR_TYPE_UINT32>                  0</props>
+	 <props name="gpio_spi_alt_cs2_str" type=DALPROP_ATTR_TYPE_UINT32>                  0</props>
+	 <props name="gpio_spi_alt_cs3_str" type=DALPROP_ATTR_TYPE_UINT32>                  0</props>
+     <props name="gpio_spi_mosi_str"    type=DALPROP_ATTR_TYPE_UINT32>         0x0006C062</props>
+     <props name="gpio_spi_miso_str"    type=DALPROP_ATTR_TYPE_UINT32>         0x0006C072</props>
+
+   </device>
+   
+     <device id="DALDEVICEID_SPI_DEVICE_3">
+     <props name="num_devices"          type=DALPROP_ATTR_TYPE_UINT32>                  3</props>
+     <props name="SSC_BASE_PHYS_ADDR"   type=DALPROP_ATTR_TYPE_UINT32> SSC_BASE_PHYS_ADDR</props>
+     <props name="CHIP_BUS_INDEX"       type=DALPROP_ATTR_TYPE_UINT32>                  2</props>
+     <props name="CHIP_BLOCK_OFFSET"    type=DALPROP_ATTR_TYPE_UINT32>           0x437000</props>
+	 <props name="SPI_SRC_CLK_FREQ"     type=DALPROP_ATTR_TYPE_UINT32>   SPI_SRC_CLK_FREQ</props>
+	 <props name="CLK_DIVIDER_VALUE"    type=DALPROP_ATTR_TYPE_UINT32>  CLK_DIVIDER_VALUE</props>
+     <props name="gpio_spi_clk_str"     type=DALPROP_ATTR_TYPE_UINT32>         0x0006c0c2</props>
+     <props name="gpio_spi_cs_str"      type=DALPROP_ATTR_TYPE_UINT32>         0x0006c0d2</props>
+	 <props name="gpio_spi_alt_cs1_str" type=DALPROP_ATTR_TYPE_UINT32>                  0</props>
+	 <props name="gpio_spi_alt_cs2_str" type=DALPROP_ATTR_TYPE_UINT32>                  0</props>
+	 <props name="gpio_spi_alt_cs3_str" type=DALPROP_ATTR_TYPE_UINT32>                  0</props>
+     <props name="gpio_spi_mosi_str"    type=DALPROP_ATTR_TYPE_UINT32>         0x0006c0e2</props>
+     <props name="gpio_spi_miso_str"    type=DALPROP_ATTR_TYPE_UINT32>         0x0006c0f2</props>
+
+   </device>
+</driver>

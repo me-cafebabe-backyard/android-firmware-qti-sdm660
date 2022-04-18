@@ -1,0 +1,31 @@
+// Copyright (c) 2016 Qualcomm Technologies, Inc.  All Rights Reserved.
+// Qualcomm Technologies Proprietary and Confidential.
+
+// Test interface
+
+include "INoOp.idl"
+
+struct Struct1 {
+   int32 a;
+};
+
+struct Struct2 {
+   Struct1 s;
+   int32 b;
+};
+
+interface Test1 : NoOp {
+   const int32 A = 1;
+   const int32 B = 0xf;
+   const int32 NO_METHOD = 0xfefe;
+
+   error ERROR_ONE;
+   error ERROR_TWO;
+
+   method num(in int32 ia, out int32 oa);
+   method bundled(in int32 ia, in Struct2 is,
+                  out int32 oa, out Struct2 os);
+   method array(in uint8[] a, out uint8[] b);
+   method setObj(in interface o);
+   method getObj(out interface o);
+};

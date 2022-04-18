@@ -1,0 +1,84 @@
+import os
+
+Import('env')
+   
+supported_targets = ['8996', '8998', '660', 'nicobar']
+if env['MSM_ID'] not in supported_targets:
+    env.PrintWarning('Bailing from GPIO scripts; no support for build targets other than %s' % supported_targets)
+    Return()
+
+SRCPATH = "../"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+env.Append(CPPPATH = '..')
+env.Append(CFLAGS = '${ARMCC_STDC99_CMD}')
+
+GPIO_API = [
+   'DAL',
+   'DEBUGTOOLS',
+   'MPROC',
+   'POWER',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+]
+
+env.RequirePublicApi(GPIO_API)
+env.RequireRestrictedApi(GPIO_API)
+
+env.Append(CPPPATH = [
+    '${INC_ROOT}/core/power/gpio/inc',
+    '${INC_ROOT}/core/power/gpio/target/${MSM_ID}',
+])
+
+GPIO_SOURCES = [
+    '${BUILDPATH}/src/gpio_toggle.c',
+    '${BUILDPATH}/target/${MSM_ID}/gpio.c',
+]
+
+if env['MSM_ID'] in ['8998', '660','nicobar']:
+    GPIO_SOURCES.extend([
+        '${BUILDPATH}/target/${MSM_ID}/gpio_lookup_table.c',
+    ])
+
+gpio_debug_flag = 0
+
+if gpio_debug_flag == 0:
+    GPIO_SOURCES.append('${BUILDPATH}/src/gpio_debug_stub.c')
+else:
+    GPIO_SOURCES.append('${BUILDPATH}/src/gpio_debug.c')
+
+env.AddLibrary(['CORE_RPM'], '${BUILDPATH}/gpio.lib', GPIO_SOURCES)
+
+
+if env.has_key('HWIO_IMAGE'):
+    if env['MSM_ID'] in ['8998']:
+        env.AddHWIOFile('HWIO', [
+            {
+                'filename': '${INC_ROOT}/core/power/gpio/target/${MSM_ID}/tlmm_hwio.h',
+                'modules': ['TLMM_EAST', 'TLMM_NORTH', 'TLMM_WEST'],
+                'output-offsets': False,
+                'header':
+                    '#include "msmhwiobase.h"\n\n'
+            }
+        ])
+    elif env['MSM_ID'] in ['660']:
+        env.AddHWIOFile('HWIO', [
+            {
+                'filename': '${INC_ROOT}/core/power/gpio/target/${MSM_ID}/tlmm_hwio.h',
+                'modules': ['TLMM_CENTER', 'TLMM_NORTH', 'TLMM_SOUTH'],
+                'output-offsets': False,
+                'header':
+                    '#include "msmhwiobase.h"\n\n'
+            }
+        ])
+    else:
+        env.AddHWIOFile('HWIO', [
+            {
+                'filename': '${INC_ROOT}/core/power/gpio/target/${MSM_ID}/tlmm_hwio.h',
+                'modules': ['TLMM_CSR'],
+                'output-offsets': False,
+                'header':
+                    '#include "msmhwiobase.h"\n\n'
+            }
+        ])
+

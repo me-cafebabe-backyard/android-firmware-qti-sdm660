@@ -1,0 +1,135 @@
+#===============================================================================
+#
+# HAL CLK HARDWARE LIBRARY
+#
+# Target:    MSM Binary Compatible Targets
+# Processor: All
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2014 by QUALCOMM Technologies, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.qdsp6/1.0.c2/systemdrivers/hal/clk/hw/msm8998/adsp/build/halclk_hw.scons#1 $
+#  $DateTime: 2020/02/10 01:57:30 $
+#  $Author: pwbldsvc $
+#  $Change: 22511909 $
+#
+#===============================================================================
+
+import os
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+
+SRCPATH = "../"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0) 
+
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+
+CBSP_API = [
+   'HAL',
+   'DAL',
+   'DEBUGTOOLS',
+   'MPROC',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+
+   # needs to be last also contains wrong comdef.h
+   'KERNEL',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+HAL_CLK_HW_BUILD_ROOT = os.getcwd();
+
+env.PublishPrivateApi("SYSTEMDRIVERS_HAL_CLK_HW", [
+  HAL_CLK_HW_BUILD_ROOT + "/../inc",
+])
+
+
+#-----------------------------------------------------------------------------
+# Sources: HALClock HW Sources
+#-----------------------------------------------------------------------------
+HALCLK_CHIPSET_SOURCES = [
+  '${BUILDPATH}/src/HALclkMain.c',
+  '${BUILDPATH}/src/HALclkTest.c',
+  '${BUILDPATH}/src/gcc/HALclkBLSP1QUP1.c',
+  '${BUILDPATH}/src/gcc/HALclkBLSP1QUP2.c',
+  '${BUILDPATH}/src/gcc/HALclkBLSP1QUP3.c',
+  '${BUILDPATH}/src/gcc/HALclkBLSP1QUP4.c',
+  '${BUILDPATH}/src/gcc/HALclkBLSP1QUP5.c',
+  '${BUILDPATH}/src/gcc/HALclkBLSP1QUP6.c',
+  '${BUILDPATH}/src/gcc/HALclkBLSP1UART1.c',
+  '${BUILDPATH}/src/gcc/HALclkBLSP1UART2.c',
+  '${BUILDPATH}/src/gcc/HALclkBLSP1UART3.c',
+  '${BUILDPATH}/src/gcc/HALclkBLSP2QUP1.c',
+  '${BUILDPATH}/src/gcc/HALclkBLSP2QUP2.c',
+  '${BUILDPATH}/src/gcc/HALclkBLSP2QUP3.c',
+  '${BUILDPATH}/src/gcc/HALclkBLSP2QUP4.c',
+  '${BUILDPATH}/src/gcc/HALclkBLSP2QUP5.c',
+  '${BUILDPATH}/src/gcc/HALclkBLSP2QUP6.c',
+  '${BUILDPATH}/src/gcc/HALclkBLSP2UART1.c',
+  '${BUILDPATH}/src/gcc/HALclkBLSP2UART2.c',
+  '${BUILDPATH}/src/gcc/HALclkBLSP2UART3.c',
+  '${BUILDPATH}/src/gcc/HALclkCE1.c',
+  '${BUILDPATH}/src/gcc/HALclkCONFIGNOC.c',
+  '${BUILDPATH}/src/gcc/HALclkGCC.c',
+  '${BUILDPATH}/src/gcc/HALclkGCCMain.c',
+  '${BUILDPATH}/src/gcc/HALclkSYSTEMNOC.c',
+  '${BUILDPATH}/src/lpass/HALclkQ6CORE.c',
+  '${BUILDPATH}/src/lpass/HALclkAONBUS.c',
+  '${BUILDPATH}/src/lpass/HALclkATIME.c',
+  '${BUILDPATH}/src/lpass/HALclkAUDIOCORE.c',
+  '${BUILDPATH}/src/lpass/HALclkAUDIOCORELPAIFPCMDATAOE.c',
+  '${BUILDPATH}/src/lpass/HALclkAUDSLIMBUS.c',
+  '${BUILDPATH}/src/lpass/HALclkAXI.c',
+  '${BUILDPATH}/src/lpass/HALclkCAMSSSTREAMING0.c',
+  '${BUILDPATH}/src/lpass/HALclkCAMSSSTREAMING1.c',
+  '${BUILDPATH}/src/lpass/HALclkCNOC.c',
+  '${BUILDPATH}/src/lpass/HALclkCOREBUS.c',
+  '${BUILDPATH}/src/lpass/HALclkCXO.c',
+  '${BUILDPATH}/src/lpass/HALclkEXTMCLK0.c',
+  '${BUILDPATH}/src/lpass/HALclkEXTMCLK1.c',
+  '${BUILDPATH}/src/lpass/HALclkEXTMCLK2.c',
+  '${BUILDPATH}/src/lpass/HALclkLPASSMain.c',
+  '${BUILDPATH}/src/lpass/HALclkPRIMARYPCM.c',
+  '${BUILDPATH}/src/lpass/HALclkQ6SMMU.c',
+  '${BUILDPATH}/src/lpass/HALclkQCASLIMBUS.c',
+  '${BUILDPATH}/src/lpass/HALclkQOSFIXEDMONITOR.c',
+  '${BUILDPATH}/src/lpass/HALclkQUATERNARYPCM.c',
+  '${BUILDPATH}/src/lpass/HALclkRESAMPLER.c',
+  '${BUILDPATH}/src/lpass/HALclkSECONDARYPCM.c',
+  '${BUILDPATH}/src/lpass/HALclkSLEEP.c',
+  '${BUILDPATH}/src/lpass/HALclkSNOC.c',
+  '${BUILDPATH}/src/lpass/HALclkSPEAKERI2S.c',
+  '${BUILDPATH}/src/lpass/HALclkTERTIARYPCM.c',
+  '${BUILDPATH}/src/lpass/HALclkSTANDALONEBCR.c',
+]
+
+HALClockHW_lib = env.Library('${BUILDPATH}/HALclk_hw', HALCLK_CHIPSET_SOURCES)
+
+HAL_CLOCK_ASM_OBJS = [ '${BUILDPATH}/src/HALclkInitASM.S' ]
+
+#-------------------------------------------------------------------------------
+# Sources: HALClockHW Library Creation
+#-------------------------------------------------------------------------------
+
+env.AddLibsToImage(
+   ['QDSP6_SW_IMAGE', 'CBSP_QDSP6_SW_IMAGE', 'CORE_SLPI_ROOT'],
+   HALClockHW_lib)
+
+env.AddObject(['QDSP6_SW_IMAGE', 'CBSP_QDSP6_SW_IMAGE','CORE_SLPI_ROOT'], HAL_CLOCK_ASM_OBJS)
+
+

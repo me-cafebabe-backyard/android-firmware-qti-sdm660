@@ -1,0 +1,37 @@
+; ============================================================================
+;
+;  HWIORegisters.cmm
+;
+;  Script to launch HWIO per scripts.
+;
+;  Execution:
+;    HWIORegisters.cmm <chip_name>
+;
+;  ====================================================================
+;
+;  Copyright (c) 2014 Qualcomm Technologies Incorporated.  All Rights Reserved.
+;  QUALCOMM Proprietary and Confidential.
+;
+;  ====================================================================
+;
+;  $Header: //components/rel/core.glue/1.2.1/tools/tools/systemdrivers/hwio/HWIORegisters.cmm#1 $
+;  $DateTime: 2016/11/23 22:06:41 $
+;  $Author: pwbldsvc $
+;
+; ============================================================================
+;
+
+; Keep a global count of how many times the per script has been launched and
+; use it to label the per window. This way running the script again launches
+; an additional window, instead of replacing the old one.
+global &hwioreg_count
+
+;-----------------------------------------------------------------------------
+; main
+;-----------------------------------------------------------------------------
+
+ENTRY &chip
+
+&hwioreg_count=&hwioreg_count+1
+per &chip/hwioreg.per &hwioreg_count
+

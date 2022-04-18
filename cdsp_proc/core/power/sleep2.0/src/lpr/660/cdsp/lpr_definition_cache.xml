@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  L2 Sleep Low Power Resource/Mode definitions
+
+  Copyright (c) 2013-2016 Qualcomm Technologies, Inc. (QTI).
+  All Rights Reserved.
+  Qualcomm Technologies Confidential and Proprietary
+-->
+
+<!--
+Format of Enter/Exit/Backoff latency fields:
+"<Fixed>,<Scaled>"
+Fixed - Unscaled value that is always added to each frequency table entry
+Scaled - Value that will be scaled at 1:1 ratio according to frequency table entries
+         and the initial base profile frequency given via ProfileFreq
+
+Bitwise attribute values (see sleep_mode_attribute enum for full description):
+  0x01 - Unused
+  0x02 - Multiple Entry
+  0x04 - Unused
+  0x08 - No automatic latency tracking
+  0x10 - LPRM is cacheable
+-->
+
+<LPRDefinition>
+  <LPR Name="l2" CoreMask="0xFFFFFFFF" ProfileFreq="245760">
+    <Mode
+      Name="noret"
+      Dependency="cpu_power_config"
+      PowerSavings="-2431234, 40"
+      EnterLat="738"
+      ExitLat="1480"
+      EnterFn="cacheLPR_L2NonRetentionEnter"
+      ExitFn="cacheLPR_L2NonRetentionExit"
+      Backoff="1480"
+      Attributes="0x10"
+      Supported="TRUE"
+      >
+    </Mode>
+
+    <Mode
+      Name="ret" 
+      Dependency="cpu_power_config"
+      PowerSavings="-14402280, 34"
+      EnterLat="726"
+      ExitLat="480"
+      EnterFn="cacheLPR_L2RetentionEnter"
+      Backoff="480"
+      Attributes="0x10"
+      Supported="FALSE"
+      >
+    </Mode>
+  </LPR>
+</LPRDefinition>

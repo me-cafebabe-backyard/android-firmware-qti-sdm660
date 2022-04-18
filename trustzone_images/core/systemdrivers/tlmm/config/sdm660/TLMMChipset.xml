@@ -1,0 +1,135 @@
+#include "TlmmPropDef.h"
+#include "HALxpu3.h"
+#define TLMM_BASE                                                   0x03000000
+#define TLMM_SOUTH_REG_BASE                                         (TLMM_BASE      + 0x00100000)
+#define TLMM_CENTER_REG_BASE                                        (TLMM_BASE      + 0x00500000)
+#define TLMM_NORTH_REG_BASE                                         (TLMM_BASE      + 0x00900000)
+
+<driver name="NULL">
+  <global_def>
+    <var_seq name="tlmm_xpu_pins" type=DALPROP_DATA_TYPE_UINT32_SEQ>
+      0xFFFFFFFF, end
+    </var_seq>
+    <var_seq name="tlmm_xpu_sections" type=DALPROP_DATA_TYPE_UINT32_SEQ>
+      HAL_XPU2_TLMM_XPU_SOUTH,
+      HAL_XPU2_TLMM_XPU_CENTER,
+      HAL_XPU2_TLMM_XPU_NORTH,
+      end
+    </var_seq>
+    <var_seq name="tlmm_tile_bases" type=DALPROP_DATA_TYPE_UINT32_SEQ>
+      TLMM_SOUTH_REG_BASE,
+      TLMM_CENTER_REG_BASE,
+      TLMM_NORTH_REG_BASE,
+      end
+    </var_seq>
+    
+  </global_def>
+  <device id="/tlmm/configs">
+    <props name="blsp_spi_mosi[1]" type="TLMMGpioIdType">{0, 1}</props>
+    <props name="blsp_spi_miso[1]" type="TLMMGpioIdType">{1, 1}</props>
+    <props name="blsp_spi_cs_n[1]" type="TLMMGpioIdType">{2, 1}</props>
+    <props name="blsp_spi_clk[1]" type="TLMMGpioIdType">{3, 1}</props>
+    <props name="blsp_spi_mosi[2]" type="TLMMGpioIdType">{4, 1}</props>
+    <props name="blsp_spi_miso[2]" type="TLMMGpioIdType">{5, 1}</props>
+    <props name="blsp_spi_cs_n[2]" type="TLMMGpioIdType">{6, 1}</props>
+    <props name="blsp_spi_clk[2]" type="TLMMGpioIdType">{7, 1}</props>
+    <props name="blsp_spi_mosi[3]" type="TLMMGpioIdType">{8, 1}</props>
+    <props name="blsp_spi_miso[3]" type="TLMMGpioIdType">{9, 1}</props>
+    <props name="blsp_spi_cs_n[3]" type="TLMMGpioIdType">{10, 1}</props>
+    <props name="blsp_spi_clk[3]" type="TLMMGpioIdType">{11, 1}</props>
+    <props name="blsp_spi_mosi[4]" type="TLMMGpioIdType">{12, 1}</props>
+    <props name="blsp_spi_miso[4]" type="TLMMGpioIdType">{13, 1}</props>
+    <props name="blsp_spi_cs_n[4]" type="TLMMGpioIdType">{14, 1}</props>
+    <props name="blsp_spi_clk[4]" type="TLMMGpioIdType">{15, 1}</props>
+    <props name="blsp_spi_mosi[5]" type="TLMMGpioIdType">{16, 2}</props>
+    <props name="blsp_spi_miso[5]" type="TLMMGpioIdType">{17, 2}</props>
+    <props name="blsp_spi_cs_n[5]" type="TLMMGpioIdType">{18, 2}</props>
+    <props name="blsp_spi_clk[5]" type="TLMMGpioIdType">{19, 2}</props>
+    <props name="blsp_spi_mosi[6]" type="TLMMGpioIdType">{20, 1}</props>
+    <props name="blsp_spi_miso[6]" type="TLMMGpioIdType">{21, 1}</props>
+    <props name="blsp_spi_cs_n[6]" type="TLMMGpioIdType">{22, 1}</props>
+    <props name="blsp_spi_clk[6]" type="TLMMGpioIdType">{23, 1}</props>
+    <props name="blsp_spi_mosi[7]" type="TLMMGpioIdType">{24, 1}</props>
+    <props name="blsp_spi_miso[7]" type="TLMMGpioIdType">{25, 1}</props>
+    <props name="blsp_spi_cs_n[7]" type="TLMMGpioIdType">{26, 1}</props>
+    <props name="blsp_spi_clk[7]" type="TLMMGpioIdType">{27, 1}</props>
+    <props name="blsp_spi_mosi8_mira" type="TLMMGpioIdType">{28, 1}</props>
+    <props name="blsp_spi_miso8_mira" type="TLMMGpioIdType">{29, 1}</props>
+    <props name="blsp_spi_cs_n8_mira" type="TLMMGpioIdType">{30, 1}</props>
+    <props name="blsp_spi_cs1_n[3]" type="TLMMGpioIdType">{30, 4}</props>
+    <props name="blsp_spi_clk8_mira" type="TLMMGpioIdType">{31, 1}</props>
+    <props name="blsp_spi_mosi8_mirb" type="TLMMGpioIdType">{40, 3}</props>
+    <props name="blsp_spi_miso8_mirb" type="TLMMGpioIdType">{41, 3}</props>
+    <props name="blsp_spi_clk8_mirb" type="TLMMGpioIdType">{44, 3}</props>
+    <props name="blsp_spi_cs1_n[1]" type="TLMMGpioIdType">{46, 1}</props>
+    <props name="blsp_spi_cs_n8_mirb" type="TLMMGpioIdType">{52, 2}</props>
+    <props name="blsp_spi_cs1_n[8]" type="TLMMGpioIdType">{64, 2}</props>
+    <props name="blsp_spi_cs2_n[3]" type="TLMMGpioIdType">{65, 2}</props>
+    <props name="blsp_spi_cs2_n[8]" type="TLMMGpioIdType">{76, 1}</props>
+    
+    <props name="blsp_i2c_sda[1]" type="TLMMGpioIdType">{2, 3}</props>
+    <props name="blsp_i2c_scl[1]" type="TLMMGpioIdType">{3, 3}</props>
+    <props name="blsp_i2c_sda[2]" type="TLMMGpioIdType">{6, 2}</props>
+    <props name="blsp_i2c_scl[2]" type="TLMMGpioIdType">{7, 2}</props>
+    <props name="blsp_i2c_sda[3]" type="TLMMGpioIdType">{10, 2}</props>
+    <props name="blsp_i2c_scl[3]" type="TLMMGpioIdType">{11, 2}</props>
+    <props name="blsp_i2c_sda[4]" type="TLMMGpioIdType">{14, 2}</props>
+    <props name="blsp_i2c_scl[4]" type="TLMMGpioIdType">{15, 2}</props>
+    <props name="blsp_i2c_sda[5]" type="TLMMGpioIdType">{18, 3}</props>
+    <props name="blsp_i2c_scl[5]" type="TLMMGpioIdType">{19, 3}</props>
+    <props name="blsp_i2c_sda[6]" type="TLMMGpioIdType">{22, 3}</props>
+    <props name="blsp_i2c_scl[6]" type="TLMMGpioIdType">{23, 3}</props>
+    <props name="blsp_i2c_sda[7]" type="TLMMGpioIdType">{26, 3}</props>
+    <props name="blsp_i2c_scl[7]" type="TLMMGpioIdType">{27, 3}</props>
+    <props name="BLSP_I2C_SDA8_MIRA" type="TLMMGpioIdType">{30, 3}</props>
+    <props name="BLSP_I2C_SCL8_MIRA" type="TLMMGpioIdType">{31, 3}</props>
+    <props name="BLSP_I2C_SCL8_MIRB" type="TLMMGpioIdType">{44, 4}</props>
+    <props name="BLSP_I2C_SDA8_MIRB" type="TLMMGpioIdType">{52, 3}</props>
+    
+    <props name="tlmm_gpio_test_pin" type="TLMMGpioIdType">{8, 1}</props>
+
+    <props name="blsp_uart_tx[1]" type="TLMMGpioIdType">{0, 2}</props>
+    <props name="blsp_uart_rx[1]" type="TLMMGpioIdType">{1, 2}</props>
+    <props name="blsp_uart_cts_n[1]" type="TLMMGpioIdType">{2, 2}</props>
+    <props name="blsp_uart_rfr_n[1]" type="TLMMGpioIdType">{3, 2}</props>
+    <props name="blsp_uart_tx[5]" type="TLMMGpioIdType">{16, 1}</props>
+    <props name="blsp_uart_rx[5]" type="TLMMGpioIdType">{17, 1}</props>
+    <props name="blsp_uart_cts_n[5]" type="TLMMGpioIdType">{18, 1}</props>
+    <props name="blsp_uart_rfr_n[5]" type="TLMMGpioIdType">{19, 1}</props>
+    <props name="blsp_uart_tx[2]" type="TLMMGpioIdType">{20, 2}</props>
+    <props name="blsp_uart_rx[2]" type="TLMMGpioIdType">{21, 2}</props>
+    <props name="blsp_uart_cts_n[2]" type="TLMMGpioIdType">{22, 2}</props>
+    <props name="blsp_uart_rfr_n[2]" type="TLMMGpioIdType">{23, 2}</props>
+    <props name="BLSP_UART_TX6_MIRA" type="TLMMGpioIdType">{24, 2}</props>
+    <props name="BLSP_UART_RX6_MIRA" type="TLMMGpioIdType">{25, 2}</props>
+    <props name="BLSP_UART_CTS_N6_MIRA" type="TLMMGpioIdType">{26, 2}</props>
+    <props name="BLSP_UART_RFR_N6_MIRA" type="TLMMGpioIdType">{27, 2}</props>
+    <props name="BLSP_UART_TX6_MIRB" type="TLMMGpioIdType">{28, 2}</props>
+    <props name="BLSP_UART_RX6_MIRB" type="TLMMGpioIdType">{29, 2}</props>
+    <props name="BLSP_UART_CTS_N6_MIRB" type="TLMMGpioIdType">{30, 2}</props>
+    <props name="BLSP_UART_RFR_N6_MIRB" type="TLMMGpioIdType">{31, 2}</props>
+
+
+    <props name="tlmm_xpu_protection" type=DALPROP_ATTR_TYPE_UINT32_SEQ_PTR>
+      tlmm_xpu_pins
+    </props>
+    <props name="tlmm_xpu" type=DALPROP_ATTR_TYPE_UINT32_SEQ_PTR>
+      tlmm_xpu_sections
+    </props>
+    <props name="tlmm_tiles" type=DALPROP_ATTR_TYPE_UINT32_SEQ_PTR>
+      tlmm_tile_bases
+    </props>
+    <props name="tlmm_num_tiles" type=DALPROP_ATTR_TYPE_UINT32>
+      3
+    </props>
+    <props name="tlmm_base" type=DALPROP_ATTR_TYPE_UINT32>
+      0x01000000
+    </props>
+    <props name="tlmm_offset" type=DALPROP_ATTR_TYPE_UINT32>
+      0x00010000
+    </props>
+    <props name="tlmm_total_gpio" type=DALPROP_ATTR_TYPE_UINT32>
+      114
+    </props>
+  </device>
+</driver>

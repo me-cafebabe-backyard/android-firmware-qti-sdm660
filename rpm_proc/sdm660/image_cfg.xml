@@ -1,0 +1,11 @@
+<image_cfg>
+  <!-- Devcfg Environment Variables -->
+  <devcfg_info>
+    <!-- These tags have to be comma separated. They can be on a single or multiple lines. -->
+    <!-- Do not have the comments within devcfg_xml_tag tag -->
+    <devcfg_xml_tag_multiple_configs>
+      660_xml,
+      630_xml
+    </devcfg_xml_tag_multiple_configs>
+  </devcfg_info>
+</image_cfg>

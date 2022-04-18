@@ -1,0 +1,37 @@
+//===========================================================================
+//
+// FILE:         ABT_slpi_8998.xml
+//
+// DESCRIPTION:  This file contains the DAL XML properties for the AHB
+//               Timeout Driver.
+//
+//===========================================================================
+//
+//                             Edit History
+//
+// $Header: //components/rel/core.slpi/2.0/buses/icb/config/ABT_slpi_8998.xml#1 $
+// $DateTime: 2016/02/17 10:43:11 $
+// $Author: pwbldsvc $
+// $Change: 9910734 $ 
+//
+// when         who     what, where, why
+// ----------   ---     -------------------------------------------------------
+// 2016/02/10   bc     Copied to 8998
+// 2012/05/31   av     Created
+//
+//===========================================================================
+//             Copyright (c) 2016 Qualcomm Technologies Incorporated.
+//                    All Rights Reserved.
+//                  QUALCOMM Proprietary/GTDR
+//===========================================================================
+
+<driver name="NULL">
+   <global_def>
+        
+   </global_def>
+   <device id="/dev/ABTimeout">
+     <props name="ABT_Propdata" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        ABT_propdata
+     </props> 
+   </device>   
+</driver>

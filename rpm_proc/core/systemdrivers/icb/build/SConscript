@@ -1,0 +1,147 @@
+#===============================================================================
+#
+#                             Edit History
+#
+# $Header: //source/qcom/qct/core/systemdrivers/icb/dev/2.0/build/SConscript#2 $
+# when         who     what, where, why
+# ----------   ---     ---------------------------------------------------------
+# 2018/04/13   amo     Add 405
+# 2016/09/15   kkk     Add 660
+# 2015/08/25   sds     Add 8998
+# 2013/08/02   sds     Add 9x35
+# 2011/12/12   sds     Initial Creation
+#
+#===============================================================================
+#                 Copyright (c) 2011-2016 Qualcomm Technologies Incorporated.
+#                              All Rights Reserved.
+#                            QUALCOMM Proprietary/GTDR
+#===============================================================================
+Import('env')
+env = env.Clone()
+   
+supported_targets = ['8996', '8998', '660', '405', 'nicobar']
+if env['MSM_ID'] not in supported_targets:
+    env.PrintWarning('Bailing from ICB scripts; no support for build targets other than %s' % supported_targets)
+    Return()
+
+#-------------------------------------------------------------------------------
+# Python library imports
+#-------------------------------------------------------------------------------
+import os, glob
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+BUILDPATH = '..'
+env.VariantDir('${BUILDPATH}', BUILDPATH, duplicate=0)
+SRCPATH = os.path.join( BUILDPATH, 'src' )
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_APIS = [
+   'BUSES',
+   'HAL',
+   'POWER',
+   'DAL',
+   'SYSTEMDRIVERS',
+   'PMIC',
+   'DEBUGTRACE',
+]
+
+env.RequirePublicApi(CBSP_APIS)
+env.RequireRestrictedApi(CBSP_APIS)
+
+#-------------------------------------------------------------------------------
+# Private depends within ICB
+#-------------------------------------------------------------------------------
+env.PublishPrivateApi('ICB_API', [
+    os.path.join(SRCPATH, 'common'),
+    ])
+
+#-------------------------------------------------------------------------------
+# Compiler options
+#-------------------------------------------------------------------------------
+env.Append(CCFLAGS = '${ARMCC_STDC99_CMD}')
+
+#-------------------------------------------------------------------------------
+# Sources
+#-------------------------------------------------------------------------------
+# Add common code
+icb_src = glob.glob( os.path.join(SRCPATH, 'common', '*.c') )
+
+#-------------------------------------------------------------------------------
+# Device Configuration Sources
+#-------------------------------------------------------------------------------
+if 'USES_DEVCFG' in env:
+  # Look for data and xml file for the current MSM_ID
+  icb_cfg_src = glob.glob( os.path.join(SRCPATH, env['MSM_ID'], '*.c') )
+  icb_config_xml = glob.glob( '../config/*%s.xml' % env['MSM_ID'] )
+
+  env.AddDevCfgInfo(['DAL_DEVCFG_IMG'],{
+      '8974_xml' :     ['${BUILD_ROOT}/core/systemdrivers/icb/config/icbcfg_rpm_8974.xml',
+                       '${BUILD_ROOT}/core/systemdrivers/icb/src/8974/icb_rpm_data.c' ],
+      '8974_pro_xml' : ['${BUILD_ROOT}/core/systemdrivers/icb/config/icbcfg_rpm_8974.xml',
+                       '${BUILD_ROOT}/core/systemdrivers/icb/src/8974/icb_rpm_data.c' ],
+      '8994_xml' :     ['${BUILD_ROOT}/core/systemdrivers/icb/config/icbcfg_rpm_8994.xml',
+                       '${BUILD_ROOT}/core/systemdrivers/icb/src/8994/icb_rpm_data.c' ],
+      '9x25_xml' :     ['${BUILD_ROOT}/core/systemdrivers/icb/config/icbcfg_rpm_9x25.xml',
+                       '${BUILD_ROOT}/core/systemdrivers/icb/src/9x25/icb_rpm_data.c'],
+      '9x35_xml' :     ['${BUILD_ROOT}/core/systemdrivers/icb/config/icbcfg_rpm_9x35.xml',
+                       '${BUILD_ROOT}/core/systemdrivers/icb/src/9x35/icb_rpm_data.c'],
+      '8x26_xml' :     ['${BUILD_ROOT}/core/systemdrivers/icb/config/icbcfg_rpm_8x26.xml',
+                       '${BUILD_ROOT}/core/systemdrivers/icb/src/8x26/icb_rpm_data.c'],
+      '8x10_xml' :     ['${BUILD_ROOT}/core/systemdrivers/icb/config/icbcfg_rpm_8x10.xml',
+                       '${BUILD_ROOT}/core/systemdrivers/icb/src/8x10/icb_rpm_data.c'],
+      '8084_xml' :     ['${BUILD_ROOT}/core/systemdrivers/icb/config/icbcfg_rpm_8084.xml',
+                       '${BUILD_ROOT}/core/systemdrivers/icb/src/8084/icb_rpm_data.c'],
+      '8x62_xml' :     ['${BUILD_ROOT}/core/systemdrivers/icb/config/icbcfg_rpm_8x62.xml',
+                       '${BUILD_ROOT}/core/systemdrivers/icb/src/8x62/icb_rpm_data.c'],
+      '8092_xml' :     ['${BUILD_ROOT}/core/systemdrivers/icb/config/icbcfg_rpm_8092.xml',
+                       '${BUILD_ROOT}/core/systemdrivers/icb/src/8092/icb_rpm_data.c'],
+      '8996_xml' :     ['${BUILD_ROOT}/core/systemdrivers/icb/config/icbcfg_rpm_8996.xml',
+                       '${BUILD_ROOT}/core/systemdrivers/icb/src/8996/icb_rpm_data.c'],
+      '8998_xml' :     ['${BUILD_ROOT}/core/systemdrivers/icb/config/icbcfg_rpm_8998.xml',
+                       '${BUILD_ROOT}/core/systemdrivers/icb/src/8998/icb_rpm_data.c'],
+      '8997_xml' :     ['${BUILD_ROOT}/core/systemdrivers/icb/config/icbcfg_rpm_8997.xml',
+                       '${BUILD_ROOT}/core/systemdrivers/icb/src/8997/icb_rpm_data.c'],
+      '660_xml' :     ['${BUILD_ROOT}/core/systemdrivers/icb/config/icbcfg_rpm_660.xml',
+                       '${BUILD_ROOT}/core/systemdrivers/icb/src/660/icb_rpm_data.c'],
+      '630_xml' :     ['${BUILD_ROOT}/core/systemdrivers/icb/config/icbcfg_rpm_660.xml',
+                       '${BUILD_ROOT}/core/systemdrivers/icb/src/660/icb_rpm_data.c'],
+      '405_xml' :    ['${BUILD_ROOT}/core/systemdrivers/icb/config/icbcfg_rpm_405.xml',
+                       '${BUILD_ROOT}/core/systemdrivers/icb/src/405/icb_rpm_data.c'],
+      'nicobar_xml' :    ['${BUILD_ROOT}/core/systemdrivers/icb/config/icbcfg_rpm_nicobar.xml',
+                       '${BUILD_ROOT}/core/systemdrivers/icb/src/nicobar/icb_rpm_data.c'],					   
+      })
+  env.AddLibrary( ['DAL_DEVCFG_IMG'], '${BUILDPATH}/icb_cfg_lib', icb_cfg_src )
+
+else:
+  icb_src.extend( glob.glob( os.path.join(SRCPATH, env['MSM_ID'], '*.c') ) )
+
+#-------------------------------------------------------------------------------
+# Images
+#-------------------------------------------------------------------------------
+# Prepend build path
+icb_src = ['${BUILDPATH}' + filename[2:] for filename in icb_src]
+
+env.AddLibrary(['CORE_RPM'], '${BUILDPATH}/icb', icb_src)
+
+#-------------------------------------------------------------------------------
+# QDSS SW Events
+#-------------------------------------------------------------------------------
+if 'USES_QDSS_SWE' in env:
+   QDSS_IMG = ['QDSS_EN_IMG']
+   events = [['BUS_EVENT_INIT_DONE=64', 'icb_init_cb: complete'],
+             ['BUS_EVENT_SLAVE_XLATE',  'icb_slaves_translate_cb: (%plugin[1]<busslave>) (bandwidth %x %x)'],
+             ['BUS_EVENT_SLAVE_APPLY',  'icb_slaves_apply_cb: (%plugin[1]<busslave>) (bandwidth %x %x)'],
+             ['BUS_EVENT_MASTER_XLATE', 'icb_masters_translate_cb: (%plugin[1]<busmaster>) (bandwidth %x %x)'],
+             ['BUS_EVENT_MASTER_APPLY', 'icb_masters_apply_cb: (%plugin[1]<busmaster>) (bandwidth %x %x)'],
+             ['BUS_EVENT_SPDM_XLATE',   'icb_spdm_req_translate_cb: (request %d)'],
+             ['BUS_EVENT_SPDM_APPLY',   'icb_spdm_req_apply_cb: (request %d)'],
+             ['BUS_EVENT_SPDM_STATE',   'request_spdm_clock: (request %d)'],
+             ['BUS_EVENT_MASTER_LATENCY_XLATE',  'icb_master_latency_translate_cb: (%plugin[1]<busmaster>) (latency %d)'],
+             ['BUS_EVENT_MASTER_LATENCY_APPLY',  'icb_master_latency_apply_cb: (%plugin[1]<busmaster>) (latency %d)'],            
+             ['BUS_EVENT_ICB_LAST=78',     'placeholder last icb swevent']
+            ]
+   env.AddSWEInfo(QDSS_IMG, events)

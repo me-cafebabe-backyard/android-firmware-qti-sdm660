@@ -1,0 +1,120 @@
+#/** @file PmicLib.inf
+#
+# PMIC Library for SDM660
+#
+# Copyright (c) 2016-2017 Qualcomm Technologies, Inc.  All Rights Reserved.
+#  Qualcomm Technologies Proprietary and Confidential.
+#
+#**/
+
+#============================================================================
+#
+#                       EDIT HISTORY
+#
+# when        who     what, where, why
+# --------    ----    -------------------------------------------------------
+# 05/03/17    czq     Added PcdPsHoldAddress PCD 
+# 02/07/17    vg      Removed DALFwkLib lib
+# 08/05/16    va      Adding Charger led indication support
+# 07/01/16    va      adding flush support for debug dumps logs
+# 11/15/16    mr      Added support for OLEDB and LCDB
+# 06/25/15    al      Removing loader specific
+# 11/12/14    al      Removing loader specific
+# 09/24/14    aab     Initial Revision
+#============================================================================
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = PmicLib
+  FILE_GUID         = 0431DAB0-A90B-4e33-AA75-B05C08A6FB67
+  MODULE_TYPE       = BASE
+  VERSION_STRING    = 1.0
+  LIBRARY_CLASS     = PmicLib
+
+
+[Sources.common]
+    ../../../Library/PmicLib/framework/src/pm_version.c
+    ../../../Settings/PMIC/pm_config_common.c
+    ../../../Sdm660Pkg/Settings/PMIC/pm_config_target.c
+    ../../../Library/PmicLib/comm/spmi_lite/src/pm_comm_spmi_lite.c
+    ../../../Library/PmicLib/comm/src/pm_comm.c
+    ../../../Library/PmicLib/drivers/boost/src/pm_boost.c
+    ../../../Library/PmicLib/drivers/boost/src/pm_boost_driver.c
+    ../../../Library/PmicLib/drivers/clk/src/pm_clk.c
+    ../../../Library/PmicLib/drivers/clk/src/pm_clk_driver.c
+    ../../../Library/PmicLib/drivers/clk/src/pm_clk_sleep.c
+    ../../../Library/PmicLib/drivers/clk/src/pm_clk_xo.c
+    ../../../Library/PmicLib/drivers/coincell/src/pm_coincell.c
+    ../../../Library/PmicLib/drivers/coincell/src/pm_coincell_driver.c
+    ../../../Library/PmicLib/drivers/fg/src/pm_fg_adc_rr.c
+    ../../../Library/PmicLib/drivers/fg/src/pm_fg_batt_info.c
+    ../../../Library/PmicLib/drivers/fg/src/pm_fg_batt_soc.c
+    ../../../Library/PmicLib/drivers/fg/src/pm_fg_driver.c
+    ../../../Library/PmicLib/drivers/fg/src/pm_fg_bcl.c
+    ../../../Library/PmicLib/drivers/fg/src/pm_fg_mem_if.c
+    ../../../Library/PmicLib/drivers/gpio/src/pm_gpio.c
+    ../../../Library/PmicLib/drivers/gpio/src/pm_gpio_driver.c
+    ../../../Library/PmicLib/drivers/haptics/src/pm_haptics.c
+    ../../../Library/PmicLib/drivers/haptics/src/pm_haptics_driver.c
+    ../../../Library/PmicLib/drivers/ibb/src/pm_ibb.c
+    ../../../Library/PmicLib/drivers/ibb/src/pm_ibb_driver.c
+    ../../../Library/PmicLib/drivers/lab/src/pm_lab.c
+    ../../../Library/PmicLib/drivers/lab/src/pm_lab_driver.c
+    ../../../Library/PmicLib/drivers/lcdb/src/pm_lcdb.c
+    ../../../Library/PmicLib/drivers/lcdb/src/pm_lcdb_driver.c
+    ../../../Library/PmicLib/drivers/ldo/src/pm_ldo.c
+    ../../../Library/PmicLib/drivers/ldo/src/pm_ldo_driver.c
+    ../../../Library/PmicLib/drivers/lpg/src/pm_lpg.c
+    ../../../Library/PmicLib/drivers/lpg/src/pm_lpg_driver.c
+    ../../../Library/PmicLib/drivers/mpp/src/pm_mpp.c
+    ../../../Library/PmicLib/drivers/mpp/src/pm_mpp_driver.c
+    ../../../Library/PmicLib/drivers/oledb/src/pm_oledb.c
+    ../../../Library/PmicLib/drivers/oledb/src/pm_oledb_driver.c
+    ../../../Library/PmicLib/drivers/pbs/src/pm_pbs.c
+    ../../../Library/PmicLib/drivers/pbs/src/pm_pbs_client.c
+    ../../../Library/PmicLib/drivers/pbs/src/pm_pbs_client_driver.c
+    ../../../Library/PmicLib/drivers/pbs/src/pm_pbs_driver.c
+    ../../../Library/PmicLib/drivers/pbs/src/pm_pbs_info.c
+    ../../../Library/PmicLib/drivers/pbs/src/pm_pbs_rtrr.c
+    ../../../Library/PmicLib/drivers/pbs/src/pm_pbus_log.c
+    ../../../Library/PmicLib/drivers/pon/src/pm_pon.c
+    ../../../Library/PmicLib/drivers/pon/src/pm_pon_wdog.c
+    ../../../Library/PmicLib/drivers/pwr/src/pm_pwr_alg.c
+    ../../../Library/PmicLib/drivers/rgb/src/pm_rgb.c
+    ../../../Library/PmicLib/drivers/rgb/src/pm_rgb_driver.c
+    ../../../Library/PmicLib/drivers/rtc/src/pm_rtc.c
+    ../../../Library/PmicLib/drivers/rtc/src/pm_rtc_driver.c
+    ../../../Library/PmicLib/drivers/schg/src/pm_bsi.c
+    ../../../Library/PmicLib/drivers/schg/src/pm_schg_batif.c
+    ../../../Library/PmicLib/drivers/schg/src/pm_schg_chgr.c
+    ../../../Library/PmicLib/drivers/schg/src/pm_schg_dc.c
+    ../../../Library/PmicLib/drivers/schg/src/pm_schg_driver.c
+    ../../../Library/PmicLib/drivers/schg/src/pm_schg_misc.c
+    ../../../Library/PmicLib/drivers/schg/src/pm_schg_otg.c
+    ../../../Library/PmicLib/drivers/schg/src/pm_schg_usb.c
+    ../../../Library/PmicLib/drivers/smps/src/pm_smps.c
+    ../../../Library/PmicLib/drivers/smps/src/pm_smps_driver.c
+    ../../../Library/PmicLib/drivers/vib/src/pm_vib.c
+    ../../../Library/PmicLib/drivers/vib/src/pm_vib_driver.c
+    ../../../Library/PmicLib/drivers/vs/src/pm_vs.c
+    ../../../Library/PmicLib/drivers/vs/src/pm_vs_driver.c
+    ../../../Library/PmicLib/drivers/wled/src/pm_wled.c
+    ../../../Library/PmicLib/drivers/wled/src/pm_wled_driver.c
+    ../../../Library/PmicLib/framework/src/pm_resource_manager.c
+    ../../../Library/PmicLib/framework/src/pm_target_information.c
+    ../../../Library/PmicLib/framework/src/pm_version.c
+    ../../../Library/PmicLib/utils/src/pm_utils.c
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  QcomPkg/QcomPkg.dec
+  QcomPkg/Sdm660Pkg/Library/PmicLib/PmicLib.dec
+
+[LibraryClasses]
+  DebugLib
+  SerialPortLib
+
+[Pcd]  
+  gQcomTokenSpaceGuid.PcdPsHoldAddress

@@ -1,0 +1,10 @@
+<config>
+  <image_tree>
+    <name>RPM.BF.1.8</name>
+    <build_id>RPM.BF.1.8-00067-SDM660AAAAANAZR-1</build_id>
+    <branch_point_revision/>
+    <revision>00067</revision>
+    <spin>1</spin>
+    <client>SDM660AAAAANAZR</client>
+  </image_tree>
+</config>

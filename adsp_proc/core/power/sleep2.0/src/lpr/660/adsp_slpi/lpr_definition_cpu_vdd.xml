@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  CPU VDD Sleep Low Power Resource/Mode definitions
+
+  Copyright (c) 2012-2017 Qualcomm Technologies, Inc. (QTI).
+  All Rights Reserved.
+  Qualcomm Technologies Confidential and Proprietary
+-->
+
+<!--
+Format of Enter/Exit/Backoff latency fields:
+"<Fixed>,<Scaled>"
+Fixed - Unscaled value that is always added to each frequency table entry
+Scaled - Value that will be scaled at 1:1 ratio according to frequency table entries
+         and the initial base profile frequency given via ProfileFreq
+
+Bitwise attribute values (see sleep_mode_attribute enum for full description):
+  0x01 - Unused
+  0x02 - Multiple Entry
+  0x04 - Unused
+  0x08 - No automatic latency tracking
+  0x10 - LPRM is cacheable
+
+Order of LPRMs within the LPR should match any assumptions about order
+     in the node corresponding to the LPR
+-->
+
+<LPRDefinition> 
+  <LPR Name="cpu_power_config" CoreMask="0xFFFFFFFF" InitFn="powerConfigLPR_initialize" ProfileFreq="245760">
+   <Mode
+      Name="full_pc"
+      Dependency="cpu_vdd.full_pc + l2.noret + rpm"
+      PowerSavings="-390000,460"
+      EnterLat="760"
+      ExitLat="850"
+      Backoff="850"
+      EnterFn="powerConfigLPR_fullPCEnter"
+      Attributes="0x10"
+      Supported="TRUE"
+      >
+    </Mode>
+
+    <Mode
+      Name="apcr_pll_lpm"
+      Dependency="cpu_vdd.apcr_pll_lpm + rpm + !l2"
+      PowerSavings="-280000,150"
+      EnterLat="768"
+      ExitLat="960"
+      Backoff="960"
+      EnterFn="powerConfigLPR_apcrPllLpmEnter"
+      Attributes="0x10"
+      Supported="TRUE"
+      >
+    </Mode>
+
+    <Mode
+      Name="apcr_pll_on"
+      Dependency="cpu_vdd.apcr + !rpm + !l2"
+      PowerSavings="-150000,140"
+      EnterLat="50"
+      ExitLat="50"
+      Backoff="50"
+      EnterFn="powerConfigLPR_apcrEnter"
+      Attributes="0x10"
+      Supported="TRUE"
+      >
+    </Mode>
+  </LPR>
+
+  <LPR Name="cpu_vdd" CoreMask="0xFFFFFFFF" ProfileFreq="245760">
+   <!-- Exit latency for the "full_PC" and "apcr_pll_lpm" modes account for 
+         the fixed AON/PLL warm up time as defined in the scons (currently 17880) -->
+   <Mode
+      Name="full_pc" 
+      Dependency="cpu_power_config + cpu_wakeup"
+      Order="LAST"
+      PowerSavings="-504456000,320"
+      EnterLat="20000"
+      ExitLat="120000"
+      Backoff="120000"
+      EnterFn="cpuVddLPR_fullPCEnter"
+      ExitFn="cpuVddLPR_exit"
+      Attributes="0x18"
+      Supported="TRUE"
+      >
+    </Mode>
+
+    <Mode
+      Name="apcr_pll_lpm"
+      Dependency="cpu_power_config + cpu_wakeup"
+      Order="LAST"
+      PowerSavings="-601600,270"
+      EnterLat="13000"
+      ExitLat="100000"
+      Backoff="100000"
+      EnterFn="cpuVddLPR_apcrEnter"
+      ExitFn="cpuVddLPR_exit"
+      Attributes="0x18"
+      Supported="TRUE"
+      >
+    </Mode>
+
+    <Mode
+      Name="apcr"
+      Dependency="cpu_power_config + !cpu_wakeup + !qtmr"
+      Order="LAST"
+      PowerSavings="-66000,265"
+      EnterLat="20"
+      ExitLat="384"
+      Backoff="384"
+      EnterFn="cpuVddLPR_apcrEnter"
+      ExitFn="cpuVddLPR_exit"
+      Attributes="0x18"
+      Supported="TRUE"
+      >
+    </Mode>
+
+  </LPR>
+</LPRDefinition>

@@ -1,0 +1,42 @@
+#===============================================================================
+#
+# System Drivers Libs
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2011 by Qualcomm Technologies, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/rpm.bf/1.8/core/pmic/build/pmic.scons#1 $
+#  $DateTime: 2016/11/03 00:13:13 $
+#  $Author: pwbldsvc $
+#  $Change: 11690628 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+#
+#===============================================================================
+Import('env')
+
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Convert warnings to errors in all system drivers components
+#-------------------------------------------------------------------------------
+
+#env.Append(CFLAGS = "-Werror ")
+
+#-------------------------------------------------------------------------------
+# Load sub scripts
+#-------------------------------------------------------------------------------
+
+env.LoadSoftwareUnits()
+

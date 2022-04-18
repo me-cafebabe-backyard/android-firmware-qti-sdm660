@@ -1,0 +1,57 @@
+#===========================================================================
+#  Copyright (c) 2014-2016 QUALCOMM Incorporated.
+#  All Rights Reserved.
+#  Qualcomm Confidential and Proprietary
+#===========================================================================
+#
+# Secure Indicator
+#
+# GENERAL DESCRIPTION
+#    build script
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains schedulerents describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#===============================================================================
+Import('env')
+
+includes = [
+  "${BUILD_ROOT}/core/api/services",
+  "${BUILD_ROOT}/core/api/securemsm/trustzone/qsee",
+  "${BUILD_ROOT}/core/securemsm/trustzone/qsapps/libs/services/src",
+  "${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/secureindicator/inc",
+  "${BUILD_ROOT}/core/securemsm/sse/qsee/SecureDisplay/libpng/include",
+  "${BUILD_ROOT}/core/securemsm/sse/qsee/SecureDisplay/zlib/include",
+  "${BUILD_ROOT}/core/api/kernel/libstd/stringl",
+]
+
+#----------------------------------------------------------------------------
+# App core Objects
+#----------------------------------------------------------------------------   
+sources = [      
+  'si_main.c',
+  'si.c',
+  '../oem/src/si_oem.c'
+]
+
+env.Append(CCFLAGS = " -DPNG_SEQUENTIAL_READ_SUPPORTED")
+
+#-------------------------------------------------------------------------------
+# Add metadata to image
+#-------------------------------------------------------------------------------
+md = {
+    'appName':    'secureindicator',
+    'privileges': ['default'],
+}
+
+app_units = env.SecureAppBuilder(
+  sources = sources,
+  includes = includes,
+  metadata = md,
+  image = 'secureindicator',
+  heap_size = '0x100000'
+)
+
+op = env.Alias('secureindicator', app_units)
+env.CleanPack('secureindicator', Glob('*.c') + Glob('../inc/*'))
+Return('app_units')

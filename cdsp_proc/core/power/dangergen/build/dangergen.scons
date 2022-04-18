@@ -1,0 +1,165 @@
+#===============================================================================
+#
+# Danger driver Build Script
+#
+# GENERAL DESCRIPTION
+#    Builds the danger driver libraries
+#
+# Copyright (c) 2013-2016 Qualcomm Technologies, Inc.
+# All Rights Reserved.
+# Qualcomm Technologies, Inc. Confidential and Proprietary.
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.qdsp6/1.0.c2/power/dangergen/build/dangergen.scons#1 $
+#  $DateTime: 2020/02/10 01:57:30 $
+#  $Author: pwbldsvc $
+#  $Change: 22511909 $
+#
+#===============================================================================
+import glob, os
+import fnmatch
+import itertools
+import subprocess
+
+Import('env')
+env = env.Clone()
+env.Append(CFLAGS = " -Wno-error=unused-function")
+if env['IMAGE'] in ['cdsp']:
+   Return()
+# Enable the flag below only for testing
+# env.AddUsesFlags('USES_DANGERGEN_TEST_SPD')
+# env.AddUsesFlags('USES_DANGERGEN_TEST_MPD')
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = ".."
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+COMMON_SRCPATH = SRCPATH + "/src/common"
+USER_SRCPATH = SRCPATH + "/src/user"
+CORE_SRCPATH = SRCPATH + "/src/core"
+TEST_SRCPATH = SRCPATH + "/src/test"
+
+#-------------------------------------------------------------------------------
+# CleanPack (Remove) all remaining files for adsppm unit test case
+#-------------------------------------------------------------------------------
+# PACK_OUT = env.FindFiles(['*.h', '*.c', '*.s'], TEST_SRCPATH)
+# env.CleanPack(['CORE_QDSP6_SW'], PACK_OUT)
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+    'DAL',
+    'BUSES',
+    'DEBUGTOOLS',
+    'DEBUGTRACE',
+    'MPROC',
+    'POWER',
+    'SERVICES',
+    'SYSTEMDRIVERS',
+    'KERNEL', # needs to be last also contains wrong comdef.h
+]
+
+env.PublishPrivateApi('dangergen', [
+    '${BUILD_ROOT}/core/power/dangergen/src/common/inc',
+    '${BUILD_ROOT}/core/power/dangergen/src/core/inc',
+    ]
+)
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+env.RequireProtectedApi(['POWER_UTILS'])
+env.RequirePublicApi(['ADSP_SYSMON'], area='performance')
+
+source_patterns = ['*.c', '*.cpp']
+
+common_sources = []
+for root, dirnames, filenames in os.walk(COMMON_SRCPATH):
+    matches = itertools.chain(*[fnmatch.filter(filenames, pattern) for pattern in source_patterns])
+    matches = ['${BUILDPATH}' + os.path.join(root, filename)[2:] for filename in matches]
+    common_sources.extend(matches)
+
+user_sources = []
+for root, dirnames, filenames in os.walk(USER_SRCPATH):
+    matches = itertools.chain(*[fnmatch.filter(filenames, pattern) for pattern in source_patterns])
+    matches = ['${BUILDPATH}' + os.path.join(root, filename)[2:] for filename in matches]
+    user_sources.extend(matches)
+
+core_sources = []
+for root, dirnames, filenames in os.walk(CORE_SRCPATH):
+    matches = itertools.chain(*[fnmatch.filter(filenames, pattern) for pattern in source_patterns])
+    matches = ['${BUILDPATH}' + os.path.join(root, filename)[2:] for filename in matches]
+    core_sources.extend(matches)
+
+test_sources = []
+for root, dirnames, filenames in os.walk(TEST_SRCPATH):
+    matches = itertools.chain(*[fnmatch.filter(filenames, pattern) for pattern in source_patterns])
+    matches = ['${BUILDPATH}' + os.path.join(root, filename)[2:] for filename in matches]
+    test_sources.extend(matches)
+
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+
+if 'USES_AUDIO_IMG' in env:
+    # Library in audio process
+    RCINIT_IMG = ['CORE_QDSP6_AUDIO_SW']
+    env.AddLibrary(RCINIT_IMG,'${BUILDPATH}/dangergen_common', common_sources)
+    env.AddLibrary(RCINIT_IMG,'${BUILDPATH}/dangergen_user', user_sources)
+    if 'USES_DANGERGEN_TEST_MPD' in env:
+        env.AddObject(RCINIT_IMG, test_sources)
+        env.AddRCInitTask(
+            RCINIT_IMG,
+            {
+                'sequence_group'      : 'RCINIT_GROUP_2', # required
+                'thread_name'         : 'dangergen_test_thread', # required
+                'thread_entry'        : 'dangergen_test',
+                'thread_type'         : 'RCINIT_TASK_QURTTASK',
+                'stack_size_bytes'    : '4096',
+                'priority_amss_order' : 'SHARED_DRIVER_SERVICE_PRI_ORDER',
+                'cpu_affinity'        : 'REX_ANY_SMT_MASK',
+                # 'dependencies'        : ['adsppm','dangergen']
+            }
+        )
+else:
+    # Image built for Guest OS
+    RCINIT_IMG = ['CORE_QDSP6_SW']
+    env.AddLibrary(RCINIT_IMG,'${BUILDPATH}/dangergen_common', common_sources)
+    env.AddLibrary(RCINIT_IMG,'${BUILDPATH}/dangergen_core', core_sources)
+    env.AddRCInitFunc(
+        RCINIT_IMG,
+        {
+            'sequence_group' : 'RCINIT_GROUP_7', # required
+            'init_name'      : 'dangergen', # required
+            'init_function'  : 'dangergen_driver_init', # required
+            'dependencies'   : ['clk_regime','dalsys','npa','icbarb','sleep','smem_log','rpm','sysmon_init']
+        }
+    )
+    if 'USES_DANGERGEN_TEST_SPD' in env:
+        env.AddObject(RCINIT_IMG, test_sources)
+        env.AddRCInitTask(
+            RCINIT_IMG,
+            {
+                'sequence_group'      : 'RCINIT_GROUP_7', # required
+                'thread_name'         : 'dangergen_test_thread', # required
+                'thread_entry'        : 'dangergen_test',
+                'thread_type'         : 'RCINIT_TASK_QURTTASK',
+                'stack_size_bytes'    : '4096',
+                'priority_amss_order' : 'SHARED_DRIVER_SERVICE_PRI_ORDER',
+                'cpu_affinity'        : 'REX_ANY_SMT_MASK',
+                'dependencies'        : ['adsppm','dangergen']
+            }
+        )
+
+
+#-------------------------------------------------------------------------------
+# Device Configuration Sources
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# Identify Target for Test Code (if test mode is enabled)
+#-------------------------------------------------------------------------------

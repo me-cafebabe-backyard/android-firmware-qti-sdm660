@@ -1,0 +1,73 @@
+# @file DevPrgDV.inf
+#
+#  DevPrg Image DDR
+#  
+#  Copyright (c) 2015 Qualcomm Technologies, Inc.  All Rights Reserved.
+#  Qualcomm Technologies Proprietary and Confidential.
+#
+#
+
+#==============================================================================
+#                              EDIT HISTORY
+#
+#  $Header:  $
+#  $DateTime: $
+#  $Author:  $
+#
+# when       who      what, where, why
+# --------   ---      ---------------------------------------------------------
+# 15/05/12   wkimberl Initial Revision
+#
+#==============================================================================
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DevPrgDV
+  FILE_GUID                      = 3C1CFE54-C984-4023-A1E3-C652F55CC5E9
+  MODULE_TYPE                    = SEC
+  VERSION_STRING                 = 1.0
+
+[Sources.common]
+  XBLLoader.c
+
+[Sources.Arm]
+#  ReleaseInfo.asm | RVCT
+  ModuleEntryPoint.asm | RVCT
+
+[Sources.AARCH64]
+#  ReleaseInfo.S | GCC
+  ModuleEntryPoint.S | GCC
+
+#  ReleaseInfo.S | RVCT
+  ModuleEntryPoint.S | RVCT
+
+[BuildOptions.ARM]
+  RVCT:*_*_*_CC_FLAGS = --diag_error=warning
+  RVCT:*_*_*_DLINK_FLAGS = --first=XBLLoader.lib(ModuleEntryPoint) --scatter $(WORKSPACE)/QcomPkg/$(TARGETPKG)/xbl_$(BUILDFLAVOR).scl
+
+[BuildOptions.AARCH64]
+  GCC:*_*_*_DLINK_FLAGS = --script=$(BUILD_DIR)/$(ARCH)/$(MODULE_NAME).ld
+    
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  EmbeddedPkg/EmbeddedPkg.dec
+  ArmPkg/ArmPkg.dec
+  IntelFrameworkModulePkg/IntelFrameworkModulePkg.dec
+  QcomPkg/QcomPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PrintLib
+  PrePiLib
+  PrePiMemoryAllocationLib
+  XBLLoaderLib
+  XBLCommonLib
+  DevPrgLLib
+  DevPrgDLib
+  ClockTargetLib
+
+[FixedPcd]
+  gQcomTokenSpaceGuid.PcdBuildType
+
+

@@ -1,0 +1,103 @@
+#=============================================================================
+# BUSYWAIT
+#
+# Targets:    SDM660, MSM8998
+# Processors: Hexagon QDSP6
+#
+#=============================================================================
+#                    Copyright 2016 Qualcomm Technologies Incorporated.
+#                           All Rights Reserved.
+#                         QUALCOMM Proprietary/GTDR
+#=============================================================================
+#  $Header: //components/dev/core.qdsp6/1.0/shantonu.core.qdsp6.1.0.SL_cdsp_sysdrv_init/systemdrivers/busywait/build/busywait.scons#1 $
+#  $DateTime: 2011/07/20 17:30:29 $
+#  $Author: coresvc $
+#  $Change: 1845300 $
+#
+#                      EDIT HISTORY FOR FILE
+#                      
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#  
+# when       who     what, where, why
+# --------   ---     -----------------------------------------------------------
+# 08/25/16   shm     Initial version for core.qdsp6
+#===============================================================================
+
+Import('env')
+env = env.Clone()
+
+#-----------------------------------------------------------------------------
+# Define paths
+#-----------------------------------------------------------------------------
+
+SRCPATH = "${BUILD_ROOT}/core/systemdrivers/busywait/src"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# External depends outside CoreBSP
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+
+CBSP_API = [
+   'HAL',
+   'DAL',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+
+   # Must be last due to comdef.h issues
+   'KERNEL'
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+BUSYWAIT_SOURCES =  [
+  '${BUILDPATH}/${IMAGE}/busywait.c'
+]
+
+#-------------------------------------------------------------------------------
+#  RC INIT
+#-------------------------------------------------------------------------------
+
+if 'USES_RCINIT' in env:
+  RCINIT_IMG = ['MODEM_IMAGE','CBSP_MODEM_IMAGE',
+                'CORE_ADSP_ROOT', 'CORE_ADSP_USER',
+                'CORE_SLPI_ROOT', 'CORE_SLPI_USER',
+                'CORE_CDSP_ROOT', 'CORE_CDSP_USER']
+  env.AddRCInitFunc(       # Code Fragment in TMC: NO
+  RCINIT_IMG,              # define TMC_RCINIT_INIT_BUSYWAIT_INIT
+  {
+    'sequence_group'             : 'RCINIT_GROUP_0',        # required
+    'init_name'                  : 'busywait',              # required
+    'init_function'              : 'busywait_init',         # required
+    'dependencies'               : ['dalsys']
+  })
+
+
+BusywaitIsland_lib   = env.AddLibrary(['MODEM_IMAGE','CBSP_MODEM_IMAGE', 
+                                       'CORE_ADSP_ROOT', 'CORE_ADSP_USER',
+                                       'CORE_SLPI_ROOT', 'CORE_SLPI_USER',
+                                       'CORE_CDSP_ROOT', 'CORE_CDSP_USER' ], '${BUILDPATH}/busywait', BUSYWAIT_SOURCES)
+
+if 'USES_ISLAND' in env:
+  env.AddIslandLibrary(['CORE_QDSP6_SW', 'CORE_QDSP6_SENSOR_SW', 'MODEM_IMAGE', 'CBSP_MODEM_IMAGE', 'QDSP6_SW_IMAGE', 'CBSP_QDSP6_SW_IMAGE'], BusywaitIsland_lib)
+
+if env['IMAGE'] == "cdsp":
+  if 'USES_DEVCFG' in env:
+    if 'USES_SENSOR_IMG' in env:
+     DEVCFG_IMG_SENSORS = ['DEVCFG_CORE_QDSP6_SENSOR_SW']
+     env.AddDevCfgInfo(DEVCFG_IMG_SENSORS,
+     {
+        '660_xml'    : ['${BUILD_ROOT}/core/systemdrivers/busywait/config/sdm660/cdsp/user/busywait.xml']
+     })
+    else:
+     DEVCFG_IMG = ['DAL_DEVCFG_IMG']
+     env.AddDevCfgInfo(DEVCFG_IMG, 
+     {
+        '660_xml' : ['${BUILD_ROOT}/core/systemdrivers/busywait/config/sdm660/cdsp/kernel/busywait.xml']
+     })

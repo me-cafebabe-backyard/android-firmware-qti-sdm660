@@ -1,0 +1,71 @@
+#===============================================================================
+#
+# Diagbuffer build script
+#
+# GENERAL DESCRIPTION
+#    Builds the micro_diagbuffer library for Micro diagbuffer on ADSP Sensor Island Image.
+#
+# Copyright (c) 2014-2016 Qualcomm Technologies, Inc.
+# All Rights Reserved.
+# QUALCOMM Proprietary and Confidential
+#===============================================================================
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/core/services/diag"
+SRCPATHSCRIPTS = env['BUILD_ROOT']+'/core/services/diag/micro_diagbuffer/scripts'
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0) 
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'DAL',
+   'POWER',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+   'DEBUGTOOLS',
+   'DEBUGTRACE',
+   # needs to be last also contains wrong comdef.h
+   'KERNEL',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+
+#-------------------------------------------------------------------------------
+# Define enable QDSS flag if this build supports QDSS
+#-------------------------------------------------------------------------------
+if 'USES_QDSS_SWE' in env:
+  env.Append(CPPDEFINES=['MICRO_ENABLE_QDSS'])
+
+#-------------------------------------------------------------------------------
+# Source code
+#-------------------------------------------------------------------------------
+
+ULOG_MICRO_SOURCES = [
+   '${BUILDPATH}/micro_diagbuffer/src/micro_ULog.c',
+]
+
+#Flag for determining the presence of Island Mode
+if 'USES_ISLAND' in env:
+   env.Append(CPPDEFINES=['USE_ISLAND'])
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+
+if 'USES_ISLAND' in env: 
+  diagbuffer_micro_lib = env.AddLibrary(['CORE_QDSP6_SW'],'${BUILDPATH}/diag/micro_diagbuffer',ULOG_MICRO_SOURCES) 
+  env.AddIslandLibrary(['CORE_QDSP6_SW'], diagbuffer_micro_lib)
+ 
+
+if env['CHIPSET'] in 'qca61x0':
+  env.AddLibrary(['CNSS_IMAGE','CORE'],'${BUILDPATH}/diag/micro_diagbuffer',ULOG_MICRO_SOURCES)
+
+

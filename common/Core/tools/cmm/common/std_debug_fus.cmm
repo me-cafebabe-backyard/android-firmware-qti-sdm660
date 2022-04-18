@@ -1,0 +1,247 @@
+//============================================================================
+//  Name:                                                                     
+//    std_debug.cmm 
+//
+//  Description:                                                              
+//    Top level debug script
+//                                                                            
+// Copyright (c) 2012 - 2014 by Qualcomm Technologies, Incorporated.  All Rights Reserved.        
+//
+//
+//
+//
+//                      EDIT HISTORY FOR FILE
+//  This section contains comments describing changes made to the module.
+//  Notice that changes are listed in reverse chronological order.
+//
+// when       who             what, where, why
+// --------   ---             ---------------------------------------------------------
+// 12/10/2015 JBILLING        Created for 8906/9x55 fusion
+
+
+//**************************************************
+//                  Declarations 
+//**************************************************
+LOCAL &ArgumentLine
+LOCAL &UTILITY &Remainder
+LOCAL &targetprocessor
+
+//**************************************************
+//                  Arguments Passed 
+//**************************************************
+ENTRY %LINE &ArgumentLine
+//ENTRY &UTILITY &OPTION &IARG0 &IARG1 &IARG2 &IARG3 &IARG4 &IARG5 &IARG6 &IARG7 &IARG8 &IARG9 &IARG10 &IARG11
+
+ENTRY &UTILITY %LINE &Remainder
+//**************************************************
+//                  Defaults 
+//**************************************************
+
+//**************************************************
+//                  Subroutine Checks
+//**************************************************
+// Name of the utility we are calling
+LOCAL &SUBROUTINE
+// Any subroutine specific options
+// Default exists for each subroutine
+LOCAL &OPTION
+
+
+//**************************************************
+//                  Basic Options Check
+//**************************************************
+
+&SUBROUTINE="&UTILITY"
+IF ("&ArgumentLine"=="")
+(
+    &SUBROUTINE="POWERUP_ROUTINE"
+)
+ELSE IF (STRING.UPR("&UTILITY")=="HELP")
+(
+    &SUBROUTINE="&UTILITY"
+)
+ELSE
+(
+    &SUBROUTINE="MAIN"
+)
+
+
+    LOCAL &rvalue
+    // This should be created by some top level script. The setupenv for each proc would
+    // set this up
+     AREA.SELECT
+    // Call the required utility
+    GOSUB &SUBROUTINE &ArgumentLine
+    ENTRY %LINE &rvalue
+
+    GOSUB EXIT &rvalue
+
+
+
+
+
+//**************************************************
+//
+// @Function: MAIN
+// @Description : sets up remote processor to attach on power up.
+//
+//**************************************************
+MAIN:
+        LOCAL &ArgumentLine
+        ENTRY %LINE &ArgumentLine
+        
+        
+        do std_debug_&CHIPSET GETDEBUGDEFAULTS NULL mpss-fus &lpm_option &user_defined_bkpts &cti_enable &alternateelf &extraoption
+        LOCAL &image &targetprocessor &targetprocessorport &bootprocessor &bootprocessorport &peripheral_processor &processortimeoutvalue &debugscript &symbolloadscript &imagebuildroot &entry_bkpt &error_bkpts &lpm_option &sleep_disable_command &cti_enable &multi_elf_option &alternateelf &extraoption
+        ENTRY &image &targetprocessor &targetprocessorport &bootprocessor &bootprocessorport &peripheral_processor &processortimeoutvalue &debugscript &symbolloadscript &imagebuildroot &entry_bkpt &error_bkpts &lpm_option &sleep_disable_command &cti_enable &multi_elf_option &alternateelf &extraoption
+
+        do listparser &debugscript
+        ENTRY &debugscript_local &debugscript_target 
+
+        do listparser &symbolloadscript
+        ENTRY &symbolloadscript_local &symbolloadscript_target
+
+        do listparser &imagebuildroot
+        ENTRY &imagebuildroot_local &imagebuildroot_target
+        
+        do listparser &targetprocessor
+        ENTRY &targetprocessor_local &targetprocessor_target
+        
+        do listparser &targetprocessorport
+        ENTRY &targetprocessorport_local &targetprocessorport_target
+        
+        
+        //INTERCOM.EXECUTE &targetprocessorport_target ON ERROR GOTO EXIT
+        INTERCOM.EXECUTE &targetprocessorport_target SYSTEM.POLLING FAST
+        INTERCOM.EXECUTE &targetprocessorport_target do hwio 
+        INTERCOM.WAIT &targetprocessorport_target
+        INTERCOM.EXECUTE &targetprocessorport_target do std_memorymap
+        INTERCOM.WAIT &targetprocessorport_target
+        INTERCOM.EXECUTE &targetprocessorport_target do std_memorymap
+        INTERCOM.WAIT &targetprocessorport_target
+        ON ERROR CONTINUE
+        INTERCOM.EXECUTE &targetprocessorport_target b.d /all
+        INTERCOM.EXECUTE &targetprocessorport_target b.s &entry_bkpt /onchip
+        ON ERROR
+        INTERCOM.EXECUTE &targetprocessorport_target GLOBAL &ARGLINE
+        INTERCOM.EXECUTE &targetprocessorport_target &ARGLINE="&ArgumentLine"
+        INTERCOM.EXECUTE &targetprocessorport_target GLOBALON POWERUP do std_debug_fus
+        
+        IF "&cti_enable"=="true"
+        (
+            do std_cti_apps SETUPSYNCHALT
+        )
+        
+        GO
+    
+    //FIXME - hook things up for automation
+    STOP
+
+//This is run from the context of the remote chip's apps processor    
+POWERUP_ROUTINE:
+sys.m.a
+    on error continue
+    b.d /all
+    b.s sbl1_main_ctl /o
+    ON ERROR continue
+        G
+        G
+    ON ERROR
+    WAIT !RUN()
+    
+    
+    do optextract Img,Lpm,Bkpts,CTI_Enable,alternateelf,extraoption &ARGLINE
+    LOCAL &image &lpm_option &user_defined_bkpts &cti_enable &alternateelf &extraoption
+    ENTRY &image &lpm_option &user_defined_bkpts &cti_enable &alternateelf &extraoption //expect 6 returns from optextract
+    
+    do std_utils SANITIZEQUOTATIONS none &image &lpm_option &user_defined_bkpts &cti_enable &alternateelf
+        ENTRY &image &lpm_option &user_defined_bkpts &cti_enable &alternateelf
+        
+    
+
+    
+    
+    do std_debug_&CHIPSET GETDEBUGDEFAULTS NULL mpss-fus &lpm_option &user_defined_bkpts &cti_enable &alternateelf &extraoption
+    LOCAL &image &targetprocessor &targetprocessorport &bootprocessor &bootprocessorport &peripheral_processor &processortimeoutvalue &debugscript &symbolloadscript &imagebuildroot &entry_bkpt &error_bkpts &lpm_option &sleep_disable_command &cti_enable &multi_elf_option &alternateelf &extraoption
+    ENTRY &image &targetprocessor &targetprocessorport &bootprocessor &bootprocessorport &peripheral_processor &processortimeoutvalue &debugscript &symbolloadscript &imagebuildroot &entry_bkpt &error_bkpts &lpm_option &sleep_disable_command &cti_enable &multi_elf_option &alternateelf &extraoption
+    
+        do listparser &debugscript
+        ENTRY &debugscript_local &debugscript_target 
+
+        do listparser &symbolloadscript
+        ENTRY &symbolloadscript_local &symbolloadscript_target
+
+        do listparser &imagebuildroot
+        ENTRY &imagebuildroot_local &imagebuildroot_target
+        
+        do listparser &targetprocessor
+        ENTRY &targetprocessor_local &targetprocessor_target
+        
+        do listparser &targetprocessorport
+        ENTRY &targetprocessorport_local &targetprocessorport_target
+        
+    do std_debug.cmm SETUPTARGETPROCESSOR apps-fus1 &processortimeoutvalue &targetprocessor_target &MPSS_PORT &bootprocessor
+    
+    //INTERCOM.EXECUTE &MPSS_PORT SYS.M.A
+    b
+    do std_intercom_do &MPSS_PORT std_utils BREAKPROC
+    
+    do std_debug_mpss &ARGLINE
+    
+    
+    IF "&cti_enable"=="true"
+    (
+        do std_intercom_do &APPS0_MSM_PORT do std_debug_apps TRACEGUI
+    )
+    
+    
+    STOP
+        
+////////////////////////////////////////////
+//
+//          FATALEXIT
+//
+//          Exits all scripts.
+//          If logging is enabled, appends failure keyword
+//          to passed string and sends that to PRINTRESULTLOG
+//
+//
+//
+///////////////////////////////////////////
+FATALEXIT:
+    LOCAL &string
+    ENTRY %LINE &string
+
+    PRINT %ERROR "Loadsim error. Error type: &Result "
+    
+    
+    
+        IF ("&LOGSENABLED"=="TRUE")
+        (
+            //Failure keyword is sometimes passed from lower scripts. 
+            //Only append it if it's not already there for cleaner logs.
+            IF STRING.SCAN("&string","&FAILUREKEYWORD",0)!=-1
+            (
+                GOSUB PRINTRESULTLOG &string 
+            )
+            ELSE
+            (
+                GOSUB PRINTRESULTLOG &FAILUREKEYWORD " - " &string 
+            )
+        )
+
+    END
+
+EXIT:
+
+    IF ("&LOGSENABLED"=="TRUE")
+    (
+        LOCAL &string
+        ENTRY %LINE &string
+        
+        GOSUB PRINTRESULTLOG &string 
+    )
+    ENDDO
+
+    
+

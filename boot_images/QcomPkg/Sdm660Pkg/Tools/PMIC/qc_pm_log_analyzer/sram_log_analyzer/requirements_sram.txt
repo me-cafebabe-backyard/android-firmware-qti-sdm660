@@ -1,0 +1,5 @@
+future==0.15.2
+numpy==1.11.2
+openpyxl==2.4.0
+Pillow==3.4.1
+pythonnet==2.1.0

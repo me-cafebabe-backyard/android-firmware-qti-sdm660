@@ -1,0 +1,1 @@
+#define oem_rst_reason_list oem_rst_reason_list_660_oem_tz

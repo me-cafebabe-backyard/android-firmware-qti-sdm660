@@ -1,0 +1,446 @@
+//============================================================================
+//  Name:                                                                     
+//    std_loadsim_ipa.cmm 
+//
+//  Description:                                                              
+//    Script to load IPA logs
+//                                                                            
+// Copyright (c) 2012 - 2014 by Qualcomm Technologies, Incorporated.  All Rights Reserved.        
+//
+//  Description:
+//  T32 simulator loader specific to IPA dumps. This file has some 8996 specific areas.
+// 
+//  Dependencies:
+//  Depends on cmm script framework (various dependent files) to work, and assumes that a 
+//  sanitized argument line has been passed in from std_loadsim.cmm script
+//  
+//
+//
+//                      EDIT HISTORY FOR FILE
+//  This section contains comments describing changes made to the module.
+//  Notice that changes are listed in reverse chronological order.
+//
+// when       who             what, where, why
+// --------   ---             ---------------------------------------------------------
+// 09/01/2015 JBILLING      Working with IPA ramdump
+// 11/07/2014 JBILLING      Overhaul with new error messages
+// 08/31/2014 AJCheriyan    Added prompt for elf file
+// 07/29/2014 AJCheriyan    Created for Elessar 
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////// std_loadsim_ipa //////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//###################Arguments passed #####################
+LOCAL &ArgumentLine
+ENTRY %LINE &ArgumentLine
+LOCAL &UTILITY &OPTION &IARG0 &IARG1 &IARG2 &IARG3 &IARG4 &IARG5 &IARG6 &IARG7 &IARG8 &IARG9 &IARG10 &IARG11
+ENTRY &UTILITY &OPTION &IARG0 &IARG1 &IARG2 &IARG3 &IARG4 &IARG5 &IARG6 &IARG7 &IARG8 &IARG9 &IARG10 &IARG11
+
+//######################Locals#######################
+
+LOCAL &ChipNum
+&ChipNum=STRING.CUT("&CHIPSET",3)
+//#####################Select Subroutine###################
+// Name of the utility we are calling
+LOCAL &SUBROUTINE
+// Any subroutine specific options
+// Default exists for each subroutine
+
+
+// Input Argument 0 is the name of the utility
+&SUBROUTINE="&UTILITY"
+IF !(("&SUBROUTINE"=="VERIFYBUILD")||("&SUBROUTINE"=="HELP")||("&SUBROUTINE"=="help"))
+(
+    &SUBROUTINE="MAIN"   
+)
+
+    // This should be created by some top level script. The setupenv for each proc would
+    // set this up
+    AREA.SELECT
+    // Call the required utility
+    GOSUB &SUBROUTINE &ArgumentLine
+    LOCAL &rvalue
+    ENTRY %LINE &rvalue
+
+    ENDDO &rvalue
+
+
+
+////////////////////////////////////////
+//
+//            MAIN
+//            Main std_loadsim_ipa logic
+//            Expected input: None. Relies on global variables
+//
+/////////////////////////////////////////
+
+MAIN:
+    LOCAL &image &imagebuildroot &logpath &logtype &targetprocessor &processor_root_name &loadsimscript &symbolloadscript &multi_elf_option &alternateelf &extraoptions 
+    ENTRY &image &imagebuildroot &logpath &logtype &targetprocessor &processor_root_name &loadsimscript &symbolloadscript &multi_elf_option &alternateelf &extraoptions 
+
+    LOCAL &rvalue
+    
+    // Load the memory map to initialize variables
+    do std_memorymap 
+
+    // First, all the sanity checks
+    GOSUB CHECKBINARIES
+        ENTRY %LINE &rvalue
+        IF "&rvalue"!="SUCCESS"
+        (
+            GOSUB EXIT &rvalue
+        )
+        
+    // Binaries look good. Else, we wouldn't be here    
+    GOSUB SETUPSIM
+    
+    // Load the binaries
+    GOSUB LOADBIN
+    
+    // Setup the environment
+    do std_setupenv noareaclear
+    
+    // Load the symbols
+    do std_loadsyms_ipa &imagebuildroot locally  NULL NULL &alternateelf &extraoptions
+        ENTRY %LINE &rvalue
+        IF "&rvalue"!="SUCCESS"
+        (
+            GOSUB EXIT &rvalue    
+        )
+        
+    
+    // Load the "state" at the time of the crash
+    GOSUB RESTORESTATE
+    ENTRY %LINE &rvalue
+        ENTRY %LINE &rvalue
+        IF "&rvalue"!="SUCCESS"
+        (
+            GOSUB EXIT &rvalue    
+        )
+        
+    //GOSUB POSTMORTEM_ANALYSIS
+    //ENTRY %LINE &rvalue
+    //Wait for a few seconds if in automation mode  
+    //in case user wants to spot check results.
+    IF STRING.SCAN("&extraoptions","forcesilent",0)!=-1
+    (
+        WAIT.3s
+    )
+    // Off you go..
+    GOSUB EXIT &rvalue
+
+////////////////////////////////////////
+//
+//          VERIFYBUILD
+//          Public function
+//          Verify that needed files are present
+//          Expected input: Build Location
+//
+/////////////////////////////////////////
+VERIFYBUILD:
+    LOCAL &OPTION &IARG0 &IARG1 &IARG2 &IARG3 &IARG4 &IARG5 &IARG6 &IARG7 &IARG8 &IARG9 &IARG10
+    ENTRY &OPTION &IARG0 &IARG1 &IARG2 &IARG3 &IARG4 &IARG5 &IARG6 &IARG7 &IARG8 &IARG9 &IARG10
+    LOCAL &result &LOCAL_BUILDROOT
+    
+    &result="SUCCESS"
+    &LOCAL_BUILDROOT="&IARG0"
+    PRINT "Checking that needed files exist"
+    
+    AREA.RESET
+    AREA.CREATE std_loadsim_build_verify 125. 6.
+    AREA.SELECT std_loadsim_build_verify
+    WINPOS 0. 0. 80. 6.
+    AREA.VIEW std_loadsim_build_verify
+    
+    IF FILE.EXIST("&LOCAL_BUILDROOT/&processor_root_name/datamodem/driver/ipa_uc/&ChipNum/scripts/std_load_uC_CPU_Regs.cmm")
+    (
+        PRINT "Found std_load_uC_CPU_Regs.cmm"
+    )
+    ELSE
+    (
+        PRINT %ERROR "Missing datamodem/driver/ipa_uc/&ChipNum/scripts/std_load_uC_CPU_Regs.cmm. Context loading will fail"
+        &result="FAILURE_VERIFYBUILD_IPA"
+
+    )
+
+    IF ("&result"=="SUCCESS")
+    (
+        PRINT "Verification success: Found needed context files"
+        PRINT " "
+    )
+    ELSE
+    (
+        GOSUB FATALEXIT "Error: Needed build files (std_load_uC_CPU_Regs.cmm) not found"
+    )
+
+    
+    
+
+    RETURN &result
+////////////////////////////////////////
+//
+//          SETUPSIM
+//          Private function
+//          Set the simulator for the processor we want
+//          Expected input: None
+//
+/////////////////////////////////////////
+SETUPSIM:
+    SYS.CPU CORTEXM3
+    SYS.UP
+    
+
+    RETURN SUCCESS
+
+    
+////////////////////////////////////////
+//
+//          CHECKBINARIES
+//          Private function
+//          Checks if the binaries for the system are present in the location
+//          Loglocation should not be empty and assumes memory map is loaded
+//          Expected input: None. Uses global variables
+//          &logtype=<AUTODETECT,JTAG,USB> 
+//
+/////////////////////////////////////////
+CHECKBINARIES:
+LOCAL &file1 &file2 &file3 &file4 &file5 &file6 &file7 &logclass
+
+
+    // This is the best place to determine the type of the log too
+    IF ("&logtype"=="AUTODETECT")
+    (
+    
+        &logclass="&logtype"
+        
+        IF ("&logclass"!="JTAG")
+        (
+            
+            // Check for JTAG logs-  the IPA_REG* logs are present only for JTAG
+
+            do std_utils FILEXIST EXIT &logpath &IPA_IRAM_log 
+                ENTRY &file1
+            do std_utils FILEXIST EXIT &logpath &IPA_DRAM_log 
+                ENTRY &file2
+            do std_utils FILEXIST EXIT &logpath &IPA_SRAM_log 
+                ENTRY &file3
+            do std_utils FILEXIST EXIT &logpath &IPA_HRAM_log 
+                ENTRY &file4
+            do std_utils FILEXIST EXIT &logpath &IPA_DICT_log 
+                ENTRY &file5
+            do std_utils FILEXIST EXIT &logpath &IPA_MBOX_log 
+                ENTRY &file6
+            do std_utils FILEXIST EXIT &logpath &IPA_REG1_log
+                ENTRY &file7
+            do std_utils FILEXIST EXIT &logpath &IPA_REG2_log 
+                ENTRY &file8
+            do std_utils FILEXIST EXIT &logpath &IPA_REG3_log 
+                ENTRY &file9
+                
+            IF (("&file1"=="TRUE")&&("&file2"=="TRUE")&&("&file3"=="TRUE")&&("&file4"=="TRUE")&&("&file5"=="TRUE")&&("&file6"=="TRUE")&&("&file7"=="TRUE")&&("&file8"=="TRUE")&&("&file9"=="TRUE"))
+            (
+                 &logclass="JTAG"
+            )
+        )
+        
+        //If JTag didn't work, could be USB
+        IF ("&logclass"=="AUTODETECT")
+        (
+        
+            // Check for USB logs
+            do std_utils FILEXIST EXIT &logpath &IPA_IRAM_log
+                ENTRY &file1
+            do std_utils FILEXIST EXIT &logpath &IPA_DRAM_log 
+                ENTRY &file2
+            do std_utils FILEXIST EXIT &logpath &IPA_SRAM_log 
+                ENTRY &file3
+            do std_utils FILEXIST EXIT &logpath &IPA_MBOX_log 
+                ENTRY &file4
+                
+            // Check for both USB binaries. 
+            IF (("&file1"=="TRUE")&&("&file2"=="TRUE")&&("&file3"=="TRUE")&&("&file4"=="TRUE"))
+            (
+                 &logclass="USB"
+            )
+        )
+
+
+
+
+
+        // If we even after that, we are stuck with "AUTODETECT" we have a problem
+        IF ("&logclass"=="AUTODETECT")
+        (
+                    AREA
+                    PRINT %ERROR "USB/JTAG logs not found in folder: &logpath. 'do std_loadsim help' for more"
+                    GOSUB FATALEXIT "Failed to auto-detect log type. Unexpected file names or types in &logpath"
+                )
+                ELSE
+                (
+                    // Safe to change the logtype
+                    &logtype="&logclass"
+                    PRINT "Detected &logtype logs in: &logpath"
+                )
+    )
+            
+    IF ("&logtype"=="JTAG")
+    (
+        
+       // Check for JTAG logs-  the IPA_REG* logs are present only for JTAG
+
+        do std_utils FILEXIST EXIT &logpath &IPA_IRAM_log 
+            ENTRY &file1
+        do std_utils FILEXIST EXIT &logpath &IPA_DRAM_log 
+            ENTRY &file2
+        do std_utils FILEXIST EXIT &logpath &IPA_SRAM_log 
+            ENTRY &file3
+        do std_utils FILEXIST EXIT &logpath &IPA_HRAM_log 
+            ENTRY &file4
+        do std_utils FILEXIST EXIT &logpath &IPA_DICT_log 
+            ENTRY &file5
+        do std_utils FILEXIST EXIT &logpath &IPA_MBOX_log 
+            ENTRY &file6
+        do std_utils FILEXIST EXIT &logpath &IPA_REG1_log
+            ENTRY &file7
+        do std_utils FILEXIST EXIT &logpath &IPA_REG2_log 
+            ENTRY &file8
+        do std_utils FILEXIST EXIT &logpath &IPA_REG3_log 
+            ENTRY &file9
+            
+        IF (("&file1"=="TRUE")&&("&file2"=="TRUE")&&("&file3"=="TRUE")&&("&file4"=="TRUE")&&("&file5"=="TRUE")&&("&file6"=="TRUE")&&("&file7"=="TRUE")&&("&file8"=="TRUE")&&("&file9"=="TRUE"))
+        (
+             &logclass="JTAG"
+        )
+        ELSE 
+        (
+            PRINT %ERROR "JTAG logs not present in folder: &logpath"
+            GOSUB FATALEXIT "JTAG logs not present in folder: &logpath"
+        )
+    )
+
+    IF ("&logtype"=="USB")
+    (
+    
+        // Check for USB logs
+        do std_utils FILEXIST EXIT &logpath &IPA_IRAM_log
+            ENTRY &file1
+        do std_utils FILEXIST EXIT &logpath &IPA_DRAM_log 
+            ENTRY &file2
+        do std_utils FILEXIST EXIT &logpath &IPA_SRAM_log 
+            ENTRY &file3
+        do std_utils FILEXIST EXIT &logpath &IPA_MBOX_log 
+            ENTRY &file4
+            
+        // Check for both USB binaries. 
+        IF (("&file1"=="TRUE")&&("&file2"=="TRUE")&&("&file3"=="TRUE")&&("&file4"=="TRUE"))
+        (
+             &logclass="USB"
+        )
+        ELSE 
+        (
+            PRINT %ERROR "USB logs not present in folder: &logpath"
+            GOSUB FATALEXIT "USB logs not present in folder: &logpath"
+        )
+    )
+        
+        
+    
+
+    RETURN SUCCESS
+
+////////////////////////////////////////
+//
+//          LOADBIN
+//          Private function
+//          Loads the saved binaries
+//          Expected input: None. Uses global variables
+//          &logtype=<JTAG,USB> 
+//
+/////////////////////////////////////////
+
+LOADBIN:
+    
+    IF ("&logtype"=="JTAG")
+    (
+        // Load memories and registers
+        //do std_utils LOADBIN &logpath &IPA_IRAM_log &IPA_IRAM_IPA_start
+        //do std_utils LOADBIN &logpath &IPA_DRAM_log &IPA_DRAM_IPA_start
+        do std_utils LOADBIN &logpath &IPA_SRAM_log &IPA_SRAM_start
+        do std_utils LOADBIN &logpath &IPA_MBOX_log &IPA_MBOX_start
+        do std_utils LOADBIN &logpath &IPA_REG1_log &IPA_REG1_start
+        do std_utils LOADBIN &logpath &IPA_REG2_log &IPA_REG2_start
+        do std_utils LOADBIN &logpath &IPA_REG3_log &IPA_REG3_start
+
+    )
+    
+    IF ("&logtype"=="USB")
+    (
+        // We only have IPA memories
+        do std_utils LOADBIN &logpath &IPA_IRAM_log &IPA_IRAM_IPA_start
+        do std_utils LOADBIN &logpath &IPA_DRAM_log &IPA_DRAM_IPA_start
+        do std_utils LOADBIN &logpath &IPA_SRAM_log &IPA_SRAM_start
+        do std_utils LOADBIN &logpath &IPA_MBOX_log &IPA_MBOX_start
+    )
+    
+    RETURN SUCCESS
+    
+////////////////////////////////////////
+//
+//          RESTORESTATE
+//          Private function
+//          To load the error information from the saved logs
+//          Expected input: None. Uses global variables
+//          &logtype=<JTAG,USB> 
+//          Expects various files to be present
+//
+/////////////////////////////////////////
+RESTORESTATE:
+    
+    // Now restore the context
+    do std_utils EXECUTESCRIPT EXIT &imagebuildroot/&processor_root_name/datamodem/driver/ipa_uc/&ChipNum/scripts/std_load_uC_CPU_Regs.cmm 
+
+    RETURN SUCCESS
+
+
+POSTMORTEM_ANALYSIS:
+    
+    GOSUB RESTORE_REGISTER_CONTEXT &logtype    
+    
+    //Execute registered postmortem scripts
+    do std_utils EXECUTESCRIPT EXIT &imagebuildroot/&processor_root_name/core/products/scripts/std_postmortem.cmm    
+    
+    ENDDO SUCCESS
+    
+    
+    
+BADDUMP:
+    PRINT "Unrecoverable errors ocurred during dump. Cannot restore context"
+    GOSUB FATALEXIT "Unrecoverable errors ocurred during dump. Cannot restore context"
+    
+EXIT:
+    LOCAL &rvalue
+    ENTRY %LINE &rvalue
+    ENDDO &rvalue
+    
+
+//Should never get here. 
+FATALEXIT:
+    LOCAL &rvalue
+    ENTRY %LINE &rvalue
+    IF STRING.SCAN("&FAILUREKEYWORD","FAILUREKEYWORD",0)==-1
+    (
+        GOSUB EXIT &FAILUREKEYWORD - &rvalue
+    )
+    ELSE
+    (
+        GOSUB EXIT &rvalue
+    )
+    
+//Should never get here
+    END
+    

@@ -1,0 +1,125 @@
+#/** @file HALclkLibUEFI.inf
+#
+#  Component description file for HAL clock module
+#
+#  Copyright (c) 2010-2016  Qualcomm Technologies, Inc. All rights reserved.
+#
+#
+#**/
+
+#==============================================================================
+#                              EDIT HISTORY
+#
+#
+# when       who     what, where, why
+# --------   ---     ----------------------------------------------------------
+# 10/25/13   vk      Remove warning as error
+# 03/22/11   vs      Added shared HAL clock library - HALclkSharedLib.
+# 12/23/10   vs      Created.
+#
+#==============================================================================
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = HALclkLib
+  FILE_GUID                      = 92CFECAA-F869-4AEF-8CCF-8231523B0554
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = HALclkLib
+
+#
+#  VALID_ARCHITECTURES           = ARM
+#
+
+[Sources.common]
+  HALavs.c
+  HALclkAPCS.c
+  HALclkBIMCSMMU.c
+  HALclkBLSP1QUP1.c
+  HALclkBLSP1QUP2.c
+  HALclkBLSP1QUP3.c
+  HALclkBLSP1QUP4.c
+  HALclkBLSP1UART1.c
+  HALclkBLSP1UART2.c
+  HALclkBLSP2QUP1.c
+  HALclkBLSP2QUP2.c
+  HALclkBLSP2QUP3.c
+  HALclkBLSP2QUP4.c
+  HALclkBLSP2UART1.c
+  HALclkBLSP2UART2.c
+  HALclkCAMSSCCI.c
+  HALclkCAMSSCPP.c
+  HALclkCAMSSCSI0.c
+  HALclkCAMSSCSI1.c
+  HALclkCAMSSCSI2.c
+  HALclkCAMSSCSI3.c
+  HALclkCAMSSCSIPHY.c  
+  HALclkCAMSSGP0.c
+  HALclkCAMSSGP1.c
+  HALclkCAMSSJPEG.c
+  HALclkCAMSSMCLK0.c
+  HALclkCAMSSMCLK1.c
+  HALclkCAMSSMCLK2.c
+  HALclkCAMSSMCLK3.c
+  HALclkCAMSSPHY0.c
+  HALclkCAMSSPHY1.c
+  HALclkCAMSSPHY2.c
+  HALclkCAMSSTOP.c
+  HALclkCAMSSVFE0.c
+  HALclkCAMSSVFE1.c
+  HALclkCE1.c
+  HALclkCLOCKDRIVERGENNODOMAIN.c
+  HALclkCONFIGNOC.c
+  HALclkCXO.c
+  HALclkEXTERNALRAWCLOCKS.c
+  HALclkGCC.c
+  HALclkGCCMain.c
+  #HALclkGLM.c
+  HALclkGP1.c
+  HALclkGP2.c
+  HALclkGP3.c
+  HALclkGPU.c
+  HALclkGPUCX.c
+  HALclkGPUGX.c 
+  HALclkGPUMain.c
+  HALclkHMSS.c
+  HALclkMDSS.c
+  HALclkMMSS.c
+  HALclkMMSSMain.c
+  HALclkMNOCAHB.c
+  HALclkMNOCAXI.c
+  HALclkMSS.c
+  HALclkMain.c
+  HALclkPDM.c
+  HALclkQDSS.c
+	HALclkQSPI.c
+  HALclkRAW.c
+  HALclkRBCPR.c
+	HALclkSDCC1.c
+  HALclkSDCC2.c
+  HALclkSPMI.c
+  HALclkSTANDALONEGCCBCR.c
+  HALclkSTANDALONEGPUBCR.c
+  HALclkSYSTEMNOC.c
+  HALclkTest.c
+  HALclkUFS.c
+	HALclkUSB20.c
+  HALclkUSB30.c
+  HALclkVIDEOSUBCORE0.c
+  HALclkVIDEOTOP.c
+
+[BuildOptions.AARCH64]
+  #GCC:*_*_*_CC_FLAGS = -O0
+
+[LibraryClasses]
+  HALclkSharedLib
+
+[Protocols]
+
+[Packages]
+  MdePkg/MdePkg.dec
+  EmbeddedPkg/EmbeddedPkg.dec
+  ArmPkg/ArmPkg.dec
+  QcomPkg/Sdm660Pkg/Sdm660Pkg.dec
+  QcomPkg/QcomPkg.dec
+

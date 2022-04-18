@@ -1,0 +1,8 @@
+Dictionary Debug:image:RPM
+ 
+scripts:{'../bsp/rpm/scripts/rpm_dump.cmm': 'RPM Core Dump'}
+ 
+Arguments:[]
+ 
+area:Kernel
+ 

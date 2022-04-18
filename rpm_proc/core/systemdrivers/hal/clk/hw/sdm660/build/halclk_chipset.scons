@@ -1,0 +1,125 @@
+#===============================================================================
+#
+# HAL CLK CHIPSET LIBRARY
+#
+# Target:    MSM8996
+# Processor: All
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2014 by QUALCOMM Technologies, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/rpm.bf/1.8/core/systemdrivers/hal/clk/hw/sdm660/build/halclk_chipset.scons#2 $
+#  $DateTime: 2017/01/23 23:42:49 $
+#  $Author: pwbldsvc $
+#  $Change: 12292658 $
+#
+#===============================================================================
+
+import os
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+
+SRCPATH = "../"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0) 
+
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+
+CBSP_API = [
+   'HAL',
+   'DAL',
+   'DEBUGTOOLS',
+   'MPROC',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+
+   # needs to be last also contains wrong comdef.h
+   'KERNEL',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+HAL_CLK_CHIPSET_BUILD_ROOT = os.getcwd();
+
+env.PublishPrivateApi("SYSTEMDRIVERS_HAL_CLK_CHIPSET", [
+  HAL_CLK_CHIPSET_BUILD_ROOT + "/../inc",
+])
+
+
+#-----------------------------------------------------------------------------
+# Sources: HALClock Chipset Sources
+#-----------------------------------------------------------------------------
+
+HALCLK_CHIPSET_SOURCES = [
+    '${BUILDPATH}/src/HALclkMainRPM.c',
+    '${BUILDPATH}/src/GCC/HALclkAGGRE2NOC.c',
+    '${BUILDPATH}/src/GCC/HALclkBIMC.c',
+    '${BUILDPATH}/src/GCC/HALclkCE1.c',
+    '${BUILDPATH}/src/GCC/HALclkCONFIGNOC.c',
+    '${BUILDPATH}/src/GCC/HALclkDDRDIMWRAPPER.c',
+    '${BUILDPATH}/src/GCC/HALclkDEBUG.c',
+    '${BUILDPATH}/src/GCC/HALclkGCCMain.c',
+    '${BUILDPATH}/src/GCC/HALclkHMSS.c',
+    '${BUILDPATH}/src/GCC/HALclkIPA.c',
+    '${BUILDPATH}/src/GCC/HALclkMMSS.c',
+    '${BUILDPATH}/src/GCC/HALclkPIMEM.c',
+    '${BUILDPATH}/src/GCC/HALclkQDSS.c',
+    '${BUILDPATH}/src/GCC/HALclkRPM.c',
+    '${BUILDPATH}/src/GCC/HALclkSPMI.c',
+    '${BUILDPATH}/src/GCC/HALclkSPDM.c',
+    '${BUILDPATH}/src/GCC/HALclkSYSTEMNOC.c',
+    '${BUILDPATH}/src/GCC/HALclkVS.c',
+    '${BUILDPATH}/src/MMSS/HALclkMNOCAXI.c',
+    '${BUILDPATH}/src/MMSS/HALclkMMSSMain.c',
+    '${BUILDPATH}/src/HALclkTest.c',
+]
+
+HALClockChipset_lib = env.Library('${BUILDPATH}/HALclk_chipset', HALCLK_CHIPSET_SOURCES)
+
+
+#-------------------------------------------------------------------------------
+# Sources: HALClockChipset Library Creation
+#-------------------------------------------------------------------------------
+
+env.AddLibsToImage('RPM_IMAGE', HALClockChipset_lib)
+
+
+# ============================================================================
+# HWIO
+# ============================================================================
+
+if env.has_key('HWIO_IMAGE'):
+
+  env.AddHWIOFile('HWIO', [
+    {
+      'filename': '${INC_ROOT}/core/systemdrivers/hal/clk/hw/sdm660/inc/HALclkHWIO.h',
+      'modules': ['GCC_CLK_CTL_REG', 'TLMM_CSR', 'TLMM_SOUTH',
+                  'CH0_DDR_CC',      'CH1_DDR_CC',
+                  'TCSR_TCSR_REGS',
+                  'IPA_0_IPA_UC_IPA_UC_MBOX',
+                  'MMSS_CC', 'TLMM_NORTH',
+                  'PERIPH_SS_AHB2PHY_WEST',
+                  'AHB2PHY_EAST',
+                  'SECURITY_CONTROL_CORE'
+                  ],
+      'filter-exclude': ['TSENS', 'RESERVED'],
+      'output-offsets': True,
+      'header':
+        '\n#include \"msmhwiobase.h\"\n'
+        '#define PROC_CLK_BRANCH_ENA_VOTE   GCC_RPM_CLOCK_BRANCH_ENA_VOTE\n\n'
+        '#define PROC_CLK_BRANCH_ENA_VOTE_1   GCC_RPM_CLOCK_BRANCH_ENA_VOTE_1\n\n'
+    }
+  ])

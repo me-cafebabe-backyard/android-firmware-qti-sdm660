@@ -1,0 +1,8 @@
+#Framework,Extract_Internal_Packets
+#Version,1.0
+#Key,0x189B
+#PacketType,0x189B
+#PacketNumber,6299
+#Name,LOG-SNS-DPC-CONFIG-C
+#Packet,Version,Timestamp Type,Timestamp (ms),Accel Sample Rate (Hz),Proximity Sample Rate (Hz),Motion Detect Interrupt Available,Suppress Samples (# of samples),Hidden Hidden Hyst Time (# of samples),Angle Static Alpha,Proximity Check Window Length (# of samples),Tiltparams Pickup Margin,Tiltparams Pickup Min,Tiltparams Stable t,Max Tilt Facing Sep (# of samples),Face Position Detection Tau
+6299,2,DSPS,1041395.966,0.000000,0.000000,0,80,65536,0.5,98304,0.0199999995529652,0.0400000028312206,7.5,98304,0.174600005149841

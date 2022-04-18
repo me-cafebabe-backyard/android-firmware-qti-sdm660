@@ -1,0 +1,171 @@
+<driver name="Clock">
+  <device id=DALDEVICEID_CLOCK>
+    <!-- Clock sources -->
+    <props name="ClockSources" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      SourceConfig
+    </props>
+    
+    <props name="IsRemotable" type=DALPROP_ATTR_TYPE_UINT32>
+      0x1
+    </props>
+    <props name="DalVersionInfo" type=DALPROP_ATTR_TYPE_UINT32>
+      0x2
+    </props>
+    
+    <!-- LPASS clock configurations -->
+    <props name="audio_core_aud_slimbus_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      SLIMBUSClockConfig
+    </props>
+    <props name="audio_core_aud_slimbus_core_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      COREClockConfig
+    </props>
+    <props name="audio_core_avsync_atime_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ATIMEClockConfig
+    </props>
+    <props name="audio_core_int_i2s0_1_ibit_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      INTI2S01ClockConfig
+    </props>
+    <props name="audio_core_int_i2s2_ibit_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      INTI2S01ClockConfig
+    </props>
+    <props name="audio_core_int_i2s3_ibit_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      INTI2S01ClockConfig
+    </props>
+    <props name="audio_core_int_i2s4_ibit_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      INTI2S01ClockConfig
+    </props>
+    <props name="audio_core_int_i2s5_6_ibit_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      INTI2S01ClockConfig
+    </props>
+    <props name="audio_core_int_mclk0_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      INTMCLK0ClockConfig
+    </props>
+    <props name="audio_core_int_mclk1_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      INTMCLK1ClockConfig
+    </props>
+    <props name="audio_core_lpaif_pcm_data_oe_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      LPAIFPCMOEClockConfig
+    </props>
+    <props name="audio_core_lpaif_pri_ibit_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      LPAIFClockConfig
+    </props>
+    <props name="audio_core_lpaif_sec_ibit_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      LPAIFClockConfig
+    </props>
+    <props name="audio_core_lpaif_ter_ibit_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      LPAIFClockConfig
+    </props>
+	<props name="audio_core_lpaif_quad_ibit_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      LPAIFQUADClockConfig
+    </props>
+	<props name="audio_core_lpaif_pri_ebit_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      LPAIFEBITClockConfig
+    </props>
+    <props name="audio_core_lpaif_sec_ebit_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      LPAIFEBITClockConfig
+    </props>
+    <props name="audio_core_lpaif_ter_ebit_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      LPAIFEBITClockConfig
+    </props>
+	<props name="audio_core_lpaif_quad_ebit_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      LPAIFQUADEBITClockConfig
+    </props>
+    <props name="audio_core_qca_slimbus_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      SLIMBUSClockConfig
+    </props>
+    <props name="audio_core_qdsp_sway_aon_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      AONClockConfig
+    </props>
+    <props name="audio_wrapper_qos_danger_fixed_lat_counter_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      QOSFIXEDLATCOUNTERClockConfig
+    </props>
+    <props name="audio_core_resampler_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      RESAMPLERClockConfig
+    </props>
+    <props name="audio_wrapper_ext_mclk0_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      MCLKClockConfig
+    </props>
+    <props name="audio_wrapper_ext_mclk1_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      MCLKClockConfig
+    </props>
+    <props name="audio_wrapper_ext_mclk2_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      MCLKClockConfig
+    </props>
+    <props name="audio_wrapper_ext_mclk3_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      MCLKClockConfig
+    </props>
+    <props name="audio_wrapper_sw_npl_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      SWNPLClockConfig
+    </props>
+    <props name="island_scc_at_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      SCCAONDBGClockConfig
+    </props>
+    <props name="island_scc_dbg_tsctr_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      SCCAONDBGTSCTRClockConfig
+    </props>
+    <props name="island_scc_q6_spm_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      Q6SPMClockConfig
+    </props>
+    <props name="island_scc_qup_i2c1_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      SCC100MClockConfig
+    </props>
+    <props name="island_scc_uart_dm_uart1_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      SCCUARTClockConfig
+    </props>
+    <props name="island_scc_uart_dm_uart2_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      SCCUARTClockConfig
+    </props>
+    <props name="island_scc_uart_dm_uart3_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      SCCUARTClockConfig
+    </props>
+    <props name="island_scc_uart_dm_uart4_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      SCCUARTClockConfig
+    </props>
+    <props name="island_scc_vs_vddcx_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      SCCVSVDDCXClockConfig
+    </props>
+    <props name="island_scc_vs_vddmx_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      SCCVSVDDCXClockConfig
+    </props>
+    
+    <!-- Clock log defaults -->
+    <props name="ClockLogDefaults" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockLogDefaultConfig
+    </props>
+    
+    <!-- Clock init flags -->
+    <props name="ClockInitFlags" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockFlagInitConfig
+    </props>
+    
+    <!-- HWIO -->
+    <props name="ClockHWIOBase" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockLPASSHWIOBases
+    </props>
+    
+    <!-- CPU initialization -->
+    <props name="ClockImageConfig" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockImageBSPConfig
+    </props>
+    
+    <!-- Resource publishing requirements -->
+    <props name="ClockResourcePub" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockResourcePub
+    </props>
+    
+    <!-- Manual initialization of some sources -->
+    <props name="ClockSourcesToInit" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockSourcesToInit
+    </props>
+    
+    <!-- PMIC regulator warmup time settings -->
+    <props name="Clock_VRegWarmupTable" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      Clock_VRegWarmupTable
+    </props>
+    
+    <!-- Clock stub config -->
+    <props name="ClockStubConfig" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockStubConfig
+    </props>
+  </device>
+</driver>

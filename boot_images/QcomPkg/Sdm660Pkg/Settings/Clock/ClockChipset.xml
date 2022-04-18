@@ -1,0 +1,303 @@
+
+<!-- <driver name="Clock"> -->
+<!--   <device id=DALDEVICEID_CLOCK> -->
+
+    <!-- Clock sources -->
+    <props name="ClockSources" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      SourceConfig
+    </props>
+
+
+    <!-- GCC Clock Configurations -->
+    <props name="gcc_aggre2_ufs_axi_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      UFSAXIClockConfig
+    </props>
+    <props name="gcc_aggre2_usb3_axi_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      USB30MASTERClockConfig
+    </props>
+    <props name="gcc_blsp1_qup1_i2c_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BLSP1QUP1I2CAPPSClockConfig
+    </props>
+    <props name="gcc_blsp1_qup1_spi_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BLSP1QUP1SPIAPPSClockConfig
+    </props>
+    <props name="gcc_blsp1_qup2_i2c_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BLSP1QUP1I2CAPPSClockConfig
+    </props>
+    <props name="gcc_blsp1_qup2_spi_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BLSP1QUP1SPIAPPSClockConfig
+    </props>
+    <props name="gcc_blsp1_qup3_i2c_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BLSP1QUP1I2CAPPSClockConfig
+    </props>
+    <props name="gcc_blsp1_qup3_spi_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BLSP1QUP1SPIAPPSClockConfig
+    </props>
+    <props name="gcc_blsp1_qup4_i2c_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BLSP1QUP1I2CAPPSClockConfig
+    </props>
+    <props name="gcc_blsp1_qup4_spi_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BLSP1QUP1SPIAPPSClockConfig
+    </props>
+    <props name="gcc_blsp1_uart1_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BLSP1UART1APPSClockConfig
+    </props>
+    <props name="gcc_blsp1_uart2_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BLSP1UART1APPSClockConfig
+    </props>
+    <props name="gcc_blsp2_qup1_i2c_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BLSP1QUP1I2CAPPSClockConfig
+    </props>
+    <props name="gcc_blsp2_qup1_spi_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BLSP1QUP1SPIAPPSClockConfig
+    </props>
+    <props name="gcc_blsp2_qup2_i2c_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BLSP1QUP1I2CAPPSClockConfig
+    </props>
+    <props name="gcc_blsp2_qup2_spi_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BLSP1QUP1SPIAPPSClockConfig
+    </props>
+    <props name="gcc_blsp2_qup3_i2c_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BLSP1QUP1I2CAPPSClockConfig
+    </props>
+    <props name="gcc_blsp2_qup3_spi_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BLSP1QUP1SPIAPPSClockConfig
+    </props>
+    <props name="gcc_blsp2_qup4_i2c_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BLSP1QUP1I2CAPPSClockConfig
+    </props>
+    <props name="gcc_blsp2_qup4_spi_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BLSP1QUP1SPIAPPSClockConfig
+    </props>
+    <props name="gcc_blsp2_uart1_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BLSP1UART1APPSClockConfig
+    </props>
+    <props name="gcc_blsp2_uart2_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BLSP1UART1APPSClockConfig
+    </props>
+    <props name="gcc_cfg_noc_usb2_axi_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      USB20MASTERClockConfig
+    </props>
+    <props name="gcc_gp1_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      GP1ClockConfig
+    </props>
+    <props name="gcc_gp2_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      GP1ClockConfig
+    </props>
+    <props name="gcc_gp3_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      GP1ClockConfig
+    </props>
+    <props name="gcc_hmss_ahb_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      HMSSAHBClockConfig
+    </props>
+    <props name="gcc_hmss_rbcpr_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      HMSSRBCPRClockConfig
+    </props>
+    <props name="gcc_mmss_qm_core_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      MMSSQMCOREClockConfig
+    </props>
+    <props name="gcc_pdm2_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      PDM2ClockConfig
+    </props>
+    <props name="gcc_qspi_ser_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      QSPISERClockConfig
+    </props>
+    <props name="gcc_sdcc1_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      SDCC1APPSClockConfig
+    </props>
+    <props name="gcc_sdcc1_ice_core_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      SDCC1ICECOREClockConfig
+    </props>
+    <props name="gcc_sdcc2_apps_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      SDCC2APPSClockConfig
+    </props>
+    <props name="gcc_ufs_ice_core_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      UFSICECOREClockConfig
+    </props>
+    <props name="gcc_ufs_phy_aux_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      UFSPHYAUXClockConfig
+    </props>
+    <props name="gcc_ufs_unipro_core_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      UFSUNIPROCOREClockConfig
+    </props>
+    <props name="gcc_usb20_mock_utmi_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      USB20MOCKUTMIClockConfig
+    </props>
+    <props name="gcc_usb30_mock_utmi_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      USB30MOCKUTMIClockConfig
+    </props>
+    <props name="gcc_usb3_phy_aux_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      USB3PHYAUXClockConfig
+    </props>
+
+
+    <!-- GPU Clock Configurations -->
+    <props name="gpucc_gfx3d_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      GFX3DClockConfig
+    </props>
+    <props name="gpucc_rbbmtimer_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      RBBMTIMERClockConfig
+    </props>
+    <props name="gpucc_rbcpr_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      RBCPRClockConfig
+    </props>
+
+
+    <!-- MMSS Clock Configurations -->
+    <props name="mmss_bimc_smmu_ahb_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      AHBClockConfig
+    </props>
+    <props name="mmss_camss_cci_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      CCIClockConfig
+    </props>
+    <props name="mmss_camss_cphy_csid0_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      CSIPHYClockConfig
+    </props>
+    <props name="mmss_camss_cpp_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      CPPClockConfig
+    </props>
+    <props name="mmss_camss_csi0_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      CSI0ClockConfig
+    </props>
+    <props name="mmss_camss_csi0phytimer_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      CSI0PHYTIMERClockConfig
+    </props>
+    <props name="mmss_camss_csi1_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      CSI0ClockConfig
+    </props>
+    <props name="mmss_camss_csi1phytimer_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      CSI0PHYTIMERClockConfig
+    </props>
+    <props name="mmss_camss_csi2_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      CSI0ClockConfig
+    </props>
+    <props name="mmss_camss_csi2phytimer_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      CSI0PHYTIMERClockConfig
+    </props>
+    <props name="mmss_camss_csi3_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      CSI0ClockConfig
+    </props>
+    <props name="mmss_camss_csi_vfe0_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      VFE0ClockConfig
+    </props>
+    <props name="mmss_camss_csi_vfe1_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      VFE0ClockConfig
+    </props>
+    <props name="mmss_camss_gp0_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      CAMSSGP0ClockConfig
+    </props>
+    <props name="mmss_camss_gp1_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      CAMSSGP0ClockConfig
+    </props>
+    <props name="mmss_camss_jpeg0_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      JPEG0ClockConfig
+    </props>
+    <props name="mmss_camss_mclk0_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      MCLK0ClockConfig
+    </props>
+    <props name="mmss_camss_mclk1_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      MCLK0ClockConfig
+    </props>
+    <props name="mmss_camss_mclk2_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      MCLK0ClockConfig
+    </props>
+    <props name="mmss_camss_mclk3_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      MCLK0ClockConfig
+    </props>
+    <props name="mmss_mdss_byte0_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BYTE0ClockConfig
+    </props>
+    <props name="mmss_mdss_byte1_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      BYTE0ClockConfig
+    </props>
+    <props name="mmss_mdss_dp_aux_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      DPAUXClockConfig
+    </props>
+    <props name="mmss_mdss_dp_crypto_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      DPCRYPTOClockConfig
+    </props>
+    <props name="mmss_mdss_dp_gtc_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      DPGTCClockConfig
+    </props>
+    <props name="mmss_mdss_dp_link_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      DPLINKClockConfig
+    </props>
+    <props name="mmss_mdss_dp_pixel_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      DPPIXELClockConfig
+    </props>
+    <props name="mmss_mdss_esc0_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ESC0ClockConfig
+    </props>
+    <props name="mmss_mdss_esc1_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ESC0ClockConfig
+    </props>
+    <props name="mmss_mdss_mdp_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      MDPClockConfig
+    </props>
+    <props name="mmss_mdss_pclk0_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      PCLK0ClockConfig
+    </props>
+    <props name="mmss_mdss_pclk1_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      PCLK0ClockConfig
+    </props>
+    <props name="mmss_mdss_rot_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ROTClockConfig
+    </props>
+    <props name="mmss_mdss_vsync_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      VSYNCClockConfig
+    </props>
+    <props name="mmss_spdm_video_core_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      VIDEOCOREClockConfig
+    </props>
+    
+  <props name="gcc_usb3_phy_pipe_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      USB3PHYPIPEClockConfig
+    </props>
+     <!-- Adaptive Voltage Scaling -->
+    <props name="AVSData" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockAVSData
+    </props>
+        
+    <!-- Clock Log Defaults -->
+    <props name="ClockLogDefaults" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockLogDefaultConfig
+    </props>
+        
+    <!-- Clocks allowed to be suppressible -->
+    <props name="SuppressibleList" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockSuppressibleList
+    </props>
+        
+    <!-- Clocks allowed to be always on -->
+    <props name="ClockAlwaysOnList" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockAlwaysOnList
+    </props>
+        
+    <!-- Clocks allowed to be reference counter disabled -->
+    <props name="RefCountSuspendedList" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockRefCountSuspendedList
+    </props>
+        
+    <!-- Clock ForceMemCoreAndPeriphList -->
+    <props name="ForceMemCoreAndPeriphList" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockForceMemCoreAndPeriphList
+    </props>
+        
+    <!-- Clock BIST Exceptions -->
+    <props name="BISTExceptions" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockBistExceptions
+    </props>
+
+    <!-- Clock excluded from BIST -->
+    <props name="ExcludeFromBist" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockExcludeFromBist
+    </props>
+    
+    <!-- Clock Init Flags -->
+    <props name="ClockInitFlags" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+      ClockFlagInitConfig
+    </props>
+    
+<!--   </device> -->
+<!-- </driver> -->
+

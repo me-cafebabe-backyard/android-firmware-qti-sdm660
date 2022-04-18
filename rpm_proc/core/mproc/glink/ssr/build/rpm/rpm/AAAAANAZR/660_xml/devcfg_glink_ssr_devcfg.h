@@ -1,0 +1,1 @@
+#define glink_ssr_devcfg_config glink_ssr_devcfg_config_660_xml

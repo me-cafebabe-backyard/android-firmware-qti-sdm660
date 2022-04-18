@@ -1,0 +1,384 @@
+ENTRY &family &master_id
+
+&indent="    "
+
+&win_name="MSGRAM"
+AREA.CREATE &win_name 500. 500.
+AREA.VIEW &win_name
+AREA.SELECT &win_name
+
+print
+print "================================================================================"
+print "                              "+d.string(d:v.value(ee_client_lut[&master_id].name))
+print "================================================================================"
+
+if "&family"=="Badger"||"&family"=="Bear"
+(
+    GOSUB ParseSmd &master_id
+)
+else if "&family"=="Honeybadger"
+(
+    GOSUB ParseGlink &master_id
+)
+print
+
+ENDDO
+
+
+;================================================================================
+ParseGlink:
+    ENTRY &id
+    &is_rx=0.
+    print
+    print "[TX Info]"
+
+    &tx_info=v.value(xport_rpm_ctx[&id].tx_desc)
+    gosub GlinkPrintInfo &tx_info
+
+    print
+    print "[TX FIFO]"
+    &tx_fifo=v.value(xport_rpm_ctx[&id].tx_fifo)
+    &fifo_size=v.value(xport_rpm_ctx[&id].tx_fifo_size)
+    gosub ParseFifo &tx_info &tx_fifo &fifo_size
+
+    &is_rx=1.
+    print
+    print "[RX Info]"
+
+    &rx_info=v.value(xport_rpm_ctx[&id].rx_desc)
+    gosub GlinkPrintInfo &rx_info
+
+    print
+    print "[RX FIFO]"
+    &tx_fifo=v.value(xport_rpm_ctx[&id].rx_fifo)
+    &fifo_size=v.value(xport_rpm_ctx[&id].rx_fifo_size)
+    gosub ParseFifo &rx_info &tx_fifo &fifo_size
+
+    return
+
+;================================================================================
+GlinkPrintInfo:
+    entry &desc_addr
+    &idx=v.value(((xport_rpm_ind_type*)&desc_addr)->read_ind)
+    print "&indent"+"READ_INDEX  : &idx ("+format.decimal(0,&idx)+")"
+
+    &idx=v.value(((xport_rpm_ind_type*)&desc_addr)->write_ind)
+    print "&indent"+"WRITE_INDEX : &idx ("+format.decimal(0,&idx)+")"
+
+    return
+
+;================================================================================
+ParseSmd:
+    ENTRY &id
+    LOCAL &tx_info &rx_info &tx_fifo &rx_fifo &fifo_sz &read_index &write_index &val &i
+
+    ;&handler=v.value((Handler*)rpm->ees[&id].handler)
+    &handler=v.value((Handler*)(((SystemData*)rpm_core_dump.rpmserver_state)->ees[&id].handler))
+
+    &tx_info=V.VALUE((*((((Handler*)&handler)->smdlPort_))).tx_shared_info_ptr_algn)
+    &rx_info=V.VALUE((*((((Handler*)&handler)->smdlPort_))).rx_shared_info_ptr_algn)
+    &tx_fifo=V.VALUE((*((((Handler*)&handler)->smdlPort_))).tx_shared_fifo)
+    &rx_fifo=V.VALUE((*((((Handler*)&handler)->smdlPort_))).rx_shared_fifo)
+    &fifo_size=V.VALUE((*((((Handler*)&handler)->smdlPort_))).fifo_sz)
+
+    &is_rx=0.
+    print "[TX Shared Info]"
+    GOSUB PrintInfo &tx_info &tx_fifo &fifo_size
+    print "[TX Shared FIFO]"
+    GOSUB ParseFifo &tx_info &tx_fifo &fifo_size
+
+    &is_rx=1.
+    print "[RX Shared Info]"
+    GOSUB PrintInfo &rx_info &rx_fifo &fifo_size
+    print "[RX Shared FIFO]"
+    GOSUB ParseFifo &rx_info &rx_fifo &fifo_size
+    RETURN
+
+;================================================================================
+PrintInfo:
+    ENTRY &info &fifo &fifo_size
+    LOCAL &val
+    &val=V.VALUE(((smd_shared_stream_info_algn_type*)&info)->stream_state)
+
+    if &val==0.
+        print "&indent"+"STREAM_STATE: &(val) (SMD_SS_CLOSED)"
+    else if &val==1.
+        print "&indent"+"STREAM_STATE: &(val) (SMD_SS_OPENING)"
+    else if &val==2.
+        print "&indent"+"STREAM_STATE: &(val) (SMD_SS_OPENED)"
+    else if &val==3.
+        print "&indent"+"STREAM_STATE: &(val) (SMD_SS_FLUSHING)"
+    else if &val==4.
+        print "&indent"+"STREAM_STATE: &(val) (SMD_SS_CLOSING)"
+    else if &val==5.
+        print "&indent"+"STREAM_STATE: &(val) (SMD_SS_RESET)"
+    else if &val==6.
+        print "&indent"+"STREAM_STATE: &(val) (SMD_SS_RESET_OPENING)"
+
+    &i=0
+    &vals="["
+    while &i<8.
+    (
+        &val=FORMAT.DECIMAL(0,V.VALUE(((smd_shared_stream_info_algn_type*)&info)->if_sigs[&i]))
+        if &i==0
+            &vals="&vals"+"DSR_SIG/DTR_SIG=&val"
+        else if &i==1
+            &vals="&vals"+"CTS_SIG/RTS_SIG=&val"
+        else if &i==2
+            &vals="&vals"+"CD_SIG=&val"
+        else if &i==3
+            &vals="&vals"+"RI_SIG=&val"
+        else if &i==4
+            &vals="&vals"+"DATA_WRITTEN=&val"
+        else if &i==5
+            &vals="&vals"+"DATA_READ=&val"
+        else if &i==6
+            &vals="&vals"+"STATE_UPDATED=&val"
+        else
+            &vals="&vals"+"&val"
+
+        &i=&i+1.
+        if &i<8.
+        (
+            &vals="&vals"+", "
+        )
+        else
+        (
+            &vals="&vals"+"]"
+        )
+    )
+    print "&indent"+"IF_SIGS     : &(vals)"
+    &read_index=V.VALUE(((smd_shared_stream_info_algn_type*)&info)->read_index)
+    print "&indent"+"READ_INDEX  : &(read_index)"
+    &write_index=V.VALUE(((smd_shared_stream_info_algn_type*)&info)->write_index)
+    print "&indent"+"WRITE_INDEX : &(write_index)"
+    print "&indent"+"FIFO ADDR   : &(fifo)"
+    print "&indent"+"FIFO SIZE   : &(fifo_size)"
+    print ""
+    RETURN
+
+
+;================================================================================
+ParseFifo:
+    ENTRY &info &fifo &fifo_size
+    LOCAL &i &write_index &read_index
+
+    if "&family"=="Badger"||"&family"=="Bear"
+    (
+        &read_index=V.VALUE(((smd_shared_stream_info_algn_type*)&info)->read_index)
+        &write_index=V.VALUE(((smd_shared_stream_info_algn_type*)&info)->write_index)
+    )
+    else if "&family"=="Honeybadger"
+    (
+        &read_index=v.value(((xport_rpm_ind_type*)&info)->read_ind)
+        &write_index=v.value(((xport_rpm_ind_type*)&info)->write_ind)
+    )
+
+    &i=0
+    while &i<&fifo_size
+    (
+        if DATA.LONG.LE(D:(&fifo+&write_index))==0x716572
+        (
+            GOSUB ParseRequest &fifo &fifo_size
+        )
+        else if DATA.LONG.LE(D:(&fifo+&write_index))==0x646d63
+        (
+            GOSUB ParseCommand &fifo &fifo_size
+        )
+        else
+        (
+            GOSUB IncrementIndex 4. &fifo_size
+        )
+    )
+
+    print ""
+    RETURN
+
+
+;================================================================================
+ParseRequest:
+    ENTRY &fifo &fifo_size
+    LOCAL &msg_type &msg_size &msg_id &set &rsrc_type &rsrc_id &data_size &str &addr
+
+    print "&indent"+"----------------------------------------------------------------------------"
+    &addr="0x"+FORMAT.HEX(8,&fifo)+" + 0x"+FORMAT.HEX(0,&write_index)
+    print "&indent"+"[&addr]"
+
+    &msg_type=DATA.LONG.LE(D:(&fifo+&write_index))
+    GOSUB IncrementIndex 4. &fifo_size
+    GOSUB IntToString &msg_type
+    print "&indent"+"MSG_TYPE  : &str"
+
+    &msg_size=DATA.LONG.LE(D:(&fifo+&write_index))
+    GOSUB IncrementIndex 4. &fifo_size
+    print "&indent"+"MSG_SIZE  : "+FORMAT.DECIMAL(0,&msg_size)+" bytes"
+
+    if &is_rx==1.
+    (
+        &msg_id=DATA.LONG.LE(D:(&fifo+&write_index))
+        GOSUB IncrementIndex 4. &fifo_size
+        print "&indent"+"MSG_ID    : &msg_id ("+format.decimal(0,&msg_id)+")"
+
+        &set=DATA.LONG.LE(D:(&fifo+&write_index))
+        GOSUB IncrementIndex 4. &fifo_size
+        &str=""
+        GOSUB GetSetStr &set
+        if &set==0
+            print %attr 0x28 "&indent"+"SET       : "+FORMAT.DECIMAL(0,&set)+" (&str)"
+        else if &set==1
+            print %attr 0x1c "&indent"+"SET       : "+FORMAT.DECIMAL(0,&set)+" (&str)"
+        else
+            print %attr 0x2c "&indent"+"SET       : "+FORMAT.DECIMAL(0,&set)+" (&str)"
+
+        &rsrc_type=DATA.LONG.LE(D:(&fifo+&write_index))
+        GOSUB IncrementIndex 4. &fifo_size
+        GOSUB IntToString &rsrc_type
+
+        &rsrc_id=DATA.LONG.LE(D:(&fifo+&write_index))
+        GOSUB IncrementIndex 4. &fifo_size
+        print %error "&indent"+"RESOURCE  : &str, "+FORMAT.DECIMAL(0,&rsrc_id)
+
+        &data_size=DATA.LONG.LE(D:(&fifo+&write_index))
+        GOSUB IncrementIndex 4. &fifo_size
+        print "&indent"+"DATA_SIZE : "+FORMAT.DECIMAL(0,&data_size)+" bytes"
+
+        GOSUB ParseKVPs &fifo &fifo_size &data_size
+    )
+    else
+    (
+        GOSUB ParseKVPs &fifo &fifo_size &msg_size
+    )
+    RETURN
+
+;================================================================================
+GetSetStr:
+    ENTRY &s
+    &str=""
+    if &s==0.
+        &str="ACTIVE_SET"
+    else if &s==1.
+        &str="SLEEP_SET"
+    else if &s==2.
+        &str="NEXT_ACTIVE_SET"
+    RETURN
+
+;================================================================================
+IncrementIndex:
+    ENTRY &inc_size &max
+    &write_index=&write_index+&inc_size
+    if &write_index>=&max
+        &write_index=&write_index-&max
+    &i=&i+&inc_size
+    RETURN
+
+;================================================================================
+ParseCommand:
+    ENTRY &fifo &fifo_size
+    LOCAL &msg_type &msg_size &str
+
+    print "&indent"+"----------------------------------------------------------------------------"
+
+    &msg_type=DATA.LONG.LE(D:(&fifo+&write_index))
+    GOSUB IncrementIndex 4. &fifo_size
+    GOSUB IntToString &msg_type
+    print "&indent"+"MSG_TYPE  : &str"
+
+    &msg_size=DATA.LONG.LE(D:(&fifo+&write_index))
+    GOSUB IncrementIndex 4. &fifo_size
+    print "&indent"+"MSG_SIZE  : "+FORMAT.DECIMAL(0,&msg_size)+" bytes"
+
+    GOSUB ParseKVPs &fifo &fifo_size &msg_size
+
+    RETURN
+
+;================================================================================
+IntToString:
+    ENTRY &int
+    LOCAL &i
+    &i=0
+    &str=""
+
+    while &i<4.
+    (
+        &str="&str"+CONV.CHAR(0xff&(&int>>(&i*8.)))
+        &i=&i+1.
+    )
+    RETURN
+
+;================================================================================
+ParseKVPs:
+    ENTRY &fifo &fifo_size &kvp_size
+    LOCAL &size
+
+    print "&indent"+"KVPs      :"
+    &size=0.
+    while &size<&kvp_size
+    (
+        GOSUB ParseKVP &fifo &fifo_size &kvp_size
+    )
+    RETURN
+
+;================================================================================
+ParseKVP:
+    ENTRY &fifo &fifo_size &kvp_size
+    LOCAL &key &val_size &val &str &vals &idx &msg
+
+    &key=DATA.LONG.LE(D:(&fifo+&write_index))
+    GOSUB IncrementIndex 4. &fifo_size
+    GOSUB IntToString &key
+
+    &val_size=DATA.LONG.LE(D:(&fifo+&write_index))
+
+    if &size+8.+&val_size>&kvp_size
+    (
+        print %attr 0x85 "&indent"+"Found invalid message format"
+        &size=&size+8.+&val_size
+        RETURN
+    )
+
+    GOSUB IncrementIndex 4. &fifo_size
+
+    &vals=""
+
+    &idx=&val_size
+
+    &msg= "&indent            (&str, "+FORMAT.DECIMAL(0,&val_size)
+
+    if &val_size%4!=0.
+        &val_size=&val_size+(4.-&val_size%4.)
+
+    &print_mode=""
+    if &key==0x00727265 ;err
+    (
+        while &idx>0.
+        (
+            &val=DATA.LONG.LE(D:(&fifo+&write_index))
+            GOSUB IncrementIndex 4. &fifo_size
+            &idx=&idx-4.
+            &str=""
+            GOSUB IntToString &val
+            &vals="&vals&str"
+        )
+        &print_mode="%error"
+    )
+    else
+    (
+        while &idx>0.
+        (
+            &val=DATA.LONG.LE(D:(&fifo+&write_index))
+            GOSUB IncrementIndex 4. &fifo_size
+            &idx=&idx-4.
+            &vals="&vals "+"&val("+FORMAT.DECIMAL(0,&val)+")"
+        )
+    )
+
+    print &print_mode "&msg bytes, &vals)"
+    &size=&size+8.+&val_size
+    RETURN
+
+on error jumpto HandleError
+
+HandleError:
+    print %error "Caught error ..."
+    enddo
+

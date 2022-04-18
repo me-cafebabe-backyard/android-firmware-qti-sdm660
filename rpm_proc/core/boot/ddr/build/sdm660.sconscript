@@ -1,0 +1,152 @@
+#===============================================================================
+#
+# DDR Libs
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright 2014 by QUALCOMM, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/rpm.bf/1.8/core/boot/ddr/build/sdm660.sconscript#2 $
+#  $DateTime: 2016/12/12 02:38:18 $
+#  $Author: pwbldsvc $
+#  $Change: 11972947 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 01/03/14   sr      Initial Version
+#===============================================================================
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+env.PublishPrivateApi('DDR', [
+  "${INC_ROOT}/core/boot/ddr/hw/sdm660/",
+  "${INC_ROOT}/core/boot/ddr/platform/sdm660/params/v4/",
+  "${INC_ROOT}/core/boot/ddr/platform/sdm660/sns_api/",
+  "${INC_ROOT}/core/boot/ddr/hw/hw_sequence/rpm/target/SDM630_660/header/",  
+  "${INC_ROOT}/core/boot/ddr/hw/hw_sequence/rpm/target/SDM630_660/settings/",
+  "${INC_ROOT}/core/boot/ddr/hw/hw_sequence/rpm/ddrss/header/",
+  "${INC_ROOT}/core/boot/ddr/hw/hw_sequence/rpm/ddrss/phy/phy30/header/",
+  "${INC_ROOT}/core/boot/ddr/hw/hw_sequence/rpm/ddrss/bimc/mc230/header/",
+  "${INC_ROOT}/core/boot/ddr/hw/hw_sequence/rpm/ddrss/mccc/mccc10/header/",
+  "${INC_ROOT}/core/boot/ddr/hw/hw_sequence/rpm/ddrss/ddr_cc_mccc/ddr_cc_mccc10/header/",
+])
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+  'BOOT',
+  'SERVICES',
+  'SYSTEMDRIVERS',
+  'PMIC',
+  'POWER',
+  'DAL',
+  'DEBUGTRACE',
+  'KERNEL',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+env.Append(CPPDEFINES = [
+  "SHARED_IMEM_DDR_PARAM_BASE=0x146BF190",
+  "SHARED_IMEM_DDR_TRAINING_COOKIE=0x146BF018"
+])
+
+env.Append(CPPDEFINES = [
+  "FEATURE_BOOT_EXTERN_DDR_COMPLETED",
+  "DDRCC_PLL_EXTENSION_0",
+  "COMPILING_RPM_PROC"
+])
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+DDR_DRIVERS_SOURCES =[
+   '${BUILDPATH}/core/boot/ddr/platform/sdm660/ddr_sync.c',
+  '${BUILDPATH}/core/boot/ddr/platform/sdm660/params/v4/ddr_params.c',
+  '${BUILDPATH}/core/boot/ddr/platform/sdm660/ddr_sns_drivers.c',
+  '${BUILDPATH}/core/boot/ddr/platform/sdm660/ddr_health_monitor.c',
+  '${BUILDPATH}/core/boot/ddr/hw/sdm660/ddr_target.c',
+  '${BUILDPATH}/core/boot/ddr/hw/sdm660/ddr_status_reg.c',
+  '${BUILDPATH}/core/boot/ddr/hw/sdm660/ddr_automode.c',
+  '${BUILDPATH}/core/boot/ddr/hw/sdm660/ddr_external_api.c',
+]
+
+DDR_RPM_MESSAGE_SOURCES = [
+]
+
+DDR_TEST_SOURCES = [
+  '${BUILDPATH}/core/boot/ddr/platform/sdm660/ddr_test.c',
+]
+
+DDR_HAL_SOURCES = [
+#DDRSS SCALe
+   '${BUILDPATH}/core/boot/ddr/hw/hw_sequence/rpm/ddrss/src/ddrss_common_lpddr4_rpm.c',
+   '${BUILDPATH}/core/boot/ddr/hw/hw_sequence/rpm/ddrss/src/ddrss_common_rpm.c',
+   '${BUILDPATH}/core/boot/ddr/hw/hw_sequence/rpm/ddrss/src/ddrss_freq_switch_rpm.c',
+   '${BUILDPATH}/core/boot/ddr/hw/hw_sequence/rpm/ddrss/src/ddrss_rpm.c',
+
+]
+
+DDR_SCALE_SOURCES = [
+
+
+# Settings SCALe
+
+   '${BUILDPATH}/core/boot/ddr/hw/hw_sequence/rpm/target/SDM630_660/settings/target_config_rpm.c', 
+
+#BIMC SCALe
+
+   '${BUILDPATH}/core/boot/ddr/hw/hw_sequence/rpm/ddrss/bimc/mc230/src/bimc_rpm.c',
+   '${BUILDPATH}/core/boot/ddr/hw/hw_sequence/rpm/ddrss/bimc/mc230/src/bimc_common_rpm.c',
+   '${BUILDPATH}/core/boot/ddr/hw/hw_sequence/rpm/ddrss/bimc/mc230/src/bimc_data_rpm.c',
+   '${BUILDPATH}/core/boot/ddr/hw/hw_sequence/rpm/ddrss/bimc/mc230/src/bimc_data_lpddr4_rpm.c',
+   '${BUILDPATH}/core/boot/ddr/hw/hw_sequence/rpm/ddrss/bimc/mc230/src/bimc_freq_switch_lpddr4_rpm.c',
+   '${BUILDPATH}/core/boot/ddr/hw/hw_sequence/rpm/ddrss/bimc/mc230/src/bimc_lpddr4_rpm.c',
+
+#PHY SCALe
+
+			   
+   '${BUILDPATH}/core/boot/ddr/hw/hw_sequence/rpm/ddrss/phy/phy30/src/ddr_phy_hal_cfg_init_rpm.c',
+   '${BUILDPATH}/core/boot/ddr/hw/hw_sequence/rpm/ddrss/phy/phy30/src/ddr_phy_power_collapse_rpm.c',
+   
+#MCCC SCALe
+
+			   
+   '${BUILDPATH}/core/boot/ddr/hw/hw_sequence/rpm/ddrss/mccc/mccc10/src/mccc_rpm.c',
+#DDR_CC_MCCC SCALe
+	'${BUILDPATH}/core/boot/ddr/hw/hw_sequence/rpm/ddrss/ddr_cc_mccc/ddr_cc_mccc10/src/ddr_cc_mccc_rpm.c',
+   
+]
+
+if 'BUILD_BOOT_CHAIN' in env:
+  DDR_HAL_SOURCES += []
+
+ddr_drivers_lib = env.Library('${BUILDPATH}/DDR_DRIVERS', DDR_DRIVERS_SOURCES)
+ddr_rpm_message_lib = env.Library('${BUILDPATH}/DDR_RPM_MESSAGE', DDR_RPM_MESSAGE_SOURCES)
+ddr_test_lib = env.Library('${BUILDPATH}/DDR_TEST', DDR_TEST_SOURCES)
+ddr_hal_lib = env.Library('${BUILDPATH}/DDR_HAL', DDR_HAL_SOURCES)
+ddr_scale_lib = env.Library('${BUILDPATH}/DDR_SCALE', DDR_SCALE_SOURCES)
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+env.AddLibsToImage('DDR_BOOT_DRIVER', [ddr_drivers_lib, ddr_test_lib, ddr_hal_lib,ddr_scale_lib])
+env.AddLibsToImage('RPM_IMAGE', [ddr_drivers_lib, ddr_hal_lib, ddr_scale_lib])

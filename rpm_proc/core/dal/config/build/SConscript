@@ -1,0 +1,142 @@
+#===============================================================================
+#
+# DAL CONFIG Lib
+#
+# GENERAL DESCRIPTION
+#    build script for the dal config library on the RPM
+#
+# Copyright (c) 2009-2011 by Qualcomm Incorporated.
+# All Rights Reserved.
+# Qualcomm Confidential and Proprietary
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //source/qcom/qct/core/pkg/rpm/dev/afrantz.vmpm_timer/core/dal/config/build/SConscript#1 $
+#  $DateTime: 2011/12/13 08:46:37 $
+#  $Author: coresvc $
+#  $Change: 2094401 $
+#
+#===============================================================================
+Import('env')
+import os
+env = env.Clone()
+   
+#-------------------------------------------------------------------------------
+# Load dal config builders
+#-------------------------------------------------------------------------------
+env.Tool('dalconfig_builder', toolpath = ['.'])
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${DAL_ROOT}/config"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0) 
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'DAL',
+   'HAL',
+   'BUSES',
+   'HWENGINES',
+   'SYSTEMDRIVERS',
+   'SYSTEMDRIVERS_DALCONFIG',
+   'DEBUGTOOLS',
+   'SERVICES',
+   'APTTESTS',
+   'KERNEL_MEMORYMANAGER',
+   'KERNEL'
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+#------------------------------------------------------------------------------
+# Add extension flags doe dal config
+#------------------------------------------------------------------------------
+env.Append(CPPDEFINES = [
+   "DAL_NATIVE_PLATFORM"
+])
+
+if env['MSM_ID'] in ['8996', '8998', '660', '405']:
+   env.Append(CPPDEFINES = ['QTIMER_AC_BASE=0x00082000'])
+   env.Append(CPPDEFINES = ['QTIMER_BASE=0x00084000'])
+else:
+   env.Append(CPPDEFINES = ['QTIMER_AC_BASE=0x00182000'])
+   env.Append(CPPDEFINES = ['QTIMER_BASE=0x00184000'])
+   
+env.Append(CPPDEFINES = [('DALCONFIG_CHIPINFO_FAMILY_MSM${MSM_ID}_xml', 'CHIPINFO_FAMILY_%s' % env['CHIPSET'].upper())])
+if env['MSM_ID'] in ['8998']:
+   env.Append(CPPDEFINES = [('DALCONFIG_CHIPINFO_FAMILY_MSM8997_xml', 'CHIPINFO_FAMILY_MSM8997')])
+
+if env['MSM_ID'] in ['660']:
+   env.Append(CPPDEFINES = [('DALCONFIG_CHIPINFO_FAMILY_MSM630_xml', 'CHIPINFO_FAMILY_SDM630')])
+   
+if env['MSM_ID'] in ['405']:
+   env.Append(CPPDEFINES = [('DALCONFIG_CHIPINFO_FAMILY_MSM405_xml', 'CHIPINFO_FAMILY_QCS405')]) 
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+dal_gen_src = ['${BUILDPATH}/DALConfig_rpm', '${BUILDPATH}/DALModDir_rpm']
+
+if env.GetUsesFlag('USES_DEVCFG') is True:
+   DEVCFG_IMG = ['CORE_RPM']
+   env.AddDevCfgInfo(DEVCFG_IMG,
+   {
+     'soc_xml'    : '${BUILD_ROOT}/core/dal/config/rpm/dalsystem_rpm.xml'
+   })
+   
+   # Rules for dal config c files
+   # Create the master xml files
+   DALConfig_out = {}
+   DALConfig_cfile = {}
+   # Generate the master xml files for only those tags that have been used in the build
+   # passed through to the build system using AddDevCfgInfo. Ignore the unused tafs in 
+   # image_cfg.xml
+  
+   devcfg_xml_tag_list = env.GetDevcfgRelevantTags(DEVCFG_IMG, None)
+   # Create one master xml file per tag
+   for tag in devcfg_xml_tag_list:
+      appendstr = tag.replace('_xml', '')
+      devcfg_gen_xml = '${BUILDPATH}/DevCfg_master_' + appendstr + '.xml'
+      devcfg_gen_cfile = '${BUILDPATH}/DevCfg_master_' + appendstr + '.c'
+      DALConfig_out[tag] = env.DevcfgBuilder([devcfg_gen_xml, devcfg_gen_cfile] , None, CONFIG=[tag])
+   
+   # Create a dictionary with the following format: {'8026_PLATFORM_OEM_xml': {'DALConfig_8026_PLATFORM_OEM': '8026_PLATFORM_OEM_data'}
+   dal_gen_src_dict = {}
+   for word in devcfg_xml_tag_list:
+      dal_gen_src_dict[word] = {('${BUILDPATH}/DALConfig_' + word.replace('_xml', '')) : ('${BUILDPATH}/' + word.replace('_xml', '_data'))}
+   
+   # Create DalConfig file
+   dalconfig_libs = []
+   # DALConfig & data file generation
+   DALConfig_src = []
+   for xml_tag, dalconfig_files_dict in dal_gen_src_dict.items():
+      if env.GetUsesFlag('USES_DEVCFG_MULTIPLE_TAGS') is False:
+         appendstr = ""
+      else :
+         appendstr = xml_tag
+      for config_file, data_file in dalconfig_files_dict.items():
+         DALConfig_src = env.DALConfigSrcBuilder([config_file+'.c', data_file+'.c'], [DALConfig_out[xml_tag][0], DALConfig_out[xml_tag][1]], CONFIG=appendstr)
+         dalconfig_libname = '${BUILDPATH}/' + 'DALConfig_' + xml_tag
+         env.AddLibrary(DEVCFG_IMG, dalconfig_libname, DALConfig_src[0])
+         dalconfig_libs.append(dalconfig_libname)
+         # Devcfg data file object
+         DEVCFG_DATA_SOURCE =  [DALConfig_src[1]]
+         devcfg_data_obj = env.Object(DEVCFG_DATA_SOURCE)
+         env.AddObjsToImage(DEVCFG_IMG, devcfg_data_obj)      
+   
+
+   # Create DALModDir file
+   dal_gen_src = ['${BUILDPATH}/DALModDir_modem']
+   
+   # Devcfg master xml file
+   devcfg_gen_xml = '${BUILDPATH}/DevCfg_master.xml'
+   devcfg_gen_cfile = '${BUILDPATH}/DevCfg_master.c'
+   DALConfig_out = env.DevcfgBuilder([devcfg_gen_xml, devcfg_gen_cfile], None, CONFIG=devcfg_xml_tag_list)
+   
+   # FIX ME
+   DALModDir_src = env.DALModDirSrcBuilder(dal_gen_src, [DALConfig_out])
+   env.AddLibrary(DEVCFG_IMG, '${BUILDPATH}/DALConfig', DALModDir_src[0])

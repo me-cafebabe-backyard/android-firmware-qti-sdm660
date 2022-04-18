@@ -1,0 +1,28 @@
+#===============================================================================
+#
+# AVS AU
+#
+# GENERAL DESCRIPTION
+#    Build script
+#
+# Copyright (c) 2015 Qualcomm Technologies, Inc.  All Rights Reserved.
+# Confidential and Proprietary - Qualcomm Technologies, Inc.
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/avs.adsp/2.8/aud/algorithms/audencdec/heaac/build/heaac.scons#2 $
+#  $DateTime: 2017/05/04 15:39:06 $
+#  $Author: pwbldsvc $
+#  $Change: 13218364 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when        who            what, where, why
+# --------    ---            ----------------------------------------------------
+# 04/14/15   adeepak         AAC Decoder Encoder Scons file
+#===============================================================================
+Import('env')
+
+env.LoadSoftwareUnits()

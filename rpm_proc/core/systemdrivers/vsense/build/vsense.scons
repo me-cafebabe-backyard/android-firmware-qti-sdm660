@@ -1,0 +1,110 @@
+#=============================================================================
+# VSENSE
+#
+# Targets:    MSM8994
+# Processors: RPM
+#
+#=============================================================================
+#                    Copyright 2011 Qualcomm Technologies Incorporated.
+#                           All Rights Reserved.
+#                         QUALCOMM Proprietary/GTDR
+#=============================================================================
+#  $Header: //components/rel/rpm.bf/1.8/core/systemdrivers/vsense/build/vsense.scons#4 $
+#  $DateTime: 2018/03/06 23:35:37 $
+#  $Author: pwbldsvc $
+#  $Change: 15617431 $
+#===============================================================================
+
+Import('env')
+env = env.Clone()
+#default vipertooth support using Starlord target specific files   
+if env['MSM_ID'] in ['405']:
+   env['MSM_ID'] = '660'
+   
+if env['CHIPSET'] in ['qcs405']:
+   env['CHIPSET'] = 'sdm660'
+
+supported_targets = ['8994', '8996']
+if env['MSM_ID'] not in supported_targets:
+    env.PrintWarning('Bailing from VSENSE scripts; no support for build targets other than %s' % supported_targets)
+    Return()
+
+#-----------------------------------------------------------------------------
+# Define paths
+#-----------------------------------------------------------------------------
+
+SRCPATH = "${BUILD_ROOT}/core/systemdrivers/vsense/src/"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0) 
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+
+CBSP_API = [
+   'BOOT',
+   'DAL',
+   'BUSES',
+   'MPROC',
+   'HAL',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+   'POWER',
+   'KERNEL',
+   'DEBUGTRACE'
+]
+
+env.Append(CCFLAGS = ' ${ARMCC_STDC99_CMD}') #needed for designated initializers
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+env.PublishPrivateApi('SYSTEMDRIVERS_VSENSE', [
+   '${INC_ROOT}/core/systemdrivers/vsense/inc/${CHIPSET}',
+   '${INC_ROOT}/core/systemdrivers/vsense/inc',
+])
+
+VSENSE_SOURCES =  [
+  '${BUILDPATH}/${CHIPSET}/vsense.c',
+  '${BUILDPATH}/vsense_utils.c'
+]
+
+env.AddLibrary(['RPM_IMAGE' ], '${BUILDPATH}/vsense', VSENSE_SOURCES)
+
+#-------------------------------------------------------------------------------
+# SWEvent processing
+#-------------------------------------------------------------------------------
+if 'USES_QDSS_SWE' in env:
+   QDSS_IMG = ['QDSS_EN_IMG']
+   events = [['VSENSE_EVENT_FIRST=600',             'vsense first event placeholder'],
+             ['VSENSE_EVENT_INIT',                  'vsense not initialized, smem NULL'],
+             ['VSENSE_EVENT_POST_VDD_CB_THRESHOLD', 'vsense rail id :%d cur uv: %d'],
+             ['VSENSE_EVENT_PRE_VDD_CB_THRESHOLD',  'vsense rail id :%d cur uv: %d, voltage_code=0x%x min_thresh :0x%x'],
+             ['VSENSE_EVENT_CONFIG_ALARM',          'vsense rail id :%d cur uv: %d, voltage_code=0x%x min_thresh :0x%x'],
+             ['VSENSE_EVENT_SLOPE_THRESHOLD',       'vsense slope rail id :%d threshold:0x%x, delta_cycle:%d'],
+             ['VSENSE_EVENT_STATUS',                'vsense_status: rail_id: %d min thresh:0x%x , max thresh:0x%x, slope threshold:0x%x '],
+             ['VSENSE_EVENT_ERROR_STATUS',          'vsense_status: min_alarm :%d , max_alarm :%d, slope pos:%d, slope neg:%d '],
+             ['VSENSE_EVENT_FIFO',                  'vsense_fifo:[0x] 0x%x | 0x%x | 0x%x | 0x%x'],
+             ['VSENSE_EVENT_PRE_VDD_CB',            'vsense PRE VDD CB : prev corner:%d new corner:%d'],
+             ['VSENSE_EVENT_POST_VDD_CB',           'vsense POST VDD CB'],
+             ['VSENSE_EVENT_CAL_VOLT_CODE',         'vsense calc_volt_code fuse1_code:0x%x, fuse1_voltage:%d, fuse2_code:0x%x, fuse2_voltage:%d'],
+	     ['VSENSE_EVENT_ISR',                   'vsense ISR TRIGGERED'],
+             ['VSENSE_EVENT_CAPTURE_DELAY',         'vsense capture_delay: %d, rail_id:%d'],
+             ['VSENSE_EVENT_RAIL_NOT_SUPPORTED',    'vsense rail %d NOT SUPPORTED '],
+             ['VSENSE_EVENT_RAIL_NOT_CALIBRATED',   'vsense rail %d NOT CALIBRATED '],   
+             ['VSENSE_EVENT_CODE_CALC_ERROR',       'vsense invalid input fuse1_code:0x%x, fuse1_voltage:%d, fuse2_code:0x%x, fuse2_voltage:%d'],
+             ['VSENSE_EVENT_ALARM_FIRED',           'vsense rail:%d , sensor id:%d  '],  
+             ['VSENSE_EVENT_SUMMARY',               'vsense rail summary:  %d  '],   
+             ['VSENSE_EVENT_LAST=639',              'vsense last event placeholder']
+            ]
+   env.AddSWEInfo(QDSS_IMG, events)
+
+if 'USES_DEVCFG' in env:
+   DEVCFG_IMG = ['DAL_DEVCFG_IMG']
+   env.AddDevCfgInfo(DEVCFG_IMG,{
+      '8994_xml' :     ['${BUILD_ROOT}/core/systemdrivers/vsense/config/msm8994/vsense_config.xml',      
+                       '${BUILD_ROOT}/core/systemdrivers/vsense/config/msm8994/vsense_config.c'],
+      '8996_xml' :     ['${BUILD_ROOT}/core/systemdrivers/vsense/config/msm8996/vsense_config.xml',      
+                       '${BUILD_ROOT}/core/systemdrivers/vsense/config/msm8996/vsense_config.c'],
+      
+   })   
+

@@ -1,0 +1,72 @@
+#===============================================================================
+#
+# App Core
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+#
+#-------------------------------------------------------------------------------
+#
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains schedulerents describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 01/01/17    dr     Created
+#===============================================================================
+
+Import('env')
+
+#-------------------------------------------------------------------------------
+# Compiler, object, and linker definitions
+#-------------------------------------------------------------------------------
+
+
+seccam_lib = SConscript(
+  env.subst('${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/seccamlib/src/SConscript'),
+  exports = 'env'
+)
+
+includes = [
+  "${BUILD_ROOT}/core/api/services",
+  "${BUILD_ROOT}/core/api/kernel/libstd/stringl",
+  "${BUILD_ROOT}/core/api/securemsm/trustzone/qsee",
+  "${BUILD_ROOT}/apps/securemsm/trustzone/qsapps/seccamlib/inc",
+]
+
+#----------------------------------------------------------------------------
+# App core Objects
+#----------------------------------------------------------------------------
+sources = [
+  'app_main.c',
+]
+
+app_name = 'seccamdemo64'
+libs = [
+    seccam_lib,
+]
+#-------------------------------------------------------------------------------
+# Add metadata to image
+#-------------------------------------------------------------------------------
+md = {
+   'appName':    app_name,
+   'memoryType':    'Unprotected',
+   'privileges':    ['default',
+                     'SecureCamera',
+                    ],
+}
+
+app_units = env.SecureAppBuilder(
+  sources = sources,
+  includes = includes,
+  metadata = md,
+  user_libs = libs,
+  image = app_name,
+  stack_size = '0x2000',
+  heap_size = '0x2800'
+)
+
+op = env.Alias(app_name, app_units)

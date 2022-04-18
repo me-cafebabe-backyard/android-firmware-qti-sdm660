@@ -1,0 +1,2 @@
+Peripherals 224.
+Ports 6.

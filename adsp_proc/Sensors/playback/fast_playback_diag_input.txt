@@ -1,0 +1,27 @@
+# fast_playback_diag_input.txt
+128 64 2 0 2 2 8 0 0 0 4 2 0 0 0 7 0 1 4 0 0 0 0 0   # AMD: 0Hz report rate
+#128 64 2 0 2 2 1 0 0 0 0 39 0 0 0 7 0 1 4 0 0 0 0 0   # QMAGCAL mode 0 , please use only with SMGR MAG request to specify the mode you want to run!!
+#128 64 2 0 2 2 1 0 0 0 0 39 0 0 0 7 0 1 4 0 1 0 0 0   # QMAGCAL mode 1 , please use only with SMGR MAG request to specify the mode you want to run!!
+#128 64 3 0 2 2 1 0 0 0 0 33 0 0 0 35 0 1 1 0 6 2 1 0 1 3 4 0 0 0 50 0 4 9 0 1 20 0 3 0 50 0 1 0 16 5 0 0 0 0 0 1    # SMGR MAG: 10Hz report rate
+#128 64 3 0 2 2 1 0 0 0 0 2 0 0 0 40 0 1 1 0 5 2 1 0 1 3 2 0 10 0 4 1 0 1 5 20 0 1 10 0 0 3 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 #SMGR GYRO: 10Hz Report
+# 128 64 2 0 2 2 1 0 0 0 63 2 0 0 0 22 0 1 4 0 2 0 0 0 16 4 0 136 19 0 0 17 5 0 0 0 0 0 1  # PMD: BOTH mode
+#128 64 2 0 2 2 0 0 0 0 57 2 0 0 0 7 0 1 4 0 2 0 0 0  # Multishake: 2 shakes, any direction
+#128 64 2 0 2 2 1 0 0 0 58 2 0 0 0 0 0                # DPC V2    
+# 128 64 2 0 2 2 0 0 0 0 5 2 0 0 0 7 0 1 4 0 0 0 0 0   # RMD: 0Hz report rate
+#128 64 2 0 2 2 0 0 0 0 37 2 0 0 0 7 0 1 4 0 0 0 0 0  # Pedometer: 0Hz report rate
+# 128 64 2 0 2 2 0 0 0 0 41 2 0 0 0 0 0                # CMC
+# 128 64 2 0 2 2 0 0 0 0 46 2 0 0 0 7 0 1 4 0 30 0 0 0 # Tilt: 30 degree tilt
+# 128 64 2 0 2 2 0 0 0 0 40 2 0 0 0 0 0                # SMD
+# 128 64 2 0 2 2 0 0 0 0 19 2 0 0 0 14 0 1 4 0 0 0 0 0 16 4 0 0 0 50 0 # Quaternion: 0 Hz report rate, 50 Hz sample rate
+# 128 64 2 0 2 2 0 0 0 0 20 2 0 0 0 14 0 1 4 0 0 0 0 0 16 4 0 0 0 50 0 # Gravity: 0 Hz report rate, 50 Hz sample rate
+# 128 64 2 0 2 2 0 0 0 0 23 2 0 0 0 14 0 1 4 0 0 0 0 0 16 4 0 0 0 50 0 # Orientation: 0 Hz report rate, 50 Hz sample rate
+# 128 64 2 0 2 2 0 0 0 0 17 2 0 0 0 14 0 1 4 0 0 0 0 0 16 4 0 0 0 50 0 # FMV: 0 Hz report rate, 50 Hz sample rate
+# 128 64 2 0 2 2 0 0 0 0 43 2 0 0 0 14 0 1 4 0 0 0 0 0 16 4 0 0 0 50 0 # GRV: 0 Hz report rate, 50 Hz sample rate
+# 128 64 2 0 2 2 0 0 0 0 18 2 0 0 0 14 0 1 4 0 0 0 0 0 16 4 0 0 0 50 0 # Rotation Vector: 0 Hz report rate, 50 Hz sample rate
+# 128 64 2 0 2 2 0 0 0 0 62 2 0 0 0 0 0                # Device Orientation
+# 128 64 2 0 2 2 0 0 0 0 19 2 0 0 0 7 0 1 4 0 0 0 50 0 # [UNSUPPORTED] Quaternion: 50 Hz report rate
+# 128 64 2 0 2 2 0 0 0 0 20 2 0 0 0 7 0 1 4 0 0 0 50 0 # [UNSUPPORTED] Gravity: 50 Hz report rate
+# 128 64 2 0 2 2 0 0 0 0 23 2 0 0 0 7 0 1 4 0 0 0 50 0 # [UNSUPPORTED] Orientation: 50 Hz report rate
+# 128 64 2 0 2 2 0 0 0 0 17 2 0 0 0 7 0 1 4 0 0 0 50 0 # [UNSUPPORTED] FMV: 50 Hz report rate
+# 128 64 2 0 2 2 0 0 0 0 43 2 0 0 0 7 0 1 4 0 0 0 50 0 # [UNSUPPORTED] GRV: 50 Hz report rate
+# 128 64 2 0 2 2 0 0 0 0 18 2 0 0 0 7 0 1 4 0 0 0 50 0 # [UNSUPPORTED] Rotation Vector: 50 Hz report rate

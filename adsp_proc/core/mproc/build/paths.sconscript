@@ -1,0 +1,55 @@
+#===============================================================================
+#
+# MPROC INC PATHs
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2012,2016 Qualcomm Technologies, Inc.
+#         All Rights Reserved.
+# Qualcomm Technologies, Inc. Confidential and Proprietary.
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.qdsp6/1.0.c2/mproc/build/paths.sconscript#1 $
+#  $DateTime: 2020/02/10 01:57:30 $
+#  $Author: pwbldsvc $
+#  $Change: 22511909 $
+#                      EDIT HISTORY FOR FILE
+#                      
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#  
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+#
+#===============================================================================
+Import('env')
+
+#-------------------------------------------------------------------------------
+# Publish Public APIs
+# These are accessible internal or external to CoreBSP
+#-------------------------------------------------------------------------------
+env.PublishPublicApi('MPROC', [
+   "${INC_ROOT}/core/api/mproc",
+])
+
+if env.has_key('USES_STA'):
+  env.PublishPublicApi('MPROC', ["${INC_ROOT}/core/api/mproc/tst",])
+
+
+#-------------------------------------------------------------------------------
+# Publish Restricted APIs
+# These are accessible only within CoreBSP
+#-------------------------------------------------------------------------------
+env.PublishRestrictedApi('MPROC', [
+   "${INC_ROOT}/core/mproc/ipc_router",
+   "${INC_ROOT}/core/mproc/ipc_router/inc",
+   "${INC_ROOT}/core/mproc/smem/inc",
+   "${INC_ROOT}/core/mproc/smd/inc",
+   "${INC_ROOT}/core/mproc/smsm/inc",
+   "${INC_ROOT}/core/mproc/qmi/qcsi",
+   "${INC_ROOT}/core/mproc/qmi/common",
+   "${INC_ROOT}/core/mproc/qmi/core_server",
+])
+

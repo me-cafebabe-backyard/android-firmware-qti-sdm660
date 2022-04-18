@@ -1,0 +1,57 @@
+//
+//  Description:                                                              
+//    RPM Command Menu
+//                                                                            
+// Copyright (c) 2012 - 2014 by QUALCOMM, Incorporated.  All Rights Reserved.        
+//
+//
+//
+//
+//                      EDIT HISTORY FOR FILE
+//  This section contains comments describing changes made to the module.
+//  Notice that changes are listed in reverse chronological order.
+//
+// when       who             what, where, why
+// --------   ---             ---------------------------------------------------------
+// 03/04/2015 JBILLING      Updated for 8996
+// 09/19/2014 JBILLING      Ported for 9x45 - dummy file since RPM not boot processor
+// 07/27/2012 AJCheriyan    Created for B-family.
+
+
+
+ADD
+MENU
+(
+    POPUP "&RPM Commands"
+    (
+        MENUITEM "[:PSTEP]&Load Symbols"
+        (
+            WINCLEAR
+            do std_loadsyms_rpm
+        )
+        
+        MENUITEM "[:cts]&RPM ETB Trace"
+        (
+            //WINCLEAR
+            do std_utils MAKE_SURE_BOOT_PROCESSOR_ATTACHED
+            do std_utils BREAKPROC
+
+            //sys.m.a
+            //do std_debug_rpm HOTATTACH_GUI
+            do std_trace_rpm_msm8998 STARTTRACING NULL rpm ETB OFF fromcoldboot NULL
+            //                                    NULL src snk cycle cfg     portsize
+        )
+    )
+)
+
+
+ADD
+TOOLBAR
+(
+    
+    TOOLITEM "Live Debug Menu" "_,X,:cts" "do std_debug_rpm HOTATTACH_GUI"
+    
+    TOOLITEM "Load Symbols" "Sy,G" "do std_loadsyms_rpm &RPM_BUILDROOT locally notliveattach NULL NULL NULL"
+    
+
+)

@@ -1,0 +1,232 @@
+//===========================================================================
+//
+// FILE:         QUPAC_660_Access.xml
+//
+// DESCRIPTION:  This file lists access permission for all QUPS and UARTs
+//
+//===========================================================================
+//
+//                             Edit History
+//
+// $Header:  $
+//
+// when       who     what, where, why
+// 10/24/17   dpk     Corrected the GPIO numbering for BLSP UART 4
+// 01/09/17   dpk     Changed the name to LPASS to access sensor blsp peripherals
+// 12/09/16   dpk     Created for SDM660
+//
+//===========================================================================
+//             Copyright (c) 2016, 2017 QUALCOMM Technologies, Incorporated.
+//                    All Rights Reserved.
+//                QUALCOMM Confidential & Proprietary
+//===========================================================================
+#include "QupACCommonIds.h"
+
+/* OEMs are expected to modify this XML to suit their board design. The RW_ACCESS_LIST 
+   specifies the owners of the QUP/UART resource. We initially populate it according to
+   System IO GPIO allocation */
+
+
+//All QUPs have to be listed below. Any QUP not present cannot be accesssed by any subsystem. 
+//It's designed to be flexible enough to list only available QUPs on a particular platform.
+
+<driver name="NULL">
+   <global_def>
+      // Add GPIO address in the ascending order only.
+      // Please enable the respective GPIO Addr sequence corresponding to the Protocol (SPI/I2C) used for each SENSOR QUP instance.
+	  
+      // SENSOR_SPI_1
+      <var_seq name = "SENSOR_QUP1_GPIO_ADDR"    type=DALPROP_DATA_TYPE_UINT32_SEQ>   0x15075000, 0x15075010, 0x15075020, 0x15075030, end   </var_seq>
+      // SENSOR_I2C_1
+      //<var_seq name = "SENSOR_QUP1_GPIO_ADDR"    type=DALPROP_DATA_TYPE_UINT32_SEQ>   0x15075000, 0x15075010, end   </var_seq>
+      // SENSOR_UART_1
+      <var_seq name = "SENSOR_UART1_GPIO_ADDR"   type=DALPROP_DATA_TYPE_UINT32_SEQ>   0x15076000, 0x15076010, end   </var_seq>
+
+      //SENSOR_SPI_2
+      <var_seq name = "SENSOR_QUP2_GPIO_ADDR"    type=DALPROP_DATA_TYPE_UINT32_SEQ>   0x15073000, 0x15073010, 0x15074000, 0x15074010, end   </var_seq>
+      // SENSOR_I2C_2
+      //<var_seq name = "SENSOR_QUP2_GPIO_ADDR"    type=DALPROP_DATA_TYPE_UINT32_SEQ>   0x15073000, 0x15073010, end   </var_seq>
+      // SENSOR_UART_2
+      <var_seq name = "SENSOR_UART2_GPIO_ADDR"   type=DALPROP_DATA_TYPE_UINT32_SEQ>   0x15077000, 0x15077010, end   </var_seq>
+
+      //SENSOR_SPI_3
+      <var_seq name = "SENSOR_QUP3_GPIO_ADDR"    type=DALPROP_DATA_TYPE_UINT32_SEQ>   0x15076000, 0x15076010, 0x15077000, 0x15077010, end   </var_seq>
+      // SENSOR_I2C_3
+      //<var_seq name = "SENSOR_QUP3_GPIO_ADDR"    type=DALPROP_DATA_TYPE_UINT32_SEQ>   0x15072000, 0x15072010, end </var_seq>
+      // SENSOR_UART_3
+      <var_seq name = "SENSOR_UART3_GPIO_ADDR"   type=DALPROP_DATA_TYPE_UINT32_SEQ>   0x15074000, 0x15074010, end </var_seq>
+
+	  // SENSOR_UART_4
+      <var_seq name = "SENSOR_UART4_GPIO_ADDR"   type=DALPROP_DATA_TYPE_UINT32_SEQ>   0x15075040, 0x15075050, end </var_seq>
+   </global_def>
+
+   <device id=BLSP_QUP1_DEV_ACCESS>
+      <props name="PERIPH ID"           type=DALPROP_ATTR_TYPE_UINT32>     BLSP_QUP1         </props>
+	  <props name="GPIO range"          type=DALPROP_ATTR_TYPE_BYTE_SEQ>   0, 1, 2, 3, end   </props>
+	  <props name="IS_GPIO_PROTECTED"   type=DALPROP_ATTR_TYPE_UINT32>     1                 </props>
+      <props name="RW_ACCESS_LIST"      type=DALPROP_ATTR_TYPE_BYTE_SEQ>   AC_TZ, end        </props>
+      <props name="IS_PERSISTENT"       type=DALPROP_ATTR_TYPE_UINT32>     0                 </props>		
+   </device>
+
+   <device id=BLSP_UART1_DEV_ACCESS>
+      <props name="PERIPH ID"           type=DALPROP_ATTR_TYPE_UINT32>     BLSP_UART1        </props>
+      <props name="GPIO range"          type=DALPROP_ATTR_TYPE_BYTE_SEQ>   0, 1, 2, 3, end   </props> 
+      <props name="IS_GPIO_PROTECTED"   type=DALPROP_ATTR_TYPE_UINT32>     1                 </props>
+      <props name="RW_ACCESS_LIST"      type=DALPROP_ATTR_TYPE_BYTE_SEQ>   AC_DEFAULT, end   </props>
+      <props name="IS_PERSISTENT"       type=DALPROP_ATTR_TYPE_UINT32>     0                 </props>		
+   </device>
+
+   <device id=BLSP_QUP2_DEV_ACCESS>
+      <props name="PERIPH ID"           type=DALPROP_ATTR_TYPE_UINT32>     BLSP_QUP2         </props>
+      <props name="GPIO range"          type=DALPROP_ATTR_TYPE_BYTE_SEQ>   6, 7, end         </props>
+      <props name="IS_GPIO_PROTECTED"   type=DALPROP_ATTR_TYPE_UINT32>     1                 </props>
+      <props name="RW_ACCESS_LIST"      type=DALPROP_ATTR_TYPE_BYTE_SEQ>   AC_HLOS, end      </props>
+      <props name="IS_PERSISTENT"       type=DALPROP_ATTR_TYPE_UINT32>     0                 </props>		
+   </device>
+
+   <device id=BLSP_UART2_DEV_ACCESS>
+      <props name="PERIPH ID"           type=DALPROP_ATTR_TYPE_UINT32>     BLSP_UART2        </props>
+      <props name="GPIO range"          type=DALPROP_ATTR_TYPE_BYTE_SEQ>   4, 5, end         </props> 
+      <props name="IS_GPIO_PROTECTED"   type=DALPROP_ATTR_TYPE_UINT32>     1                 </props>
+      <props name="RW_ACCESS_LIST"      type=DALPROP_ATTR_TYPE_BYTE_SEQ>   AC_HLOS, end      </props>
+      <props name="IS_PERSISTENT"       type=DALPROP_ATTR_TYPE_UINT32>     0                 </props>		
+   </device>
+
+   <device id=BLSP_QUP3_DEV_ACCESS>
+      <props name="PERIPH ID"           type=DALPROP_ATTR_TYPE_UINT32>     BLSP_QUP3         </props>
+      <props name="GPIO range"          type=DALPROP_ATTR_TYPE_BYTE_SEQ>   8, 9, 10, 11, end </props> 
+	  <props name="IS_GPIO_PROTECTED"   type=DALPROP_ATTR_TYPE_UINT32>     1                 </props>
+      <props name="RW_ACCESS_LIST"      type=DALPROP_ATTR_TYPE_BYTE_SEQ>   AC_TZ, end        </props>
+      <props name="IS_PERSISTENT"       type=DALPROP_ATTR_TYPE_UINT32>     0                 </props>		
+   </device>
+
+   <device id=BLSP_QUP4_DEV_ACCESS>
+      <props name="PERIPH ID"           type=DALPROP_ATTR_TYPE_UINT32>     BLSP_QUP4           </props>
+      <props name="GPIO range"          type=DALPROP_ATTR_TYPE_BYTE_SEQ>   14, 15, end         </props> 
+      <props name="IS_GPIO_PROTECTED"   type=DALPROP_ATTR_TYPE_UINT32>     1                   </props>
+      <props name="RW_ACCESS_LIST"      type=DALPROP_ATTR_TYPE_BYTE_SEQ>   AC_HLOS, end        </props>
+      <props name="IS_PERSISTENT"       type=DALPROP_ATTR_TYPE_UINT32>     0                   </props>		
+   </device>
+
+   <device id=BLSP_QUP5_DEV_ACCESS>
+      <props name="PERIPH ID"           type=DALPROP_ATTR_TYPE_UINT32>     BLSP_QUP5         </props>
+      <props name="GPIO range"          type=DALPROP_ATTR_TYPE_BYTE_SEQ>   16, 17, 18, 19, end </props> 
+      <props name="IS_GPIO_PROTECTED"   type=DALPROP_ATTR_TYPE_UINT32>     1                 </props>
+      <props name="RW_ACCESS_LIST"      type=DALPROP_ATTR_TYPE_BYTE_SEQ>   AC_DEFAULT, end   </props>
+      <props name="IS_PERSISTENT"       type=DALPROP_ATTR_TYPE_UINT32>     0                 </props>		
+   </device>
+
+   <device id=BLSP_UART3_DEV_ACCESS>
+      <props name="PERIPH ID"           type=DALPROP_ATTR_TYPE_UINT32>     BLSP_UART3         </props>
+      <props name="GPIO range"          type=DALPROP_ATTR_TYPE_BYTE_SEQ>   16, 17, 18, 19, end </props> 
+      <props name="IS_GPIO_PROTECTED"   type=DALPROP_ATTR_TYPE_UINT32>     1                 </props>
+      <props name="RW_ACCESS_LIST"      type=DALPROP_ATTR_TYPE_BYTE_SEQ>   AC_HLOS, end      </props>
+      <props name="IS_PERSISTENT"       type=DALPROP_ATTR_TYPE_UINT32>     0                 </props>		
+   </device>
+
+   <device id=BLSP_QUP6_DEV_ACCESS>
+      <props name="PERIPH ID"           type=DALPROP_ATTR_TYPE_UINT32>     BLSP_QUP6         </props>
+      <props name="GPIO range"          type=DALPROP_ATTR_TYPE_BYTE_SEQ>   22, 23, end       </props> 
+	  <props name="IS_GPIO_PROTECTED"   type=DALPROP_ATTR_TYPE_UINT32>     1                 </props>
+      <props name="RW_ACCESS_LIST"      type=DALPROP_ATTR_TYPE_BYTE_SEQ>   AC_HLOS, end      </props>
+      <props name="IS_PERSISTENT"       type=DALPROP_ATTR_TYPE_UINT32>     0                 </props>		
+   </device>
+
+   <device id=BLSP_UART4_DEV_ACCESS>
+      <props name="PERIPH ID"           type=DALPROP_ATTR_TYPE_UINT32>     BLSP_UART4         </props>
+      <props name="GPIO range"          type=DALPROP_ATTR_TYPE_BYTE_SEQ>   24, 25, 26, 27, end </props> 
+      <props name="IS_GPIO_PROTECTED"   type=DALPROP_ATTR_TYPE_UINT32>     1                 </props>
+      <props name="RW_ACCESS_LIST"      type=DALPROP_ATTR_TYPE_BYTE_SEQ>   AC_DEFAULT, end   </props>
+      <props name="IS_PERSISTENT"       type=DALPROP_ATTR_TYPE_UINT32>     0                 </props>		
+   </device>
+
+   <device id=BLSP_QUP7_DEV_ACCESS>
+      <props name="PERIPH ID"           type=DALPROP_ATTR_TYPE_UINT32>     BLSP_QUP7         </props>
+      <props name="GPIO range"          type=DALPROP_ATTR_TYPE_BYTE_SEQ>   24, 25, 26, 27, end </props> 
+      <props name="IS_GPIO_PROTECTED"   type=DALPROP_ATTR_TYPE_UINT32>     1                 </props>
+      <props name="RW_ACCESS_LIST"      type=DALPROP_ATTR_TYPE_BYTE_SEQ>   AC_HLOS, end      </props>
+      <props name="IS_PERSISTENT"       type=DALPROP_ATTR_TYPE_UINT32>     0                 </props>		
+   </device>
+
+   <device id=BLSP_QUP8_DEV_ACCESS>
+      <props name="PERIPH ID"           type=DALPROP_ATTR_TYPE_UINT32>     BLSP_QUP8         </props>
+      <props name="GPIO range"          type=DALPROP_ATTR_TYPE_BYTE_SEQ>   28, 29, 30, 31, end </props> 
+      <props name="IS_GPIO_PROTECTED"   type=DALPROP_ATTR_TYPE_UINT32>     1                 </props>
+      <props name="RW_ACCESS_LIST"      type=DALPROP_ATTR_TYPE_BYTE_SEQ>   AC_DEFAULT, end   </props>
+      <props name="IS_PERSISTENT"       type=DALPROP_ATTR_TYPE_UINT32>     0                 </props>		
+   </device>
+
+   // For SENSOR_Q6_MPU_RG_INDEX & SENSOR_CFG_MPU_RG_INDEX value, please pick a free entry from the below links respectively.
+   // http://qwiki.qualcomm.com/accesscontrol/Starlord.LPASS_Q6SS_MPU
+   // http://qwiki.qualcomm.com/accesscontrol/Starlord.LPASS_CFG_MPU_MPU32Q2N7S1V0_10_CL36M22L12_AHB
+   <device id=SENSOR_QUP1_DEV_ACCESS>
+      <props name="PERIPH ID"                 type=DALPROP_ATTR_TYPE_UINT32>           SENSOR_QUP1              </props>
+      <props name="GPIO_ADDR"                 type=DALPROP_ATTR_TYPE_UINT32_SEQ_PTR>   SENSOR_QUP1_GPIO_ADDR    </props>
+      <props name="SENSOR_Q6_MPU_RG_INDEX"    type=DALPROP_ATTR_TYPE_BYTE_SEQ>         end                      </props>
+      <props name="SENSOR_CFG_MPU_RG_INDEX"   type=DALPROP_ATTR_TYPE_BYTE_SEQ>         end                      </props>
+      <props name="IS_GPIO_PROTECTED"         type=DALPROP_ATTR_TYPE_UINT32>           0                        </props>      
+      <props name="RW_ACCESS_LIST"            type=DALPROP_ATTR_TYPE_BYTE_SEQ>         AC_LPASS, end            </props>
+      <props name="IS_PERSISTENT"             type=DALPROP_ATTR_TYPE_UINT32>           0                        </props>		
+   </device>
+
+   <device id=SENSOR_UART1_DEV_ACCESS>
+      <props name="PERIPH ID"                 type=DALPROP_ATTR_TYPE_UINT32>           SENSOR_UART1             </props>
+      <props name="GPIO_ADDR"                 type=DALPROP_ATTR_TYPE_UINT32_SEQ_PTR>   SENSOR_UART1_GPIO_ADDR   </props>
+      <props name="SENSOR_Q6_MPU_RG_INDEX"    type=DALPROP_ATTR_TYPE_BYTE_SEQ>         end                      </props>
+      <props name="SENSOR_CFG_MPU_RG_INDEX"   type=DALPROP_ATTR_TYPE_BYTE_SEQ>         end                      </props>
+      <props name="IS_GPIO_PROTECTED"         type=DALPROP_ATTR_TYPE_UINT32>           0                        </props>      
+      <props name="RW_ACCESS_LIST"            type=DALPROP_ATTR_TYPE_BYTE_SEQ>         AC_LPASS, end            </props>
+      <props name="IS_PERSISTENT"             type=DALPROP_ATTR_TYPE_UINT32>           0                        </props>			  
+   </device>
+
+   <device id=SENSOR_QUP2_DEV_ACCESS>
+      <props name="PERIPH ID"                 type=DALPROP_ATTR_TYPE_UINT32>           SENSOR_QUP2              </props>
+      <props name="GPIO_ADDR"                 type=DALPROP_ATTR_TYPE_UINT32_SEQ_PTR>   SENSOR_QUP2_GPIO_ADDR    </props>
+      <props name="SENSOR_Q6_MPU_RG_INDEX"    type=DALPROP_ATTR_TYPE_BYTE_SEQ>         end                      </props>
+      <props name="SENSOR_CFG_MPU_RG_INDEX"   type=DALPROP_ATTR_TYPE_BYTE_SEQ>         end                      </props>
+      <props name="IS_GPIO_PROTECTED"         type=DALPROP_ATTR_TYPE_UINT32>           0                        </props>      
+      <props name="RW_ACCESS_LIST"            type=DALPROP_ATTR_TYPE_BYTE_SEQ>         AC_LPASS, end            </props>
+      <props name="IS_PERSISTENT"             type=DALPROP_ATTR_TYPE_UINT32>           0                        </props>		
+   </device>
+
+   <device id=SENSOR_UART2_DEV_ACCESS>
+      <props name="PERIPH ID"                 type=DALPROP_ATTR_TYPE_UINT32>           SENSOR_UART2             </props>
+      <props name="GPIO_ADDR"                 type=DALPROP_ATTR_TYPE_UINT32_SEQ_PTR>   SENSOR_UART2_GPIO_ADDR   </props>
+      <props name="SENSOR_Q6_MPU_RG_INDEX"    type=DALPROP_ATTR_TYPE_BYTE_SEQ>         end                      </props>
+      <props name="SENSOR_CFG_MPU_RG_INDEX"   type=DALPROP_ATTR_TYPE_BYTE_SEQ>         end                      </props>
+      <props name="IS_GPIO_PROTECTED"         type=DALPROP_ATTR_TYPE_UINT32>           0                        </props>      
+      <props name="RW_ACCESS_LIST"            type=DALPROP_ATTR_TYPE_BYTE_SEQ>         AC_LPASS, end            </props>
+      <props name="IS_PERSISTENT"             type=DALPROP_ATTR_TYPE_UINT32>           0                        </props>		
+   </device>
+
+   <device id=SENSOR_QUP3_DEV_ACCESS>
+      <props name="PERIPH ID"                 type=DALPROP_ATTR_TYPE_UINT32>           SENSOR_QUP3              </props>
+      <props name="GPIO_ADDR"                 type=DALPROP_ATTR_TYPE_UINT32_SEQ_PTR>   SENSOR_QUP3_GPIO_ADDR    </props>
+      <props name="SENSOR_Q6_MPU_RG_INDEX"    type=DALPROP_ATTR_TYPE_BYTE_SEQ>         end                      </props>
+      <props name="SENSOR_CFG_MPU_RG_INDEX"   type=DALPROP_ATTR_TYPE_BYTE_SEQ>         end                      </props>
+      <props name="IS_GPIO_PROTECTED"         type=DALPROP_ATTR_TYPE_UINT32>           0                        </props>      
+      <props name="RW_ACCESS_LIST"            type=DALPROP_ATTR_TYPE_BYTE_SEQ>         AC_LPASS, end            </props>
+      <props name="IS_PERSISTENT"             type=DALPROP_ATTR_TYPE_UINT32>           0                        </props>		
+   </device>
+
+   <device id=SENSOR_UART3_DEV_ACCESS>
+      <props name="PERIPH ID"                 type=DALPROP_ATTR_TYPE_UINT32>           SENSOR_UART3             </props>
+      <props name="GPIO_ADDR"                 type=DALPROP_ATTR_TYPE_UINT32_SEQ_PTR>   SENSOR_UART3_GPIO_ADDR   </props>
+      <props name="SENSOR_Q6_MPU_RG_INDEX"    type=DALPROP_ATTR_TYPE_BYTE_SEQ>         end                      </props>
+      <props name="SENSOR_CFG_MPU_RG_INDEX"   type=DALPROP_ATTR_TYPE_BYTE_SEQ>         end                      </props>
+      <props name="IS_GPIO_PROTECTED"         type=DALPROP_ATTR_TYPE_UINT32>           0                        </props>      
+      <props name="RW_ACCESS_LIST"            type=DALPROP_ATTR_TYPE_BYTE_SEQ>         AC_LPASS, end            </props>
+      <props name="IS_PERSISTENT"             type=DALPROP_ATTR_TYPE_UINT32>           0                        </props>		
+   </device>
+
+   <device id=SENSOR_UART4_DEV_ACCESS>
+      <props name="PERIPH ID"                 type=DALPROP_ATTR_TYPE_UINT32>           SENSOR_UART4             </props>
+      <props name="GPIO_ADDR"                 type=DALPROP_ATTR_TYPE_UINT32_SEQ_PTR>   SENSOR_UART4_GPIO_ADDR   </props>
+      <props name="SENSOR_Q6_MPU_RG_INDEX"    type=DALPROP_ATTR_TYPE_BYTE_SEQ>         end                      </props>
+      <props name="SENSOR_CFG_MPU_RG_INDEX"   type=DALPROP_ATTR_TYPE_BYTE_SEQ>         end                      </props>
+      <props name="IS_GPIO_PROTECTED"         type=DALPROP_ATTR_TYPE_UINT32>           0                        </props>      
+      <props name="RW_ACCESS_LIST"            type=DALPROP_ATTR_TYPE_BYTE_SEQ>         AC_LPASS, end            </props>
+      <props name="IS_PERSISTENT"             type=DALPROP_ATTR_TYPE_UINT32>           0                        </props>		
+   </device>
+
+</driver>

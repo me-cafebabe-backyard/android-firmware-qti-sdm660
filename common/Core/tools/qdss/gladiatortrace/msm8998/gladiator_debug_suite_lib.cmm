@@ -1,0 +1,3489 @@
+;----------------------------------------------------------------------------
+;  Name: debug_suite_lib.cmm
+;    This script is a collection of some of helper functions for 
+;    configuring gladiator
+;
+;  You can call these functions with
+;    do ~~~~/debug_suite_lib.cmm <FUNCTION> <ARGUMENTS>
+;
+;  PoC:
+;    aidapala / SWArch
+;
+; Copyright (c) 2006-2015 by Qualcomm Technologies, Incorporated.  All Rights Reserved.
+;---------------------------------------------------------------
+
+ENTRY &func %line &arg
+LOCAL &func &arg &result
+
+ON ERROR GOTO
+(
+	LOCAL &ppf
+	&ppf=OS.PPF()
+	PRINT %ERROR "Sorry, '"+OS.FILE.NAME("&ppf")+"' doesn't know function '&func'"
+	STOP
+)
+&func=STRING.UPR("&func")
+GOSUB &func &arg
+ENTRY %LINE &result
+ENDDO &result
+
+
+;*****************************************************************************************************
+;*****************************************************************************************************
+;*****************************************************************************************************
+; PLATFORM SPECIFIC init function executed only once.
+;*****************************************************************************************************
+;*****************************************************************************************************
+;*****************************************************************************************************
+
+;================================================================================
+; Function: PLATFORM_SETUP
+; Description: Reads The Platform ID and sets the register offsets accordingly.
+; Usage : required to Exeuted only once.
+;	  do ~~~~/debug_suite_lib.cmm PLATFORM_SETUP &target
+; Inputs: 
+;     &target : target ID : supported : 8998_R1, BEAR
+; Outputs: 
+;     &status : status of the function. 0: success, 1: failure
+;================================================================================
+PLATFORM_SETUP:
+ON ERROR NOTHING
+PRIVATE &mem_addr &status
+ENTRY &target
+
+	&status=1
+
+	if ("&target"=="8998_R1")
+	(
+		&status=0
+
+		&gladiator_cpu_base_addr=0x17900000
+		&gladiator_qdss_dap_apb_base_addr=0x87BA0000  ; QDSS_BASE (0x80000000) + QDSS_APSS_BASE (0x07800000) + QDSS_GNOC_BASE (0x3A0000)
+		&gladiator_qdss_axi_cfg_base_addr=0x07BA0000  ; QDSS_APSS_BASE (0x07800000) + QDSS_GNOC_BASE (0x3A0000)
+		&gladiator_apb_port_access_control=0x179D1100  ; APCS_COMMON_CCI_INPUT_CFG bit[3] is the control for PROTNSS2.
+
+		; Gladiator Offsets
+		&ns_sideband_manager_offset=0x4100
+
+		; paket probes offsets
+		
+		; main packet probe config offset
+		Var.Assign \pkt_probes_offsets[0]=0x9400
+		; M1 packet probe base config offset
+		Var.Assign \pkt_probes_offsets[1]=0xC000
+		; M2 packet probe base config offset
+		Var.Assign \pkt_probes_offsets[2]=0xD000
+		; SNOC packet probe base config offset
+		Var.Assign \pkt_probes_offsets[3]=0xD400
+		; SERV packet probe base config offset
+		Var.Assign \pkt_probes_offsets[4]=0xD800
+	)
+	else if ("&target"=="BEAR")
+	(
+		&status=0
+
+		&gladiator_cpu_base_addr=0x0B1C0000
+		&gladiator_qdss_axi_cfg_base_addr=0x06BA0000
+		&gladiator_qdss_dap_apb_base_addr=0x80BA0000
+		&gladiator_apb_port_access_control=0x0B1D1100
+	)
+	else
+	(
+		print "PLATFORM_SETUP : target &target not valid !!!" 
+	)	
+
+RETURN &status
+
+
+;*****************************************************************************************************
+;*****************************************************************************************************
+;*****************************************************************************************************
+; general register handling API
+;*****************************************************************************************************
+;*****************************************************************************************************
+;*****************************************************************************************************
+
+;================================================================================
+; Function: REGISTER_READ
+; Description: Reads a Gladiator register
+; Usage : 
+	  do ~~~~/debug_suite_lib.cmm REGISTER_READ &offset
+; Inputs: 
+;     &offset : offset of the register that need to be accessed  
+; Outputs: 
+;     &val    : value read  
+;================================================================================
+REGISTER_READ:
+ON ERROR NOTHING
+PRIVATE &mem_addr &val
+ENTRY &offset
+    if ("&access_port"=="qdss_dap_apb")
+    (
+        &mem_addr=V.VALUE(&gladiator_qdss_dap_apb_base_addr+&offset)
+    )
+    else if ("&access_port"=="cpu")
+    (
+        &mem_addr=V.VALUE(&gladiator_cpu_base_addr+&offset)
+    )
+    else if ("&access_port"=="qdss_axi_cfg")
+    (
+        &mem_addr=V.VALUE(&gladiator_qdss_axi_cfg_base_addr+&offset)
+    )
+
+    if ("&access_port"=="qdss_dap_apb")
+    (
+        &val=data.long(eapb:&mem_addr)
+    )
+    else if ("&access_port"=="cpu")
+    (
+        &val=data.long(zsd:&mem_addr)
+    )
+    else if ("&access_port"=="qdss_axi_cfg")
+    (
+        &val=data.long(ezaxi:&mem_addr)
+    )
+
+	;print "REGISTER_READ : address 0x" FORMAT.HEX(8,&mem_addr) " value 0x" FORMAT.HEX(8,&val)
+
+RETURN &val
+
+
+;================================================================================
+; Function: REGISTER_WRITE
+; Description: Writes a Gladiator register with a value
+; Usage : 
+	  do ~~~~/debug_suite_lib.cmm REGISTER_WRITE &offset &val
+; Inputs: 
+;     &offset : offset of the register that need to be written
+;     &value  : value to be written  
+; Outputs: 
+;     none
+;================================================================================
+REGISTER_WRITE:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &offset &val
+
+	if ("&access_port"=="qdss_dap_apb")
+	(
+		&mem_addr=V.VALUE(&gladiator_qdss_dap_apb_base_addr+&offset)
+	)
+	else if ("&access_port"=="cpu")
+	(
+		&mem_addr=V.VALUE(&gladiator_cpu_base_addr+&offset)
+	)
+	else if ("&access_port"=="qdss_axi_cfg")
+	(
+		&mem_addr=V.VALUE(&gladiator_qdss_axi_cfg_base_addr+&offset)
+	)
+
+	if ("&access_port"=="qdss_dap_apb")
+	(
+		d.s eapb:&mem_addr %LE %LONG &val
+	)
+	else if ("&access_port"=="cpu")
+	(
+		d.s zsd:&mem_addr %LE %LONG &val
+	)
+	else if ("&access_port"=="qdss_axi_cfg")
+	(
+		d.s ezaxi:&mem_addr %LE %LONG &val
+	)
+
+	;print "REGISTER_WRITE : address 0x" FORMAT.HEX(8,&mem_addr) " value 0x" FORMAT.HEX(8,&val)
+
+RETURN
+
+
+;================================================================================
+; Function: REGISTER_SET_BITS
+; Description: Set register bits with a bit-pattern
+; Usage : 
+;     do ~~~~/debug_suite_lib.cmm REGISTER_SET_BITS &offset &bitmask
+; Inputs: 
+;     &offset   : offset of the register that need to be written
+;     &bitmask  : value to be written  
+; Outputs: 
+;     none
+;================================================================================
+REGISTER_SET_BITS:
+ON ERROR NOTHING
+PRIVATE &temp
+ENTRY &offset &bitmask
+
+	gosub REGISTER_READ &offset
+	ENTRY %LINE &temp
+	&bitmask=V.VALUE(&temp|&bitmask)
+	gosub REGISTER_WRITE &offset &bitmask
+
+RETURN
+
+
+;================================================================================
+; Function: REGISTER_CLEAR_BITS
+; Description: Clear register bits with a bit-pattern
+; Usage : 
+;	  do ~~~~/debug_suite_lib.cmm REGISTER_CLEAR_BITS &offset &bitmask
+; Inputs: 
+;     &offset   : offset of the register that need to be written
+;     &bitmask  : value to be written  
+; Outputs: 
+;     none
+;================================================================================
+REGISTER_CLEAR_BITS:
+ON ERROR NOTHING
+PRIVATE &temp
+ENTRY &offset &bitmask
+
+	gosub REGISTER_READ &offset
+	ENTRY %LINE &temp
+	&bitmask=V.VALUE(&temp&(~&bitmask))
+	gosub REGISTER_WRITE &offset &bitmask
+
+RETURN
+
+
+;================================================================================
+; Function: MEM_REGION_DUMP
+; Description: dump memory region
+; Usage : 
+;	  do ~~~~/debug_suite_lib.cmm MEM_REGION_DUMP &address &num_bytes &file
+;     CONDITION: use 
+; Inputs: 
+;     &address   : address offset of the memory
+;     &num_bytes : size to dump
+;	  &file      : file to print
+; Outputs: 
+;     none
+;================================================================================
+MEM_REGION_DUMP:
+ON ERROR NOTHING
+PRIVATE &count &val1 &val2 &val3 &val4	
+ENTRY &address &num_bytes &file
+
+	&count=0x0
+	&val1=0x0
+	&val2=0x0
+	&val3=0x0
+	&val4=0x0
+
+	if &num_bytes==0x0
+	(
+    	RETURN
+	)
+
+	while &count<&num_bytes
+	(
+		&mem_addr=&address
+		gosub REGISTER_READ &mem_addr
+		ENTRY %LINE &val1
+
+		&mem_addr=&address+0x4
+		gosub REGISTER_READ &mem_addr
+		ENTRY %LINE &val2
+
+		&mem_addr=&address+0x8
+		gosub REGISTER_READ &mem_addr
+		ENTRY %LINE &val3
+
+		&mem_addr=&address+0xC
+		gosub REGISTER_READ &mem_addr
+		ENTRY %LINE &val4
+
+		if ("&file"=="")
+		(
+			print %ASCII FORMAT.HEX(8,&address) %STRING ": " FORMAT.HEX(8,&val1) %STRING " " FORMAT.HEX(8,&val2) %STRING " " FORMAT.HEX(8,&val3) %STRING " " FORMAT.HEX(8,&val4)
+		)
+		else
+		(
+			write &file %ASCII FORMAT.HEX(8,&address) %STRING ": " FORMAT.HEX(8,&val1) %STRING " " FORMAT.HEX(8,&val2) %STRING " " FORMAT.HEX(8,&val3) %STRING " " FORMAT.HEX(8,&val4)
+		)
+
+		&count=&count+0x10
+		&address=&address+0x10
+	)
+
+RETURN
+
+;================================================================================
+; Function: REGISTER_DUMP
+; Description: dump gladiator regsieters
+; Usage : 
+;	  do ~~~~/gladiator_debug_suite_lib.cmm REGISTER_DUMP &target &reg_dump_file
+; Inputs: 
+;     &taregt   : target name
+;     &reg_dump_file: file to dump the registers
+; Outputs: 
+;     none
+;================================================================================
+REGISTER_DUMP:
+ON ERROR NOTHING
+PRIVATE &address &size	
+ENTRY &target &reg_dump_file
+
+	if ("&reg_dump_file"=="")
+	(
+		&pwd_path=OS.PPD()
+		&reg_dump_file="&pwd_path\gladiator_register_dump.txt"
+	)
+
+	;open the reg dump file
+	open #1 &reg_dump_file /Create
+
+    write #1 %ASCII %STRING "=========================================================================="
+    write #1 %ASCII %STRING "Gladiator Register Dump on " clock.date() %STRING " at " clock.time()
+    write #1 %ASCII %STRING "=========================================================================="
+	write #1 %ASCII %STRING " "
+
+	if ("&target"=="8998_R1")
+	(
+		write #1 %ASCII %STRING "Gladiator_main_Crixus"
+		write #1 %ASCII %STRING "================================"
+		gosub MEM_REGION_DUMP 0x0     0x10 #1
+		gosub MEM_REGION_DUMP 0x70    0x40 #1
+		gosub MEM_REGION_DUMP 0x1000  0x50 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "gnoc_main_ProgPowerController"
+		write #1 %ASCII %STRING "================================="
+		gosub MEM_REGION_DUMP 0x4000  0x20 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "NS_Sidebands_main_SidebandManager"
+		write #1 %ASCII %STRING "=================================="
+		gosub MEM_REGION_DUMP 0x4100  0x10 #1
+		gosub MEM_REGION_DUMP 0x4150  0x10 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "Mmap_modes_Sidebands_main_SidebandManager"
+		write #1 %ASCII %STRING "==========================================="
+		gosub MEM_REGION_DUMP 0x4200  0x10 #1
+		gosub MEM_REGION_DUMP 0x4250  0x10 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "gladiator_trace_main_ErrorLogger_0"
+		write #1 %ASCII %STRING "===================================="
+		gosub MEM_REGION_DUMP 0x8000  0x40 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "Err_Sidebands_main_SidebandManager"
+		write #1 %ASCII %STRING "===================================="
+		gosub MEM_REGION_DUMP 0x8100  0x20 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "NoPndg_Sidebands_main_SidebandManager"
+		write #1 %ASCII %STRING "======================================="
+		gosub MEM_REGION_DUMP 0x8200  0x10 #1
+		gosub MEM_REGION_DUMP 0x82B0  0x10 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "Perf_Sidebands_main_SidebandManager"
+		write #1 %ASCII %STRING "====================================="
+		gosub MEM_REGION_DUMP 0x8300  0x20 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "PwrActive_Sidebands_main_SidebandManager"
+		write #1 %ASCII %STRING "========================================="
+		gosub MEM_REGION_DUMP 0x8400  0x10 #1
+		gosub MEM_REGION_DUMP 0x84B0  0x10 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "Gladiator_main_Ace_0_Rd_TransactionFilter"
+		write #1 %ASCII %STRING "==========================================="
+		gosub MEM_REGION_DUMP 0x9000  0x30 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "Gladiator_main_Ace_0_Wr_TransactionFilter"
+		write #1 %ASCII %STRING "==========================================="
+		gosub MEM_REGION_DUMP 0x9080  0x30 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "Gladiator_main_Ace_1_Rd_TransactionFilter"
+		write #1 %ASCII %STRING "==========================================="
+		gosub MEM_REGION_DUMP 0x9100  0x30 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "Gladiator_main_Ace_1_Wr_TransactionFilter"
+		write #1 %ASCII %STRING "==========================================="
+		gosub MEM_REGION_DUMP 0x9180  0x30 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "Gladiator_main_TransactionStatProfiler"
+		write #1 %ASCII %STRING "========================================"
+		gosub MEM_REGION_DUMP 0x9200  0x130 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "Gladiator_main_PacketProbe"
+		write #1 %ASCII %STRING "==========================="
+		gosub MEM_REGION_DUMP 0x9400  0xC0 #1
+		gosub MEM_REGION_DUMP 0x9530  0x1C0 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "M1ReqProbe_main_Probe"
+		write #1 %ASCII %STRING "======================="
+		gosub MEM_REGION_DUMP 0xC000  0xC0 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "gladiator_trace_main_AtbEndPoint"
+		write #1 %ASCII %STRING "=================================="
+		gosub MEM_REGION_DUMP 0xC400  0x10 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "gladiator_trace_main_STPv2Converter"
+		write #1 %ASCII %STRING "====================================="
+		gosub MEM_REGION_DUMP 0xC480  0x10 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "M2ReqProbe_main_Probe"
+		write #1 %ASCII %STRING "======================="
+		gosub MEM_REGION_DUMP 0xD000  0xC0 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "SNoReqProbe_main_Probe"
+		write #1 %ASCII %STRING "========================"
+		gosub MEM_REGION_DUMP 0xD400   0xC0 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "SrvcReqProbe_main_Probe"
+		write #1 %ASCII %STRING "========================="
+		gosub MEM_REGION_DUMP 0xD800   0xC0 #1
+		write #1 %ASCII %STRING " "
+		
+		write #1 %ASCII %STRING "=========================================================================="
+		write #1 %ASCII %STRING " End of Gladiator Register Dump on " clock.date() %STRING " at " clock.time()
+		write #1 %ASCII %STRING "=========================================================================="
+	)
+
+    ; close the reg dump file
+    close #1
+
+RETURN
+
+
+;*****************************************************************************************************
+;*****************************************************************************************************
+;*****************************************************************************************************
+; Gladiator Main Functional API
+;*****************************************************************************************************
+;*****************************************************************************************************
+;*****************************************************************************************************
+
+;================================================================================
+; Function: REGISTER_ACCESS_SECURE
+; Usage :
+;	  do ~~~~/debug_suite_lib.cmm REGISTER_ACCESS_SECURE
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+REGISTER_ACCESS_SECURE:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY
+
+	; Restrict non-secure access to gladiator registers via S3/S4 port ( set NS_SIDEBANDS_MAIN_SIDEBANDMANAGER_FLAGOUTCLR0[bit0])
+	&mem_addr=&ns_sideband_manager_offset+0x54
+	gosub REGISTER_SET_BITS &mem_addr 0x7
+
+	; Restrict non-secure access to gladiator registers via S2 port ( set APCS_COMMON_CCI_INPUT_CFG[bit3])
+	&mem_addr=&gladiator_apb_port_access_control
+	d.s ezaxi:&mem_addr %LE %LONG (d.long(ezaxi:&mem_addr)|(0x8))
+
+RETURN
+
+
+;================================================================================
+; Function: REGISTER_ACCESS_UNSECURE
+; Usage :
+;	  do ~~~~/debug_suite_lib.cmm REGISTER_ACCESS_UNSECURE
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+REGISTER_ACCESS_UNSECURE:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY
+
+	if ("&target"=="8998_R1")
+	(
+		; Configure SMMU to allow DAP secure accesses
+		d.s ezaxi:0x16C4208 %LE %Long 0xFFFFFFFE
+	)
+
+	; Allow non-secure access to gladiator registers via S2 port ( clear APCS_COMMON_CCI_INPUT_CFG[bit3])
+	&mem_addr=&gladiator_apb_port_access_control
+	d.s ezaxi:&mem_addr %LE %LONG (d.long(ezaxi:&mem_addr)&~(0x8))
+
+	; Allow non-secure access to gladiator registers via S3/S4 port ( clear NS_SIDEBANDS_MAIN_SIDEBANDMANAGER_FLAGOUTSET0[bit0])
+	&mem_addr=&ns_sideband_manager_offset+0x50
+	gosub REGISTER_SET_BITS &mem_addr 0x7
+
+RETURN
+
+;*****************************************************************************************************
+; Gladiator Snoops and Directories Enable API
+;*****************************************************************************************************
+
+;========================================================================
+; Target Control SW Enable
+; Inputs
+;   &addr - address
+;========================================================================
+TARGET_SW_ENABLE:
+ON ERROR NOTHING
+PRIVATE &temp1
+ENTRY &addr1
+
+    ; Wait for IdleReq and IdleAck to be same values
+	gosub REGISTER_READ &addr1
+	ENTRY %LINE &temp1
+    &temp1=(&temp1&0x1)^((&temp1&0x2)>>0x1)
+    while (&temp1!=0x0)
+    (
+		gosub REGISTER_READ &addr1
+		ENTRY %LINE &temp1
+    	&temp1=(&temp1&0x1)^((&temp1&0x2)>>0x1)
+        wait 1ms
+    )
+
+    ; Clear IdleReq using SW control
+	gosub REGISTER_CLEAR_BITS &addr1 0x1
+
+    ; wait for IdelAck to be 0
+	gosub REGISTER_READ &addr1
+	ENTRY %LINE &temp1
+    &temp1=&temp1&0x3
+    while (&temp1!=0x0)
+    (
+		gosub REGISTER_READ &addr1
+		ENTRY %LINE &temp1
+        &temp1=&temp1&0x3
+        wait 1ms
+    )
+
+RETURN
+
+;========================================================================
+; Target Control SW to HW Switch
+; Inputs
+;   &addr - address
+;========================================================================
+TARGET_SW_TO_HW_SWITCH:
+ON ERROR NOTHING
+PRIVATE &temp2
+ENTRY &addr2
+
+    ; switch to HW control mode [2]: HW control
+	gosub REGISTER_SET_BITS &addr2 0x4
+
+    ; NOTE: Already target is enabled using SW, so no need to wait for any Ack.
+
+RETURN
+
+
+;================================================================================
+; Function: TARGET_COHERENCY_ENABLE
+; Description: enable coherency on a gladiator port
+; Usage :
+;	  do ~~~~/debug_suite_lib.cmm TARGET_COHERENCY_ENABLE &port
+; Inputs:
+;     &port : port number on which coherency to be enabled. 0: cluster0/S3 and 1: cluester1/S4
+; Outputs:
+;     none
+;================================================================================
+TARGET_COHERENCY_ENABLE:
+ON ERROR NOTHING
+PRIVATE &snoop_addr &dir_addr &l2_flush_ctrl &snoop_hw_ctrl &dir_en &dir_hw_ctrl &l2_flush_hw_ctrl &temp
+ENTRY &port
+
+    if (&port<0)||(&port>1)
+    (
+        print "Invalid port"
+        RETURN
+    )
+
+    print "Enabling target coherency control for Cluster &port start"
+
+    if (&port==0)
+    (
+        &l2_flush_ctrl=&cluster0_l2_flush_ctrl
+        &snoop_hw_ctrl=&cluster0_snoop_hw_ctrl_en
+        &dir_en=&cluster0_dir_en
+        &dir_hw_ctrl=&cluster0_dir_hw_ctrl_en
+        &l2_flush_hw_ctrl=&cluster0_l2_flush_hw_ctrl_en
+		&dir_addr=&power_controller_offset+0x8 			; [0]:IdleReq, [1]:IdleAck, [2]:AltHwEn, [3]:AltHwIdleReq
+		&snoop_addr=&power_controller_offset+0xC		; [0]:IdleReq, [1]:IdleAck, [2]:AltHwEn, [3]:AltHwIdleReq
+    )
+    else if (&port==1)
+    (
+        &l2_flush_ctrl=&cluster1_l2_flush_ctrl
+        &snoop_hw_ctrl=&cluster1_snoop_hw_ctrl_en
+        &dir_en=&cluster1_dir_en
+        &dir_hw_ctrl=&cluster1_dir_hw_ctrl_en
+        &l2_flush_hw_ctrl=&cluster1_l2_flush_hw_ctrl_en
+		&dir_addr=&power_controller_offset+0x10 		; [0]:IdleReq, [1]:IdleAck, [2]:AltHwEn, [3]:AltHwIdleReq
+		&snoop_addr=&power_controller_offset+0x14 		; [0]:IdleReq, [1]:IdleAck, [2]:AltHwEn, [3]:AltHwIdleReq
+    )
+
+    ; Read L2 Flush Control
+	&temp=d.long(ezaxi:&l2_flush_ctrl)
+    if ((&temp&0x20)==0x20) ; HW Control Mode Enabled
+    (
+        print "Cluster &port snoop HW control enabled! wait for Dx FSM to enable Snoops!"
+        ; do nothing as the Snoops would be enabled by HW Dx FSM.
+        ; wait for snoops to be enabled : wait for AltHwIdleReq
+		gosub REGISTER_READ &snoop_addr
+		ENTRY %LINE &temp
+        &temp=&temp&0xE  ; Ignore IdleReq, AltHwEn is 1,  AltHwIdleReq is 0
+        while &temp!=0x4
+        (
+			gosub REGISTER_READ &snoop_addr
+			ENTRY %LINE &temp
+            &temp=&temp&0xE
+            wait 1ms
+        )
+        ; TODO: Does this Gaurentee L2FLUSH is done and Snoop Directory enabled is finished?
+    )
+    else ; SW Control Mode
+    (
+        if (&dir_en!=0)
+        (
+            print "Cluster &port Directory Control to SW mode"
+            gosub TARGET_SW_ENABLE &dir_addr
+            print "Cluster &port Directory enabled!"
+        )
+
+        print "Cluster &port ACINACTM set to 0"
+        ; set ACINACTM to HWIO_APCS_ALIAS0_L2_FLUSH_CTL[4] to 0
+		&temp=d.long(ezaxi:&l2_flush_ctrl)
+		&temp=&temp&~0x10
+		d.s ezaxi:&l2_flush_ctrl %LE %LONG &temp
+
+        print "Cluster &port snoop control to SW mode"
+        gosub TARGET_SW_ENABLE &snoop_addr
+        print "Cluster &port snoop enabled!"
+
+        if (&snoop_hw_ctrl!=0)
+        (
+            print "Cluster &port snoop control switch to HW mode"
+            gosub TARGET_SW_TO_HW_SWITCH &snoop_addr
+
+            ; Enable the Dx FSM Controls
+			&temp=d.long(ezaxi:&l2_flush_ctrl)
+            &temp=&temp|0x20 ; L2_DX_FSM_EN
+
+            if ((&dir_en!=0)&&(&dir_hw_ctrl!=0))
+            (
+                print "Cluster &port Directory control switch to HW mode"
+                gosub TARGET_SW_TO_HW_SWITCH &dir_addr
+                &temp=&temp|0x40 ; L2_DX_FSM_SNPDIR_DIS
+            )
+
+            if (&l2_flush_hw_ctrl!=0)
+            (
+                print "Cluster &port L2FLUSH control switch to HW mode"
+                &temp=&temp|0x80 ; L2_DX_FSM_L2FLUSH_DIS
+            )
+
+			d.s ezaxi:&l2_flush_ctrl %LE %LONG &temp
+        )
+    )
+
+    print "Enabling target snoop control for cluster &port done"
+
+RETURN
+
+
+
+;========================================================================
+; Target Control SW Disable
+; Inputs
+;   &addr - address
+;========================================================================
+TARGET_SW_DISABLE:
+ON ERROR NOTHING
+PRIVATE &temp1
+ENTRY &addr1
+
+    ; Wait for IdleReq and IdleAck to be same values
+	gosub REGISTER_READ &addr1
+	ENTRY %LINE &temp1
+    &temp1=(&temp1&0x1)^((&temp1&0x2)>>0x1)
+    while (&temp1!=0x0)
+    (
+		gosub REGISTER_READ &addr1
+		ENTRY %LINE &temp1
+    	&temp1=(&temp1&0x1)^((&temp1&0x2)>>0x1)
+        wait 1ms
+    )
+
+    ; Clear IdleReq using SW control
+	gosub REGISTER_SET_BITS &addr1 0x1
+
+    ; wait for IdelAck to be 1
+	gosub REGISTER_READ &addr1
+	ENTRY %LINE &temp1
+    &temp1=&temp1&0x3
+    while (&temp1!=0x3)
+    (
+		gosub REGISTER_READ &addr1
+		ENTRY %LINE &temp1
+        &temp1=&temp1&0x3
+        wait 1ms
+    )
+
+RETURN
+
+;========================================================================
+; Target Control HW to SW Switch
+; Inputs
+;   &addr - address
+;========================================================================
+TARGET_HW_TO_SW_SWITCH:
+ON ERROR NOTHING
+PRIVATE &temp2
+ENTRY &addr2
+
+    ; switch to HW control mode [2]: HW control
+	gosub REGISTER_CLEAR_BITS &addr2 0x4
+
+    ; NOTE: Already target is disabled using SW, so no need to wait for any Ack.
+
+RETURN
+
+
+
+;================================================================================
+; Function: TARGET_COHERENCY_DISABLE
+; Description: Disable coherency on a gladiator port
+; Usage :
+;	  do ~~~~/debug_suite_lib.cmm TARGET_COHERENCY_DISABLE &port
+; Inputs:
+;     &port : port number on which coherency to be enabled. 0: cluster0/S3 and 1: cluester1/S4
+; Outputs:
+;     none
+;================================================================================
+TARGET_COHERENCY_DISABLE:
+ON ERROR NOTHING
+PRIVATE &snoop_addr &dir_addr &l2_flush_ctrl &snoop_hw_ctrl &dir_en &dir_hw_ctrl &l2_flush_hw_ctrl &temp
+ENTRY &port
+
+    if (&port<0)||(&port>1)
+    (
+        print "Invalid port"
+        RETURN
+    )
+
+    print "Disabling target coherency control for Cluster &port start"
+
+    if (&port==0)
+    (
+        &l2_flush_ctrl=&cluster0_l2_flush_ctrl
+        &snoop_hw_ctrl=&cluster0_snoop_hw_ctrl_en
+        &dir_en=&cluster0_dir_en
+        &dir_hw_ctrl=&cluster0_dir_hw_ctrl_en
+        &l2_flush_hw_ctrl=&cluster0_l2_flush_hw_ctrl_en
+		&dir_addr=&power_controller_offset+0x8 			; [0]:IdleReq, [1]:IdleAck, [2]:AltHwEn, [3]:AltHwIdleReq
+		&snoop_addr=&power_controller_offset+0xC		; [0]:IdleReq, [1]:IdleAck, [2]:AltHwEn, [3]:AltHwIdleReq
+    )
+    else if (&port==1)
+    (
+        &l2_flush_ctrl=&cluster1_l2_flush_ctrl
+        &snoop_hw_ctrl=&cluster1_snoop_hw_ctrl_en
+        &dir_en=&cluster1_dir_en
+        &dir_hw_ctrl=&cluster1_dir_hw_ctrl_en
+        &l2_flush_hw_ctrl=&cluster1_l2_flush_hw_ctrl_en
+		&dir_addr=&power_controller_offset+0x10 		; [0]:IdleReq, [1]:IdleAck, [2]:AltHwEn, [3]:AltHwIdleReq
+		&snoop_addr=&power_controller_offset+0x14 		; [0]:IdleReq, [1]:IdleAck, [2]:AltHwEn, [3]:AltHwIdleReq
+    )
+
+    ; Read L2 Flush Control
+	&temp=d.long(ezaxi:&l2_flush_ctrl)
+    if ((&temp&0x20)==0x20) ; HW Control Mode check
+    (
+        print "Cluster &port HW control enabled! expect Dx FSM to disable the Snoops!"
+        ; do nothing as the Snoops would be disabled by HW Dx FSM.
+	)
+    else ; SW Control Mode
+    (
+
+		; As Dx FSM is not enabled, Always switch back to SW mode
+       	print "Cluster &port snoop control switch to SW mode"
+        gosub TARGET_HW_TO_SW_SWITCH &snoop_addr
+
+		print "Cluster &port Directory control switch to HW mode"
+		gosub TARGET_HW_TO_SW_SWITCH &dir_addr
+
+        print "Cluster &port snoop control SW mode disable"
+        gosub TARGET_SW_DISABLE &snoop_addr
+        print "Cluster &port snoop disabled!"
+
+        if (&dir_en!=0)
+        (
+			; wait for NeedFlush
+
+            print "Cluster &port Directory Control to SW mode"
+            gosub TARGET_SW_DISABLE &dir_addr
+            print "Cluster &port Directory disbled!"
+        )
+
+   		; Read L2 Flush Control
+		&temp=d.long(ezaxi:&l2_flush_ctrl)
+		&temp=&temp&~0x20 ; L2_DX_FSM_EN
+
+		if ((&dir_en!=0)&&(&dir_hw_ctrl!=0))
+		(
+			&temp=&temp&~0x40 ; L2_DX_FSM_SNPDIR_DIS
+        )
+
+		if (&l2_flush_hw_ctrl!=0)
+		(
+		 	print "Cluster &port L2FLUSH control HW mode disable"
+		 	&temp=&temp&~0x80 ; L2_DX_FSM_L2FLUSH_DIS
+		)
+
+        print "Cluster &port ACINACTM set to 1" 
+		&temp=&temp|0x10
+		d.s ezaxi:&l2_flush_ctrl %LE %LONG &temp
+    )
+
+    print "Enabling target snoop control for cluster &port done"
+
+RETURN
+
+;================================================================================
+; Function: TARGET_IO_COHERENCY_ENABLE
+; Description: enable IO coherency
+; Usage :
+;	  do ~~~~/debug_suite_lib.cmm TARGET_IO_COHERENCY_ENABLE
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+TARGET_IO_COHERENCY_ENABLE:
+ON ERROR NOTHING
+PRIVATE 
+ENTRY
+
+RETURN
+
+;================================================================================
+; Function: TARGET_IO_COHERENCY_DISABLE
+; Description: disable IO coherency
+; Usage :
+;	  do ~~~~/debug_suite_lib.cmm TARGET_IO_COHERENCY_DISABLE
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+TARGET_IO_COHERENCY_DISABLE:
+ON ERROR NOTHING
+PRIVATE 
+ENTRY
+
+RETURN
+
+
+;*****************************************************************************************************
+;*****************************************************************************************************
+;*****************************************************************************************************
+; Statistics Counters API
+;*****************************************************************************************************
+;*****************************************************************************************************
+;*****************************************************************************************************
+
+;================================================================================
+; Function: STAT_COUNTER_SETUP_EVENT
+; Description: setup of a single Gladiator statistics counter with event to count
+; Usage : STAT_COUNTER_SETUP_EVENT &cnt_num &event
+; Inputs:
+;     &cnt_num : counter number. must be between 0 and &stat_counters_num-1
+;     &event   : Event numver
+;     &mode    : counter number. must be between 0 and &stat_counters_num-1
+; Outputs:
+;     none
+;================================================================================
+STAT_COUNTER_SETUP_EVENT:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &cnt_num &event &mode
+
+    if (&cnt_num<0x0)||(&cnt_num>(&stat_counters_num-1))
+    (
+        print "Invalid counter"
+        RETURN
+    )
+    if (&event<0x1)||(&event>&stat_events_max)
+    (
+        print "Invalid event"
+        RETURN
+    )
+
+    ; configure the counter with the event number
+    &mem_addr=&stat_counters_base_src_offset+(0x14*&cnt_num)
+    gosub REGISTER_WRITE &mem_addr &event
+
+	; Configire counter mode
+    &mem_addr=&stat_counters_base_alarmmode_offset+(0x14*&cnt_num)
+
+RETURN
+
+;================================================================================
+; Function: STAT_COUNTER_DISABLE
+; Description: disable a single Gladiator statistics counter
+; Usage : STAT_COUNTER_DISABLE &cnt_num
+; Inputs:
+;     &cnt_num : counter number. must be between 0 and 7
+; Outputs:
+;     none
+;================================================================================
+STAT_COUNTER_DISABLE:
+ON ERROR NOTHING
+PRIVATE &cnt_src
+ENTRY &cnt_num
+
+    if (&cnt_num<0x0)||(&cnt_num>(&stat_counters_num-1))
+    (
+        print "Invalid counter"
+        RETURN
+    )
+    &cnt_src=&stat_counters_base_src_offset+(0x14*&cnt_num)
+
+    ; setting the Counters_M_Src to 9h000 to disables the counter
+    gosub REGISTER_WRITE &cnt_src 0x0
+
+RETURN
+
+;================================================================================
+; Function: STAT_COUNTERS_START
+; Description: start the stat counters from 0
+; Usage : STAT_COUNTERS_START &base_offset
+; Inputs:
+;     &base_offset : parent probe base offset
+; Outputs:
+;     none
+;================================================================================
+STAT_COUNTERS_START:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &base_offset
+
+    ; Setting GLADIATOR_MAIN_PACKETPROBE_MAINCTL register STATEN to 1 enable all the counters of the stat probe.
+    ; This is a common enable bit for the whole statistics part of the probe. Setting it clear all the counters.
+    ; Need to be set during the configuration before CfgCtl.GlobalEn is set to 1.
+    ; MainCtl is at offset 0x8
+    &mem_addr=&base_offset+0x8
+    gosub REGISTER_SET_BITS &mem_addr 0x8
+
+RETURN
+
+;================================================================================
+; Function: STAT_COUNTERS_FREEZE
+; Description: freeze/stop the stat counters
+; Usage : STAT_COUNTERS_FREEZE &base_offset
+; Inputs:
+;     &base_offset : parent probe base offset
+; Outputs:
+;     none
+;================================================================================
+STAT_COUNTERS_FREEZE:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &base_offset
+
+    ; Setting GLADIATOR_MAIN_PACKETPROBE_MAINCTL register STATEN to 0 enable all the counters of the stat probe.
+    ; This is a common enable bit for the whole statistics part of the probe.
+    ; MainCtl is at offset 0x8
+    &mem_addr=&base_offset+0x8
+    gosub REGISTER_CLEAR_BITS &mem_addr 0x8
+
+RETURN
+
+
+;================================================================================
+; Function: STAT_PROFILING_RESET
+; Description: Resets all the configuration for statistical profiling
+; Usage : STAT_PROFILING_RESET
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+STAT_PROFILING_RESET:
+ON ERROR NOTHING
+PRIVATE &mem_addr &cnt_num
+ENTRY
+
+    ;disable parent pakcet probe before any configuration
+	&mem_addr=Var.VALUE(\pkt_probes_offsets[0])
+    gosub PACKET_PROBE_DISABLE &mem_addr
+
+    ; reset statperiod to 0
+	&mem_addr=Var.VALUE(\pkt_probes_offsets[0])
+    &mem_addr=&mem_addr+0x24
+    gosub REGISTER_WRITE &mem_addr 0x0
+
+	&cnt_num=0
+	while (&cnt_num<&stat_counters_num)
+	(
+		; disable the counter
+		gosub STAT_COUNTER_DISABLE &cnt_num
+		&cnt_num=&cnt_num+1
+	)
+
+RETURN
+
+
+;================================================================================
+; Function: STAT_PROFILING_DISABLE
+; Description: Disable the stat profiling
+; Usage : STAT_PROFILING_DISABLE &base_offset
+; Inputs:
+;     &base_offset : parent probe base offset
+; Outputs:
+;     none
+;================================================================================
+STAT_PROFILING_DISABLE:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY
+
+	print "STAT_PROFILEING_DISABLE start "
+
+	&mem_addr=Var.VALUE(\pkt_probes_offsets[0])
+	gosub PACKET_PROBE_STAT_PROFILING_DISABLE  &mem_addr
+
+	print "STAT_PROFILEING_DISABLE Done "
+
+RETURN
+
+
+;================================================================================
+; Function: STAT_PROFILEING_ENABLE
+; Description: Configure the STAT counters with required events
+; Usage : 
+; Inputs:
+;	  &mode : Mode of STAT counters dump
+;             none : take user input
+;             1    : mannual dump to a file
+;             2    : periodic dump to trace
+;			  3    : alarm mode
+;     NOTES: if No inputs, STAT counters are enabled in normal mode
+; Outputs:
+;     none
+;================================================================================
+STAT_PROFILEING_ENABLE:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &mode &trace_sink &atid &statperiod &async_period
+
+	print "STAT_PROFILEING_ENABLE with mode:&mode trace_sink:&trace_sink atid:&atid statperiod=&statperiod start "
+
+	if ("&mode"=="")
+	(
+		print "Enter the mode to collect the samples [1:manual, 2: periodic] : "
+		enter &mode
+	)
+
+	if ("&mode"=="")
+	(
+		goto skip_enable
+	)
+	else if (&mode==1)
+	(
+		print "manual mode selected"
+	)
+	else if (&mode==2)
+	(
+		; STAT period mode : program Statperiod
+		print "StatPeriod mode selected"
+		if ("&statperiod"=="")
+		(
+			print "Enter the dump interval in terms of no.of cycles (interms of exponent of 2) (0-31) : "
+			enter &statperiod
+			if ("&statperiod"=="")
+			(
+				&statperiod=10.
+			)
+		)
+		&mem_addr=Var.VALUE(\pkt_probes_offsets[0])
+		&mem_addr=&mem_addr+0x24
+		gosub REGISTER_WRITE &mem_addr &statperiod
+
+		gosub OBSERVER_TRACE_ENABLE &atid &async_period
+
+	)
+	else if (&mode==3)
+	(
+		; CTI Trigger Mode
+		print "Alarm (CTI) trigger manual mode selected"
+
+		; Configure Gladiator Alarm mode
+		&mem_addr=Var.VALUE(\pkt_probes_offsets[0])
+		&mem_addr=&mem_addr+0x3C
+		gosub REGISTER_WRITE &mem_addr 0x3
+
+	)
+	else
+	(
+		goto skip_enable
+	)
+
+	&mem_addr=Var.VALUE(\pkt_probes_offsets[0])
+	gosub PACKET_PROBE_STAT_PROFILING_ENABLE &mem_addr
+
+skip_enable:
+
+	print "STAT_PROFILEING_ENABLE Done "
+
+RETURN
+
+;================================================================================
+; Function: STAT_PRIFILING_CONFIG_TOOL
+; Description: Configure the STAT counters with required events
+; Usage : 
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+STAT_PRIFILING_CONFIG_TOOL:
+ON ERROR NOTHING
+PRIVATE &mem_addr &statperiod &atid &choice
+ENTRY
+
+    ; reset the stat profiling
+    gosub STAT_PROFILING_RESET
+
+counter_input_loop:
+    print "Select the counter number to configure (0-(&stat_counters_num-1)) : "
+    enter &cntr_num
+
+    if ("&cntr_num"=="")
+	(
+        goto skip_counters_config
+	)
+
+	if ((&cntr_num<0x0)||(&cntr_num>(&stat_counters_num-1)))
+    (
+        print "Invalid counter. select between [0-(&stat_counters_num-1)]"
+        goto counter_input_loop
+    )
+
+    print "Select the event number [0x1-&stat_events_max] to be tracked by counter &cntr_num (Enter 0x10 to chain with previous counters): "
+    enter &cntr_event
+    if (&cntr_event<0x1)||(&cntr_event>&stat_events_max)
+    (
+        print "Invalid event number.  valid numbers are between [0x1-&stat_events_max]"
+        goto counter_input_loop
+    )
+
+    gosub STAT_COUNTER_SETUP_EVENT &cntr_num &cntr_event
+
+    print "*** Configured Stat Counter &cntr_num with Event number &cntr_event *** "
+
+    print " More counter configuration (yes(enter)/ no)? : "
+    enter &choice
+    if (("&choice"=="yes")||("&choice"==""))
+    (
+        goto counter_input_loop
+    )
+
+skip_counters_config:
+
+	gosub STAT_PROFILEING_ENABLE
+
+    print "stat counters configuration done!!! "
+
+RETURN
+
+
+;================================================================================
+; Function: STAT_PROFILING_COLLECT_SAMPLES
+; Description:  keep reading the counter values and dump to a file at every X time interval
+; Usage : 
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+STAT_PROFILING_COLLECT_SAMPLES:
+ON ERROR NOTHING
+PRIVATE &pwd_path &mem_addr &val1 &val2 &cntr_num
+ENTRY &stats_file &num_samples &interval
+
+	if ("&stats_file"=="")
+	(
+		print "Select the file where you want to Dump Stat info (enter): "
+		enter &stats_file
+		if ("&stats_file"=="")
+		(
+			&pwd_path=OS.PPD()
+			&stats_file="&pwd_path\gladiator_stats_dump.txt"
+		)
+	)
+	print ("Please refer to the stat counters log file at: &stats_file")
+
+	if ("&num_samples"=="")
+	(
+		print "Select the number of samples to dump : "
+		enter &num_samples
+		if ("&num_samples"=="")
+		(
+			&num_samples=10.
+		)
+	)
+	print ("number of samples : &num_samples ")
+
+	if ("&interval"=="")
+	(
+		print "Select the interval between samples : "
+		enter &interval
+		if ("&interval"=="")
+		(
+			&interval=1s
+		)
+	)
+	print ("time interval : &interval ")
+
+	;open the file
+	open #1 &stats_file /Create
+
+	write #1 %ASCII %STRING "=========================================================================="
+	write #1 %ASCII %STRING "Gladiator STAT COUNTERS Config on " clock.date() %STRING " at " clock.time()
+	write #1 %ASCII %STRING "=========================================================================="
+
+	&cntr_num=0
+	while (&cntr_num<&stat_counters_num)
+	(
+		&mem_addr=&stat_counters_base_src_offset+(0x14*&cntr_num)
+		gosub REGISTER_READ &mem_addr
+		ENTRY %LINE &val1
+
+		&mem_addr=&stat_counters_base_alarmmode_offset+(0x14*&cntr_num)
+		gosub REGISTER_READ &mem_addr
+		ENTRY %LINE &val2
+
+		write #1 %ASCII %STRING "Counter " FORMAT.DECIMAL(2,&cntr_num) %STRING " => " %STRING "SRC : 0x"+FORMAT.HEX(8,&val1) %STRING "  ALARMMODE : 0x"+FORMAT.HEX(8,&val2)
+		&cntr_num=&cntr_num+0x1
+	)
+
+	; print Latency configuration
+	&mem_addr=&transaction_profiler_offset+0x8
+	gosub REGISTER_READ &mem_addr
+	ENTRY %LINE &val1
+	if ((&val1&0x1)==0x1)
+	(
+		write #1 %ASCII %STRING " "
+		write #1 %ASCII %STRING "=========================================================================="
+		write #1 %ASCII %STRING "Transaction Profiler Enabled with following configuration "
+		write #1 %ASCII %STRING "=========================================================================="
+
+		write #1 %ASCII %STRING "Gladiator_main_Ace_0_Rd_TransactionFilter"
+		write #1 %ASCII %STRING "==========================================="
+		gosub MEM_REGION_DUMP 0x9000  0x30 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "Gladiator_main_Ace_0_Wr_TransactionFilter"
+		write #1 %ASCII %STRING "==========================================="
+		gosub MEM_REGION_DUMP 0x9080  0x30 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "Gladiator_main_Ace_1_Rd_TransactionFilter"
+		write #1 %ASCII %STRING "==========================================="
+		gosub MEM_REGION_DUMP 0x9100  0x30 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "Gladiator_main_Ace_1_Wr_TransactionFilter"
+		write #1 %ASCII %STRING "==========================================="
+		gosub MEM_REGION_DUMP 0x9180  0x30 #1
+		write #1 %ASCII %STRING " "
+
+		write #1 %ASCII %STRING "Gladiator_main_TransactionStatProfiler"
+		write #1 %ASCII %STRING "========================================"
+		gosub MEM_REGION_DUMP 0x9200  0x130 #1
+		write #1 %ASCII %STRING " "
+	)
+
+	print %ASCII %STRING " start of collecting samples ..."
+	write #1 %ASCII %STRING " "
+	write #1 %ASCII %STRING "=============================================================================="
+	write #1 %ASCII %STRING "Gladiator STAT samples collected on " clock.date() %STRING " at " clock.time()
+	write #1 %ASCII %STRING "=============================================================================="
+
+	write #1 %ASCII %STRING "    S.No   CNTR0   CNTR1   CNTR2   CNTR3   CNTR4   CNTR5   CNTR6   CNTR7   CNTR8   CNTR9  CNTR10  CNTR11  CNTR12  CNTR13  CNTR14  CNTR15  CNTR16  CNTR17  CNTR18  CNTR19  CNTR20  CNTR21 "
+
+	&total_cntrs=&stat_counters_num
+	Var.NEWLOCAL unsigned int[&total_cntrs] \cntr_data
+	&cntr_num=0
+	while (&cntr_num<&stat_counters_num)	
+	(
+		Var.Assign \cntr_data[&cntr_num]=0x0
+		&cntr_num=&cntr_num+0x1
+	)
+
+	&count=0.
+	while &count<&num_samples
+	(
+		print %ASCII %STRING " collecting samples iteration &count "
+
+		; wait for the interval
+		wait &interval
+
+		; freeze the counters
+		&mem_addr=Var.VALUE(\pkt_probes_offsets[0])
+		gosub STAT_COUNTERS_FREEZE &mem_addr
+
+		; read the counter values
+		&cntr_num=0
+		while (&cntr_num<&stat_counters_num)
+		(
+			&mem_addr=&stat_counters_base_val_offset+(0x14*&cntr_num)
+			gosub REGISTER_READ &mem_addr
+			ENTRY %LINE &val1
+
+			Var.Assign \cntr_data[&cntr_num]=&val1
+			&cntr_num=&cntr_num+0x1
+		)
+
+		; restart the counters.
+		&mem_addr=Var.VALUE(\pkt_probes_offsets[0])
+		gosub STAT_COUNTERS_START &mem_addr
+
+		; write the values to a file in HEX format
+		;write #1 %ASCII %STRING "0x"+FORMAT.HEX(8,&count) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[0])) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[1])) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[2])) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[3])) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[4])) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[5])) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[6])) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[7])) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[8])) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[9])) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[10])) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[11])) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[12])) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[13])) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[14])) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[15])) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[16])) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[17])) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[18])) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[19])) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[20])) %STRING "  0x"+FORMAT.HEX(4, Var.VALUE(\cntr_data[21]))
+
+		write #1 %ASCII FORMAT.DECIMAL(8,&count) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[0])) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[1])) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[2])) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[3])) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[4])) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[5])) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[6])) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[7])) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[8])) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[9])) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[10])) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[11])) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[12])) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[13])) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[14])) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[15])) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[16])) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[17])) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[18])) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[19])) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[20])) %STRING "  "+FORMAT.DECIMAL(6, Var.VALUE(\cntr_data[21]))
+
+		; repeat
+		&count=&count+0x1
+	)
+
+	print %ASCII %STRING " samples collection Done!! "
+	write #1 %ASCII %STRING "======================= END OF SAMPLES =========================================="
+
+	; close the file
+	close #1
+
+RETURN
+
+
+
+;*****************************************************************************************************
+;*****************************************************************************************************
+;*****************************************************************************************************
+; Packet Probe API
+;*****************************************************************************************************
+;*****************************************************************************************************
+;*****************************************************************************************************
+
+;================================================================================
+; Function: PACKET_PROBE_STAT_PROFILING_ENABLE
+; Description: enable stat probe
+; Usage : PACKET_PROBE_STAT_PROFILING_ENABLE &base_offset
+; Inputs:
+;     base_offset : base address offset of the packet probe
+; Outputs:
+;     none
+;================================================================================
+PACKET_PROBE_STAT_PROFILING_ENABLE:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &base_offset
+
+    ; start counter by enabling STATEN
+    gosub STAT_COUNTERS_START &base_offset
+
+    ;enable parent pakcet probe after configuration
+    gosub PACKET_PROBE_ENABLE &base_offset
+
+RETURN
+
+
+;================================================================================
+; Function: PACKET_PROBE_STAT_PROFILING_DISABLE
+; Description: Disable stat Probe
+; Usage : PACKET_PROBE_STAT_PROFILING_DISABLE &base_offset
+; Inputs:
+;     base_offset : base address offset of the packet probe
+; Outputs:
+;     none
+;================================================================================
+PACKET_PROBE_STAT_PROFILING_DISABLE:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &base_offset
+
+	gosub PACKET_PROBE_DISABLE &base_offset
+
+	gosub STAT_COUNTERS_FREEZE &base_offset
+
+RETURN
+
+
+;================================================================================
+; Function: PACKET_PROBE_TRACE_ENABLE
+; Description: enable packet probe trace
+; Usage : PACKET_PROBE_TRACE_ENABLE &base_offset
+; Inputs:
+;     base_offset : base address offset of the packet probe
+; Outputs:
+;     none
+;================================================================================
+PACKET_PROBE_TRACE_ENABLE:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &base_offset
+
+    ; Setting PACKETPROBE_MAINCTL register TRACEEN to 1 enable trace from packet probe.
+    ; Need to be set during the configuration before CfgCtl.GlobalEn is set to 1.
+    &mem_addr=&base_offset+0x8
+    gosub REGISTER_SET_BITS &mem_addr 0x2
+
+RETURN
+
+;================================================================================
+; Function: PACKET_PROBE_TRACE_DISABLE
+; Description: Disable Packet Probe Trace
+; Usage : PACKET_PROBE_TRACE_DISABLE &base_offset
+; Inputs:
+;     base_offset : base address offset of the packet probe
+; Outputs:
+;     none
+;================================================================================
+PACKET_PROBE_TRACE_DISABLE:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &base_offset
+
+    ; Clearing PACKETPROBE_MAINCTL register TRACEEN to 0 disable trace from packet probe.
+    &mem_addr=&base_offset+0x8
+    gosub REGISTER_CLEAR_BITS &mem_addr 0x2
+    &mem_addr=&base_offset+0xC
+    gosub REGISTER_CLEAR_BITS &mem_addr 0x1
+
+RETURN
+
+;================================================================================
+; Function: PACKET_PROBE_TRACE_ERROR_PKTS
+; Description: enable packet probe trace to include error packets
+; Usage : PACKET_PROBE_TRACE_ERROR_PKTS &base_offset
+; Inputs:
+;     base_offset : base address offset of the packet probe
+; Outputs:
+;     none
+;================================================================================
+PACKET_PROBE_TRACE_ERROR_PKTS:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &base_offset
+
+    ; Setting PACKETPROBE_MAINCTL register ErrEn to 1 to include Error Packets in packet probe trace.
+    ; Need to be set during the configuration before CfgCtl.GlobalEn is set to 1.
+    &mem_addr=&base_offset+0x8
+    gosub REGISTER_SET_BITS &mem_addr 0x1
+
+RETURN
+
+;================================================================================
+; Function: PACKET_PROBE_SET_TRACE_FILTER_LUT
+; Description: Set the Disable Packet Probe Trace.
+;    a look-up table that is used to combine filter outputs in order to trace packets. Packet tracing
+;    is enabled when the FilterLut bit of index (FNout ... F0out) is equal to 1.
+; Usage : PACKET_PROBE_SET_TRACE_FILTER_LUT
+; Inputs:
+;     base_offset : base address offset of the packet probe
+;     nFiletLut : filet lookup table
+; Outputs:
+;     none
+;================================================================================
+PACKET_PROBE_SET_TRACE_FILTER_LUT:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &base_offset &nFilerLut
+
+    &mem_addr=&base_offset+0x14
+    ; set GLADIATOR_MAIN_PACKETPROBE_FILTERLUT register.
+    gosub REGISTER_WRITE &mem_addr (&nFilerLut&(0xF))
+
+RETURN
+
+;================================================================================
+; Function: PACKET_PROBE_FILTER_DISABLE
+; Description: Disable Trace Filter.
+; Usage : PACKET_PROBE_FILTER_DISABLE &filer_base_offset
+; Inputs:
+;     filer_base_offset : base address offset of the packet filter
+; Outputs:
+;     none
+;================================================================================
+PACKET_PROBE_FILTER_DISABLE:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &filter_base_offset
+
+    &mem_addr=&filter_base_offset+0x1C
+    gosub REGISTER_CLEAR_BITS &mem_addr 0x0 //TODO : check if this is the right way to disable filter
+
+RETURN
+
+
+;================================================================================
+; Function: PACKET_PROBE_FILTER_BY_ROUTEID
+; Description: Configure Trace Filter for Routeid based Filtering
+; Usage : PACKET_PROBE_FILTER_BY_ROUTEID &filer_base_offset
+; Inputs:
+;     filer_base_offset : base address offset of the packet filter
+; Outputs:
+;     none
+;================================================================================
+PACKET_PROBE_FILTER_BY_ROUTEID:
+ON ERROR NOTHING
+PRIVATE &mem_addr &val
+ENTRY &filter_base_offset
+
+    ; Configure routeIdbase (offset 0x0)
+    &mem_addr=&filter_base_offset
+    gosub REGISTER_WRITE &mem_addr &val
+
+    ; Configure routeIdMask (offset 0x4)
+    &mem_addr=&filter_base_offset+0x4
+    gosub REGISTER_WRITE &mem_addr &val
+
+RETURN
+
+;================================================================================
+; Function: PACKET_PROBE_FILTER_BY_ADDR
+; Description: Configure Trace Filter for Address based Filtering
+; Usage : PACKET_PROBE_FILTER_BY_ADDR &filer_base_offset &pkt_type_mask
+;         A packet is a candidate when packet Addr & Mask = AddrBase & Mask.
+; Inputs:
+;     filer_base_offset : base address offset of the packet filter
+;     addr_high : Address MSB
+;     addr_low  : Address LSB
+;     window    : encoded address mask used to filter packets. log2(size)
+; Outputs:
+;     none
+;================================================================================
+PACKET_PROBE_FILTER_BY_ADDR:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &filter_base_offset &addr_high &addr_high &window
+
+    ; Configure LSB Address (offset 0x8)
+    &mem_addr=&filter_base_offset+0x8
+    gosub REGISTER_WRITE &mem_addr &addr_low
+
+    ; Configure MSB Address (offset 0xC)
+    &mem_addr=&filter_base_offset+0xC
+    gosub REGISTER_WRITE &mem_addr (&addr_high&(0xFF))
+
+    ; Configure Window (offset 0x10)
+    &mem_addr=&filter_base_offset+0x10
+    gosub REGISTER_WRITE &mem_addr (&window&(0x3F))
+
+RETURN
+
+;================================================================================
+; Function: PACKET_PROBE_FILTER_BY_SECURITY
+; Description: Configure Trace Filter for security based Filtering
+; Usage : PACKET_PROBE_FILTER_BY_OPCODE &filer_base_offset
+; Inputs:
+;     filer_base_offset : base address offset of the packet filter
+; Outputs:
+;     none
+;================================================================================
+PACKET_PROBE_FILTER_BY_SECURITY:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &filter_base_offset
+
+    ; Configure SecurityBase (offset 0x14)
+    &mem_addr=&filter_base_offset+0x14
+    gosub REGISTER_WRITE &mem_addr (&val)
+
+    ; Configure SecurityMask (offset 0x18)
+    &mem_addr=&filter_base_offset+0x18
+    gosub REGISTER_WRITE &mem_addr (&val)
+
+RETURN
+
+;================================================================================
+; Function: PACKET_PROBE_FILTER_BY_OPCODE
+; Description: Configure Trace Filter for Opcode based Filtering
+; Usage : PACKET_PROBE_FILTER_BY_OPCODE &filer_base_offset &pkt_type_mask
+; Inputs:
+;     filer_base_offset : base address offset of the packet filter
+;     pkt_type_mask :  RdEn(0x1), WrEn(0x2), LockEn(0x4), UrgEn(0x8)
+; Outputs:
+;     none
+;================================================================================
+PACKET_PROBE_FILTER_BY_OPCODE:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &filter_base_offset &pkt_type
+
+    ; Configure Opcode (offset 0x1C)
+    &mem_addr=&filter_base_offset+0x1C
+    gosub REGISTER_WRITE &mem_addr &pkt_type_mask
+
+RETURN
+
+;================================================================================
+; Function: PACKET_PROBE_FILTER_BY_STATUS
+; Description: Configure Trace Filter for status based Filtering
+; Usage : PACKET_PROBE_FILTER_BY_STATUS &filer_base_offset &pkt_type_mask
+; Inputs:
+;     filer_base_offset : base address offset of the packet filter
+; Outputs:
+;     none
+;================================================================================
+PACKET_PROBE_FILTER_BY_STATUS:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &filter_base_offset
+
+    ; Configure Status (offset 0x20)
+    &mem_addr=&filter_base_offset+0x20
+    gosub REGISTER_WRITE &mem_addr &val
+
+RETURN
+
+;================================================================================
+; Function: PACKET_PROBE_FILTER_BY_LENGTH
+; Description: Configure Trace Filter for Length based Filtering
+; Usage : PACKET_PROBE_FILTER_BY_LENGTH &filer_base_offset &length
+;        selects candidate packets if their number of bytes is less than or equal to 2**Length
+; Inputs:
+;     filer_base_offset : base address offset of the packet filter
+;     length : number of bytes in terms of power of 2
+; Outputs:
+;     none
+;================================================================================
+PACKET_PROBE_FILTER_BY_LENGTH:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &filter_base_offset &length
+
+    ; Configure Length (offset 0x24)
+    &mem_addr=&filter_base_offset+0x24
+    gosub REGISTER_WRITE &mem_addr &length
+
+RETURN
+
+;================================================================================
+; Function: PACKET_PROBE_FILTER_BY_URGENCY
+; Description: Configure Trace Filter for Urgency based Filtering
+; Usage : PACKET_PROBE_FILTER_BY_URGENCY &filer_base_offset &urgency
+;         A packet is a candidate when its socket urgency is greater than or equal to the urgency specified in the register
+; Inputs:
+;     filer_base_offset : base address offset of the packet filter
+;     urgency : the minimum urgency level used to filter packets.
+; Outputs:
+;     none
+;================================================================================
+PACKET_PROBE_FILTER_BY_URGENCY:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &filter_base_offset &urgency
+
+    ; Configure Urgency (offset 0x28)
+    &mem_addr=&filter_base_offset+0x28
+    gosub REGISTER_WRITE &mem_addr (&urgency&0x3)
+
+RETURN
+
+;================================================================================
+; Function: PACKET_PROBE_FILTER_BY_USER
+; Description: Configure Trace Filter for User based Filtering
+; Usage : PACKET_PROBE_FILTER_BY_USER &filer_base_offset &user
+; Inputs:
+;     filer_base_offset : base address offset of the packet filter
+;     user :
+; Outputs:
+;     none
+;================================================================================
+PACKET_PROBE_FILTER_BY_USER:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &filter_base_offset &user
+
+    ; Configure UserBase (offset 0x2C)
+    &mem_addr=&filter_base_offset+0x2C
+    gosub REGISTER_WRITE &mem_addr &userbase
+
+    ; Configure UserMask (offset 0x30)
+    &mem_addr=&filter_base_offset+0x30
+    gosub REGISTER_WRITE &mem_addr &usermask
+
+RETURN
+
+;================================================================================
+; Function: PACKET_PROBE_FILTER_ALLOW_ALL
+; Description: enable packet probe trace to include all traces
+; Usage : PACKET_PROBE_FILTER_ALLOW_ALL &filter_base_offset
+; Inputs:
+;     filer_base_offset : base address offset of the packet filter
+; Outputs:
+;     none
+;================================================================================
+PACKET_PROBE_FILTER_ALLOW_ALL:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &filter_base_offset
+
+    ; RouteIdmask to 0
+    &mem_addr=&filter_base_offset+0x4
+    gosub REGISTER_CLEAR_BITS &mem_addr 0x1FFFF
+
+    ; window size to -1
+    &mem_addr=&filter_base_offset+0x10
+    gosub REGISTER_SET_BITS &mem_addr 0xFF
+
+    ; SecurityMask to 0
+    &mem_addr=&filter_base_offset+0x18
+    gosub REGISTER_CLEAR_BITS &mem_addr 0x1
+
+    ; Opcode to 0xF
+    &mem_addr=&filter_base_offset+0x1C
+    gosub REGISTER_SET_BITS &mem_addr 0xF
+
+    ; Status to 0x3
+    &mem_addr=&filter_base_offset+0x20
+    gosub REGISTER_SET_BITS &mem_addr 0x3
+
+    ; Length to 0xF
+    &mem_addr=&filter_base_offset+0x24
+    gosub REGISTER_SET_BITS &mem_addr 0xF
+
+    ; Urgency to 0
+    &mem_addr=&filter_base_offset+0x28
+    gosub REGISTER_CLEAR_BITS &mem_addr 0x3
+
+    ; UserMask to 0
+    &mem_addr=&filter_base_offset+0x30
+    gosub REGISTER_CLEAR_BITS &mem_addr 0x1FFF
+
+RETURN
+
+;================================================================================
+; Function: PACKET_PROBE_ENABLE
+; Description: Enables the observability
+; Usage : PACKET_PROBE_ENABLE &base_offset
+; Inputs:
+;     base_offset : base address offset of the packet probe
+; Outputs:
+;     none
+;================================================================================
+PACKET_PROBE_ENABLE:
+ON ERROR NOTHING
+PRIVATE &mem_addr &val
+ENTRY &base_offset
+
+    ; CfgCtl.Active: This status register informs the software that the probe is active.
+    ; Probe configuration is not allowed during active state
+    &mem_addr=&base_offset+0xC
+    gosub REGISTER_READ &mem_addr
+    ENTRY %LINE &val
+    &val=&val&(0x2)
+
+    if &val==0
+    (
+        ; enable all the packetprobe
+        ; set the GLOBALEN bit
+        gosub REGISTER_SET_BITS &mem_addr 0x1
+        print "Packet Probe with base offset &base_offset Enabled"
+    )
+    else
+    (
+        print "packet probe already enabled"
+    )
+
+RETURN
+
+;================================================================================
+; Function: PACKET_PROBE_DISABLE
+; Description: Disables the observability
+; Usage : PACKET_PROBE_DISABLE &base_offset
+; Inputs:
+;     base_offset : base address offset of the packet probe
+; Outputs:
+;     none
+;================================================================================
+PACKET_PROBE_DISABLE:
+ON ERROR NOTHING
+PRIVATE &mem_addr &val
+ENTRY &base_offset
+
+    &mem_addr=&base_offset+0xC
+
+    ; clear the GLOBALEN bit
+    gosub REGISTER_CLEAR_BITS &mem_addr 0x1
+
+    ; wait until the ACTIVE bit is cleared.
+    gosub REGISTER_READ &mem_addr
+    ENTRY %LINE &val
+    &val=&val&(0x2)
+    while &val==0x2
+    (
+        gosub REGISTER_READ &mem_addr
+        ENTRY %LINE &val
+        &val=&val&(0x2)
+        wait 1ms
+    )
+
+    print "packet probe with base offset &base_offset disabled"
+
+RETURN
+
+;================================================================================
+; Function: PACKET_PROBE_TRACE_START
+; Description: packet probe trace config
+; Usage : PACKET_PROBE_TRACE_START &base_offset
+; Inputs:
+;     base_offset : base address offset of the packet probe
+; Outputs:
+;     none
+;================================================================================
+PACKET_PROBE_TRACE_START:
+ON ERROR NOTHING
+ENTRY &base_offset
+
+    ; disable pakcet probes before any configuration
+    gosub PACKET_PROBE_DISABLE &base_offset
+
+    ; trace Error packets enable from packet probe
+    gosub PACKET_PROBE_TRACE_ERROR_PKTS &base_offset
+
+    ; trace enable from packet probe
+    gosub PACKET_PROBE_TRACE_ENABLE &base_offset
+
+    ; set Filter LUT for all the trace
+    gosub PACKET_PROBE_SET_TRACE_FILTER_LUT &base_offset 0xF
+
+	print "Packet Probe with base offset &base_offset Trace Enabled"
+
+    ;enable packet probes after configuration
+    gosub PACKET_PROBE_ENABLE &base_offset
+
+RETURN
+
+;================================================================================
+; Function: PACKET_PROBES_TRACES_CONFIG
+; Description: Disable all packet Traces
+; Usage : PACKET_PROBES_TRACES_CONFIG &base_offset
+; Inputs:
+;     base_offset : base address offset of the packet probe
+; Outputs:
+;     none
+;================================================================================
+PACKET_PROBES_TRACES_CONFIG:
+ON ERROR NOTHING
+PRIVATE &mem_addr &probe_num &probe_enable &observer_enable
+ENTRY &probes_mask &atid &async_period
+
+	if ("&probes_mask"=="")
+	(
+		RETURN
+	)
+
+	&probe_enable=0x0
+	&observer_enable=0x0
+	&probe_num=0x0
+	while &probe_num<&pkt_probes_num
+	(
+		&mem_addr=Var.VALUE(\pkt_probes_offsets[&probe_num])
+		&probe_enable=&probes_mask&(0x1<<&probe_num)
+		if (&probe_enable!=0x0)
+		(
+			gosub PACKET_PROBE_TRACE_START &mem_addr
+			&observer_enable=0x1
+		)
+		else
+		(
+        	gosub PACKET_PROBE_DISABLE &mem_addr
+		)
+		&probe_num=&probe_num+0x1
+	)
+
+	if (&observer_enable!=0x0)
+	(
+    	; enable trace at observer
+    	gosub OBSERVER_TRACE_ENABLE &atid &async_period
+	)
+	else
+	(
+		gosub OBSERVER_TRACE_DISABLE
+	)
+
+RETURN
+
+;================================================================================
+; Function: PACKET_PROBES_CONFIG_TOOL
+; Description: packet probes config tool
+; Usage : PACKET_PROBES_CONFIG_TOOL &base_offset
+; Inputs:
+;     base_offset : base address offset of the packet probe
+; Outputs:
+;     none
+;================================================================================
+PACKET_PROBES_CONFIG_TOOL:
+ON ERROR NOTHING
+PRIVATE &mem_addr &probe_num &choice
+ENTRY
+
+	; enable QDSS infrastructure
+	do ~~~~/gladiator_debug_qdss_lib.cmm QDSS_TRACE_CONFIG_SETUP
+
+	&probe_num=0.
+	while &probe_num<&pkt_probes_num
+	(
+		print "Do you want to enable packet probe &probe_num Traces (yes(enter)/no): "
+		enter &choice
+		&mem_addr=Var.VALUE(\pkt_probes_offsets[&probe_num])
+		if (("&choice"=="")||("&choice"=="yes"))
+		(
+			; enable snoop traces
+			gosub PACKET_PROBE_TRACE_START &mem_addr
+		)
+		else
+		(
+			; disable snoop traces
+			gosub PACKET_PROBE_TRACE_DISABLE &mem_addr
+		)
+		&probe_num=&probe_num+0x1
+	)
+
+    ; enable trace at observer
+    gosub OBSERVER_TRACE_ENABLE
+
+
+RETURN
+
+
+
+;*****************************************************************************************************
+;*****************************************************************************************************
+;*****************************************************************************************************
+; Observer API
+;*****************************************************************************************************
+;*****************************************************************************************************
+;*****************************************************************************************************
+
+
+;================================================================================
+; Function: OBSERVER_TRACE_ENABLE
+; Description: Enable trace at observer
+; Usage : OBSERVER_TRACE_ENABLE
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+OBSERVER_TRACE_ENABLE:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &atid &async_period
+
+    print " "
+    print " Observer Trace Enable started"
+    if ("&atid"=="")
+    (
+    	print "Enter the Gladiator trace ATID : "
+ 		enter &atid
+		if ("&atid"=="")
+		(
+        	&atid=0x3a
+		)
+    )
+    ; set ATID in OBSERVER_MAIN_ATBENDPOINT_ATBID register ATBID field.
+    &mem_addr=&atb_endpoint_offset+0x8
+    gosub REGISTER_WRITE &mem_addr (&atid&0x7F)
+
+    print " "
+    if ("&async_period"=="")
+    (
+    	print "Enter the Async perios for the traces : "
+ 		enter &async_period
+		if ("&async_period"=="")
+		(
+        	&async_period=0x1F
+		)
+    )
+    ; set Async period value in OBSERVER_MAIN_STPV2CONVERTER_ASYNCPERIOD register ASYNC field.
+    &mem_addr=&stpv2_converter_offset+0x8
+    gosub REGISTER_WRITE &mem_addr (&async_period&0x1F)
+
+    ; set STPv2En bit in OBSERVER_MAIN_STPV2CONVERTER_STPV2EN register.
+    &mem_addr=&stpv2_converter_offset+0xC
+    gosub REGISTER_SET_BITS &mem_addr (0x1)
+
+    ; Setting OBSERVER_MAIN_ATBENDPOINT_ATBEN register ATBEN to 1 enable all the traces from observer.
+    &mem_addr=&atb_endpoint_offset+0xC
+    gosub REGISTER_SET_BITS &mem_addr 0x1
+
+    print " Observer Trace Enable Done"
+
+RETURN
+
+;================================================================================
+; Function: OBSERVER_TRACE_DISABLE
+; Description: Enable trace at observer
+; Usage : OBSERVER_TRACE_DISABLE
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+OBSERVER_TRACE_DISABLE:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY
+
+    print " "
+    print " Observer Trace Disable started"
+    ; clear OBSERVER_MAIN_ATBENDPOINT_ATBEN register ATBEN disables all the traces from observer.
+    &mem_addr=&atb_endpoint_offset+0xC
+    gosub REGISTER_CLEAR_BITS &mem_addr 0x1
+
+    ; clear STPv2En bit in OBSERVER_MAIN_STPV2CONVERTER_STPV2EN register.
+    &mem_addr=&stpv2_converter_offset+0xC
+    gosub REGISTER_CLEAR_BITS &mem_addr 0x1
+
+    print " Observer Trace Disable Done"
+RETURN
+
+
+
+;*****************************************************************************************************
+;*****************************************************************************************************
+;*****************************************************************************************************
+; Transaction Probe API
+;*****************************************************************************************************
+;*****************************************************************************************************
+;*****************************************************************************************************
+
+
+;================================================================================
+; Function: TRANSACTION_FILTER_CONFIG_RESET
+; Description: reset the configuration of TransactionFilter.
+; Usage : 
+; Usage :
+;	  do ~~~~/debug_suite_lib.cmm TRANSACTION_FILTER_CONFIG_RESET &offset
+; Inputs:
+;     base_offset : base address offset of TransactionFilter
+; Outputs:
+;     none
+;================================================================================
+TRANSACTION_FILTER_CONFIG_RESET:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &filter_base_offset
+
+	; Mode
+	&mem_addr=&filter_base_offset+0x8
+	gosub REGISTER_WRITE &mem_addr 0x0
+
+	; AddrBase_Low
+	&mem_addr=&filter_base_offset+0xC
+	gosub REGISTER_WRITE &mem_addr 0x0
+
+	; AddrBase_High
+	&mem_addr=&filter_base_offset+0x10
+	gosub REGISTER_WRITE &mem_addr 0x0
+
+	; AddrWindowSize 
+	&mem_addr=&filter_base_offset+0x14
+	gosub REGISTER_WRITE &mem_addr 0xFFFFFFFF
+	; writing all F to allow all addresses
+
+	; SrcIdBase
+	&mem_addr=&filter_base_offset+0x18
+	gosub REGISTER_WRITE &mem_addr 0x0
+
+	; SrcIdMask
+	&mem_addr=&filter_base_offset+0x1C
+	gosub REGISTER_WRITE &mem_addr 0x0
+
+	; Opcode
+	&mem_addr=&filter_base_offset+0x20
+	gosub REGISTER_WRITE &mem_addr 0x0
+
+	; UserBase
+	&mem_addr=&filter_base_offset+0x24
+	gosub REGISTER_WRITE &mem_addr 0x0
+
+	; UserMask
+	&mem_addr=&filter_base_offset+0x28
+	gosub REGISTER_WRITE &mem_addr 0x0
+
+RETURN
+
+;================================================================================
+; Function: TRANSACTION_FILTER_MODE_SET
+; Description: setup of a TransactionFilter mode.
+; Usage : TRANSACTION_FILTER_MODE_SET &filter_base_offset &mode
+;	  do ~~~~/debug_suite_lib.cmm TRANSACTION_FILTER_MODE_SET &offset &mode
+; Inputs:
+;     filter_base_offset : base address offset of TransactionFilter
+;     mode : only when transaction profiler in in latency mode
+;            0 : handshake mode (request acceptance latency i.e. delay between "begin request" and "request accepted")
+;            1 : latency mode   (request-to-response latency i.e. delay betwen "begin request" and "begin response" )
+;           MUST  be programmed to '1' when transaction profiler is in OT mode.
+; Outputs:
+;     none
+;================================================================================
+TRANSACTION_FILTER_MODE_SET:
+ON ERROR NOTHING
+PRIVATE &mem_addr &filter_mode
+ENTRY &filter_base_offset &filter_mode
+
+    ; mode at offset 0x8. 0 : Handshake Mode; 1: Latency Mode (MUST be 1 when tarnsaction profiler is in OT mode)
+    &mem_addr=&filter_base_offset+0x8
+    gosub REGISTER_WRITE &mem_addr &filter_mode
+
+RETURN
+
+;================================================================================
+; Function: TRANSACTION_FILTER_BY_ADDRESS
+; Description: setup of a TransactionFilter by address.
+; Usage : TRANSACTION_FILTER_BY_ADDRESS &filter_base_offset &high_addr &low_addr &window
+;	  do ~~~~/debug_suite_lib.cmm TRANSACTION_FILTER_BY_ADDRESS &filter_base &high_addr &low_addr &window
+; Inputs:
+;     filter_base_offset : base address offset of TransactionFilter
+; Outputs:
+;     none
+;================================================================================
+TRANSACTION_FILTER_BY_ADDRESS:
+ON ERROR NOTHING
+PRIVATE &mem_addr &val
+ENTRY &filter_base_offset &high_addr &low_addr &window
+
+    ; low Address at offset 0xC
+    &mem_addr=&filter_base_offset+0xC
+    gosub REGISTER_WRITE &mem_addr &low_addr
+
+    ; high Address at offset 0x10
+    &mem_addr=&filter_base_offset+0x10
+    gosub REGISTER_WRITE &mem_addr (&high_addr&(0xFFF))
+
+    ; window offset 0x14.
+    &mem_addr=&filter_base_offset+0x14
+
+    ; clear only LSB 6 bits
+    gosub REGISTER_READ &mem_addr
+    ENTRY %LINE &val
+    &val=&val&~(0x3F)
+    &window=&window&0x3F
+    gosub REGISTER_WRITE &mem_addr (&val|&window)
+
+RETURN
+
+;================================================================================
+; Function: TRANSACTION_FILTER_BY_SRCID
+; Description: setup of a TransactionFilter by srcid.
+; Usage : TRANSACTION_FILTER_BY_SRCID &filter_base_offset &base &mask
+; Inputs:
+;     filter_base_offset : base address offset of TransactionFilter
+;     base :  base value of srcid
+;     mask : srcid mask
+; Outputs:
+;     none
+;================================================================================
+TRANSACTION_FILTER_BY_SRCID:
+ON ERROR NOTHING
+PRIVATE &mem_addr &val
+ENTRY &filter_base_offset &base &mask
+
+    ; SrcId Base at offset 0x18.
+    &mem_addr=&filter_base_offset+0x18
+    gosub REGISTER_WRITE &mem_addr (&base&(0x7F))
+
+    ; SrcId Mask at offset 0x1C.
+    &mem_addr=&filter_base_offset+0x1C
+    gosub REGISTER_WRITE &mem_addr (&mask&(0x7F))
+
+RETURN
+
+;================================================================================
+; Function: TRANSACTION_FILTER_BY_OPCODE
+; Description: setup of a TransactionFilter by opcode.
+; Usage : TRANSACTION_FILTER_BY_OPCODE &filter_base_offset &opcode
+; Inputs:
+;     filter_base_offset : base address offset of TransactionFilter
+; Outputs:
+;     none
+;================================================================================
+TRANSACTION_FILTER_BY_OPCODE:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &filter_base_offset &opcode
+
+    ; Opcode at offset 0x20. bit[0]: 1, selects RD request. bit[1]: 1, selects WR requests
+    &mem_addr=&filter_base_offset+0x20
+    gosub REGISTER_WRITE &mem_addr (&opcode&(0x3))
+
+RETURN
+
+
+;================================================================================
+; Function: TRANSACTION_FILTER_BY_USER
+; Description: setup of a TransactionFilter by user
+; Usage : TRANSACTION_FILTER_BY_USER &filter_base_offset &base &mask
+; Inputs:
+;     filter_base_offset : base address offset of TransactionFilter
+;       Cache0=0 Cache1=1 Cache2=1 Cache3=1 ExclID0=0 ExclID1=0 GladiatorPortID0=1 IsRdSpeculative=0 IsWrMerged=0 IsWrPassDirty=0 Prot0=1 Prot1=1 Prot2=1
+;     mask : allow only the packets by parameters
+;
+; Outputs:
+;     none
+;================================================================================
+TRANSACTION_FILTER_BY_USER:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &filter_base_offset &base &mask
+
+    ; UserBase at offset 0x24
+    &mem_addr=&filter_base_offset+0x24
+    gosub REGISTER_WRITE &mem_addr (&base&(0x3FFF))
+
+    ; UserMask at offset 0x28
+    &mem_addr=&filter_base_offset+0x28
+    gosub REGISTER_WRITE &mem_addr (&mask&(0x3FFF))
+
+RETURN
+
+
+;================================================================================
+; Function: TRANSACTION_PROFILER_ENABLE
+; Description: setup of a Transaction Probe
+; Usage : TRANSACTION_PROFILER_ENABLE &base_offset
+; Inputs:
+;     none 
+; Outputs:
+;     none
+;================================================================================
+TRANSACTION_PROFILER_ENABLE:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY
+
+	print "TRANSACTION_PROFILER_ENABLE Started "
+
+    ; Opcode at offset 0x8. 1: enable 0: disable
+    &mem_addr=&transaction_profiler_offset+0x8
+    gosub REGISTER_WRITE &mem_addr 0x1
+
+	print "TRANSACTION_PROFILER_ENABLE Done "
+
+RETURN
+
+
+;================================================================================
+; Function: TRANSACTION_PROFILER_DISABLE
+; Description: setup of a Transaction Probe
+; Usage : TRANSACTION_PROFILER_DISABLE
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+TRANSACTION_PROFILER_DISABLE:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY
+
+    ; En at offset 0x8. 1: enable 0: disable
+    &mem_addr=&transaction_profiler_offset+0x8
+    gosub REGISTER_CLEAR_BITS &mem_addr 0x1
+
+RETURN
+
+;================================================================================
+; Function: TRANSACTION_PROFILER_OBSERVER_MODE
+; Description: sets the counting mode per observed port.
+;              Each bit per observation port defines the incrementing mode
+; Usage : TRANSACTION_PROFILER_OBSERVER_MODE &observer &mode
+; Inputs:
+;     observer : obserever number 
+;     mode : 0 : DELAY. Counts the number of cycles between start and stop events.
+;                Counter is reset on stop event.
+;                All transaction profiling counters allocated to the observed port may be used
+;            1 : PENDING. Counts the number of outstanding transactions.
+;                Start event increments counter; stop event decrements counter.
+;                Only one transaction profiling counter from those allocated to the observed port is used
+; Outputs:
+;     none
+;================================================================================
+TRANSACTION_PROFILER_OBSERVER_MODE:
+ON ERROR NOTHING
+PRIVATE &mem_addr &bitmask
+ENTRY &observer &mode
+
+    ; mode at offset 0xC. 1: Pending 0: Delay
+    &mem_addr=&transaction_profiler_offset+0xC
+	&bitmask=0x0
+
+    if (&observer==0x0)
+    (
+        &bitmask=0x1
+    )
+    else if (&observer==0x1)
+    (
+        &bitmask=0x2
+    )
+
+    if (&mode==0x0)
+    (
+        gosub REGISTER_CLEAR_BITS &mem_addr &bitmask
+    )
+    else if (&mode==0x1)
+    (
+        gosub REGISTER_SET_BITS &mem_addr &bitmask
+    )
+
+RETURN
+
+;================================================================================
+; Function: TRANSACTION_PROFILER_OBSERVER_INPUT_SEL
+; Description: specify the transaction probe point to be observed by port i of the transaction probe
+; Usage : TRANSACTION_PROFILER_OBSERVER_INPUT_SEL &observer &port
+; Inputs:
+;     observer : observer that need to be selected
+;     port  : select the port to be observed by Observer.
+;             0: ACE_0_Rd
+;             1: ACE_0_Wr
+;             2: ACE_1_Rd
+;             3: ACE_1_Wr
+; Outputs:
+;     none
+;================================================================================
+TRANSACTION_PROFILER_OBSERVER_INPUT_SEL:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &observer &port
+
+	
+    ;ObservedSel_0,1  at offset 0x10, 0x14.
+    &mem_addr=&transaction_profiler_offset+0x10+(0x4*&observer)
+    gosub REGISTER_WRITE &mem_addr (&port&(0x3))
+
+RETURN
+
+
+;================================================================================
+; Function: TRANSACTION_PROFILER_OBSERVER_BIN_CONFIG
+; Description: Configures threshold index values of the transaction probe
+; Usage : TRANSACTION_PROFILER_OBSERVER_BIN_CONFIG &observer &bin &threshold
+; Inputs:
+;     observer : the observer number
+;     bin : bin numebr
+;     threshold : bin threshold
+; Outputs:
+;     none
+;================================================================================
+TRANSACTION_PROFILER_OBSERVER_BIN_CONFIG:
+ON ERROR NOTHING
+PRIVATE &mem_addr &count
+ENTRY &observer &bin &threshold
+
+    if (&observer==0x0)
+    (
+        &mem_addr=&transaction_profiler_offset+0x2C
+    )
+    else if (&observer==0x1)
+    (
+        &mem_addr=&transaction_profiler_offset+0x68
+    )
+
+    ;Thesholds_i_j address
+    &mem_addr=&mem_addr+(0x4*&bin)
+    gosub REGISTER_WRITE &mem_addr (&threshold&0x7FF)
+
+RETURN
+
+;================================================================================
+; Function: TRANSACTION_PROFILER_OBSERVER_TENURELINES
+; Description: Configures the number of tenure lines for an observer
+; Usage : TRANSACTION_PROFILER_OBSERVER_TENURELINES &observer &n_tenurelines
+; Inputs:
+;     observer  : the observer number
+;     n_tenurelines  : allocated number of tenure lines
+; Outputs:
+;     none
+;================================================================================
+TRANSACTION_PROFILER_OBSERVER_TENURELINES:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &observer &n_tenurelines
+
+    &mem_addr=&transaction_profiler_offset+0x20
+    if (&observer==0x0)
+    (
+        gosub REGISTER_WRITE &mem_addr &n_tenurelines
+    )
+    else if (&observer==0x1)
+    (
+		gosub REGISTER_WRITE &mem_addr (0x4-&n_tenurelines)
+    )
+
+RETURN
+
+;================================================================================
+; Function: TRANSACTION_PROFILER_THRESHOLDS_PRESCALE
+; Description: Configures threshold prescale value for thresholds
+; Usage : TRANSACTION_PROFILER_THRESHOLDS_PRESCALE &prescale
+; Inputs:
+;     prescale : prescale value for the thresholds
+; Outputs:
+;     none
+;================================================================================
+TRANSACTION_PROFILER_THRESHOLDS_PRESCALE:
+ON ERROR NOTHING
+PRIVATE &mem_addr
+ENTRY &prescale
+
+    ;prescale value for thresholds
+    &mem_addr=&transaction_profiler_offset+0x128
+    gosub REGISTER_WRITE &mem_addr (&prescale&0xFF)
+
+RETURN
+
+;================================================================================
+; Function: TRANSACTION_PROFILER_OBSERVER_CONFIG_RESET
+; Description: Resets all the configuration for Transaction Profiler Observer
+; Usage : TRANSACTION_PROFILER_OBSERVER_CONFIG_RESET &observer
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+TRANSACTION_PROFILER_OBSERVER_CONFIG_RESET:
+ON ERROR NOTHING
+PRIVATE &mem_addr &bin_number
+ENTRY &observer
+
+	gosub TRANSACTION_PROFILER_OBSERVER_TENURELINES &observer 0x0
+	gosub TRANSACTION_PROFILER_OBSERVER_INPUT_SEL &observer 0x0
+
+	&bin_number=0x0
+	while &bin_number<&transaction_profiler_observer_thersholds_num
+	(
+		gosub TRANSACTION_PROFILER_OBSERVER_BIN_CONFIG &observer &bin_number 0x0
+		&bin_number=&bin_number+0x1
+	)
+
+RETURN
+
+;================================================================================
+; Function: TRANSACTION_PROFILER_CONFIG_RESET
+; Description: Resets all the configuration for Transaction Profiler
+; Usage : TRANSACTION_PROFILER_CONFIG_RESET
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+TRANSACTION_PROFILER_CONFIG_RESET:
+ON ERROR NOTHING
+PRIVATE &mem_addr &observer
+ENTRY
+
+    ; Disable
+    &mem_addr=&transaction_profiler_offset+0x8
+    gosub REGISTER_WRITE &mem_addr 0x0
+
+    ; clear Mode
+    &mem_addr=&transaction_profiler_offset+0xC
+    gosub REGISTER_WRITE &mem_addr 0x0
+
+	&observer=0x0
+	while &observer<&transaction_profiler_observers_num
+	( 
+		gosub TRANSACTION_PROFILER_OBSERVER_CONFIG_RESET &observer
+		&observer=&observer+0x1
+	)
+
+	gosub TRANSACTION_PROFILER_OBSERVER_TENURELINES 0x0 0x0
+
+    ; overflow reset
+    &mem_addr=&transaction_profiler_offset+0x120
+    gosub REGISTER_WRITE &mem_addr 0x3
+
+    ; pending event mode
+    &mem_addr=&transaction_profiler_offset+0x124
+    gosub REGISTER_WRITE &mem_addr 0x0
+
+    ; prescalar
+    &mem_addr=&transaction_profiler_offset+0x128
+    gosub REGISTER_WRITE &mem_addr 0x0
+
+RETURN
+
+;================================================================================
+; Function: TRANSACTION_PROFILER_RESET
+; Description: Resets all the configuration for Transaction filters and Profiler
+; Usage : TRANSACTION_PROFILER_RESET
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+TRANSACTION_PROFILER_RESET:
+ON ERROR NOTHING
+ENTRY
+
+	; reset the stat profiling
+	gosub STAT_PROFILING_RESET
+
+	; clean-up the filters
+    gosub TRANSACTION_FILTER_CONFIG_RESET  &transaction_profiler_ace0_rd_filter_offset
+    gosub TRANSACTION_FILTER_CONFIG_RESET  &transaction_profiler_ace0_wr_filter_offset
+    gosub TRANSACTION_FILTER_CONFIG_RESET  &transaction_profiler_ace1_rd_filter_offset
+    gosub TRANSACTION_FILTER_CONFIG_RESET  &transaction_profiler_ace1_wr_filter_offset
+
+    ; clean transacation profiler Config
+    gosub TRANSACTION_PROFILER_CONFIG_RESET
+
+
+RETURN
+
+;================================================================================
+; Function: TRANSACTION_PROFILE_FILTER_SETUP
+; Description: setup of Transaction filters profilr filters
+; Usage : TRANSACTION_PROFILE_FILTER_SETUP
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+TRANSACTION_PROFILE_FILTER_SETUP:
+ON ERROR NOTHING
+PRIVATE &mem_addr &choice &allow_all &val1 &val2 &val3
+ENTRY &filter_base_offset &filter_mode
+
+    if (("&filter_base_offset"=="")||("&filter_mode"==""))
+    (
+        print %ERROR "Invalid Filter options"
+        RETURN
+    )
+
+	gosub TRANSACTION_FILTER_MODE_SET &filter_base_offset &filter_mode
+
+	; Fiilter by address
+	&allow_all=0x1
+	print "Want to filter by Address Range ?(yes/no(enter)):"
+	enter &choice
+	if ("&choice"=="yes")
+	(
+		print "Enter Address Base 12-bit MSB Address:"
+		enter &val1
+		print "Enter Address Base 32-Bit LSB Address:"
+		enter &val2
+		print "Enter Address Base window starting from base:"
+		enter &val3
+
+		if (("&val1"!="")&&("&val2"!="")&&("&val3"!=""))
+		(
+			&allow_all=0x0
+			;configure the address
+			gosub TRANSACTION_FILTER_BY_ADDRESS &filter_base_offset &val1 &val2 &val3
+		)
+	)
+	if (&allow_all==0x1)
+    (
+		; Allows all addresses
+		gosub TRANSACTION_FILTER_BY_ADDRESS &filter_base_offset 0x0 0x0 0x0
+	)
+
+	; Filter by source Id
+	;TODO: Provide various SrcID options possible to select.
+	; please use A5x Core TRM and look for CHI interface Encodings for AWIDM[4:0], Encodings for ARIDM[5:0]
+	&allow_all=0x1
+	print "Want to filter by Source Id?(yes/no(enter)):"
+	enter &choice
+	if ("&choice"=="yes")
+	(
+		print "Enter the SourceID Base :"
+		enter &val1
+		print "Enter the SourceID Mask:"
+		enter &val2
+
+		if (("&val1"!="")&&("&val2"!="")&&("&val3"!=""))
+		(
+			&allow_all=0x0
+			; configure sourceID base and mask
+			gosub TRANSACTION_FILTER_BY_SRCID &filter_base_offset &val1 &val2
+		)
+	)
+	if (&allow_all==0x1)
+	(
+		; already allow packets from all sources
+		gosub TRANSACTION_FILTER_BY_SRCID &filter_base_offset 0x0 0x0
+	)
+
+	; User Options
+	&allow_all=0x1
+	print "Want to filter by User Options?(yes/no(enter)):"
+	enter &choice
+	if ("&choice"=="yes")
+	(
+		print " please use below user fields"
+		print "   bit[0:3] - CACHE[0:3] "
+		print "   bit[4:5] - ACEID[0:1] "
+		print "   bit[6] - Port ID (0: from Cluster 0; 1 : from Cluster 1) "
+		print "   bit[7] - is Speculative read from CPU "
+		print "   bit[8] - WriteMerge"
+		print "   bit[9] - WritePassDirty"
+		print "   bit[10:12]- PROT[0:2]"
+		
+	)
+	if (&allow_all==0x1)
+	(
+		gosub TRANSACTION_FILTER_BY_USER &filter_base_offset 0x0 0x0
+	)
+
+	; enable the filter for rd/Wr transactions
+    ; NOTE: Filter enable is not done here. because it is suggested by QITC
+    ; to do enable opcode at the end of the configuration
+
+RETURN
+
+
+;================================================================================
+; Function: TRANSACTION_PROFILER_OBSERVER_SETUP
+; Description: setup of Transaction Profiler Observer
+; Usage : TRANSACTION_PROFILER_OBSERVER_SETUP
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+TRANSACTION_PROFILER_OBSERVER_SETUP:
+ON ERROR NOTHING
+PRIVATE &mem_addr &choice &bin_number &threshold &stat_cntr_num &stat_cntr_val &n_tenurelines
+ENTRY &observer &observed_port &mode
+
+    ; setup the port
+    gosub TRANSACTION_PROFILER_OBSERVER_INPUT_SEL &observer &observed_port
+	gosub TRANSACTION_PROFILER_OBSERVER_MODE &observer &mode
+
+	; allocate tenure lines for this observer
+	print "Enter number of tenure lines allocated to observer &observer : (0-4) "
+    enter &n_tenurelines
+	if ("&n_tenurelines"=="")
+	(
+		&n_tenurelines=0x4
+	)
+	gosub TRANSACTION_PROFILER_OBSERVER_TENURELINES &observer &n_tenurelines
+
+
+	&invalid=0x0
+more_observer_bins_config:
+	print "Enter the bin to configure(0-&transaction_profiler_observer_thersholds_num) [invalid bin number exits]: "
+   	enter &bin_number
+	if ("&bin_number"=="")
+	(
+		&invalid=0x1
+		goto skip_observer_config
+	)
+	if (&bin_number>14.)
+	(
+		&invalid=0x1
+		goto skip_observer_config
+	)
+	print "Enter the bin &bin_number threashold: "
+   	enter &threshold
+	if ("&threshold"=="")
+	(
+		&invalid=0x1
+		goto skip_observer_config
+	)
+	print "Enter the STAT counter to count bin &bin_number : "
+   	enter &stat_cntr_num
+	if ("&stat_cntr_num"=="")
+	(
+		&invalid=0x1
+		goto skip_observer_config
+	)
+	if (&stat_cntr_num>&stat_counters_num-1)
+	(
+		&invalid=0x1
+		goto skip_observer_config
+	)
+	&stat_cntr_val=&bin_number+0x20+(&observer*&transaction_profiler_observer_thersholds_num)
+	gosub TRANSACTION_PROFILER_OBSERVER_BIN_CONFIG &observer &bin_number &threshold
+	gosub STAT_COUNTER_SETUP_EVENT &stat_cntr_num &stat_cntr_val
+
+	print "Do you want to extend the STAT counter? (yes/no): "
+    enter &choice
+	if ("&choice"=="yes")
+	(
+		if (&stat_cntr_val&0x1)
+		(
+			print " can't extend an odd counter ")
+		)
+		else
+		(
+			gosub STAT_COUNTER_SETUP_EVENT (&stat_cntr_num+1) 0x10
+		)
+	)
+
+skip_observer_config:
+
+	if (&invalid!=0x1)
+	(
+		goto more_observer_bins_config
+	)
+
+RETURN
+
+;================================================================================
+; Function: TRANSACTION_PROFILER_TOOL
+; Description: setup of Transaction filters and transaction profiler according to user requirements
+; Usage : TRANSACTION_PROFILER_TOOL
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+TRANSACTION_PROFILER_TOOL:
+ON ERROR NOTHING
+PRIVATE &choice &mem_addr &mode &observer &filter_mode &observer_port &statperiod
+ENTRY
+
+    ; cleanup existing configuration
+    gosub TRANSACTION_PROFILER_RESET
+
+    ; Transaction profiler Configuration
+    print ""
+    print "Select Transaction profile modes available :"
+    print "          0: Latency (Delay) Mode"
+    print "          1: Oustanding Transactions (Pending) Mode"
+    print "Select the Transaction profiling mode:"
+    enter &mode
+    if ("&mode"=="")
+    (
+    	&mode=0x1
+		print "Defaulting to OT mode"
+    )
+	if ((&mode<0)||(&mode>1))
+	(
+		print %ERROR "Invalid Mode Selected!!! Exiting."
+		RETURN
+	)
+
+    ; Filter Mode selection
+    if (&mode==0x0)
+    (
+        print "Select Latency Filter mode options :"
+        print "   0 : handshake mode (request acceptance latency i.e. delay between 'begin request' and 'request accepted') "
+        print "   1 : latency mode   (request-to-response latency i.e. delay between 'begin request' and 'begin response' ) "
+        print "Select the latency filter  mode:"
+        enter &filter_mode
+        if ("&filter_mode"=="")
+        (
+			&filter_mode=0x1
+			print "Defaulting to OT (latency) mode"
+        )
+        if ((&filter_mode<0)||(&filter_mode>1))
+        (
+            print %ERROR "Invalid Filter Mode Select!!! Exiting."
+            RETURN
+        )
+    )
+    else
+    (
+        &filter_mode=1
+    )
+
+	&observer=0x0
+	&observed_port=0x0
+
+trans_profile_observer_config:
+
+	if (&observer>(&transaction_profiler_observers_num-1))
+	(
+		goto skip_trans_profile_observer_config 
+	)
+	print "select the input port to be observed for observer &observer (0-ACE0_RD;1-ACE0_WR;2-ACE1_RD;3-ACE1_WR) :"
+	enter &observed_port
+	if ("&observed_port"=="")
+	(
+		&observer=&observer+1
+		goto trans_profile_observer_config
+	)
+	if ((&observed_port<0)||(&observed_port>3))
+	(
+		&observer=&observer+1
+		goto trans_profile_observer_config
+	)
+	gosub TRANSACTION_PROFILER_OBSERVER_SETUP &observer &observed_port &mode
+		
+	if (&observed_port==0x0)
+	(
+		gosub TRANSACTION_PROFILE_FILTER_SETUP &transaction_profiler_ace0_rd_filter_offset &filter_mode
+	)
+	else if (&observed_port==0x1)
+	(
+		gosub TRANSACTION_PROFILE_FILTER_SETUP &transaction_profiler_ace0_wr_filter_offset &filter_mode
+	)
+	else if (&observed_port==0x2)
+	(
+		gosub TRANSACTION_PROFILE_FILTER_SETUP &transaction_profiler_ace1_rd_filter_offset &filter_mode
+	)
+	else if (&observed_port==0x3)
+	(
+		gosub TRANSACTION_PROFILE_FILTER_SETUP &transaction_profiler_ace1_wr_filter_offset &filter_mode
+	)
+	else
+	(
+		print %ERROR "Invalid Port. Should not be here"
+	)
+
+	&observer=&observer+1
+	
+	goto trans_profile_observer_config
+
+skip_trans_profile_observer_config:
+
+    ; enable stat counters
+	gosub STAT_PROFILEING_ENABLE
+	
+    ; enable transaction profiler
+    gosub TRANSACTION_PROFILER_ENABLE
+
+	&observer=0x0
+	while &observer<&transaction_profiler_observers_num
+	( 
+    	&mem_addr=&transaction_profiler_offset+0x10+(0x4*&observer)
+		gosub REGISTER_READ &mem_addr
+		ENTRY %LINE &observed_port
+		&observed_port=&observed_port&0x3
+
+    	; enable transaction filters
+ 		if (&observed_port==0x0)
+		(
+			gosub TRANSACTION_FILTER_BY_OPCODE &transaction_profiler_ace0_rd_filter_offset 0x1 // RdEn
+		)
+		else if (&observed_port==0x1)
+		(
+			gosub TRANSACTION_FILTER_BY_OPCODE &transaction_profiler_ace0_wr_filter_offset 0x2 // WrEn
+		)
+		else if (&observed_port==0x2)
+		(
+			gosub TRANSACTION_FILTER_BY_OPCODE &transaction_profiler_ace1_rd_filter_offset 0x1 // RdEn
+		)
+		else if (&observed_port==0x3)
+		(
+			gosub TRANSACTION_FILTER_BY_OPCODE &transaction_profiler_ace1_wr_filter_offset 0x2 // WrEn
+		)
+		else
+		(
+			print %ERROR "Invalid Port. Should not be here"
+		)
+
+		&observer=&observer+0x1
+	)
+
+    print "Latency Configuration Done...."
+
+RETURN
+
+;*****************************************************************************************************
+;*****************************************************************************************************
+;*****************************************************************************************************
+; Debug Info Dump API
+;*****************************************************************************************************
+;*****************************************************************************************************
+;*****************************************************************************************************
+
+;================================================================================
+; Funcition: DEBUG_INFO_DUMP_PORTS_STATUS
+; Description: dumps port status info
+; Usage : DEBUG_INFO_DUMP_PORTS_STATUS
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+DEBUG_INFO_DUMP_PORTS_STATUS:
+ON ERROR NOTHING
+PRIVATE &offset &val
+ENTRY &file
+
+	if ("&file"=="")
+	(
+		RETURN
+	)
+
+	write &file %ASCII %STRING "=========================================================================="
+	write &file %ASCII %STRING "Gladiator PORT STATUS INFO Dump on " clock.date() %STRING " at " clock.time()
+	write &file %ASCII %STRING "=========================================================================="
+
+	; dump pending port status : Register NoPndg_Sidebands_main_SidebandManager_FlagInStatus0
+	if ("&target"=="8998_R1")
+	(
+		&offset=&nopndg_sideband_manager_offset+(0xB0)
+		gosub REGISTER_READ &offset
+		ENTRY %LINE &val
+		write &file %ASCII %STRING "Port Status : 0x"+FORMAT.HEX(8,&val)
+		write &file %ASCII %STRING " bit[0] : Gladiator_Init_0_main/NoPendingTrans "
+		write &file %ASCII %STRING " bit[1] : Gladiator_Init_Rd_0_main/NoPendingTrans "
+		write &file %ASCII %STRING " bit[2] : Gladiator_Init_SysRd_main/NoPendingTrans " 
+		write &file %ASCII %STRING " bit[3] : Gladiator_Init_SysWr_main/NoPendingTrans "
+		write &file %ASCII %STRING " bit[4] : pm_gladiator_cfg_s_I_main/NoPendingTrans "
+		write &file %ASCII %STRING " bit[5] : qxm_io_NoPendingTrans "
+		write &file %ASCII %STRING " bit[6] : gladiator_NoPendingTrans "
+		write &file %ASCII %STRING " bit[7] : ds_snoc_main/NoPendingTrans "
+	)
+	else
+	(
+		&offset=&nopndg_sideband_manager_offset+(0x14)
+		gosub REGISTER_READ &offset
+		ENTRY %LINE &val
+		write &file %ASCII %STRING "Port Status : 0x"+FORMAT.HEX(8,&val)
+		write &file %ASCII %STRING " bit[0] : Init port   (CPU WR + IO) "
+		write &file %ASCII %STRING " bit[1] : InitRd port (CPU RD) "
+		write &file %ASCII %STRING " bit[2] : SysRd port  (Device RD) "
+		write &file %ASCII %STRING " bit[3] : SysWr port  (Device WR) "
+		write &file %ASCII %STRING " bit[4] : S2 port "
+	)
+
+	write &file %ASCII %STRING "=========================================================================="
+
+RETURN
+
+
+;================================================================================
+; Funcition: DEBUG_INFO_DUMP_STALLED_TRANSACTIONS_INFO
+; Description: dump internal pending stalled transactions details
+; Usage : DEBUG_INFO_DUMP_STALLED_TRANSACTIONS_INFO
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+DEBUG_INFO_DUMP_STALLED_TRANSACTIONS_INFO:
+ON ERROR NOTHING
+PRIVATE &offset &val &step &info
+ENTRY &file
+
+	; main_Gladiator DumpInfo(0x38)
+	; DumpInfo(0x38)  : Used for dumping flow state and pending information, when system hangs.
+	;   Info      [23:0]  (RW) : bits to dump.
+	;                             big table corresponding to each Step type
+	;   Step      [31:24] (RW) : Step of auto dump (-1 is IDLE).
+	;                            0xFF : No Info
+	;                            0x00 : I/O target port and Init_Sys port Info
+	;                            0x01 : PoS info
+	;                            0x02 : RESERVED
+	;                            0x03 and 0x04 : ACE port 0 info part1 and part2
+	;                            0x05 and 0x06 : ACE port 1 info part1 and part2
+	;                            0x07 and 0x08 : ACE port 2 info part1 and part2
+	;                            0x09 and 0x0A : ACE port 3 info part1 and part2
+	;
+	if ("&file"=="")
+	(
+		RETURN
+	)
+
+	if ("&target"=="8998_R1")
+	(
+    	&offset=0x1000
+	)
+	else
+	(
+    	&offset=0x38
+	)
+
+	write &file %ASCII %STRING "=========================================================================="
+	write &file %ASCII %STRING "Gladiator Stalled Transaction info Dump on " clock.date() %STRING " at " clock.time()
+	write &file %ASCII %STRING "=========================================================================="
+
+stall_info_read_till_marker:
+	gosub REGISTER_READ &offset
+	ENTRY %LINE &val
+	&step=(&val>>24.)&0xFF
+	if (&step!=0xFF)
+	(
+		goto stall_info_read_till_marker
+	)
+
+	write &file %ASCII %STRING "DumpInfo :: Start "
+pending_read_loop:
+        gosub REGISTER_READ &offset
+        ENTRY %LINE &val
+        &step=(&val>>24.)&0xFF
+        if (&step==0xFF)
+        (
+			write &file %ASCII %STRING "DumpInfo :: End "
+        )
+        else
+        (
+            &info=&val&0xFFFFFF
+            write &file %ASCII %STRING "DumpInfo :: Step :- 0x"+FORMAT.HEX(2,&step) %STRING " Info :- 0x"+FORMAT.HEX(6,&info)
+            ; TODO: decoding of the Info
+
+            goto pending_read_loop
+        )
+
+
+    write &file %ASCII %STRING "Gladiator Stalled transaction Info End."
+	write &file %ASCII %STRING "=========================================================================="
+
+RETURN
+
+;================================================================================
+; Funcition: DEBUG_INFO_DUMP_CONTEXT_TABLES
+; Description: dump internal context tables info
+; Usage : DEBUG_INFO_DUMP_CONTEXT_TABLES
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+DEBUG_INFO_DUMP_CONTEXT_TABLES:
+ON ERROR NOTHING
+PRIVATE &offset &val &CfgDump &Dump0 &Dump1 &dump0_val &dump1_val &index &SelTable &cxtable &cachelinesize &start_marker &address
+ENTRY &mode &file
+
+	if ("&file"=="")
+	(
+		RETURN
+	)
+
+	write &file %ASCII %STRING "=========================================================================================="
+	write &file %ASCII %STRING "Gladiator Internal Context Tables Dump on " clock.date() %STRING " at " clock.time()
+	write &file %ASCII %STRING "=========================================================================================="
+	write &file %ASCII %STRING " Table Initiator  Address            IsWr HasSpe SpeInv SpeRspKp SpeRspDp SnpDone Valid "
+	write &file %ASCII %STRING "=========================================================================================="
+
+    ; main_Gladiator CfgDump , Dump0 , Dump1 are used.
+    ;
+    ; CfgDump   : Control register for dumping address tables.
+    ;   Dump      [0]     (RW) : When asserted, if useDumpTables, feed the dump buffer.
+    ;   NoAuto    [1]     (RW) : When not asserted use auto mode instead of CfgDump commands.
+    ;   Index     [21:16] (RW) : Index for table entry to be dumped.
+    ;   SelTable  [25:24] (RW) : Table selection: 0 for PoS table, 1 for Tmp+Standby, 2 for MU.
+    ;
+    ; Dump0 : MSB bits of Dump Buffer.
+    ;   AddrMsb   [11:0]  (RO) : MSB bits of dumped transaction address. [AxAddr(43 + log2(cacheLineSize): 32 + log2(cacheLineSize))] i.e. AxAddr[49:38]
+    ;   SrcIdx    [14:12] (RO) : Initiator of dumped transaction (-1 for I/O or Ace port number). 0: A53 and 1 : A72
+    ;   SnpDone   [17]    (RO) : Dumped transaction with processed snoop responses.
+    ;   SpeRspDp  [18]    (RO) : Dumped transaction speculative response has been deleted.
+    ;   SpeRspKp  [19]    (RO) : Dumped transaction speculative early response has been stored.
+    ;   SpeInv    [20]    (RO) : Dumped transaction with read speculative access invalidated.
+    ;   HasSpe    [21]    (RO) : Dumped transaction with read speculative access.
+    ;   IsWr      [22]    (RO) : Dumped transaction is a write.
+    ;   Valid     [23]    (RO) : Valid bit of dumped information (1 if DumpBuffer is not null).
+    ;   SelEcho   [31:24] (RO) : Copy of SelTable+Index used for dump.
+    ;
+    ; Dump1      : LSB bitsof the transaction address.                                                                   ---
+    ;   Dump1     [31:0]  (RO) : LSB bits of dumped transaction address. AxAddr[31 + log2(cacheLineSize): log2(cacheLineSize)] i.e. AxAddr[37:6]
+    ;
+
+	if ("&target"=="8998_R1")
+	(
+		&CfgDump=0x1004
+		&Dump0=0x1008
+		&Dump1=0x100C
+	)
+	else
+	(
+		&CfgDump=0x3C
+		&Dump0=0x40
+		&Dump1=0x44
+	)
+
+	if (("&mode"!="0x0")&&("&mode"!="0x1"))
+	(
+		&mode=0x0
+	)
+
+	&index=0x0      //
+	&SelTable=0x0   // 0: PoS Table, 1: Tmp+Standby, 2:Memory Update
+	&cxtable="INV"
+	&cachelinesize=6.
+	&start_marker=0x0
+
+	if (&mode==0x1)
+	(
+		gosub REGISTER_WRITE &CfgDump 0x2 // NoAuto mode
+	)
+
+	; To dump all the table entries, the register pair (Dump0, Dump1) must be read p + 1 times.
+	; where p stands for the total number of context entries in the table, equal to: nSnRdFifo+nStdbyLine+nPndAddr+nPndMu
+	; Eldarion, jacala, nazgul : &nPndAddr=64. , &nPndMu=32. , &nStdbyLine=1. , &nSnRdFifo=2.
+
+ctx_table_read_till_marker:
+	gosub REGISTER_READ &Dump0
+	ENTRY %LINE &dump0_val
+	gosub REGISTER_READ &Dump1
+	ENTRY %LINE &dump1_val
+	if (((&dump0_val>>24.)&(0xFF))!=0xFF)
+	(
+		goto ctx_table_read_till_marker
+	)
+
+next_table_dump:
+
+	if (&mode==0x1)
+	(
+		&val=(&Seltable<<24.)|(&index<<16.)|0x3
+		gosub REGISTER_WRITE &CfgDump &val // NoAuto mode
+	)
+
+	; To obtain valid debug information, Dump0 must be read before Dump1 for each dumped entry,
+	; because reading Dump1 triggers the dump of a new entry.
+	gosub REGISTER_READ &Dump0
+	ENTRY %LINE &dump0_val
+
+	gosub REGISTER_READ &Dump1
+	ENTRY %LINE &dump1_val
+
+	if (((&dump0_val>>30.)&(0x3))==0x0)
+	(
+		&cxtable="PoS"
+	)
+	else if (((&dump0_val>>30.)&(0x3))==0x1)
+	(
+		&cxtable="SNP"
+	)
+	else if (((&dump0_val>>30.)&(0x3))==0x2)
+	(
+		&cxtable="MU "
+	)
+	else
+	(
+		&cxtable="INV"
+	)
+
+	; Address is AxAddr[(43+log2(cachelinesize)):(32+log2(cachelinesize)):(31+log2(cachelinesize)):log2(cachelinesize):0blog2(cachelinesize)]
+	; AxAddr[49:38] ==> Dump0[AddrMsb]
+	; AxAddr[37:6]  ==> Dump1
+	; AxAddr[5:0]   ==> 0b0
+	&address=((&dump0_val&0xFFF)<<(32.+&cachelinesize))|(&dump1_val<<&cachelinesize)
+	; Decode the Info
+	write &file %ASCII %STRING " &cxtable     0x"+FORMAT.HEX(1,((&dump0_val>>12.)&(0x7))) %STRING "      0x"+FORMAT.HEX(14,(&address)) %STRING "  "+FORMAT.HEX(1,((&dump0_val>>22.)&(0x1))) %STRING "     "+FORMAT.HEX(1,((&dump0_val>>21.)&(0x1))) %STRING "      "+FORMAT.HEX(1,((&dump0_val>>20.)&(0x1))) %STRING "       "+FORMAT.HEX(1,((&dump0_val>>19.)&(0x1))) %STRING "         "+FORMAT.HEX(1,((&dump0_val>>18.)&(0x1))) %STRING "       "+FORMAT.HEX(1,((&dump0_val>>17.)&(0x1))) %STRING "      "+FORMAT.HEX(1,((&dump0_val>>23.)&(0x1)))
+
+	; After the last table entry is dumped, field SelEcho is set to 0xFF.
+	if (((&dump0_val>>24.)&(0xFF))==0xFF)
+	(
+		if ((&mode==0x1)&&(&SelTable<0x2))
+		(
+			&SelTable=&SelTable+1
+			goto next_table_dump
+		)
+		else
+		(
+			write &file %ASCII %STRING " "
+		)
+	)
+	else
+	(
+		goto next_table_dump
+	)
+
+	write &file %ASCII %STRING "Internal Context Tables Info End."
+	write &file %ASCII %STRING "========================================================================"
+
+RETURN
+
+
+;================================================================================
+; Funcition: DEBUG_INFO_DUMP_ERROR_LOGGERS
+; Description: dump internal context tables info
+; Usage : DEBUG_INFO_DUMP_ERROR_LOGGERS
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+DEBUG_INFO_DUMP_ERROR_LOGGERS:
+ON ERROR NOTHING
+PRIVATE &mem_addr 
+ENTRY &file
+
+RETURN
+
+;================================================================================
+; Funcition: DEBUG_INFO_DUMP_SNOOP_DIRECTORY
+; Description: dump internal context tables info
+; Usage : DEBUG_INFO_DUMP_SNOOP_DIRECTORY
+; Directory Details
+;	- number of lines = 2**wIndex
+;   - A line consists = (ProtNS + generic wAddr – wIndex – log2(nBank) – wSector – log2(cacheLineSize) + 2**wSector) × nWay + parity + log2(nWay)
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+DEBUG_INFO_DUMP_SNOOP_DIRECTORY:
+ON ERROR NOTHING
+PRIVATE &CfgDumpDir_offset &StsDumpDir_offset &DumpDir_offset &StsDumpDir_val &DumpDir_val &line_size_in_words &count
+PRIVATE &nWays &ProtNS &last_way &tag_address_bits &tag &sector_valid &curr_word_index &curr_word_bit_index 
+PRIVATE &bitstream &bitstream_bit_index &temp &bitstream_shift
+ENTRY &file
+
+	if ("&file"=="")
+	(
+		RETURN
+	)
+
+	&nWays=10.
+	&parity=0x0
+	&last_way=0x0
+	&ProtNS=0x0
+	&tag_address_bits=18. // excluding ProtNS
+	&tag=0x0
+	&sector_valid=0x0
+	&line_size_in_words=0x9
+
+	write &file %ASCII %STRING "==================================================================================="
+	write &file %ASCII %STRING "Gladiator Snoop Directories Dump on " clock.date() %STRING " at " clock.time()
+	write &file %ASCII %STRING "==================================================================================="
+	write &file %ASCII %STRING "Port Bank index LastWay  Parity   Way     NS+Tag(Address)       Validity "
+	write &file %ASCII %STRING "==================================================================================="
+
+	;CfgDumpDir :   Control register for dumping directories.
+	;   Index     [11:0]  -  First index selected.
+	;   Bank      [12]    -  First Bank selected (if nBanks>1).
+	;   Port      [14:13] -  First Ace port selected.
+	;   Set       [15]    -  When set, set the first dump location.
+	;   EnDumpDir [16]    -  Enable the use of DumpDir (Auto read activated).
+	;   Rsv       [31:17] -  Reserved.
+	;
+	;StsDumpDir :   Status  register for dumping directories.
+	;   Port      [1:0]   -  Current Ace port selected.
+	;   Rsv       [2]     -  Reserved.
+	;   Bank      [3]     -  Current bank selected.
+	;   Index     [15:4]  -  Current index selected.
+	;   Word      [20:16] -  Current Word in selected set.
+	;   Rsv       [31:21] -  Reserved.
+	;
+	;DumpDir      [31:0]  -  32 Dump directory buffer.
+	;
+	; When field EnDumpDir in register CfgDumpDir is set to 1, 
+	; fields in StsDumpDir are updated automatically every time DumpDir is read.
+
+	&CfgDumpDir_offset=0x1040 // CfgDumpDir
+	&StsDumpDir_offset=0x1044
+	&DumpDir_offset=0x1048
+
+	; Enable Auto read
+	gosub REGISTER_WRITE &CfgDumpDir_offset 0x18000
+
+	; status dump directory
+	gosub REGISTER_READ &StsDumpDir_offset
+	ENTRY %LINE &StsDumpDir_val
+	Var.NEWLOCAL unsigned int[10] \Dirline_data
+
+	if ((&StsDumpDir_val&0x3)==0x0)
+	(
+		&nWays=10.
+		&tag_address_bits=18. // excluding ProtNS
+		&line_size_in_words=0x9
+	)
+
+continue_snoop_directory_dump:
+
+	if (((&StsDumpDir_val>>16.)&0x1F)!=0x0)
+	(
+		write &file %ASCII %STRING " Invalid Line start. line must start with word 0 in Sts!!"	
+		goto skip_directory_dump
+	)
+
+	&count=0x0
+	while &count<&line_size_in_words
+	(
+		; first read DumpDir so that StsDumpDir can get updated.
+		gosub REGISTER_READ &DumpDir_offset
+		ENTRY %LINE &DumpDir_val
+
+		Var.Assign \Dirline_data[&count]=&DumpDir_val
+		&count=&count+0x1	
+	)
+
+	; For Silver cluster:
+	; number of line= 512
+	; Line Size = 1+5+((18+8)*10) = 266 bits
+	; Line Contents (from LSB to MSB) :
+	;   1 bit of parity + 4 bits of "last access way" + ((Sectors valid bits + Tag address width ) * number of Ways)
+	; where:
+	;  Tag address width = (ProtNS + generic wAddr – wIndex – log2(nBank) – wSector – log2(cacheLineSize) = (1+36-9-1-3-6) = 18
+	;  Sectors valid bits = 2**wSector = 8
+	;  number of Ways = nWay = 10
+
+	; For Gold cluster:
+	; number of line= 1024
+	; Line Size = 1+5+((17+8)*10) = 256 bits
+	; Line Contents (from LSB to MSB) :
+	;   1 bit of parity + 4 bits of "last access way" + ((Sectors valid bits + Tag address width ) * number of Ways)
+	; where:
+	;  Tag address width= (ProtNS + generic wAddr – wIndex – log2(nBank) – wSector – log2(cacheLineSize) = (1+36-10-1-3-6) = 17
+	;  Sectors valid bits = 2**wSector = 8
+	;  number of Ways = nWay = 10
+
+	&curr_word_index=0x0
+	&curr_word_bit_index=0x0
+	&bitstream=Var.VALUE(\Dirline_data[0])
+
+	; Parity is bit[0] of line
+	&parity=&bitstream&0x1
+	&curr_word_bit_index=&curr_word_bit_index+0x1
+
+	; last ways is [4:1] of line
+	&last_way=(&bitstream>>1.)&0xF
+	&curr_word_bit_index=&curr_word_bit_index+0x4
+
+	&curr_word_index=&curr_word_index+0x1
+	&temp=Var.VALUE(\Dirline_data[&curr_word_index])&((0x1<<&curr_word_bit_index)-1.)
+	&bitstream=(&temp<<(0x20-&curr_word_bit_index))|(&bitstream>>&curr_word_bit_index)
+
+	if ((&StsDumpDir_val&0x3)==0x0)
+	(
+		write &file %ASCII %STRING "0x"+FORMAT.HEX(1,&StsDumpDir_val&0x3) %STRING "  0x"+FORMAT.HEX(1,((&StsDumpDir_val>>3.)&0x1)) %STRING "  0x"+FORMAT.HEX(3,((&StsDumpDir_val>>4.)&0xFFF)) %STRING "  0x"+FORMAT.HEX(1, &last_way) %STRING "     0x"+FORMAT.HEX(1, &parity)
+	)
+	else if ((&StsDumpDir_val&0x3)==0x1)
+	(
+		write &file %ASCII %STRING "0x"+FORMAT.HEX(1,&StsDumpDir_val&0x3) %STRING "  0x"+FORMAT.HEX(1,((&StsDumpDir_val>>3.)&0x1)) %STRING "  0x"+FORMAT.HEX(3,((&StsDumpDir_val>>4.)&0xFFF)) %STRING "  0x"+FORMAT.HEX(1, &last_way) %STRING "     0x"+FORMAT.HEX(1, &parity)
+	)
+
+	&count=0x0
+	while &count<&nWays
+	(
+		; Sector Valid are next 8 bits of the line
+		&sector_valid=&bitstream&0xFF
+
+		; tag is next tag_address_bits size of the line
+		&tag=(&bitstream>>8.)&((0x1<<&tag_address_bits)-1)
+
+		; shift the bits
+		&bitstream_shift=&tag_address_bits+0x8
+
+		; shift the bits remaining in current word to bitstream word : ASSUMPTION is shfting is logical shift
+		&temp=(Var.VALUE(\Dirline_data[&curr_word_index])>>&curr_word_bit_index)<<(0x20-&bitstream_shift)
+		&bitstream=(&temp)|(&bitstream>>&bitstream_shift)
+		&bitstream_bit_index=(0x20-&bitstream_shift)+(0x20-&curr_word_bit_index)
+
+		// if bitstream is captured is less than 32bit get more from next word
+		if (&bitstream_bit_index==0x20)
+		(
+			&curr_word_index=&curr_word_index+0x1
+			&curr_word_bit_index=0x0
+		)
+		else if (&bitstream_bit_index<0x20) // append data from next word
+		(
+			&curr_word_index=&curr_word_index+0x1
+			&temp=Var.VALUE(\Dirline_data[&curr_word_index])<<(&bitstream_bit_index)
+			&bitstream=&temp|&bitstream
+			&curr_word_bit_index=0x20-&bitstream_bit_index
+		)
+		else
+		(
+			// already appended data from current word.
+			&curr_word_bit_index=&curr_word_bit_index+&bitstream_shift
+		)
+
+		write &file %ASCII %STRING "                                  0x"+FORMAT.HEX(1, &count) %STRING "        0x"+FORMAT.HEX(5, &tag) %STRING "              0x"+FORMAT.HEX(1, &sector_valid)
+
+		&count=&count+1
+	)
+
+	; status dump for next line
+	gosub REGISTER_READ &StsDumpDir_offset
+	ENTRY %LINE &StsDumpDir_val
+
+	; change the line size on next port directory
+	if ((&StsDumpDir_val&0x3)==0x1)
+	(
+		&tag_address_bits=17. // excluding ProtNS
+		&line_size_in_words=0x8
+	)
+
+	; Dump only till port 1
+	if ((&StsDumpDir_val&0x3)<0x2)
+	(
+		goto continue_snoop_directory_dump
+	)
+
+skip_directory_dump:
+
+	; Restore the Directory to functional mode
+	;gosub REGISTER_WRITE &CfgDumpDir_offset 0x0
+
+	write &file %ASCII %STRING "Gladiator Snoop Director Dump Done!"
+	write &file %ASCII %STRING "==================================================================================="
+
+
+RETURN
+
+;================================================================================
+; Function: DEBUG_INFO_DUMP
+; Description: dumps all the gladiator internal debug info
+; Usage : DEBUG_INFO_DUMP
+; Inputs:
+;     none
+; Outputs:
+;     none
+;================================================================================
+DEBUG_INFO_DUMP:
+ON ERROR NOTHING
+PRIVATE &mem_addr 
+ENTRY &debug_info_file
+
+	if ("&debug_info_file"=="")
+	(
+		print "Select the file where you want to Dump debug info (enter): "
+		enter &debug_info_file
+		if ("&debug_info_file"=="")
+		(
+			&pwd_path=OS.PPD()
+			&debug_info_file="&pwd_path\gladiator_debug_info_dump.txt"
+		)
+	)
+	print ("Please refer to the Debug Info Dump file at: &debug_info_file")
+
+
+	;open the file
+	open #1 &debug_info_file /Create
+
+	; dump pending port status
+	gosub DEBUG_INFO_DUMP_PORTS_STATUS #1
+	write #1 %ASCII %STRING " "
+	write #1 %ASCII %STRING " "
+
+	; dump pending transaction details
+	gosub DEBUG_INFO_DUMP_STALLED_TRANSACTIONS_INFO #1
+	write #1 %ASCII %STRING " "
+	write #1 %ASCII %STRING " "
+
+	; dump internal context table dump
+	gosub DEBUG_INFO_DUMP_CONTEXT_TABLES 0 #1
+	write #1 %ASCII %STRING " "
+	write #1 %ASCII %STRING " "
+
+	; Dump Error Logger info
+	gosub DEBUG_INFO_DUMP_ERROR_LOGGERS #1
+	write #1 %ASCII %STRING " "
+	write #1 %ASCII %STRING " "
+
+	; dump snoop directory error loggers
+	;gosub DEBUG_INFO_DUMP_SNOOP_DIRECTORY #1
+	write #1 %ASCII %STRING " "
+	write #1 %ASCII %STRING " "
+
+	; use other existing API to dump ETB for trace data
+
+	close #1
+
+RETURN
+
+
+

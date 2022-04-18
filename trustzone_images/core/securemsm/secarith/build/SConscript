@@ -1,0 +1,114 @@
+#===============================================================================
+#
+# SecArithmetic
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 20011 by QUALCOMM, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.tz/1.0.7.1/securemsm/secarith/build/SConscript#1 $
+#  $DateTime: 2020/01/14 12:35:09 $
+#  $Author: pwbldsvc $
+#  $Change: 22186835 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 02/24/15   amen     initial version
+#===============================================================================
+Import('env')
+env = env.Clone()
+
+
+#-------------------------------------------------------------------------------
+# Set search path for securemsm subsystem files
+#-------------------------------------------------------------------------------
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/secarith/shared/inc")
+env.Append(CPPPATH = "${COREBSP_ROOT}/securemsm/secarith/env/qsapps/inc")
+env.Append(CPPPATH = "${COREBSP_ROOT}/api/securemsm/trustzone/qsee/")
+env.Append(CPPPATH = "${COREBSP_ROOT}/api/securemsm/trustzone/gp/")
+env.Append(CCFLAGS = " -O3  ")
+
+#------------------------------------------------------------------------------
+# We need to specify "neon" to generate SIMD instructions in 32-bit mode
+#------------------------------------------------------------------------------
+if env['PROC'] == 'scorpion':
+  env.Append(CCFLAGS = " -mfpu=neon ")
+
+#-------------------------------------------------------------------------------
+# External depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'SECUREMSM',
+   'SERVICES',
+
+   # needs to be last also contains wrong comdef.h
+   'KERNEL',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${COREBSP_ROOT}/securemsm/secarith"
+
+#-------------------------------------------------------------------------------
+# Let Scons build the object files in $(BUILDPATH} and don't copy over files
+#-------------------------------------------------------------------------------
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Compiler, object, and linker definitions
+#-------------------------------------------------------------------------------
+
+
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+SECARITH_SRC_SHARED = [
+  '${BUILDPATH}/shared/src/bn_add.c',
+  '${BUILDPATH}/shared/src/bn_asm.c',
+  '${BUILDPATH}/shared/src/bn_ctx2.c',
+  '${BUILDPATH}/shared/src/bn_div.c',
+  '${BUILDPATH}/shared/src/bn_exp.c',
+  '${BUILDPATH}/shared/src/bn_gcd.c',
+  '${BUILDPATH}/shared/src/bn_kron.c',
+  '${BUILDPATH}/shared/src/bn_lib.c',
+  '${BUILDPATH}/shared/src/bn_malloc2.c',
+  '${BUILDPATH}/shared/src/bn_mod2.c',
+  '${BUILDPATH}/shared/src/bn_mont.c',
+  '${BUILDPATH}/shared/src/bn_mul.c',
+  '${BUILDPATH}/shared/src/bn_prime.c',
+  '${BUILDPATH}/shared/src/bn_prime_tbl.c',
+  '${BUILDPATH}/shared/src/bn_print.c',
+  '${BUILDPATH}/shared/src/bn_rand.c',
+  '${BUILDPATH}/shared/src/bn_recp.c',
+  '${BUILDPATH}/shared/src/bn_shift.c',
+  '${BUILDPATH}/shared/src/bn_sqr.c',
+  '${BUILDPATH}/shared/src/bn_sqrt.c',
+  '${BUILDPATH}/shared/src/bn_word.c',
+  #'${BUILDPATH}/shared/src/bntest2.c',
+  '${BUILDPATH}/shared/src/isaac_rand.c',
+  '${BUILDPATH}/shared/src/qbn_xbgcd.c',
+  '${BUILDPATH}/shared/src/rand_lib2.c',
+]
+
+#-------------------------------------------------------------------------------
+# Add Libraries to images
+#-------------------------------------------------------------------------------
+env.AddBinaryObject('APPLIB32_IMAGE', SECARITH_SRC_SHARED)
+env.AddBinaryObject('APPLIB64_IMAGE', SECARITH_SRC_SHARED)
+
+env.LoadSoftwareUnits()
+

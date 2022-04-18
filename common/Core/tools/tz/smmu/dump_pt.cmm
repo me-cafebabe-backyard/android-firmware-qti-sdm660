@@ -1,0 +1,484 @@
+LOCAL &size
+LOCAL &L1_descriptor
+LOCAL &L2_descriptor
+LOCAL &L3_descriptor
+LOCAL &desc_mask
+LOCAL &L1_descriptor_addr
+LOCAL &L2_descriptor_addr
+LOCAL &L3_descriptor_addr
+LOCAL &descriptor_mask
+LOCAL &mmu_dump
+LOCAL &save_va_s1
+LOCAL &save_va_s2
+LOCAL &save_va_s3
+LOCAL &descriptor_mask
+LOCAL &s1_block
+LOCAL &s2_block
+LOCAL &s3_block
+LOCAL &temp1
+LOCAL &temp2
+LOCAL &temp3
+LOCAL &temp4
+LOCAL &upper_attr_mask
+LOCAL &upper_attr_mask
+LOCAL &lower_attr
+LOCAL &lower_attr
+LOCAL &perm
+LOCAL &share
+LOCAL &global
+LOCAL &cache
+LOCAL &pt_base
+LOCAL &end_addr
+LOCAL &is_stage_2
+
+ENTRY &vmid &path
+
+WINPOS 0. 0. 40% 80%
+AREA.Create PTDUMP 256. 10000.
+AREA.view PTDUMP
+
+open #1 "&path"  /Create
+
+GOSUB which_stage &vmid
+
+;r.s M 0x9
+
+if (&is_stage_2==0x1)
+(
+	print "Beginning Table Walk for &vmid Stage 2 ..."
+)
+else if (&is_stage_2==0x0)
+(
+	print "Beginning Table Walk for &vmid Stage 1 ..."
+)
+else
+(
+	print "Invalid vmid, Please enter a Valid SMMU vmid!"
+	ENDDO
+)
+
+&end_addr=&pt_base+0x1000
+&descriptor_mask=0x0FF8
+&L1_descriptor_addr=&pt_base
+&upper_attr_mask=0x70000000000000
+&lower_attr_mask=0xFFF 
+write #1 "|         Input Address         |          Output Address        |    Size    | Perm |  Global  |  Shareability  | Cacheability |"
+write #1 "|-------------------------------|--------------------------------|------------|------|----------|----------------|--------------|"
+print ""
+print "Performing PT Walk.. Please wait..."
+while (&pt_base!=&end_addr)
+(
+    &L1_descriptor=data.longlong(A:0x0+&pt_base)
+    &save_va_s1=&pt_base&&descriptor_mask
+	&save_va_s1=&save_va_s1>>3.
+	&save_va_s1=&save_va_s1<<30.
+	;print "Pt_base = 0x" &pt_base
+	
+    if (&L1_descriptor!=0x0)
+    (
+		; valid entry, check if block or descriptor
+        if ((&L1_descriptor&0x2)!=0x2)
+        (
+            ;its a 1GB block
+			&s1_block=&L1_descriptor&0xFFFFFFFFF000
+			
+			&upper_attr=&L1_descriptor&&upper_attr_mask
+			&lower_attr=&L1_descriptor&&lower_attr_mask
+			if (&is_stage_2==0x0)
+			(
+				GOSUB calc_attrs_el2_stage1 &upper_attr &lower_attr
+			)
+			else
+			(
+				GOSUB calc_attrs_stage2 &upper_attr &lower_attr
+			)
+					
+			&temp4=(&save_va_s1)
+			;write #1 "| IPA: 0x" FORMAT.HEX(9.,&s1_block) " - 0x"  FORMAT.HEX(9.,(&s1_block+(0x40000000-1))) " | VA: 0x" FORMAT.HEX(9.,&temp4) " - 0x"  FORMAT.HEX(9.,(&s1_block+(0x40000000-1))) " | 0x40000000 " "|  &perm  " "|  &global  " "| &share " " | &cache |"
+			 write #1 "| IPA: 0x" FORMAT.HEX(9.,&temp4) " - 0x"  FORMAT.HEX(9.,(&s1_block+(0x40000000-1))) " | PA: 0x" FORMAT.HEX(9.,&s1_block) " - 0x"  FORMAT.HEX(9.,(&s1_block+(0x40000000-1)))  " | 0x40000000 " "|  &perm  " "|  &global  " "|  &share  " " | &cache |"
+			;print "in l1 block"
+	   )
+        else ;its an L2 table descriptor
+        (
+            &L2_descriptor_addr=&L1_descriptor&0xFFFFFFFFF000
+            &L2_end_addr=&L2_descriptor_addr+0x1000
+
+            while (&L2_descriptor_addr!=&L2_end_addr)
+            (
+                &L2_descriptor=data.longlong(A:0x0+&L2_descriptor_addr)
+                &save_va_s2=&L2_descriptor_addr&&descriptor_mask
+				
+				&save_va_s2=&save_va_s2>>3.
+			    &save_va_s2=&save_va_s2<<21.
+				
+                if (&L2_descriptor!=0x0)
+                (
+                    if ((&L2_descriptor&0x2)!=0x2)
+                    (
+                        ;its a 2MB block
+						&s2_block=&L2_descriptor&0xFFFFFFFFF000
+						
+						&upper_attr=&L2_descriptor&&upper_attr_mask
+						&lower_attr=&L2_descriptor&&lower_attr_mask
+						if (&is_stage_2==0x0)
+						(
+							GOSUB calc_attrs_el2_stage1 &upper_attr &lower_attr
+						)
+						else
+						(
+							 GOSUB calc_attrs_stage2 &upper_attr &lower_attr
+						)
+								
+						&temp4=(&save_va_s1|&save_va_s2)
+						 ;write #1 "| IPA: 0x" FORMAT.HEX(9.,&s2_block) " - 0x"  FORMAT.HEX(9.,(&s2_block+(0x200000-1))) " | VA: 0x" FORMAT.HEX(9.,&temp4) " - 0x"   FORMAT.HEX(9.,(&temp4+(0x200000-1))) " | 0x200000   " "|  &perm  " "|  &global  " "| &share " " | &cache |"
+						 write #1  "| IPA: 0x" FORMAT.HEX(9.,&temp4) " - 0x"   FORMAT.HEX(9.,(&temp4+(0x200000-1))) " | PA: 0x" FORMAT.HEX(9.,&s2_block) " - 0x"  FORMAT.HEX(9.,(&s2_block+(0x200000-1)))  " | 0x200000   " "|  &perm  " "|  &global  " "|  &share  " " | &cache |"
+                    )
+                    else ;its a L3 descriptor
+                    (
+                         &L3_descriptor_addr=&L2_descriptor&0xFFFFFFFFF000
+                         &L3_end_addr=&L3_descriptor_addr+0x1000
+					     
+                         while (&L3_descriptor_addr!=&L3_end_addr)
+                         (
+                            &L3_descriptor=data.longlong(A:0x0+&L3_descriptor_addr)
+                            &save_va_s3=&L3_descriptor_addr&&descriptor_mask
+							
+                            if (&L3_descriptor!=0x0)
+                            (
+                                ;4kb block
+								&s3_block=&L3_descriptor&0xFFFFFFFFF000
+
+								&upper_attr=&L3_descriptor&&upper_attr_mask
+								&lower_attr=&L3_descriptor&&lower_attr_mask
+								if (&is_stage_2==0x0)
+								(
+										GOSUB calc_attrs_el2_stage1 &upper_attr &lower_attr
+								)
+								else
+								(
+									    GOSUB calc_attrs_stage2 &upper_attr &lower_attr
+								)
+								&save_va_s3=&save_va_s3>>3.
+								&save_va_s3=&save_va_s3<<12.
+								
+								&temp4=((&save_va_s1|&save_va_s2)|&save_va_s3)
+								;write #1 "| IPA: 0x" FORMAT.HEX(9.,&s3_block) " - 0x"  FORMAT.HEX(9.,(&s3_block+(0x1000-1))) " | VA: 0x" FORMAT.HEX(9.,&temp4) " - 0x"  FORMAT.HEX(9.,(&temp4+(0x1000-1))) " | 0x1000     " "|  &perm  " "|  &global  " "| &share " " | &cache |"
+								write #1  "| IPA: 0x" FORMAT.HEX(9.,&temp4) " - 0x"  FORMAT.HEX(9.,(&temp4+(0x1000-1)))  " | PA: 0x" FORMAT.HEX(9.,&s3_block) " - 0x"  FORMAT.HEX(9.,(&s3_block+(0x1000-1))) " | 0x1000     " "|  &perm  " "|  &global  " "|  &share  " " | &cache |"
+                            )
+
+                            &L3_descriptor_addr=&L3_descriptor_addr+0x8
+                         )
+                    )
+                )
+				&L2_descriptor_addr=&L2_descriptor_addr+0x8
+             )
+        )
+    )
+
+   &pt_base=&pt_base+0x8
+)
+
+close #1
+
+print ""
+print "Done Parsing Page Table!"
+print ""
+print "Output Located At " "&path"
+
+enddo 
+
+;-----------------------------------------------------------------;
+which_stage:
+
+ENTRY  &vmid
+&temp_local=v.value(pt_context)
+
+if (&vmid=="TZ")
+(
+	&pt_base=v.value(((pt_context_t*)&temp_local)[1].attr.pt_base)
+	&is_stage_2=0x1
+)
+else if (&vmid=="RPM")
+(
+	&pt_base=v.value(((pt_context_t*)&temp_local)[2].attr.pt_base)
+	&is_stage_2=0x1
+)
+else if (&vmid=="HLOS")
+(
+	&pt_base=v.value(((pt_context_t*)&temp_local)[3].attr.pt_base)
+	&is_stage_2=0x1
+)
+else if (&vmid=="HYP")
+(
+	&pt_base=v.value(((pt_context_t*)&temp_local)[4].attr.pt_base)
+	&is_stage_2=0x0
+)
+else if (&vmid=="SSC_Q6_ELF")
+(
+	&pt_base=v.value(((pt_context_t*)&temp_local)[5].attr.pt_base)
+	&is_stage_2=0x1
+)
+else if (&vmid=="ADSP_Q6_ELF")
+(
+	&pt_base=v.value(((pt_context_t*)&temp_local)[6].attr.pt_base)
+	&is_stage_2=0x1
+)
+else if (&vmid=="SSC_HLOS")
+(
+	&pt_base=v.value(((pt_context_t*)&temp_local)[7].attr.pt_base)
+	&is_stage_2=0x1
+)
+else if (&vmid=="CP_TOUCH")
+(
+	&pt_base=v.value(((pt_context_t*)&temp_local)[8].attr.pt_base)
+	&is_stage_2=0x1
+)
+else if (&vmid=="CP_BITSTREAM")
+(
+	&pt_base=v.value(((pt_context_t*)&temp_local)[9].attr.pt_base)
+	&is_stage_2=0x1
+)
+else if (&vmid=="CP_PIXEL")
+(
+	&pt_base=v.value(((pt_context_t*)&temp_local)[10].attr.pt_base)
+	&is_stage_2=0x1
+)
+else if (&vmid=="CP_NON_PIXEL")
+(
+	&pt_base=v.value(((pt_context_t*)&temp_local)[11].attr.pt_base)
+	&is_stage_2=0x1
+)
+else if (&vmid=="VIDEO_FW")
+(
+	&pt_base=v.value(((pt_context_t*)&temp_local)[12].attr.pt_base)
+	&is_stage_2=0x1
+)
+else if (&vmid=="CP_CAMERA")
+(
+	&pt_base=v.value(((pt_context_t*)&temp_local)[13].attr.pt_base)
+	&is_stage_2=0x1
+)
+else if (&vmid=="HLOS_UNMAPPED")
+(
+	&pt_base=v.value(((pt_context_t*)&temp_local)[14].attr.pt_base)
+	&is_stage_2=0x1
+)
+else if (&vmid=="MSS_MSA")
+(
+	&pt_base=v.value(((pt_context_t*)&temp_local)[15].attr.pt_base)
+	&is_stage_2=0x1
+)
+else if (&vmid=="MSS_NONMSA")
+(
+	&pt_base=v.value(((pt_context_t*)&temp_local)[16].attr.pt_base)
+	&is_stage_2=0x1
+)
+else
+(
+	&is_stage_2=0x2
+)
+
+return
+
+;-----------------------------------------------------------------;
+calc_attrs_el2_stage1:
+
+ENTRY &upper &lower
+
+&upper=&upper>>52.
+
+
+;------------------------ permissions ----------------------------;
+if (((&lower&0xC0)==0x80)&&((&upper&0x4)==0x4)) ; stage 1 EL2
+(
+	&perm="RO"
+)
+else if (((&lower&0xC0)==0x80)&&((&upper&0x4)!=0x4)) ; stage 1 EL2
+(
+	&perm="RX"
+)
+else if ((&lower&0xC0)==0x00)
+(
+	&perm="RW"
+)
+else
+(
+	&perm="none"
+)
+;--------------------------shareability -------------------------;
+if ((&lower&0x300)==0x300)
+(
+	&share="inner share"
+)
+else if ((&lower&0x300)==0x200)
+(
+	&share="outer share"
+)
+else if ((&lower&0x300)==0x0)
+(
+	&share="no share"
+)
+else
+(
+	&share="N\A"
+)
+
+;-------------------- global -----------------------------------------;
+if ((&lower&0x800)==0x800)
+(
+	&global="not glb"
+)
+else 
+(
+	&global="global"
+)
+
+;------------------- cache ------------------------------------------------;
+&lower_temp2=&lower>>2.
+if ((&lower_temp2&0xF)==0x6)
+(
+		&cache="Device nGnRE"
+)
+else if ((&lower_temp2&0xF)==0x1)
+(
+		&cache="Outer WB Inner WB"
+)
+else if ((&lower_temp2&0xF)==0x3)
+(
+		&cache="Outer WT Inner WT"
+)
+else if ((&lower_temp2&0xF)==0x0)
+(
+		&cache="Outer NC Inner NC"
+)
+else
+(
+		&cache="N\A"
+)
+
+return
+
+;--------------------  stage 2 -----------------------------;
+calc_attrs_stage2:
+
+ENTRY &upper &lower
+
+&upper=&upper>>52.
+
+;------------------------ permissions ----------------------------;
+if (((&lower&0xC0)==0x40)&&((&upper&0x4)==0x4)) ; stage 2
+(
+	&perm="RO"
+)
+else if (((&lower&0xC0)==0x40)&&((&upper&0x4)!=0x4)) ; stage 2
+(
+	&perm="RX"
+)
+else if ((&lower&0xC0)==0x80)
+(
+	&perm="WO"
+)
+else if (((&lower&0xC0)==0xC0)&&((&upper&0x4)==0x4))
+(
+	&perm="RW"
+)
+else if (((&lower&0xC0)==0xC0)&&((&upper&0x4)!=0x4)) ;RWX
+(
+	&perm="RWX"
+)
+else
+(
+	&perm="N\A"
+)
+
+;--------------------------shareability -------------------------;
+if ((&lower&0x300)==0x300)
+(
+	&share="inner share"
+)
+else if ((&lower&0x300)==0x200)
+(
+	&share="outer share"
+)
+else if ((&lower&0x300)==0x000)
+(
+	&share="no share"
+)
+else
+(
+	&share="N\A"
+)
+
+;-------------------- global -----------------------------------------;
+if ((&lower&0x800)==0x800)
+(
+	&global="not glb"
+)
+else 
+(
+	&global="global"
+)
+
+;------------------- cache ------------------------------------------------;
+&lower_temp=&lower>>2.
+if ((&lower_temp&0xF)==0x0)
+(
+		&cache="Device nGnRnE"
+)
+else if ((&lower_temp&0xF)==0x1)
+(
+		&cache="Device nGnRE"
+)
+else if ((&lower_temp&0xF)==0x2)
+(
+		&cache="Device nGRE"
+)
+else if ((&lower_temp&0xF)==0x3)
+(
+		&cache="Device GRE"
+)
+else if ((&lower_temp&0xF)==0x5)
+(
+		&cache="uncached"
+)
+else if ((&lower_temp&0xF)==0x6)
+(
+		&cache="Outer uncached Inner WT"
+)
+else if ((&lower_temp&0xF)==0x7)
+(
+		&cache="Outer uncached Inner WB"
+)
+else if ((&lower_temp&0xF)==0x9)
+(
+		&cache="Outer WT Inner uncached"
+)
+else if ((&lower_temp&0xF)==0xA)
+(
+		&cache="Outer WT Inner WT"
+)
+else if ((&lower_temp&0xF)==0xB)
+(
+		&cache="Outer WT Inner WB"
+)
+else if ((&lower_temp&0xF)==0xD)
+(
+		&cache="Outer WB Inner uncached"
+)
+else if ((&lower_temp&0xF)==0xE)
+(
+		&cache="Outer WB Inner WT"
+)
+else if ((&lower_temp&0xF)==0xF)
+(
+		&cache="Outer WB Inner WB"
+)
+else
+(
+		&cache="N\A"
+)
+
+return
+
+
+

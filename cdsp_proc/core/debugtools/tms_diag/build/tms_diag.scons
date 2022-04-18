@@ -1,0 +1,139 @@
+#===============================================================================
+#
+# ERR INJECT Libs
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2014 - 2016 by Qualcomm Technologies, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.qdsp6/1.0.c2/debugtools/tms_diag/build/tms_diag.scons#1 $
+#  $DateTime: 2020/02/10 01:57:30 $
+#  $Author: pwbldsvc $
+#  $Change: 22511909 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 08/27/14   dav     Created separate file for TMS DIAG
+#===============================================================================
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# SUPPORTED IMAGES
+#-------------------------------------------------------------------------------
+
+TMS_DIAG_IMGS = [
+  'CORE_ROOT_PD',               
+  'CORE_QDSP6_SW',
+  'CORE_USER_PD',
+  'APPS_IMAGE',	
+  'CBSP_APPS_IMAGE',
+  'CORE_QDSP6_SENSOR_SW',
+  'CORE_QDSP6_AUDIO_SW',
+]
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/core/debugtools/tms_diag/src"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Features and Definitions
+#-------------------------------------------------------------------------------
+
+if 'USES_DEVCFG' in env:
+    env.Append(CPPDEFINES=['TMS_DIAG_USES_DEVCFG'])
+
+#-------------------------------------------------------------------------------
+# External depends outside CoreBSP
+#-------------------------------------------------------------------------------
+
+env.RequireExternalApi([
+])
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+
+CBSP_API = [
+   'DAL',
+   'DEBUGTOOLS',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+
+   # needs to be last also contains wrong comdef.h
+   'KERNEL',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+#-------------------------------------------------------------------------------
+# Sources
+#-------------------------------------------------------------------------------
+
+TMS_DIAG_SOURCES = [
+   '${BUILDPATH}/tms_diag.c',
+]
+
+env.AddLibrary(
+    TMS_DIAG_IMGS,
+    '${BUILDPATH}/tms_diag', TMS_DIAG_SOURCES )
+
+#-------------------------------------------------------------------------------
+# Libraries
+#-------------------------------------------------------------------------------
+
+# Devcfg Registrations
+if 'USES_DEVCFG' in env:
+  DEVCFG_IMG = ['DAL_DEVCFG_IMG']
+  if 'MODEM_PROC' in env:
+    env.AddDevCfgInfo(DEVCFG_IMG,
+    {
+      'soc_xml' : ['${BUILD_ROOT}/core/debugtools/tms_diag/src/tms_diag_root_mpss.xml']
+    })
+  if 'ADSP_PROC' in env:
+    env.AddDevCfgInfo(DEVCFG_IMG,
+    {
+      'soc_xml' : ['${BUILD_ROOT}/core/debugtools/tms_diag/src/tms_diag_root_adsp.xml']
+    })
+  if 'SLPI_PROC' in env:
+    env.AddDevCfgInfo(DEVCFG_IMG,
+    {
+      'soc_xml' : ['${BUILD_ROOT}/core/debugtools/tms_diag/src/tms_diag_root_sensor.xml']
+    })
+  if 'CDSP_PROC' in env:
+    env.AddDevCfgInfo(DEVCFG_IMG,
+    {
+      'soc_xml' : ['${BUILD_ROOT}/core/debugtools/tms_diag/src/tms_diag_root_cdsp.xml']
+    })
+
+if 'USES_DEVCFG' in env: 
+  if 'USES_AUDIO_IMG' in env or 'USES_AUDIO_PD' in env:
+    DEVCFG_IMG_USER = ['DEVCFG_CORE_QDSP6_AUDIO_SW', 'DAL_DEVCFG_AUDIO_PD_IMG']
+    env.AddDevCfgInfo(DEVCFG_IMG_USER,
+    {
+       'soc_xml' : ['${BUILD_ROOT}/core/debugtools/tms_diag/src/tms_diag_pd_audio.xml']
+    })
+  if 'USES_WLAN_PD' in env:
+    DEVCFG_IMG_USER = ['DAL_DEVCFG_WLAN_PD_IMG']
+    env.AddDevCfgInfo(DEVCFG_IMG_USER,
+    {
+       'soc_xml' : ['${BUILD_ROOT}/core/debugtools/tms_diag/src/tms_diag_pd_wlan.xml']
+    })
+  if 'USES_SENSOR_IMG' in env:
+    DEVCFG_IMG_USER = ['DEVCFG_CORE_QDSP6_SENSOR_SW']
+    env.AddDevCfgInfo(DEVCFG_IMG_USER,
+    {
+      'soc_xml' : ['${BUILD_ROOT}/core/debugtools/tms_diag/src/tms_diag_pd_sensor.xml']
+    })

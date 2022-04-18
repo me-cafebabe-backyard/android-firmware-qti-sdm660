@@ -1,0 +1,127 @@
+#===============================================================================
+#
+#                             Edit History
+# $Header: //components/rel/core.tz/1.0.7.1/securemsm/trustzone/qsee/mink/oem/build/SConscript#1 $
+#
+# when         who     what, where, why
+# ----------   ---     ---------------------------------------------------------
+# 2015/02/10    cz     Added playready and widevine oem config xml files      
+# 2015/02/10    cz     Added tzbsp_cfg_prop.c source file and include path      
+# 2011/07/12   spa     Create initial version
+#
+#===============================================================================
+#                    Copyright (c) 2011-2015,2018-2019 Qualcomm Technologies, Inc.
+#                           All Rights Reserved.
+#                         QUALCOMM Proprietary/GTDR
+#===============================================================================
+import os
+
+#-------------------------------------------------------------------------------
+# QSEE Lib
+#-------------------------------------------------------------------------------
+Import('env')
+#env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+#SRCPATH = ".."
+SRCPATH = "${BUILD_ROOT}/core/securemsm/trustzone/qsee/mink/oem"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0) 
+
+if os.path.exists(env.subst("../config/${CHIPSET}")):
+   env.Replace(MINK_OEM_CHIPSET = env['CHIPSET'])
+else:
+   env.Replace(MINK_OEM_CHIPSET = 'stubs')
+   env.PrintWarning("Mink OEM devcfg not implemented... using stubs.")
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_APIS = [
+   'BUSES',
+   'DAL',
+   'DEBUGTOOLS',
+   'HAL',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+   'KERNEL',
+   'SECUREMSM',   
+]
+
+env.RequirePublicApi(CBSP_APIS)
+env.RequireRestrictedApi(CBSP_APIS)
+env.RequirePrivateApi(CBSP_APIS)
+
+INC_PATH_API = ["${INC_ROOT}/core/api/securemsm/trustzone/qsee"]
+env.Append(CPPPATH = INC_PATH_API)
+
+INC_PATH_COMMON = ["${INC_ROOT}/core/securemsm/trustzone/qsee/include"]
+env.Append(CPPPATH = INC_PATH_COMMON)
+
+INC_PATH_LK = [
+      "${INC_ROOT}/core/api/dal",
+      "${INC_ROOT}/core/api/kernel/libstd/stringl",
+      "${INC_ROOT}/core/api/securemsm/trustzone/qsee",
+      "${INC_ROOT}/core/kernel/lk/kernel/inc",
+      "${INC_ROOT}/core/kernel/lk/arch/inc",
+      "${INC_ROOT}/core/kernel/lk/platform/inc",
+      "${INC_ROOT}/core/securemsm/trustzone/qsee/kernel/inc",
+      "${INC_ROOT}/core/securemsm/trustzone/qsee/mink/oem/inc",
+]
+env.Append(CPPPATH = INC_PATH_LK)
+
+#env.Append(CCFLAGS = " --diag_suppress=1786,2523 ")
+#env.Append(ASFLAGS = " --diag_suppress=1786,2523 ")
+
+#-------------------------------------------------------------------------------
+# Compiler options
+#-------------------------------------------------------------------------------
+#env.Append(CCFLAGS = "--gnu")
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+
+QSEE_OEM_SOURCES = [
+   '${BUILDPATH}/src/oem.c',
+   '${BUILDPATH}/src/tzbsp_cfg_prop.c',
+]
+
+#-------------------------------------------------------------------------------
+# Device Configuration Sources
+#-------------------------------------------------------------------------------
+if ('USES_DEVCFG' in env):
+    if 'USES_DEVCFG_P_PLUS' in env: 
+        env.Replace(CMNLIB_OEM_CONFIG_XML = 'cmnlib_oem_config_p_plus.xml') # Common XML to both TZ & HYP
+        env.Replace(PLAYREADY_OEM_CONFIG_XML = 'playready_oem_config_p_plus.xml') # Common XML to both TZ & HYP
+    else:
+        env.Replace(CMNLIB_OEM_CONFIG_XML = 'cmnlib_oem_config.xml') # Common XML to both TZ & HYP
+        env.Replace(PLAYREADY_OEM_CONFIG_XML = 'playready_oem_config.xml') # Common XML to both TZ & HYP
+
+if 'USES_DEVCFG' in env:
+    DEVCFG_IMG = ['DAL_DEVCFG_OEM_QSEE_IMG']
+    env.AddDevCfgInfo(DEVCFG_IMG, 
+    {
+      'devcfg_xml' : ['${BUILD_ROOT}/core/securemsm/trustzone/qsee/mink/oem/config/${MINK_OEM_CHIPSET}/oem_config.xml',
+                      '${BUILD_ROOT}/core/securemsm/trustzone/qsee/mink/oem/config/common/chamomile_oem_config.xml',
+                      '${BUILD_ROOT}/core/securemsm/trustzone/qsee/mink/oem/config/common/${CMNLIB_OEM_CONFIG_XML}',
+                      '${BUILD_ROOT}/core/securemsm/trustzone/qsee/mink/oem/config/common/${PLAYREADY_OEM_CONFIG_XML}',
+                      '${BUILD_ROOT}/core/securemsm/trustzone/qsee/mink/oem/config/common/widevine_oem_config.xml',             
+                      '${BUILD_ROOT}/core/securemsm/trustzone/qsee/mink/oem/config/common/reset_reason_oem_map.c',
+                      '${BUILD_ROOT}/core/securemsm/trustzone/qsee/mink/oem/config/common/dhsecapp_oem_config.xml',              
+                      '${BUILD_ROOT}/core/securemsm/trustzone/qsee/mink/oem/config/common/hdcp1_oem_config.xml',
+                      '${BUILD_ROOT}/core/securemsm/trustzone/qsee/mink/oem/config/common/hdcp2p2_oem_config.xml',
+                      '${BUILD_ROOT}/core/securemsm/trustzone/qsee/mink/oem/config/common/mdtp_oem_config.xml',
+                      '${BUILD_ROOT}/core/securemsm/trustzone/qsee/mink/oem/config/common/kdf_fix_oem_config.xml',
+                      '${BUILD_ROOT}/core/securemsm/trustzone/qsee/mink/oem/config/common/fingerprint_oem_config.xml',
+                      '${BUILD_ROOT}/core/securemsm/trustzone/qsee/mink/oem/config/common/soter_oem_config.xml',
+                      '${BUILD_ROOT}/core/securemsm/trustzone/qsee/mink/oem/config/common/keymaster_oem_config.xml',]
+    })
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+env.AddLibrary(['TZOS_IMAGE'], '${BUILDPATH}/QSEEOEM', QSEE_OEM_SOURCES)
+env.Deploy('SConscript')

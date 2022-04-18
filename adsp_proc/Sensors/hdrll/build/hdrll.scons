@@ -1,0 +1,91 @@
+#===============================================================================
+#
+# HDRLL Library
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2016 Qualcomm Technologies, Inc.
+# All Rights Reserved.
+# Confidential and Proprietary - Qualcomm Technologies, Inc.
+#
+#-------------------------------------------------------------------------------
+Import('env')
+import os
+from glob import glob
+from os.path import join, basename
+env = env.Clone()
+
+env.Append(CCFLAGS = " -Werror ")
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/Sensors/hdrll/src"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+
+#-------------------------------------------------------------------------------
+# External depends outside CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   #'BUSES',
+   'MPROC',
+   'SERVICES',
+   #'POWER',
+   'DAL',
+   #'SYSTEMDRIVERS',
+   #'SYSTEMDRIVERS_PMIC',
+    # needs to be last also contains wrong comdef.h
+   'KERNEL',
+]
+env.RequirePublicApi(CBSP_API, area='core')
+
+#-------------------------------------------------------------------------------
+# Internal depends within Sensors
+#-------------------------------------------------------------------------------
+SENSORS_API = [
+   'SENSORS',
+   'SNS_COMMON',
+   'SNS_HDRLL',
+]
+env.RequireProtectedApi(SENSORS_API)
+
+
+#-------------------------------------------------------------------------------
+# Headers required by SNS HDRLL
+#-------------------------------------------------------------------------------
+env.Append(CPPPATH = [
+   "${BUILD_ROOT}/Sensors/api",
+   "${BUILD_ROOT}/Sensors/common/inc",
+   "${BUILD_ROOT}/Sensors/hdrll/inc",
+])
+
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+HDRLL_SOURCES = ['${BUILDPATH}/' + basename(fname)
+                for fname in glob(join(env.subst(SRCPATH), '*.c'))]
+
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+if 'SENSORS_DD_DEV_FLAG' in env:
+   # Sources that should not be shared
+   # PEND: Eventually the includes may need to be shared with driver developers
+   HDRLL_CLEAN_SOURCES = env.FindFiles(['*.*'], '${BUILD_ROOT}/Sensors/hdrll/src')
+   HDRLL_CLEAN_SOURCES += env.FindFiles(['*.h'], '${BUILD_ROOT}/Sensors/hdrll/inc')
+
+   # Add binary library
+   hdrll_lib = env.AddBinaryLibrary(
+   ['CBSP_QDSP6_SW_IMAGE', 'CORE_QDSP6_SENSOR_SW'],
+    "${BUILDPATH}/hdrll", HDRLL_SOURCES)
+
+   # Clean sources
+   env.CleanPack(['CBSP_QDSP6_SW_IMAGE', 'CORE_QDSP6_SENSOR_SW'], HDRLL_CLEAN_SOURCES)
+else:
+   hdrll_lib = env.AddLibrary(
+    ['CBSP_QDSP6_SW_IMAGE', 'CORE_QDSP6_SENSOR_SW'],
+    '${BUILDPATH}/hdrll', HDRLL_SOURCES)

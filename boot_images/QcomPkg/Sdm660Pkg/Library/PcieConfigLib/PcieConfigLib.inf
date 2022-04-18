@@ -1,0 +1,94 @@
+
+# @file  PcieConfigLib.inf
+#
+#
+#  Copyright (c) 2014-2016, Qualcomm Technologies, Inc.  All Rights Reserved.
+# 
+#
+#
+
+#=============================================================================
+#                              EDIT HISTORY
+#
+
+# when       who      what, where, why
+# --------   ---      ----------------------------------------------------------
+# 02/08/16   tselvam  Added pcie xml config support
+# 01/11/16   tselvam  Register for PCIe ExitBootServices callback
+# 09/03/15   tselvam  Porting to SDM660 plartform
+# 05/13/15   tselvam  Unified code for multi platforms
+# 08/04/14   nk       Changed file name to PciBusLib
+# 06/16/14   hozefak  Add PcieInit protocol
+# 04/18/14   hozefak  First checkin for 8084
+#=============================================================================*/
+
+
+
+
+
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PcieConfigLib
+  FILE_GUID                      = 5157CF04-4055-4BCE-8454-73023EBFC818
+  MODULE_TYPE                    = UEFI_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PcieConfigLib
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+#  DRIVER_BINDING                =  gPciBusDriverBinding
+#  COMPONENT_NAME                =  gPciBusComponentName
+#  COMPONENT_NAME2               =  gPciBusComponentName2
+#
+
+[Sources]
+  PciBusLib.c
+  PciLink.c
+  PcieBsp.h
+  PciLink.h
+  PcieHwioRegs.h
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  QcomPkg/QcomPkg.dec
+  IntelFrameworkModulePkg/IntelFrameworkModulePkg.dec
+  ArmPkg/ArmPkg.dec
+  QcomPkg/Sdm660Pkg/Sdm660Pkg.dec
+  EmbeddedPkg/EmbeddedPkg.dec
+
+[LibraryClasses]
+  PcdLib
+  DevicePathLib
+  UefiBootServicesTableLib
+  MemoryAllocationLib
+  ReportStatusCodeLib
+  BaseMemoryLib
+  UefiLib
+  BaseLib
+  UefiDriverEntryPoint
+  DebugLib
+  UefiCfgLib
+  NpaApiLib
+  #DALModEmptyDirLib
+  
+[Protocols]
+  gQcomPcieInitProtocolGuid
+  gEfiChipInfoProtocolGuid
+  gEfiPlatformInfoProtocolGuid
+  gEfiClockProtocolGuid                           ## CONSUMED
+  gEfiTLMMProtocolGuid
+  gQcomPmicGpioProtocolGuid
+  gQcomPmicVregProtocolGuid
+  gEfiNpaProtocolGuid
+
+[Guids]
+  gEfiEventExitBootServicesGuid
+
+
+

@@ -1,0 +1,130 @@
+#===============================================================================
+#
+# I2C Libs
+#
+# GENERAL DESCRIPTION
+#    Public build script for I2C BUS driver.
+#
+# Copyright (c) 2009-2016 by QUALCOMM, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.tz/1.0.7.1/buses/i2c/build/SConscript#1 $
+#  $DateTime: 2020/01/14 12:35:09 $
+#  $Author: pwbldsvc $
+#  $Change: 22186835 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#  
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 04/28/16   vg      Moved xml configuration to OEMCFG
+# 02/07/14   lk      Added support for 8994.
+# 07/23/12   lk      Added support for 8962, 8x10 tz.
+# 07/17/12   lk      Added support for 8626 tz.
+# 02/09/12   lk      Added device inc path.
+# 02/09/12   lk      Added configurable properties file.
+# 02/09/12   ag      Fixed the location where the object files are built.
+# 01/21/12   ag		 Initial release
+#
+#===============================================================================
+import os
+
+Import('env')
+#-------------------------------------------------------------------------------
+# Load sub scripts
+#-------------------------------------------------------------------------------
+env.LoadSoftwareUnits()
+
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+env = env.Clone()
+#print env
+# Additional defines
+env.Append(CPPDEFINES = ["FEATURE_LIBRARY_ONLY"])   
+env['CCCOMSTR'] = "$CCCOM"
+SRCPATH = "../src"
+
+IMAGES = []
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0) 
+CBSP_APIS = []
+I2C_CONFIG_XML = []
+
+#-------------------------------------------------------------------------------
+# Publish Private APIs
+#-------------------------------------------------------------------------------
+env.PublishPrivateApi('BUSES_I2C_DEVICE', [
+   '${INC_ROOT}/core/buses/i2c/src/dev',
+])
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_APIS += [
+   'BUSES',
+   'DAL',
+   'HAL',
+   'SYSTEMDRIVERS',
+   'HWENGINES',
+   'KERNEL',   
+   'SERVICES',
+   'POWER',
+   'SECUREMSM',
+   'MINK'
+]
+
+env.RequirePublicApi(CBSP_APIS)
+env.RequireRestrictedApi(CBSP_APIS)
+
+#---------------------------------------------------------------------------
+# Device Config
+#---------------------------------------------------------------------------
+if 'USES_DEVCFG' in env:
+   if os.path.isfile(env.subst("../config/i2c_tz_${MSM_ID}.xml")):
+     env.Replace(I2C_CONFIG_XML = 'i2c_tz_${MSM_ID}.xml')
+   else:
+     env.Replace(I2C_CONFIG_XML = 'i2c_tz_stubs.xml')
+     env.PrintWarning("I2C devcfg not implemented... using stubs.")
+   
+   DEVCFG_IMG_OEM = ['DAL_DEVCFG_OEM_QSEE_IMG']
+   env.AddDevCfgInfo(DEVCFG_IMG_OEM, 
+   {
+      'devcfg_xml'    : '${BUILD_ROOT}/core/buses/i2c/config/${I2C_CONFIG_XML}'
+   })
+# for tzbsp_* definitions
+env.RequireRestrictedApi('TZCHIPSET')
+# for tzbsp_int* definitions
+if env['TARGET_FAMILY'] in ['badger']:
+   env.RequireRestrictedApi('TZLIBARMV7') 
+else:
+   env.RequireRestrictedApi('TZLIBARMV8') 
+
+if env.has_key('TZOS_IMAGE'):
+   IMAGES = ['TZOS_IMAGE'] 
+   
+else:
+   Return();
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+I2C_DEVICE_GLOB_FILES = env.GlobFiles('../src/*/*.c', posix=True)
+ 
+#GLOB returns the relative path name, it needs to replaced with correct build location
+I2C_DEVICE_SOURCES = [path.replace(SRCPATH, '${BUILDPATH}') for path in I2C_DEVICE_GLOB_FILES]
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+# env.AddLibrary is a new API, only if the IMAGES is valid in the build env
+# the objects will built and added to the image.
+#-------------------------------------------------------------------------------
+env.AddBinaryLibrary(IMAGES, '${BUILDPATH}/I2cDriver', I2C_DEVICE_SOURCES)
+env.Deploy(['SConscript', 
+            '../src/dev/I2cPlatSvc.h',
+           ])

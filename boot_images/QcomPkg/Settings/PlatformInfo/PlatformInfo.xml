@@ -1,0 +1,15 @@
+<driver name="PlatformInfo">
+  <global_def>
+    <var_seq name="HWIOStructIncFile" type=DALPROP_DATA_TYPE_STRUCT_INC_FILE>
+      msmhwiobase.h
+    </var_seq>
+  </global_def>
+  <device id=DALDEVICEID_PLATFORMINFO>
+  #if (DAL_CONFIG_TARGET_ID != 0x2432)
+    <props name="rpm_buffer_addr" type=DALPROP_ATTR_TYPE_UINT32>
+      RPM_SS_MSG_RAM_START_ADDRESS_BASE + 0x00003F80
+    </props>
+  #endif
+  </device>
+</driver>
+

@@ -1,0 +1,662 @@
+<?xml version="1.0" ?>
+<LogAnalyzerConfig>
+    <!-- Plot config -->
+    <PlotsCollection>
+        <Group>
+            <!--Group ID, this can be number or string. GroupID will be the name of the worksheet in the spreadsheet -->
+            <GroupID>Overview</GroupID>
+            <!--Plot #1-->
+            <Plot>
+                <Title>Battery Voltage vs Battery Current</Title>
+                <Y-Axis>
+                    <!--Data Series showing on Y-Axis,
+                        Putting 2 on AxisGroup
+                        if the series need to plot-on secondary Y-Axis-->
+                    <DataSeries>
+                        <SeriesName label="" param="VBATT"/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <DataSeries>
+                        <SeriesName label="" param="IBATT"/>
+                        <AxisGroup>2</AxisGroup>
+                    </DataSeries>
+                    <!--Axis Config - Primary-->
+                    <AxisConfig>
+                        <Label>Battery Voltage</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MinValue></MinValue>
+                        <MaxValue></MaxValue>
+                    </AxisConfig>
+                    <!--Axis Config - Secondary-->
+                    <AxisConfig>
+                        <Label>Battery Current</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </Y-Axis>
+                <!--Data Series showing on X-Axis,
+                    Support only one X-Axis Data Series only-->
+                <X-Axis>
+                    <DataSeries>
+                        <SeriesName label="timestamp" param=""/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <AxisConfig>
+                        <Label>Time [seconds]</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </X-Axis>
+            </Plot>
+            <!--Plot #2-->
+            <Plot>
+                <Title>States of Charge</Title>
+                <Y-Axis>
+                    <!--Data Series showing on Y-Axis,
+                        Putting 2 on AxisGroup
+                        if the series need to plot-on secondary Y-Axis-->
+                    <DataSeries>
+                        <SeriesName label="" param="CC_SoC"/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+					<DataSeries>
+                        <SeriesName label="" param="CC_SoC_SW"/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+					<DataSeries>
+                        <SeriesName label="" param="Monotonic_SoC"/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+					<DataSeries>
+                        <SeriesName label="" param="System_SoC"/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+					<DataSeries>
+                        <SeriesName label="" param="Battery_SoC"/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <!--Axis Config - Primary-->
+                    <AxisConfig>
+                        <Label>SoC</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MinValue></MinValue>
+                        <MaxValue></MaxValue>
+                    </AxisConfig>
+                </Y-Axis>
+                <!--Data Series showing on X-Axis,
+                    Support only one X-Axis Data Series only-->
+                <X-Axis>
+                    <DataSeries>
+                        <SeriesName label="timestamp" param=""/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <AxisConfig>
+                        <Label>Time [seconds]</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </X-Axis>
+            </Plot>
+            <!--Plot #3-->
+            <Plot>
+                <Title>ESR vs Battery Temperature</Title>
+                <Y-Axis>
+                    <!--Data Series showing on Y-Axis,
+                        Putting 2 on AxisGroup
+                        if the series need to plot-on secondary Y-Axis-->
+                    <DataSeries>
+                        <SeriesName label="" param="ESR"/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <DataSeries>
+                        <SeriesName label="" param="Battery_Temperature"/>
+                        <AxisGroup>2</AxisGroup>
+                    </DataSeries>
+                    <!--Axis Config - Primary-->
+                    <AxisConfig>
+                        <Label>ESR</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MinValue></MinValue>
+                        <MaxValue></MaxValue>
+                    </AxisConfig>
+                    <!--Axis Config - Secondary-->
+                    <AxisConfig>
+                        <Label>Battery Temperature</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </Y-Axis>
+                <!--Data Series showing on X-Axis,
+                    Support only one X-Axis Data Series only-->
+                <X-Axis>
+                    <DataSeries>
+                        <SeriesName label="timestamp" param=""/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <AxisConfig>
+                        <Label>Time [seconds]</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </X-Axis>
+            </Plot>
+			<!--Plot #4-->
+            <Plot>
+                <Title>Rslow vs Battery Temperature</Title>
+                <Y-Axis>
+                    <!--Data Series showing on Y-Axis,
+                        Putting 2 on AxisGroup
+                        if the series need to plot-on secondary Y-Axis-->
+                    <DataSeries>
+                        <SeriesName label="" param="Rslow"/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <DataSeries>
+                        <SeriesName label="" param="Battery_Temperature"/>
+                        <AxisGroup>2</AxisGroup>
+                    </DataSeries>
+                    <!--Axis Config - Primary-->
+                    <AxisConfig>
+                        <Label>Rslow</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MinValue></MinValue>
+                        <MaxValue></MaxValue>
+                    </AxisConfig>
+                    <!--Axis Config - Secondary-->
+                    <AxisConfig>
+                        <Label>Battery Temperature</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </Y-Axis>
+                <!--Data Series showing on X-Axis,
+                    Support only one X-Axis Data Series only-->
+                <X-Axis>
+                    <DataSeries>
+                        <SeriesName label="timestamp" param=""/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <AxisConfig>
+                        <Label>Time [seconds]</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </X-Axis>
+            </Plot>
+			<!--Plot #5-->
+            <Plot>
+                <Title>Total Resistance (ESR + Rslow) vs Battery Temperature</Title>
+                <Y-Axis>
+                    <!--Data Series showing on Y-Axis,
+                        Putting 2 on AxisGroup
+                        if the series need to plot-on secondary Y-Axis-->
+                    <DataSeries>
+                        <SeriesName label="" param="ESR+Rslow"/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <DataSeries>
+                        <SeriesName label="" param="Battery_Temperature"/>
+                        <AxisGroup>2</AxisGroup>
+                    </DataSeries>
+                    <!--Axis Config - Primary-->
+                    <AxisConfig>
+                        <Label>Total Resistance</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MinValue></MinValue>
+                        <MaxValue></MaxValue>
+                    </AxisConfig>
+                    <!--Axis Config - Secondary-->
+                    <AxisConfig>
+                        <Label>Battery Temperature</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </Y-Axis>
+                <!--Data Series showing on X-Axis,
+                    Support only one X-Axis Data Series only-->
+                <X-Axis>
+                    <DataSeries>
+                        <SeriesName label="timestamp" param=""/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <AxisConfig>
+                        <Label>Time [seconds]</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </X-Axis>
+            </Plot>
+			<!--Plot #6-->
+            <Plot>
+                <Title>Voltage Mode Correction vs OCV</Title>
+                <Y-Axis>
+                    <!--Data Series showing on Y-Axis,
+                        Putting 2 on AxisGroup
+                        if the series need to plot-on secondary Y-Axis-->
+                    <DataSeries>
+                        <SeriesName label="" param="Voltage_Mode_Correction"/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <DataSeries>
+                        <SeriesName label="" param="OCV"/>
+                        <AxisGroup>2</AxisGroup>
+                    </DataSeries>
+                    <!--Axis Config - Primary-->
+                    <AxisConfig>
+                        <Label>Voltage Mode Correction</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MinValue></MinValue>
+                        <MaxValue></MaxValue>
+                    </AxisConfig>
+                    <!--Axis Config - Secondary-->
+                    <AxisConfig>
+                        <Label>OCV</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </Y-Axis>
+                <!--Data Series showing on X-Axis,
+                    Support only one X-Axis Data Series only-->
+                <X-Axis>
+                    <DataSeries>
+                        <SeriesName label="timestamp" param=""/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <AxisConfig>
+                        <Label>Time [seconds]</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </X-Axis>
+            </Plot>
+			<!--Plot #7-->
+            <Plot>
+                <Title>Actual vs Nominal Capacity</Title>
+                <Y-Axis>
+                    <!--Data Series showing on Y-Axis,
+                        Putting 2 on AxisGroup
+                        if the series need to plot-on secondary Y-Axis-->
+                    <DataSeries>
+                        <SeriesName label="" param="Battery_Capacity_Actual"/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <DataSeries>
+                        <SeriesName label="" param="Battery_Capacity_Nominal"/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <!--Axis Config - Primary-->
+                    <AxisConfig>
+                        <Label>Battery Capacity</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MinValue></MinValue>
+                        <MaxValue></MaxValue>
+                    </AxisConfig>
+                </Y-Axis>
+                <!--Data Series showing on X-Axis,
+                    Support only one X-Axis Data Series only-->
+                <X-Axis>
+                    <DataSeries>
+                        <SeriesName label="timestamp" param=""/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <AxisConfig>
+                        <Label>Time [seconds]</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </X-Axis>
+            </Plot>
+        </Group>
+        <Group>
+            <!--Group ID, this can be number or string. GroupID will be the name of the worksheet in the spreadsheet -->
+            <GroupID>Extra</GroupID>
+            <!--Plot #1-->
+            <Plot>
+                <Title>Voltage Drops Across ESR and Rslow</Title>
+                <Y-Axis>
+                    <!--Data Series showing on Y-Axis,
+                        Putting 2 on AxisGroup
+                        if the series need to plot-on secondary Y-Axis-->
+                    <DataSeries>
+                        <SeriesName label="" param="ESR_Voltage_Drop"/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <DataSeries>
+                        <SeriesName label="" param="Rslow_Voltage_Drop"/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <!--Axis Config - Primary-->
+                    <AxisConfig>
+                        <Label>Voltage Drop</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MinValue></MinValue>
+                        <MaxValue></MaxValue>
+                    </AxisConfig>
+                </Y-Axis>
+                <!--Data Series showing on X-Axis,
+                    Support only one X-Axis Data Series only-->
+                <X-Axis>
+                    <DataSeries>
+                        <SeriesName label="timestamp" param=""/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <AxisConfig>
+                        <Label>Time [seconds]</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </X-Axis>
+            </Plot>
+            <!--Plot #2-->
+            <Plot>
+                <Title>ESR Timer</Title>
+                <Y-Axis>
+                    <!--Data Series showing on Y-Axis,
+                        Putting 2 on AxisGroup
+                        if the series need to plot-on secondary Y-Axis-->
+                    <DataSeries>
+                        <SeriesName label="" param="ESR_Timer_Count"/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <!--Axis Config - Primary-->
+                    <AxisConfig>
+                        <Label>ESR Timer Count</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MinValue></MinValue>
+                        <MaxValue></MaxValue>
+                    </AxisConfig>
+                </Y-Axis>
+                <!--Data Series showing on X-Axis,
+                    Support only one X-Axis Data Series only-->
+                <X-Axis>
+                    <DataSeries>
+                        <SeriesName label="timestamp" param=""/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <AxisConfig>
+                        <Label>Time [seconds]</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </X-Axis>
+            </Plot>
+			<!--Plot #3-->
+            <Plot>
+                <Title>Predicted vs Measured Battery Voltage</Title>
+                <Y-Axis>
+                    <!--Data Series showing on Y-Axis,
+                        Putting 2 on AxisGroup
+                        if the series need to plot-on secondary Y-Axis-->
+                    <DataSeries>
+                        <SeriesName label="" param="VBATT_Predicted"/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <DataSeries>
+                        <SeriesName label="" param="VBATT"/>
+                        <AxisGroup>2</AxisGroup>
+                    </DataSeries>
+                    <!--Axis Config - Primary-->
+                    <AxisConfig>
+                        <Label>Predicted Battery Voltage</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MinValue></MinValue>
+                        <MaxValue></MaxValue>
+                    </AxisConfig>
+                    <!--Axis Config - Secondary-->
+                    <AxisConfig>
+                        <Label>Measured Battery Voltage</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </Y-Axis>
+                <!--Data Series showing on X-Axis,
+                    Support only one X-Axis Data Series only-->
+                <X-Axis>
+                    <DataSeries>
+                        <SeriesName label="timestamp" param=""/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <AxisConfig>
+                        <Label>Time [seconds]</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </X-Axis>
+            </Plot>
+			<!--Plot #4-->
+            <Plot>
+                <Title>Cutoff SoC vs Total Resistance</Title>
+                <Y-Axis>
+                    <!--Data Series showing on Y-Axis,
+                        Putting 2 on AxisGroup
+                        if the series need to plot-on secondary Y-Axis-->
+                    <DataSeries>
+                        <SeriesName label="" param="Cutoff_SoC"/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <DataSeries>
+                        <SeriesName label="" param="ESR+Rslow"/>
+                        <AxisGroup>2</AxisGroup>
+                    </DataSeries>
+                    <!--Axis Config - Primary-->
+                    <AxisConfig>
+                        <Label>Cutoff SoC</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MinValue></MinValue>
+                        <MaxValue></MaxValue>
+                    </AxisConfig>
+                    <!--Axis Config - Secondary-->
+                    <AxisConfig>
+                        <Label>Total Resistance</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </Y-Axis>
+                <!--Data Series showing on X-Axis,
+                    Support only one X-Axis Data Series only-->
+                <X-Axis>
+                    <DataSeries>
+                        <SeriesName label="timestamp" param=""/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <AxisConfig>
+                        <Label>Time [seconds]</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </X-Axis>
+            </Plot>
+			<!--Plot #5-->
+            <Plot>
+                <Title>SoC Full vs Total Resistance</Title>
+                <Y-Axis>
+                    <!--Data Series showing on Y-Axis,
+                        Putting 2 on AxisGroup
+                        if the series need to plot-on secondary Y-Axis-->
+                    <DataSeries>
+                        <SeriesName label="" param="Full_SoC"/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <DataSeries>
+                        <SeriesName label="" param="ESR+Rslow"/>
+                        <AxisGroup>2</AxisGroup>
+                    </DataSeries>
+                    <!--Axis Config - Primary-->
+                    <AxisConfig>
+                        <Label>SoC Full</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MinValue></MinValue>
+                        <MaxValue></MaxValue>
+                    </AxisConfig>
+                    <!--Axis Config - Secondary-->
+                    <AxisConfig>
+                        <Label>Total Resistance</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </Y-Axis>
+                <!--Data Series showing on X-Axis,
+                    Support only one X-Axis Data Series only-->
+                <X-Axis>
+                    <DataSeries>
+                        <SeriesName label="timestamp" param=""/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <AxisConfig>
+                        <Label>Time [seconds]</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </X-Axis>
+            </Plot>
+			<!--Plot #6-->
+            <Plot>
+                <Title>Cutoff SoC vs Battery Current</Title>
+                <Y-Axis>
+                    <!--Data Series showing on Y-Axis,
+                        Putting 2 on AxisGroup
+                        if the series need to plot-on secondary Y-Axis-->
+                    <DataSeries>
+                        <SeriesName label="" param="Cutoff_SoC"/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <DataSeries>
+                        <SeriesName label="" param="IBATT"/>
+                        <AxisGroup>2</AxisGroup>
+                    </DataSeries>
+                    <!--Axis Config - Primary-->
+                    <AxisConfig>
+                        <Label>Cutoff SoC</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MinValue></MinValue>
+                        <MaxValue></MaxValue>
+                    </AxisConfig>
+                    <!--Axis Config - Secondary-->
+                    <AxisConfig>
+                        <Label>Battery Current</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </Y-Axis>
+                <!--Data Series showing on X-Axis,
+                    Support only one X-Axis Data Series only-->
+                <X-Axis>
+                    <DataSeries>
+                        <SeriesName label="timestamp" param=""/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <AxisConfig>
+                        <Label>Time [seconds]</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </X-Axis>
+            </Plot>
+			<!--Plot #7-->
+            <Plot>
+                <Title>SoC Full vs Battery Current</Title>
+                <Y-Axis>
+                    <!--Data Series showing on Y-Axis,
+                        Putting 2 on AxisGroup
+                        if the series need to plot-on secondary Y-Axis-->
+                    <DataSeries>
+                        <SeriesName label="" param="Full_SoC"/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <DataSeries>
+                        <SeriesName label="" param="IBATT"/>
+                        <AxisGroup>2</AxisGroup>
+                    </DataSeries>
+                    <!--Axis Config - Primary-->
+                    <AxisConfig>
+                        <Label>SoC Full</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MinValue></MinValue>
+                        <MaxValue></MaxValue>
+                    </AxisConfig>
+                    <!--Axis Config - Secondary-->
+                    <AxisConfig>
+                        <Label>Battery Current</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </Y-Axis>
+                <!--Data Series showing on X-Axis,
+                    Support only one X-Axis Data Series only-->
+                <X-Axis>
+                    <DataSeries>
+                        <SeriesName label="timestamp" param=""/>
+                        <AxisGroup>1</AxisGroup>
+                    </DataSeries>
+                    <AxisConfig>
+                        <Label>Time [seconds]</Label>
+                        <MajorTick></MajorTick>
+                        <MinorTick></MinorTick>
+                        <MaxValue></MaxValue>
+                        <MinValue></MinValue>
+                    </AxisConfig>
+                </X-Axis>
+            </Plot>
+        </Group>
+    </PlotsCollection>
+</LogAnalyzerConfig>

@@ -1,0 +1,10 @@
+<config>
+  <image_tree>
+    <name>CPE.TSF.2.0</name>
+    <build_id>CPE.TSF.2.0-00006-W9335AAAAAAAZQ-1</build_id>
+    <branch_point_revision/>
+    <revision>00006</revision>
+    <spin>1</spin>
+    <client>W9335AAAAAAAZQ</client>
+  </image_tree>
+</config>

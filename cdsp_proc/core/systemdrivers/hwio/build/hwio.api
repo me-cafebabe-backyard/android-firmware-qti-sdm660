@@ -1,0 +1,38 @@
+#===============================================================================
+#
+# System Drivers INC PATHs
+#
+# GENERAL DESCRIPTION
+#    System Drivers INC PATHs
+#
+# Copyright (c) 2016 by Qualcomm Technologies Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/dev/core.qdsp6/1.0/shantonu.core.qdsp6.1.0.hwio_update_SL/systemdrivers/hwio/build/hwio.api#1 $
+#  $DateTime: 2016/10/05 10:04:26 $
+#  $Author: shantonu $
+#===============================================================================
+
+Import('env')
+
+#-------------------------------------------------------------------------------
+# Define HWIO API paths
+#-------------------------------------------------------------------------------
+
+env.Replace(HWIO_API = [
+   "${INC_ROOT}/core/api/systemdrivers/hwio/${CHIPSET}/${IMAGE}/",
+])
+
+#-------------------------------------------------------------------------------
+# Publish Public APIs
+# These are accessible internal or external to CoreBSP
+#-------------------------------------------------------------------------------
+
+env.PublishPublicApi('SYSTEMDRIVERS', [
+  "${HWIO_API}"
+])
+
+env.PublishPublicApi('HWIO', env['HWIO_API'])

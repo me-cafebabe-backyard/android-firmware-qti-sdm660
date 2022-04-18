@@ -1,0 +1,3 @@
+#define ABT_propdata_oem ABT_propdata_oem_660_oem_tz
+#define NOCERR_propdata_oem NOCERR_propdata_oem_660_oem_tz
+#define BIMC_propdata_oem BIMC_propdata_oem_660_oem_tz

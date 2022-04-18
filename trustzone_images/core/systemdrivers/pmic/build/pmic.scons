@@ -1,0 +1,153 @@
+#===============================================================================
+#
+#
+# GENERAL DESCRIPTION
+#
+# Copyright (c) 2011 Qualcomm Technologies Incorporated. All Rights Reserved
+#
+# Qualcomm Proprietary
+#
+# Export of this technology or software is regulated by the U.S. Government.
+# Diversion contrary to U.S. law prohibited.
+#
+# All ideas, data and information contained in or disclosed by
+# this document are confidential and proprietary information of
+# Qualcomm Technologies Incorporated and all rights therein are expressly reserved.
+# By accepting this material the recipient agrees that this material
+# and the information contained therein are held in confidence and in
+# trust and will not be used, copied, reproduced in whole or in part,
+# nor its contents revealed in any manner to others without the express
+# written permission of Qualcomm Technologies Incorporated.
+#
+#-------------------------------------------------------------------------------
+#
+# $Header: //components/rel/core.tz/1.0.7.1/systemdrivers/pmic/build/pmic.scons#1 $
+# $DateTime: 2020/01/14 12:35:09 $ 
+#
+#                      EDIT HISTORY FOR FILE
+#                      
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#  
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 03/07/12   hs      Added support for BOOT builds.
+# 03/12/12   hs      Updated.
+# 03/07/12   hs      Added support for MPSS and RPM builds.
+# 01/24/12   hs      Created
+#===============================================================================
+
+Import('env')
+
+if env.has_key('MODEM_PROC'):
+   env.Replace(PMIC_ROOT = [
+      "${INC_ROOT}/core/systemdrivers/pmic",
+   ])
+   env.Append(CPPDEFINES = 'PM_IMAGE_MODEM_PROC')
+elif env.has_key('RPM_IMAGE'):
+   env.Replace(PMIC_ROOT = [
+      "${INC_ROOT}/core/systemdrivers/pmic",
+   ])
+   env.Append(CPPDEFINES = 'PM_IMAGE_RPM_PROC')
+else:
+   env.Replace(PMIC_ROOT = [
+      "${INC_ROOT}/core/systemdrivers/pmic",
+   ])
+   env.Append(CPPDEFINES = 'PM_IMAGE_APPS_PROC')
+
+env.PublishProtectedApi( 'RFA_PMIC_APPLICATION', [    
+    '${PMIC_ROOT}/application/rtc/common/protected',
+    '${PMIC_ROOT}/application/uicc/common/protected',
+    '${PMIC_ROOT}/application/ftm/common/protected',
+    ])
+
+env.PublishProtectedApi( 'PMIC_COMM', [    
+    '${PMIC_ROOT}/comm/src',
+    '${PMIC_ROOT}/comm/spmi_dal/src',
+    '${PMIC_ROOT}/comm/spmi_lite/src',
+    '${PMIC_ROOT}/comm/spmi_non_dal/src',
+    ])
+
+env.PublishProtectedApi( 'PMIC_DRIVERS', [    
+    '${PMIC_ROOT}/drivers/buck/base/protected',
+    '${PMIC_ROOT}/drivers/buck/pwr_buck_alg_interfaces/protected',
+    '${PMIC_ROOT}/drivers/buck/pwr_buck_alg_v6/protected',
+    '${PMIC_ROOT}/drivers/buck/concrete_v6/protected',
+    '${PMIC_ROOT}/drivers/linear/base/protected',
+    '${PMIC_ROOT}/drivers/linear/pwr_linear_alg_interfaces/protected',
+    '${PMIC_ROOT}/drivers/linear/pwr_linear_alg_v6/protected',
+    '${PMIC_ROOT}/drivers/linear/concrete_v6/protected',
+    '${PMIC_ROOT}/drivers/pwr/base/protected',
+    '${PMIC_ROOT}/drivers/pwr/pwr_alg_interfaces/protected',
+    '${PMIC_ROOT}/drivers/pwr/pwr_alg_v6/protected',
+    '${PMIC_ROOT}/drivers/pwr/concrete_v6/protected',
+    '${PMIC_ROOT}/drivers/vs/base/protected',
+    '${PMIC_ROOT}/drivers/vs/concrete_v6/protected',
+    '${PMIC_ROOT}/drivers/clk/base/protected',
+    '${PMIC_ROOT}/drivers/clk/clk_v6/protected',
+    '${PMIC_ROOT}/drivers/coinchg/base/protected',
+    '${PMIC_ROOT}/drivers/coinchg/coinchg_v6/protected',
+    '${PMIC_ROOT}/drivers/gpio/base/protected',
+    '${PMIC_ROOT}/drivers/gpio/gpio_v6/protected',
+    '${PMIC_ROOT}/drivers/interrupt/base/protected',
+    '${PMIC_ROOT}/drivers/interrupt/interrupt_v6/protected',
+    '${PMIC_ROOT}/drivers/mpp/base/protected',
+    '${PMIC_ROOT}/drivers/mpp/mpp_v6/protected',
+    '${PMIC_ROOT}/drivers/pwron/base/protected',
+    '${PMIC_ROOT}/drivers/pwron/pwron_v6/protected',
+    '${PMIC_ROOT}/drivers/rtc/base/protected',
+    '${PMIC_ROOT}/drivers/rtc/rtc_v6/protected',
+    '${PMIC_ROOT}/drivers/talm/base/protected',
+    '${PMIC_ROOT}/drivers/talm/talm_v6/protected',
+    '${PMIC_ROOT}/drivers/uicc/base/protected',
+    '${PMIC_ROOT}/drivers/uicc/uicc_v6/protected',
+    '${PMIC_ROOT}/drivers/vbatt/base/protected',
+    '${PMIC_ROOT}/drivers/vbatt/vbatt_v6/protected',
+    '${PMIC_ROOT}/drivers/xo/base/protected',
+    '${PMIC_ROOT}/drivers/xo/xo_v6/protected',
+   ])
+      
+env.PublishProtectedApi( 'PMIC_DEVICES', [    
+    '${PMIC_ROOT}/pmic_devices/common/src',
+    ])
+
+env.PublishProtectedApi( 'PMIC_NPA', [    
+    '${PMIC_ROOT}/npa/inc',
+    ])
+       
+env.PublishPrivateApi('RFA_VIOLATIONS', [ 
+    '${INC_ROOT}/core/buses/api/spmi', # TODO need to remove it
+    '${INC_ROOT}/core/api/power', # TODO need to remove it
+    '${INC_ROOT}/core/api/hwengines', # TODO need to remove it
+    ])
+
+env.PublishProtectedApi( 'PMIC_FRAMEWORK', [
+    '${PMIC_ROOT}/framework/inc',
+    '${PMIC_ROOT}/framework/src',
+    ])
+    
+env.LoadSoftwareUnits( ) 
+env.Deploy(['../config/mdm9x45_pm9635/build/pmic_config_target.scons',
+            '../config/msm8998_pm8998/build/pmic_config_target.scons',
+            '../config/msm8998_pm8998/build/pmic_config_target.scons',
+            '../config/msm8952_pm8950/build/pmic_config_target.scons',
+            '../config/msm8956_pm8950/build/pmic_config_target.scons',
+            '../config/msm8996_pm8994/build/pmic_config_target.scons',
+            '../config/msm8996_pm8994/build/pmic_config_target.scons',
+            '../config/msm8937_pm8950/build/pmic_config_target.scons',
+            '../config/sdm660_pm660/build/pmic_config_target.scons',
+            '../config/sdm660_pm660/build/pmic_config_target.scons',
+            '../config/msm8953_pm8950/build/pmic_config_target.scons',
+            '../build/pmic.api',
+            '../build/pmic.scons',
+            '../config/build/pmic_config.scons',
+            '../framework/inc/pm_pon_cfg.h',
+            '../framework/build/pmic_framework.scons',
+            '../pmic_devices/common/src/device_info.h',
+            '../framework/inc/pm_ac_hyp.h',
+            '../framework/inc/pm_ac_tz.h',
+            '../framework/inc/pm_internal.h',
+            '../framework/inc/pm_spmi.h',
+            '../npa/inc/pm_npa_device.h',
+           ])
+

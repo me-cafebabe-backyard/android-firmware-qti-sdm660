@@ -1,0 +1,14 @@
+# Do an full GPIO Dump for 8084 target. Clocks are dumped out through QDSS SW Events.
+# Check the address range is within 3067 for LITE version, else will fail due to range checking
+# PWRDB_CMD_RPM_TLMM_READ, 0x1, 3067, 1, 1
+
+# File starts here...start with the internal event
+PWRDB_CMD_EVENT, PWRDB_EVT_SRC_PWRDB_INTERNAL, PWRDB_INT_EVT_ID_ENTER_RUNNING, 0,0
+ 
+# Commands to the Pwrdb
+PWRDB_CMD_RPM_FLUSH_CMDS,0,0
+PWRDB_CMD_RPM_TLMM_READ, 0x5, 2368, 1, 1
+PWRDB_CMD_RPM_END_OF_CMD, 0x1, 1
+PWRDB_CMD_END_OF_CMDS
+
+####End of Main Script#######

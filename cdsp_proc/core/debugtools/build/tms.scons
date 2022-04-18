@@ -1,0 +1,35 @@
+#===============================================================================
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2013 Qualcomm Technologies Incorporated.
+# All Rights Reserved.
+# Qualcomm Confidential and Proprietary.
+#
+#===============================================================================
+
+Import('env')
+import os
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Defines
+#-------------------------------------------------------------------------------
+
+if 'MODEM_PROC' in env:
+   env.Append(CPPDEFINES='TMS_PERIPHERAL_MPSS')
+elif 'ADSP_PROC' in env:
+   env.Append(CPPDEFINES='TMS_PERIPHERAL_ADSP')
+elif 'SLPI_PROC' in env:
+   env.Append(CPPDEFINES='TMS_PERIPHERAL_SLPI')
+if 'CDSP_PROC' in env:
+   env.Append(CPPDEFINES='TMS_PERIPHERAL_CDSP')
+
+#-------------------------------------------------------------------------------
+# Load sub scripts
+#-------------------------------------------------------------------------------
+# SDM845HACK
+#env.Append(CFLAGS = "-Werror ")
+
+env.LoadSoftwareUnits()

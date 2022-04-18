@@ -1,0 +1,169 @@
+//============================================================================
+//  Name:                                                                     
+//    trace_tpdmBC_pimem.cmm
+//
+//  Description:                                                              
+//    Script to configure PIMEM TPDM Trace - BC type 
+//    For PIMEM TPDM trace , cti trigger timestamp is selected. and cti trigger is always set such that every trace data packet has timestamp . 
+//    ETB is the trace sink
+//
+//  Usage
+//  do trace_tpdmBC_pimem.cmm <traceID> <retrievalMode>
+//
+//  Options:
+//	<traceID>       : 0 to 127.    
+//	<retrievalMode> : APB | ATB 
+//  e.g. do trace_tpdmBC_pimem 35. APB 
+//          This will configure PIMEM TPDM BC traceID to be 35. and trace to be retrieved from APB ( dedicated registers accessible through APB bus )
+//  e.g. do trace_tpdmBC_pimem 35. ATB 
+//          This will configure PIMEM TPDM BC traceID to be 35. and trace to be retrieved from ATB ( through QDSS Trace subsystem )
+//
+// Copyright (c) 2016 by Qualcomm Technologies, Incorporated.  All Rights Reserved.        
+//
+//
+//
+//                      EDIT HISTORY FOR FILE
+//  This section contains comments describing changes made to the module.
+//  Notice that changes are listed in reverse chronological order.
+//
+// when         who     	what, where, why
+// --------     ---        --------------------------------------------------------
+// 3/10/2016    HJAYAKUM    added input arguments traceID and GPR0
+// 11/01/2015   HJAYAKUM    Created
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////// trace_tpdmBC_pimem /////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//###################Arguments passed #####################
+local &traceID &traceRetrievalMode
+entry &traceID &traceRetrievalMode
+
+
+//################### Check input Arguments #####################
+local &temp
+
+&temp=STR.UPR("&traceRetrievalMode")
+&traceRetrievalMode="&temp"
+
+if !(("&traceRetrievalMode"=="APB")||("&traceRetrievalMode"=="ATB")||("&traceRetrievalMode"==""))
+(
+    print %ERROR "ERROR !!!!: INVALID TRACE RETRIEVAL MODE."
+    goto EXIT  
+)
+
+//if user is not passing any parameter, then set default retrieval mode to APB
+if ("&traceRetrievalMode"=="")
+(
+    &traceRetrievalMode="APB"
+)
+//if user is not passing any parameter, then set default traceID = 65.
+if ("&traceID"=="")
+(
+  &traceID=65.
+)
+
+y.create.l IN_FUN0_BASE               0x06041000
+y.create.l IN_FUN1_BASE               0x06042000
+y.create.l MERGE_FUN_BASE             0x06045000
+y.create.l ETFETB_BASE                0x06047000
+y.create.l QATB_FUN_BASE              0x06005000
+
+y.create.l QDSS_CS_QDSSCSR_LOCKACCESS    0x06001FB0
+y.create.l QDSS_CS_QDSSCSR_TIMESTAMPCTRL 0x06001038
+
+
+y.create.l QDSS_PIMEM_TPDM_GPR0        0x07050000
+;y.create.l QDSS_PIMEM_TPDM_CMB_CR      0x07050A00
+;y.create.l QDSS_PIMEM_TPDM_CMB_TPR0    0x07050A08
+;y.create.l QDSS_PIMEM_TPDM_CMB_TPMR0   0x07050a10
+;y.create.l QDSS_PIMEM_TPDM_DSB_CR      0x07050780
+;y.create.l QDSS_PIMEM_TPDM_DSB_TPR0    0x07050788
+;y.create.l QDSS_PIMEM_TPDM_DSB_TPR1    0x0705078C
+;y.create.l QDSS_PIMEM_TPDM_DSB_TPMR0   0x070507A8
+y.create.l QDSS_PIMEM_TPDM_BC_CR       0x07050280
+y.create.l QDSS_PIMEM_TPDM_BC_CNTENSET 0x07050288
+y.create.l QDSS_PIMEM_TPDM_LAR        0x07050FB0
+y.create.l QDSS_TPDA_TPDA_CR          0x06004000
+y.create.l QDSS_TPDA_TPDA_P9_CR       0x06004028
+y.create.l QDSS_TPDA_TPDA_SYNCR       0x0600408C
+y.create.l QDSS_TPDA_TPDA_LOCKACCESS  0x06004FB0
+y.create.l QDSS_CTI0_CTICONTROL       0x06010000
+y.create.l QDSS_CTI0_CTIINEN0         0x06010020
+y.create.l QDSS_CTI0_CTIOUTEN1        0x060100A4
+y.create.l QDSS_CTI0_LAR              0x06010FB0
+y.create.done
+
+&ac_sp="eaxi"
+
+
+if ("&traceRetrievalMode"=="ATB")
+(
+	;------- QDSS CSR ( for timestamp ) ------------
+	d.s &ac_sp:QDSS_CS_QDSSCSR_LOCKACCESS    %LE %LONG 0xC5ACCE55
+	d.s &ac_sp:QDSS_CS_QDSSCSR_TIMESTAMPCTRL %LE %LONG 0x02
+
+
+	;------- FUNNEL ------------
+	d.s &ac_sp:IN_FUN0_BASE+0xFB0   %LE %LONG 0xC5ACCE55
+	d.s &ac_sp:IN_FUN1_BASE+0xFB0   %LE %LONG 0xC5ACCE55
+	d.s &ac_sp:MERGE_FUN_BASE+0xFB0 %LE %LONG 0xC5ACCE55
+	d.s &ac_sp:QATB_FUN_BASE+0xFB0 %LE %LONG 0xC5ACCE55
+
+	;------- Setup FUNNEL - enable ports ------------
+	d.s &ac_sp:IN_FUN0_BASE   %LE %LONG 0x00000040   
+	d.s &ac_sp:IN_FUN1_BASE   %LE %LONG 0x00000000
+	d.s &ac_sp:MERGE_FUN_BASE %LE %LONG 0x00000001
+	d.s &ac_sp:QATB_FUN_BASE %LE %LONG 0x00000001
+
+
+	;------- setup ETB ------------
+	d.s &ac_sp:ETFETB_BASE+0xFB0 %LE %LONG 0xC5ACCE55
+	d.s &ac_sp:ETFETB_BASE+0x020 %LE %LONG 0x0
+	d.s &ac_sp:ETFETB_BASE+0x018 %LE %LONG 0x0
+	d.s &ac_sp:ETFETB_BASE+0x014 %LE %LONG 0x0
+	d.s &ac_sp:ETFETB_BASE+0x028 %LE %LONG 0x0
+	d.s &ac_sp:ETFETB_BASE+0x304 %LE %LONG 0x1003
+	d.s &ac_sp:ETFETB_BASE+0x020 %LE %LONG 0x1
+
+	;------- TPDA ------------
+	d.s &ac_sp:QDSS_TPDA_TPDA_LOCKACCESS %LE %LONG 0xC5ACCE55
+        d.s &ac_sp:QDSS_TPDA_TPDA_CR         %LE %LONG 0x6;  // FREQTS = 1; FREQREQ = 1
+        per.s.f &ac_sp:QDSS_TPDA_TPDA_CR %L 0x1FC0 (&traceID)
+	d.s &ac_sp:QDSS_TPDA_TPDA_SYNCR      %LE %LONG 0xFFF
+	d.s &ac_sp:QDSS_TPDA_TPDA_P9_CR      %LE %LONG 0x81  //0x91 ; 0x81 ; 0x11 has issue
+
+)
+
+;------- TPDM ------------
+d.s &ac_sp:QDSS_PIMEM_TPDM_LAR        %LE %LONG 0xC5ACCE55
+d.s &ac_sp:QDSS_PIMEM_TPDM_BC_CR     %LE %LONG 0x0; E=0 , 
+d.s &ac_sp:QDSS_PIMEM_TPDM_BC_CNTENSET %L 0xFF    ; 8 basic counters are Enabled 
+if ("&traceRetrievalMode"=="ATB")
+(
+	d.s &ac_sp:QDSS_PIMEM_TPDM_BC_CR     %LE %LONG 0x1; E=1, enabled BC unit for Data collection, ATB retrieval mode 
+)
+else 
+(
+	d.s &ac_sp:QDSS_PIMEM_TPDM_BC_CR     %LE %LONG 0x5; E=1 ,enabled BC unit for Data collection, APB retrieval mode
+)
+
+
+//To dump registers
+d &ac_sp:QDSS_PIMEM_TPDM_BC_CR /sl
+d &ac_sp:QDSS_PIMEM_TPDM_LAR /sl
+
+
+// All done 
+print "PIMEM TPDM trace config DONE"
+
+////////////////////////////////////////
+//
+//          EXIT 
+//
+/////////////////////////////////////////
+	
+EXIT:
+	ENDDO
+

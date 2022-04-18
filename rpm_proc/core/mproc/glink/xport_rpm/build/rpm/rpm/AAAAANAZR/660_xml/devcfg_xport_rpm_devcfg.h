@@ -1,0 +1,3 @@
+#define xport_rpm_devcfg_proc_info xport_rpm_devcfg_proc_info_660_xml
+#define xport_rpm_devcfg_remote_procs xport_rpm_devcfg_remote_procs_660_xml
+#define xport_rpm_devcfg_toc xport_rpm_devcfg_toc_660_xml

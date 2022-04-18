@@ -1,0 +1,136 @@
+# vi: tw=128 ts=3 sw=3 et
+# @file dog.scons
+# @brief This file contains the API details for the Dog Services, API 2.0
+#===============================================================================
+# NOTE: The @brief description above does not appear in the PDF.
+# The tms_mainpage.dox file contains the group/module descriptions that
+# are displayed in the output PDF generated using Doxygen and LaTeX. To
+# edit or update any of the group/module text in the PDF, edit the
+# tms_mainpage.dox file or contact Tech Pubs.
+#===============================================================================
+#===============================================================================
+# Copyright (c) 2014 Qualcomm Technologies Incorporated.
+# All Rights Reserved.
+# Qualcomm Confidential and Proprietary.
+#===============================================================================
+#===============================================================================
+# Edit History
+# $Header: //components/rel/core.qdsp6/1.0.c2/debugtools/dog/build/dog_hal.scons#1 $
+# $DateTime: 2020/02/10 01:57:30 $
+# $Change: 22511909 $
+# $Author: pwbldsvc $
+#===============================================================================
+
+Import('env')
+env = env.Clone()
+
+# BUILD_TAGS For Deliverable (Supported Build_Objects)
+
+BUILD_TAGS = [
+   'CORE_ROOT_PD', 
+   'CORE_QDSP6_SW', 
+   'CORE_Q6_ROOT',
+]
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+
+env.VariantDir('${BUILDPATH}', '../src', duplicate=0)
+
+#-------------------------------------------------------------------------------
+# External Dependency
+#-------------------------------------------------------------------------------
+
+#env.RequireExternalApi([
+#   'XYZ',
+#])
+
+#-------------------------------------------------------------------------------
+# Internal Dependency
+#-------------------------------------------------------------------------------
+
+env.RequirePublicApi([
+   'DAL',
+   'TMS',
+   'DEBUGTOOLS', # alias to TMS
+   'DEBUGTRACE',
+   'SERVICES',
+   'STORAGE',
+   'SYSTEMDRIVERS',
+   'KERNEL', # needs to be last (also contains wrong comdef.h)
+])
+
+env.RequireRestrictedApi([
+   'TMS_RESTRICTED',
+   'DEBUGTOOLS', # alias to TMS
+])
+
+island_section = ['.text.uDog','.data.uDog']
+
+#-------------------------------------------------------------------------------
+# Sources
+#-------------------------------------------------------------------------------
+
+# Associated Directly with Libraries
+
+#-------------------------------------------------------------------------------
+# Override Hardware Watchdog if desired.
+#-------------------------------------------------------------------------------
+if 'USES_DISABLE_HW_WATCHDOG' in env:
+  env.Append(CPPDEFINES=['FEATURE_DISABLE_HW_WATCHDOG'])
+  env.PrintWarning('OVERRIDE: Hardware Watchdog Disabled via USES_FLAGS.')
+
+#-------------------------------------------------------------------------------
+# Libraries
+#-------------------------------------------------------------------------------
+
+if 'ADSP_PROC' in env:
+   DOG_HAL_SOURCE = [
+      '${BUILDPATH}/dog_hal_sdm660_adsp.c',
+   ]
+
+   UDOG_HAL_SOURCE = [
+      '${BUILDPATH}/udog_hal_sdm660_adsp.c',
+   ]
+
+elif 'SLPI_PROC' in env:
+   DOG_HAL_SOURCE = [
+      '${BUILDPATH}/dog_hal_sdm660_adsp.c',
+   ]
+
+   UDOG_HAL_SOURCE = [
+      '${BUILDPATH}/udog_hal_sdm660_adsp.c',
+   ]
+
+elif 'CDSP_PROC' in env:
+   DOG_HAL_SOURCE = [
+      '${BUILDPATH}/dog_hal_sdm660_cdsp.c',
+   ]
+
+   UDOG_HAL_SOURCE = [
+      '${BUILDPATH}/udog_hal_sdm660_cdsp.c',
+   ]
+
+if 'USES_ISLAND' in env:
+   udog_hal_libs = env.AddLibrary(BUILD_TAGS,'${BUILDPATH}/udog_hal', UDOG_HAL_SOURCE)
+else:
+   DOG_HAL_SOURCE.append(UDOG_HAL_SOURCE);
+
+dog_hal_libs = env.AddLibrary(BUILD_TAGS, '${BUILDPATH}/dog_hal', DOG_HAL_SOURCE)
+
+if 'USES_ISLAND' in env:
+   env.AddIslandLibrary(BUILD_TAGS, udog_hal_libs )
+
+if 'USES_RCINIT' in env:
+
+   env.AddRCInitFunc(
+      BUILD_TAGS,
+      {
+         'sequence_group'             : 'RCINIT_GROUP_0',
+         'init_name'                  : 'dog_hal_root',
+         'init_function'              : 'HAL_dogInit',
+         'dependencies'               : [ 'dalsys', 'timer_client', 'sys_m_smsm_init' ],
+      })
+
+

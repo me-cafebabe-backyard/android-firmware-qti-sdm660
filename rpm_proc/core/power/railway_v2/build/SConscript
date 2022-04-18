@@ -1,0 +1,71 @@
+import os
+
+Import('env')
+env = env.Clone()
+#default vipertooth support using Starlord target specific files   
+if env['MSM_ID'] in ['405']:
+   env.Append(CPPDEFINES = 'QCS405_IMAGE_LAYOUT')
+   env['MSM_ID'] = '660'
+
+supported_targets = ['8996', '8998', '660', 'nicobar']
+if env['MSM_ID'] not in supported_targets:
+    env.PrintWarning('Bailing from RAILWAY scripts; no support for build targets other than %s' % supported_targets)
+    Return()
+
+SRCPATH = "../src"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+env.Append(CFLAGS = '${ARMCC_STDC99_CMD}')
+env.Append(CPPPATH = '../src')
+
+CBSP_API = [
+   'POWER',
+   'SYSTEMDRIVERS',
+   'PMIC',
+   'DAL',
+   'SERVICES',
+   'DEBUGTRACE',
+   'BOOT',
+   'POWER_UTILS',
+   'KERNEL'           # required for stringl.h for memscpy()
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+#-------------------------------------------------------------------------------
+# Generate QFPROM PVS HWIO definitions
+#-------------------------------------------------------------------------------
+if env.has_key('HWIO_IMAGE'):
+    env.AddHWIOFile('HWIO', [
+        {
+            'filename': '${INC_ROOT}/core/power/railway_v2/src/${MSM_ID}/qfprom_pte_hwio.h',
+            'modules': ['SECURITY_CONTROL_CORE'],
+            'output-offsets': False,
+            'header':
+                '#include "msmhwiobase.h"\n\n'
+        }
+    ])
+
+RAILWAY_SOURCES = [
+    '${BUILDPATH}/railway.c',
+    '${BUILDPATH}/railway_adapter.c',
+    '${BUILDPATH}/railway_aggregator.c',
+    '${BUILDPATH}/railway_internal.c',
+    '${BUILDPATH}/railway_sw_mode.c',
+    '${BUILDPATH}/railway_cbs.c',
+    '${BUILDPATH}/railway_core_rails.c',
+    '${BUILDPATH}/railway_ssc_rails.c',
+    '${BUILDPATH}/railway_lpi_rails.c',
+    '${BUILDPATH}/${MSM_ID}/railway_config.c',
+]
+
+env.AddLibrary(['CORE_RPM'], '${BUILDPATH}/railway.lib', RAILWAY_SOURCES)
+
+if 'USES_QDSS_SWE' in env:
+   QDSS_IMG = ['QDSS_EN_IMG']
+   events = [['RAILWAY_CHANGE_VOLTAGE=650', 'railway_change_voltage: (rail %d) (new microvolts %d) (old microvolts %d) (new corner/old corner 0x%0.8x)'],
+             ['RAILWAY_LAST=669','rpm_ocmem_update_bank_setting: (old_vote: %d) (new_vote: %d) (active_votes: %d) (retention_votes: %d)'],
+            ]
+   env.AddSWEInfo(QDSS_IMG, events)
+

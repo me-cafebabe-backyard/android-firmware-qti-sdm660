@@ -1,0 +1,2 @@
+#define pm_hyp_spmi_cfg pm_hyp_spmi_cfg_660_oem_hyp
+#define pm_hyp_spmi_cfg_sz pm_hyp_spmi_cfg_sz_660_oem_hyp

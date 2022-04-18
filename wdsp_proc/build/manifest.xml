@@ -1,0 +1,10 @@
+<config>
+  <image_tree>
+    <name>WDSP.9340.1.0.c1</name>
+    <build_id>WDSP.9340.1.0.c1-00008-W9340AAAAAAAZQ-1</build_id>
+    <branch_point_revision/>
+    <revision>00008</revision>
+    <spin>1</spin>
+    <client>W9340AAAAAAAZQ</client>
+  </image_tree>
+</config>

@@ -1,0 +1,37 @@
+#===============================================================================
+#
+# GENERAL DESCRIPTION
+#    Build script for HAL QDSS-TMC Library.
+#
+# Copyright (c) 2011 by Qualcomm Technologies, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header:$
+
+
+Import('env')
+import qdss
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "../src"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+env.RequirePublicApi(['HAL','DAL','SERVICES','SYSTEMDRIVERS','KERNEL'])
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+
+TMC_HAL_SRC = [
+   '${BUILDPATH}/halqdss_etfetb.c',
+]
+
+env.AddLibrary(
+   qdss.BuildTags(['rpm', 'wcn', 'gss', 'modem', 'cdsp','adsp', 'apps', 'venus', 'sensor']),
+   '${BUILDPATH}/tmc_hal',TMC_HAL_SRC)
+

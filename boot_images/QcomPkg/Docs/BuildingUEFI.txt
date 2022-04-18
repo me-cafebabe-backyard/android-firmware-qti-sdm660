@@ -1,0 +1,190 @@
+/** @file BuildingUEFI.txt
+   
+  UEFI build documentation
+
+  Copyright (c) 2013-2016, Qualcomm Technologies Inc. All rights reserved. 
+  
+**/
+
+/*=============================================================================
+                              EDIT HISTORY
+
+
+ when       who     what, where, why
+ --------   ---     -----------------------------------------------------------
+ 08/03/16   vk      Remove old compiler info
+ 07/28/16   yps     LLVM info update
+ 06/13/16   xy      LLVM info update
+ 06/01/16   lg      added support for building with pre-built Qcom images
+ 03/08/16   yg      Updated documentation
+ 02/11/16   et      Updated with buildit.py instructions
+ 12/13/14   vk      GCC/LLVM update
+ 06/11/14   aus     Updated RELEASE flag information
+ 03/11/14   vk      Remove cygwin support
+ 02/20/14   vk      Native Windows make builds using gcc
+ 12/30/13   vk      Updates for 64 bit and cygwin
+ 06/21/13   vk      Add notice header
+ 05/17/13   vk      Initial version
+=============================================================================*/
+
+
+UEFI Build
+----------
+
+Note:
+Replace all instance of <TargetPkg> with valid target folder in QcomPkg:
+e.g: QcomPkg\<TargetPkg> is QcomPkg\Msm8998pkg
+
+ ----------------------------
+|  Required Tool and Setup   |
+ ----------------------------
+   
+  Windows 7
+  ------------
+  1) Visual Studio 2012 or Express Edition
+     Only nmake.exe is used form visual studio. nmake.exe needs to be in %PATH%
+     From "QcomPkg\<TargetPkg>\" type nmake.exe to make sure build system has acess to nmake.exe
+
+  2) Python 2.7.3 (in search path, use "python -V" to verify)
+
+  3) Snapdragon LLVM 3.8.4 for Windows available at Qualcomm Chipcode  
+
+  Linux
+  -----
+  1) uuid-dev
+  2) gcc
+  3) g++
+  4) Python 2.7.3 (in search path, use "python -V" to verify)
+  5) sqlite3
+  6) Snapdragon LLVM 3.8.4 for Linux available at Qualcomm Chipcode
+
+
+ -----------------------------
+|  Build Command and options  |
+ -----------------------------
+
+  Windows/Linux
+  --------------
+  QcomPkg\buildit.py
+  This is the common build script for all packages
+
+  Build Options
+  --------------
+  Usage: python buildit.py [optional arguments]... 
+
+  Examples:
+    python ../buildit.py 
+    python QcomPkg/buildit.py
+  
+  Arguments:
+  -t --target
+      Provide target(s) to build, separated by a comma
+      ex: python buildit.py -t Msm8996Pkg,Msm8998Pkg
+
+  --variant
+      Provide variant(s) to build, separated by a comma
+      ex: python buildit.py --variant XX,YY
+      where XX, YY are variant folders in a target package folder
+  
+  -r --release
+      Provide a release mode, one of "DEBUG" or "RELEASE". Default is to build both.
+
+  -q --query
+     Displays detected build flavors available to build
+
+  -v --version
+      Specify build version. Default is 0.
+
+  -a --alias
+      Specify the config section as listed in the file QcomPkg/build.cfg to provide 
+      the build params instead of manually specifying on command line
+
+  --single_dsc
+      Provide a single dsc to be built. Merging may fail if a full build is not done prior.
+      Note: This should not include path.
+
+  --build_flags
+      Comma separated list of extra arguments to be supplied to the underlying build system.
+      ex: python buildit.py --build_flags cleanall,special
+
+      Extra Build Arg options:
+        These are comma separated values, within double quotes if space is needed, any valid combination of the
+        values can be used
+      -v       : verbose
+      -m file  : Module inf file to build (relative path from root of workspace)
+      -n x     : Number of threads to spawn for the build (x = 1 when need to locate error)
+      cleanall : Clean all the generated files
+  
+  --compiler_flags
+      This string is passed in its entirety to the compiler. Quotes may be used for strings
+      that require a space.
+      ex: python buildit.py --compiler_flags -DPRE_SIL
+      ex: python buildit.py --compiler_flags "-DSOME_FLAG -DANOTHER_FLAG"
+
+
+ -----------------------------
+|  Some usage Examples:       |
+ -----------------------------
+  python buildit.py
+    Default command, buildit builds all targets, sub_targets, and variants for DEBUG and RELEASE
+  
+  python buildit.py -a test
+    Get the build cmd line arguments from build.cfg section test
+  
+  python buildit.py -t Msm8996Pkg --variant WP --single_dsc=Msm8996Pkg_Core.dsc
+    Building a specific target, variant, and single_dsc. This will build both DEBUG and RELEASE
+  
+  python buildit.py -t Msm8996Pkg --variant LA -r DEBUG --single_dsc=Msm8996Pkg_Core.dsc
+    Building a specific target, variant, and single_dsc for DEBUG
+  
+  python buildit.py -t Msm8996Pkg --variant WP -r DEBUG --single_dsc=Msm8996Pkg_Core.dsc --build_flags="<ExtraArgs>"
+    Build a specific target, variant and dsc with extra build args
+
+  python buildit.py -t Msm8998Pkg --variant LA -r DEBUG --single_dsc=Msm8998Pkg_Core.dsc --build_flags="-n 1"
+    Build 8998, LA Debug Core image in single threaded mode (helps locate error at the last)
+
+  python buildit.py -t Msm8998Pkg --variant LA -r DEBUG --single_dsc=Msm8998Pkg_Core.dsc --build_flags="cleanall"
+    Clean 8998, LA Debug Core image
+
+  python buildit.py -t Msm8998Pkg --variant LA -r DEBUG --single_dsc=Msm8998Pkg_Core.dsc --build_flags="-v,-n 1,-m QcomPkg/Drivers/QcomBds/QcomBds.inf"
+    Build 8998, LA Debug Core image's QcomBds driver only, in verbose and single threaded mode
+
+  python buildit.py -t Msm8998Pkg --variant LA -r DEBUG --single_dsc=Msm8998Pkg_Core.dsc --build_flags="-m QcomPkg/Drivers/QcomBds/QcomBds.inf"
+    Build 8998, LA Debug Core image's QcomBds driver only
+
+Building with pre-built Qcom images:
+
+Arguments:
+
+	--create_intermediate_core
+	--create_intermediate_loader
+
+	--use_intermediate_core
+	--use_intermediate_loader
+
+Usage: for each, execute the following command, replacing <path_to_QcomBinPkg_folder> with your local path
+
+	1. Backing up pre-built images (core and loader):
+
+		Core + Loader:
+			python buildit.py -v WP -r RELEASE --create_intermediate_core <path_to_QcomBinPkg_folder> --create_intermediate_loader <path_to_QcomBinPkg_folder> 
+		Only Core:
+			python buildit.py -v WP -r RELEASE --create_intermediate_core <path_to_QcomBinPkg_folder>
+		Only Loader:
+			python buildit.py -v WP -r RELEASE --create_intermediate_loader <path_to_QcomBinPkg_folder>
+
+		Example Usage: 
+			python buildit.py -v WP -r RELEASE --create_intermediate_core C:\boot_build\boot_images\QcomBinPkg --create_intermediate_loader C:\boot_build\boot_images\QcomBinPkg
+
+	2. Building with the backed-up images (core and loader):
+
+		Core + Loader:
+			python buildit.py -v WP -r RELEASE --use_intermediate_core <path_to_QcomBinPkg_folder> --use_intermediate_loader <path_to_QcomBinPkg_folder>
+		Only Core:
+			python buildit.py -v WP -r RELEASE --use_intermediate_core <path_to_QcomBinPkg_folder>
+		Only Loader:
+			python buildit.py -v WP -r RELEASE --use_intermediate_loader <path_to_QcomBinPkg_folder>
+		
+		Example Usage: 
+			python buildit.py -v WP -r RELEASE --use_intermediate_core C:\boot_build\boot_images\QcomBinPkg --use_intermediate_loader C:\boot_build\boot_images\QcomBinPkg
+

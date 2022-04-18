@@ -1,0 +1,45 @@
+#/** @file I2CLibLoader.inf
+#  
+#  I2C Library INF file for XBL Loader
+#  
+#      Copyright (c) 2015-2017 Qualcomm Technologies, Incorporated.
+#                        All rights reserved.
+#     Qualcomm Technologies, Confidential and Proprietary.
+
+#==============================================================================
+#                              EDIT HISTORY
+#
+#
+# when       who     what, where, why
+# --------   ---     ----------------------------------------------------------
+# 02/01/17   vg     Copyright updated
+# 09/22/16   vg     Bam code removal
+# 05/18/15   unr    created
+#
+#==============================================================================
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = I2CLib
+  FILE_GUID                      = 82964EF3-6BDE-4E44-9CBF-2F034735363B
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = I2CLib
+
+[Sources.common]
+  HALqupe.c
+  HALqupeI2c.c
+  I2cDeviceQup.c
+  I2cNolog.c
+  I2cPlatSvcLoader.c
+  I2cSys.c
+  I2cSysExtUefi.c
+  I2CConfig.c
+  I2cApi.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  EmbeddedPkg/EmbeddedPkg.dec
+  QcomPkg/QcomPkg.dec
+
+[LibraryClasses]

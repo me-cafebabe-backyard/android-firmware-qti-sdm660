@@ -1,0 +1,36 @@
+//===========================================================================
+//
+// FILE:         icbcfg_rpm_.xml
+//
+// DESCRIPTION:  This file contains the DAL XML properties for the ICB
+//               RPM Driver.
+//
+//===========================================================================
+//
+//                             Edit History
+//
+// $Header: //components/dev/rpm.bf/1.7/kkamble.RPM.BF.1.7.icb_rpm_660/core/systemdrivers/icb/config/icbcfg_rpm_660.xml#1 $
+// $DateTime: 2016/09/12 23:56:03 $
+// $Author: kkamble $
+// $Change: 11353602 $ 
+//
+// when         who     what, where, why
+// ----------   ---     -------------------------------------------------------
+// 2016/09/15   kkk     Created
+//
+//===========================================================================
+//             Copyright (c) 2016 Qualcomm Technologies Incorporated.
+//                    All Rights Reserved.
+//                  QUALCOMM Proprietary/GTDR
+//===========================================================================
+
+<driver name="icb_rpm">
+   <global_def>
+        
+   </global_def>
+   <device id="/dev/icb/rpm">
+     <props name="system" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        icb_rpm_system
+     </props> 
+   </device>   
+</driver>

@@ -1,0 +1,69 @@
+// P4: $Author: c_jbenis $
+//     $Change: 454306 $
+//     $DateTime: 2016/01/25 10:24:36 $
+//     $Id: //depot/VI_Digital/vi_apss/dev/c_jbenis/common/scripts/etbbin2json.py#3 $
+
+The "cpuss_dragonlink.cmm" script allows the configuration of the CPUSS DragonLink TPDM/TPDA complex used to collect hardware events (HWEs) within the CPU subsystem. Up to 64 HWEs can be simultaniously collected, from a total set of ~500.  Currently, each of these 64 HWEs are chosen from a pre-determined set of 6 mutually exclusive events from the total set of ~500.  
+
+As "cpuss_dragonlink.cmm" must be modified to enable specific hardware events, it should be copied to a user-local directory before modification.
+
+To enable a specific HWE, two entries must be made to "cpuss_dragonlink.cmm". The correct event must be chosen, then the event must be enabled.  All HWE are listed in the cmm script below the lines:
+
+
+   ////////////////////////////////
+   //// Enter Selections Below ////
+   ////////////////////////////////
+
+
+An example HWE selection is shown here:
+
+
+   &selmsk=0x0 //   change to 0x1, then pick your event below:
+   &selmux=0x0 //   0   --   apss_cl0_core0_on - Cluster0 CPU0 is active
+               //   1   --   CCI_CLK_on - Clock gating state of CCI
+               //   2   --   core0_wait_req - Core0 system wait request
+               //   3   --   cpu0_qch_intf_req - CPU0 QCH interface handshake signals
+               //   4   --   clus0_l2q_active - Cluster 0 L2 Q channel interface
+               //   5   --   CCI_SLV2_PMU_EVENT[4] - Read request handshake: cache maintenance operation
+   &selmsk0=&selmsk0|(&selmsk<<0.)
+   &selmux0=&selmux0|(&selmux<<0.)
+
+
+As an example, to enable collection of hwe "core0_wait_req", selmux is set to 0x2 to select the event, and selmsk is set to 0x1 to enable the event:
+
+
+   &selmsk=0x1 //   change to 0x1, then pick your event below:
+   &selmux=0x2 //   0   --   apss_cl0_core0_on - Cluster0 CPU0 is active
+               //   1   --   CCI_CLK_on - Clock gating state of CCI
+               //   2   --   core0_wait_req - Core0 system wait request
+               //   3   --   cpu0_qch_intf_req - CPU0 QCH interface handshake signals
+               //   4   --   clus0_l2q_active - Cluster 0 L2 Q channel interface
+               //   5   --   CCI_SLV2_PMU_EVENT[4] - Read request handshake: cache maintenance operation
+   &selmsk0=&selmsk0|(&selmsk<<0.)
+   &selmux0=&selmux0|(&selmux<<0.)
+
+
+Each of the possible 64 captured HWEs are selected and enabled in this manner.  The script configures the CPUSS TPDM, TPDA, Funnels, and ETB for data capture.  The overall procedure for CPUSS HWE capture is:
+
+1.  Copy "cpuss_dragonlink.cmm" to a local directory
+2.  Edit "cpuss_dragonlink.cmm" to enable events of interest
+3.  From T32, run "cpuss_dragonlink.cmm"
+3.  From T32, run test to generate events
+4.  From T32, run "detb.cmm" to dump the ETB data to a binary file on the local PC (/temp dir).
+5.  From a term or cmd line, Run "python etbbin2json.py INPUT_FILE" to convert the ETB bin file to a JSON-based txt file.
+6.  From a term or cmd line, Run "python parse_cpuss_dsb.py INPUT_FILE -c CMM_FILE" to parse the JSON-based txt file.  Note: the -c option points to the CMM file created in 2.  In this way, event names can be assigned to the event numbers captured in the output data.
+
+The QTF tool can be substituted for step 5.
+
+   etbbin2json.py -h
+      - or -
+   parse_cpuss_dsb.py -h
+
+provides command line syntax, options and help.  Script locations are:
+
+   vi_nazgul/cmm/debug/
+   vi_nazgul/cmm/qdss/
+
+jbenis
+c_jbenis@qti.qualcomm.com
+#55256

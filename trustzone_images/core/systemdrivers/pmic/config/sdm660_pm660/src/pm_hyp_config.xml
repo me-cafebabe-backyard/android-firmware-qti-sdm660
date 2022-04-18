@@ -1,0 +1,31 @@
+/*! \file
+*  \n
+*  \brief  pm_hyp_config.xml
+*  \n
+*  \n  This contains configuration for access control on MSM8996 device.
+*  \n
+*  \n &copy; Copyright 2015 QUALCOMM Incorporated, All Rights Reserved
+*/
+/* =======================================================================
+Edit History
+This section contains comments describing changes made to this file.
+Notice that changes are listed in reverse chronological order.
+
+$Header: $
+
+when       who     what, where, why
+--------   ---     ----------------------------------------------------------
+
+07/16/14   vtw     Created.
+========================================================================== */
+
+<driver name="NULL">
+   <device id="/pmic/hyp/cfg">
+      <props name="spmi_channel_cfg" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        pm_hyp_spmi_cfg
+      </props>
+      <props name="spmi_channel_cfg_size" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+         pm_hyp_spmi_cfg_sz
+      </props>
+   </device>
+</driver>

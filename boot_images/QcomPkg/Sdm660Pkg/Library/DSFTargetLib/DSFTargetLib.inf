@@ -1,0 +1,114 @@
+#/** @file DDRTargetLib.inf
+#
+#  DDR Lib
+#  
+#  Copyright (c) 2014-2015 Qualcomm Technologies, Inc.  All Rights Reserved.
+#  Qualcomm Technologies Proprietary and Confidential.
+#
+#**/
+
+#==============================================================================
+#                              EDIT HISTORY
+#
+# when       who     what, where, why
+# --------   ---     ----------------------------------------------------------
+# 12/15/15   bh      Settings relocation
+# 08/17/15   sr      Initial Revision
+#
+#==============================================================================
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DSFTargetLib
+  FILE_GUID                      = 5452BA01-44C3-4D2C-8A49-2E4D89CACC1B
+  MODULE_TYPE                    = SEC
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = DSFTargetLib
+
+[BuildOptions]
+  RVCT:*_*_*_CC_FLAGS = -DSHARED_IMEM_DDR_PARAM_BASE=0xFE805190 -DSHARED_IMEM_DDR_TRAINING_COOKIE=0xFE805018 -DBUILD_BOOT_CHAIN
+
+[BuildOptions.AARCH64]
+  GCC:*_*_*_CC_FLAGS = -DDDRCC_PLL_EXTENSION_0 -DFEATURE_BOOT_EXTERN_DDR_COMPLETED -DSHARED_IMEM_DDR_PARAM_BASE=0xFE805190 -DSHARED_IMEM_DDR_TRAINING_COOKIE=0xFE805018 -DBUILD_BOOT_CHAIN -DUSE_LOADER_UTIL -DDDR_GLOBAL_STRUCT_DATARAM_ADDR=0x002A2000 -DDDR_GLOBAL_STRUCT_DATARAM_SIZE=0x2000 -Wno-tautological-compare
+  MSFT:*_*_*_CC_FLAGS = -DDDRCC_PLL_EXTENSION_0 -DFEATURE_BOOT_EXTERN_DDR_COMPLETED -DSHARED_IMEM_DDR_PARAM_BASE=0xFE805190 -DSHARED_IMEM_DDR_TRAINING_COOKIE=0xFE805018 -DBUILD_BOOT_CHAIN -DUSE_LOADER_UTIL -DDDR_GLOBAL_STRUCT_DATARAM_ADDR=0x002A2000 -DDDR_GLOBAL_STRUCT_DATARAM_SIZE=0x2000
+  
+[Sources.common]
+
+# DDRSS Sources  
+  ./boot/ddrss/src/ddrss.c  
+  ./boot/ddrss/src/ddrss_boot_training_init_lpddr4.c  
+  ./boot/ddrss/src/ddrss_boot_training_restore_lpddr4.c 
+  ./boot/ddrss/src/ddrss_ca_vref_lpddr4.c  
+  ./boot/ddrss/src/ddrss_common.c  
+  ./boot/ddrss/src/ddrss_common_lpddr4.c  
+  ./boot/ddrss/src/ddrss_dcc.c  
+  ./boot/ddrss/src/ddrss_periodic_training.c  
+  ./boot/ddrss/src/ddrss_phy_cc_init.c  
+  ./boot/ddrss/src/ddrss_rcw.c  
+  ./boot/ddrss/src/ddrss_rd_dqdqs_lpddr4.c  
+  ./boot/ddrss/src/ddrss_wr_dqdqs_lpddr4.c  
+  ./boot/ddrss/src/ddrss_wrlvl.c  
+  ./rpm/ddrss/src/ddrss_common_lpddr4_rpm.c  
+  ./rpm/ddrss/src/ddrss_common_rpm.c  
+  ./rpm/ddrss/src/ddrss_freq_switch_rpm.c  
+  ./rpm/ddrss/src/ddrss_rpm.c  
+  ./boot/target/SDM630_660/sdi/ddrss_init_sdi.c
+  
+# BIMC Sources
+  ./boot/ddrss/bimc/mc230/src/bimc_init.c 
+  ./boot/ddrss/bimc/mc230/src/bimc_lpddr4.c 
+  ./boot/ddrss/bimc/mc230/src/bimc_training.c 
+  ./rpm/ddrss/bimc/mc230/src/bimc_common_rpm.c 
+  ./rpm/ddrss/bimc/mc230/src/bimc_data_lpddr4_rpm.c 
+  ./rpm/ddrss/bimc/mc230/src/bimc_data_rpm.c 
+  ./rpm/ddrss/bimc/mc230/src/bimc_freq_switch_lpddr4_rpm.c 
+  ./rpm/ddrss/bimc/mc230/src/bimc_lpddr4_rpm.c 
+  ./rpm/ddrss/bimc/mc230/src/bimc_rpm.c 
+  
+# MCCC Sources
+  ./boot/ddrss/mccc/mccc10/src/mccc.c
+  ./rpm/ddrss/mccc/mccc10/src/mccc_rpm.c
+	
+# DDR_CC_MCCC_SOURCES
+  ./boot/ddrss/ddr_cc_mccc/ddr_cc_mccc10/src/ddr_cc_mccc.c 
+  ./rpm/ddrss/ddr_cc_mccc/ddr_cc_mccc10/src/ddr_cc_mccc_rpm.c 
+	
+# PHY Sources  
+  ./boot/ddrss/phy/phy30/src/ddr_phy_hal_cfg_cdc_cdcext.c
+  ./boot/ddrss/phy/phy30/src/ddr_phy_hal_cfg_dcc_training.c
+  ./boot/ddrss/phy/phy30/src/ddr_phy_hal_cfg_vref_training.c
+  ./rpm/ddrss/phy/phy30/src/ddr_phy_hal_cfg_init_rpm.c
+  ./rpm/ddrss/phy/phy30/src/ddr_phy_power_collapse_rpm.c
+
+#DSF Target Config 
+# DDR target sources
+  ./../../Settings/DSF/boot/bimc_config.c
+  ./../../Settings/DSF/boot/ddr_phy_config.c
+  ./../../Settings/DSF/boot/dtts_load_ram.c
+  ./../../Settings/DSF/boot/target_config.c
+  ./../../Settings/DSF/boot/ddr_training_params.c
+  ./../../Settings/DSF/boot/mccc_config.c
+	./../../Settings/DSF/boot/ddr_cc_mccc_config.c
+  ./../../Settings/DSF/rpm/target_config_rpm.c
+
+# SDI source
+  ./boot/target/SDM630_660/sdi/ddrss_init_sdi.c
+  ./boot/target/SDM630_660/sdi/ddrss_init_sdi.h
+  
+#ASM_SOURCES	
+  ./boot/ddrss/src/x64/ddrss_mem_rdwr_llvm.s
+  
+[Packages]
+  QcomPkg/Sdm660Pkg/Library/DSFTargetLib/DSFTargetLibPkg.dec
+  MdePkg/MdePkg.dec
+  QcomPkg/QcomPkg.dec
+
+[LibraryClasses]
+  MuslLib
+  
+[FeaturePcd]
+
+[FixedPcd]
+
+[Guids]
+

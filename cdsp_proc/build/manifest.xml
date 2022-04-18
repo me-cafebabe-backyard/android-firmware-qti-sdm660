@@ -1,0 +1,10 @@
+<config>
+  <image_tree>
+    <name>CDSP.VT.1.1.c1</name>
+    <build_id>CDSP.VT.1.1.c1-00005-SDM660-1</build_id>
+    <branch_point_revision/>
+    <revision>00005</revision>
+    <spin>1</spin>
+    <client>SDM660</client>
+  </image_tree>
+</config>

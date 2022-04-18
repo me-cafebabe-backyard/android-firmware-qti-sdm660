@@ -1,0 +1,94 @@
+#===============================================================================
+#
+# HAL LDO CHIPSET LIBRARY
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2014 Qualcomm Technologies Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.qdsp6/1.0.c2/systemdrivers/hal/ldo/hw/msm8998/build/halldo_chipset.scons#1 $
+#  $DateTime: 2020/02/10 01:57:30 $
+#  $Author: pwbldsvc $
+#  $Change: 22511909 $
+#
+#===============================================================================
+
+import os
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+
+SRCPATH = "../"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0) 
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+
+CBSP_API = [
+   'HAL',
+   'DAL',
+   'DEBUGTOOLS',
+
+   # needs to be last also contains wrong comdef.h
+   'KERNEL',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+HAL_LDO_CHIPSET_BUILD_ROOT = os.getcwd();
+
+env.PublishPrivateApi("SYSTEMDRIVERS_HAL_LDO_CHIPSET", [
+  HAL_LDO_CHIPSET_BUILD_ROOT + "/../inc",
+])
+
+#-------------------------------------------------------------------------------
+# Sources: HALLDO Chipset Sources
+#-------------------------------------------------------------------------------
+
+HALLDO_CHIPSET_SOURCES = [
+    '${BUILDPATH}/src/HALldoQ6.c',
+    '${BUILDPATH}/src/HALldoMain.c',
+]
+
+#-------------------------------------------------------------------------------
+# Sources: HALLDOChipset Library Creation
+#-------------------------------------------------------------------------------
+
+env.AddLibrary(
+   ['QDSP6_SW_IMAGE', 'CBSP_QDSP6_SW_IMAGE'],
+   '${BUILDPATH}/HALldo_chipset',
+   HALLDO_CHIPSET_SOURCES)
+
+#-------------------------------------------------------------------------------
+# HWIO
+#-------------------------------------------------------------------------------
+
+if env.has_key('HWIO_IMAGE'):
+
+  env.AddHWIOFile('HWIO', [
+    {
+      'filename': '${INC_ROOT}/core/systemdrivers/hal/ldo/hw/${CHIPSET}/inc/HALldoHWIO.h',
+      'modules': ['LPASS_QDSP6SS_PUB'],
+      'filter-exclude': ['RESERVED', 'RESERVE', 'DUMMY'],
+      'output-offsets': True,
+      'header':
+        '/*\n'
+        ' * HWIO base definitions\n'
+        ' */\n'
+        'extern uint32                  HAL_ldo_nHWIOBaseLPASS;\n' +
+        '#define LPASS_BASE             HAL_ldo_nHWIOBaseLPASS\n' +
+        '#define LPASS_BASE_PHYS        0x17000000\n' +
+        '#define LPASS_BASE_SIZE        0x00400000',
+    }
+  ])
+

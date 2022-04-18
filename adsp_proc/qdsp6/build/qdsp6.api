@@ -1,0 +1,39 @@
+#===============================================================================
+#
+# qdsp6 APIs
+#
+# GENERAL DESCRIPTION
+#    Build script
+#
+# Copyright (c) 2009-2009 by Qualcomm Technologies, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/dspcore.adsp/2.9/build/qdsp6.api#1 $
+#  $DateTime: 2016/04/01 15:30:50 $
+#  $Author: pwbldsvc $
+#  $Change: 10190434 $
+#                      EDIT HISTORY FOR FILE
+#                      
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#  
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+#
+#===============================================================================
+Import('env')
+
+env.PublishRestrictedApi('QDSP6',[
+   '${INC_ROOT}/qdsp6/wdt/inc',
+   ])
+
+env.PublishPublicApi('QDSP6',[
+   '${INC_ROOT}/qdsp6/tp/inc',
+   '${INC_ROOT}/qdsp6/adsp_err_fatal/inc',
+   '${INC_ROOT}/qdsp6/main/inc',
+   ])
+
+env.LoadAPIUnits()

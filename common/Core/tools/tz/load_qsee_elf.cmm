@@ -1,0 +1,81 @@
+ENTRY &ARG0 &ARG1 &ARG2
+
+MAIN:
+
+LOCAL &BUILD_PATH &BLD_PATH &ELFARGS &QSEE_VAR &FPATH
+
+&BUILD_PATH="&ARG0"
+&ELF_BASE_PATH="&BUILD_PATH\trustzone_images\core\bsp\"
+&BLD_PATH="\build\&ARG1\"
+&QSEE_VAR="qsee"
+&ELFARGS="/nocode /noclear /strippart "+'"'+"trustzone_images"+'"'+" /sourcepath"
+
+IF ("&ARG0"==""||"&ARG1"=="")
+(
+  DIALOG.MESSAGE "USAGE : load_qsee_elf.cmm <path_to_tz_build> <flavor> [tzt]"
+  ENDDO
+)
+
+IF (!os.dir("&ARG0"))
+(
+  DIALOG.MESSAGE "load_qsee_elf.cmm: Invalid build path: &ARG0"
+  ENDDO
+)
+
+IF ("&ARG2"=="tzt")
+(
+  &QSEE_VAR="qsee_with_test"
+)
+ELSE
+(
+  &QSEE_VAR="qsee"
+)
+
+GOSUB rmsym qsee
+GOSUB rmsym qsee_with_test
+GOSUB rmsym tzbsptest
+GOSUB rmsym tztestexec
+
+&FPATH="&ELF_BASE_PATH&QSEE_VAR&BLD_PATH&QSEE_VAR.elf"
+GOSUB load_elf "&FPATH" &BUILD_PATH
+
+IF ("&QSEE_VAR"=="qsee_with_test")
+(
+  &FPATH="&ELF_BASE_PATH"+"tzbsptest"+"&BLD_PATH"+"tzbsptest.elf"
+  GOSUB load_elf "&FPATH" &BUILD_PATH
+
+  &FPATH="&ELF_BASE_PATH"+"tztestexec"+"&BLD_PATH"+"tztestexec.elf"
+  GOSUB load_elf "&FPATH" &BUILD_PATH
+)
+
+ENDDO
+
+load_elf:
+  ENTRY &ELF &BUILD_PATH
+
+  LOCAL &ELFARGS
+
+  &ELFARGS="/nocode /noclear /strippart "+'"'+"trustzone_images"+'"'+" /sourcepath"
+
+  IF (FILE.EXIST(&ELF))
+  (
+    data.load.elf "&ELF" &ELFARGS &BUILD_PATH\trustzone_images
+    print "Loading symbols for &ELF"
+  )
+  ELSE
+  (
+    DIALOG.MESSAGE "Could not find &ELF."+CONV.CHAR(10.)+"Perhaps it hasn't been built?"
+    PRINT "Please point to QSEE ELF"
+    do std_loadsyms_tz NULL remotely notliveattach loadsecondelf NULL NULL
+  )
+  RETURN
+
+rmsym:
+  ENTRY &nm
+
+  WHILE (Y.EXIST(\\&nm))
+  (
+    sYmbol.Delete \\&nm
+  )
+
+  RETURN

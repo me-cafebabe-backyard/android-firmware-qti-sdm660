@@ -1,0 +1,33 @@
+//===========================================================================
+//
+// FILE:         daltmc.xml
+//
+// DESCRIPTION:  This file contains the DAL XML properties for the STM Config 
+//               Device Access Library.
+//
+//===========================================================================
+//
+//                             Edit History
+//
+// $Header: $
+//
+//
+//===========================================================================
+// Copyright (c) 2014-2015 Qualcomm Technologies, Inc.
+//         All Rights Reserved.
+// Qualcomm Technologies, Inc. Confidential and Proprietary.
+//===========================================================================
+<driver name="TMC">
+  <device id="DALDEVICEID_TMC">
+	 <props name="etb_phys_addr" type=DALPROP_ATTR_TYPE_UINT32>
+     0x06047000 
+    </props>
+  </device>
+  <device id="DALDEVICEID_TMC_SLPI">
+	 <props name="etb_phys_addr" type=DALPROP_ATTR_TYPE_UINT32>
+      0x7065000
+    </props>
+  </device>
+</driver>
+
+

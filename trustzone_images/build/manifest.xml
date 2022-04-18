@@ -1,0 +1,10 @@
+<config>
+  <image_tree>
+    <name>TZ.BF.4.0.7.1</name>
+    <build_id>TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2</build_id>
+    <branch_point_revision/>
+    <revision>00006</revision>
+    <spin>2</spin>
+    <client>S660AAAAANAZT</client>
+  </image_tree>
+</config>

@@ -1,0 +1,167 @@
+;============================================================================
+;  Name:
+;    debug_uefi.cmm
+;
+;  Description:
+;     Debug UEFI Environment
+;
+; Copyright (c) 2013-2017 Qualcomm Technologies Incorporated.
+; All Rights Reserved.
+; Qualcomm Technologies Confidential and Proprietary
+;
+;----------------------------------------------------------------------------
+;============================================================================
+;
+;                        EDIT HISTORY FOR MODULE
+
+;
+;when         who     what, where, why
+;----------   ---     ----------------------------------------------------------
+;2016-08-18   bh      Fix cookie setting location
+;2016-08-12   bh      Add address for RAM-loaded FV, cleanup
+;2016-03-25   bh      Set cookies in default path
+;2016-03-23   bh      Isolate presil and target functionality, general cleanup
+;2016-03-17   bh      Add support for release variant debugging
+;2016-03-02   vk      No presil call for LA
+;2016-02-22   vk      Move detect variant out, move presil to cmm
+;2016-02-18   bh      Update UEFI entry address
+;2016-02-11   et      Parameterized Target
+;2016-02-08   et      Added variant logic for new uefi location
+;2016-01-21   vk      Fix loading problems on virtio
+;2015-11-16   vk      Support 8998 WP variant
+;2015-10-28   bh      Clear path before executing
+;2015-10-16   bh      Use script dir instead of current
+;2015-10-15   bh      Simplify debug scripts
+;2015-10-06   vk      Update to latest
+;2015-09-17   vk      Move FD base
+;2015-07-09   vk      Support 8998
+
+;2013-03-09   vk      Initial Version
+;============================================================================;
+
+;============================================================================
+;  CMM script variables
+;============================================================================
+local &TargetPkg
+local &UefiRamEntryAddr
+local &RamFvAddr
+local &Target
+global &Variant
+global &UefiStandAlone
+global &RelFolder
+global &UefiBase
+
+;============================================================================
+
+
+;---------------------------------------------------
+; Setup area and log
+;---------------------------------------------------
+area.clear
+area.reset
+area.create UEFI_Logs 1000. 8192.
+area.select UEFI_Logs
+area.view UEFI_Logs
+
+;---------------------------------------------------
+; Entry point
+;---------------------------------------------------
+ENTRY &OptArgs &Modules
+
+  &Target="660"
+  &TargetPkg="Sdm&Target"+"Pkg"
+  &RelFolder="DEBUG"
+
+  &Modules=convert.toupper("&Modules")
+  &OptArgs=convert.toupper("&OptArgs")
+  if ((string.scan("&OptArgs", "REL",0)!=-1))
+  (
+    &RelFolder="RELEASE"
+  )
+
+  y.reset
+
+  sys.m.a
+  if run()
+  (
+    break
+    wait !run()
+  )
+
+  sys.option.enreset on
+
+  ; Setup present and other directories
+  &CwDir=os.ppd()
+
+  PATH
+  PATH + &CwDir
+  PATH + &CwDir/../../Tools/
+  PATH + &CwDir/../../Tools/cmm
+
+  gosub VariantCheck
+  entry &VariantRequested
+
+  do variant_setup.cmm &Target &VariantRequested
+  print "Setting Variant to &Variant"
+
+  GoSub SetArguments &Variant
+  &UefiBase=&UefiRamEntryAddr
+
+  ; Uncomment for standalone
+  ; &UefiStandAlone=0x1
+  if ("&UefiStandAlone"=="0x1")
+  (
+    do pre_sil.cmm
+  )
+  else
+  (
+    sys.d
+    sys.u
+
+    gosub TargetSetup
+  )
+
+  ;Load T32 UEFI awareness
+  do t32_uefi_menu.cmm
+
+  b.d
+
+  do dxe_dbg.cmm &Target &TargetPkg &UefiRamEntryAddr &RamFvAddr &UefiDebugCookieAddr &OptArgs &Modules
+  cd &CwDir
+enddo
+
+;---------------------------------------------------
+;SetArguments
+;---------------------------------------------------
+SetArguments:
+  Entry &Varaint
+  &UefiRamEntryAddr=0x9FC00000
+  &RamFvAddr=0x9F800000
+
+  return
+
+TargetSetup:
+  do cookies_set.cmm
+  b.set &UefiRamEntryAddr /o /disablehit 
+  go
+  wait !run()
+
+  return
+
+VariantCheck:
+  local &VarPos
+  local &VariantLength
+
+  &VariantLength=0x2
+
+  &VarPos=string.scan("&OptArgs", "VAR_", 0)
+  if (&VarPos==-1)
+    return
+
+  &VarExtract=string.ScanAndExtract("&OptArgs", "VAR_", "")
+  &VarExtract=string.split("&VarExtract", ",", 0)
+
+  &VarExtract=string.mid("&OptArgs", &VarPos+0x4, &VariantLength)
+
+  return &VarExtract
+

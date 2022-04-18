@@ -1,0 +1,160 @@
+#=============================================================================
+# TLMM LIBRARY
+#
+# Target:    All
+# Processor: All
+#
+#=============================================================================
+# $Header: //components/dev/core.qdsp6/1.0/shantonu.core.qdsp6.1.0.intc_scons_tlmm_script/systemdrivers/tlmm/build/tlmm.scons#1 $
+# $DateTime: 2016/09/29 05:14:12 $
+# $Author: shantonu $
+#=============================================================================
+#  Copyright 2016 Qualcomm Technologies Incorporated.
+#  All Rights Reserved.
+#  QUALCOMM Proprietary/GTDR
+#=============================================================================
+
+import os
+
+Import('env')
+env = env.Clone()
+
+if env['IMAGE'] == "cdsp":
+  Return()
+  
+#------------------------------------------------------------------------------
+# Add API folders
+#------------------------------------------------------------------------------
+
+if os.path.isfile(env['BUILD_ROOT'] + '/core/systemdrivers/tlmm/config/' + env['CHIPSET'] + env['IMAGE'] + '/TLMMChipset.xml') :
+  env.PublishPrivateApi("SYSTEMDRIVERS_TLMM", [
+     "${INC_ROOT}/core/systemdrivers/tlmm/inc",
+     "${INC_ROOT}/core/systemdrivers/hal/tlmmtile/inc",
+     "${INC_ROOT}/core/api/systemdrivers/hwio/${CHIPSET}/${IMAGE}",
+     "${INC_ROOT}/core/systemdrivers/tlmm/config/${CHIPSET}/${IMAGE}"
+  ])
+else:
+  env.PublishPrivateApi("SYSTEMDRIVERS_TLMM", [
+     "${INC_ROOT}/core/systemdrivers/tlmm/inc",
+     "${INC_ROOT}/core/systemdrivers/hal/tlmmtile/inc",
+     "${INC_ROOT}/core/api/systemdrivers/hwio/${CHIPSET}/${IMAGE}",
+     "${INC_ROOT}/core/systemdrivers/tlmm/config/stub"
+  ])
+
+SRCPATH = "../"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0) 
+SRCPATHSCRIPTS = env['BUILD_ROOT'] + '/core/systemdrivers/tlmm/scripts/${CHIPSET}/'
+
+#-------------------------------------------------------------------------------
+# Images
+#-------------------------------------------------------------------------------
+
+TLMM_IMAGES = ['CORE_SLPI_ROOT','QDSP6_SW_IMAGE',  'CBSP_QDSP6_SW_IMAGE']
+UTLMM_IMAGES = ['CORE_SLPI_ROOT', 'CORE_SSC_SLPI_USER','CORE_SLPI_USER','CORE_SLPI_ADSP_ROOT','CORE_ADSP_USER']
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+
+env.Append(CPPPATH = [
+   "${INC_ROOT}/core/systemdrivers/tlmm/src",
+   "${INC_ROOT}/core/systemdrivers/tlmm/config",
+   "${INC_ROOT}/core/systemdrivers/tlmm/hw/v1",
+   "${INC_ROOT}/core/systemdrivers/tlmm/hw/${CHIPSET}/${IMAGE}"
+])
+
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'HAL',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+   'DAL',
+   'SYSTEMDRIVERS_HAL_TLMM_INC',
+
+   # needs to be last also contains wrong comdef.h
+   'KERNEL',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+
+
+HAL_TLMM_V1_SOURCES =  [
+   '${BUILDPATH}/hw/v1/HALtlmm.c'
+]
+
+
+haltlmm_v1_obj = env.Object(HAL_TLMM_V1_SOURCES)
+haltlmm_v1_lib = env.Library('${BUILDPATH}/HALtlmmV1', haltlmm_v1_obj)
+
+
+
+TLMM_COMMON_SOURCES =  [
+   '${BUILDPATH}/src/DALTLMMFwk.c',
+   '${BUILDPATH}/src/DALTLMMInfo.c',
+   '${BUILDPATH}/src/DALTLMM.c',
+   '${BUILDPATH}/src/DALTLMMState.c'
+]
+
+UTLMM_COMMON_SOURCES = [
+   '${BUILDPATH}/src/uTlmm.c',
+   '${BUILDPATH}/hw/${CHIPSET}/${IMAGE}/uHALtlmm.c'
+]
+
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+
+env.AddLibrary( TLMM_IMAGES, '${BUILDPATH}/HALtlmmV1', HAL_TLMM_V1_SOURCES )
+env.AddLibrary( TLMM_IMAGES, '${BUILDPATH}/DALtlmm', TLMM_COMMON_SOURCES )
+env.AddLibrary( UTLMM_IMAGES, '${BUILDPATH}/uTlmmIsland', UTLMM_COMMON_SOURCES )
+
+#---------------------------------------------------------------------------
+# Invoke document generation SConscript
+#---------------------------------------------------------------------------
+
+if os.path.exists(env['BUILD_ROOT'] + '/core/api/systemdrivers/docsrc/tlmm/SConscript') :
+  env.SConscript(
+    '${BUILD_ROOT}/core/api/systemdrivers/docsrc/tlmm/SConscript',
+    exports='env')
+
+
+#---------------------------------------------------------------------------
+# Add DAL XML file
+#---------------------------------------------------------------------------
+
+if 'USES_DEVCFG' in env:
+   DEVCFG_IMG = ['DAL_DEVCFG_IMG']
+   env.AddDevCfgInfo(DEVCFG_IMG, 
+   {
+      '8998_xml' : ['${BUILD_ROOT}/core/systemdrivers/tlmm/config/msm8998/TLMMChipset.xml',
+                    '${BUILD_ROOT}/core/systemdrivers/tlmm/config/msm8998/PlatformIO_MTP.xml',
+                    '${BUILD_ROOT}/core/systemdrivers/tlmm/config/msm8998/PlatformIO_CDP.xml',
+                    '${BUILD_ROOT}/core/systemdrivers/tlmm/config/msm8998/PlatformIO_QRD.xml'],
+      '660_xml'  : ['${BUILD_ROOT}/core/systemdrivers/tlmm/config/sdm660/TLMMChipset.xml',
+                    '${BUILD_ROOT}/core/systemdrivers/tlmm/config/sdm660/PlatformIO_MTP.xml',
+                    '${BUILD_ROOT}/core/systemdrivers/tlmm/config/sdm660/PlatformIO_CDP.xml',
+                    '${BUILD_ROOT}/core/systemdrivers/tlmm/config/sdm660/PlatformIO_QRD.xml']
+   })
+
+
+
+#-------------------------------------------------------------------------------
+# Add CMM Scripts to T32 Menu
+#-------------------------------------------------------------------------------
+
+CMM_ARGUMENT = ''
+
+try:
+    env.AddCMMScripts ('ADSP', [SRCPATHSCRIPTS], { 'tlmm_gpio_hw.cmm' : ['TLMM', CMM_ARGUMENT] }, 'SystemDrivers')
+except:
+  pass
+

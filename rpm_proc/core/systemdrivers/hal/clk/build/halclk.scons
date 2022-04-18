@@ -1,0 +1,120 @@
+#===============================================================================
+#
+# HAL CLK LIBRARY
+#
+# Target:    All
+# Processor: All
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2011 by Qualcomm Technologies, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/rpm.bf/1.8/core/systemdrivers/hal/clk/build/halclk.scons#6 $
+#  $DateTime: 2018/08/10 07:09:32 $
+#  $Author: pwbldsvc $
+#  $Change: 16855347 $
+#
+#===============================================================================
+
+import os
+Import('env')
+
+env = env.Clone()
+
+   
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+
+SRCPATH = "../"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0) 
+
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+
+CBSP_API = [
+   'HAL',
+   'DAL',
+   'POWER',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+HAL_CLK_BUILD_ROOT = os.getcwd();
+
+if env['MSM_ID'] in ['660']:
+   env.PublishPrivateApi("SYSTEMDRIVERS_HAL_CLK_COMMON", [
+     HAL_CLK_BUILD_ROOT + "/../inc",
+     HAL_CLK_BUILD_ROOT + "/../src",
+     HAL_CLK_BUILD_ROOT + "/../hw/v3",
+     HAL_CLK_BUILD_ROOT + "/../hw/${CHIPSET}/inc",
+   ])
+elif env['MSM_ID'] in ['nicobar']:
+   env.PublishPrivateApi("SYSTEMDRIVERS_HAL_CLK_COMMON", [
+     HAL_CLK_BUILD_ROOT + "/../inc",
+     HAL_CLK_BUILD_ROOT + "/../src",
+     HAL_CLK_BUILD_ROOT + "/../hw/v3",
+     HAL_CLK_BUILD_ROOT + "/../hw/${CHIPSET}/inc",
+   ])
+elif env['MSM_ID'] in ['405']:
+   env.PublishPrivateApi("SYSTEMDRIVERS_HAL_CLK_COMMON", [
+     HAL_CLK_BUILD_ROOT + "/../inc",
+     HAL_CLK_BUILD_ROOT + "/../src",
+     HAL_CLK_BUILD_ROOT + "/../hw/v1",
+     HAL_CLK_BUILD_ROOT + "/../hw/${CHIPSET}/inc",
+   ])
+else:
+   env.PublishPrivateApi("SYSTEMDRIVERS_HAL_CLK_COMMON", [
+    HAL_CLK_BUILD_ROOT + "/../inc",
+    HAL_CLK_BUILD_ROOT + "/../src",
+    HAL_CLK_BUILD_ROOT + "/../hw/v2",
+    HAL_CLK_BUILD_ROOT + "/../hw/${CHIPSET}/inc",
+   ] )
+
+#-------------------------------------------------------------------------------
+# Sources: HALClock Library Creation
+#-------------------------------------------------------------------------------
+
+
+env.AddLibrary(
+   'RPM_IMAGE', '${BUILDPATH}/HALclk', 
+   [ '${BUILDPATH}/src/HALclk.c' ])
+
+if env['MSM_ID'] in ['660']:
+  env.AddLibrary(
+     'RPM_IMAGE', '${BUILDPATH}/HALclk_hw_v3', 
+     [ '${BUILDPATH}/hw/v3/HALclkGeneric.c',
+       '${BUILDPATH}/hw/v3/HALclkGenericPLL.c' ])
+elif env['MSM_ID'] in ['nicobar']:
+  env.AddLibrary(
+     'RPM_IMAGE', '${BUILDPATH}/HALclk_hw_v3', 
+     [ '${BUILDPATH}/hw/v3/HALclkGeneric.c',
+       '${BUILDPATH}/hw/v3/HALclkGenericPLL.c' ])
+elif env['MSM_ID'] in ['405']:
+  env.AddLibrary(
+     'RPM_IMAGE', '${BUILDPATH}/HALclk_hw_v1', 
+     [ '${BUILDPATH}/hw/v1/HALclkGeneric.c',
+       '${BUILDPATH}/hw/v1/HALclkGenericPLL.c',
+       '${BUILDPATH}/hw/v1/HALclkStromerPLL.c' ])
+else:
+  env.AddLibrary(
+   'RPM_IMAGE', '${BUILDPATH}/HALclk_hw_v2', 
+   [ '${BUILDPATH}/hw/v2/HALclkGeneric.c',
+     '${BUILDPATH}/hw/v2/HALclkGenericPLL.c' ])
+
+#-----------------------------------------------------------------------------
+# Invoke chipset build file
+#-----------------------------------------------------------------------------
+
+env.SConscript('../hw/${CHIPSET}/build/halclk_chipset.scons', exports='env')
+

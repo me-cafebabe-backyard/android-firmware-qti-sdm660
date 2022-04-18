@@ -1,0 +1,2 @@
+const char engg_timestamp_pd_audio[] = "Q6_BUILD_TS_Wed_Mar_18_00:17:01_PST_2020_PD_AUDIO";
+const char qcom_timestamp_pd_audio[] = "Q6_BUILD_TS_Tue_Mar_17_23:52:44_PST_2020_ADSP.VT.4.1.c1-00009-SDM660_PD_AUDIO";

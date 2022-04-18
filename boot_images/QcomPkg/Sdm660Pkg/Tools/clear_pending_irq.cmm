@@ -1,0 +1,26 @@
+;============================================================================
+;  Name:
+;    clear_pending_irq.cmm
+;
+;  Description:
+;     Clear pending interrupts
+;
+; Copyright (c) 2016 Qualcomm Technologies Incorporated.
+; All Rights Reserved.
+; Qualcomm Technologies Confidential and Proprietary
+;
+;----------------------------------------------------------------------------
+;============================================================================
+;
+;                        EDIT HISTORY FOR MODULE
+;
+;  when         who     what, where, why
+; ----------    ---     ------------------------------------------------------
+   
+; 2016-05-09    vk      Initial Version
+;============================================================================;
+
+D.S ANSD:0x17A00180 %LE %Long 0xFFFFFFFF
+D.S ANSD:0x17A00184 %LE %Long 0xFFFFFFFF
+D.S ANSD:0x17A00280 %LE %Long 0xFFFFFFFF
+D.S ANSD:0x17A00284 %LE %Long 0xFFFFFFFF

@@ -1,0 +1,195 @@
+<DSP type="ADSP" versionMajor="0x1" versionMinor="0x0" versionBranch="0x0" versionSubBranch="0x0" title1="AUDIOSPHERE" _title_agile_rev="AUDIOSPHERE"
+  title_date="February 3, 2017">
+  <MODULE_LIST>
+    <MODULE name="AUDPROC_MODULE_ID_AUDIOSPHERE" id="0x10916" displayName="AUDIOSPHERE" description="ID of the Audiosphere module.\nThis module supports the#[
+      #] following parameter IDs:\n- #AUDPROC_PARAM_ID_AUDIOSPHERE_ENABLE - #AUDPROC_PARAM_ID_AUDIOSPHERE_STRENGTH - #AUDPROC_PARAM_ID_AUDIOSPHERE_CONFIG_MODE -#[
+      #] #AUDPROC_PARAM_ID_AUDIOSPHERE_FILT_COEFFS_STEREO_INPUT - #AUDPROC_PARAM_ID_AUDIOSPHERE_FILT_COEFFS_MULTICHANNEL_INPUT -#[
+      #] #AUDPROC_PARAM_ID_AUDIOSPHERE_FILTER_DESIGN_STEREO_INPUT - #AUDPROC_PARAM_ID_AUDIOSPHERE_FILTER_DESIGN_MULTICHANNEL_INPUT -#[
+      #] #AUDPROC_PARAM_ID_AUDIOSPHERE_OPERATING_INPUT_MEDIA_INFO - #AUDPROC_PARAM_ID_ENABLE All parameter IDs are device independent.\n">
+      <MODULE_INFO>
+        <META_DATA/>
+        <PIN_INFO type="STATIC">
+          <INPUT_PINS/>
+          <OUTPUT_PINS/>
+        </PIN_INFO>
+        <TOOL_POLICIES>
+          <POLICY name="CALIBRATION"/>
+          <POLICY name="RTC"/>
+        </TOOL_POLICIES>
+      </MODULE_INFO>
+      <PARAMETER_LIST>
+        <PARAMETER name="AUDPROC_PARAM_ID_AUDIOSPHERE_ENABLE" pid="0x10917" maxSize="0x4" description="ID of the AudioSphere Enable parameter used by#[
+          #] AUDPROC_MODULE_ID_AUDIOSPHERE.\nPayload of the AUDPROC_PARAM_ID_AUDIOSPHERE_ENABLE parameter used by the AudioSphere module.">
+          <TOOL_POLICIES>
+            <POLICY name="RTC"/>
+            <POLICY name="CALIBRATION"/>
+          </TOOL_POLICIES>
+          <DEFAULT_DEPENDENCIES/>
+          <CONFIG_ELEMENT name="enable_flag" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0x0" min="0x0" max="0xffffffff" default="0x0"
+            description="Specifies whether the AudioSphere module is enabled.">
+            <RANGE_LIST>
+              <RANGE name="Disable" value="0x0"/>
+              <RANGE name="Enable" value="0x1"/>
+            </RANGE_LIST>
+          </CONFIG_ELEMENT>
+        </PARAMETER>
+        <PARAMETER name="AUDPROC_PARAM_ID_AUDIOSPHERE_STRENGTH" pid="0x10918" maxSize="0x4" description="ID of the AudioSphere Strength parameter used by#[
+          #] #AUDPROC_MODULE_ID_AUDIOSPHERE.\nPayload of the AUDPROC_PARAM_ID_AUDIOSPHERE_STRENGTH parameter used by the AudioSphere module.">
+          <TOOL_POLICIES>
+            <POLICY name="RTC"/>
+            <POLICY name="CALIBRATION"/>
+          </TOOL_POLICIES>
+          <DEFAULT_DEPENDENCIES/>
+          <CONFIG_ELEMENT name="strength" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0x0" min="0x0" max="0x3e8" default="0x3e8"
+            description="Specifies the effects of the audiosphere.\n 0 -- No effects \n 1000 -- Maximum effects"/>
+        </PARAMETER>
+        <PARAMETER name="AUDPROC_PARAM_ID_AUDIOSPHERE_CONFIG_MODE" pid="0x10919" maxSize="0x8" description="ID of the AudioSphere Configuration mode parameter#[
+          #] used by #AUDPROC_MODULE_ID_AUDIOSPHERE.\n Payload of the AUDPROC_PARAM_ID_AUDIOSPHERE_CONFIG_MODE parameter used by the AudioSphere module."
+          version="0x0">
+          <TOOL_POLICIES>
+            <POLICY name="RTC"/>
+            <POLICY name="CALIBRATION"/>
+          </TOOL_POLICIES>
+          <DEFAULT_DEPENDENCIES/>
+          <CONFIG_ELEMENT name="version" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0x0" min="0x0" max="0xffffffff" default="0x0"
+            description="Specifies the version information of this parameter.\n (currently, only 0 is supported)" readOnly="true" isVersion="true"/>
+          <CONFIG_ELEMENT name="config_mode" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0x4" min="0x0" max="0xffffffff" default="0x0"
+            description="Specifies the mode of operation for the AudioSphere.">
+            <RANGE_LIST>
+              <RANGE name="Static mode" value="0x0"/>
+            </RANGE_LIST>
+          </CONFIG_ELEMENT>
+        </PARAMETER>
+        <PARAMETER name="AUDPROC_PARAM_ID_AUDIOSPHERE_FILT_COEFFS_STEREO_INPUT" pid="0x1091a" maxSize="0xc" description="Payload of the#[
+          #] AUDPROC_PARAM_ID_AUDIOSPHERE_FILT_COEFFS parameter used by the AudioSphere module.\n Following this structure is a payload that is a sequence of#[
+          #] int32 Imaginary coeffs -- 2-D array[num_filters][fft_size/2+1]. The total number of cint2x32 coefficients is defined by#[
+          #] (num_filters*(fft_size/2+1)). In this case, the total number is 2052, where num_filters is 4 and fft_size is 1024." version="0x0">
+          <TOOL_POLICIES>
+            <POLICY name="RTC"/>
+            <POLICY name="CALIBRATION"/>
+          </TOOL_POLICIES>
+          <DEFAULT_DEPENDENCIES/>
+          <CONFIG_ELEMENT name="version" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0x0" min="0x0" max="0xffffffff" default="0x0"
+            description="Specifies the version information of this parameter.(currently, only 0 is supported)" readOnly="true" isVersion="true"/>
+          <CONFIG_ELEMENT name="sample_rate" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0x4" min="0x0" max="0xffffffff" default="0xbb80"
+            description="Specifies the sample rate of the filter coefficients.(48000 Hz - AudioSphere-supported sample rate)">
+            <RANGE_LIST>
+              <RANGE name="48000" value="0xbb80"/>
+            </RANGE_LIST>
+          </CONFIG_ELEMENT>
+          <CONFIG_ELEMENT name="fft_size" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0x8" min="0x0" max="0xffffffff" default="0x400"
+            description="Specifies the length of FFT.">
+            <RANGE_LIST>
+              <RANGE name="1024" value="0x400"/>
+            </RANGE_LIST>
+          </CONFIG_ELEMENT>
+          <CONFIG_ELEMENT name="real_coeffs" type="int32_t" byteSize="0x4" byteOffset="0xc" arrayElements="0" min="0x80000000" max="0x7fffffff" default="0x0"
+            description="..." variableArraySize="4*(fft_size/2+1)"/>
+          <CONFIG_ELEMENT name="image_coeffs" type="int32_t" byteSize="0x4" byteOffset="0xc" arrayElements="0" min="0x80000000" max="0x7fffffff" default="0x0"
+            description="..." variableArraySize="4*(fft_size/2+1)"/>
+        </PARAMETER>
+        <PARAMETER name="AUDPROC_PARAM_ID_AUDIOSPHERE_FILT_COEFFS_MULTICHANNEL_INPUT" pid="0x1091b" maxSize="0xc" description="Payload of the#[
+          #] AUDPROC_PARAM_ID_AUDIOSPHERE_FILT_COEFFS parameter used by the AudioSphere module.\n Following this structure is a payload that is a sequence of#[
+          #] int32 Imaginary coeffs -- 2-D array[num_filters][fft_size/2+1]. The total number of cint2x32 coefficients is defined by#[
+          #] (num_filters*(fft_size/2+1)). In this case, the total number is 2052, where num_filters is 4 and fft_size is 1024." version="0x0">
+          <TOOL_POLICIES>
+            <POLICY name="RTC"/>
+            <POLICY name="CALIBRATION"/>
+          </TOOL_POLICIES>
+          <DEFAULT_DEPENDENCIES/>
+          <CONFIG_ELEMENT name="version" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0x0" min="0x0" max="0xffffffff" default="0x0"
+            description="Specifies the version information of this parameter.(currently, only 0 is supported)" readOnly="true" isVersion="true"/>
+          <CONFIG_ELEMENT name="sample_rate" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0x4" min="0x0" max="0xffffffff" default="0xbb80"
+            description="Specifies the sample rate of the filter coefficients.(48000 Hz - AudioSphere-supported sample rate)">
+            <RANGE_LIST>
+              <RANGE name="48000" value="0xbb80"/>
+            </RANGE_LIST>
+          </CONFIG_ELEMENT>
+          <CONFIG_ELEMENT name="fft_size" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0x8" min="0x0" max="0xffffffff" default="0x400"
+            description="Specifies the length of FFT.">
+            <RANGE_LIST>
+              <RANGE name="1024" value="0x400"/>
+            </RANGE_LIST>
+          </CONFIG_ELEMENT>
+          <CONFIG_ELEMENT name="real_coeffs" type="int32_t" byteSize="0x4" byteOffset="0xc" arrayElements="0" min="0x80000000" max="0x7fffffff" default="0x0"
+            description="..." variableArraySize="4*(fft_size/2+1)"/>
+          <CONFIG_ELEMENT name="image_coeffs" type="int32_t" byteSize="0x4" byteOffset="0xc" arrayElements="0" min="0x80000000" max="0x7fffffff" default="0x0"
+            description="..." variableArraySize="4*(fft_size/2+1)"/>
+        </PARAMETER>
+        <PARAMETER name="AUDPROC_PARAM_ID_AUDIOSPHERE_FILTER_DESIGN_STEREO_INPUT" pid="0x1091c" maxSize="0x18" description="Payload of the#[
+          #] AUDPROC_PARAM_ID_AUDIOSPHERE_FILTER_DESIGN parameter used by the AudioSphere module." version="0x0">
+          <TOOL_POLICIES>
+            <POLICY name="RTC"/>
+            <POLICY name="CALIBRATION"/>
+          </TOOL_POLICIES>
+          <DEFAULT_DEPENDENCIES/>
+          <CONFIG_ELEMENT name="version" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0x0" min="0x0" max="0xffffffff" default="0x0"
+            description="Specifies the version information of this parameter.(currently, only 0 is supported)" isVersion="true"/>
+          <CONFIG_ELEMENT name="speaker_distance" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0x4" min="0x0" max="0xffffffff" default="0x85"
+            description="Specifies the distance (in millimeters) between speakers on the handset (in mm). This value is used for designing the filter#[
+            #] coefficients."/>
+          <CONFIG_ELEMENT name="head_distance" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0x8" min="0x0" max="0xffffffff" default="0x1a4"
+            description="Specifies the distance (in millimeters) between center of the head and the device. This value is used for designing the filter#[
+            #] coefficients."/>
+          <CONFIG_ELEMENT name="back_angle" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0xc" min="0x0" max="0xffffffff" default="0x64"
+            description="Specifies the angle of the rear virtual speakers. This value is used for designing the filter coefficients.\n Any positive value in#[
+            #] degrees (0 is the forward direction)"/>
+          <CONFIG_ELEMENT name="front_angle" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0x10" min="0x0" max="0xffffffff" default="0x2d"
+            description="Specifies the angle of the front virtual speakers. This value is used for designing the filter coefficients.\nAny positive value in#[
+            #] degrees (0 is the forward direction)"/>
+          <CONFIG_ELEMENT name="max_freq_gain" type="int32_t" byteSize="0x4" byteOffset="0x14" min="0x80000000" max="0x7fffffff" default="0x8"
+            description="Specifies the maximum frequency gain (in decibels) provided by the corresponding filter coefficients.\nAny value in dB"/>
+        </PARAMETER>
+        <PARAMETER name="AUDPROC_PARAM_ID_AUDIOSPHERE_FILTER_DESIGN_MULTICHANNEL_INPUT" pid="0x1091d" maxSize="0x18" description="Payload of the#[
+          #] AUDPROC_PARAM_ID_AUDIOSPHERE_FILTER_DESIGN parameter used by the AudioSphere module." version="0x0">
+          <TOOL_POLICIES>
+            <POLICY name="RTC"/>
+            <POLICY name="CALIBRATION"/>
+          </TOOL_POLICIES>
+          <DEFAULT_DEPENDENCIES/>
+          <CONFIG_ELEMENT name="version" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0x0" min="0x0" max="0xffffffff" default="0x0"
+            description="Specifies the version information of this parameter.(currently, only 0 is supported)" isVersion="true"/>
+          <CONFIG_ELEMENT name="speaker_distance" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0x4" min="0x0" max="0xffffffff" default="0x85"
+            description="Specifies the distance (in millimeters) between speakers on the handset (in mm). This value is used for designing the filter#[
+            #] coefficients."/>
+          <CONFIG_ELEMENT name="head_distance" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0x8" min="0x0" max="0xffffffff" default="0x1a4"
+            description="Specifies the distance (in millimeters) between center of the head and the device. This value is used for designing the filter#[
+            #] coefficients."/>
+          <CONFIG_ELEMENT name="back_angle" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0xc" min="0x0" max="0xffffffff" default="0x64"
+            description="Specifies the angle of the rear virtual speakers. This value is used for designing the filter coefficients.\n Any positive value in#[
+            #] degrees (0 is the forward direction)"/>
+          <CONFIG_ELEMENT name="front_angle" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0x10" min="0x0" max="0xffffffff" default="0x2d"
+            description="Specifies the angle of the front virtual speakers. This value is used for designing the filter coefficients.\nAny positive value in#[
+            #] degrees (0 is the forward direction)"/>
+          <CONFIG_ELEMENT name="max_freq_gain" type="int32_t" byteSize="0x4" byteOffset="0x14" min="0x80000000" max="0x7fffffff" default="0x8"
+            description="Specifies the maximum frequency gain (in decibels) provided by the corresponding filter coefficients.\nAny value in dB"/>
+        </PARAMETER>
+        <PARAMETER name="AUDPROC_PARAM_ID_AUDIOSPHERE_OPERATING_INPUT_MEDIA_INFO" pid="0x1091e" maxSize="0xc" description="Payload of the#[
+          #] AUDPROC_PARAM_ID_AUDIOSPHERE_OPERATING_INPUT_MEDIA_INFO parameter used by the  AudioSphere module." readOnly="true" version="0x0">
+          <TOOL_POLICIES>
+            <POLICY name="RTC"/>
+          </TOOL_POLICIES>
+          <DEFAULT_DEPENDENCIES/>
+          <CONFIG_ELEMENT name="version" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0x0" min="0x0" max="0xffffffff" default="0x0"
+            description="Specifies the version information of this parameter.(currently, only 0 is supported)" isVersion="true"/>
+          <CONFIG_ELEMENT name="num_input_channel" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0x4" min="0x0" max="0xffffffff" default="0x0"
+            description="Number of input channels to the AudioSphere module.\n(Any other value -- Reserved for future use @tablebulletend)">
+            <RANGE_LIST>
+              <RANGE name="No valid media format is received (Default)" value="0x0"/>
+              <RANGE name="Stereo input" value="0x2"/>
+              <RANGE name="5.1 input" value="0x6"/>
+              <RANGE name="7.1 input" value="0x8"/>
+            </RANGE_LIST>
+          </CONFIG_ELEMENT>
+          <CONFIG_ELEMENT name="sample_rate" type="uint32_t" typeUnSigned="true" byteSize="0x4" byteOffset="0x8" min="0x0" max="0xffffffff" default="0x0"
+            description="Sample rate at which the AudioSphere module is operating.\n (currently, only 48000 Hz is supported)">
+            <RANGE_LIST>
+              <RANGE name="No valid media format is received (Default)" value="0x0"/>
+              <RANGE name="48000" value="0xbb80"/>
+            </RANGE_LIST>
+          </CONFIG_ELEMENT>
+        </PARAMETER>
+      </PARAMETER_LIST>
+    </MODULE>
+  </MODULE_LIST>
+</DSP>

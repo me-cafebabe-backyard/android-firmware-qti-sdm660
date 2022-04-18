@@ -1,0 +1,81 @@
+#===============================================================================
+#
+# HAL LDO LIBRARY
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2016 Qualcomm Technologies Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.qdsp6/1.0.c2/systemdrivers/hal/ldo/build/halldo.scons#1 $
+#  $DateTime: 2020/02/10 01:57:30 $
+#  $Author: pwbldsvc $
+#
+#===============================================================================
+
+import os
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+
+SRCPATH = "../"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0) 
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+
+CBSP_API = [
+   'HAL',
+   'DAL',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+HAL_LDO_BUILD_ROOT = os.getcwd();
+
+env.PublishPrivateApi("SYSTEMDRIVERS_HAL_LDO_COMMON", [
+  HAL_LDO_BUILD_ROOT + "/../inc",
+  HAL_LDO_BUILD_ROOT + "/../src",
+])
+
+#-------------------------------------------------------------------------------
+# Sources: HALLDO Library Creation
+#-------------------------------------------------------------------------------
+
+env.AddLibrary(
+   ['QDSP6_SW_IMAGE', 'CBSP_QDSP6_SW_IMAGE'],
+   '${BUILDPATH}/HALldo', 
+   [ '${BUILDPATH}/src/HALldo.c' ])
+
+#-------------------------------------------------------------------------------
+# Pack out files
+#-------------------------------------------------------------------------------
+
+# Remove target hw files
+ALL_HW_FILES = env.FindFiles(
+  ['*'],
+  '../hw/')
+MY_HW_FILES = env.FindFiles(
+  ['*'],
+  '../hw/${CHIPSET}')
+PACK_HW_FILES = list(set(ALL_HW_FILES) - set(MY_HW_FILES))
+env.CleanPack(['CORE_MODEM'], PACK_HW_FILES)
+
+#-------------------------------------------------------------------------------
+# Invoke chipset build file
+#-------------------------------------------------------------------------------
+if 'msm8998' in env['CHIPSET']:
+  env.SConscript('../hw/msm8998/build/halldo_chipset.scons', exports='env')
+if 'sdm660' in env['CHIPSET']:
+  env.SConscript('../hw/sdm660/build/halldo_chipset.scons', exports='env')

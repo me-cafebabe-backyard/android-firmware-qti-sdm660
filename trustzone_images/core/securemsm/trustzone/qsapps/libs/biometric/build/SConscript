@@ -1,0 +1,117 @@
+#===============================================================================
+#
+# Biometric Library
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+#===========================================================================
+#  Copyright (c) 2015 Qualcomm Technologies, Incorporated.
+# All Rights Reserved.
+#  Qualcomm Technologies Confidential and Proprietary
+#===========================================================================
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.tz/1.0.7.1/securemsm/trustzone/qsapps/libs/biometric/build/SConscript#1 $
+#  $DateTime: 2020/01/14 12:35:09 $
+#  $Author: pwbldsvc $
+#  $Change: 22186835 $
+#                      EDIT HISTORY FOR FILE
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# Jul/23/15  cb      Add lib to fidocrypto and sampleauth
+# Apr/15/15  el      Initial Implementation
+#===============================================================================
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/core/securemsm/trustzone/qsapps/libs/biometric"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# Compiler, object, and linker definitions
+#-------------------------------------------------------------------------------
+
+# do not generate thumb code for inline assembler code
+#env.Append(ARMCC_OPT = ' -marm')
+
+env.PublishPublicApi('BIOMETRIC', [
+   "${COREBSP_ROOT}/securemsm/trustzone/qsapps/libs/biometric/inc/",
+])
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'SERVICES',
+   'SECUREMSM',
+   'MINK',
+   'KERNEL',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+INC_PATH_QSEE = [
+      "${INC_ROOT}/core/api/kernel/libstd/stringl",
+      "${INC_ROOT}/core/api/securemsm/trustzone/qsee",
+      "${INC_ROOT}/core/securemsm/trustzone/qsapps/libs/biometric/inc/",
+]
+env.Append(CPPPATH = INC_PATH_QSEE)
+
+#----------------------------------------------------------------------------
+# CONFIG Shared Library
+#----------------------------------------------------------------------------
+
+BIOMETRIC_LIB_SOURCES = [
+        '${BUILDPATH}/src/biometric.c',
+        '${BUILDPATH}/src/biometric_serializer.c',
+]
+
+biometric_lib = '${BUILDPATH}/biometric_lib'
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+bio_fido_lib = env.AddBinaryLibrary (['FIDOCRYPTO_IMAGE'],biometric_lib, [BIOMETRIC_LIB_SOURCES])
+bio_smpl_lib = env.AddBinaryLibrary (['SAMPLEAPP_IMAGE'],biometric_lib, [BIOMETRIC_LIB_SOURCES])
+bio_smp64_lib = env.AddBinaryLibrary (['SAMPLEAPP64_IMAGE'],biometric_lib, [BIOMETRIC_LIB_SOURCES])
+bio_fp_lib = env.AddBinaryLibrary (['FINGERPRINT_IMAGE'],biometric_lib, [BIOMETRIC_LIB_SOURCES])
+bio_fp64_lib = env.AddBinaryLibrary (['FINGERPRINT64_IMAGE'],biometric_lib, [BIOMETRIC_LIB_SOURCES])
+bio_fpdbg_lib = env.AddBinaryLibrary (['FINGERPRINTDBG_IMAGE'],biometric_lib, [BIOMETRIC_LIB_SOURCES])
+bio_fp64dbg_lib = env.AddBinaryLibrary (['FINGERPRINT64DBG_IMAGE'],biometric_lib, [BIOMETRIC_LIB_SOURCES])
+bio_iris_lib = env.AddBinaryLibrary (['IRIS_IMAGE'],biometric_lib, [BIOMETRIC_LIB_SOURCES])
+bio_smpauth_lib = env.AddBinaryLibrary (['SAMPLEAUTH_IMAGE'],biometric_lib, [BIOMETRIC_LIB_SOURCES])
+bio_km_lib = env.AddBinaryLibrary (['KEYMASTER_IMAGE'],biometric_lib, [BIOMETRIC_LIB_SOURCES])
+bio_soter_lib = env.AddBinaryLibrary (['SOTER_IMAGE'],biometric_lib, [BIOMETRIC_LIB_SOURCES])
+
+#-------------------------------------------------------------------------------
+# Load sub scripts
+#-------------------------------------------------------------------------------
+env.LoadSoftwareUnits()
+for lib in [bio_fido_lib, 
+            bio_smpl_lib, 
+            bio_smp64_lib, 
+            bio_fp_lib, 
+            bio_fp64_lib, 
+            bio_fpdbg_lib, 
+            bio_fp64dbg_lib, 
+            bio_iris_lib, 
+            bio_smpauth_lib, 
+            bio_soter_lib,
+            bio_km_lib]:
+   if lib:
+      env.Deploy([lib, 
+                  'SConscript',
+                  '../inc/biometric.h',
+                  '../inc/biometric_interrupt.h',
+                  '../inc/biometric_result.h', 
+                  ]
+                )
+

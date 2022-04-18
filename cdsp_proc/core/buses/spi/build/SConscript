@@ -1,0 +1,137 @@
+#===============================================================================
+#
+# GENERAL DESCRIPTION
+#    Build script for SPI BUS driver
+#
+# Copyright (c) 2014-2016 Qualcomm Technologies, Inc.
+#         All Rights Reserved.
+# Qualcomm Technologies, Inc. Confidential and Proprietary.
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.qdsp6/1.0.c2/buses/spi/build/SConscript#1 $
+#  $DateTime: 2020/02/10 01:57:30 $
+#  $Author: pwbldsvc $
+#  $Change: 22511909 $
+#                      EDIT HISTORY FOR FILE
+#                      
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#  
+# when         who     what, where, why
+# ----------   ---     ---------------------------------------------------------
+# 10/25/2016   ska     Added DEVCFG_IMG to have Bin comp using XML
+# 04/17/2014   vmk     QDSS SW events
+# 05/06/2014   vmk     Initial release
+#
+#===============================================================================
+Import('env')
+#-------------------------------------------------------------------------------
+# Load sub scripts
+#-------------------------------------------------------------------------------
+env.LoadSoftwareUnits()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+env = env.Clone()
+# Additional defines
+env.Append(CPPDEFINES = ["FEATURE_LIBRARY_ONLY"])   
+
+SRCPATH = "../src"
+IMAGES = []
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0) 
+
+CBSP_APIS = []
+
+#-------------------------------------------------------------------------------
+# Publish Private APIs
+#-------------------------------------------------------------------------------
+env.PublishPrivateApi('BUSES_SPI_DEVICE', [
+   '${INC_ROOT}/core/buses/spi/src/hal/inc',
+   '${INC_ROOT}/core/buses/spi/src/logs/inc/',
+   '${INC_ROOT}/core/buses/spi/src/device/inc',
+   '${INC_ROOT}/core/buses/spi/src/driver/inc',
+])
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_APIS += [
+   'BUSES',
+   'DAL',
+   'HAL',
+   'SYSTEMDRIVERS',
+   'KERNEL',   
+   'SERVICES',   
+   'POWER',
+   'DEBUGTRACE'
+]
+
+env.RequirePublicApi(CBSP_APIS)
+env.RequireRestrictedApi(CBSP_APIS)
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+SPI_SOURCES = [
+   '${BUILDPATH}/device/SpiDevice.c',
+   '${BUILDPATH}/device/SpiDeviceOsSvc.c',
+   '${BUILDPATH}/device/SpiDevicePlatSvc.c',
+   '${BUILDPATH}/device/SpiDeviceTransfer.c',
+   '${BUILDPATH}/driver/SpiDriver.c',
+   '${BUILDPATH}/hal/HALqupe.c',
+   '${BUILDPATH}/hal/HALqupeSpi.c',
+   '${BUILDPATH}/logs/SpiNolog.c',
+   '${BUILDPATH}/driver/SpiInit.c',
+#  '${BUILDPATH}/test/spi_test.c',
+]
+
+#---------------------------------------------------------------------------
+# Device Config
+#---------------------------------------------------------------------------
+if 'USES_DEVCFG' in env:
+   DEVCFG_IMG = ['DAL_DEVCFG_IMG','DEVCFG_CORE_QDSP6_SENSOR_SW']
+   env.AddDevCfgInfo(DEVCFG_IMG, 
+   {
+   'devcfg_xml'    : ['${BUILD_ROOT}/core/buses/spi/src/config/spi_slpi_${MSM_ID}.xml']
+   })
+
+
+if 'USES_ISLAND' in env:
+   U_IMG_LIB = env.AddLibrary(
+      ['CORE_SSC_SLPI_USER','CORE_SLPI_ROOT','CORE_SLPI_ADSP_ROOT','CORE_SLPI_USER'],
+      '${BUILDPATH}/SpiDriver_UImg', SPI_SOURCES)
+   env.AddIslandLibrary(['CORE_SSC_SLPI_USER','CORE_SLPI_USER'], U_IMG_LIB)
+
+#---------------------------------------------------------------------------
+# RCINIT - enable below for standalone SPI dev test
+#---------------------------------------------------------------------------
+if 'USES_RCINIT' in env:
+   RCINIT_IMG = ['CORE_SSC_SLPI_USER','CORE_SLPI_ROOT','CORE_SLPI_ADSP_ROOT','CORE_SLPI_USER']
+   env.AddRCInitFunc(
+    RCINIT_IMG,                 
+    {
+     'sequence_group'             : 'RCINIT_GROUP_2',
+     'init_name'                  : 'SpiInit',
+     'init_function'              : 'SpiInit',
+    })
+
+
+if 'USES_QDSS_SWE' in env:
+  env.Append(CPPDEFINES = ["SPI_TRACER_SWEVT"])
+  QDSS_IMG = ['QDSS_EN_IMG']
+  events = [
+    ['SPI_OPEN',    'SPI_DRV_OPEN'],
+    ['SPI_OPEN_DONE',    'SPI_DRV_OPEN_DONE'],
+    ['SPI_FULL_DUPLEX',  'SPI_DRV_FULL_DUPLEX: tx_len = %d, rx_len = %d'],
+    ['SPI_FULL_DUPLEX_DONE',  'SPI_DRV_FULL_DUPLEX_DONE'],
+    ['SPI_CLOSE',    'SPI_DRV_CLOSE'],
+    ['SPI_CLOSE_DONE',    'SPI_DRV_CLOSE_DONE']]
+  env.AddSWEInfo(QDSS_IMG, events)
+
+if 'QDSS_TRACER_SWE' in env:
+  env.SWEBuilder(['${BUILD_ROOT}/core/buses/spi/build/${BUILDPATH}/src/SPISWEventId.h'], None)
+  env.Append(CPPPATH = ['${BUILD_ROOT}/core/buses/spi/build/${BUILDPATH}/src'])
+

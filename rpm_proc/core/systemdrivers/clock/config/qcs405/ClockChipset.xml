@@ -1,0 +1,88 @@
+<driver name="Clock">
+  
+   <device id=DALDEVICEID_CLOCK>
+   
+      <!-- Clock sources -->
+      <props name="ClockSources" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        SourceConfig
+      </props>
+
+      <!-- RPM Clocks -->
+      <props name="gcc_rpm_proc_hclk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        RPMClockConfig
+      </props>
+
+      <!-- System NOC Clocks -->
+      <props name="gcc_sys_noc_axi_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        SystemNOCClockConfig
+      </props>
+
+     <!-- Config NOC Clocks -->
+      <props name="gcc_pcnoc_ahb_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        ConfigNOCClockConfig
+      </props>
+
+      <!-- QDSS AT Clocks -->
+      <props name="gcc_sys_noc_at_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        QDSSATClockConfig
+      </props>
+
+      <!-- QDSS Trace Clocks -->
+      <props name="gcc_qdss_traceclkin_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        QDSSTraceClockConfig
+      </props>
+
+      <!-- QDSS STM Clocks -->
+      <props name="gcc_qdss_stm_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        QDSSSTMClockConfig
+      </props>
+
+      <!-- QDSS APB TSCTR Clocks -->
+      <props name="gcc_qdss_tsctr_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        QDSSAPBTSCTRClockConfig
+      </props>
+
+      <!-- QDSS Trig Clocks -->
+      <props name="gcc_qdss_trig_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        QDSSTRIGClockConfig
+      </props>
+
+      <!-- RBCPR Clocks -->
+      <props name="gcc_rbcpr_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        RBCPRClockConfig
+      </props>
+
+      <!-- CRYPTO Clocks -->
+      <props name="gcc_crypto_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        CRYPTOClockConfig
+      </props>
+
+      <!-- SPMI AHB Clocks -->
+      <props name="gcc_spmi_ahb_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        SPMIAHBClockConfig
+      </props>
+
+      <!-- SPMI SER Clocks -->
+      <props name="gcc_spmi_ser_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        SPMISERClockConfig
+      </props>
+
+      <!-- APSS AHB Clocks -->
+      <props name="gcc_apss_ahb_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        APSSAHBClockConfig
+      </props>
+
+      <!-- QPIC Clocks -->
+      <props name="gcc_qpic_clk" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        QPICClockConfig
+      </props>
+
+      <!-- Clock Log Defaults -->
+      <props name="ClockLogDefaults" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+        ClockLogDefaultConfig
+      </props>
+   </device>
+   
+</driver>
+
+

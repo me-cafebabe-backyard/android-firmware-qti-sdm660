@@ -1,0 +1,174 @@
+#=============================================================================
+# TLMM LIBRARY
+#
+# Target:    All
+# Processor: All
+#
+#=============================================================================
+# $Header: //components/rel/core.tz/1.0.7.1/systemdrivers/tlmm/build/tlmm.scons#1 $
+#=============================================================================
+#  Copyright 2014-2015 QUALCOMM Technologies Incorporated.
+#  All Rights Reserved.
+#  QUALCOMM Proprietary/GTDR
+#=============================================================================
+
+import os
+
+Import('env')
+env = env.Clone()
+
+#------------------------------------------------------------------------------
+# Add API folders
+#------------------------------------------------------------------------------
+if os.path.isfile(env.subst('../config/${CHIPSET}/TLMMChipset.xml')):
+   env.Replace(TLMM_CHIPSET = '${CHIPSET}')
+else:
+   env.Replace(TLMM_CHIPSET = 'stubs')
+
+TLMM_API = [
+   "${INC_ROOT}/core/systemdrivers/tlmm/inc",
+   "${INC_ROOT}/core/api/systemdrivers/hwio/${TLMM_CHIPSET}",
+   "${INC_ROOT}/core/systemdrivers/tlmm/config/${TLMM_CHIPSET}"
+]
+
+if env['TLMM_CHIPSET'] != 'stubs':
+  TLMM_API.extend(["${INC_ROOT}/core/systemdrivers/tlmm/config"])
+  
+env.PublishPrivateApi("SYSTEMDRIVERS_TLMM", TLMM_API)
+
+SRCPATH = "../"
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0) 
+SRCPATHSCRIPTS = env['BUILD_ROOT'] + '/core/systemdrivers/tlmm/scripts/'
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+
+env.Append(CPPPATH = [
+   "${INC_ROOT}/core/systemdrivers/tlmm/src",
+   "${INC_ROOT}/core/systemdrivers/tlmm/config",
+   "${INC_ROOT}/core/systemdrivers/tlmm/config/${TLMM_CHIPSET}",
+   "${INC_ROOT}/core/systemdrivers/tlmm/hw/v1",
+   "${INC_ROOT}/core/systemdrivers/tlmm/hw/v2",
+   "${INC_ROOT}/core/systemdrivers/tlmm/hw/v3",
+   "${INC_ROOT}/core/kernel/xpu2/hal/inc",
+   "${INC_ROOT}/core/kernel/xpu3/hal/inc",
+])
+
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'HAL',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+   'SYSTEMDRIVERS_HAL_TLMM_INC',
+   'DAL',
+   'AC',
+
+   # needs to be last also contains wrong comdef.h
+   'KERNEL',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+
+
+#-------------------------------------------------------------------------------
+# Sources, libraries
+#-------------------------------------------------------------------------------
+
+
+HAL_TLMM_V1_SOURCES =  [
+   '${BUILDPATH}/hw/v1/HALtlmm.c'
+]
+
+HAL_TLMM_V2_SOURCES = [
+   '${BUILDPATH}/hw/v2/HALtlmmtile.c',
+   '${BUILDPATH}/hw/v2/HALtlmmtilePlatform.c',
+   '${BUILDPATH}/hw/v2/HALtlmm.c',
+]
+
+HAL_TLMM_V3_SOURCES = [
+   '${BUILDPATH}/hw/v3/HALtlmmtile.c',
+   '${BUILDPATH}/hw/v3/HALtlmmtilePlatform.c',
+   '${BUILDPATH}/hw/v3/HALtlmm.c',
+]
+
+HAL_TLMM_CMN_SOURCES = [
+   '${BUILDPATH}/hw/common/HALtlmm.c',
+]
+
+
+haltlmm_v1_obj = env.Object(HAL_TLMM_V1_SOURCES)
+haltlmm_v1_lib = env.Library('${BUILDPATH}/HALtlmmV1', haltlmm_v1_obj)
+
+haltlmm_v2_obj = env.Object(HAL_TLMM_V2_SOURCES)
+haltlmm_v2_lib = env.Library('${BUILDPATH}/HALtlmmV2', haltlmm_v2_obj)
+
+haltlmm_v3_obj = env.Object(HAL_TLMM_V3_SOURCES)
+haltlmm_v3_lib = env.Library('${BUILDPATH}/HALtlmmV3', haltlmm_v3_obj)
+
+haltlmm_cmn_obj = env.Object(HAL_TLMM_CMN_SOURCES)
+haltlmm_cmn_lib = env.Library('${BUILDPATH}/HALtlmmCMN', haltlmm_cmn_obj)
+
+
+TLMM_COMMON_SOURCES =  [
+   '${BUILDPATH}/src/Tlmm.c',
+]
+
+
+tlmm_obj = env.Object(TLMM_COMMON_SOURCES)
+tlmm_lib = env.Library('${BUILDPATH}/Tlmm', tlmm_obj)
+
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+
+if 'sdm845' in env['CHIPSET']:
+   env.AddLibsToImage(['TZOS_IMAGE'], [tlmm_lib, haltlmm_cmn_lib])
+elif 'msm8998' in env['CHIPSET']:
+   env.AddLibsToImage(['TZOS_IMAGE'], [tlmm_lib, haltlmm_v2_lib])
+elif 'sdm660' in env['CHIPSET']:
+   env.AddLibsToImage(['TZOS_IMAGE'], [tlmm_lib, haltlmm_v3_lib])
+else:
+   env.AddLibsToImage(['TZOS_IMAGE'], [tlmm_lib, haltlmm_v1_lib])
+
+
+#---------------------------------------------------------------------------
+# Invoke document generation SConscript
+#---------------------------------------------------------------------------
+
+if os.path.exists(env.subst('${BUILD_ROOT}/core/api/systemdrivers/docsrc/tlmm/SConscript')):
+  env.SConscript(
+    '${BUILD_ROOT}/core/api/systemdrivers/docsrc/tlmm/SConscript',
+    exports='env')
+
+
+#---------------------------------------------------------------------------
+# Add DAL XML file
+#---------------------------------------------------------------------------
+if 'USES_DEVCFG' in env:
+   DEVCFG_IMG = ['DAL_DEVCFG_OEM_QSEE_IMG']
+   env.AddDevCfgInfo(DEVCFG_IMG, 
+   {
+       'devcfg_xml' : '${BUILD_ROOT}/core/systemdrivers/tlmm/config/${TLMM_CHIPSET}/TLMMChipset.xml'
+   })
+
+
+
+#-------------------------------------------------------------------------------
+# Add CMM Scripts to T32 Menu
+#-------------------------------------------------------------------------------
+
+CMM_ARGUMENT = ''
+
+try:
+    env.AddCMMScripts ('TZ', [SRCPATHSCRIPTS], { 'tlmm_gpio_hw.cmm' : ['TLMM', CMM_ARGUMENT] }, 'SystemDrivers')
+except:
+  pass
+env.Deploy(['tlmm.scons',
+            '../config/TlmmPropDef.h'
+           ])

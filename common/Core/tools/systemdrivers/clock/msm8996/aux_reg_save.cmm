@@ -1,0 +1,16 @@
+entry &filename
+
+if "&filename"==""
+(
+  print "Error, please use the script as: do aux_reg_save <filename_base>"
+  enddo
+)
+
+
+printer.file "&(filename)00.txt"
+
+wp.data.dump 0x300000++0x2F /noascii /width 1    ;GCC GPLL0
+wp.data.dump 0x09820000++0xA3 /noascii /width 1  ;APCS AUX
+wp.data.dump 0x6400000++0x21F /noascii /width 1  ;APC0
+
+wp.data.dump 0x350000++0x7FFF /noascii /width 1    ;GCC all

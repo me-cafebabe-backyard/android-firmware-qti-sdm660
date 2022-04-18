@@ -1,0 +1,3 @@
+Port  Priority  addr1  addr2  addr3  addr4
+0.    1.        0x94a  0      0      0
+2.    2.        0x0    0x0    0x0    0x0

@@ -1,0 +1,196 @@
+#===============================================================================
+#
+# vMPM Libs
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2009-2014,2016 by Qualcomm Technologies, Inc. (QTI).
+# All Rights Reserved.
+# QUALCOMM Technologies Proprietary and Confidential
+#-------------------------------------------------------------------------------
+#  $Header: //components/dev/core.mpss/4.0/cquick.core.mpss.4.0.mpm_update/power/mpm/build/mpm.scons#2 $
+#  $DateTime: 2016/04/13 13:46:47 $
+#  $Author: cquick $
+#  $Change: 10260027 $
+#===============================================================================
+import os
+Import('env')
+env = env.Clone()
+if env['IMAGE'] == "cdsp":
+  Return()
+#-------------------------------------------------------------------------------
+# Build options
+#-------------------------------------------------------------------------------
+# Max number of MPM2 interrupts supported on a given target.
+env.Append(CPPDEFINES = [('MPM_MAX_NUM_INTS = 96')])
+
+#Turn off optimizations for easier debug
+#env.Append(CCFLAGS = "  -O0")
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/core/power/mpm/src"
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+#-------------------------------------------------------------------------------
+# General setup
+#-------------------------------------------------------------------------------
+MPM_MSM = env['MSM_ID']
+
+#-------------------------------------------------------------------------------
+# Island support
+#-------------------------------------------------------------------------------
+ISLAND_TAG = ['CORE_QDSP6_SW', 'CBSP_QDSP6_SW_IMAGE']
+
+# Enable island mode uSleep feature
+## Island MPM support is not needed in ADSP, define the flag if it's ever needed
+#if 'USES_ISLAND' in env:
+#  env.AddUsesFlags('MPM_SUPPORT_ISLAND')
+
+#-------------------------------------------------------------------------------
+# Clean Pack Options
+#-------------------------------------------------------------------------------
+# Remove target specific files
+ALL_TARGET_FILES = env.FindFiles(['*'], '${BUILD_ROOT}/core/power/mpm/config/asic/')
+MY_TARGET_FILES = env.FindFiles(['*'], '${BUILD_ROOT}/core/power/mpm/config/asic/'+MPM_MSM)
+PACK_TARGET_FILES = list(set(ALL_TARGET_FILES) - set(MY_TARGET_FILES))
+env.CleanPack(['CORE_MODEM'], PACK_TARGET_FILES)
+
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'DAL',
+   'HAL',
+   'DEBUGTOOLS',
+   'MPROC',
+   'POWER',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+   'KERNEL'
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_API)
+env.RequireProtectedApi(['POWER_RPM'])
+
+env.PublishPrivateApi('POWER_MPM', [
+   "${INC_ROOT}/core/power/mpm/inc",
+   "${INC_ROOT}/core/power/mpm/inc/dal",
+   "${INC_ROOT}/core/power/mpm/src",
+   "${INC_ROOT}/core/power/mpm/src/hal",
+   "${INC_ROOT}/core/power/mpm/src/umpm",
+])
+
+#-------------------------------------------------------------------------------
+# Global source settings
+#-------------------------------------------------------------------------------
+MAIN_IMG_TAG = ['CORE_QDSP6_SW', 'CBSP_QDSP6_SW_IMAGE']
+
+DALMPM_SOURCES = [
+   '${BUILDPATH}/dal/Dalmpm.c',
+   '${BUILDPATH}/dal/DalmpmFwk.c',
+   '${BUILDPATH}/dal/DalmpmInfo.c',
+ ]
+
+VMPM_SOURCES =  [
+   '${BUILDPATH}/vmpm.c',
+   '${BUILDPATH}/vmpm_internal.c',
+   '${BUILDPATH}/mpmint.c',
+   '${BUILDPATH}/vmpm_utils.c',
+   '${BUILDPATH}/vmpm_log.c',
+   '${BUILDPATH}/os/default/vmpm_os.c',
+   '${BUILDPATH}/os/default/vmpm_target.c',
+   '${BUILDPATH}/hal/vmpm_HAL.c',
+   '${BUILDPATH}/hal/vmpm_HAL_IPC.c',
+]
+
+VMPM_CMN_SOURCES = [
+  '${BUILDPATH}/vmpm_cmn.c',
+  '${BUILDPATH}/hal/vmpm_HAL_cmn.c',
+]
+
+UMPM_SOURCES = [
+  '${BUILDPATH}/umpm/umpm.c',
+  '${BUILDPATH}/umpm/umpm_log.c',
+]
+
+#------------------------------------------------------------------------------
+# Adding device config data
+#------------------------------------------------------------------------------
+if 'USES_DEVCFG' in env:
+   DEVCFG_IMG = ['DAL_DEVCFG_IMG']
+   default_dalmpm_xml = '${BUILD_ROOT}/core/power/mpm/config/dalmpm.xml'
+
+   # Providing DevCfg information about our xml file and source code files.
+   # Change files or add targets as required.
+   env.AddDevCfgInfo(
+      DEVCFG_IMG,
+      {
+       '8996_xml' : ['${BUILD_ROOT}/core/power/mpm/config/asic/8996/MPMDevCfg.xml',
+                     default_dalmpm_xml,
+                     '${BUILD_ROOT}/core/power/mpm/config/asic/8996/MPMIntDevCfgData.c'],
+
+       '8998_xml' : ['${BUILD_ROOT}/core/power/mpm/config/asic/8998/MPMDevCfg.xml',
+                     default_dalmpm_xml,
+                     '${BUILD_ROOT}/core/power/mpm/config/asic/8998/MPMIntDevCfgData.c'],
+					 
+       '660_xml' : ['${BUILD_ROOT}/core/power/mpm/config/asic/660/MPMDevCfg.xml',
+                     default_dalmpm_xml,
+                     '${BUILD_ROOT}/core/power/mpm/config/asic/660/MPMIntDevCfgData.c']
+      }
+   )
+
+#-------------------------------------------------------------------------------
+# Create libraries
+#-------------------------------------------------------------------------------
+vmpm_lib = env.AddLibrary(MAIN_IMG_TAG, 
+                          os.path.join('${BUILDPATH}', 'vmpm'), 
+                          VMPM_SOURCES)
+
+vmpm_cmn_lib = env.AddLibrary(MAIN_IMG_TAG, 
+                              os.path.join('${BUILDPATH}', 'vmpm_cmn'), 
+                              VMPM_CMN_SOURCES)
+
+
+dalmpm_lib = env.AddLibrary(MAIN_IMG_TAG, 
+                            os.path.join('${BUILDPATH}', 'Dalmpm'), 
+                            DALMPM_SOURCES)
+
+if 'MPM_SUPPORT_ISLAND' in env:
+  umpm_lib = env.AddLibrary(MAIN_IMG_TAG, 
+                            os.path.join('${BUILDPATH}', 'umpm'), 
+                            UMPM_SOURCES)
+
+#-------------------------------------------------------------------------------
+# Whitelist for island sections
+#-------------------------------------------------------------------------------
+WHITELIST = []
+
+#-------------------------------------------------------------------------------
+# Add library to island section
+#-------------------------------------------------------------------------------
+if 'MPM_SUPPORT_ISLAND' in env:
+  env.AddIslandLibrary(ISLAND_TAG, umpm_lib)
+  env.AddIslandLibrary(ISLAND_TAG, vmpm_cmn_lib)
+#  env.AddSymbolToIslandWhitelist(ISLAND_TAG, umpm_lib, WHITELIST)
+#  env.AddSymbolToIslandWhitelist(ISLAND_TAG, vmpm_cmn_lib, WHITELIST)
+
+#-------------------------------------------------------------------------------
+# Add vmpm_init function to RCINIT
+#-------------------------------------------------------------------------------
+
+# rpm driver properties
+RCINIT_PROPS = {
+  'sequence_group'             : 'RCINIT_GROUP_0',
+  'init_name'                  : 'vmpm',
+  'init_function'              : 'vmpm_init',
+  'dependencies'               : ['GPIOInt', 'dalsys'],
+}
+
+if 'USES_RCINIT' in env:
+  env.AddRCInitFunc(MAIN_IMG_TAG, RCINIT_PROPS)
+

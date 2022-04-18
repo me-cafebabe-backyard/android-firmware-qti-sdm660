@@ -1,0 +1,13 @@
+<driver name="VCS">
+  <device id="VCS">
+     <!-- VCS Log Defaults -->
+     <props name="VCSLogDefaults" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+       VCS_LogDefaultConfig
+     </props>
+    
+     <!-- Rails -->
+     <props name="VCSBSPConfig" type=DALPROP_ATTR_TYPE_STRUCT_PTR>
+       VCS_BSPConfig
+     </props>
+   </device>
+</driver>

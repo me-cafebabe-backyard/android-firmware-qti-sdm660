@@ -1,0 +1,84 @@
+//============================================================================
+//  Name:                                                                     
+//    listparser.cmm
+//
+//  Description:                                                              
+//    Parses a list of "separator" separated entries in a list
+//                                                                            
+// Copyright (c) 2012 - 2014 by Qualcomm Technologies, Incorporated.  All Rights Reserved.        
+//
+//
+//
+//	Edits: Edits
+//	amcheriy	: Created for warehouse 2.1				: 05/03/2014
+// ------------------------------------------------------------------------------------------
+
+//* Note: List entries cannot have a whitespace. *//
+ENTRY %LINE &List
+
+LOCAL &Entry0 &Entry1 &Entry2 &Entry3 &Entry4 &Entry5 &Entry6 &Entry7
+LOCAL &Counter &CpyList &Entry &ListEnd &Length
+MAIN:
+	&Length=STRING.LEN("&List")
+	&CpyList="&List"
+	&Counter=0
+
+	WHILE (&Length>0)
+	(
+		&ListEnd=STRING.SCAN("&CpyList",",",0)
+		// Check if this is the last entry in the list
+		IF (&ListEnd==-1)
+		(
+			&ListEnd=&Length
+		)
+	
+	   // Extract the parameters one at a time
+		IF (&Counter==0)
+		(
+			&Entry0=STRING.MID("&CpyList",0,&ListEnd)
+		)
+		IF (&Counter==1)
+		(
+			&Entry1=STRING.MID("&CpyList",0,&ListEnd)
+		)
+		IF (&Counter==2)
+		(
+			&Entry2=STRING.MID("&CpyList",0,&ListEnd)
+		)
+		IF (&Counter==3)
+		(
+			&Entry3=STRING.MID("&CpyList",0,&ListEnd)
+		)
+		IF (&Counter==4)
+		(
+			&Entry4=STRING.MID("&CpyList",0,&ListEnd)
+		)
+		IF (&Counter==5)
+		(
+			&Entry5=STRING.MID("&CpyList",0,&ListEnd)
+		)
+		// Extract the parameters one at a time
+		IF (&Counter==6)
+		(
+			&Entry6=STRING.MID("&CpyList",0,&ListEnd)
+		)
+		IF (&Counter==7)
+		(
+			&Entry7=STRING.MID("&CpyList",0,&ListEnd)
+		)
+		IF ((&ListEnd==-1)||(&Counter==7))
+		(
+			&CpyList=""
+		)
+		ELSE
+		(
+			&CpyList=STRING.MID("&CpyList",&ListEnd+1,&Length)
+		)
+		&Length=STRING.LEN("&CpyList")
+		// Extract the entry out
+		&Counter=&Counter+1
+	)
+		
+EXIT:
+	ENDDO &Entry0 &Entry1 &Entry2 &Entry3 &Entry4 &Entry5 &Entry6 &Entry7
+	

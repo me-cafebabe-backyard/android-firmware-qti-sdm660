@@ -1,0 +1,132 @@
+#===========================================================================
+#  Copyright (c) 2011-2016 QUALCOMM Incorporated.
+#  All Rights Reserved.
+#  Qualcomm Confidential and Proprietary
+#===========================================================================
+#
+#
+# GENERAL DESCRIPTION
+#    build script
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+#
+#===============================================================================
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+Import('env')
+
+if env.has_key('USES_NO_CP'):
+  env.Append(CCFLAGS = ' -DUSES_NO_CP ')
+
+#------------------------------------------------------------------------------
+# We need to specify "neon" to generate SIMD instructions in 32-bit mode
+#------------------------------------------------------------------------------
+if env['PROC'] == 'scorpion':
+  env.Append(CCFLAGS = " -mfpu=neon ")
+
+env.Append(CPPDEFINES = 'SAMPLE_APP=1')
+
+test_fuse_inc = ['#../../core/securemsm/trustzone/qsapps/sampleapp/inc/' + env['CHIPSET']]
+includes = ['#../../core/securemsm/trustzone/qsapps/sampleapp/inc',
+            '#../../core/api/kernel/libstd/stringl',
+            '#../../core/securemsm/trustzone/qsapps/smplserv/inc',
+            '#../../core/securemsm/sse/qsee/SecureUI/inc',
+            '#../../core/api/boot/qfprom',
+            '#../../core/securemsm/secmath/shared/inc',
+            '#../../core/api/securemsm/trustzone/gp',
+            '#../../core/securemsm/trustzone/qsapps/libs/applib/qsee/src',
+            '#../../core/securemsm/sse/qsee/SecureUILib/include',
+            '#../../core/securemsm/sse/qsee/SecureTouch/drTs/include',
+            '#../../core/securemsm/trustzone/qsapps/libs/biometric/inc',
+            '#../../core/kernel/smmu/ACv3.0/common/inc/',
+            '#../../core/securemsm/trustzone/qsee/mink/include',
+            '#../../core/securemsm/trustzone/qsapps/common',
+           ]
+includes.extend(test_fuse_inc)
+
+#----------------------------------------------------------------------------
+# App core Objects
+#----------------------------------------------------------------------------
+sources = [
+        'app_main.c',
+        'app_smci_test.c',
+        'app_smplserv_test.c',
+        'app_sandbox_test.c',
+        'app_smplcert_test.c',
+        'app_crypto.c',
+        'app_sfs.c',
+        'app_rsa.c',
+        'qsee_api_tests.c',
+        'app_cmnlib.c',
+        'app_message_passing.c',
+        'app_fuses.c',
+        'app_stor.c',
+        'app_content_protection.c',
+        'app_secure_ui.c',
+        'app_spcom_test.c',
+        'app_bio_lib.c',
+        'app_bulletin_board.c',
+        'app_hdcp.c',
+        'idl/CTest1.c',
+        'idl/CObserver.c',
+]
+
+if env.has_key('USES_NO_CP'):
+  sources.extend(
+       ['app_content_protection_noship.c',
+        'cp_utils.c',
+       ]
+  )
+
+if env['PROC'] == 'scorpion':
+  target_name = 'smplap32'
+  app_name = 'SampleApp'
+else:
+  target_name = 'smplap64'
+  app_name = 'SampleApp64'
+
+#-------------------------------------------------------------------------------
+# Add metadata to image
+#-------------------------------------------------------------------------------
+md = {
+   'appName':    app_name,
+   'privileges': ['default',
+                  'I2C',
+                  'OEMUnwrapKeys',
+                  'TestSandbox',
+                  'CertValidate',
+                  'SPI',
+                  'SPCOM',
+                  'TLMM',
+                  'SecureDisplay',
+                  'IntMask',
+                  'OEMBuf',
+                  'TransNSAddr',
+                  'NSSystemReg',
+                  'HdcpEncryption',
+                  'HavenTokenApp'
+                 ],
+}
+if env['PROC'] == 'scorpion':
+  md['memoryType'] = 'Unprotected'
+
+deploy_header_files = env.Glob('../inc/*')
+
+sampleapp_units = env.SecureAppBuilder(
+  sources = sources,
+  includes = includes,
+  metadata = md,
+  image = target_name,
+  heap_size = '0x10000',
+  deploy_sources = sources + ['SConscript'] + deploy_header_files
+)
+
+for image in env['IMAGE_ALIASES']:
+  op = env.Alias(image, sampleapp_units)

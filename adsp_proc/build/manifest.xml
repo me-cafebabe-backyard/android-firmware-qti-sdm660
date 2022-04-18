@@ -1,0 +1,10 @@
+<config>
+  <image_tree>
+    <name>ADSP.VT.4.1.c1</name>
+    <build_id>ADSP.VT.4.1.c1-00009-SDM660-1</build_id>
+    <branch_point_revision/>
+    <revision>00009</revision>
+    <spin>1</spin>
+    <client>SDM660</client>
+  </image_tree>
+</config>

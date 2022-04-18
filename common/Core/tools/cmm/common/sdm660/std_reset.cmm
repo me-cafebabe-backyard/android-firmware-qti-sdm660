@@ -1,0 +1,196 @@
+//============================================================================
+//  Name:                                                                     
+//    std_reset.cmm 
+//
+//  Description:                                                              
+//        Top level reset script
+//                                                                            
+// Copyright (c) 2012 - 2014 by Qualcomm Technologies, Incorporated.  All Rights Reserved.        
+//
+//
+//
+//
+//                      EDIT HISTORY FOR FILE
+//  This section contains comments describing changes made to the module.
+//  Notice that changes are listed in reverse chronological order.
+//
+// when       who             what, where, why
+// --------   ---             ---------------------------------------------------------------------
+//05/25/2017  MARTHAM         XBL debugging issue fixed. 
+//02/02/2017  MARTHAM         Fix PBL hung while subsystem debug.
+// 09/14/2015 JBILLING        Changes made for automation
+// 04/16/2015 JBILLING        Update hwio_ API's. Enable platinfo
+// 04/15/2015 JBILLING        Added ability to load from cluster
+// 04/02/2015 JBILLING        Additional hooks added for device programmer 
+// 03/10/2015 JBILLING        PMIC reset added
+// 02/10/2015 JBILLING        Changed for 8996
+// 09/10/2013 AJCheriyan      Removed TLMM register write. Disable PMIC watchdog added
+// 06/16/2013 AJCheriyan      Added check for Chipset family as well
+// 02/11/2013 AJCheriyan      Pulled in DLOAD cookie clearing logic from HLOS reset scripts
+// 02/08/2013 AJCheriyan      Added change to clear boot partition select / watchdog enable registers
+// 10/10/2012 AJCheriyan      Added change to go to end of RPM boot loader to turn on IMEM clocks
+// 08/13/2012 AJCheriyan      Manually reset the security block to workaround V1 HW bug
+// 07/19/2012 AJCheriyan      Created for B-family (8974)
+//
+
+LOCAL &ArgumentLine &rvalue
+ENTRY %LINE &ArgumentLine
+
+&rvalue="FAILURE"
+LOCAL &DLOAD_COOKIE1_ADDR &DLOAD_COOKIE2_ADDR
+
+// DLOAD Cookies in OCIMEM
+do std_memorymap
+
+
+
+MAIN:
+    // Check for any active sessions
+    do std_intercom_init CHECKSESSION 5 RPM APPS0 APPS1 APPS2 APPS3
+    do std_intercom_init CHECKSESSION 4 MPSS ADSP CDSP VSS
+    
+    // "Reset" all T32 sessions except Apps0
+
+    IF (("&APPS1_ALIVE"!="0.")&&("&APPS1_ALIVE"!=""))
+    (
+        do std_intercom_cmds &APPS1_PORT NOWAIT SYS.MODE NODEBUG, SYS.D, BREAK.DELETE /ALL
+    )
+    IF (("&APPS2_ALIVE"!="0.")&&("&APPS2_ALIVE"!=""))
+    (
+        do std_intercom_cmds &APPS2_PORT NOWAIT SYS.MODE NODEBUG, SYS.D, BREAK.DELETE /ALL
+    )
+    IF (("&APPS3_ALIVE"!="0.")&&("&APPS3_ALIVE"!=""))
+    (
+        do std_intercom_cmds &APPS3_PORT NOWAIT SYS.MODE NODEBUG, SYS.D, BREAK.DELETE /ALL
+    )
+    IF (("&APPSC0_ALIVE"!="0.")&&("&APPSC0_ALIVE"!=""))
+    (
+        do std_intercom_cmds &APPSC0_PORT NOWAIT SYS.MODE NODEBUG, SYS.D, BREAK.DELETE /ALL
+    )
+
+    IF (("&MPSS_ALIVE"!="0.")&&("&MPSS_ALIVE"!=""))
+    (
+        do std_intercom_cmds &MPSS_PORT NOWAIT SYS.MODE NODEBUG, SYS.D, BREAK.DELETE /ALL
+    )
+    IF (("&ADSP_ALIVE"!="0.")&&("&ADSP_ALIVE"!=""))
+    (
+        do std_intercom_cmds &ADSP_PORT NOWAIT SYS.MODE NODEBUG, SYS.D, BREAK.DELETE /ALL
+    )
+	IF (("&CDSP_ALIVE"!="0.")&&("&CDSP_ALIVE"!=""))
+    (
+        do std_intercom_cmds &CDSP_PORT NOWAIT SYS.MODE NODEBUG, SYS.D, BREAK.DELETE /ALL
+    )
+//    IF (("&SLPI_ALIVE"!="0.")&&("&SLPI_ALIVE"!=""))
+//    (
+//        do std_intercom_cmds &SLPI_PORT NOWAIT SYS.MODE NODEBUG, SYS.D, BREAK.DELETE /ALL
+//    )
+
+    IF (("&RPM_ALIVE"!="0.")&&("&RPM_ALIVE"!=""))
+    (
+        do std_intercom_cmds &RPM_PORT NOWAIT SYS.MODE NODEBUG, SYS.D, BREAK.DELETE /ALL
+    )
+
+    // Load HWIO
+    do hwio
+    
+    
+    LOCAL &rvalue
+    //can use either apps0 or apps cluster window
+    IF ((("&APPS0_ALIVE"!="0.")&&("&APPS0_ALIVE"!=""))||("&LOCALHOST"=="&APPS0_PORT"))||((("&APPSC0_ALIVE"!="0.")&&("&APPSC0_ALIVE"!=""))||("&LOCALHOST"=="&APPSC0_PORT"))
+    (
+        ON ERROR CONTINUE    
+        //forcibly wakeup cpu0
+        SYS.M.A
+        SYS.OPTION.ENRESET ON
+        DO std_utils HWIO_OUTF APCS_APC0_CPU0_SAW3_SPM_CTL SPM_CTL_WAKEUP 0x1 EDAP
+        
+        wait.1ms
+            
+        BREAK
+        SYS.UP
+        ON ERROR
+        
+        
+        IF (STRING.SCAN("&ArgumentLine","NOPMIC",0)==-1)&&("&STDRESETPMIC"=="TRUE")
+        (
+            //Tell the PMIC that we're resetting
+            do std_pmic_&CHIPSET HARDRESET
+            ENTRY %LINE &rvalue
+            IF (STRING.SCAN("&rvalue","SUCCESS",0)==-1)
+            (
+                GOSUB EXIT &rvalue
+            )
+            
+            
+            ON ERROR GOSUB 
+            (
+               GOSUB EXIT "std_reset:108 error - bus error"
+            )      
+        
+			SYS.UP
+			
+			//Use attach and break method if you see any issues with sys.up like PBL hung..etc. 
+			//Note,using this approach XBL debug would fail. 
+			//SYS.M.A
+			//BREAK
+			
+            //REGISTER.SET M &el_register
+            ON ERROR
+        )   //
+        
+
+        do std_platinfo
+        
+        ON ERROR GOSUB 
+        (
+            GOSUB EXIT "std_reset:118 error - bus error when resetting EDL cookies"
+        )
+        IF (STRING.SCAN("&ArgumentLine","SETEDLCOOKIE",0)==-1)
+        (
+            // Now clear reset reason detect register (applicable only to v2/v3 due to TCSR not retained across reset)
+            do std_utils HWIO_OUT  TCSR_TCSR_BOOT_MISC_DETECT 0x0 AN
+            //Workaround for TCSR not retained across reset
+            do std_utils HWIO_OUTF GCC_WIND_DOWN_TIMER RESERVE_BITS31_16 0x0 AN
+        )
+        ELSE //set the EDL cookies so that device gets to downloadmode
+        (
+            do std_utils HWIO_OUT TCSR_TCSR_BOOT_MISC_DETECT 0x1 AN
+            //Workaround for TCSR not retained across reset
+            do std_utils HWIO_OUTF GCC_WIND_DOWN_TIMER RESERVE_BITS31_16 0x1 AN
+
+        )
+        ON ERROR
+        // Call the HLOS specific reset script
+        &HLOSCRIPT="std_reset_"+STR.LWR("&HLOS")
+        do &METASCRIPTSDIR\apps\&CHIPSET\&HLOS\&HLOSCRIPT
+        ENTRY %LINE &rvalue
+
+    )
+    
+    GOSUB EXIT &rvalue
+
+
+
+EXIT:
+    LOCAL &rvalue
+    ENTRY %LINE &rvalue
+    ENDDO &rvalue
+    
+
+//Should never get here. 
+FATALEXIT:
+    LOCAL &rvalue
+    ENTRY %LINE &rvalue
+    IF STRING.SCAN("&FAILUREKEYWORD","FAILUREKEYWORD",0)==-1
+    (
+        GOSUB EXIT &FAILUREKEYWORD - &rvalue
+    )
+    ELSE
+    (
+        GOSUB EXIT &rvalue
+    )
+    
+//Should never get here
+    END
+
+

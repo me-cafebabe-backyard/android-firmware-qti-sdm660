@@ -1,0 +1,59 @@
+#/** @file XBLLoaderLibPkg.dec
+# Pmic package.
+#
+# Copyright (c) 2015 Qualcomm Technologies, Inc. 
+# All rights reserved.
+#
+#**/
+#
+#==============================================================================
+#                              EDIT HISTORY
+#
+#
+# when       who     what, where, why
+# --------   ---     ----------------------------------------------------------
+# 12/15/15   bh      Settings relocation
+# 08/17/15   sr      Initial Revision
+#
+#==============================================================================
+
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = DSFTargetLibPkg
+  PACKAGE_GUID                   = 5452BA01-44C3-4D2C-8A49-2E4D89CACC1B
+  PACKAGE_VERSION                = 0.1
+
+################################################################################
+#
+# Include Section - list of Include Paths that are provided by this package.
+#                   Comments are used for Keywords and Module Types.
+#
+# Supported Module Types:
+#  BASE SEC PEI_CORE PEIM DXE_CORE DXE_DRIVER DXE_RUNTIME_DRIVER DXE_SMM_DRIVER DXE_SAL_DRIVER UEFI_DRIVER UEFI_APPLICATION
+#
+################################################################################
+[Includes.common]
+  ../DDRTargetLib
+  ../../../Library/DDRLib/common
+  ../../../Sdm660Pkg/Include
+  ../../../Include/api/boot
+  ../../../Include/XBLLoader
+  boot/ddrss/header
+  rpm/ddrss/header
+  boot/ddrss/bimc/mc230/header
+  rpm/ddrss/bimc/mc230/header
+  boot/ddrss/mccc/mccc10/header
+  rpm/ddrss/mccc/mccc10/header
+  boot/ddrss/phy/phy30/header
+  rpm/ddrss/phy/phy30/header
+	boot/ddrss/ddr_cc_mccc/ddr_cc_mccc10/header 
+	rpm/ddrss/ddr_cc_mccc/ddr_cc_mccc10/header 
+  rpm/sns_api
+  boot/target/SDM630_660/header
+  boot/target/SDM630_660/sdi
+  rpm/target/SDM630_660/header
+  ../../Settings/DSF/boot
+  ../../Settings/DSF/rpm
+
+
+

@@ -1,0 +1,184 @@
+#===============================================================================
+#                    Copyright 2016 Qualcomm Technologies Incorporated.
+#                           All Rights Reserved.
+#                      Qualcomm Confidential and Proprietary
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.qdsp6/1.0.c2/systemdrivers/InterruptController/build/interruptcontroller.scons#1 $
+#  $DateTime: 2020/02/10 01:57:30 $
+#  $Author: pwbldsvc $
+#
+#===============================================================================
+# DAL InterruptController Lib
+#-------------------------------------------------------------------------------
+Import('env')
+env = env.Clone()
+
+#-------------------------------------------------------------------------------
+# Source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = "${BUILD_ROOT}/core/systemdrivers/InterruptController"
+SRCPATHSCRIPTS = env['BUILD_ROOT']+'/core/systemdrivers/InterruptController/scripts'
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0) 
+
+INTC_IMAGES = ['CORE_ADSP_ROOT', 'CORE_ADSP_USER','CORE_SLPI_ROOT', 'CORE_SLPI_USER','CORE_CDSP_ROOT', 'CORE_CDSP_USER']
+INTC_IMAGES_ROOT = ['CORE_ADSP_ROOT','CORE_SLPI_ROOT','CORE_CDSP_ROOT']
+
+#-------------------------------------------------------------------------------
+# Source Code
+#-------------------------------------------------------------------------------
+
+env.PublishPrivateApi('DAL_INTERRUPTCONTROLLER', [
+   "${INC_ROOT}/core/api/kernel/libstd/stringl",
+   "${INC_ROOT}/core/api/kernel/qurt",
+   "${INC_ROOT}/core/systemdrivers/InterruptController/src",
+   "${INC_ROOT}/core/systemdrivers/InterruptController/inc",
+   "${INC_ROOT}/core/systemdrivers/InterruptController/src/qurt/kernel",
+   "${INC_ROOT}/core/systemdrivers/InterruptController/src/qurt/kernel/uimage",
+   "${INC_ROOT}/core/systemdrivers/hal/aonint/inc",
+])
+
+env.Replace(SRC_DIR='qurt')
+env.Append(CPPDEFINES = ["DALINTERRUPT_LOG"])
+env.Append(CPPDEFINES = ["INTERRUPT_LOG_ENTRIES=0"])
+#env.Append(CPPDEFINES = ["DALINTERRUPT_MPM_WAKEUP"])
+env.Append(CPPPATH = [
+   "${INC_ROOT}/core/api/kernel/qurt",
+ ])
+if env['IMAGE'] == "cdsp":
+  env.Append(CPPDEFINES = ["DALINTERRUPT_NOAONINT"])
+ 
+#-------------------------------------------------------------------------------
+# Internal depends within CoreBSP
+#-------------------------------------------------------------------------------
+CBSP_API = [
+   'DAL',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+   'DEBUGTOOLS',
+   'MPROC',
+   'POWER',
+   'DEBUGTRACE',
+   # needs to be last also contains wrong comdef.h      
+   'KERNEL',
+]
+
+CBSP_RESTRICTED_API = [
+   'DAL',
+   'SERVICES',
+   'SYSTEMDRIVERS',
+   'DEBUGTOOLS',
+   'MPROC',
+   'POWER',
+   # needs to be last also contains wrong comdef.h      
+   'KERNEL',
+   'SYSTEMDRIVERS_HAL_AONINT_INC',
+]
+
+env.RequirePublicApi(CBSP_API)
+env.RequireRestrictedApi(CBSP_RESTRICTED_API)
+
+
+#-------------------------------------------------------------------------------
+# Source Code
+#-------------------------------------------------------------------------------
+DAL_INTERRUPT_CONTROLLER_SOURCES = [
+   '${BUILDPATH}/src/DALInterruptControllerInfo.c',
+   '${BUILDPATH}/src/DALInterruptControllerFwk.c',
+   '${BUILDPATH}/src/qurt/kernel/DALInterruptController.c',
+   '${BUILDPATH}/src/utils/DALInterruptController_utils.c'
+]
+
+if 'USES_ADSP_IMG' in env or 'USES_CDSP_IMG' in env:
+   INTERRUPT_UIMAGE = [
+      '${BUILDPATH}/src/qurt/kernel/uimage/uInterruptControllerStub.c'
+   ]
+else :
+
+   AONINT_SOURCES = [
+      '${BUILDPATH}/src/qurt/kernel/AonInt.c',
+   ]
+   
+   if 'USES_SENSOR_IMG' in env or 'USES_AUDIO_IMG' in env:
+     INTERRUPT_UIMAGE = [
+      '${BUILDPATH}/src/qurt/kernel/uimage/uInterruptControllerStub.c'
+     ]
+   else:
+     INTERRUPT_UIMAGE = [
+      '${BUILDPATH}/src/qurt/kernel/uimage/uInterruptController.c',
+     ]
+     INTERRUPT_ISLAND_UIMAGE = [
+      '${BUILDPATH}/src/qurt/kernel/uimage/uInterruptControllerIsland.c',
+      '${BUILDPATH}/src/qurt/kernel/uimage/uAonInt.c',
+     ]
+
+if (('USES_SENSOR_IMG' in env) or ('USES_AUDIO_IMG' in env)):
+  DAL_INTERRUPT_CONTROLLER_SOURCES.extend(['${BUILDPATH}/config/${MSM_ID}/${IMAGE}/kernel/InterruptConfigData.c'])
+
+if ( 'USES_ISLAND' in env ) and ( 'USES_SENSOR_IMG' not in env ) and ( 'USES_AUDIO_IMG' not in env ) and (env['IMAGE'] == "adsp_slpi" or env['IMAGE'] == "slpi"):
+  uint_island_lib = env.AddLibrary( INTC_IMAGES_ROOT, 
+                      '${BUILDPATH}/InterruptController/uimage/uintkernelIsland',
+                      INTERRUPT_ISLAND_UIMAGE )
+  env.AddIslandLibrary( INTC_IMAGES_ROOT, uint_island_lib )
+
+try:
+  if env['IMAGE_NAME'] in ['ADSP_PROC']:
+    env.AddCMMScripts ('ADSP', [SRCPATHSCRIPTS], { 'InterruptController.cmm' : ' Interrupt Controller', 'InterruptLog.cmm' : ' Interrupt Log' }, 'DAL')
+except:
+  pass
+
+#-------------------------------------------------------------------------------
+# Add Libraries to image
+#-------------------------------------------------------------------------------
+env.AddLibrary(INTC_IMAGES, '${BUILDPATH}/DALInterruptController', DAL_INTERRUPT_CONTROLLER_SOURCES)
+if 'USES_SLPI_ADSP_IMG' in env :
+  env.AddLibrary(INTC_IMAGES_ROOT, '${BUILDPATH}/AONInt', AONINT_SOURCES)
+env.AddLibrary(INTC_IMAGES, '${BUILDPATH}/uInterrupt', INTERRUPT_UIMAGE)
+
+#-------------------------------------------------------------------------------
+# DEVCFG - InterruptController XML
+#-------------------------------------------------------------------------------
+if 'USES_DEVCFG' in env:
+  if (('USES_AUDIO_PD' in env) or ('USES_AUDIO_IMG' in env)):
+    DEVCFG_IMG_AUDIO = ['DEVCFG_CORE_QDSP6_AUDIO_SW']
+    env.AddDevCfgInfo(DEVCFG_IMG_AUDIO,
+    {
+       '8998_xml' : ['${BUILD_ROOT}/core/systemdrivers/InterruptController/config/8998/${IMAGE}/kernel/InterruptController.xml',
+                     '${BUILD_ROOT}/core/systemdrivers/InterruptController/config/8998/${IMAGE}/kernel/InterruptConfigData.c'],
+       '660_xml'  : ['${BUILD_ROOT}/core/systemdrivers/InterruptController/config/660/${IMAGE}/kernel/InterruptController.xml',
+                     '${BUILD_ROOT}/core/systemdrivers/InterruptController/config/660/${IMAGE}/kernel/InterruptConfigData.c']
+    })
+  if ('USES_SENSOR_PD' in env) or ('USES_SENSOR_IMG' in env):
+    DEVCFG_IMG_SENSOR = ['DEVCFG_CORE_QDSP6_SENSOR_SW']
+    env.AddDevCfgInfo(DEVCFG_IMG_SENSOR,
+    {
+       '8998_xml' : ['${BUILD_ROOT}/core/systemdrivers/InterruptController/config/8998/${IMAGE}/kernel/InterruptController.xml',
+                     '${BUILD_ROOT}/core/systemdrivers/InterruptController/config/8998/${IMAGE}/kernel/InterruptConfigData.c'],
+       '660_xml'  : ['${BUILD_ROOT}/core/systemdrivers/InterruptController/config/660/${IMAGE}/kernel/InterruptController.xml',
+                     '${BUILD_ROOT}/core/systemdrivers/InterruptController/config/660/${IMAGE}/kernel/InterruptConfigData.c']
+    })
+  else:
+    DEVCFG_IMG = ['DAL_DEVCFG_IMG']
+    env.AddDevCfgInfo(DEVCFG_IMG,
+    {
+       '8998_xml' : ['${BUILD_ROOT}/core/systemdrivers/InterruptController/config/8998/${IMAGE}/kernel/InterruptController.xml',
+                     '${BUILD_ROOT}/core/systemdrivers/InterruptController/config/8998/${IMAGE}/kernel/InterruptConfigData.c'],
+       '660_xml'  : ['${BUILD_ROOT}/core/systemdrivers/InterruptController/config/660/${IMAGE}/kernel/InterruptController.xml',
+                     '${BUILD_ROOT}/core/systemdrivers/InterruptController/config/660/${IMAGE}/kernel/InterruptConfigData.c']
+    })
+
+if env['IMAGE'] not in ["cdsp"]:
+  if 'USES_CORESLEEP_TOOL' in env:
+    xml_dir = env['BUILD_ROOT'] + '/core/systemdrivers/InterruptController/config/${MSM_ID}/${IMAGE}/kernel/lpr'
+    env.AddCoreSleepLPR(INTC_IMAGES_ROOT, {'sleep_lpr_xml' : [xml_dir]})
+
+  if 'USES_RCINIT' in env:
+    RCINIT_IMG = INTC_IMAGES_ROOT
+    env.AddRCInitFunc(
+      RCINIT_IMG,
+      {
+        'sequence_group'             : 'RCINIT_GROUP_0',      # required
+        'init_name'                  : 'AonInt',              # required
+        'init_function'              : 'AonInt_Init',         # required
+        'dependencies'               : ['dalsys', 'npa']
+      })

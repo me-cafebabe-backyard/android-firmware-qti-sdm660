@@ -1,0 +1,12 @@
+../../touch/build/shared_libs/qdsp6/660.adsp.prod/libFastRPC_UTF_Forward_skel.so
+
+../../performance/sysmonapp/build/shared_libs/qdsp6/660.adsp.prod/libsysmon_skel.so
+
+../../performance/sysmonapp/build/shared_libs/qdsp6/660.adsp.prod/libsysmondomain_skel.so
+
+../../performance/sysmonapp/build/shared_libs/qdsp6/660.adsp.prod/libstabilitydomain_skel.so
+
+../../performance/sysmonapp/build/shared_libs/qdsp6/660.adsp.prod/libbenchmark_skel.so
+
+../bsp/fastrpc_shell_img/build/660.adsp.prod/fastrpc_shell_0
+

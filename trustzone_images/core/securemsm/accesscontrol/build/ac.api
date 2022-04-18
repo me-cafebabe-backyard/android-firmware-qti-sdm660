@@ -1,0 +1,78 @@
+#===============================================================================
+#
+# SecureMSM APIs
+#
+# GENERAL DESCRIPTION
+#    build script
+#
+# Copyright (c) 2013 by Qualcomm Technologies, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.tz/1.0.7.1/securemsm/accesscontrol/build/ac.api#1 $
+#  $DateTime: 2020/01/14 12:35:09 $
+#  $Author: pwbldsvc $
+#  $Change: 22186835 $
+#                      EDIT HISTORY FOR FILE
+#                      
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#  
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+#
+#===============================================================================
+import os
+
+Import('env')
+
+if os.path.exists(env.subst('${INC_ROOT}/core/securemsm/accesscontrol/cfg/${MSM_ID}')):
+   env.Replace(AC_MSM_ID = env['MSM_ID'])
+else:
+   env.Replace(AC_MSM_ID = 'stubs')
+   env.PrintWarning("Access control not implemented... using stubs.")
+      
+if env.has_key('TZOS_IMAGE'):
+    env.Replace(AC_IMG = 'tz')
+elif env.has_key('HYPERVISOR_IMAGE'):
+    env.Replace(AC_IMG = 'hyp')
+elif env.has_key('XBL_SEC_IMAGE'):
+    env.Replace(AC_IMG = 'xbl_sec')
+else:
+    Return();
+
+if env['MSM_ID'] in ['8998','660','630', '845']:  
+    env.Replace(XPU_VERSION = 'v3')
+else:
+    env.Replace(XPU_VERSION = 'v2')
+
+
+#-------------------------------------------------------------------------------
+# Publish Protected APIs
+#-------------------------------------------------------------------------------
+env.PublishProtectedApi('AC', [
+   '${INC_ROOT}/core/securemsm/accesscontrol/src/smmu',
+   '${INC_ROOT}/core/securemsm/accesscontrol/src/components/xpu/${XPU_VERSION}',
+   '${INC_ROOT}/core/securemsm/accesscontrol/api',
+   '${INC_ROOT}/core/securemsm/accesscontrol/cfg/${AC_MSM_ID}',
+   '${INC_ROOT}/core/securemsm/accesscontrol/cfg/${AC_MSM_ID}/${AC_IMG}',
+])
+
+#-------------------------------------------------------------------------------
+# Publish Restricted APIs
+#-------------------------------------------------------------------------------
+ac_restricted_api_list = [
+   '${INC_ROOT}/core/securemsm/accesscontrol/api',
+   '${INC_ROOT}/core/securemsm/accesscontrol/src/components/xpu/${XPU_VERSION}',
+   '${INC_ROOT}/core/securemsm/accesscontrol/src/components/vmidmt',
+]
+
+if env['AC_IMG'] in ['xbl_sec']:
+  ac_restricted_api_list.append('${INC_ROOT}/core/securemsm/accesscontrol/cfg/${AC_MSM_ID}/${AC_IMG}')
+
+env.PublishRestrictedApi('AC', ac_restricted_api_list)
+
+env.LoadAPIUnits()
+env.Deploy('ac.api')

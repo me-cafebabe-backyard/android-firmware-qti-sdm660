@@ -1,0 +1,640 @@
+/*
+#====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*
+#
+#                     SCATTER LOADING DESCRIPTION FILE
+#
+#  Copyright (c) 2014-2016 by Qualcomm Technologies, Inc. All Rights Reserved.
+#  QUALCOMM Proprietary and Confidential.
+#
+#  GENERAL DESCRIPTION
+#
+#  The scatter loading description file is used to define the RPM memory map.
+#
+#*====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*/
+
+#define RPMSS_CODE_START      0x0
+#define RPMSS_CODE_SIZE       0x28000           // 160KB
+#define RPMSS_DATA_START      0x90000
+#define RPMSS_DATA_SIZE       0x14000           // 80KB
+#define DDR_CODE_RAM_SIZE     (0x6400) /*  25 kB */
+#define RPMSS_CODE_END        (RPMSS_CODE_START + RPMSS_CODE_SIZE)
+
+#define RPMSS_DATA_END        (RPMSS_DATA_START + RPMSS_DATA_SIZE)
+
+#define CODE_RAM_SAVE_SIZE    0x200 //512 for static data. We can change this if there is more data to store
+#define CODE_RAM_SAVE_START   (RPMSS_CODE_END - CODE_RAM_SAVE_SIZE)  //15KB for prioritized heap 
+
+// ddr struct data section
+#define DDR_STRUCT_DATA_END     RPMSS_DATA_END
+#define DDR_STRUCT_DATA_SIZE    0x2000
+#define DDR_STRUCT_DATA_START   (DDR_STRUCT_DATA_END - DDR_STRUCT_DATA_SIZE)
+
+#define IMAGE_INFO_HEADER_SIZE  0x40
+#define RAIL_RESIDENCIES_SIZE   0x100 //256 bytes
+#define SLEEP_STATS_SIZE        0x60
+#define CPR_STATS_SIZE          0x100 //This is the size on 8996.
+#define STACK_SIZE              0xA00   //2.5K
+#define STACK_OVERFLOW_SIZE     0x20
+#define RPM_LOG_SIZE            0x2400
+#define RPM_LOG_START           (DDR_STRUCT_DATA_START - RPM_LOG_SIZE)
+
+/* 
+#This needs to aligerd with image layout RPM_CPR_STATS_END
+# Already we have compile assert added for this*/
+#define RPMSS_DRAM_RW_DATA 0x90310
+
+#ifndef __clang__
+RPMSS_CODE RPMSS_CODE_START RPMSS_CODE_SIZE
+{
+  CODE_RAM RPMSS_CODE_START
+  {
+    startup.o(RPM_ENTRY, +FIRST)
+    * (InRoot$$Sections)
+    * (+RO-CODE)
+    * (+RO-DATA)
+#if defined DDR_ABORT_REG_DUMP
+    *(ddr_abort_funcs)
+#endif
+  }
+
+  CODE_RAM_DAL +0x0
+  {
+    *rpm_proc/core/dal*.lib (+RO)
+  }
+
+  CODE_RAM_DEBUGTOOLS +0x0
+  {
+    *rpm_proc/core/debugtools*.lib (+RO)
+  }
+  
+  CODE_RAM_DEBUGTRACE +0x0
+  {
+    *rpm_proc/core/debugtrace*.lib (+RO)
+  }
+
+  CODE_RAM_KERNEL +0x0
+  {
+    *rpm_proc/core/kernel*.lib (+RO)
+  }
+
+  CODE_RAM_MPROC +0x0
+  {
+    *rpm_proc/core/mproc*.lib (+RO)
+  }
+
+  CODE_RAM_MPROC_GLINK +0x0
+  {
+    *rpm_proc/core/mproc/glink*.lib (+RO)
+  }
+
+  CODE_RAM_POWER +0x0
+  {
+    *rpm_proc/core/power*.lib (+RO)
+  }
+
+  CODE_RAM_POWER_ACC +0x0
+  {
+    *rpm_proc/core/power/acc*.lib (+RO)
+  }
+
+  CODE_RAM_POWER_CPR +0x0
+  {
+    *rpm_proc/core/power/cpr*.lib (+RO)
+  }
+
+  CODE_RAM_POWER_MPM +0x0
+  {
+    *rpm_proc/core/power/mpm*.lib (+RO)
+  }
+
+  CODE_RAM_POWER_NPA +0x0
+  {
+    *rpm_proc/core/power/npa*.lib (+RO)
+  }
+
+  CODE_RAM_POWER_RAILWAY +0x0
+  {
+    *rpm_proc/core/power/railway*.lib (+RO)
+  }
+
+  CODE_RAM_POWER_RPM +0x0
+  {
+    *rpm_proc/core/power/rpm*.lib (+RO)
+  }
+
+  CODE_RAM_POWER_SLEEP +0x0
+  {
+    *rpm_proc/core/power/sleep*.lib (+RO)
+  }
+
+  CODE_RAM_POWER_ULOG +0x0
+  {
+    *rpm_proc/core/power/ulog*.lib (+RO)
+  }
+
+  CODE_RAM_SYSDRV +0x0
+  {
+    *rpm_proc/core/systemdrivers*.lib (+RO)
+  }
+
+  CODE_RAM_SYSDRV_CLOCK +0x0
+  {
+    *rpm_proc/core/systemdrivers/clock*.lib (+RO)
+    *rpm_proc/core/systemdrivers/hal*.lib (+RO)
+  }
+
+  CODE_RAM_SYSDRV_ICB +0x0
+  {
+    *rpm_proc/core/systemdrivers/icb*.lib (+RO)
+  }
+
+  CODE_RAM_SYSDRV_PMIC +0x0
+  {
+    *rpm_proc/core/pmic/pm*.lib (+RO)
+  }
+
+  CODE_RAM_SYSDRV_SPMI +0x0
+  {
+    *rpm_proc/core/pmic/spmi*.lib (+RO)
+  }
+  
+  // DDR code ram section
+  CODE_RAM_DDR +0x0 DDR_CODE_RAM_SIZE
+  {
+    *rpm_proc/core/boot/ddr*.lib (+RO)
+  }
+
+#ifdef SDM660_IMAGE_LAYOUT
+  660_630_xml_DEVCONFIG_CODE +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    660_devcfg*.o (+RO-DATA)
+  }
+#endif
+
+  // Reclaimed after all initialization done
+  CODE_RAM_RECLAIM_POOL (ImageBase(CODE_RAM_DDR) + DDR_CODE_RAM_SIZE) FIXED NOCOMPRESS
+  {
+    *(pm_cram_reclaim_pool)
+    *(clk_cram_reclaim_pool)
+    *(icb_cram_reclaim_pool)
+    *(qdss_cram_reclaim_pool)
+    *(railway_cram_reclaim_pool)
+    *(rpmserver_cram_reclaim_pool)
+    *(sleep_cram_reclaim_pool)
+    *(mpm_cram_reclaim_pool)
+    *(proxy_cram_reclaim_pool)
+    *(glink_cram_reclaim_pool)
+  }
+  
+  // Reclaim SMEM init pool
+  CODE_RAM_SMEM_INIT_RECLAIM_POOL (ImageBase(CODE_RAM_RECLAIM_POOL) + ImageLength(CODE_RAM_RECLAIM_POOL)) FIXED NOCOMPRESS
+  {
+    *(smem_init_cram_reclaim_pool)
+  }
+  
+  INITIAL_CODE_RAM_HEAP +0x0 EMPTY 0x0
+  {
+  }
+  //static data for saving
+  CODE_RAM_SAVE CODE_RAM_SAVE_START FIXED CODE_RAM_SAVE_SIZE
+  {
+    *(cram_save_pool)
+  }
+
+  CODE_RAM_SAVE_END ImageBase(CODE_RAM_SAVE)+CODE_RAM_SAVE_SIZE EMPTY 0x0
+  {
+  }
+}
+
+
+
+RPMSS_DATA RPMSS_DATA_START RPMSS_DATA_SIZE
+{
+  IMAGE_INFO_HEADER +0x0 ALIGN 4 FIXED NOCOMPRESS ZEROPAD
+  {
+    *(image_info_header)
+  }
+
+  RPM_IMAGE_ID +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    oem_uuid.o (+RW)
+    qc_version.o (+RW)
+    oem_version.o (+RW)
+  }
+
+  RAIL_RESIDENCIES +0x0 ALIGN 4 FIXED NOCOMPRESS ZEROPAD
+  {
+    *(rail_residencies)
+  }
+
+  SLEEP_STATS +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *(sleep_stats)
+  }
+
+  CPR_STATS +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *(cpr_stats)
+  }
+
+  RPM_CORE_DUMP +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *(rpm_core_dump)
+  }
+
+  DATA_RAM +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    * (+RW)
+    * (+ZI)
+  }
+
+  DATA_RAM_DDR +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *rpm_proc/core/boot/ddr*.lib (+RW,+ZI)
+  }
+
+  DATA_RAM_DEBUGTOOLS +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *rpm_proc/core/debugtools*.lib (+RW,+ZI)
+  }
+  
+  DATA_RAM_DEBUGTRACE +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *rpm_proc/core/debugtrace*.lib (+RW,+ZI)
+  }
+
+  DATA_RAM_MPROC +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *rpm_proc/core/mproc*.lib (+RW,+ZI)
+  }
+
+  DATA_RAM_MPROC_GLINK +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *rpm_proc/core/mproc/glink*.lib (+RW,+ZI)
+  }
+
+  DATA_RAM_POWER +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *rpm_proc/core/power*.lib (+RW,+ZI)
+  }
+
+  DATA_RAM_POWER_ACC +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *rpm_proc/core/power/acc*.lib (+RW,+ZI)
+  }
+
+  DATA_RAM_POWER_CPR +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *rpm_proc/core/power/cpr*.lib (+RW,+ZI)
+  }
+
+  DATA_RAM_POWER_MPM +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *rpm_proc/core/power/mpm*.lib (+RW,+ZI)
+  }
+
+  DATA_RAM_POWER_NPA +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *rpm_proc/core/power/npa*.lib (+RW,+ZI)
+  }
+
+  DATA_RAM_POWER_RAILWAY +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *rpm_proc/core/power/railway*.lib (+RW,+ZI)
+  }
+
+  DATA_RAM_POWER_RPM +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *rpm_proc/core/power/rpm*.lib (+RW,+ZI)
+  }
+
+  DATA_RAM_POWER_SLEEP +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *rpm_proc/core/power/sleep*.lib (+RW,+ZI)
+  }
+
+  DATA_RAM_POWER_ULOG +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *rpm_proc/core/power/ulog*.lib (+RW,+ZI)
+  }
+
+  DATA_RAM_SYSDRV +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *rpm_proc/core/systemdrivers*.lib (+RW,+ZI)
+  }
+
+  DATA_RAM_SYSDRV_CLOCK +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *rpm_proc/core/systemdrivers/clock*.lib (+RW,+ZI)
+    *rpm_proc/core/systemdrivers/hal*.lib (+RW,+ZI)
+  }
+
+  DATA_RAM_SYSDRV_ICB +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *rpm_proc/core/systemdrivers/icb*.lib (+RW,+ZI)
+  }
+
+  DATA_RAM_SYSDRV_PMIC +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *rpm_proc/core/pmic/pm*.lib (+RW,+ZI)
+  }
+
+  DATA_RAM_SYSDRV_SPMI +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    *rpm_proc/core/pmic/spmi*.lib (+RW,+ZI)
+  }
+
+
+#ifdef SDM660_IMAGE_LAYOUT
+  660_630_xml_DEVCONFIG_DATA +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    660_devcfg*.o (+RW,+ZI)
+  }
+  
+  660_xml_DEVCONFIG_DATA +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    660_devcfg_icb*.o (+RW,+ZI,+RO-DATA)
+  }
+  // DevCfg section which is applicable to 630 only.
+  630_xml_DEVCONFIG_DATA +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    630_devcfg_icb*.o (+RW,+ZI,+RO-DATA)
+  }
+#endif
+
+#if 0 // Moved to DATA_RAM_RECLAIM_POOL since it's added to Heap in DALSYS_PropsInit() anyway.
+      // If heap space rans out before reclaiming DATA_RAM_RECLAIM_POOL, enable this section again.
+  DAL_CONFIG_SECTIONS +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    //Store the DALConfigs here, we're going to copy the appropriate one out of there early in boot.
+    DALConfig*.o (+RW,+ZI,+RO-DATA)
+  }
+#endif
+
+  STACK_OVERFLOW +0x0 ALIGN 32 EMPTY 0x0
+  {
+  }
+
+  STACK ImageBase(STACK_OVERFLOW)+STACK_OVERFLOW_SIZE ALIGN 0x8 EMPTY 0x0
+  {
+  }
+
+  //This needs to be aligned to at least 0x200 bytes (see arm documentation for why).
+  //    16 + 64 = 80 interrupts
+  //    -> must be rounded up to the nearest power of 2
+  //    -> 128 interrupts
+  //    128 interrupts * 4 bytes = 512 bytes (0x200)
+  //Also this needs to be hidden from subsystems.
+  //First 4KB and last 12KB of DATARAM are shared.
+  VECTOR_TABLE AlignExpr(ImageBase(STACK)+STACK_SIZE-0x1FF, 0x200) FIXED NOCOMPRESS ZEROPAD
+  {
+    rpm_vector_table.o (+RW,+ZI)
+  }
+  
+  // Reclaimed during initialization (before clock_init)
+  DATA_RAM_RECLAIM_POOL +0x0 FIXED NOCOMPRESS ZEROPAD
+  {
+    //Store the DALConfigs here, we're going to copy the appropriate one out of there early in boot.
+    DALConfig*.o (+RW,+ZI,+RO-DATA)
+	
+    *(exceptions_dram_reclaim_pool)
+    *(dog_dram_reclaim_pool)
+    *(mpu_dram_reclaim_pool)
+    *(pm_dram_reclaim_pool)
+    *(railway_dram_reclaim_pool)
+    *(swevent_dram_reclaim_pool)
+    *(mpm_dram_reclaim_pool)
+    *(npa_dram_reclaim_pool)
+    *(cpr_dram_reclaim_pool)
+    *(dal_dram_reclaim_pool)
+    *(acc_dram_reclaim_pool)
+  }
+
+  DATA_RAM_HEAP +0x0 ALIGN 4 EMPTY 0x0
+  {
+  }
+
+  RPM_LOG RPM_LOG_START EMPTY 0x0
+  {
+  }
+
+  // Reserve a 8KB empty block of memory for DDR STRUCT at the end of RPMSS_DATA section
+  DDR_STRUCT_DATA  DDR_STRUCT_DATA_START  EMPTY  DDR_STRUCT_DATA_SIZE
+  {
+    // reserved space
+  }
+}
+#else
+ENTRY(__main)
+PHDRS {
+  RPMSS_CODE PT_LOAD;
+  RPMSS_DATA PT_LOAD;
+}
+
+SECTIONS 
+{
+	CODE_RAM_START RPMSS_CODE_START:
+	{
+		Image$$CODE_RAM$$Base  = .;
+		KEEP(*\startup.o(.text))
+		*(InRoot$$Sections)
+	}: RPMSS_CODE
+	
+	CODE_RAM_DAL 			: {	*rpm_proc?core?dal*.lib					(.text* .rodata*)	 }: RPMSS_CODE	  
+	CODE_RAM_DEBUGTOOLS 	: {	*rpm_proc?core?debugtools*.lib			(.text* .rodata*)	 }: RPMSS_CODE
+	CODE_RAM_DEBUGTRACE 	: {	*rpm_proc?core?debugtrace*.lib			(.text* .rodata*)	 }: RPMSS_CODE
+	CODE_RAM_KERNEL 		: {	*rpm_proc?core?kernel*.lib				(.text* .rodata*)	 }: RPMSS_CODE
+	CODE_RAM_MPROC_GLINK	: {	*rpm_proc?core?mproc?glink*.lib			(.text* .rodata*)	 }: RPMSS_CODE
+	CODE_RAM_MPROC 			: {	*rpm_proc?core?mproc*.lib				(.text* .rodata*)	 }: RPMSS_CODE
+	CODE_RAM_POWER_ACC 		: {	*rpm_proc?core?power?acc*.lib			(.text* .rodata*)	 }: RPMSS_CODE
+    CODE_RAM_POWER_CPR 		: {	*rpm_proc?core?power?cpr*.lib			(.text* .rodata*)	 }: RPMSS_CODE
+    CODE_RAM_POWER_MPM 		: {	*rpm_proc?core?power?mpm*.lib			(.text* .rodata*)	 }: RPMSS_CODE
+	CODE_RAM_POWER_NPA 		: {	*rpm_proc?core?power?npa*.lib			(.text* .rodata*)	 }: RPMSS_CODE
+    CODE_RAM_POWER_RAILWAY 	: {	*rpm_proc?core?power?railway*.lib		(.text* .rodata*)	 }: RPMSS_CODE
+    CODE_RAM_POWER_RPM 		: {	*rpm_proc?core?power?rpm*.lib			(.text* .rodata*)	  }: RPMSS_CODE 
+	CODE_RAM_POWER_SLEEP 	: {	*rpm_proc?core?power?sleep*.lib			(.text* .rodata*)	 }: RPMSS_CODE
+    CODE_RAM_POWER_ULOG 	: {	*rpm_proc?core?power?ulog*.lib			(.text* .rodata*)	 }: RPMSS_CODE
+	CODE_RAM_POWER 			: {	*rpm_proc?core?power?*.lib	 			(.text* .rodata*)	 }: RPMSS_CODE
+    CODE_RAM_SYSDRV_CLOCK 	: {	*rpm_proc?core?systemdrivers?clock*.lib	(.text* .rodata*)
+								*rpm_proc?core?systemdrivers?hal*.lib	(.text* .rodata*)	 }: RPMSS_CODE
+	CODE_RAM_SYSDRV_ICB 	: {	*rpm_proc?core?systemdrivers?icb*.lib	(.text* .rodata*)	 }: RPMSS_CODE
+	CODE_RAM_SYSDRV 		: {	*rpm_proc?core?systemdrivers?*.lib		(.text* .rodata*)	 }: RPMSS_CODE
+    CODE_RAM_SYSDRV_PMIC 	: {	*rpm_proc?core?pmic?pm*.lib				(.text* .rodata*)	 }: RPMSS_CODE
+    CODE_RAM_SYSDRV_SPMI 	: {	*rpm_proc?core?pmic?spmi*.lib				(.text* .rodata*)	 }: RPMSS_CODE
+	
+	// DDR code ram section
+	CODE_RAM_DDR 			: {	Image$$CODE_RAM_DDR$$Base =.;
+								*(ddr_init_funcs)
+								*rpm_proc?core?boot?ddr*.lib			(.text* .rodata*)	 }: RPMSS_CODE
+	    
+	#ifdef SDM660_IMAGE_LAYOUT
+	660_630_xml_DEVCONFIG_CODE : {	*660_devcfg*.o	(.rodata*) 			 } : RPMSS_CODE
+	#endif
+
+	// Reclaimed after all initialization done
+	CODE_RAM_RECLAIM_POOL Image$$CODE_RAM_DDR$$Base + DDR_CODE_RAM_SIZE :
+	{	Image$$CODE_RAM_RECLAIM_POOL$$Base =.;
+		*(pm_cram_reclaim_pool)
+		*(clk_cram_reclaim_pool)
+		*(icb_cram_reclaim_pool)
+		*(qdss_cram_reclaim_pool)
+		*(railway_cram_reclaim_pool)
+		*(rpmserver_cram_reclaim_pool)
+		*(sleep_cram_reclaim_pool)
+		*(mpm_cram_reclaim_pool)
+		*(proxy_cram_reclaim_pool)
+		*(glink_cram_reclaim_pool)
+		Image$$CODE_RAM_RECLAIM_POOL$$Limit =.;							  }: RPMSS_CODE
+	  
+	// Reclaim SMEM init pool	
+	CODE_RAM_SMEM_INIT_RECLAIM_POOL Image$$CODE_RAM_RECLAIM_POOL$$Limit :
+	{	Image$$CODE_RAM_SMEM_INIT_RECLAIM_POOL$$Base =.;
+		*(smem_init_cram_reclaim_pool)
+		Image$$CODE_RAM_SMEM_INIT_RECLAIM_POOL$$Limit =.;				  }: RPMSS_CODE
+	
+	
+	CODE_RAM :  {	*(.text .text*)	
+					*(.rodata .rodata*)
+					#if defined DDR_ABORT_REG_DUMP
+					*(ddr_abort_funcs)
+					#endif	
+CODE_RAM_SIZE=.;					
+				}: RPMSS_CODE
+	
+	INITIAL_CODE_RAM_HEAP : {	Image$$INITIAL_CODE_RAM_HEAP$$Base =.;    }: RPMSS_CODE
+	  
+	//static data for saving
+	CODE_RAM_SAVE CODE_RAM_SAVE_START :	{	Image$$CODE_RAM_SAVE$$Base =.;
+											*(cram_save_pool)
+											Image$$CODE_RAM_SAVE$$Limit =.;	 }: RPMSS_CODE
+
+	CODE_RAM_SAVE_END Image$$CODE_RAM_SAVE$$Limit : {	Image$$CODE_RAM_SAVE_END$$Base=0x27FFF;				  }: RPMSS_CODE
+	  
+	ASSERT(CODE_RAM_SIZE <= 0x27FFF, "RPMSS_CODE oversized");
+
+
+
+  IMAGE_INFO_HEADER RPMSS_DATA_START:ALIGN (4)  {	Image$$IMAGE_INFO_HEADER$$Base =.;
+								*(image_info_header)	   		  }: RPMSS_DATA
+  
+  RPM_IMAGE_ID 			: {		Image$$RPM_IMAGE_ID$$Base =.;
+								*oem_uuid.o(.data*)
+								*qc_version.o(.data*)
+								*oem_version.o(.data*)			   } : RPMSS_DATA
+
+  RAIL_RESIDENCIES 		:ALIGN (4) {  	Image$$RAIL_RESIDENCIES$$Base =.;
+								*(rail_residencies)				   }: RPMSS_DATA
+  
+  SLEEP_STATS 			: {      Image$$SLEEP_STATS$$Base =.;
+								*(sleep_stats)					   }: RPMSS_DATA
+
+  CPR_STATS 			: {		Image$$CPR_STATS$$Base =.;
+								*(cpr_stats)					   }: RPMSS_DATA
+
+  RPM_CORE_DUMP 		: {     *(rpm_core_dump)  				   }: RPMSS_DATA
+  DATA_RAM_DDR 			: {		Image$$DATA_RAM_DDR$$Base = .;	
+								*rpm_proc?core?boot?ddr*.lib			(.data* .bss*) }: RPMSS_DATA
+  DATA_RAM_DEBUGTOOLS 	: {	   *rpm_proc?core?debugtools*.lib			(.data* .bss*) }: RPMSS_DATA
+  DATA_RAM_DEBUGTRACE 	: {	   *rpm_proc?core?debugtrace*.lib			(.data* .bss*) }: RPMSS_DATA
+  DATA_RAM_MPROC_GLINK 	: {	   *rpm_proc?core?mproc?glink*.lib			(.data* .bss*) }: RPMSS_DATA
+  DATA_RAM_MPROC 		: {	   *rpm_proc?core?mproc*.lib				(.data* .bss*) }: RPMSS_DATA
+  DATA_RAM_POWER_ACC 	: {	   *rpm_proc?core?power?acc*.lib			(.data* .bss*) }: RPMSS_DATA
+  DATA_RAM_POWER_CPR 	: {	   *rpm_proc?core?power?cpr*.lib			(.data* .bss*) }: RPMSS_DATA
+  DATA_RAM_POWER_MPM 	: {	   *rpm_proc?core?power?mpm*.lib			(.data* .bss*) }: RPMSS_DATA
+  DATA_RAM_POWER_NPA 	: {	   *rpm_proc?core?power?npa*.lib			(.data* .bss*) }: RPMSS_DATA
+  DATA_RAM_POWER_RAILWAY :{	   *rpm_proc?core?power?railway*.lib		(.data* .bss*) }: RPMSS_DATA
+  DATA_RAM_POWER_RPM 	: {	   *rpm_proc?core?power?rpm*.lib			(.data* .bss*) }: RPMSS_DATA
+  DATA_RAM_POWER_SLEEP  : {	   *rpm_proc?core?power?sleep*.lib			(.data* .bss*) }: RPMSS_DATA
+  DATA_RAM_POWER_ULOG 	: {	   *rpm_proc?core?power?ulog*.lib			(.data* .bss*) }: RPMSS_DATA
+  DATA_RAM_POWER 		: {	   *rpm_proc?core?power*.lib				(.data* .bss*) }: RPMSS_DATA
+  DATA_RAM_SYSDRV_CLOCK : {	   *rpm_proc?core?systemdrivers?clock*.lib	(.data* .bss*)  
+							   *rpm_proc?core?systemdrivers?hal*.lib	(.data* .bss*) }: RPMSS_DATA
+  DATA_RAM_SYSDRV_ICB 	: {	   *rpm_proc?core?systemdrivers?icb*.lib	(.data* .bss*) }: RPMSS_DATA
+  DATA_RAM_SYSDRV 		: {	   *rpm_proc?core?systemdrivers*.lib		(.data* .bss*) }: RPMSS_DATA
+  DATA_RAM_SYSDRV_PMIC 	: {    *rpm_proc?core?pmic?pm*.lib				(.data* .bss*) }: RPMSS_DATA
+  DATA_RAM_SYSDRV_SPMI 	: {	   *rpm_proc?core?pmic?spmi*.lib			(.data* .bss*) }: RPMSS_DATA
+
+
+#ifdef SDM660_IMAGE_LAYOUT
+  660_630_xml_DEVCONFIG_DATA : { 	Image$$660_630_xml_DEVCONFIG_DATA$$Base = .;
+									*660_devcfg*.o(.data* .bss*) 
+									Image$$660_630_xml_DEVCONFIG_DATA$$ZI$$Limit = .;  }: RPMSS_DATA
+  
+  660_xml_DEVCONFIG_DATA 	: {		Image$$660_xml_DEVCONFIG_DATA$$Base = .;
+									*660_devcfg_icb*.o(.data* .bss* .rodata* ) 
+									Image$$660_xml_DEVCONFIG_DATA$$ZI$$Limit = .;  }: RPMSS_DATA
+  
+  // DevCfg section which is applicable to 630 only.
+  630_xml_DEVCONFIG_DATA 	:  {	Image$$630_xml_DEVCONFIG_DATA$$Base = .;
+									*630_devcfg_icb*.o(.data* .bss* .rodata* ) 
+									Image$$630_xml_DEVCONFIG_DATA$$ZI$$Limit = .;  }: RPMSS_DATA
+#endif
+
+#if 0 // Moved to DATA_RAM_RECLAIM_POOL since it's added to Heap in DALSYS_PropsInit() anyway.
+      // If heap space rans out before reclaiming DATA_RAM_RECLAIM_POOL, enable this section again.
+  DAL_CONFIG_SECTIONS : {	Image$$DAL_CONFIG_SECTIONS$$Base = .;
+    //Store the DALConfigs here, we're going to copy the appropriate one out of there early in boot.
+							DALConfig(.data* .bss* .rodata* )   }: RPMSS_DATA
+#endif
+
+  STACK_OVERFLOW :ALIGN (32)  {	Image$$STACK_OVERFLOW$$Base = .;  }: RPMSS_DATA
+
+  STACK Image$$STACK_OVERFLOW$$Base + STACK_OVERFLOW_SIZE : 
+  {	Image$$STACK$$Base = .;  }: RPMSS_DATA
+
+  //This needs to be aligned to at least 0x200 bytes (see arm documentation for why).
+  //    16 + 64 = 80 interrupts
+  //    -> must be rounded up to the nearest power of 2
+  //    -> 128 interrupts
+  //    128 interrupts * 4 bytes = 512 bytes (0x200)
+  //Also this needs to be hidden from subsystems.
+  //First 4KB and last 12KB of DATARAM are shared.
+  
+  VECTOR_TABLE Image$$STACK$$Base + STACK_SIZE: 
+				{	Image$$VECTOR_TABLE$$Base = .;
+					*rpm_vector_table.o(.data* .bss*)  }: RPMSS_DATA
+  
+  // Reclaimed during initialization (before clock_init)
+  DATA_RAM_RECLAIM_POOL :
+  {
+	Image$$DATA_RAM_RECLAIM_POOL$$Base = .;
+    //Store the DALConfigs here, we're going to copy the appropriate one out of there early in boot.
+    *DALConfig*.o(.data* .bss* .rodata*) 
+	
+    *(exceptions_dram_reclaim_pool)
+    *(dog_dram_reclaim_pool)
+  //*(mpu_dram_reclaim_pool)  TODO: ENABLE when MPU functionlaity is enabled
+    *(pm_dram_reclaim_pool)
+    *(railway_dram_reclaim_pool)
+    *(swevent_dram_reclaim_pool)
+    *(mpm_dram_reclaim_pool)
+    *(npa_dram_reclaim_pool)
+    *(cpr_dram_reclaim_pool)
+    *(dal_dram_reclaim_pool)
+    *(acc_dram_reclaim_pool)
+	Image$$DATA_RAM_RECLAIM_POOL$$Limit = .;  }: RPMSS_DATA
+
+  DATA_RAM : {  Image$$DATA_RAM$$Base = .;
+				KEEP(*\datetime.o (.data.gBuild*))
+				*(.data .data*)
+				*(.bss .bss*)				  } : RPMSS_DATA
+  
+  DATA_RAM_HEAP :ALIGN(4)  {	Image$$DATA_RAM_HEAP$$Base = .;  	}: RPMSS_DATA
+  RPM_LOG RPM_LOG_START :  {	Image$$RPM_LOG$$Base = .;  			}: RPMSS_DATA
+
+  // Reserve a 8KB empty block of memory for DDR STRUCT at the end of RPMSS_DATA section
+  DDR_STRUCT_DATA  DDR_STRUCT_DATA_START :  {	
+				Image$$DDR_STRUCT_DATA$$Base = .;
+				Image$$DDR_STRUCT_DATA$$ZI$$Limit = . + DDR_STRUCT_DATA_SIZE;
+				// reserved space		  
+				}: RPMSS_DATA
+
+  ASSERT(SIZEOF(DATA_RAM) <= RPMSS_DATA_SIZE, "RPMSS_DATA oversized");
+
+  /DISCARD/ : {
+    * (.ARM.extab*)
+    * (.ARM.exid*)
+    * (.got)
+  }
+}
+#endif

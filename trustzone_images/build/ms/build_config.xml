@@ -1,0 +1,1243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build>
+<!-- The 'virtual' property denotes that a branch is only for inheritance &
+     config-minimization purposes; it does not denote a production branch.
+     NOTE: 'virtual' is NOT an inheritable property. -->
+<branch name="common"
+        virtual="true" >
+  <!-- The 'buildable' property designates whether a target may selected for
+       build and is true by default. For any buildable target, the 'build_id'
+       and 'target_family' properties MUST be set. Non-buildable targets may
+       still be used for inheritance.
+       NOTE: 'buildable' is NOT an inheritable property. -->
+  <target name="envbase"
+          buildable="false" >
+    <environment>
+      <os name="default">
+      <!-- The 'method' property allows specification of how to construct the
+           variable value. Available methods are:
+           XML/SCRIPT INTERNAL VARIABLES:
+           * 'declare' (default) - the value is defined by the literal string
+             specified by the 'value' property
+           * 'join' - the value is constructed by joining the ';'-separated
+              variable names provided in 'value' with the string specified by
+              the 'separator' property. If no 'separator' is specified, an
+              OS-appropriate slash is used ('\' on Windows or '/' on Unix).
+              Explicit run-time checks are performed to ensure that these are
+              valid variable names.
+           * 'str-join' - the value is constructed by joining the ';'-separated
+              strings provided in 'value' with the string specified by the
+              'separator' property. If no 'separator' is specified, an
+              OS-appropriate slash is used ('\' on Windows or '/' on Unix). A
+              warning will be printed if any string token matches an existing
+              variable name, but such joins are valid.
+           * 'smart-join' - the value is constructed by joining the
+             ';'-separated tokens provided in 'value'. These tokens may be
+             either strings or variable names. If a string matches a variable
+             name, that variable's string value will be used instead. Otherwise,
+             the literal string will be used. NO VALIDATION IS PERFORMED. Do not
+             use unless it is absolutely necessary to combine a variable with a
+             string literal. Instead, consider creating an intermediate var.
+           EXISTING ENVIRONMENT VARIABLES:
+           NOTE: operations with strings + existing ENV vars are not supported
+           * 'append' - 'value' is added onto the end of the existing value of
+             in the current environemnt; joining is performed with 'separator'
+           * 'default' - 'value' replaces the existing value in the current
+             environment if and only if the current ENV value is unset or 0-len
+           * 'prepend' - 'value' is added to the beginning of the existing value
+             in the current environment; joining is performed with 'separator' -->
+        <var name="APPS_DIR"
+             value="pkg/qct/software" />
+        <var name="APPS_PATH"
+             method="join"
+             value="ROOT_DRIVE;APPS_DIR" />
+        <!-- Note: 'join' can be used to easily replicate an existing value -->
+        <!-- TODO - detemine if ARMHOME  & ARMROOT are necessary in the scons
+             toolchain as they were linux-specific vars that do not seem to be
+             set in most normal environments -->
+        <var name="ARMHOME"
+             method="join"
+             value="ARMROOT" />
+        <var name="ARMROOT"
+             method="default"
+             value="EMPTY_STRING"
+             intermediate="true" />
+        <var name="ARMTOOLS"
+             value="ARMCT6" />
+        <!-- By default, environment vars will be set in the OS environment. The
+             'intermediate' property, when set to 'true', indicates that the
+             current variable is only used to generate other variables and
+             should not be set as an environment variable. -->
+        <var name="ARM_APPS_DIR"
+             value="arm/linaro-toolchain/aarch64-none-elf/4.9-2014.07"
+             intermediate="true" />
+        <var name="ARM_COMPILER_PATH"
+             method="default"
+             value="LLVMBIN"
+             intermediate="true" />
+        <var name="ARM_GCC"
+             value="gcc-linaro-arm-linux-gnueabihf-4.8-2014.02_linux"
+             intermediate="true" />
+        <var name="ARM_TOOLS_DIR"
+             value="prj/llvm-arm/home/common/build_tools"
+             intermediate="true" />
+        <var name="BUILDSPEC"
+             value="KLOCKWORK" />
+        <!-- Need to decide on  central location of bullseye for linux-->  
+        <var name="CCAPPS_DIR"
+             value="pkg/qct/software"
+             intermediate="true" />  
+        <!-- The location of bin directory for code coverage tool.
+         This is the apps dir for the path of bullseye.-->               
+        <var name="CCBIN"
+             method="join"
+             value="ROOT_DRIVE;CCAPPS_DIR;CCTOOL;DEFAULT_BIN_DIR" />    
+         <!-- The location of code coverage tool, with the base directory name.-->   
+        <var name="CCPATH"
+             method="join"
+             value="ROOT_DRIVE;CCAPPS_DIR;CCTOOL" />
+         <!-- Name of code coverage tool.-->           
+        <var name="CCTOOL"
+             value="BullseyeCoverage" />     
+        <var name="CLANG_DIR"
+             method="str-join"
+             value="lib;clang"
+             intermediate="true" />
+        <var name="CLANG_LIB_DIR"
+             method="str-join"
+             value="lib;linux"
+             intermediate="true" />
+        <var name="CLANG_LINUX_PROP"
+             method="str-join"
+             value="lib;linux-propri_rt"
+             intermediate="true" />
+        <var name="CLANG_VERSION"
+             value="3.5.2"
+             intermediate="true" />
+        <var name="CRM_APPS"
+             value="/"
+             intermediate="true" />
+        <var name="CRMPERL"
+             method="join"
+             value="ROOT_DRIVE;CRM_APPS;PERL_BIN" />
+        <var name="DEFAULT_BIN_DIR"
+             value="bin"
+             intermediate="true" />
+        <var name="DEFAULT_INCLUDE_DIR"
+             value="include"
+             intermediate="true" />
+        <var name="DEFAULT_TOOLS_DIR"
+             value="tools"
+             intermediate="true" />
+        <var name="EMPTY_STRING"
+             value=""
+             intermediate="true" />
+        <var name="GNUARM7"
+             method="join"
+             value="ROOT_DRIVE;ARM_TOOLS_DIR;ARM_GCC" />
+        <var name="GNULIBC"
+             method="join"
+             value="GNUROOT;GNU_ARCH;STDLIB" />
+        <var name="GNUPATH"
+             method="join"
+             value="UTILROOT;GNU_BIN" />
+        <var name="GNUROOT"
+             method="join"
+             value="APPS_PATH;ARM_APPS_DIR" />
+        <var name="GNUTOOL"
+             method="join"
+             value="GNUROOT;GNU_ARCH" />
+        <var name="GNU_ARCH"
+             value="aarch64-linux-gnu"
+             intermediate="true" />
+        <var name="GNU_BIN"
+             value="pkg/gnu/bin"
+             intermediate="true" />
+        <var name="LLVM32INC"
+             method="join"
+             value="MUSL32PATH;DEFAULT_INCLUDE_DIR" />
+        <var name="LLVMCLANG"
+             method="join"
+             value="LLVMROOT;CLANG_DIR;CLANG_VERSION" />
+        <var name="LLVMBIN"
+             method="join"
+             value="LLVMROOT;DEFAULT_BIN_DIR" />
+        <var name="LLVMINC"
+             method="join"
+             value="MUSLPATH;DEFAULT_INCLUDE_DIR" />
+        <var name="LLVMLIB"
+             method="join"
+             value="LLVMCLANG;CLANG_LIB_DIR" />
+        <var name="LLVMLIBPROP"
+             method="join"
+             value="LLVMCLANG;CLANG_LINUX_PROP" />
+        <var name="LLVMROOT"
+             method="join"
+             value="ROOT_DRIVE;LLVM_APPS;LLVM_VERSION" />
+        <var name="LLVMTOOLPATH"
+             method="join"
+             value="LLVMROOT;DEFAULT_TOOLS_DIR;DEFAULT_BIN_DIR" />
+        <var name="LLVMTOOLS"
+             value="LLVM" />
+        <var name="LLVM_APPS"
+             value="pkg/qct/software/llvm/release/arm"
+             intermediate="true" />
+        <var name="LLVM_LIB32"
+             value="lib32"
+             intermediate="true" />
+        <var name="LLVM_LIB64"
+             value="lib64"
+             intermediate="true" />
+        <var name="LLVM_VERSION"
+             value="3.5.2.4"
+             intermediate="true" />
+        <var name="MAKE_DIR"
+             value="gnu/make/3.81/bin"
+             intermediate="true" />
+        <var name="MAKE_PATH"
+             method="join"
+             value="UTILROOT;MAKE_DIR" />
+        <var name="MUSL32PATH"
+             method="join"
+             value="LLVMROOT;DEFAULT_TOOLS_DIR;LLVM_LIB32" />
+        <var name="MUSLPATH"
+             method="join"
+             value="LLVMROOT;DEFAULT_TOOLS_DIR;LLVM_LIB64" />
+        <var name="PATH"
+             method="prepend"
+             value="MAKE_PATH;PYTHONBIN;ARM_COMPILER_PATH"
+             separator=":" />
+        <var name="PERLPATH"
+             method="join"
+             value="ROOT_DRIVE;PERL_BIN" />
+        <var name="PERL_BIN"
+             value="usr/bin"
+             intermediate="true" />
+        <var name="PYTHONBIN"
+             method="default"
+             value="PYTHON_PATH" />
+        <var name="PYTHON_BIN"
+             value="pkg/qct/software/python/2.7/bin"
+             intermediate="true" />
+        <var name="PYTHON_PATH"
+             method="join"
+             value="ROOT_DRIVE;CRM_APPS;PYTHON_BIN" />
+        <var name="ROOT_DRIVE"
+             value="/" />
+        <var name="STDLIB"
+             value="libc"
+             intermediate="true" />
+        <var name="UTILROOT"
+             method="join"
+             value="ROOT_DRIVE;UTILS_DIR" />
+        <var name="UTILS_DIR"
+             value="pkg"
+             intermediate="true" />
+      </os>
+      <!-- The 'inherits-from' property inherits all children of the sourced
+           'name'. Inheritance MUST reference an object of the same XML tag
+           type. Additional children may be added to the inheriting tag without
+           affecting the source. Any existing item may be overridden by defining
+           a child with the same 'name' as the original item in the source. It
+           is currently supported only for <target>, and <os> tags. -->
+      <os name="Windows" inherits-from="default">
+        <var name="APPS_DIR"
+             value="Apps" />
+        <!-- TODO - determine if ARMCC5BIN is necessary in the scons toolchain
+             as it is a Windows-specific var that does not seem to be set in
+             most normal environments -->
+        <var name="ARMCC5BIN"
+             method="default"
+             value="EMPTY_STRING"
+             intermediate="true" />
+        <var name="ARM_APPS_DIR"
+             value="Linaro"
+             intermediate="true" />
+        <var name="ARM_GCC"
+             value="gcc-linaro-arm-linux-gnueabihf-4.9-2014.05_win32"
+             intermediate="true" />
+        <var name="ARM_TOOLS_DIR"
+             value="Apps"
+             intermediate="true" />
+        <var name="CCAPPS_DIR"
+             value="Apps"
+             intermediate="true" /> 
+        <var name="CRM_APPS"
+             value="CRMApps\apps"
+             intermediate="true" />
+        <var name="GNU_BIN"
+             value="cyqwin\bin"
+             intermediate="true" />
+        <var name="LLVM_APPS"
+             value="Apps\LLVM"
+             intermediate="true" />
+        <var name="MAKE_DIR"
+             value="cyqwin\bin"
+             intermediate="true" />
+        <var name="PATH"
+             method="prepend"
+             value="LLVMBIN;PERLPATH;CRMPERL;PYTHON_PATH;GNUPATH;ARMCC5BIN;UTILROOT"
+             separator=";" />
+        <var name="PERL_BIN"
+             value="perl\bin"
+             intermediate="true" />
+        <var name="PYTHON_BIN"
+             value="Python276-64"
+             intermediate="true" />
+        <var name="ROOT_DRIVE"
+             value="C:\" />
+        <var name="UTILS_DIR"
+             value="utils"
+             intermediate="true" />
+      </os>
+    </environment>
+  </target>
+  <target name="common"
+          inherits-from="envbase"
+          buildable="false" >
+    <!-- Setting the 'strip' property to "true" will exclude a binary from
+         'cleanpack' strip-and-pack builds. It is "false" by default. -->
+    <file name="aptcryptotestapp"
+          strip="true" >
+      <!-- Artifacts assume a default extension of '.mbn' unless an explicit
+           'ext=' property is added that specifies otherwise -->
+      <artifact name="aptcryptotestapp" />
+      <artifact name="aptcryptotestapp64" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="apttestapp"
+          strip="true" >
+      <artifact name="apttestapp" />
+      <artifact name="apttestapp64" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="assurancetest"
+          strip="true" >
+      <artifact name="assurancetest" />
+      <artifact name="assurancetest64" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="chamomile">
+      <artifact name="chamomile" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="commonlib">
+      <artifact name="cmnlib" />
+      <artifact name="cmnlib64" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="cppf">
+      <artifact name="cppf" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <!-- Setting the 'recompile' property to "true" will flag that a particular
+         file needs to be rebuilt (cleanpack builds only) against its new
+         baseline. It is "false" by default.
+         NOTE: 'strip' MUST be false if 'recompile is true. -->
+    <file name="devcfg"
+          recompile="true" >
+      <artifact name="devcfg" />
+    </file>
+    <file name="devcfg_with_test"
+          strip="true" >
+      <artifact name="devcfg_with_test" />
+    </file>
+    <file name="devcfg_noac"
+          strip="true" >
+      <artifact name="devcfg_noac" />
+    </file>
+    <file name="devcfg_soter"
+          strip="true" >
+      <artifact name="devcfg_soter" />
+    </file>
+    <file name="devcfg_p_plus"
+          strip="true" >
+      <artifact name="devcfg_p_plus" />
+    </file>
+    <file name="dhsecapp">
+      <artifact name="dhsecapp" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="rtic_test" 
+          strip="true" >
+      <artifact name="rtic_test" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="dummy_hexagon"
+          strip="true" >
+      <artifact name="dummy_hexagon" />
+    </file>
+    <file name="dummy_venus"
+          strip="true" >
+      <artifact name="dummy_venus" />
+    </file>
+    <file name="dxhdcp2">
+      <artifact name="dxhdcp2" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="dxhdcp2dbg">
+      <artifact name="dxhdcp2dbg" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="fidocfg"
+          recompile="true" >
+      <artifact name="fidocfg" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="fidocrypto">
+      <artifact name="fidocrypto" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="fidosui"
+          recompile="true" >
+      <artifact name="fidosui" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="fingerprint" 
+        strip="true" >
+      <artifact name="fingpr32" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+    </file>
+    <file name="fingerprint64" 
+        strip="true" >
+      <artifact name="fingerpr" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+    </file>
+    <file name="fingerprint64dbg"
+        strip="true" >
+      <artifact name="fingerpd" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+    </file>
+    <file name="fingerprintdbg"  
+        strip="true" >
+      <artifact name="fingpd32" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+    </file>
+    <file name="gpsample"
+          recompile="true" >
+      <artifact name="gpsample" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="gptest">
+      <artifact name="gptest" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="gptest2"
+          strip="true" >
+      <artifact name="gptest2" />
+    </file>
+    <file name="ttaari1">
+      <dependency name="ttacapi1" />
+      <dependency name="ttacapi2" />
+      <dependency name="ttacapi3" />
+      <dependency name="ttacapi4" />
+      <dependency name="ttacapi5" />
+      <dependency name="ttacapi6" />
+      <dependency name="ttacapi7" />
+      <dependency name="ttacrp1" />
+      <dependency name="ttads1" />
+      <dependency name="ttatcf1" />
+      <dependency name="ttatcf2" />
+      <dependency name="ttatcf3" />
+      <dependency name="ttatcf4" />
+      <dependency name="ttatcf5" />
+      <dependency name="ttatcf6" />
+      <dependency name="ttatcf7" />
+      <dependency name="ttatime1" />
+    </file>
+    <file name="hdcp2p2">
+      <artifact name="hdcp2p2" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="isdbtmm">
+      <artifact name="isdbtmm" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="soter">
+      <artifact name="soter64" />
+    </file>
+    <file name="keymaster">
+      <artifact name="keymaster" />
+      <artifact name="keymaster64" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="lksecapp">
+      <artifact name="lksecapp" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="macchiato_sample"
+          strip="true" >
+      <artifact name="macchiato_sample" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="monitor"
+          strip="true" >
+      <!-- no artifacts; output goes in core/bsp/monitor -->
+    </file>
+    <file name="mon_with_test"
+          strip="true" >
+      <!-- no artifacts; output goes in core/bsp/monitor -->
+    </file>
+    <file name="playready">
+      <artifact name="playread" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="qsee"
+          build-once="true" >
+    </file>
+    <file name="qsee_with_test"
+          strip="true" >
+    </file>
+    <file name="retstapp0"
+          strip="true" >
+      <artifact name="retstapp0" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="retstapp1"
+          strip="true" >
+      <artifact name="retstapp1" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="retstapp2"
+          strip="true" >
+      <artifact name="retstapp2" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="sampleapp"
+          recompile="true" >
+      <artifact name="smplap32" />
+      <artifact name="smplap64" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="sampleauth"
+          recompile="true" >
+      <artifact name="sampleauth" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="sampleextauth"
+          recompile="true" >
+      <artifact name="sampleextauth" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="secure_ui_sample"
+          recompile="true" >
+      <artifact name="secure_ui_sample" />
+      <artifact name="secure_ui_sample64" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="secureindicator"
+          recompile="true" >
+      <artifact name="secureindicator" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="securemm">
+      <artifact name="securemm" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="smplserv"
+          recompile="true" >
+      <artifact name="smplserv" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="smplcert"
+          recompile="true" >
+      <artifact name="smplcert" />
+    </file>
+    <file name="ttaari1"
+          strip="true" >
+      <artifact name="ttaari1" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttacapi1"
+          strip="true" >
+      <artifact name="ttacapi1" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttacapi2"
+          strip="true" >
+      <artifact name="ttacapi2" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttacapi3"
+          strip="true" >
+      <artifact name="ttacapi3" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttacapi4"
+          strip="true" >
+      <artifact name="ttacapi4" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttacapi5"
+          strip="true" >
+      <artifact name="ttacapi5" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttacapi6"
+          strip="true" >
+      <artifact name="ttacapi6" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttacapi7"
+          strip="true" >
+      <artifact name="ttacapi7" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttacrp1"
+          strip="true" >
+      <artifact name="ttacrp1" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttads1"
+          strip="true" >
+      <artifact name="ttads1" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttasecac"
+          strip="true" >
+      <artifact name="ttasecac" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttascapi"
+          strip="true" >
+      <artifact name="ttascapi" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttatlapi"
+          strip="true" >
+      <artifact name="ttatlapi" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttaseccrp"
+          strip="true" >
+      <artifact name="ttaseccrp" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttasecds"
+          strip="true" >
+      <artifact name="ttasecds" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttasecmem"
+          strip="true" >
+      <artifact name="ttasecmem" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttasectcf"
+          strip="true" >
+      <artifact name="ttasectcf" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttatcf1"
+          strip="true" >
+      <artifact name="ttatcf1" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttatcf2"
+          strip="true" >
+      <artifact name="ttatcf2" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttatcf3"
+          strip="true" >
+      <artifact name="ttatcf3" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttatcf4"
+          strip="true" >
+      <artifact name="ttatcf4" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttatcf5"
+          strip="true" >
+      <artifact name="ttatcf5" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttatcf6"
+          strip="true" >
+      <artifact name="ttatcf6" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttatcf7"
+          strip="true" >
+      <artifact name="ttatcf7" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="ttatime1"
+          strip="true" >
+      <artifact name="ttatime1" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="teetest"
+          recompile="true" >
+      <artifact name="teetest" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <!-- The 'build-once' property indicates that the target file should only
+         ever be compiled one time in any multi-stage build (eg cleanpack).
+         Note that this does not directly conflict with 'strip' or 'recompile',
+         also used primarily for cleanpack, as 'recompile' will remove existing
+         binaries first (necessitating recompilation) & stip omits the file
+         from the build altogether, negating the need for 'build once'. -->
+    <file name="tz"
+          build-once="true" >
+      <artifact name="tz" />
+      <mapreport path="core/securemsm/trustzone" />
+      <mapreport path="core/bsp/qsee" />
+      <mapreport path="core/bsp/monitor" />
+      <mapreport path="core/bsp/devcfg" />
+    </file>
+    <file name="tz_with_test"
+          strip="true" >
+      <!-- this is an unconventional artifact, but many other things have
+           dependencies on it, so it is best to verify that it is present -->
+      <artifact name="tz_with_test" />
+    </file>
+    <file name="tzbsptest"
+          strip="true" >
+      <artifact name="appsbl" />
+      <artifact name="tzbsptest" />
+      <artifact name="tztimage" ext=".img" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="tztestexec"
+          strip="true" >
+      <artifact name="tztestexec" />
+    </file>
+    <file name="voiceprint">
+      <artifact name="voiceprint" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="widevine">
+      <artifact name="widevine" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+  </target>
+  <target name="msm8996"
+          inherits-from="common"
+          build_id="IADAANAA"
+          target_family="honeybadger" >
+    <!-- aptcryptotestapp64 omitted as it is built by 'aptcryptotestapp' -->
+    <file name="hdcp1">
+      <artifact name="hdcp1" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="hyp">
+      <artifact name="hyp" />
+      <mapreport path="core/bsp/hypervisor" />
+    </file>
+    <file name="hyp_with_test"
+          strip="true" >
+      <artifact name="hyp_with_test" />
+    </file>
+    <file name="iris">
+      <artifact name="iris" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="qpay" recompile="true" >
+      <artifact name="qpay" />
+      <artifact name="qpay64" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="gpqese" recompile="true" >
+      <artifact name="gpqese" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="eseservice">
+      <artifact name="eseservice" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <!-- The 'disable' flag leaves a module's config intact for build/debug but
+         disables it in general compilation. It is 'false' by default. Note that
+         this property IS NOT INHERITED by re-definitions, so any config that
+         redeclares a 'disable'd property needs to explicitly disable it again.
+         Ex: 8996 declares 'ttaari1'. 8998 inherits from 8996, but expects an
+             additional artifact. When re-declaring 'ttaari1' to add this new
+             artifact, disable must be explicitly set again if desired. -->
+    <!-- ttaari1 is disabled for now until it is validated with LLVM 3.7 -->
+    <file name="ttaari1"
+          strip="true"
+          disable="true" >
+      <artifact name="ttaari1" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+  </target>
+  <!-- The 'exclusive' property represents a target that must always be built on
+       its own. It may not be built in tandem with any other existing target and
+       will not be picked up as a valid buildable target by the build script's
+       'build all' behavior. It is NOT INHERITABLE and defaults to 'false' if
+       left undefined (ie, targets will never be exclusive unless made so). -->
+  <target name="stubs"
+          inherits-from="common"
+          exclusive="true"
+          chipset="msm0000"
+          build_id="CHIPSTUBS"
+          target_family="none" />
+  <target name="unknown"
+          buildable="false" >
+    <!-- These are all buildable file targets, but no script explicitly builds
+         them. They seem to get created as part of some other compilations.
+         We only list them here for completeness. -->
+    <!-- Note: 'aptcryptotestapp' builds both aptcryptotestapp &
+     aptcryptotestapp64, but 'aptcryptotestapp64' build only aptcryptotestapp64 -->
+    <file name="aptcryptotestapp64"
+          strip="true" >
+      <artifact name="aptcryptotestapp64" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <!-- Note: 'apttestapp' builds both apttestapp & apttestapp64, but
+         'apttestapp64' builds only apttestapp64 -->
+    <file name="apttestapp64"
+          strip="true" >
+      <artifact name="apttestapp64" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="assurancetest64"
+          strip="true" >
+      <artifact name="assurancetest64" />
+    </file>
+    <file name="qsee_with_test_codehash"
+          strip="true" >
+      <artifact name="qsee_with_test_codehash" />
+    </file>
+  </target>
+</branch>
+<!-- The property 'aliases' gives a list of names by which this branch may be
+     referred to while still accessing the data stored in this XML node. It is
+     intended to make it easier for developers to select the correct branch.
+     Values listed under 'aliases' must be comma-separated. -->
+<branch name="TZ.BF.4.0.1"
+        inherits-from="common"
+        default_target="msm8996"
+        aliases="tz401,4.0.1,tz.bf.4.0.1" >
+  <!-- Explanation of nested inheritance: This node inherits from TZ.BF.4.0.1's
+       'common' target. TZ.BF.4.0.1 inherits from branch 'common'. So
+       inheritance happens in this order:
+       1) 'TZ.BF.4.0.1' inherits all properties & children from branch 'common'
+       2) We redeclare 'msm8996' here. This new TZ.BF.4.0.1 'msm8996' target
+          inherits from TZ.BF.4.0.1's 'common' target, overriding/extending any
+          properties/children from common's 'msm8996'.
+       3) Any property we declare within 'msm8996' overrides all other
+          inheritance (from common::msm8996 & TZ.BF.4.0.1::common).
+       4) Omitting 'inherits-from' will preserve inheritance from branch
+          'common' but prevent inheritance from TZ.BF.4.0.1::common.
+       NOTE #1: Required properties for <target> msm8996 (like 'build_id') are
+                copied from TZ.BF.4.0.1's 'common' during inheritance. However,
+                they are NOT copied from the 'msm8996' node copied from branch
+                'common'. Redefining required properies here is essential as
+                parser limitations prevent us from properly overriding the
+                existing node until this one has been defined.
+       NOTE #2: Suppose 'msm8997' inherits from 'msm8996'. If it was first
+                acquired from branch 'common', it will inherit from common's
+                'msm8996', not this one. If it is redeclared here, even without
+                any children, it will inherit from this (overridden) 'msm8996,
+                and this new node (inheriting from 'msm8996') will
+                override/extend the copied one from branch 'common'. -->
+  <target name="msm8996"
+        inherits-from="common"
+        build_id="IADAANAA"
+        target_family="honeybadger" >
+    <!-- Strip teetest on tz401 8996 cleanpack builds. TODO: check why -->
+    <file name="teetest"
+          recompile="false"
+          strip="true" >
+      <artifact name="teetest" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+  </target>
+</branch>
+<branch name="TZ.BF.4.0"
+        inherits-from="common"
+        default_target="msm8998"
+        aliases="tz40,4.0,tz.bf.4.0" >
+  <target name="envbase"
+          buildable="false" >
+    <environment>
+      <os name="default">
+          <var name="CLANG_VERSION"
+             value="3.7.6"
+             intermediate="true" />
+          <var name="LLVM_VERSION"
+             value="3.7.6"
+             intermediate="true" />
+      </os>
+      <!-- While we could inherit from this branch's 'default' again, this would
+           overwrite many of our Windows-specific variables copied from branch
+           'common' and force us to redefine most of them again here. Instead,
+           it is much easier to override a var for both operating systems. -->
+      <os name="Windows">
+          <var name="CLANG_VERSION"
+             value="3.7.6"
+             intermediate="true" />
+          <var name="LLVM_VERSION"
+             value="3.7.6"
+             intermediate="true" />
+      </os>
+    </environment>
+  </target>
+  <target name="common"
+          inherits-from="envbase"
+          buildable="false" >
+    <file name="celerity"
+          strip="true" >
+      <artifact name="celerity" />
+      <artifact name="celerity64" />
+    </file>
+  </target>
+  <!-- See NOTE #2 above on why these redeclarations are necessary -->
+  <target name="msm8937"
+          inherits-from="common"
+          build_id="ZALAANAA"
+          target_family="bear" >
+    <file name="qpay" recompile="true" >
+      <artifact name="qpay" />
+      <artifact name="qpay64" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="gpqese" recompile="true" >
+      <artifact name="gpqese" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="eseservice">
+      <artifact name="eseservice" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+  </target>
+  <target name="msm8952"
+          inherits-from="common"
+          build_id="NAKAANAA"
+          target_family="bear" >
+    <file name="qpay" recompile="true" >
+      <artifact name="qpay" />
+      <artifact name="qpay64" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="gpqese" recompile="true" >
+      <artifact name="gpqese" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="eseservice">
+      <artifact name="eseservice" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+  </target>
+  <target name="msm8953"
+          inherits-from="common"
+          build_id="SANAANAA"
+          target_family="bear" >
+    <file name="qpay" recompile="true" >
+      <artifact name="qpay" />
+      <artifact name="qpay64" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="gpqese" recompile="true" >
+      <artifact name="gpqese" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="eseservice">
+      <artifact name="eseservice" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="pr_3_0">
+      <artifact name="pr_3_0" />
+	  <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+  </target>
+  <target name="msm8956"
+          inherits-from="common"
+          build_id="MAYAANAA"
+          target_family="bear" >
+    <file name="qpay" recompile="true" >
+      <artifact name="qpay" />
+      <artifact name="qpay64" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="gpqese" recompile="true" >
+      <artifact name="gpqese" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="eseservice">
+      <artifact name="eseservice" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+  </target>
+  <!-- * The 'chipset' property, is used to explicitly define the chipset name.
+         If not defined, it defaults to the value of the required 'name' prop.
+       * build_asic, hal_platform, & msm_id properties all default to the
+         'stripped', numbers-only 'chipset' property value (eg 'msm8996' gives
+         '8996' for all 3 of these properties). They are NOT INHERITABLE as
+         their defaults derive directly from the 'chipset' property (which, in
+         turn, may have been populated by the required 'name' property if not
+         explicitly defined). If the chipset name does not contain any digit
+         ([0-9]+), these properties all MUST be supplied. -->
+  <target name="msm8976"
+          inherits-from="msm8956"
+          chipset="msm8956"
+          build_asic="8956"
+          hal_platform="8956"
+          msm_id="8956" />
+  <target name="msm8996"
+          inherits-from="common"
+          build_id="IADAANAA"
+          target_family="honeybadger" >
+    <file name="pr_3_0">
+      <artifact name="pr_3_0" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+  </target>	
+  <target name="msm8998Parent"
+          inherits-from="common"
+          target_family="honeybadger"
+          buildable="false" >		  	
+    <file name="hdcp1">
+      <artifact name="hdcp1" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="hdcptest"
+          strip="true" >
+      <artifact name="hdcptest" />
+    </file>
+    <file name="hyp">
+      <artifact name="hyp" />
+      <mapreport path="core/bsp/hypervisor" />
+    </file>
+    <file name="hyp_with_test"
+          strip="true" >
+      <artifact name="hyp_with_test" />
+    </file>
+    <file name="qpay" recompile="true" >
+      <artifact name="qpay" />
+      <artifact name="qpay64" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="gpqese" recompile="true" >
+      <artifact name="gpqese" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="eseservice">
+      <artifact name="eseservice" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="storsec">
+	  <artifact name="storsec" />
+	  <mapreport path="core/bsp/trustzone/qsapps" />
+	</file>
+    <file name="xbl_sec">
+      <artifact name="xbl_sec" />
+    </file>
+	<file name="uefitzt"
+          strip="true">
+      <artifact name="tzt" ext=".fv" />
+      <artifact name="tzapps" ext=".bin" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="seccamdemo64"
+          recompile="true" >
+      <artifact name="seccamdemo64" />
+    </file>
+  </target>
+  <target name="msm8998"
+          inherits-from="msm8998Parent"
+          build_id="RAGAANAA"
+          target_family="honeybadger"
+          soc_hw_version = "0x30020000">
+  </target>
+  <target name="sdm630"
+          inherits-from="msm8998Parent"
+          build_id="BAHAANAA"
+          exclusive="true"
+          target_family="honeybadger"
+          soc_hw_version = "0x30070100"
+          soc_vers="0x3007" >
+    <file name="iris">
+      <artifact name="iris" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+  </target>
+  <target name="sdm660"
+          inherits-from="msm8998Parent"
+          build_id="KAJAANAA"
+          target_family="honeybadger"
+          soc_hw_version = "0x30060000"
+          soc_vers="0x3007" >
+    <file name="iris">
+      <artifact name="iris" />
+      <param name="USES_FLAGS" value="USES_NO_CP" />
+    </file>
+    <file name="haventkn">
+      <artifact name="haventkn" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+    </file>
+    <file name="haventst"
+          strip="true" >
+      <artifact name="haventst" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+    </file>
+    <file name="fingerprint" 
+        strip="true" >
+      <artifact name="fingpr32" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+    </file>
+    <file name="fingerprint64" 
+        strip="true" >
+      <artifact name="fingerpr" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+    </file>
+    <file name="fingerprint64dbg"
+        strip="true" >
+      <artifact name="fingerpd" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+    </file>
+    <file name="fingerprintdbg"  
+        strip="true" >
+      <artifact name="fingpd32" />
+      <mapreport path="core/bsp/trustzone/qsapps" />
+    </file>
+  </target>
+  <target name="sdm845"
+          inherits-from="envbase"
+          build_id="WAXAANAA"
+          target_family="hoya"
+          soc_hw_version = "0x60000100"
+          soc_vers="0x6000" >
+    <file name="devcfg"
+          recompile="true" >
+      <artifact name="devcfg" />
+    </file>
+    <file name="devcfg_noac"
+          strip="true" >
+      <artifact name="devcfg_noac" />
+    </file>
+    <file name="devcfg_soter"
+          strip="true" >
+      <artifact name="devcfg_soter" />
+    </file>
+    <file name="monitor"
+          strip="true" >
+      <!-- no artifacts; output goes in core/bsp/monitor -->
+    </file>
+    <file name="qsee"
+          build-once="true" >
+      <dependency name="monitor" />
+    </file>
+    <file name="tz"
+          build-once="true" >
+      <artifact name="tz" />
+      <dependency name="monitor" />
+      <dependency name="qsee" />
+      <mapreport path="core/securemsm/trustzone" />
+      <mapreport path="core/bsp/qsee" />
+      <mapreport path="core/bsp/monitor" />
+      <mapreport path="core/bsp/devcfg" />
+    </file>
+  </target>
+  <target name="mdm9x45"
+          inherits-from="common"
+          exclusive="true"
+          build_id="TAFAANBA"
+          target_family="badger" />
+  <!-- The 'build_ver' property corresponds to the build version. It IS an
+       inheritable property. If not provided (and not inherited), it will
+       default to the DEFAULT_BUILD_VERSION defined in the BuildConfigParser
+       (originally '40000000') -->
+  <target name="msm8998virtio"
+          inherits-from="msm8998"
+          exclusive="true"
+          chipset="msm8998"
+          build_id="RAGAANVA"
+          build_ver="40000000"
+          hal_platform="VIRTIO" />
+  <target name="msm8998rumi"
+          inherits-from="msm8998"
+          exclusive="true"
+          chipset="msm8998"
+          build_id="RAGAANRA"
+          hal_platform="RUMI" />
+  <target name="sdm630virtio"
+          inherits-from="sdm630"
+          exclusive="true"
+          chipset="sdm630"
+          build_id="BAHAANVA"
+          build_ver="40000000"
+          hal_platform="VIRTIO" />
+  <target name="sdm630rumi"
+          inherits-from="sdm630"
+          exclusive="true"
+          chipset="sdm630"
+          build_id="BAHAANRA"
+          hal_platform="RUMI" />
+  <target name="sdm660virtio"
+          inherits-from="sdm660"
+          exclusive="true"
+          chipset="sdm660"
+          build_id="KAJAANVA"
+          build_ver="40000000"
+          hal_platform="VIRTIO" />
+  <target name="sdm660rumi"
+          inherits-from="sdm660"
+          exclusive="true"
+          chipset="sdm660"
+          build_id="KAJAANRA"
+          hal_platform="RUMI" />
+  <target name="sdm845virtio"
+          inherits-from="sdm845"
+          exclusive="true"
+          chipset="sdm845"
+          build_id="WADAANVA"
+          build_ver="40000000"
+          hal_platform="VIRTIO" />
+  <target name="sdm845rumi"
+          inherits-from="sdm845"
+          exclusive="true"
+          chipset="sdm845"
+          build_id="WADAANRA"
+          hal_platform="RUMI" />
+</branch>
+</build>

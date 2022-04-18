@@ -1,0 +1,20 @@
+Starting Qshrink
+ELF File: /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/build/bsp/avs_adsp_user/build/660.adsp.prod/AUDIO_IMG_660.adsp.prodQ.elf
+Output File: /local/mnt/workspace/CRMBuilds/ADSP.VT.4.1.c1-00009-SDM660-1_20200317_234851/b/adsp_proc/build/bsp/avs_adsp_user/build/660.adsp.prod/AUDIO_660.adsp.prodQ_QSHRINK.elf
+Hash File: ../../qdsp6/qshrink/src/msg_hash.txt
+Log File: ../../qdsp6/qshrink/src/qsr_.txt_.log
+Replacement Mode
+Finished Copying ( 0.039697 seconds)
+Done Scanning Symbol Table ( 1.236475 seconds) 
+Total Struct Matches: 15631 
+
+Shrinking QSR_STRING section in output ...
+Total Unique Struct Matches: 15631
+Total New Hashed Strings: 0
+Total Strings Replaced by Hashes: 13475
+Total Moved Strings in QSR_STR section: 2156
+Total Anomalies processed : 0
+Total Strings in Master Hash File: 27969
+Qshrink Version : 2
+Total Time: 2.434438
+Qshrink completed 

@@ -1,0 +1,1093 @@
+Archive member included because of file (symbol)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric.o)
+		/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o (bio_set_auth_result)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric_serializer.o)
+		/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric.o) (bio_deserialize_auth_result)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memscpy.o)
+		/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o (memscpy)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strlcpy.o)
+		/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric.o) (strlcpy)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(secure_memset.o)
+		/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric_serializer.o) (secure_memset)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strnlen.o)
+		/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric_serializer.o) (strnlen)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o)
+		/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o (__stack_chk_fail)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(prxy_services.o)
+		/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o (qsee_log)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(tzapp_syscall.o)
+		/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/tzapp_entry.o (app_export_init_info_to_qsee)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(mink_shared_code.o)
+		/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o) (minkIPC)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_env.o)
+		/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o) (qsee_open)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_prng.o)
+		/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o) (qsee_prng_getdata)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_timer_shim.o)
+		/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o (qsee_get_uptime)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_bulletin_board_shim.o)
+		/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric.o) (qsee_bulletin_board_post)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_appmessage.o)
+		/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o (qsee_encapsulate_inter_app_message)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memset.o)
+		/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o (memset)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memcpy.o)
+		/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o (memcpy)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strlen.o)
+		/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o) (strlen)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(printf.o)
+		/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o (snprintf)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(kthread_shared.o)
+		/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(mink_shared_code.o) (mink_generic_syscall)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memchr.o)
+		/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(printf.o) (memchr)
+
+Allocating common symbols
+Common symbol	size	file
+
+apps_request_resp	0x28	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o)
+
+Linker Script and memory map
+START GROUP
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/tzapp_entry.o
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/tzapp_lib_main.o
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/metadata.o
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric.o) 
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric_serializer.o) 
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memscpy.o) 
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strlcpy.o) 
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(secure_memset.o) 
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strnlen.o) 
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o) 
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(prxy_services.o) 
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(tzapp_syscall.o) 
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(mink_shared_code.o) 
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_env.o) 
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_prng.o) 
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_timer_shim.o) 
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_bulletin_board_shim.o) 
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_appmessage.o) 
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memset.o) 
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memcpy.o) 
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strlen.o) 
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(printf.o) 
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(kthread_shared.o) 
+LOAD /local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memchr.o) 
+END GROUP
+
+Linker scripts used (including INCLUDE command)
+/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth.scl
+
+	0x0	0x0
+
+.text	0x0	0x6416
+KEEP ((TZAPPENTRYCODE ))
+	text_section_base(0x0) = .( 0x0 );
+TZAPPENTRYCODE	0x0	0x58	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/tzapp_entry.o	
+	0x0		TZAPPENTRYCODE	
+	0x0		$x	
+	0x0		__main	
+	0x0		_main	
+	0x0		TZAPPENTRY	
+	0x3c		get_cmnlib_ctx_ptr	
+	0x44		$d	
+(.text .text.* kthread_shared )
+.text	0x58	0x5c0	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o	
+	0x58		$x.0	
+	0x58		.text	
+	0x58		dumpHex	
+	0x188		tz_app_init	
+	0x1a0		tz_app_cmd_handler	
+	0x600		tz_app_shutdown	
+.text	0x618	0xcc	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/tzapp_lib_main.o	
+	0x618		$x.0	
+	0x618		.text	
+	0x618		TEE_Panic	
+	0x61c		GPMemoryMgmt_verifyHandle	
+	0x624		GPMemoryMgmt_verifyDataAccess	
+	0x62c		CApp_handleRequest	
+	0x660		CApp_invoke	
+	0x6b4		secure_app_init	
+	0x6cc		secure_app_shutdown	
+.text	0x6e4	0x4e4	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric.o)	
+	0x6e4		$x.0	
+	0x6e4		.text	
+	0x6e4		bio_set_auth_result	
+	0x830		bio_set_note_category	
+	0x880		bio_print_error_message	
+	0x8a0		bio_get_auth_result	
+	0xa74		bio_wait_for_hlos_event	
+.text	0xbc8	0x808	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric_serializer.o)	
+	0xbc8		$x.0	
+	0xbc8		.text	
+	0xbc8		bio_serialize_auth_result	
+	0xd60		bio_init_serialization_buffer	
+	0xda8		bio_add_data_item_to_buffer	
+	0xee0		bio_deserialize_auth_result	
+	0x1200		bio_serialize_file_poll_event_data	
+	0x138c		bio_parse_listener_response	
+.text	0x13d0	0x30	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memscpy.o)	
+	0x13d0		$x.0	
+	0x13d0		.text	
+	0x13d0		memscpy	
+.text	0x1400	0x3c	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strlcpy.o)	
+	0x1400		$x.0	
+	0x1400		.text	
+	0x1400		strlcpy	
+.text	0x143c	0x2c	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(secure_memset.o)	
+	0x143c		$x.0	
+	0x143c		.text	
+	0x143c		secure_memset	
+.text	0x1468	0x28	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strnlen.o)	
+	0x1468		$x.0	
+	0x1468		.text	
+	0x1468		strnlen	
+.text	0x1490	0xa94	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o)	
+	0x1490		$x.0	
+	0x1490		.text	
+	0x1490		qsee_err_fatal	
+	0x14b0		platform_err_fatal	
+	0x14b4		platform_get_random	
+	0x14b8		__stack_chk_fail	
+	0x14bc		_sys_command_string	
+	0x14c8		get_app_req_resp	
+	0x14d4		qsee_read_register	
+	0x14f8		qsee_request_service	
+	0x15b8		qsee_prepare_shared_buf_for_nosecure_read	
+	0x15dc		qsee_prepare_shared_buf_for_secure_read	
+	0x1600		qsee_set_global_flag	
+	0x1624		qsee_get_global_flag	
+	0x1644		qsee_oem_process_cmd	
+	0x166c		qsee_enforce_hdmi_hdcp_encryption	
+	0x1690		qsee_write_hdcp2p2_key_riv_enable	
+	0x16c0		qsee_read_hdcp2p2_min_encryption_level	
+	0x16e4		qsee_write_hdcp2p2_min_encryption_level	
+	0x1708		qsee_get_hdcp_min_enc_level	
+	0x172c		qsee_get_chipset_family	
+	0x1750		qsee_set_hdcp_min_enc_level	
+	0x1774		qsee_write_hdcp1_key	
+	0x1798		qsee_set_hdcp_cpi_assert	
+	0x17bc		qsee_get_secure_state	
+	0x17e0		__wrap_malloc	
+	0x17f0		qsee_realloc	
+	0x183c		realloc	
+	0x1840		qsee_malloc	
+	0x1850		qsee_realloc_common	
+	0x1904		__wrap_free	
+	0x1908		qsee_free	
+	0x1934		qsee_cmnlib_malloc	
+	0x1964		qsee_cmnlib_free	
+	0x1990		tz_module_open	
+	0x199c		tzlib_app_entry	
+	0x1b20		get_ta_app_name	
+	0x1b30		get_app_heap_size	
+	0x1b48		get_app_md	
+	0x1bf4		CElfFile_invoke	
+	0x1d18		get_app_stack_size	
+	0x1d30		AppModule_invoke	
+.text	0x1f24	0x6e0	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(prxy_services.o)	
+	0x1f24		$x.0	
+	0x1f24		.text	
+	0x1f24		qsee_kdf	
+	0x1f50		qsee_log	
+	0x2054		qsee_log_set_mask	
+	0x207c		qsee_log_get_mask	
+	0x20a8		open	
+	0x2100		read	
+	0x212c		write	
+	0x2158		close	
+	0x2184		lstat	
+	0x21b0		mkdir	
+	0x21dc		frename	
+	0x2208		opendir	
+	0x2234		readdir	
+	0x2260		rmdir	
+	0x228c		testdir	
+	0x22b8		file_get_partition_free_size	
+	0x22e4		fstat	
+	0x2310		lseek	
+	0x233c		time_getsystime	
+	0x2368		time_getutcsec	
+	0x2394		time_is_leap_year	
+	0x23c0		remove	
+	0x23ec		unlink	
+	0x2418		link	
+	0x2444		telldir	
+	0x2470		fsync	
+	0x249c		openat	
+	0x24f4		unlinkat	
+	0x2520		fcntl	
+	0x2578		creat	
+	0x25a4		file_dir_chown_chmod	
+	0x25d8		get_error_number	
+.text	0x2604	0x3d8	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(mink_shared_code.o)	
+	0x2604		$x.0	
+	0x2604		.text	
+	0x2604		UThread_syscall	
+	0x262c		minkIPC	
+	0x27b4		minkServerLoop	
+	0x29b4		minkServerEntry	
+.text	0x29dc	0x27c	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_env.o)	
+	0x29dc		$x.0	
+	0x29dc		.text	
+	0x29dc		qsee_set_env	
+	0x2a04		qsee_open	
+	0x2a98		qsee_open_singleton	
+	0x2b14		qsee_printf_ap	
+	0x2bb8		qsee_printf	
+.text	0x2c58	0x88	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_prng.o)	
+	0x2c58		$x.0	
+	0x2c58		.text	
+	0x2c58		qsee_prng_getdata	
+.text	0x2ce0	0x60	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_timer_shim.o)	
+	0x2ce0		$x.0	
+	0x2ce0		.text	
+	0x2ce0		qsee_get_uptime	
+	0x2d00		qsee_wdog_stop	
+	0x2d20		qsee_wdog_pet	
+.text	0x2d40	0x74	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_bulletin_board_shim.o)	
+	0x2d40		$x.0	
+	0x2d40		.text	
+	0x2d40		qsee_bulletin_board_post	
+	0x2d74		qsee_bulletin_board_read	
+.text	0x2db4	0x204	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_appmessage.o)	
+	0x2db4		$x.0	
+	0x2db4		.text	
+	0x2db4		qsee_encapsulate_inter_app_message	
+	0x2eb0		translateToQSeeErrors	
+	0x2ed4		qsee_decapsulate_inter_app_message	
+.text	0x2fb8	0x68	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memset.o)	
+	0x2fb8		$x.0	
+	0x2fb8		.text	
+	0x2fb8		memset	
+.text	0x3020	0x3dc	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memcpy.o)	
+	0x3020		$x.0	
+	0x3020		.text	
+	0x3020		memcpy	
+.text	0x33fc	0x64	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strlen.o)	
+	0x33fc		$x.0	
+	0x33fc		.text	
+	0x33fc		strlen	
+.text	0x3460	0x12b4	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(printf.o)	
+	0x3460		$x.0	
+	0x3460		.text	
+	0x3460		__towrite	
+	0x34a8		vfprintf	
+	0x35e0		printf_core	
+	0x4034		$d.1	
+	0x4080		$x.2	
+	0x4080		vsnprintf	
+	0x4180		sn_write	
+	0x41d0		snprintf	
+	0x426c		out	
+	0x4368		getint	
+	0x43b0		pop_arg	
+	0x462c		$d.3	
+	0x4654		$x.4	
+	0x4654		pad	
+kthread_shared	0x4714	0x98	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(kthread_shared.o)	
+	0x4714		kthread_shared	
+	0x4714		$x	
+	0x4714		mink_generic_syscall	
+.text	0x47ac	0xb8	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memchr.o)	
+	0x47ac		$x.0	
+	0x47ac		.text	
+	0x47ac		memchr	
+KEEP ((tzapp_syscall_asm ))
+tzapp_syscall_asm	0x4900	0x100	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(tzapp_syscall.o)	
+	0x4900		tzapp_syscall_asm	
+	0x4900		$x	
+	0x4900		app_export_init_info_to_qsee	
+	0x4914		qsee_generic_syscall	
+	0x499c		qsee_generic_syscall_u64	
+(.rodata )
+.rodata	0x4a00	0x106c	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o	
+	0x4a00		$d.2	
+	0x4a00		.rodata	
+.rodata	0x5a70	0x14	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/metadata.o	
+	0x5a70		$d.3	
+	0x5a70		.rodata	
+	0x5a70		TA_ACCEPT_BUF_SIZE	
+	0x5a74		ta_multiSession	
+	0x5a78		ta_customProperties	
+	0x5a80		TA_CUSTOM_PROPERTIES_NUM	
+.rodata	0x5a84	0x1d0	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(printf.o)	
+	0x5a84		$d.6	
+	0x5a84		states	
+	0x5a84		.rodata	
+(EXCLUDE_FILE ( *\metadata.o ).rodata.* ))
+.rodata.str1.1	0x5c54	0x1f	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o	
+	0x5c54		$d.1	
+	0x5c54		.rodata.str1.1	
+.rodata.str1.1	0x5dde	0x30	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric.o)	
+	0x5dde		$d.2	
+	0x5dde		.rodata.str1.1	
+.rodata.str1.1	0x6063	0x46	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric_serializer.o)	
+	0x6063		$d.1	
+	0x6063		.rodata.str1.1	
+.rodata.cst16	0x63cc	0x10	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric_serializer.o)	
+	0x63cc		$d.2	
+	0x63cc		.rodata.cst16	
+.rodata.str1.1	0x63dc	0x2	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o)	
+	0x63dc		$d.3	
+	0x63dc		.rodata.str1.1	
+.rodata.str1.1	0x63e5	0xa	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(printf.o)	
+	0x63e5		$d.7	
+	0x63e5		.rodata.str1.1	
+.rodata.cst16	0x63f6	0x10	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(printf.o)	
+	0x63f6		$d.8	
+	0x63f6		xdigits	
+	0x63f6		.rodata.cst16	
+(.rodata.str1.1 )
+.rodata.str1.1	0x6406	0xb	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/metadata.o	
+	0x6406		$d.1	
+	0x6406		.rodata.str1.1	
+
+.sentinel	0x6416	0x2f
+(.rodata.sentinel )
+.rodata.sentinel	0x6416	0x2f	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/metadata.o	
+	0x6416		$d.0	
+	0x6416		.rodata.sentinel	
+	0x6416		TA_METADATA	
+	text_section_limit(0x6445) = .( 0x6445 );
+	ASSERT(0x1) = ASSERT( SIZEOF(.sentinel = 0x2f ) != 0( 0x0 ) );
+.rodata.sentinel	0x6416	0x2f	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/metadata.o	
+	0x6416		$d.0	
+	0x6416		.rodata.sentinel	
+	0x6416		TA_METADATA	
+
+.metadata_check	0x6445	0x0
+(.rodata.* )
+	ASSERT(0x1) = ASSERT( SIZEOF(.metadata_check = 0x0 ) == 0( 0x0 ) );
+
+.data	0x7000	0x17c8
+(.data TZAPPENTRYSTACK .bss COMMON )
+	data_section_base(0x7000) = .( 0x7000 );
+	0x7000	0x28	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o)	
+	0x7000		apps_request_resp	
+TZAPPENTRYSTACK	0x7030	0x80	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/tzapp_entry.o	
+	0x7030		TZAPPENTRYSTACK	
+	0x7030		$d	
+	0x7030		app_entry_stack_end	
+.bss	0x70b0	0x1000	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/metadata.o	
+	0x70b0		.bss	
+	0x70b0		ta_acceptBuf	
+.bss	0x80b0	0x139	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric.o)	
+	0x80b0		g_serialization_buffer	
+	0x80b0		.bss	
+	0x81b0		bio_read_result.note	
+	0x81c8		bio_read_result.ta_name	
+.bss	0x81f0	0xc0	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric_serializer.o)	
+	0x81f0		deserialization_items	
+	0x81f0		.bss	
+.data	0x82b0	0x24	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o)	
+	0x82b0		.data	
+	0x82b0		magic_num	
+	0x82c4		$d.2	
+	0x82c4		magic_num_index_array	
+	0x82d0		__stack_chk_guard	
+.bss	0x82d8	0x2ec	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o)	
+	0x82d8		$d.1	
+	0x82d8		.bss	
+	0x82d8		pgCmnlib	
+	0x82e0		mem_magic_number	
+	0x82f8		pAppLib	
+	0x8300		appHeap	
+	0x8350		appCntxt	
+	0x8390		appSfsCntxt	
+	0x8550		get_app_md.app_info	
+	0x85c0		appModule	
+.bss	0x85c8	0x200	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_env.o)	
+	0x85c8		s_env	
+	0x85c8		.bss	
+	0x85d8		qsee_open_singleton.s_prng	
+	0x85e8		qsee_open_singleton.s_deviceID	
+	0x85f8		qsee_open_singleton.s_nsmem	
+	0x8608		qsee_open_singleton.s_crypto	
+	0x8618		qsee_open_singleton.s_i2c	
+	0x8628		qsee_open_singleton.s_spi	
+	0x8638		qsee_open_singleton.s_hwFuse	
+	0x8648		qsee_open_singleton.s_listener	
+	0x8658		qsee_open_singleton.s_tlmm	
+	0x8668		qsee_open_singleton.s_resetTimer	
+	0x8678		qsee_open_singleton.s_sync	
+	0x8688		qsee_open_singleton.s_secureDisplay	
+	0x8698		qsee_open_singleton.s_dataCache	
+	0x86a8		qsee_open_singleton.s_sharedBuffer	
+	0x86b8		qsee_open_singleton.s_debugPolicy	
+	0x86c8		qsee_open_singleton.s_intMask	
+	0x86d8		qsee_open_singleton.s_transNSAddr	
+	0x86e8		qsee_open_singleton.s_oemBuf	
+	0x86f8		qsee_open_singleton.s_secureCamera	
+	0x8708		qsee_open_singleton.s_appMessage	
+	0x8718		qsee_open_singleton.s_spcom	
+	0x8728		printf_buf	
+	data_section_limit(0x87c8) = .( 0x87c8 );
+	0x7000	0x28	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o)	
+	0x7000		apps_request_resp	
+TZAPPENTRYSTACK	0x7030	0x80	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/tzapp_entry.o	
+	0x7030		TZAPPENTRYSTACK	
+	0x7030		$d	
+	0x7030		app_entry_stack_end	
+.bss	0x70b0	0x1000	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/metadata.o	
+	0x70b0		.bss	
+	0x70b0		ta_acceptBuf	
+.bss	0x80b0	0x139	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric.o)	
+	0x80b0		g_serialization_buffer	
+	0x80b0		.bss	
+	0x81b0		bio_read_result.note	
+	0x81c8		bio_read_result.ta_name	
+.bss	0x81f0	0xc0	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric_serializer.o)	
+	0x81f0		deserialization_items	
+	0x81f0		.bss	
+.data	0x82b0	0x24	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o)	
+	0x82b0		.data	
+	0x82b0		magic_num	
+	0x82c4		$d.2	
+	0x82c4		magic_num_index_array	
+	0x82d0		__stack_chk_guard	
+.bss	0x82d8	0x2ec	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o)	
+	0x82d8		$d.1	
+	0x82d8		.bss	
+	0x82d8		pgCmnlib	
+	0x82e0		mem_magic_number	
+	0x82f8		pAppLib	
+	0x8300		appHeap	
+	0x8350		appCntxt	
+	0x8390		appSfsCntxt	
+	0x8550		get_app_md.app_info	
+	0x85c0		appModule	
+.bss	0x85c8	0x200	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_env.o)	
+	0x85c8		s_env	
+	0x85c8		.bss	
+	0x85d8		qsee_open_singleton.s_prng	
+	0x85e8		qsee_open_singleton.s_deviceID	
+	0x85f8		qsee_open_singleton.s_nsmem	
+	0x8608		qsee_open_singleton.s_crypto	
+	0x8618		qsee_open_singleton.s_i2c	
+	0x8628		qsee_open_singleton.s_spi	
+	0x8638		qsee_open_singleton.s_hwFuse	
+	0x8648		qsee_open_singleton.s_listener	
+	0x8658		qsee_open_singleton.s_tlmm	
+	0x8668		qsee_open_singleton.s_resetTimer	
+	0x8678		qsee_open_singleton.s_sync	
+	0x8688		qsee_open_singleton.s_secureDisplay	
+	0x8698		qsee_open_singleton.s_dataCache	
+	0x86a8		qsee_open_singleton.s_sharedBuffer	
+	0x86b8		qsee_open_singleton.s_debugPolicy	
+	0x86c8		qsee_open_singleton.s_intMask	
+	0x86d8		qsee_open_singleton.s_transNSAddr	
+	0x86e8		qsee_open_singleton.s_oemBuf	
+	0x86f8		qsee_open_singleton.s_secureCamera	
+	0x8708		qsee_open_singleton.s_appMessage	
+	0x8718		qsee_open_singleton.s_spcom	
+	0x8728		printf_buf	
+
+.rel.text	0x87c8	0x0
+(.rel.text )
+
+.rel.rodata	0x87c8	0x0
+(.rel.rodata )
+
+.data.rel.ro.local	0x87c8	0x2a0
+(.data.rel.ro.local )
+.data.rel.ro.local	0x87c8	0x10	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric.o)	
+	0x87c8		$d.3	
+	0x87c8		AUTH_METHOD_NAMES	
+	0x87c8		.data.rel.ro.local	
+.data.rel.ro.local	0x87d8	0x1b0	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_env.o)	
+	0x87d8		$d.1	
+	0x87d8		.data.rel.ro.local	
+.data.rel.ro.local	0x8988	0xe0	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(printf.o)	
+	0x8988		$d.5	
+	0x8988		.data.rel.ro.local	
+
+.data.rel.ro	0x8a68	0x0
+(.data.rel.ro )
+
+.rel.data	0x8a68	0x0
+(.rel.data )
+
+.rel.plt	0x8a68	0x0
+(.rel.plt )
+
+.data.rel	0x8a68	0x0
+(.data.rel )
+
+.data.rel.local	0x8a68	0x30
+(.data.rel.local )
+.data.rel.local	0x8a68	0x18	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/metadata.o	
+	0x8a68		$d.2	
+	0x8a68		.data.rel.local	
+	0x8a68		TA_APP_NAME	
+	0x8a70		ta_version	
+	0x8a78		ta_description	
+.data.rel.local	0x8a80	0x10	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric.o)	
+	0x8a80		$d.1	
+	0x8a80		g_buffer	
+	0x8a80		.data.rel.local	
+.data.rel.local	0x8a90	0x8	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o)	
+	0x8a90		$d.4	
+	0x8a90		.data.rel.local	
+	0x8a90		dummy_str	
+
+INIT_ARRAY	0x8a98	0x0
+(.init_array )
+	FILL(0x0) = FILL( 0x0 );
+	__init_array_start(0x8a98) = .( 0x8a98 );
+	__init_array_end(0x8a98) = .( 0x8a98 );
+
+FINI_ARRAY	0x8a98	0x0
+(.fini_array )
+	FILL(0x0) = FILL( 0x0 );
+	__fini_array_start(0x8a98) = .( 0x8a98 );
+	__fini_array_end(0x8a98) = .( 0x8a98 );
+
+GP_APP_STACK	0x8a98	0x4000
+	app_stack_base(0x8a98) = .( 0x8a98 );
+	.(0xca98) = .( 0x8a98 ) + 16384( 0x4000 );
+	app_stack_limit(0xca98) = .( 0xca98 );
+
+GP_APP_HEAP	0xca98	0x8000
+	app_heap_base(0xca98) = .( 0xca98 );
+	.(0x14a98) = .( 0xca98 ) + 32768( 0x8000 );
+	app_heap_limit(0x14a98) = .( 0x14a98 );
+
+.got	0x15000	0xf8
+(.got.plt )
+(.igot.plt )
+(.got )
+(.igot )
+
+.dynamic	0x16000	0x110
+(.dynamic )
+
+.rela.dyn	0x17000	0x888
+(.rela.dyn )
+
+.gnu.attributes	0x0	0x0
+KEEP ((.gnu.attributes ))
+
+.note.gnu.arm.ident	0x0	0x0
+KEEP ((.note.gnu.arm.ident ))
+
+/DISCARD/	0x0	0x0
+(.hash )
+(.dynsym )
+(.dynstr )
+(.ARM.exidx* )
+(.note.GNU-stack )
+(.gnu_debuglink )
+(.gnu.lto_* )
+(.init )
+(.fini )
+
+.debug_info	0xc888	0x8a77
+.debug_info	0xc888	0x569	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o	
+	0x0		$d.4	
+	0x0		.debug_info	
+.debug_info	0xcdf1	0x3e1	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/tzapp_lib_main.o	
+	0x569		$d.2	
+	0x569		.debug_info	
+.debug_info	0xd1d2	0x155	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/metadata.o	
+	0x94a		$d.5	
+	0x94a		.debug_info	
+.debug_info	0xd327	0x89a	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric.o)	
+	0xa9f		$d.5	
+	0xa9f		.debug_info	
+.debug_info	0xdbc1	0x837	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric_serializer.o)	
+	0x1339		$d.4	
+	0x1339		.debug_info	
+.debug_info	0xe3f8	0xa6	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memscpy.o)	
+	0x1b70		$d.2	
+	0x1b70		.debug_info	
+.debug_info	0xe49e	0xc4	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strlcpy.o)	
+	0x1c16		$d.2	
+	0x1c16		.debug_info	
+.debug_info	0xe562	0xba	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(secure_memset.o)	
+	0x1cda		$d.2	
+	0x1cda		.debug_info	
+.debug_info	0xe61c	0x96	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strnlen.o)	
+	0x1d94		$d.2	
+	0x1d94		.debug_info	
+.debug_info	0xe6b2	0x1543	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o)	
+	0x1e2a		$d.6	
+	0x1e2a		.debug_info	
+.debug_info	0xfbf5	0x3345	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(prxy_services.o)	
+	0x336d		$d.2	
+	0x336d		.debug_info	
+.debug_info	0x12f3a	0x4f5	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(mink_shared_code.o)	
+	0x66b2		$d.2	
+	0x66b2		.debug_info	
+.debug_info	0x1342f	0x698	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_env.o)	
+	0x6ba7		$d.3	
+	0x6ba7		.debug_info	
+.debug_info	0x13ac7	0x2a7	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_prng.o)	
+	0x723f		$d.2	
+	0x723f		.debug_info	
+.debug_info	0x13d6e	0x78	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_timer_shim.o)	
+	0x74e6		$d.2	
+	0x74e6		.debug_info	
+.debug_info	0x13de6	0x185	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_bulletin_board_shim.o)	
+	0x755e		$d.2	
+	0x755e		.debug_info	
+.debug_info	0x13f6b	0x525	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_appmessage.o)	
+	0x76e3		$d.2	
+	0x76e3		.debug_info	
+.debug_info	0x14490	0xbe	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memset.o)	
+	0x7c08		$d.2	
+	0x7c08		.debug_info	
+.debug_info	0x1454e	0x113	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memcpy.o)	
+	0x7cc6		$d.2	
+	0x7cc6		.debug_info	
+.debug_info	0x14661	0xad	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strlen.o)	
+	0x7dd9		$d.2	
+	0x7dd9		.debug_info	
+.debug_info	0x1470e	0xafd	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(printf.o)	
+	0x7e86		$d.10	
+	0x7e86		.debug_info	
+.debug_info	0x1520b	0xf4	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memchr.o)	
+	0x8983		$d.2	
+	0x8983		.debug_info	
+
+.debug_abbrev	0x152ff	0x19f1
+.debug_abbrev	0x152ff	0x16b	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o	
+	0x0		$d.5	
+	0x0		.debug_abbrev	
+.debug_abbrev	0x1546a	0x139	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/tzapp_lib_main.o	
+	0x16b		$d.3	
+	0x16b		.debug_abbrev	
+.debug_abbrev	0x155a3	0x7d	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/metadata.o	
+	0x2a4		$d.6	
+	0x2a4		.debug_abbrev	
+.debug_abbrev	0x15620	0x1f3	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric.o)	
+	0x321		$d.6	
+	0x321		.debug_abbrev	
+.debug_abbrev	0x15813	0x23c	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric_serializer.o)	
+	0x514		$d.5	
+	0x514		.debug_abbrev	
+.debug_abbrev	0x15a4f	0x87	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memscpy.o)	
+	0x750		$d.3	
+	0x750		.debug_abbrev	
+.debug_abbrev	0x15ad6	0x93	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strlcpy.o)	
+	0x7d7		$d.3	
+	0x7d7		.debug_abbrev	
+.debug_abbrev	0x15b69	0x8f	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(secure_memset.o)	
+	0x86a		$d.3	
+	0x86a		.debug_abbrev	
+.debug_abbrev	0x15bf8	0x75	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strnlen.o)	
+	0x8f9		$d.3	
+	0x8f9		.debug_abbrev	
+.debug_abbrev	0x15c6d	0x32d	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o)	
+	0x96e		$d.7	
+	0x96e		.debug_abbrev	
+.debug_abbrev	0x15f9a	0x248	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(prxy_services.o)	
+	0xc9b		$d.3	
+	0xc9b		.debug_abbrev	
+.debug_abbrev	0x161e2	0x160	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(mink_shared_code.o)	
+	0xee3		$d.3	
+	0xee3		.debug_abbrev	
+.debug_abbrev	0x16342	0x189	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_env.o)	
+	0x1043		$d.4	
+	0x1043		.debug_abbrev	
+.debug_abbrev	0x164cb	0x119	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_prng.o)	
+	0x11cc		$d.3	
+	0x11cc		.debug_abbrev	
+.debug_abbrev	0x165e4	0x54	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_timer_shim.o)	
+	0x12e5		$d.3	
+	0x12e5		.debug_abbrev	
+.debug_abbrev	0x16638	0xac	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_bulletin_board_shim.o)	
+	0x1339		$d.3	
+	0x1339		.debug_abbrev	
+.debug_abbrev	0x166e4	0x179	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_appmessage.o)	
+	0x13e5		$d.3	
+	0x13e5		.debug_abbrev	
+.debug_abbrev	0x1685d	0x82	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memset.o)	
+	0x155e		$d.3	
+	0x155e		.debug_abbrev	
+.debug_abbrev	0x168df	0x95	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memcpy.o)	
+	0x15e0		$d.3	
+	0x15e0		.debug_abbrev	
+.debug_abbrev	0x16974	0x87	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strlen.o)	
+	0x1675		$d.3	
+	0x1675		.debug_abbrev	
+.debug_abbrev	0x169fb	0x26d	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(printf.o)	
+	0x16fc		$d.11	
+	0x16fc		.debug_abbrev	
+.debug_abbrev	0x16c68	0x88	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memchr.o)	
+	0x1969		$d.3	
+	0x1969		.debug_abbrev	
+
+.debug_line	0x16cf0	0x4ee6
+.debug_line	0x16cf0	0x428	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o	
+	0x0		$d.11	
+	0x0		.debug_line	
+.debug_line	0x17118	0x2e3	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/tzapp_lib_main.o	
+	0x428		$d.9	
+	0x428		.debug_line	
+.debug_line	0x173fb	0xca	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/metadata.o	
+	0x70b		$d.10	
+	0x70b		.debug_line	
+.debug_line	0x174c5	0x4c9	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric.o)	
+	0x7d5		$d.13	
+	0x7d5		.debug_line	
+.debug_line	0x1798e	0x48b	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric_serializer.o)	
+	0xc9e		$d.12	
+	0xc9e		.debug_line	
+.debug_line	0x17e19	0x115	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memscpy.o)	
+	0x1129		$d.9	
+	0x1129		.debug_line	
+.debug_line	0x17f2e	0x126	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strlcpy.o)	
+	0x123e		$d.9	
+	0x123e		.debug_line	
+.debug_line	0x18054	0x11f	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(secure_memset.o)	
+	0x1364		$d.9	
+	0x1364		.debug_line	
+.debug_line	0x18173	0x127	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strnlen.o)	
+	0x1483		$d.9	
+	0x1483		.debug_line	
+.debug_line	0x1829a	0xa82	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o)	
+	0x15aa		$d.14	
+	0x15aa		.debug_line	
+.debug_line	0x18d1c	0xd58	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(prxy_services.o)	
+	0x202c		$d.9	
+	0x202c		.debug_line	
+.debug_line	0x19a74	0x40f	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(mink_shared_code.o)	
+	0x2d84		$d.10	
+	0x2d84		.debug_line	
+.debug_line	0x19e83	0x32c	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_env.o)	
+	0x3193		$d.11	
+	0x3193		.debug_line	
+.debug_line	0x1a1af	0x29b	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_prng.o)	
+	0x34bf		$d.10	
+	0x34bf		.debug_line	
+.debug_line	0x1a44a	0xf4	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_timer_shim.o)	
+	0x375a		$d.8	
+	0x375a		.debug_line	
+.debug_line	0x1a53e	0x292	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_bulletin_board_shim.o)	
+	0x384e		$d.9	
+	0x384e		.debug_line	
+.debug_line	0x1a7d0	0x32f	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_appmessage.o)	
+	0x3ae0		$d.10	
+	0x3ae0		.debug_line	
+.debug_line	0x1aaff	0x171	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memset.o)	
+	0x3e0f		$d.9	
+	0x3e0f		.debug_line	
+.debug_line	0x1ac70	0x357	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memcpy.o)	
+	0x3f80		$d.9	
+	0x3f80		.debug_line	
+.debug_line	0x1afc7	0x15f	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strlen.o)	
+	0x42d7		$d.9	
+	0x42d7		.debug_line	
+.debug_line	0x1b126	0x908	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(printf.o)	
+	0x4436		$d.18	
+	0x4436		.debug_line	
+.debug_line	0x1ba2e	0x1a8	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memchr.o)	
+	0x4d3e		$d.9	
+	0x4d3e		.debug_line	
+
+.debug_pubnames	0x1bbd6	0x1294
+.debug_pubnames	0x1bbd6	0x59	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o	
+	0x0		$d.7	
+	0x0		.debug_pubnames	
+.debug_pubnames	0x1bc2f	0xc3	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/tzapp_lib_main.o	
+	0x59		$d.5	
+	0x59		.debug_pubnames	
+.debug_pubnames	0x1bcf2	0xc5	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/metadata.o	
+	0x11c		$d.7	
+	0x11c		.debug_pubnames	
+.debug_pubnames	0x1bdb7	0x151	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric.o)	
+	0x1e1		$d.9	
+	0x1e1		.debug_pubnames	
+.debug_pubnames	0x1bf08	0x1f6	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric_serializer.o)	
+	0x332		$d.8	
+	0x332		.debug_pubnames	
+.debug_pubnames	0x1c0fe	0x1e	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memscpy.o)	
+	0x528		$d.5	
+	0x528		.debug_pubnames	
+.debug_pubnames	0x1c11c	0x1e	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strlcpy.o)	
+	0x546		$d.5	
+	0x546		.debug_pubnames	
+.debug_pubnames	0x1c13a	0x24	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(secure_memset.o)	
+	0x564		$d.5	
+	0x564		.debug_pubnames	
+.debug_pubnames	0x1c15e	0x1e	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strnlen.o)	
+	0x588		$d.5	
+	0x588		.debug_pubnames	
+.debug_pubnames	0x1c17c	0x565	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o)	
+	0x5a6		$d.10	
+	0x5a6		.debug_pubnames	
+.debug_pubnames	0x1c6e1	0x1cd	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(prxy_services.o)	
+	0xb0b		$d.5	
+	0xb0b		.debug_pubnames	
+.debug_pubnames	0x1c8ae	0x9c	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(mink_shared_code.o)	
+	0xcd8		$d.6	
+	0xcd8		.debug_pubnames	
+.debug_pubnames	0x1c94a	0x219	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_env.o)	
+	0xd74		$d.7	
+	0xd74		.debug_pubnames	
+.debug_pubnames	0x1cb63	0x4b	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_prng.o)	
+	0xf8d		$d.6	
+	0xf8d		.debug_pubnames	
+.debug_pubnames	0x1cbae	0x4b	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_timer_shim.o)	
+	0xfd8		$d.4	
+	0xfd8		.debug_pubnames	
+.debug_pubnames	0x1cbf9	0x4c	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_bulletin_board_shim.o)	
+	0x1023		$d.5	
+	0x1023		.debug_pubnames	
+.debug_pubnames	0x1cc45	0xe2	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_appmessage.o)	
+	0x106f		$d.6	
+	0x106f		.debug_pubnames	
+.debug_pubnames	0x1cd27	0x1d	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memset.o)	
+	0x1151		$d.5	
+	0x1151		.debug_pubnames	
+.debug_pubnames	0x1cd44	0x1d	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memcpy.o)	
+	0x116e		$d.5	
+	0x116e		.debug_pubnames	
+.debug_pubnames	0x1cd61	0x1d	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strlen.o)	
+	0x118b		$d.5	
+	0x118b		.debug_pubnames	
+.debug_pubnames	0x1cd7e	0xcf	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(printf.o)	
+	0x11a8		$d.14	
+	0x11a8		.debug_pubnames	
+.debug_pubnames	0x1ce4d	0x1d	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memchr.o)	
+	0x1277		$d.5	
+	0x1277		.debug_pubnames	
+
+.debug_pubtypes	0x1ce6a	0x2952
+.debug_pubtypes	0x1ce6a	0x1aa	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o	
+	0x0		$d.8	
+	0x0		.debug_pubtypes	
+.debug_pubtypes	0x1d014	0xf5	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/tzapp_lib_main.o	
+	0x1aa		$d.6	
+	0x1aa		.debug_pubtypes	
+.debug_pubtypes	0x1d109	0x4b	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/metadata.o	
+	0x29f		$d.8	
+	0x29f		.debug_pubtypes	
+.debug_pubtypes	0x1d154	0x211	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric.o)	
+	0x2ea		$d.10	
+	0x2ea		.debug_pubtypes	
+.debug_pubtypes	0x1d365	0x1a4	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric_serializer.o)	
+	0x4fb		$d.9	
+	0x4fb		.debug_pubtypes	
+.debug_pubtypes	0x1d509	0x33	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memscpy.o)	
+	0x69f		$d.6	
+	0x69f		.debug_pubtypes	
+.debug_pubtypes	0x1d53c	0x3c	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strlcpy.o)	
+	0x6d2		$d.6	
+	0x6d2		.debug_pubtypes	
+.debug_pubtypes	0x1d578	0x59	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(secure_memset.o)	
+	0x70e		$d.6	
+	0x70e		.debug_pubtypes	
+.debug_pubtypes	0x1d5d1	0x3c	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strnlen.o)	
+	0x767		$d.6	
+	0x767		.debug_pubtypes	
+.debug_pubtypes	0x1d60d	0x4bd	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o)	
+	0x7a3		$d.11	
+	0x7a3		.debug_pubtypes	
+.debug_pubtypes	0x1daca	0x150f	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(prxy_services.o)	
+	0xc60		$d.6	
+	0xc60		.debug_pubtypes	
+.debug_pubtypes	0x1efd9	0x11b	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(mink_shared_code.o)	
+	0x216f		$d.7	
+	0x216f		.debug_pubtypes	
+.debug_pubtypes	0x1f0f4	0x112	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_env.o)	
+	0x228a		$d.8	
+	0x228a		.debug_pubtypes	
+.debug_pubtypes	0x1f206	0xf7	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_prng.o)	
+	0x239c		$d.7	
+	0x239c		.debug_pubtypes	
+.debug_pubtypes	0x1f2fd	0x2d	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_timer_shim.o)	
+	0x2493		$d.5	
+	0x2493		.debug_pubtypes	
+.debug_pubtypes	0x1f32a	0xec	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_bulletin_board_shim.o)	
+	0x24c0		$d.6	
+	0x24c0		.debug_pubtypes	
+.debug_pubtypes	0x1f416	0x100	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_appmessage.o)	
+	0x25ac		$d.7	
+	0x25ac		.debug_pubtypes	
+.debug_pubtypes	0x1f516	0x5b	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memset.o)	
+	0x26ac		$d.6	
+	0x26ac		.debug_pubtypes	
+.debug_pubtypes	0x1f571	0x71	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memcpy.o)	
+	0x2707		$d.6	
+	0x2707		.debug_pubtypes	
+.debug_pubtypes	0x1f5e2	0x4a	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strlen.o)	
+	0x2778		$d.6	
+	0x2778		.debug_pubtypes	
+.debug_pubtypes	0x1f62c	0x135	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(printf.o)	
+	0x27c2		$d.15	
+	0x27c2		.debug_pubtypes	
+.debug_pubtypes	0x1f761	0x5b	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memchr.o)	
+	0x28f7		$d.6	
+	0x28f7		.debug_pubtypes	
+
+.debug_str	0x1f7bc	0x668e
+.debug_str	0x1f7bc	0x23	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o	
+	0x0		$d.3	
+	0x0		.debug_str	
+
+.debug_loc	0x25e4a	0x55b6
+.debug_loc	0x25e4a	0x4d6	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o	
+	0x0		$d.6	
+	0x0		.debug_loc	
+.debug_loc	0x26320	0x141	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/tzapp_lib_main.o	
+	0x4d6		$d.4	
+	0x4d6		.debug_loc	
+.debug_loc	0x26461	0x850	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric.o)	
+	0x617		$d.8	
+	0x617		.debug_loc	
+.debug_loc	0x26cb1	0xbe1	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric_serializer.o)	
+	0xe67		$d.7	
+	0xe67		.debug_loc	
+.debug_loc	0x27892	0x7c	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memscpy.o)	
+	0x1a48		$d.4	
+	0x1a48		.debug_loc	
+.debug_loc	0x2790e	0x9f	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strlcpy.o)	
+	0x1ac4		$d.4	
+	0x1ac4		.debug_loc	
+.debug_loc	0x279ad	0x6c	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(secure_memset.o)	
+	0x1b63		$d.4	
+	0x1b63		.debug_loc	
+.debug_loc	0x27a19	0xa2	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strnlen.o)	
+	0x1bcf		$d.4	
+	0x1bcf		.debug_loc	
+.debug_loc	0x27abb	0x990	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o)	
+	0x1c71		$d.9	
+	0x1c71		.debug_loc	
+.debug_loc	0x2844b	0x86a	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(prxy_services.o)	
+	0x2601		$d.4	
+	0x2601		.debug_loc	
+.debug_loc	0x28cb5	0x48e	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(mink_shared_code.o)	
+	0x2e6b		$d.5	
+	0x2e6b		.debug_loc	
+.debug_loc	0x29143	0x206	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_env.o)	
+	0x32f9		$d.6	
+	0x32f9		.debug_loc	
+.debug_loc	0x29349	0x6c	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_prng.o)	
+	0x34ff		$d.5	
+	0x34ff		.debug_loc	
+.debug_loc	0x293b5	0x7c	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_bulletin_board_shim.o)	
+	0x356b		$d.4	
+	0x356b		.debug_loc	
+.debug_loc	0x29431	0x3e6	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_appmessage.o)	
+	0x35e7		$d.5	
+	0x35e7		.debug_loc	
+.debug_loc	0x29817	0xc8	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memset.o)	
+	0x39cd		$d.4	
+	0x39cd		.debug_loc	
+.debug_loc	0x298df	0x546	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memcpy.o)	
+	0x3a95		$d.4	
+	0x3a95		.debug_loc	
+.debug_loc	0x29e25	0xa5	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strlen.o)	
+	0x3fdb		$d.4	
+	0x3fdb		.debug_loc	
+.debug_loc	0x29eca	0x13cc	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(printf.o)	
+	0x4080		$d.13	
+	0x4080		.debug_loc	
+.debug_loc	0x2b296	0x16a	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memchr.o)	
+	0x544c		$d.4	
+	0x544c		.debug_loc	
+
+.debug_ranges	0x2b400	0x880
+.debug_ranges	0x2b400	0xe0	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric.o)	
+	0x0		$d.7	
+	0x0		.debug_ranges	
+.debug_ranges	0x2b4e0	0x260	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric_serializer.o)	
+	0xe0		$d.6	
+	0xe0		.debug_ranges	
+.debug_ranges	0x2b740	0x150	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o)	
+	0x340		$d.8	
+	0x340		.debug_ranges	
+.debug_ranges	0x2b890	0x1b0	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(mink_shared_code.o)	
+	0x490		$d.4	
+	0x490		.debug_ranges	
+.debug_ranges	0x2ba40	0x90	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_env.o)	
+	0x640		$d.5	
+	0x640		.debug_ranges	
+.debug_ranges	0x2bad0	0x60	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_prng.o)	
+	0x6d0		$d.4	
+	0x6d0		.debug_ranges	
+.debug_ranges	0x2bb30	0xc0	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_appmessage.o)	
+	0x730		$d.4	
+	0x730		.debug_ranges	
+.debug_ranges	0x2bbf0	0x90	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(printf.o)	
+	0x7f0		$d.12	
+	0x7f0		.debug_ranges	
+
+.comment	0x2bc80	0x24
+.comment	0x2bc80	0x1	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o	
+	0x0		$d.9	
+	0x0		.comment	
+
+.debug_frame	0x2bca4	0x10d0
+.debug_frame	0x2bca4	0xa8	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/apps/bsp/trustzone/qsapps/sampleauth/build/KAJAANAA/sampleauth/objects/sampleauth/src/app_main.o	
+	0x0		$d.10	
+	0x0		.debug_frame	
+.debug_frame	0x2bd4c	0xe8	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/tzapp_lib_main.o	
+	0xa8		$d.8	
+	0xa8		.debug_frame	
+.debug_frame	0x2be34	0xd0	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric.o)	
+	0x190		$d.12	
+	0x190		.debug_frame	
+.debug_frame	0x2bf04	0x118	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/securemsm/trustzone/qsapps/libs/biometric/build/sampleauth/A53_64/KAJAANAA/biometric_lib.lib(biometric_serializer.o)	
+	0x260		$d.11	
+	0x260		.debug_frame	
+.debug_frame	0x2c01c	0x38	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memscpy.o)	
+	0x378		$d.8	
+	0x378		.debug_frame	
+.debug_frame	0x2c054	0x28	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strlcpy.o)	
+	0x3b0		$d.8	
+	0x3b0		.debug_frame	
+.debug_frame	0x2c07c	0x38	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(secure_memset.o)	
+	0x3d8		$d.8	
+	0x3d8		.debug_frame	
+.debug_frame	0x2c0b4	0x28	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strnlen.o)	
+	0x410		$d.8	
+	0x410		.debug_frame	
+.debug_frame	0x2c0dc	0x450	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(common_applib.o)	
+	0x438		$d.13	
+	0x438		.debug_frame	
+.debug_frame	0x2c52c	0x340	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(prxy_services.o)	
+	0x888		$d.8	
+	0x888		.debug_frame	
+.debug_frame	0x2c86c	0xa8	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(mink_shared_code.o)	
+	0xbc8		$d.9	
+	0xbc8		.debug_frame	
+.debug_frame	0x2c914	0xc8	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_env.o)	
+	0xc70		$d.10	
+	0xc70		.debug_frame	
+.debug_frame	0x2c9dc	0x38	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_prng.o)	
+	0xd38		$d.9	
+	0xd38		.debug_frame	
+.debug_frame	0x2ca14	0x58	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_timer_shim.o)	
+	0xd70		$d.7	
+	0xd70		.debug_frame	
+.debug_frame	0x2ca6c	0x40	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_bulletin_board_shim.o)	
+	0xdc8		$d.8	
+	0xdc8		.debug_frame	
+.debug_frame	0x2caac	0x88	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(qsee_appmessage.o)	
+	0xe08		$d.9	
+	0xe08		.debug_frame	
+.debug_frame	0x2cb34	0x28	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memset.o)	
+	0xe90		$d.8	
+	0xe90		.debug_frame	
+.debug_frame	0x2cb5c	0x28	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memcpy.o)	
+	0xeb8		$d.8	
+	0xeb8		.debug_frame	
+.debug_frame	0x2cb84	0x28	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(strlen.o)	
+	0xee0		$d.8	
+	0xee0		.debug_frame	
+.debug_frame	0x2cbac	0x1a0	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(printf.o)	
+	0xf08		$d.17	
+	0xf08		.debug_frame	
+.debug_frame	0x2cd4c	0x28	/local/mnt/workspace/CRMBuilds/TZ.BF.4.0.7.1-00006-S660AAAAANAZT-2_20200329_233006/b/HK11/trustzone_images/core/bsp/trustzone/qsapps/applib64/build/KAJAANAA/applib64.lib(memchr.o)	
+	0x10a8		$d.8	
+	0x10a8		.debug_frame	
+
+.shstrtab	0x2cd74	0x105
+
+.symtab	0x2ce80	0x2f58
+
+.strtab	0x2fdd8	0x217f

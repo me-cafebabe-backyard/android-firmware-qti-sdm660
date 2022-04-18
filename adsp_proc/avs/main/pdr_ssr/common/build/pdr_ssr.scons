@@ -1,0 +1,85 @@
+#===============================================================================
+#
+# AVS AU
+#
+# GENERAL DESCRIPTION
+#    Build script
+#
+#===========================================================================
+#===========================================================================
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/avs.adsp/2.8/pdr_ssr/common/build/pdr_ssr.scons#2 $
+#  $DateTime: 2017/10/12 14:11:09 $
+#  $Author: pwbldsvc $
+#  $Change: 14598759 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+#
+#===============================================================================
+Import('env')
+
+#-------------------------------------------------------------------------------
+# Make all warnings into errors
+#-------------------------------------------------------------------------------
+
+core_public_apis = [
+   'DEBUGTOOLS',
+   'KERNEL',
+   'POWER',
+   'SERVICES',
+   ]
+   
+platform_public_apis = [
+   'QAIC',
+   'STDDEF',
+   'HAPSDK',
+   'DLW' 
+   ]
+
+env.PublishPrivateApi('AVS',[
+   '../inc',
+   '../src',
+   '../../dynamic_svcs/audpp/inc',
+   ])
+
+env.RequirePublicApi(core_public_apis, area='core')
+env.RequireRestrictedApi(['AVS', 'SHARED_LIBRARY_INC_PATHS','AVS_PDR_SSR', 'AP_SERVER_API'])
+env.RequireProtectedApi('AVS')
+
+env.RequirePublicApi(platform_public_apis, area='platform') # This has to be the last include command, so that the Elite_CAPI.h and Elite_APPI.h are not overridden
+
+#-------------------------------------------------------------------------------
+# Setup source PATH
+#-------------------------------------------------------------------------------
+SRCPATH = ".."
+LIBNAME = 'pdr_ssr_avs_mdf'
+
+env.VariantDir('${BUILDPATH}', SRCPATH, duplicate=0)
+
+# Generate regular source file list
+if env.get('hy22') == True:
+   avs_reg_sources = env.GlobSourceFiles(['src/*.cpp', 'src/*.c', 'src/public/*.cpp', 'src/public/*.c'], SRCPATH,posix=True)
+else:
+   avs_reg_sources = env.GlobSourceFiles(['src/*.cpp', 'src/*.c', 'src/prop/*.cpp', 'src/prop/*.c'], SRCPATH,posix=True)
+
+# Generate stub source file list
+avs_stub_sources = env.GlobSourceFiles(['stub_src/*.cpp', 'stub_src/*.c', 'stub_src/*.S'], SRCPATH,posix=True)
+
+# Genate proprietary source file list
+avs_prop_sources = []
+
+avs_sources = [avs_reg_sources, avs_prop_sources, avs_stub_sources]
+
+#import pdb; pdb.set_trace()
+if 'USES_AVS_LIBRARY_BUILDER' in env:
+   env.AddAvsLibrary(['AVS_ADSP','AVS_ADSP_USER'], '${BUILDPATH}/'+LIBNAME,
+      [avs_reg_sources, avs_stub_sources, avs_prop_sources], PACK_SRC=True)
+
+

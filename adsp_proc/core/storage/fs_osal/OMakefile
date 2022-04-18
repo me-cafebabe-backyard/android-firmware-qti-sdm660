@@ -1,0 +1,3 @@
+# Build rules for libfs_osal.
+
+.SUBDIRS: src

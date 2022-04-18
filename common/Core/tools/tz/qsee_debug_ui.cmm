@@ -1,0 +1,309 @@
+winclear a
+winclear b
+winclear c
+winclear d
+
+area.create threads
+area.clear threads
+
+WINPOS 49. 0. 80. 37. ,,, a
+area threads
+
+WINPOS 0. 27. 43. 22. ,,, b
+r
+WINPOS 135. 0. ,,,,, c
+v.f
+
+area.select
+
+MENU.ReProgram
+(
+  ADD
+  MENU
+  (
+    POPUP "&QSEE Debug"
+    (
+      MENUITEM "[ Yg       sb gY,Y g       bb g Y, Yg     bbbs gY,Y g   bbbss  g Y, Yg bbbss    gY,Y g bss      g Y, Yg bbb      gY,Y g ssbbb    g Y, Yg   ssbbb  gY,Y g     ssbb g Y, Yg       sb gY,Y g       bb g Y, Yg     bbbs gY,Y g   bbbss  g Y, Yg bbbss    gY,Y g bss      g Y]&QSEE Debug UI"
+      (
+        do qsee_debug_ui.cmm
+      )
+    )
+  )
+
+  ADD
+  TOOLBAR
+  (
+    TOOLITEM "QSEE Debug UI" "do qsee_debug_ui.cmm"
+  [
+ Yg       sb gY,Y g       bb g Y, Yg     bbbs gY,Y g   bbbss  g Y, Yg bbbss    gY,Y g bss      g Y, Yg bbb      gY,Y g ssbbb    g Y, Yg   ssbbb  gY,Y g     ssbb g Y, Yg       sb gY,Y g       bb g Y, Yg     bbbs gY,Y g   bbbss  g Y, Yg bbbss    gY,Y g bss      g Y
+  ]
+  )
+)
+
+WINPOS 0. 0. 40. 14. ,,, c
+DIALOG
+(
+  ICON " Yg       sb gY,Y g       bb g Y, Yg     bbbs gY,Y g   bbbss  g Y, Yg bbbss    gY,Y g bss      g Y, Yg bbb      gY,Y g ssbbb    g Y, Yg   ssbbb  gY,Y g     ssbb g Y, Yg       sb gY,Y g       bb g Y, Yg     bbbs gY,Y g   bbbss  g Y, Yg bbbss    gY,Y g bss      g Y"
+  HEADER "QSEE Debug"
+
+  POS 0. 0. 40. 4.5
+  BOX "Global Settings"
+
+  POS 1. 1 8. 1.
+  TEXT "Path To Build: "
+  POS 9. 1 30. 1.
+  BUILDPATH: EDIT "" ""
+
+  POS 3. 2.5 5. 1.
+  TZT: CHECKBOX "TZT"
+  (
+  )
+
+  POS 13. 2.5 10. 1.
+  LDEBUG: CHECKBOX "Live Debug"
+  (
+  )
+
+  POS 25. 2.5 10. 1.
+  FLAVOR: COMBOBOX "msm8996,msm8998,msm8952,msm8953,msm8958,msm8937"
+  (
+  )
+
+  POS 0. 4. 40. 3.
+  BOX "Debug Symbols"
+
+  POS 1. 5. 10. 1.
+  DEFBUTTON "Load All"
+  (
+    &buildpath=DIALOG.STRING(BUILDPATH)
+    &ld=""
+    &tzt=""
+    &flv=""
+
+    IF (DIALOG.BOOLEAN(LDEBUG))
+    (
+      &ld="live"
+    )
+
+    IF (DIALOG.BOOLEAN(TZT))
+    (
+      &tzt="tzt"
+    )
+
+    IF (DIALOG.STRING(FLAVOR)=="msm8996")
+    (
+      &flv="IADAANAA"
+    )
+    IF (DIALOG.STRING(FLAVOR)=="msm8956")
+    (
+      &flv="MAYAANAA" ; 8956
+    )
+    IF (DIALOG.STRING(FLAVOR)=="msm8952")
+    (
+      &flv="NAKAANAA" ; 8952
+    )
+    IF (DIALOG.STRING(FLAVOR)=="msm8953")
+    (
+      &flv="SANAANAA" ; 8953
+    )
+    IF (DIALOG.STRING(FLAVOR)=="msm8958")
+    (
+      &flv="PAGAANAA" ; 8958
+    )
+    IF (DIALOG.STRING(FLAVOR)=="msm8998")
+    (
+      &flv="RAHAANAA" ; 8998
+    )
+    IF (DIALOG.STRING(FLAVOR)=="msm8937")
+    (
+      &flv="ZALAANAA" ; 8937
+    )
+
+    IF ("&buildpath"=="")
+    (
+      DIALOG.MESSAGE "Please provide path to the TZ build base in the "+'"'+"Path To Build"+'"'+" field."
+    )
+    ELSE
+    (
+      do load_qsee_elf.cmm &buildpath &flv &tzt
+      do load_sec_app_elfs.cmm &buildpath &flv &ld
+      do load_cmnlib_elfs.cmm &buildpath &flv &ld
+    )
+  )
+
+  POS 14. 5. 10. 1.
+  DEFBUTTON "Load QSEE"
+  (
+    &buildpath=DIALOG.STRING(BUILDPATH)
+    &ld=""
+    &tzt=""
+    &flv=""
+
+    IF (DIALOG.BOOLEAN(LDEBUG))
+    (
+      &ld="live"
+    )
+
+    IF (DIALOG.BOOLEAN(TZT))
+    (
+      &tzt="tzt"
+    )
+
+    IF (DIALOG.STRING(FLAVOR)=="msm8996")
+    (
+      &flv="IADAANAA"
+    )
+    IF (DIALOG.STRING(FLAVOR)=="msm8956")
+    (
+      &flv="MAYAANAA" ; 8956
+    )
+    IF (DIALOG.STRING(FLAVOR)=="msm8952")
+    (
+      &flv="NAKAANAA" ; 8952
+    )
+    IF (DIALOG.STRING(FLAVOR)=="msm8953")
+    (
+      &flv="SANAANAA" ; 8953
+    )
+    IF (DIALOG.STRING(FLAVOR)=="msm8958")
+    (
+      &flv="PAGAANAA" ; 8958
+    )
+    IF (DIALOG.STRING(FLAVOR)=="msm8998")
+    (
+      &flv="RAHAANAA" ; 8998
+    )
+    IF (DIALOG.STRING(FLAVOR)=="msm8937")
+    (
+      &flv="ZALAANAA" ; 8937
+    )
+
+    IF ("&buildpath"=="")
+    (
+      DIALOG.MESSAGE "Please provide path to the TZ build base in the "+'"'+"Path To Build"+'"'+" field."
+    )
+    ELSE
+    (
+      do load_qsee_elf.cmm &buildpath &flv &tzt
+    )
+  )
+
+  POS 27. 5. 10. 1.
+  DEFBUTTON "Load Apps" 
+  (
+    &buildpath=DIALOG.STRING(BUILDPATH)
+    &ld=""
+    &tzt=""
+    &flv=""
+
+    IF (DIALOG.BOOLEAN(LDEBUG))
+    (
+      &ld="live"
+    )
+
+    IF (DIALOG.BOOLEAN(TZT))
+    (
+      &tzt="tzt"
+    )
+
+    IF (DIALOG.STRING(FLAVOR)=="msm8996")
+    (
+      &flv="IADAANAA"
+    )
+    IF (DIALOG.STRING(FLAVOR)=="msm8956")
+    (
+      &flv="MAYAANAA" ; 8956
+    )
+    IF (DIALOG.STRING(FLAVOR)=="msm8952")
+    (
+      &flv="NAKAANAA" ; 8952
+    )
+    IF (DIALOG.STRING(FLAVOR)=="msm8953")
+    (
+      &flv="SANAANAA" ; 8953
+    )
+    IF (DIALOG.STRING(FLAVOR)=="msm8958")
+    (
+      &flv="PAGAANAA" ; 8958
+    )
+    IF (DIALOG.STRING(FLAVOR)=="msm8998")
+    (
+      &flv="RAHAANAA" ; 8998
+    )
+    IF (DIALOG.STRING(FLAVOR)=="msm8937")
+    (
+      &flv="ZALAANAA" ; 8937
+    )
+    
+    IF ("&buildpath"=="")
+    (
+      DIALOG.MESSAGE "Please provide path to the TZ build base in the "+'"'+"Path To Build"+'"'+" field."
+    )
+    ELSE
+    (
+      do load_sec_app_elfs.cmm &buildpath &flv &ld
+      do load_cmnlib_elfs.cmm &buildpath &flv &ld
+    )
+  )
+
+  POS 0. 6.5 40. 3.
+  BOX "Thread Report"
+
+  POS 1. 7.5 12. 1.
+  DEFBUTTON "Generate"
+  (
+    IF (DIALOG.BOOLEAN(LDEBUG)&&(r(ns)!=0||r(m)!=5.))
+    (
+      DIALOG.MESSAGE "Cannot generate report on live target unless in secure EL1."
+    )
+    ELSE
+    (
+      do thread_state.cmm
+    )
+  )
+
+  POS 0. 9. 40. 4.5
+  BOX "Context Switcher"
+
+  POS 1. 10. 8. 1.
+  TEXT "Thread Name: "
+  POS 9. 10. 30. 1.
+  TNAME: EDIT "" ""
+
+  POS 1. 11.5 12. 1.
+  DEFBUTTON "Switch Context"
+  (
+    &tname=DIALOG.STRING(TNAME)
+
+    IF ("&tname"=="")
+    (
+      DIALOG.MESSAGE "Please provide a thread name in the "+'"'+"Thread Name"+'"'+" field."
+    )
+    ELSE
+    (
+      &usr=""
+
+      IF (DIALOG.BOOLEAN(USR))
+      (
+        &usr="user"
+      )
+
+      IF (!DIALOG.BOOLEAN(LDEBUG))
+      (
+        do restore_thread_ctx.cmm &tname &usr
+      )
+      ELSE
+      (
+        DIALOG.MESSAGE "This utility is not supported if debugging on a live target."
+      )
+    )
+  )
+
+  POS 20. 11.5 5. 1.
+  USR: CHECKBOX "User"
+  (
+  )
+)
+
+ENDDO
+

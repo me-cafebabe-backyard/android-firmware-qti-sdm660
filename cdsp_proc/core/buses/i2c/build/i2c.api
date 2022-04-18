@@ -1,0 +1,35 @@
+#===============================================================================
+#
+# Slimbus INC PATHs
+#
+# GENERAL DESCRIPTION
+#    Slimbus INC PATH
+#
+# Copyright (c) 2012 by Qualcomm Technologies, Incorporated.
+# All Rights Reserved.
+# QUALCOMM Proprietary/GTDR
+#
+#-------------------------------------------------------------------------------
+#
+#  $Header: //components/rel/core.qdsp6/1.0.c2/buses/i2c/build/i2c.api#1 $
+#  $DateTime: 2020/02/10 01:57:30 $
+#  $Author: pwbldsvc $
+#  $Change: 22511909 $
+#                      EDIT HISTORY FOR FILE
+#
+#  This section contains comments describing changes made to the module.
+#  Notice that changes are listed in reverse chronological order.
+#
+# when       who     what, where, why
+# --------   ---     ---------------------------------------------------------
+# 02/13/12   MJS     Initial revision.
+#
+#===============================================================================
+Import('env')
+
+#--------------------------------------------------------------------------- #
+# Search for additional APIs                                                 #
+#--------------------------------------------------------------------------- #
+
+env.LoadAPIUnits()
+

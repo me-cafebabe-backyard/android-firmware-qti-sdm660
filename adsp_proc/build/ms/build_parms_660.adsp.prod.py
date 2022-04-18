@@ -1,0 +1,3 @@
+BUILD_ID = '660.adsp.prodQ'
+BUILD_VER = '00009'
+BUILD_ASIC = '660'

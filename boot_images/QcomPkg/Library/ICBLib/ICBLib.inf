@@ -1,0 +1,43 @@
+#/** @file ICBTargetLib.inf
+#
+#  ICB Lib
+#  
+#  Copyright (c) 2014,2016 Qualcomm Technologies, Inc.  All Rights Reserved.
+#  Qualcomm Technologies Proprietary and Confidential.
+#
+#**/
+
+#==============================================================================
+#                              EDIT HISTORY
+#
+#
+# when       who     what, where, why
+# --------   ---     ----------------------------------------------------------
+# 08/26/14   sds     Initial Revision
+#
+#==============================================================================
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ICBLib
+  FILE_GUID                      = F2C8C3DA-9DBC-40E4-B1FE-01F01F00B534
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = ICBLib
+
+[Sources]
+  # Include Header
+
+  # Source code
+  HALbimc.c
+  HALbimcImpl.c
+  icbcfg.c
+  HALbimc.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  QcomPkg/QcomPkg.dec  
+  QcomPkg/XBLLoaderApi.dec
+
+[LibraryClasses]
